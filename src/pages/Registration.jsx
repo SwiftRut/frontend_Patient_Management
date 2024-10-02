@@ -8,6 +8,7 @@ const Registration = () => {
         <div className="row">
           <div className="main">
             <div className="form">
+              <div className="content">
               <div className="head">
                 <p>Registration</p>
               </div>
@@ -136,18 +137,20 @@ const Registration = () => {
                   </div>
                 </form>
               </div>
-              <div className="img-box"></div>
+              </div>
             </div>
+            <div className="img-box"></div>
           </div>
         </div>
       </div>
 
       {/* create-Hospital form start */}
 
-      {/* <div className="hospital-section">
+      <div className="hospital-section">
         <div className="row">
           <div className="main">
             <div className="form">
+              <div className="content">
               <div className="head">
                 <p>Hospital Name</p>
               </div>
@@ -225,10 +228,11 @@ const Registration = () => {
                   </div>
                 </form>
               </div>
+              </div>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* create-Hospital form end */}
     </>
