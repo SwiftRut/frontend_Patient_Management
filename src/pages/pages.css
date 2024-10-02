@@ -1,0 +1,134 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.registration-section .row .main .form {
+  padding: 120px;
+  width: 50%;
+}
+.registration-section .row .main .form .head {
+  padding: 0px 60px;
+}
+.registration-section .row .main .form .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.registration-section .row .main .form .form-box {
+  padding: 30px 60px;
+}
+.registration-section .row .main .form .form-box form {
+  justify-content: space-between;
+}
+.registration-section .row .main .form .form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.registration-section .row .main .form .form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.registration-section .row .main .form .form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.registration-section .row .main .form .form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.registration-section .row .main .form .form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.registration-section .row .main .form .form-box form .input-box select {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+  outline: none;
+}
+.registration-section .row .main .form .form-box form .input-box select:focus {
+  border: 1px solid #718EBF;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(1) {
+  width: 48%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(2) {
+  width: 48%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(2) input {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(3) {
+  width: 48%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(3) input {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(4) {
+  width: 48%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(4) input {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(5) {
+  width: 30%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(5) select {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(6) {
+  width: 30%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(6) select {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(7) {
+  width: 30%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(7) select {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(8) {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(8) select {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(9) {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(9) input {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(10) {
+  width: 100%;
+}
+.registration-section .row .main .form .form-box form .input-box:nth-child(10) input {
+  width: 100%;
+}
+.registration-section .row .main .form .img-box {
+  width: 50%;
+}/*# sourceMappingURL=pages.css.map */
