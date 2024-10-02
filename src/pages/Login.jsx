@@ -1,5 +1,3 @@
-import React from "react";
-
 const Login = () => {
   return (
     <>
@@ -16,10 +14,7 @@ const Login = () => {
                     <div className="label">
                       Email or Phone <span>*</span>
                     </div>
-                    <input
-                      type="text"
-                      placeholder="Enter Email or Phone Number"
-                    />
+                    <input type="text" placeholder="Enter Email or Phone Number" />
                   </div>
 
                   <div className="input-box">
