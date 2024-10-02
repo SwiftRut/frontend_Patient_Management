@@ -7,6 +7,7 @@ const Login = () => {
         <div className="row">
           <div className="main">
             <div className="form">
+              <div className="content">
               <div className="head">
                 <p>Login</p>
               </div>
@@ -24,13 +25,6 @@ const Login = () => {
 
                   <div className="input-box">
                     <div className="label">
-                      Phone Number <span>*</span>
-                    </div>
-                    <input type="text" placeholder="Enter Phone Number" />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
                       Password <span>*</span>
                     </div>
                     <input type="text" placeholder="Enter Password" />
@@ -41,8 +35,8 @@ const Login = () => {
                   </div>
 
                   <div className="condition">
-                    <div className="remember-forgot">
-                      <div className="remember">
+                    <div className="remember-forgot flex">
+                      <div className="remember flex">
                         <input type="radio" />
                         <p>Remember me</p>
                       </div>
@@ -60,8 +54,9 @@ const Login = () => {
                   </div>
                 </form>
               </div>
-              <div className="img-box"></div>
+              </div>
             </div>
+            <div className="img-box"></div>
           </div>
         </div>
       </div>
