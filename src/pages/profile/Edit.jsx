@@ -1,16 +1,10 @@
-import React from "react";
-import "../profile/profile.css";
-import { CgProfile } from "react-icons/cg";
-import { FaLock } from "react-icons/fa";
-import { FaStickyNote } from "react-icons/fa";
-import { SiSpringsecurity } from "react-icons/si";
-import { FaEdit } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { FaCamera } from "react-icons/fa6";
 
-export default function Profile() {
+export const Edit = () => {
   return (
     <div>
-      <div className="profile-section">
+        <div className="edit-section">
         <div className="row">
           <div className="main">
             <div className="top"></div>
@@ -24,41 +18,19 @@ export default function Profile() {
                     <div className="img">
                       <img src="../img/profile.png" alt="" />
                     </div>
-                    <p>Lincoln Philips</p>
-                  </div>
-                  <div className="menu">
-                    <p>Menu</p>
-
-                    <ul>
-                      <li>
-                        <CgProfile /> <span>Profile</span>
-                      </li>
-                      <li>
-                        <FaLock /> <span>Change Password</span>
-                      </li>
-                      <li>
-                        <FaStickyNote /> <span>Terms & Condition</span>
-                      </li>
-                      <li>
-                        <SiSpringsecurity /> <span>Privacy Policy</span>
-                      </li>
-                    </ul>
+                    <div className="change-profile">
+                        <ul>
+                            <li><FaCamera /><span>Change Profile</span></li>
+                        </ul>
+                    </div>
                   </div>
                 </div>
 
                 <div className="right">
                   <div className="content">
-                    <div className="head flex">
+                    <div className="head">
                       <div className="title">
-                        <p>Profile</p>
-                      </div>
-                      <div className="edit">
-                        <NavLink to={'/edit'}>
-                          <button className="flex">
-                            <FaEdit />
-                            <span>Edit Profile</span>
-                          </button>
-                        </NavLink>
+                        <p>Edit Profile</p>
                       </div>
                     </div>
                     <div className="form-box">
@@ -88,7 +60,7 @@ export default function Profile() {
                           <div className="label">
                             Phone Number* <span>*</span>
                           </div>
-                          <input type="text" placeholder=" Phone Number*" />
+                          <input type="number" placeholder=" Phone Number*" />
                         </div>
 
                         <div className="input-box">
@@ -102,29 +74,50 @@ export default function Profile() {
                           <div className="label">
                             Gender <span>*</span>
                           </div>
-                          <input type="text" placeholder=" Gender" />
+                          <select name="" id="">
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                          </select>
                         </div>
 
                         <div className="input-box">
                           <div className="label">
                             City <span>*</span>
                           </div>
-                          <input type="text" placeholder=" City" />
+                          <select name="" id="">
+                            <option value="">Surat</option>
+                            <option value="">Bhavanagar</option>
+                          </select>
                         </div>
 
                         <div className="input-box">
                           <div className="label">
                             State <span>*</span>
                           </div>
-                          <input type="text" placeholder=" State" />
+                          <select name="" id="">
+                            <option value="">Gujrat</option>
+                            <option value="">Rajasthan</option>
+                          </select>
                         </div>
 
                         <div className="input-box">
                           <div className="label">
                             Country <span>*</span>
                           </div>
-                          <input type="text" placeholder=" Country" />
+                          <select name="" id="">
+                            <option value="">India</option>
+                          </select>
                         </div>
+
+                        <div className="input-box">
+                          <div className="cancel-btn">
+                            <button>Cencel</button>
+                          </div>
+                          <div className="save-btn">
+                            <button>Save</button>
+                          </div>
+                        </div>
+
                       </form>
                     </div>
                   </div>
@@ -135,5 +128,5 @@ export default function Profile() {
         </div>
       </div>
     </div>
-  );
+  )
 }
