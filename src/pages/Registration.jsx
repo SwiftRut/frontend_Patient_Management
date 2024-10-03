@@ -103,8 +103,8 @@ const Registration = () => {
                     </div>
                     <input type="text" placeholder="Enter Password" />
                     <div className="eye">
-                      <img src="../eye-slash.png" alt="" />
-                      {/* <img src="../Vector.png" alt="" /> */}
+                      <img src="../img/eye-slash.png" alt="" />
+                      {/* <img src="../img/Vector.png" alt="" /> */}
                     </div>
                   </div>
 
@@ -114,8 +114,8 @@ const Registration = () => {
                     </div>
                     <input type="text" placeholder="Enter Confirm Password" />
                     <div className="eye">
-                      <img src="../eye-slash.png" alt="" />
-                      {/* <img src="../Vector.png" alt="" /> */}
+                      <img src="../img/eye-slash.png" alt="" />
+                      {/* <img src="../img/Vector.png" alt="" /> */}
                     </div>
                   </div>
 
