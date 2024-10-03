@@ -17,6 +17,7 @@ function App() {
             <Route path="/" element={<AdminPanel />}>
               <Route path="/" />
               <Route path="doctorManagement" />
+              <Route path="profile" />
             </Route>
             <Route />
           </Routes>

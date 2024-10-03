@@ -46,29 +46,36 @@ input {
     }
 
     .menu {
-      flex-direction: column;
-      justify-content: space-between;
       height: 80%;
+      justify-content: space-between;
+      flex-direction: column;
 
       ul {
         li {
           margin: 10px 0px;
-          padding: 15px 10px;
+         
           display: flex;
           align-items: center;
 
-
-          img {
-            color: #818194 !important;
-            padding-right: 15px;
-            width: 50px;
-          }
-
           a {
-            color: #818194;
-            text-decoration: none;
-            font-size: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px 10px;
+            width: 100%;
+            img {
+              color: #818194 !important;
+              padding-right: 15px;
+              width: 50px;
+            }
+
+            span {
+              color: #818194;
+              text-decoration: none;
+              font-size: 20px;
+            }
           }
+
         }
 
         li:hover {
@@ -94,6 +101,7 @@ input {
 
 
   }
+
   .content {
     width: 83%;
     margin-left: 17%;

@@ -3,6 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { MdNotificationImportant } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { FaAngleDown } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -18,7 +19,7 @@ const Header = () => {
             <CiSearch className="serch-icon" />
             <input type="text" placeholder="Quick Search" />
           </div>
-          <div className="search-filter">
+          <div className="search-filter flex">
             <span className="filter-text">All</span>
             <FaAngleDown />
           </div>
@@ -27,13 +28,15 @@ const Header = () => {
           <div className="notifiction">
             <MdNotificationImportant />
           </div>
-          <div className="user">
-            <img src="/img/avtar.png" />
-            <div>
-              <p>Lincoln Philips</p>
-              <span>Admin</span>
+          <NavLink to={"/profile"}>
+            <div className="user">
+              <img src="/img/avtar.png" />
+              <div>
+                <p>Lincoln Philips</p>
+                <span>Admin</span>
+              </div>
             </div>
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>
