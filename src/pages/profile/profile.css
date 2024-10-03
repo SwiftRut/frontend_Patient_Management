@@ -19,6 +19,7 @@
   background-color: white;
   border-radius: 15px;
   padding: 20px;
+  box-shadow: 0px 0px 3px 1px #d7d5d5;
 }
 .profile-section .row .main .profile-setting .content .left {
   padding: 20px;
@@ -59,12 +60,19 @@
 .profile-section .row .main .profile-setting .content .left .menu ul li svg {
   color: #4f4f4f;
 }
+.profile-section .row .main .profile-setting .content .left .menu ul li:hover span {
+  color: #0EABEB;
+}
+.profile-section .row .main .profile-setting .content .left .menu ul li:hover svg {
+  color: #0EABEB;
+}
 .profile-section .row .main .profile-setting .content .right {
   width: 77%;
 }
 .profile-section .row .main .profile-setting .content .right .content {
   padding: 30px 20px;
   border-radius: 15px;
+  box-shadow: 0px 0px 0px 0px white;
 }
 .profile-section .row .main .profile-setting .content .right .content .head {
   align-items: center;
@@ -114,6 +122,9 @@
 }
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -224,6 +235,200 @@
   color: white;
 }
 .profile-section .row .main .profile-setting .content .right .content .form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+}
+
+.edit-section .row .main .top {
+  height: 296px;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+}
+.edit-section .row .main .profile-setting {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: -15%;
+}
+.edit-section .row .main .profile-setting .head {
+  padding-bottom: 15px;
+}
+.edit-section .row .main .profile-setting .head p {
+  font-size: 44px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.edit-section .row .main .profile-setting .content {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 0px 3px 1px #d7d5d5;
+}
+.edit-section .row .main .profile-setting .content .left {
+  padding: 20px;
+  width: 23%;
+  border-right: 3px solid rgba(217, 217, 217, 0.3019607843);
+}
+.edit-section .row .main .profile-setting .content .left .img-box .img img {
+  margin: 0px auto;
+}
+.edit-section .row .main .profile-setting .content .right {
+  width: 77%;
+}
+.edit-section .row .main .profile-setting .content .right .content {
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 0px 0px white;
+}
+.edit-section .row .main .profile-setting .content .right .content .head {
+  align-items: center;
+  justify-content: space-between;
+}
+.edit-section .row .main .profile-setting .content .right .content .head .title p {
+  font-size: 34px;
+  font-weight: 600;
+  color: #030229;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box {
+  padding-top: 20px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form {
+  justify-content: space-between;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
+  border: 1px solid #718ebf;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
+  color: #a7a7a7;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box .eye {
+  position: absolute;
+  top: 27px;
+  right: 15px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box select {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  color: #a7a7a7;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box select:focus {
+  border: 1px solid #718ebf;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box select option button {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #0eabeb;
+  text-align: center;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(1) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(2) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(2) input {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(3) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(3) input {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(4) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(4) input {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) input {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(6) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(6) select {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(7) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(7) select {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(8) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(8) select {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(9) {
+  width: 32%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(9) select {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) {
+  width: 100%;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .policies input {
+  width: 20px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .policies p {
+  display: inline-block;
+  padding-left: 10px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .policies span {
+  color: #5678e9;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .register-btn {
+  padding: 15px 0px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .register-btn button {
+  width: 100%;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .register-btn button:hover {
+  background-color: #0eabeb;
+  color: white;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .condition .login-btn p {
   font-family: Lato;
   font-size: 16px;
   font-weight: 400;
