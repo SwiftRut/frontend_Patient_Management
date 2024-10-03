@@ -14,12 +14,10 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<AdminPanel />}>
-              <Route path="/" />
               <Route path="doctorManagement" />
-              <Route path="profile" />
+              <Route path="profile/*" />
               <Route path="edit" />
             </Route>
-            <Route />
           </Routes>
         </BrowserRouter>
       </div>
