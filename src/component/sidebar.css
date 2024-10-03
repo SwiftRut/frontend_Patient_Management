@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: row;
+}
+.sidebar .asite {
+  color: #d4d4d4;
+  width: 17%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 30px;
+}
+.sidebar .asite .logo {
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.sidebar .asite .logo img {
+  width: 250px;
+}
+.sidebar .asite .menu {
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+}
+.sidebar .asite .menu ul li {
+  margin: 10px 0px;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .asite .menu ul li img {
+  color: #818194 !important;
+  padding-right: 15px;
+  width: 50px;
+}
+.sidebar .asite .menu ul li a {
+  color: #818194;
+  text-decoration: none;
+  font-size: 20px;
+}
+.sidebar .asite .menu ul li:hover {
+  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
+}
+.sidebar .asite .menu .logout-btn button {
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: #E11D29;
+  text-decoration: none;
+  padding: 20px;
+  background-color: rgba(225, 29, 42, 0.1647058824);
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sidebar .content {
+  width: 83%;
+  margin-left: 17%;
+  padding: 20px;
+}/*# sourceMappingURL=sidebar.css.map */

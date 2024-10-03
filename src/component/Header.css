@@ -22,67 +22,9 @@ input {
   flex-wrap: wrap;
 }
 
-.dashboard {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-}
-.dashboard .asite {
-  color: #d4d4d4;
-  width: 17%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 30px;
-}
-.dashboard .asite .logo {
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.dashboard .asite .logo img {
-  width: 250px;
-}
-.dashboard .asite .menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.dashboard .asite .menu li {
-  margin: 10px 0px;
-  padding: 15px 10px;
-  display: flex;
-  align-items: center;
-}
-.dashboard .asite .menu li img {
-  color: #818194 !important;
-  padding-right: 15px;
-  width: 50px;
-}
-.dashboard .asite .menu li a {
-  color: #818194;
-  text-decoration: none;
-  font-size: 20px;
-}
-.dashboard .asite .menu li:hover {
-  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
-}
-.dashboard .asite .logout-btn button {
-  color: #a84949;
-  text-decoration: none;
-  bottom: 20px;
-  left: 20px;
-  background-color: rgba(225, 29, 41, 0.2784313725);
-  width: 100%;
-}
-.dashboard .content {
+.header {
   width: 83%;
   margin-left: 17%;
-  padding: 20px;
-}
-.dashboard .content .header {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -91,7 +33,7 @@ input {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
-.dashboard .content .header .breadcrumbs {
+.header .breadcrumbs {
   font-size: 20px;
   font-weight: bold;
   border: 1px solid #D9D9D9;
@@ -102,45 +44,45 @@ input {
   color: #2bb5ed;
   background-color: #F8FCFE;
 }
-.dashboard .content .header .breadcrumbs img {
+.header .breadcrumbs img {
   padding-right: 10px;
 }
-.dashboard .content .header .breadcrumbs .icon {
+.header .breadcrumbs .icon {
   padding-right: 10px;
   font-size: 30px;
   color: #ababab;
 }
-.dashboard .content .header .user-search {
+.header .user-search {
   display: flex;
   align-items: center;
   width: 50%;
   justify-content: space-between;
   padding: 0 10px;
 }
-.dashboard .content .header .user-search .search {
+.header .user-search .search {
   margin: 0px 10px;
   display: flex;
   align-items: center;
   border: 1px solid #4f4f4f;
   border-radius: 50px;
 }
-.dashboard .content .header .user-search .search .searching {
+.header .user-search .search .searching {
   display: flex;
   align-items: center;
   padding-left: 20px;
 }
-.dashboard .content .header .user-search .search .searching .serch-icon {
+.header .user-search .search .searching .serch-icon {
   margin-right: 10px;
   font-size: 20px;
 }
-.dashboard .content .header .user-search .search .searching input[type=text] {
+.header .user-search .search .searching input[type=text] {
   padding: 15px 20px;
   border: none;
   border-radius: 50px;
   width: 300px;
   font-size: 20px;
 }
-.dashboard .content .header .user-search .search .search-filter {
+.header .user-search .search .search-filter {
   margin-left: auto;
   font-size: 0.9em;
   color: #777;
@@ -148,11 +90,11 @@ input {
   border-left: 1px solid #ababab;
   padding-left: 10px;
 }
-.dashboard .content .header .user-search .search .search-filter .filter-text {
+.header .user-search .search .search-filter .filter-text {
   margin-right: 10px;
   font-size: 18px;
 }
-.dashboard .content .header .user-search .notifiction {
+.header .user-search .notifiction {
   width: 60px;
   height: 60px;
   font-size: 30px;
@@ -163,18 +105,18 @@ input {
   align-items: center;
   justify-content: center;
 }
-.dashboard .content .header .user-search .user {
+.header .user-search .user {
   margin-left: 20px;
   display: flex;
   align-items: center;
 }
-.dashboard .content .header .user-search .user img {
+.header .user-search .user img {
   width: 60px;
   height: 60px;
   border-radius: 60%;
   margin-right: 10px;
 }
-.dashboard .content .header .user-search .user p {
+.header .user-search .user p {
   display: block !important;
   font-size: 20px;
   padding-bottom: 5px;
