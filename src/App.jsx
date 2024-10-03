@@ -2,23 +2,23 @@ import "./pages/pages.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
-import Sidebar from "./component/Sidebar";
-import Header from "./component/Header";
-import Dashboard from "./pages/Dashboard";
-import "./component/sidebar.css"
+
+import "./component/sidebar.css";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
     <>
-      <Sidebar />
-      <Header />
-
       <div className="main-content">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/" element={<AdminPanel />}>
+              <Route path="/" />
+              <Route path="doctorManagement" />
+            </Route>
+            <Route />
           </Routes>
         </BrowserRouter>
       </div>
