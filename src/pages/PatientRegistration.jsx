@@ -4,7 +4,7 @@ import "./pages.css";
 import { useAuth } from "../context/AuthContext";
 import { Country, City, State } from "country-state-city";
 
-const Registration = () => {
+const PatientRegistration = () => {
   const navigate = useNavigate();
   const { PatientRegister } = useAuth();
   const [error, setError] = useState("");
@@ -248,4 +248,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default PatientRegistration;

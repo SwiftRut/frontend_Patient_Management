@@ -1,12 +1,12 @@
 import "./pages/pages.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import Registration from "./pages/Registration";
 import "./component/sidebar.css";
 import AdminPanel from "./pages/AdminPanel";
 import AdminRegistration from "./pages/AdminRegistration";
 import Chat from "./pages/Chat";
 import { Chart } from "./pages/Chart";
+import PatientRegistration from "./pages/PatientRegistration";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
-            <Route path="/registration" element={<Registration />} />
+            <Route path="/registration" element={<PatientRegistration />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin-registeration" element={<AdminRegistration />} />
             <Route path="/charts" element={<Chart />} />
