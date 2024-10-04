@@ -1,12 +1,13 @@
-import "./pages/pages.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import "./component/sidebar.css";
+import "./pages/pages.css";
+
+import AdminRegistration from "./pages/AdminRegistration.jsx";
+import PatientRegistration from "./pages/PatientRegistration.jsx";
 import AdminPanel from "./pages/AdminPanel";
-import AdminRegistration from "./pages/AdminRegistration";
-import Chat from "./pages/Chat";
-import { Chart } from "./pages/Chart";
-import PatientRegistration from "./pages/PatientRegistration";
+import { Chart } from "chart.js";
+import Chat from "./pages/Chat.jsx";
 
 function App() {
   return (
@@ -14,16 +15,21 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
-            <Route path="/registration" element={<PatientRegistration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin-registeration" element={<AdminRegistration />} />
+
+            {/* admin component */}
+            <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
+
             <Route path="/" element={<AdminPanel />}>
               <Route path="doctorManagement" />
               <Route path="profile/*" />
               <Route path="edit" />
             </Route>
+
+            {/* patient component */}
+            <Route path="/patientRegistration" element={<PatientRegistration />} />
           </Routes>
         </BrowserRouter>
       </div>
