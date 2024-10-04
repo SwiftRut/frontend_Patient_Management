@@ -4,9 +4,9 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import "./component/sidebar.css";
 import AdminPanel from "./pages/AdminPanel";
-import { Chart } from "chart.js";
 import AdminRegistration from "./pages/AdminRegistration";
-import ChatApp from "./pages/Chat";
+import Chat from "./pages/Chat";
+import { Chart } from "./pages/Chart";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin-registeration" element={<AdminRegistration />} />
             <Route path="/charts" element={<Chart />} />
-            <Route path="/chat" element={<ChatApp />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/" element={<AdminPanel />}>
               <Route path="doctorManagement" />
               <Route path="profile/*" />

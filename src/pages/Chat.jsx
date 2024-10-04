@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 
 const socket = io(import.meta.env.VITE_API_BASE_URL);
 
-const ChatApp = () => {
+const Chat = () => {
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
   const [user, setUser] = useState('User 1');
@@ -82,4 +82,4 @@ const ChatApp = () => {
   );
 };
 
-export default ChatApp;
+export default Chat;

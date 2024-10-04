@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
   const [loading, setLoading] = useState(true);
 
   const PatientLogin = async (userData) => {
@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
 
   const AdminLogin = async (userData) => {
     console.log(userData);
