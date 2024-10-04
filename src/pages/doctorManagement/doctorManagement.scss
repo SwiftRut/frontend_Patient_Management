@@ -90,15 +90,18 @@ input {
             .table {
                 padding: 0px 10px;
                 width: 100%;
-                overflow-y: scroll;
-                max-height: 500px;
                 table {
                     width: 100%;
                     border-collapse: collapse;
+                    overflow-y: scroll;
+                    max-height: 500px;
                     .table-heading {
                         border-top-left-radius: 50px;
                         border-top-right-radius: 10px;
                         background-color: #f6f8fb;
+                        display: table;
+                        width: 100%;
+                        table-layout: fixed;
                     }
                     td {
                         padding: 15px;
@@ -119,6 +122,27 @@ input {
                         padding: 20px 15px;
                         text-align: left;
                     }
+                    tbody {
+                        display: block;
+                        height: 585px;
+                        overflow-y: auto;
+            
+                        tr {
+                          display: table;
+                          width: 100%;
+                        //   table-layout: fixed;
+                        }
+                      }
+                      tbody::-webkit-scrollbar {
+                        width: 10px;
+                      }
+                      tbody::-webkit-scrollbar-thumb {
+                        background-color: #ccc;
+                        border-radius: 10px;
+                      }
+                      tbody::-webkit-scrollbar-track {
+                        background-color: #f0f0f0;
+                      }
                     .gender {
                         width: 50px;
                         height: 50px;

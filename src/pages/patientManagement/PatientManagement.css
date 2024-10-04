@@ -85,17 +85,20 @@ input {
 .patient-section .row .main .table {
   padding: 0px 10px;
   width: 100%;
-  overflow-y: scroll;
-  max-height: 500px;
 }
 .patient-section .row .main .table table {
   width: 100%;
   border-collapse: collapse;
+  overflow-y: scroll;
+  max-height: 500px;
 }
 .patient-section .row .main .table table .table-heading {
   border-top-left-radius: 50px;
   border-top-right-radius: 10px;
   background-color: #f6f8fb;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 .patient-section .row .main .table table td {
   padding: 15px;
@@ -113,7 +116,26 @@ input {
   font-weight: bold;
   font-size: 20px;
   padding: 20px 15px;
-  text-align: left;
+  text-align: center;
+}
+.patient-section .row .main .table table tbody {
+  display: block;
+  height: 585px;
+  overflow-y: auto;
+}
+.patient-section .row .main .table table tbody tr {
+  display: table;
+  width: 100%;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar {
+  width: 10px;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
 }
 .patient-section .row .main .table table .time h3 {
   background-color: #f6f8fb;

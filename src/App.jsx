@@ -16,7 +16,10 @@ function App() {
           <Routes>
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/admin-registeration" element={<AdminRegistration />} />
+            <Route
+              path="/admin-registeration"
+              element={<AdminRegistration />}
+            />
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<ChatApp />} />
             <Route path="/" element={<AdminPanel />}>
@@ -26,8 +29,8 @@ function App() {
 
               <Route path="patientManagement" />
 
-              <Route path="invoiceManagement" />
-              <Route path="paymentHistory" />
+              <Route path="monitorBilling" />
+              <Route path="insuranceClaims" />
               <Route path="paymentMethod" />
 
               <Route path="reportingAndAnalytics" />

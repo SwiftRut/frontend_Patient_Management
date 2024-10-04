@@ -37,21 +37,27 @@ const Sidebar = () => {
                   <span>Patient Management</span>
                 </NavLink>
               </li>
-              <li onClick={toggleAccordion} style={{ display: "flex", flexDirection: "column" }}>
-                <img src="/img/BillingAndPayments.png" alt="Billing and Payments" />
+              <li
+                onClick={toggleAccordion}
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                <img
+                  src="/img/BillingAndPayments.png"
+                  alt="Billing and Payments"
+                />
                 <span className="menu-item">Billing and Payments</span>
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (
                   <ul>
                     <li>
-                      <NavLink to={"/invoiceManagement"}>
-                        <span>Invoice Management</span>
+                      <NavLink to={"/monitorBilling"}>
+                        <span>Monitor Billing</span>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to={"/paymentHistory"}>
-                        <span>Payment History</span>
+                      <NavLink to={"/insuranceClaims"}>
+                        <span>insuranceClaims</span>
                       </NavLink>
                     </li>
                     <li>
