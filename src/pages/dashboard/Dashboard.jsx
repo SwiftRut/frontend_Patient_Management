@@ -72,23 +72,21 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="Billing-data">
-                <div className="content">
-                  <div className="head flex">
-                    <div className="title">
-                      <p>Billing & Payments</p>
-                    </div>
-                    <div className="btn">
-                      <button className='flex'><FaAddressCard />Create Bills</button>
-                    </div>
+                <div className="head flex">
+                  <div className="title">
+                    <p>Billing & Payments</p>
                   </div>
-                  <div className="pending-bill">
-                    <div className="bill-status">
-                      <p>Pending Bills : <span>00</span></p>
-                    </div>
-                    <div className="pending-bill-data">
-                      <div className="img">
-                        <img src="../img/FrameBill.png" alt="" />
-                      </div>
+                  <div className="btn">
+                    <button className='flex'><FaAddressCard />Create Bills</button>
+                  </div>
+                </div>
+                <div className="pending-bill">
+                  <div className="bill-status">
+                    <p>Pending Bills : <span>00</span></p>
+                  </div>
+                  <div className="pending-bill-data">
+                    <div className="img">
+                      <img src="../img/FrameBill.png" alt="" />
                     </div>
                   </div>
                 </div>
@@ -110,27 +108,24 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-
               <div className="Summary-data">
-                <div className="content">
-                  <div className="head">
-                    <div className="title">
-                      <p>Patients Summary</p>
-                    </div>
+                <div className="head">
+                  <div className="title">
+                    <p>Patients Summary</p>
                   </div>
-                  <div className="Summary-status">
-                    <div className="Patients-data flex">
-                      <div className="img">
-                        <img src="../img/Group.png" alt="" />
-                      </div>
-                      <div className="details">
-                        <div className="content">
-                          <ul>
-                            <li className='new'><FaBox />New Patients <span>0</span></li>
-                            <li className='old'><FaBox />Old Patients <span>0</span></li>
-                            <li className='total'><FaBox />Total Patients <span>0</span></li>
-                          </ul>
-                        </div>
+                </div>
+                <div className="Summary-status">
+                  <div className="Patients-data flex">
+                    <div className="img">
+                      <img src="../img/Group.png" alt="" />
+                    </div>
+                    <div className="details">
+                      <div className="content">
+                        <ul>
+                          <li className='new'><FaBox />New Patients <span>0</span></li>
+                          <li className='old'><FaBox />Old Patients <span>0</span></li>
+                          <li className='total'><FaBox />Total Patients <span>0</span></li>
+                        </ul>
                       </div>
                     </div>
                   </div>
