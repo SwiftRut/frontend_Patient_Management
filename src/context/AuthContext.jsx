@@ -93,6 +93,24 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const UniversalLogin = async function (userData) {
+    console.log(userData);
+    setLoading(true);
+    try {
+      const response = await apiService.UniversalLogin(userData);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+      setUser(response.data.user);
+      return true;
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }
   const logout = () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
@@ -100,7 +118,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, PatientLogin, logout, PatientRegister, DoctorLogin, AdminLogin, AdminRegister }}>
+    <AuthContext.Provider value={{ user, loading, PatientLogin, logout, PatientRegister, DoctorLogin, AdminLogin, AdminRegister, UniversalLogin }}>
       {children}
     </AuthContext.Provider>
   );
