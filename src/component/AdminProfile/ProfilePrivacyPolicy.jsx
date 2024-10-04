@@ -3,7 +3,7 @@ import React from 'react'
 const ProfilePrivacyPolicy = () => {
   return (
     <div>
-      <div className="ProfileTermsCondition-section">
+      <div className=" ProfilePrivacyPolicy-section">
         <div className="condition-right">
           <div className="content">
             <div className="head">

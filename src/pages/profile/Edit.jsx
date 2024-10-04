@@ -4,7 +4,7 @@ import { FaCamera } from "react-icons/fa6";
 export const Edit = () => {
   return (
     <div>
-        <div className="edit-section">
+      <div className="edit-section">
         <div className="row">
           <div className="main">
             <div className="top"></div>
@@ -19,9 +19,9 @@ export const Edit = () => {
                       <img src="../img/profile.png" alt="" />
                     </div>
                     <div className="change-profile">
-                        <ul>
-                            <li><FaCamera /><span>Change Profile</span></li>
-                        </ul>
+                      <ul>
+                        <li><FaCamera /><span>Change Profile</span></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
