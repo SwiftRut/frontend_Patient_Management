@@ -59,33 +59,35 @@
 
               ul {
                 li {
-                  background-color: #f6f8fb;
-                  margin: 10px 0px;
-                  padding: 15px 12px;
-                  border-radius: 10px;
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
+                  a {
+                    background-color: #f6f8fb;
+                    margin: 10px 0px;
+                    padding: 15px 12px;
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
 
-                  span {
-                    display: inline-block;
-                    padding-left: 15px;
-                    font-size: 18px;
-                    font-weight: 500;
-                    color: #4f4f4f;
-                  }
-
-                  svg {
-                    color: #4f4f4f;
-                  }
-
-                  &:hover {
                     span {
-                      color: #0EABEB;
+                      display: inline-block;
+                      padding-left: 15px;
+                      font-size: 18px;
+                      font-weight: 500;
+                      color: #4f4f4f;
                     }
 
                     svg {
-                      color: #0EABEB;
+                      color: #4f4f4f;
+                    }
+
+                    &:hover {
+                      span {
+                        color: #0EABEB;
+                      }
+
+                      svg {
+                        color: #0EABEB;
+                      }
                     }
                   }
                 }
@@ -608,3 +610,193 @@
 }
 
 // edit-section end
+
+// ProfileChangePassword-section start 
+
+.ProfileChangePassword-section {
+  .right {
+    width: 77%;
+
+    .content {
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 0px 0px white;
+
+      .head {
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+          p {
+            font-size: 34px;
+            font-weight: 600;
+            color: #030229;
+          }
+        }
+
+        .discription {
+          padding-top: 15px;
+
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #4F4F4F;
+          }
+        }
+      }
+
+      .form-box {
+        padding-top: 20px;
+
+        form {
+          justify-content: space-between;
+
+          .change-input-box {
+            position: relative;
+            padding: 15px 0px;
+
+            .label {
+              position: absolute;
+              top: 4px;
+              left: 14px;
+              background-color: white;
+            }
+
+            input {
+              padding: 12px 14px;
+              border: 1px solid #d9d9d9;
+              border-radius: 10px;
+
+              &:focus {
+                border: 1px solid #718ebf;
+              }
+
+              &::placeholder {
+                color: #a7a7a7;
+              }
+            }
+
+            .eye {
+              position: absolute;
+              top: 27px;
+              right: 15px;
+
+              img {}
+            }
+
+            select {
+              padding: 12px 14px;
+              border: 1px solid #d9d9d9;
+              border-radius: 10px;
+              outline: none;
+              background-color: white;
+              color: #a7a7a7;
+
+              &:focus {
+                border: 1px solid #718ebf;
+              }
+
+              option {
+                button {
+                  width: 100%;
+                  padding: 12px 14px;
+                  background-color: #0eabeb;
+                  text-align: center;
+                }
+              }
+            }
+
+            &:nth-child(1) {
+              width: 100%;
+
+              input {
+                width: 100%;
+              }
+            }
+
+            &:nth-child(2) {
+              width: 100%;
+
+              input {
+                width: 100%;
+              }
+            }
+
+            &:nth-child(3) {
+              width: 100%;
+
+              input {
+                width: 100%;
+              }
+            }
+
+            &:nth-child(4) {
+              width: 100%;
+
+              button {
+                width: 100%;
+                background-color: #0EABEB;
+                border-radius: 10px;
+                padding: 12px 14px;
+                color: white;
+                font-size: 20px;
+                font-weight: 600;
+              }
+            }
+
+          }
+
+          .condition {
+            width: 100%;
+            padding-top: 20px;
+
+            .policies {
+              input {
+                width: 20px;
+              }
+
+              p {
+                display: inline-block;
+                padding-left: 10px;
+              }
+
+              span {
+                color: #5678e9;
+              }
+            }
+
+            .register-btn {
+              padding: 15px 0px;
+
+              button {
+                width: 100%;
+                background-color: #f6f8fb;
+                color: #4f4f4f;
+                padding: 12px 14px;
+                border-radius: 10px;
+                font-size: 20px;
+
+                &:hover {
+                  background-color: #0eabeb;
+                  color: white;
+                }
+              }
+            }
+
+            .login-btn {
+              p {
+                font-family: Lato;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 19.2px;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ProfileChangePassword-section end

@@ -496,6 +496,7 @@ export default function DoctorManagement() {
               </table>
             </div>
           </div>
+
         </div>
       </div>
     </div>

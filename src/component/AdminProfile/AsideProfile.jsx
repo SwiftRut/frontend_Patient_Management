@@ -28,10 +28,14 @@ export default function AsideProfile() {
             </NavLink>
           </li>
           <li>
-            <FaStickyNote /> <span>Terms & Condition</span>
+            <NavLink>
+              <FaStickyNote /> <span>Terms & Condition</span>
+            </NavLink>
           </li>
           <li>
-            <SiSpringsecurity /> <span>Privacy Policy</span>
+            <NavLink>
+              <SiSpringsecurity /> <span>Privacy Policy</span>
+            </NavLink>
           </li>
         </ul>
       </div>

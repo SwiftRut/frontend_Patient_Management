@@ -40,52 +40,54 @@ input {
           padding: 60px 60px;
           border: 1px solid #F4F4F4;
           border-radius: 15px;
+
           .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-  
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 .eye {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-  
+
                   img {}
                 }
-  
+
                 select {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
@@ -93,11 +95,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -107,110 +109,110 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(3) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(4) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(5) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(6) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(7) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(8) {
                   width: 100%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(9) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(10) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
               }
-  
+
               .condition {
                 width: 100%;
                 padding-top: 20px;
-  
+
                 .policies {
                   input {
                     width: 20px;
                   }
-  
+
                   p {
                     display: inline-block;
                     padding-left: 10px;
                   }
-  
+
                   span {
                     color: #5678E9;
                   }
                 }
-  
+
                 .register-btn {
                   padding: 15px 0px;
-  
+
                   button {
                     width: 100%;
                     background-color: #F6F8FB;
@@ -218,15 +220,15 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-  
-  
+
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
                     }
                   }
                 }
-  
+
                 .login-btn {
                   p {
                     font-family: Lato;
@@ -241,6 +243,7 @@ input {
           }
         }
       }
+
       .img-box {
         width: 50%;
       }
@@ -263,44 +266,46 @@ input {
           padding: 60px 60px;
           background-color: white;
           border-radius: 15px;
-          .head {  
+
+          .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-           
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 select {
                   width: 100%;
                   padding: 12px 14px;
@@ -309,11 +314,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -323,64 +328,64 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(3) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(4) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(5) {
                   width: 48%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(6) {
                   width: 48%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
               }
-  
+
               .btn {
                 width: 100%;
                 padding-top: 20px;
                 justify-content: space-between;
-  
+
                 .cancel-btn {
                   width: 48%;
-  
+
                   button {
                     text-align: center;
                     width: 100%;
@@ -390,10 +395,10 @@ input {
                     font-size: 20px;
                   }
                 }
-  
+
                 .save-btn {
                   width: 48%;
-  
+
                   button {
                     text-align: center;
                     width: 100%;
@@ -401,7 +406,7 @@ input {
                     border-radius: 10px;
                     background-color: #F6F8FB;
                     font-size: 20px;
-  
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
@@ -436,52 +441,54 @@ input {
           padding: 60px 60px;
           border: 1px solid #F4F4F4;
           border-radius: 15px;
+
           .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-  
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 .eye {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-  
+
                   img {}
                 }
-  
+
                 select {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
@@ -489,11 +496,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -503,50 +510,48 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
               }
-  
+
               .condition {
                 width: 100%;
                 padding-top: 20px;
-  
+
                 .remember-forgot {
                   justify-content: space-between;
                   align-items: center;
-                  .remember {
-                    input {
 
-                    }
+                  .remember {
+                    input {}
+
                     p {
                       padding-left: 15px;
                     }
                   }
 
                   .forgot {
-                    span {
-
-                    }
+                    span {}
                   }
                 }
-  
+
                 .login-btn {
                   padding: 15px 0px;
-  
+
                   button {
                     width: 100%;
                     background-color: #F6F8FB;
@@ -554,15 +559,15 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-  
-  
+
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
                     }
                   }
                 }
-  
+
                 .registration-btn {
                   p {
                     font-family: Lato;
@@ -577,6 +582,7 @@ input {
           }
         }
       }
+
       .img-box {
         width: 50%;
       }
@@ -585,4 +591,3 @@ input {
 }
 
 // login section end
-
