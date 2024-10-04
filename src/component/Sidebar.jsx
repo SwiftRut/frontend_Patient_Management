@@ -1,7 +1,15 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
+  const [isAccordionOpen, setAccordionOpen] = useState(false);
+
+  // Function to toggle the accordion state
+  const toggleAccordion = () => {
+    setAccordionOpen((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className="sidebar">
@@ -24,12 +32,38 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <img src="/img/Patient-Management.png" />
-                <a href="#">Patient Management</a>
+                <NavLink>
+                  <img src="/img/Patient-Management.png" />
+                  <a href="#">Patient Management</a>
+                </NavLink>
               </li>
-              <li>
-                <img src="/img/BillingAndPayments.png" />
-                <a href="#">Billing and Payments</a>
+              <li
+                onClick={toggleAccordion}
+                style={{ display: "flex", flexDirection: "column"}}
+              >
+                <NavLink>
+                  <img
+                    src="/img/BillingAndPayments.png"
+                    alt="Billing and Payments"
+                    width="50px"
+                  />
+                  <a className="menu-item">Billing and Payments</a>
+                </NavLink>
+
+                {/* Accordion Dropdown */}
+                {isAccordionOpen && (
+                  <ul>
+                    <li>
+                      <a href="#">Invoice Management</a>
+                    </li>
+                    <li>
+                      <a href="#">Payment History</a>
+                    </li>
+                    <li>
+                      <a href="#">Payment Methods</a>
+                    </li>
+                  </ul>
+                )}
               </li>
               <li>
                 <img src="/img/ReportingAndAnalytics.png" />
