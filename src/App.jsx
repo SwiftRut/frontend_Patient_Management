@@ -5,8 +5,8 @@ import Registration from "./pages/Registration";
 import "./component/sidebar.css";
 import AdminPanel from "./pages/AdminPanel";
 import { Chart } from "chart.js";
-import AdminRegistration from "./pages/AdminRegistration";
-import ChatApp from "./pages/Chat";
+import AdminRegistration from "./pages/AdminRegistration.jsx";
+import ChatApp from "./pages/Chat.jsx";
 
 function App() {
   return (
@@ -23,6 +23,14 @@ function App() {
               <Route path="doctorManagement" />
               <Route path="profile/*" />
               <Route path="edit" />
+
+              <Route path="patientManagement" />
+
+              <Route path="invoiceManagement" />
+              <Route path="paymentHistory" />
+              <Route path="paymentMethod" />
+
+              <Route path="reportingAndAnalytics" />
             </Route>
           </Routes>
         </BrowserRouter>

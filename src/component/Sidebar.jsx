@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
@@ -32,42 +32,41 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink>
+                <NavLink to={"/patientManagement"}>
                   <img src="/img/Patient-Management.png" />
-                  <a href="#">Patient Management</a>
+                  <span>Patient Management</span>
                 </NavLink>
               </li>
-              <li
-                onClick={toggleAccordion}
-                style={{ display: "flex", flexDirection: "column"}}
-              >
-                <NavLink>
-                  <img
-                    src="/img/BillingAndPayments.png"
-                    alt="Billing and Payments"
-                    width="50px"
-                  />
-                  <a className="menu-item">Billing and Payments</a>
-                </NavLink>
+              <li onClick={toggleAccordion} style={{ display: "flex", flexDirection: "column" }}>
+                <img src="/img/BillingAndPayments.png" alt="Billing and Payments" width="50px" />
+                <span className="menu-item">Billing and Payments</span>
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (
                   <ul>
                     <li>
-                      <a href="#">Invoice Management</a>
+                      <NavLink to={"/invoiceManagement"}>
+                        <span>Invoice Management</span>
+                      </NavLink>
                     </li>
                     <li>
-                      <a href="#">Payment History</a>
+                      <NavLink to={"/paymentHistory"}>
+                        <span>Payment History</span>
+                      </NavLink>
                     </li>
                     <li>
-                      <a href="#">Payment Methods</a>
+                      <NavLink to={"/paymentMethod"}>
+                        <span>Payment Methods</span>
+                      </NavLink>
                     </li>
                   </ul>
                 )}
               </li>
               <li>
-                <img src="/img/ReportingAndAnalytics.png" />
-                <a href="#">Reporting and Analytics</a>
+                <NavLink to={"/reportingAndAnalytics"}>
+                  <img src="/img/ReportingAndAnalytics.png" />
+                  <span>Reporting and Analytics</span>
+                </NavLink>
               </li>
             </ul>
             <div className="logout-btn">
