@@ -28,12 +28,12 @@ export default function AsideProfile() {
             </NavLink>
           </li>
           <li>
-            <NavLink>
+            <NavLink to={'termsCondition'}>
               <FaStickyNote /> <span>Terms & Condition</span>
             </NavLink>
           </li>
           <li>
-            <NavLink>
+            <NavLink to={'privacyPolicy'}>
               <SiSpringsecurity /> <span>Privacy Policy</span>
             </NavLink>
           </li>
