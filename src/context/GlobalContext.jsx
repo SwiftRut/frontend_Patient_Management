@@ -19,11 +19,22 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    const createHospital = async(userData)=>{
+        try {
+            const response = await apiService.CreateHospital(userData);
+            console.log(response);
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
   return (
     <GlobalContext.Provider value={{
         allHospitals,
         setAllHospitals,
         getAllHospitals,
+        createHospital
      }}>
       {children}
     </GlobalContext.Provider>

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Country, City, State } from "country-state-city";
 import { useGlobal } from "../context/GlobalContext";
-
+import Select, { components } from 'react-select';
+import PropTypes from "prop-types";
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();
@@ -34,8 +35,8 @@ const AdminRegistration = () => {
       await getAllHospitals();
     };
     fetchData();
+    console.log(allHospitals)
   }, []);
-  console.log(allHospitals)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,7 +85,20 @@ const AdminRegistration = () => {
       setError(error.response?.data?.message || "Registration failed");
     }
   };
-
+  const SelectMenuButton = (props) => (
+    <components.MenuList {...props}>
+      {props.children}
+      <button
+        className="add-new-hospital "
+        onClick={() => navigate("/create-hospital")}
+      >
+        Add New Hospital
+      </button>
+    </components.MenuList>
+  );
+  SelectMenuButton.propTypes = {
+    children: PropTypes.node,
+  }
   return (
     <>
       <div className="registration-section">
@@ -213,32 +227,28 @@ const AdminRegistration = () => {
                       </select>
                     </div>
 
-                      <div className="input-box">
-                        <div className="label">
-                          Select Hospital <span>*</span>
-                        </div>
-                        <select
-                          name="hospital"
-                          value={formData.hospital}
-                          onChange={handleChange}
-                          required
-                        >
-                          <option value="">Select Hospital</option>
-                          {allHospitals.length > 0 ? (
-                            allHospitals.map((hospital) => (
-                              <option key={hospital._id} value={hospital._id}>
-                                {hospital.name}
-                              </option>
-                            ))
-                          ) : (
-                            <option value="">No Hospitals Available</option>
-                          )}
-                          <option onClick={() => navigate("/create-hospital")}>
-                            Create Hospital
-                          </option>
-                        </select>
-                      </div>
-
+                    <div className="input-box">
+                    <div className="label">
+                      Select Hospital <span>*</span>
+                    </div>
+                    <Select
+                      name="hospital"
+                      value={allHospitals.find(hospital => hospital._id === formData.hospital)}
+                      onChange={(selectedOption) =>
+                        setFormData((prevState) => ({
+                          ...prevState,
+                          hospital: selectedOption._id,
+                        }))
+                      }
+                      options={allHospitals.map((hospital) => ({
+                        value: hospital._id,
+                        label: hospital.name,
+                      }))}
+                      components={{ MenuList: SelectMenuButton }}
+                      placeholder="Select Hospital"
+                      isClearable
+                    />
+                  </div>
                     <div className="input-box">
                       <div className="label">
                         Password <span>*</span>
@@ -322,17 +332,27 @@ const AdminRegistration = () => {
                     </div>
 
                     <div className="input-box">
-                      <div className="label">
-                        Country <span>*</span>
-                      </div>
-
-                      <select name="" id="">
-                        <option>Select Country</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select>
+                    <div className="label">
+                      Select Hospital <span>*</span>
                     </div>
+                    <Select
+                      name="hospital"
+                      value={allHospitals.find(hospital => hospital._id === formData.hospital)}
+                      onChange={(selectedOption) =>
+                        setFormData((prevState) => ({
+                          ...prevState,
+                          hospital: selectedOption._id,
+                        }))
+                      }
+                      options={allHospitals.map((hospital) => ({
+                        value: hospital._id,
+                        label: hospital.name,
+                      }))}
+                      components={{ MenuList: SelectMenuButton }}
+                      placeholder="Select Hospital"
+                      isClearable
+                    />
+                  </div>
 
                     <div className="input-box">
                       <div className="label">
