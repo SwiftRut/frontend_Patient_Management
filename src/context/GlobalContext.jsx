@@ -37,9 +37,9 @@ export const GlobalProvider = ({ children }) => {
       throw error
       }
   }
-  const editAdminProfile = async (id) => {
+  const editAdminProfile = async (id, userData) => {
     try{
-    const response = await apiService.EditAdminProfile(id);
+    const response = await apiService.EditAdminProfile(id, userData);
     setAdminData(response.data.data);
     }catch(error){
     console.log(error);

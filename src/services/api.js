@@ -42,7 +42,7 @@ const apiService = {
 
   //Admin
   GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),        
-  EditAdminProfile: (userData, id) => api.put(`/admin/change-password/${id}`, userData),
+  EditAdminProfile: (id, userData) => api.put(`/admin/edit-profile/${id}`, userData),
   ChangePassword: (id) => api.put(`/admin/change-password/${id}`),
 };
 
