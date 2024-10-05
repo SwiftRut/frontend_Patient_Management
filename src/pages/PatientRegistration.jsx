@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
 import { useAuth } from "../context/AuthContext";
+import { Country, City, State } from "country-state-city";
 
-const Registration = () => {
+const PatientRegistration = () => {
   const navigate = useNavigate();
   const { PatientRegister } = useAuth();
+  const [error, setError] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "a",
     lastName: "a",
@@ -18,7 +23,10 @@ const Registration = () => {
     city: "Los Angeles",
     role: "patient",
   });
-  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setCountries(Country.getAllCountries());
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +34,17 @@ const Registration = () => {
       ...prevState,
       [name]: value
     }));
+
+    if (name === 'country') {
+      const selectedCountry = countries.find(country => country.isoCode === value);
+      setStates(State.getStatesOfCountry(selectedCountry.isoCode));
+      setFormData(prevState => ({ ...prevState, state: '', city: '' }));
+      setCities([]);
+    } else if (name === 'state') {
+      const selectedState = states.find(state => state.isoCode === value);
+      setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
+      setFormData(prevState => ({ ...prevState, city: '' }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -47,17 +66,17 @@ const Registration = () => {
   };
 
   return (
-    <div className="registration-section">
+    <div className="patient-registration-section">
       <div className="row">
         <div className="main">
           <div className="form">
             <div className="content">
               <div className="head">
-                <p>Registration</p>
+                <p>Registration </p>
               </div>
               <div className="form-box">
-                <form onSubmit={handleSubmit} className="flex">
                   {error && <div className="error-message">{error}</div>}
+                <form onSubmit={handleSubmit} className="flex">
                   
                   <div className="input-box">
                     <div className="label">
@@ -117,6 +136,81 @@ const Registration = () => {
 
                   <div className="input-box">
                     <div className="label">
+                      Age <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Age"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Height(cm) <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Height"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Weight(kg) <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Weight"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Gender <span>*</span>
+                    </div>
+
+                    <select name="" id="">
+                      <option>Select Gender</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Blood Group <span>*</span>
+                    </div>
+
+                    <select name="" id="">
+                      <option>Select Blood Group</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Date of Birth <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Select Date"
+                      required
+                    />
+                  </div>
+
+
+                  <div className="input-box">
+                    <div className="label">
                       Country <span>*</span>
                     </div>
                     <select
@@ -126,8 +220,11 @@ const Registration = () => {
                       required
                     >
                       <option value="">Select Country</option>
-                      <option value="USA">USA</option>
-                      {/* Add more country options */}
+                      {countries.map((country) => (
+                        <option key={country.isoCode} value={country.isoCode}>
+                          {country.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -140,10 +237,14 @@ const Registration = () => {
                       value={formData.state}
                       onChange={handleChange}
                       required
+                      disabled={!formData.country}
                     >
                       <option value="">Select State</option>
-                      <option value="California">California</option>
-                      {/* Add more state options */}
+                      {states.map((state) => (
+                        <option key={state.isoCode} value={state.isoCode}>
+                          {state.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -156,11 +257,27 @@ const Registration = () => {
                       value={formData.city}
                       onChange={handleChange}
                       required
+                      disabled={!formData.state}
                     >
                       <option value="">Select City</option>
-                      <option value="Los Angeles">Los Angeles</option>
-                      {/* Add more city options */}
+                      {cities.map((city) => (
+                        <option key={city.name} value={city.name}>
+                          {city.name}
+                        </option>
+                      ))}
                     </select>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Address <span>*</span>
+                    </div>
+                    <input
+                      type="text"
+                      name="password"
+                      placeholder="Enter Address"
+                      required
+                    />
                   </div>
 
                   <div className="input-box">
@@ -191,6 +308,8 @@ const Registration = () => {
                     />
                   </div>
 
+
+
                   <div className="condition">
                     <div className="policies">
                       <input type="checkbox" required />
@@ -218,4 +337,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default PatientRegistration;
