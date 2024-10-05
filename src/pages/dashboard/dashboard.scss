@@ -1,0 +1,342 @@
+// deshbord section start
+
+.deshbord-section {
+  .row {
+    .main {
+      .top {
+        padding: 20px 20px 10px 20px;
+
+        .Patients-data {
+          padding: 0px 15px;
+          width: 60%;
+
+          .total-data {
+            justify-content: space-between;
+            align-items: center;
+
+            .total-Patients,
+            .total-Docters,
+            .total-Appointments {
+              width: 32%;
+              background-color: white;
+              border-radius: 15px;
+              padding: 20px;
+
+              .content {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+
+                .logo {
+                  width: 50px;
+                  border-radius: 50%;
+                  height: 50px;
+                  background-color: #2E779326;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  svg {
+                    width: 30px;
+                    color: #2E7793;
+                  }
+                }
+
+                .dr-logo {
+                  background-color: #5E5E9E26;
+
+                  svg {
+                    color: #5E5E9E;
+                  }
+                }
+
+                .appo-logo {
+                  background-color: #41B16126;
+
+                  svg {
+                    color: #41B161;
+                  }
+                }
+
+
+
+                .details {
+                  padding-left: 15px;
+
+                  p {
+                    color: #A7A7A7;
+                    font-size: 18px;
+                    font-weight: 400;
+                  }
+
+                  span {
+                    display: block;
+                    color: #030229;
+                    font-size: 34px;
+                    font-weight: 800;
+                  }
+                }
+              }
+            }
+          }
+
+          .Patients-Statistics {
+            padding-top: 15px;
+
+            .patients-content {
+              background-color: white;
+              padding: 20px;
+              border-radius: 15px;
+              height: 310px;
+
+              .head {
+                justify-content: space-between;
+
+                .title {
+                  p {
+                    color: #030229;
+                    font-size: 26px;
+                    font-weight: 700;
+                  }
+                }
+
+                .menu {
+                  ul {
+                    li {
+                      padding: 8px 0px;
+                      font-weight: 400;
+                      color: #A7A7A7;
+                      display: inline-block;
+                      border-radius: 10px;
+                      width: 78px;
+                      text-align: center;
+
+                      &:hover {
+                        background-color: #0EABEB;
+                        color: white;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .graph {
+                height: 85%;
+              }
+
+            }
+          }
+        }
+
+        .Billing-data {
+          width: 40%;
+          padding: 20px;
+          background-color: white;
+          border-radius: 15px;
+
+          .head {
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+              p {
+                font-size: 26px;
+                font-weight: 700;
+                color: #030229;
+              }
+            }
+
+            .btn {
+              button {
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                font-weight: 600;
+                color: #FFFFFF;
+                padding: 12px 14px;
+                border-radius: 10px;
+                background-color: #0EABEB;
+                gap: 10px;
+
+                svg {
+                  color: #FFFFFF;
+                }
+              }
+            }
+          }
+
+          .pending-bill {
+            .bill-status {
+              padding-top: 10px;
+
+              p {
+                color: #030229;
+                font-size: 18px;
+                font-weight: 600;
+
+                span {
+                  color: #030229;
+                  display: inline-block;
+                }
+              }
+            }
+
+            .pending-bill-data {
+              padding-top: 40px;
+
+              .img {
+                img {
+                  margin: 0px auto;
+                }
+              }
+
+
+
+            }
+          }
+        }
+      }
+
+      .bottom {
+        padding: 10px 20px;
+        padding-bottom: 30px;
+
+        .appointments-data {
+          padding: 0px 15px;
+          width: 60%;
+
+          .today-appointments {
+
+            .appointments-content {
+              background-color: white;
+              padding: 20px;
+              border-radius: 15px;
+              height: 300px;
+
+              .head {
+                justify-content: space-between;
+
+                .title {
+                  p {
+                    color: #030229;
+                    font-size: 26px;
+                    font-weight: 700;
+                  }
+                }
+              }
+
+              .img {
+                height: 85%;
+                padding-top: 20px;
+
+                img {
+                  margin: 0px auto;
+                  height: 100%;
+                }
+              }
+
+            }
+          }
+        }
+
+        .Summary-data {
+          width: 40%;
+          padding: 20px;
+          background-color: white;
+          border-radius: 15px;
+
+          .head {
+            .title {
+              p {
+                font-size: 26px;
+                font-weight: 700;
+                color: #030229;
+                border-bottom: 1px solid #F4F4F4;
+                padding-bottom: 10px;
+              }
+            }
+          }
+
+          .Summary-status {
+            padding-top: 20px;
+
+            .Patients-data {
+              background-color: #F6F8FB;
+              border-radius: 15px;
+              align-items: center;
+              padding: 25px;
+
+              .img {
+                width: 40%;
+
+                img {
+                  width: 145px;
+                }
+              }
+
+              .details {
+                width: 60%;
+
+                .content {
+                  width: 70%;
+                  background-color: white;
+                  border-radius: 15px;
+                  padding: 15px;
+                  margin: 0px auto;
+
+                  ul {
+                    li {
+                      display: flex;
+                      gap: 15px;
+                      align-items: center;
+                      padding: 10px;
+                      font-size: 18px;
+                      font-weight: 600;
+                      color: #4F4F4F;
+                    }
+
+                    .new {
+                      svg {
+                        color: #E78B00;
+                      }
+
+                      span {
+                        display: inline-block;
+                        color: #E78B00;
+                      }
+                    }
+
+                    .old {
+                      svg {
+                        color: #00AA33;
+                      }
+
+                      span {
+                        display: inline-block;
+                        color: #00AA33;
+                      }
+                    }
+
+                    .total {
+                      svg {
+                        color: #0314C9;
+                      }
+
+                      span {
+                        color: #0314C9;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+  }
+}
+
+// deshbord section end

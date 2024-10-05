@@ -27,6 +27,13 @@ const apiService = {
   // Doctor
   DoctorLogin: (userData) => api.post('/doctor/login', userData),
   DoctorRegister: (userData) => api.post('/doctor/register', userData),
+
+  // Universal Login
+  UniversalLogin: (userData) => api.post('/universal-login', userData),
+
+  //Hospital
+  CreateHospital: (userData) => api.post('/hospital/create-hospital', userData),
+  GetAllHospital: (userData) => api.post('/hospital/get-all-hospitals', userData),
 };
 
 export default apiService;

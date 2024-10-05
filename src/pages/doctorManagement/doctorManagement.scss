@@ -39,15 +39,19 @@ input {
             background-color: #fff;
             padding: 10px;
             height: 100%;
+
             .top {
                 justify-content: space-between;
                 padding: 10px 10px 20px;
+
                 .heading {
                     font-weight: 700;
                     font-size: 25px;
                 }
+
                 .search-btn {
                     justify-content: space-between;
+
                     .input {
                         padding: 12px 15px;
                         background-color: #f6f8fb;
@@ -55,15 +59,18 @@ input {
                         border-radius: 30px;
                         width: 350px;
                         font-size: 20px;
+
                         .search {
                             font-size: 25px;
                             color: #000;
                         }
+
                         input {
                             background-color: transparent;
                             padding-left: 10px;
                         }
                     }
+
                     .btn {
                         background-color: #0EABEB;
                         border-radius: 10px;
@@ -87,19 +94,23 @@ input {
                     }
                 }
             }
+
             .table {
                 padding: 0px 10px;
                 width: 100%;
                 overflow-y: scroll;
                 max-height: 500px;
+
                 table {
                     width: 100%;
                     border-collapse: collapse;
+
                     .table-heading {
                         border-top-left-radius: 50px;
                         border-top-right-radius: 10px;
                         background-color: #f6f8fb;
                     }
+
                     td {
                         padding: 15px;
                         text-align: center;
@@ -107,11 +118,12 @@ input {
                         font-size: 20px;
                         font-weight: 600;
 
-                        img{
+                        img {
                             margin-right: 10px;
                             width: 50px;
                         }
                     }
+
                     th {
 
                         font-weight: bold;
@@ -119,6 +131,7 @@ input {
                         padding: 20px 15px;
                         text-align: left;
                     }
+
                     .gender {
                         width: 50px;
                         height: 50px;
@@ -127,6 +140,7 @@ input {
                         color: #718ebf;
                         padding: 10px;
                     }
+
                     .time {
                         h3 {
                             background-color: #f6f8fb;
@@ -141,6 +155,7 @@ input {
                         }
 
                     }
+
                     .action {
 
                         .edit,
@@ -166,6 +181,7 @@ input {
                     }
                 }
             }
+
             .image {
                 padding: 95px;
                 display: flex;

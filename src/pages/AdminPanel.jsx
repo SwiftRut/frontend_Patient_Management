@@ -14,6 +14,7 @@ export default function AdminPanel() {
 
       <Sidebar />
       <Routes>
+
         <Route path="" element={<Dashboard />} />
         <Route path="doctorManagement" element={<DoctorManagement />} />
         <Route path="profile/*" element={<Profile />} />
