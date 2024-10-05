@@ -33,7 +33,7 @@ const apiService = {
 
   //Hospital
   CreateHospital: (userData) => api.post('/hospital/create-hospital', userData),
-  GetAllHospital: (userData) => api.post('/hospital/get-all-hospitals', userData),
+  GetAllHospitals: (userData) => api.get('/hospital/get-all-hospitals', userData),
 };
 
 export default apiService;

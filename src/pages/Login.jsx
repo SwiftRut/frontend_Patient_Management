@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { PatientLogin } = useAuth();
+  const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
     identifier: "a@gmail.com",
     password: "abc@123",
@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const success = await PatientLogin(formData);
+      const success = await UniversalLogin(formData);
       if (success) {
         navigate("/");
       }

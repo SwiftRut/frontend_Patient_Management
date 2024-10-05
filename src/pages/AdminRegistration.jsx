@@ -1,27 +1,27 @@
-
-
-
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./pages.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Country, City, State } from "country-state-city";
-
+import { useGlobal } from "../context/GlobalContext";
 
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();
+  const { getAllHospitals, allHospitals } = useGlobal();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    password: "123@abc",
+    confirmPassword: "123@abc",
     phone: "4123456780",
     country: "",
     state: "",
     city: "",
     role: "admin",
+    hospital: "",
   });
   const [error, setError] = useState("");
   const [countries, setCountries] = useState([]);
@@ -29,25 +29,38 @@ const AdminRegistration = () => {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    setCountries(Country.getAllCountries());
+    const fetchData = async () => {
+      setCountries(Country.getAllCountries());
+      await getAllHospitals();
+    };
+    fetchData();
   }, []);
+  console.log(allHospitals)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
 
-    if (name === 'country') {
-      const selectedCountry = countries.find(country => country.isoCode === value);
-      setStates(State.getStatesOfCountry(selectedCountry.isoCode));
-      setFormData(prevState => ({ ...prevState, state: '', city: '' }));
+    if (name === "country") {
+      const selectedCountry = countries.find(
+        (country) => country.isoCode === value
+      );
+      if (selectedCountry) {
+        setStates(State.getStatesOfCountry(selectedCountry.isoCode));
+        setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
+      }
       setCities([]);
-    } else if (name === 'state') {
-      const selectedState = states.find(state => state.isoCode === value);
-      setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
-      setFormData(prevState => ({ ...prevState, city: '' }));
+    } else if (name === "state") {
+      const selectedState = states.find((state) => state.isoCode === value);
+      if (selectedState) {
+        setCities(
+          City.getCitiesOfState(formData.country, selectedState.isoCode)
+        );
+        setFormData((prevState) => ({ ...prevState, city: "" }));
+      }
     }
   };
 
@@ -61,7 +74,10 @@ const AdminRegistration = () => {
     }
 
     try {
-      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
+      console.log(
+        formData,
+        "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data"
+      );
       await AdminRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -82,7 +98,6 @@ const AdminRegistration = () => {
                 {error && <div className="error-message">{error}</div>}
                 <div className="form-box">
                   <form onSubmit={handleSubmit} className="flex">
-
                     <div className="input-box">
                       <div className="label">
                         First Name <span>*</span>
@@ -198,21 +213,31 @@ const AdminRegistration = () => {
                       </select>
                     </div>
 
-                    <div className="input-box">
-                      <div className="label">
-                        Select Hospital <span>*</span>
+                      <div className="input-box">
+                        <div className="label">
+                          Select Hospital <span>*</span>
+                        </div>
+                        <select
+                          name="hospital"
+                          value={formData.hospital}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.length > 0 ? (
+                            allHospitals.map((hospital) => (
+                              <option key={hospital._id} value={hospital._id}>
+                                {hospital.name}
+                              </option>
+                            ))
+                          ) : (
+                            <option value="">No Hospitals Available</option>
+                          )}
+                          <option onClick={() => navigate("/create-hospital")}>
+                            Create Hospital
+                          </option>
+                        </select>
                       </div>
-
-                      <select name="" id="">
-                        <option>Select Hospital*</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>
-                          <button>Create Hospital</button>
-                        </option>
-                      </select>
-                    </div>
 
                     <div className="input-box">
                       <div className="label">
@@ -255,7 +280,10 @@ const AdminRegistration = () => {
                         <button type="submit">Register</button>
                       </div>
                       <div className="login-btn">
-                        <p>Already have an account? <span onClick={() => navigate('/login')}>Login</span></p>
+                        <p>
+                          Already have an account?{" "}
+                          <span onClick={() => navigate("/login")}>Login</span>
+                        </p>
                       </div>
                     </div>
                   </form>
@@ -279,7 +307,6 @@ const AdminRegistration = () => {
                 </div>
                 <div className="form-box">
                   <form action="" className="flex">
-
                     <div className="input-box">
                       <div className="label">
                         Hospital Name <span>*</span>
