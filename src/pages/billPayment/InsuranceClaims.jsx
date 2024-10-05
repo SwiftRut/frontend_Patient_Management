@@ -1,4 +1,5 @@
-import "../billPayment/monitorBilling.css";
+// import "../billPayment/insuranceCliams.css";
+import "../billPayment/insuranceClaims.css";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
@@ -7,13 +8,13 @@ import { RiEditBoxFill } from "react-icons/ri";
 export default function InsuranceClaims() {
   return (
     <>
-      <div className="monitor-section">
+      <div className="insurance-section">
         <div className="row">
           <div className="main">
             <div className="main">
               <div className="top flex align-center">
                 <div className="heading">
-                  <h3>Monitor Billing</h3>
+                  <h3>Insurance Claims</h3>
                 </div>
                 <div className="search-btn flex">
                   <div className="input flex align-center">
@@ -72,6 +73,781 @@ export default function InsuranceClaims() {
                       <td>HDFC Life Insurance</td>
                       <td className="time">
                         <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
                       </td>
                       <td>2 Jun, 2024</td>
                       <td className="action">

@@ -31,7 +31,7 @@ input {
 }
 
 // section start
-.monitor-section {
+.payment-section {
   .row {
     .main {
       border-radius: 15px;
@@ -141,7 +141,7 @@ input {
             font-weight: bold;
             font-size: 20px;
             padding: 20px 15px;
-            text-align: center;
+            text-align: left;
           }
           tbody {
             display: block;
@@ -151,7 +151,6 @@ input {
             tr {
               display: table;
               width: 100%;
-              table-layout: fixed;
             }
           }
           tbody::-webkit-scrollbar {
@@ -208,6 +207,7 @@ input {
 
             .delete {
               color: #e11d29;
+              width: 60px;
             }
           }
         }

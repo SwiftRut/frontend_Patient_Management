@@ -43,17 +43,16 @@ input {
         border-bottom: 1px solid rgb(219, 219, 219);
         padding: 20px 10px 0;
         button {
-            background: none;
-            border: none;
-            margin-right: 25px;
-            font-size: 20px;
-            color: #667080;
-            font-weight: 400;
-            cursor: pointer;
-            padding-bottom: 20px;
-          
+          background: none;
+          border: none;
+          margin-right: 25px;
+          font-size: 20px;
+          color: #667080;
+          font-weight: 400;
+          cursor: pointer;
+          padding-bottom: 20px;
         }
-        button:focus{
+        button:focus {
           border-bottom: 5px solid #0eabeb;
           color: #0eabeb;
         }
@@ -94,8 +93,8 @@ input {
           overflow-y: scroll;
           max-height: 500px;
           .table-heading {
-            border-top-left-radius: 50px;
-            border-top-right-radius: 10px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
             background-color: #f6f8fb;
             display: table;
             width: 100%;

@@ -7,10 +7,10 @@ import DoctorManagement from "./doctorManagement/DoctorManagement";
 import Profile from "./profile/Profile";
 import { Edit } from "./profile/Edit";
 import PatientManagement from "./patientManagement/PatientManagement";
-import PaymentMethod from "./billPayment/PaymentMethod";
 import ReportingAndAnalytics from "./ReportingAndAnalytics/ReportingAndAnalytics";
 import MonitorBilling from "./billPayment/MonitorBilling";
 import InsuranceClaims from "./billPayment/InsuranceClaims";
+import PaymentMethod from "./billPayment/PaymentMethod";
 
 export default function AdminPanel() {
   return (

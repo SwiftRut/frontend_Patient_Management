@@ -31,7 +31,7 @@ input {
 }
 
 // section start
-.monitor-section {
+.insurance-section {
   .row {
     .main {
       border-radius: 15px;
@@ -118,8 +118,8 @@ input {
           overflow-y: scroll;
           max-height: 500px;
           .table-heading {
-            border-top-left-radius: 50px;
-            border-top-right-radius: 10px;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
             background-color: #f6f8fb;
             display: table;
             width: 100%;
@@ -136,6 +136,7 @@ input {
             img {
               margin-right: 10px;
               width: 50px;
+              padding-bottom: 11px;
             }
           }
           th {
@@ -192,7 +193,7 @@ input {
               text-align: center;
               color: #0eabeb;
               margin: 0px 10px;
-              width: 60px!important;
+              width: 60px !important;
               display: flex;
               justify-content: center;
             }

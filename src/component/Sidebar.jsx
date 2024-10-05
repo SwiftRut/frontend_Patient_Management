@@ -49,7 +49,7 @@ const Sidebar = () => {
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (
-                  <ul>
+                  <ul style={{ width: "100%" }} className="dropdown">
                     <li>
                       <NavLink to={"/monitorBilling"}>
                         <span>Monitor Billing</span>
