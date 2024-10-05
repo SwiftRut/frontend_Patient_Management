@@ -34,7 +34,6 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 30px;
 }
 .sidebar .asite .logo {
   font-weight: bold;
@@ -49,17 +48,54 @@ input {
   justify-content: space-between;
   flex-direction: column;
 }
+.sidebar .asite .menu ul {
+  background-color: #fff;
+}
 .sidebar .asite .menu ul li {
-  margin: 10px 0px;
   display: flex;
   align-items: center;
+  color: #818194;
+  padding: 5px 15px;
+  background-color: #fff;
+}
+.sidebar .asite .menu ul li .dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+.sidebar .asite .menu ul li .dropdown.open {
+  max-height: 200px; /* Maximum height when open */
+}
+.sidebar .asite .menu ul li .dropdown ul {
+  padding: 0;
+  margin: 0;
+}
+.sidebar .asite .menu ul li .dropdown li:hover {
+  background-color: #fff;
+}
+.sidebar .asite .menu ul li .dropdown li {
+  padding: 10px 15px;
+  background-color: #fff !important;
+}
+.sidebar .asite .menu ul li .dropdown li a {
+  color: #333;
+  text-decoration: none;
+}
+.sidebar .asite .menu ul li .dropdown li a:hover {
+  background-color: #f0f0f0;
 }
 .sidebar .asite .menu ul li a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 15px 10px;
+  padding: 10px 10px;
   width: 100%;
+  font-size: 20px;
 }
 .sidebar .asite .menu ul li a img {
   color: #818194 !important;
@@ -68,7 +104,6 @@ input {
 }
 .sidebar .asite .menu ul li a span {
   color: #818194;
-  text-decoration: none;
   font-size: 20px;
 }
 .sidebar .asite .menu ul li:hover {
@@ -78,8 +113,7 @@ input {
   gap: 15px;
   justify-content: center;
   align-items: center;
-  color: #E11D29;
-  text-decoration: none;
+  color: #e11d29;
   padding: 20px;
   background-color: rgba(225, 29, 42, 0.1647058824);
   width: 100%;

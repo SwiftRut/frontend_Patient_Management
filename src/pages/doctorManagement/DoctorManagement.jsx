@@ -5,6 +5,7 @@ import { BsGenderFemale } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+
 export default function DoctorManagement() {
   return <>
     <div>

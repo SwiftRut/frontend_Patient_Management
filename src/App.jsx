@@ -32,6 +32,14 @@ function App() {
               <Route path="doctorManagement" />
               <Route path="profile/*" />
               <Route path="edit" />
+
+              <Route path="patientManagement" />
+
+              <Route path="invoiceManagement" />
+              <Route path="paymentHistory" />
+              <Route path="paymentMethod" />
+
+              <Route path="reportingAndAnalytics" />
             </Route>
 
             {/* patient component */}
