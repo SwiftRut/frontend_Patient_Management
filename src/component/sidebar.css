@@ -27,7 +27,7 @@ input {
   flex-direction: row;
 }
 .sidebar .asite {
-  background-color: #fff;
+  background-color: white;
   color: #d4d4d4;
   width: 17%;
   height: 100vh;

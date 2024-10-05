@@ -39,32 +39,35 @@
   font-size: 20px;
   font-weight: 600;
   color: #030229;
-  padding: 15px 0px;
+  padding: 10px 0px;
 }
-.profile-section .row .main .profile-setting .content .left .menu ul li {
+.profile-section .row .main .profile-setting .content .left .menu ul li a {
   background-color: #f6f8fb;
-  margin: 10px 0px;
+  margin-bottom: 10px;
   padding: 15px 12px;
   border-radius: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.profile-section .row .main .profile-setting .content .left .menu ul li span {
+.profile-section .row .main .profile-setting .content .left .menu ul li a span {
   display: inline-block;
   padding-left: 15px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #4f4f4f;
 }
-.profile-section .row .main .profile-setting .content .left .menu ul li svg {
+.profile-section .row .main .profile-setting .content .left .menu ul li a svg {
   color: #4f4f4f;
 }
-.profile-section .row .main .profile-setting .content .left .menu ul li:hover span {
+.profile-section .row .main .profile-setting .content .left .menu ul li a:hover span {
   color: #0EABEB;
 }
-.profile-section .row .main .profile-setting .content .left .menu ul li:hover svg {
+.profile-section .row .main .profile-setting .content .left .menu ul li a:hover svg {
   color: #0EABEB;
+}
+.profile-section .row .main .profile-setting .content .left .menu ul li:last-child a {
+  margin: 0px;
 }
 .profile-section .row .main .profile-setting .content .right {
   width: 77%;
@@ -273,6 +276,26 @@
 .edit-section .row .main .profile-setting .content .left .img-box .img img {
   margin: 0px auto;
 }
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile {
+  padding-top: 15px;
+}
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 14px;
+  background-color: #F6F8FB;
+  border-radius: 10px;
+}
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li svg {
+  color: #4F4F4F;
+}
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li span {
+  color: #4F4F4F;
+  padding-left: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
 .edit-section .row .main .profile-setting .content .right {
   width: 77%;
 }
@@ -313,9 +336,6 @@
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
-}
-.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -398,6 +418,29 @@
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) {
   width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .cancel-btn button {
+  color: black;
+  border: 1px solid #D3D3D3;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 160px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn {
+  padding-left: 15px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn button {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background-color: #0EABEB;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  width: 160px;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .condition {
   width: 100%;
@@ -434,4 +477,174 @@
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+}
+
+.ProfileChangePassword-section .right {
+  width: 77%;
+}
+.ProfileChangePassword-section .right .content {
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 0px 0px white;
+}
+.ProfileChangePassword-section .right .content .head {
+  align-items: center;
+  justify-content: space-between;
+}
+.ProfileChangePassword-section .right .content .head .title p {
+  font-size: 34px;
+  font-weight: 600;
+  color: #030229;
+}
+.ProfileChangePassword-section .right .content .head .discription {
+  padding-top: 15px;
+}
+.ProfileChangePassword-section .right .content .head .discription p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #4F4F4F;
+}
+.ProfileChangePassword-section .right .content .form-box {
+  padding-top: 20px;
+}
+.ProfileChangePassword-section .right .content .form-box form {
+  justify-content: space-between;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box input {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
+  border: 1px solid #718ebf;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
+  color: #a7a7a7;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box .eye {
+  position: absolute;
+  top: 27px;
+  right: 15px;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box select {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  color: #a7a7a7;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box select:focus {
+  border: 1px solid #718ebf;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box select option button {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #0eabeb;
+  text-align: center;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(1) {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(1) input {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(2) {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(2) input {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(3) {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(3) input {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(4) {
+  width: 100%;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box:nth-child(4) button {
+  width: 100%;
+  background-color: #0EABEB;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .policies input {
+  width: 20px;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .policies p {
+  display: inline-block;
+  padding-left: 10px;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .policies span {
+  color: #5678e9;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .register-btn {
+  padding: 15px 0px;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .register-btn button {
+  width: 100%;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .register-btn button:hover {
+  background-color: #0eabeb;
+  color: white;
+}
+.ProfileChangePassword-section .right .content .form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+}
+
+.ProfileTermsCondition-section .condition-right,
+.ProfilePrivacyPolicy-section .condition-right {
+  width: 100%;
+}
+.ProfileTermsCondition-section .condition-right .content,
+.ProfilePrivacyPolicy-section .condition-right .content {
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 0px 0px white;
+}
+.ProfileTermsCondition-section .condition-right .content .head,
+.ProfilePrivacyPolicy-section .condition-right .content .head {
+  align-items: center;
+  justify-content: space-between;
+}
+.ProfileTermsCondition-section .condition-right .content .head .title p,
+.ProfilePrivacyPolicy-section .condition-right .content .head .title p {
+  font-size: 34px;
+  font-weight: 600;
+  color: #030229;
+}
+.ProfileTermsCondition-section .condition-right .content .Condition .box,
+.ProfilePrivacyPolicy-section .condition-right .content .Condition .box {
+  height: 480px;
+  overflow-y: scroll;
+  scrollbar-color: #030229 #F4F4F4;
+  scrollbar-width: thin;
 }/*# sourceMappingURL=profile.css.map */

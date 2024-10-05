@@ -25,9 +25,10 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  background-color: white;
 }
 
-// registration section start
+//admin registration section start
 
 .registration-section {
   .row {
@@ -40,52 +41,54 @@ input {
           padding: 60px 60px;
           border: 1px solid #F4F4F4;
           border-radius: 15px;
+
           .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-  
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 .eye {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-  
+
                   img {}
                 }
-  
+
                 select {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
@@ -93,11 +96,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -107,110 +110,110 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(3) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(4) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(5) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(6) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(7) {
                   width: 30%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(8) {
                   width: 100%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(9) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(10) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
               }
-  
+
               .condition {
                 width: 100%;
                 padding-top: 20px;
-  
+
                 .policies {
                   input {
                     width: 20px;
                   }
-  
+
                   p {
                     display: inline-block;
                     padding-left: 10px;
                   }
-  
+
                   span {
                     color: #5678E9;
                   }
                 }
-  
+
                 .register-btn {
                   padding: 15px 0px;
-  
+
                   button {
                     width: 100%;
                     background-color: #F6F8FB;
@@ -218,15 +221,15 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-  
-  
+
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
                     }
                   }
                 }
-  
+
                 .login-btn {
                   p {
                     font-family: Lato;
@@ -241,6 +244,7 @@ input {
           }
         }
       }
+
       .img-box {
         width: 50%;
       }
@@ -248,7 +252,291 @@ input {
   }
 }
 
-// registration section end
+//admin registration section end
+
+// patient registration section start
+
+.patient-registration-section {
+  .row {
+    .main {
+      .form {
+        padding: 120px;
+        width: 50%;
+
+        .content {
+          padding: 60px 60px;
+          border: 1px solid #F4F4F4;
+          border-radius: 15px;
+
+          .head {
+            padding-bottom: 15px;
+
+            p {
+              font-size: 34px;
+              font-weight: 600;
+            }
+          }
+
+          .form-box {
+
+            form {
+              justify-content: space-between;
+
+              .input-box {
+                position: relative;
+                padding: 15px 0px;
+
+                .label {
+                  position: absolute;
+                  top: 4px;
+                  left: 14px;
+                  background-color: white;
+                }
+
+                input {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  &::placeholder {
+                    color: #A7A7A7;
+                  }
+                }
+
+                .eye {
+                  position: absolute;
+                  top: 27px;
+                  right: 15px;
+
+                  img {}
+                }
+
+                select {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+                  outline: none;
+                  background-color: white;
+                  color: #A7A7A7;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  option {
+                    button {
+                      width: 100%;
+                      padding: 12px 14px;
+                      background-color: #0EABEB;
+                      text-align: center;
+                    }
+                  }
+                }
+
+                &:nth-child(1) {
+                  width: 48%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(2) {
+                  width: 48%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(3) {
+                  width: 48%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(4) {
+                  width: 48%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(5) {
+                  width: 30%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(6) {
+                  width: 30%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(7) {
+                  width: 30%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(8) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(9) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(10) {
+                  width: 30%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(11) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(12) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(13) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(13) {
+                  width: 30%;
+
+                  select {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(14) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(15) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(16) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+
+              }
+
+              .condition {
+                width: 100%;
+                padding-top: 20px;
+
+                .policies {
+                  input {
+                    width: 20px;
+                  }
+
+                  p {
+                    display: inline-block;
+                    padding-left: 10px;
+                  }
+
+                  span {
+                    color: #5678E9;
+                  }
+                }
+
+                .register-btn {
+                  padding: 15px 0px;
+
+                  button {
+                    width: 100%;
+                    background-color: #F6F8FB;
+                    color: #4F4F4F;
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 20px;
+
+
+                    &:hover {
+                      background-color: #0EABEB;
+                      color: white;
+                    }
+                  }
+                }
+
+                .login-btn {
+                  p {
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.2px;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .img-box {
+        width: 50%;
+      }
+    }
+  }
+}
+
+// patient registration section end
 
 // create-hospital section start 
 
@@ -263,44 +551,46 @@ input {
           padding: 60px 60px;
           background-color: white;
           border-radius: 15px;
-          .head {  
+
+          .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-           
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 select {
                   width: 100%;
                   padding: 12px 14px;
@@ -309,11 +599,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -323,64 +613,64 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(3) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(4) {
                   width: 48%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(5) {
                   width: 48%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(6) {
                   width: 48%;
-  
+
                   select {
                     width: 100%;
                   }
                 }
               }
-  
+
               .btn {
                 width: 100%;
                 padding-top: 20px;
                 justify-content: space-between;
-  
+
                 .cancel-btn {
                   width: 48%;
-  
+
                   button {
                     text-align: center;
                     width: 100%;
@@ -390,10 +680,10 @@ input {
                     font-size: 20px;
                   }
                 }
-  
+
                 .save-btn {
                   width: 48%;
-  
+
                   button {
                     text-align: center;
                     width: 100%;
@@ -401,7 +691,7 @@ input {
                     border-radius: 10px;
                     background-color: #F6F8FB;
                     font-size: 20px;
-  
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
@@ -423,6 +713,422 @@ input {
 
 // create-hospital section end
 
+//admin mobile section start
+
+.admin-mobile-section {
+  .row {
+    .main {
+      .form {
+        padding: 120px 100px;
+        width: 50%;
+
+        .admin-mobile-content {
+          padding: 40px 40px;
+          border: 1px solid #F4F4F4;
+          border-radius: 15px;
+
+          .head {
+            padding-bottom: 15px;
+
+            p {
+              font-size: 34px;
+              font-weight: 600;
+            }
+          }
+
+          .note {
+            p {
+              color: #4F4F4F;
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+
+          .admin-mobile-form-box {
+            padding-top: 10px;
+
+            form {
+              justify-content: space-between;
+
+              .input-box {
+                position: relative;
+                padding: 15px 0px;
+
+                .label {
+                  position: absolute;
+                  top: 4px;
+                  left: 14px;
+                  background-color: white;
+                }
+
+                input {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  &::placeholder {
+                    color: #A7A7A7;
+                  }
+                }
+
+                &:nth-child(1) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+              }
+
+              .condition {
+                width: 100%;
+                padding-top: 20px;
+
+                .otp {
+                  padding: 15px 0px;
+
+                  button {
+                    width: 100%;
+                    background-color: #F6F8FB;
+                    color: #4F4F4F;
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 20px;
+
+
+                    &:hover {
+                      background-color: #0EABEB;
+                      color: white;
+                    }
+                  }
+                }
+
+                .login-btn {
+                  p {
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.2px;
+                    text-align: center;
+                    color: #5678E9;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .img-box {
+        width: 50%;
+      }
+    }
+  }
+}
+
+//admin mobile section end
+
+//admin otp section start
+
+.admin-otp-section {
+  .row {
+    .main {
+      .form {
+        padding: 120px 100px;
+        width: 50%;
+
+        .admin-otp-content {
+          padding: 40px 40px;
+          border: 1px solid #F4F4F4;
+          border-radius: 15px;
+
+          .head {
+            padding-bottom: 15px;
+
+            p {
+              font-size: 34px;
+              font-weight: 600;
+            }
+          }
+
+          .note {
+            p {
+              color: #4F4F4F;
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+
+          .admin-otp-form-box {
+            padding-top: 10px;
+
+            form {
+              justify-content: space-between;
+
+              .input-box {
+                position: relative;
+                padding: 15px 0px;
+
+                .label {
+                  position: absolute;
+                  top: 4px;
+                  left: 14px;
+                  background-color: white;
+                }
+
+                input {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  &::placeholder {
+                    color: #A7A7A7;
+                  }
+                }
+
+                &:nth-child(1) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(2) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(3) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(4) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(5) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(6) {
+                  width: 15%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+              }
+
+              .condition {
+                width: 100%;
+                padding-top: 20px;
+
+                .resend-otp {
+                  justify-content: space-between;
+                  align-items: center;
+
+                  .sec {
+                    p {
+                      align-items: center;
+
+                      span {
+                        padding: 0px 5px;
+                      }
+                    }
+                  }
+
+                  .r-otp {
+                    button {
+                      color: #5678E9;
+                    }
+                  }
+                }
+
+                .verify {
+                  padding: 15px 0px;
+
+                  button {
+                    width: 100%;
+                    background-color: #F6F8FB;
+                    color: #4F4F4F;
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 20px;
+
+
+                    &:hover {
+                      background-color: #0EABEB;
+                      color: white;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .img-box {
+        width: 50%;
+      }
+    }
+  }
+}
+
+//admin otp section end
+
+//admin changePassword section start
+
+.changePassword-section {
+  .row {
+    .main {
+      .form {
+        padding: 120px 100px;
+        width: 50%;
+
+        .changePassword-content {
+          padding: 40px 40px;
+          border: 1px solid #F4F4F4;
+          border-radius: 15px;
+
+          .head {
+            padding-bottom: 15px;
+
+            p {
+              font-size: 34px;
+              font-weight: 600;
+            }
+          }
+
+          .changePassword-form-box {
+            padding-top: 10px;
+
+            form {
+              justify-content: space-between;
+
+              .input-box {
+                position: relative;
+                padding: 15px 0px;
+
+                .label {
+                  position: absolute;
+                  top: 4px;
+                  left: 14px;
+                  background-color: white;
+                }
+
+                input {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  &::placeholder {
+                    color: #A7A7A7;
+                  }
+                }
+
+                .eye {
+                  position: absolute;
+                  top: 27px;
+                  right: 15px;
+
+                  img {}
+                }
+
+                &:nth-child(1) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+
+                &:nth-child(2) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+              }
+
+              .condition {
+                width: 100%;
+                padding-top: 20px;
+
+                .otp {
+                  padding: 15px 0px;
+
+                  button {
+                    width: 100%;
+                    background-color: #F6F8FB;
+                    color: #4F4F4F;
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 20px;
+
+
+                    &:hover {
+                      background-color: #0EABEB;
+                      color: white;
+                    }
+                  }
+                }
+
+                .login-btn {
+                  p {
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.2px;
+                    text-align: center;
+                    color: #5678E9;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .img-box {
+        width: 50%;
+      }
+    }
+  }
+}
+
+//admin changePassword section end
+
 // login section start 
 
 .login-section {
@@ -436,52 +1142,54 @@ input {
           padding: 60px 60px;
           border: 1px solid #F4F4F4;
           border-radius: 15px;
+
           .head {
             padding-bottom: 15px;
+
             p {
               font-size: 34px;
               font-weight: 600;
             }
           }
-  
+
           .form-box {
-  
+
             form {
               justify-content: space-between;
-  
+
               .input-box {
                 position: relative;
                 padding: 15px 0px;
-  
+
                 .label {
                   position: absolute;
                   top: 4px;
                   left: 14px;
                   background-color: white;
                 }
-  
+
                 input {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
                   border-radius: 10px;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   &::placeholder {
                     color: #A7A7A7;
                   }
                 }
-  
+
                 .eye {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-  
+
                   img {}
                 }
-  
+
                 select {
                   padding: 12px 14px;
                   border: 1px solid #D9D9D9;
@@ -489,11 +1197,11 @@ input {
                   outline: none;
                   background-color: white;
                   color: #A7A7A7;
-  
+
                   &:focus {
                     border: 1px solid #718EBF
                   }
-  
+
                   option {
                     button {
                       width: 100%;
@@ -503,50 +1211,48 @@ input {
                     }
                   }
                 }
-  
+
                 &:nth-child(1) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
-  
+
                 &:nth-child(2) {
                   width: 100%;
-  
+
                   input {
                     width: 100%;
                   }
                 }
               }
-  
+
               .condition {
                 width: 100%;
                 padding-top: 20px;
-  
+
                 .remember-forgot {
                   justify-content: space-between;
                   align-items: center;
-                  .remember {
-                    input {
 
-                    }
+                  .remember {
+                    input {}
+
                     p {
                       padding-left: 15px;
                     }
                   }
 
                   .forgot {
-                    span {
-
-                    }
+                    span {}
                   }
                 }
-  
+
                 .login-btn {
                   padding: 15px 0px;
-  
+
                   button {
                     width: 100%;
                     background-color: #F6F8FB;
@@ -554,15 +1260,15 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-  
-  
+
+
                     &:hover {
                       background-color: #0EABEB;
                       color: white;
                     }
                   }
                 }
-  
+
                 .registration-btn {
                   p {
                     font-family: Lato;
@@ -577,6 +1283,7 @@ input {
           }
         }
       }
+
       .img-box {
         width: 50%;
       }
@@ -585,4 +1292,3 @@ input {
 }
 
 // login section end
-
