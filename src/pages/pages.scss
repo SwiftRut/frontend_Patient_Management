@@ -25,6 +25,7 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  background-color: white;
 }
 
 //admin registration section start
@@ -537,9 +538,6 @@ input {
 
 // patient registration section end
 
-
-
-
 // create-hospital section start 
 
 .hospital-section {
@@ -878,3 +876,122 @@ input {
 }
 
 // login section end
+
+//admin registration section start
+
+.admin-mobile-section {
+  .row {
+    .main {
+      .form {
+        padding: 120px 100px;
+        width: 50%;
+
+        .admin-mobile-content {
+          padding: 40px 40px;
+          border: 1px solid #F4F4F4;
+          border-radius: 15px;
+
+          .head {
+            padding-bottom: 15px;
+
+            p {
+              font-size: 34px;
+              font-weight: 600;
+            }
+          }
+
+          .note {
+            p {
+              color: #4F4F4F;
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+
+          .admin-mobile-form-box {
+            padding-top: 10px;
+
+            form {
+              justify-content: space-between;
+
+              .input-box {
+                position: relative;
+                padding: 15px 0px;
+
+                .label {
+                  position: absolute;
+                  top: 4px;
+                  left: 14px;
+                  background-color: white;
+                }
+
+                input {
+                  padding: 12px 14px;
+                  border: 1px solid #D9D9D9;
+                  border-radius: 10px;
+
+                  &:focus {
+                    border: 1px solid #718EBF
+                  }
+
+                  &::placeholder {
+                    color: #A7A7A7;
+                  }
+                }
+
+                &:nth-child(1) {
+                  width: 100%;
+
+                  input {
+                    width: 100%;
+                  }
+                }
+              }
+
+              .condition {
+                width: 100%;
+                padding-top: 20px;
+
+                .otp {
+                  padding: 15px 0px;
+
+                  button {
+                    width: 100%;
+                    background-color: #F6F8FB;
+                    color: #4F4F4F;
+                    padding: 12px 14px;
+                    border-radius: 10px;
+                    font-size: 20px;
+
+
+                    &:hover {
+                      background-color: #0EABEB;
+                      color: white;
+                    }
+                  }
+                }
+
+                .login-btn {
+                  p {
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.2px;
+                    text-align: center;
+                    color: #5678E9;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .img-box {
+        width: 50%;
+      }
+    }
+  }
+}
+
+//admin registration section end

@@ -25,6 +25,7 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  background-color: white;
 }
 
 .registration-section .row .main .form {
@@ -630,5 +631,90 @@ input {
   text-align: center;
 }
 .login-section .row .main .img-box {
+  width: 50%;
+}
+
+.admin-mobile-section .row .main .form {
+  padding: 120px 100px;
+  width: 50%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content {
+  padding: 40px 40px;
+  border: 1px solid #F4F4F4;
+  border-radius: 15px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .head {
+  padding-bottom: 15px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .note p {
+  color: #4F4F4F;
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box {
+  padding-top: 10px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form {
+  justify-content: space-between;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box:nth-child(1) {
+  width: 100%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp {
+  padding: 15px 0px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button {
+  width: 100%;
+  background-color: #F6F8FB;
+  color: #4F4F4F;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button:hover {
+  background-color: #0EABEB;
+  color: white;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  color: #5678E9;
+}
+.admin-mobile-section .row .main .img-box {
   width: 50%;
 }/*# sourceMappingURL=pages.css.map */
