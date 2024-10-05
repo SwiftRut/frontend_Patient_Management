@@ -75,9 +75,9 @@ const PatientRegistration = () => {
                 <p>Registration </p>
               </div>
               <div className="form-box">
-                {error && <div className="error-message">{error}</div>}
+                  {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-
+                  
                   <div className="input-box">
                     <div className="label">
                       First Name <span>*</span>

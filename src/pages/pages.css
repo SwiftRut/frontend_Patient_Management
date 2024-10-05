@@ -65,6 +65,9 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -430,6 +433,9 @@ input {
 }
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -856,6 +862,9 @@ input {
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -928,4 +937,26 @@ input {
 }
 .login-section .row .main .img-box {
   width: 50%;
-}/*# sourceMappingURL=pages.css.map */
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+/*# sourceMappingURL=pages.css.map */

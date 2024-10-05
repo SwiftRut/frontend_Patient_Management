@@ -1,0 +1,157 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+//   section start
+.patient-section {
+  .row {
+    .main {
+      border-radius: 15px;
+      margin: 10px;
+      background-color: #fff;
+      padding: 10px;
+      height: 100%;
+      .top-menu {
+        border-bottom: 1px solid rgb(219, 219, 219);
+        padding: 20px 10px 0;
+        button {
+            background: none;
+            border: none;
+            margin-right: 25px;
+            font-size: 20px;
+            color: #667080;
+            font-weight: 400;
+            cursor: pointer;
+            padding-bottom: 20px;
+          
+        }
+        button:focus{
+          border-bottom: 5px solid #0eabeb;
+          color: #0eabeb;
+        }
+      }
+      .top {
+        justify-content: space-between;
+        padding: 10px 10px 20px;
+        .heading {
+          font-weight: 700;
+          font-size: 25px;
+        }
+        .search-btn {
+          justify-content: space-between;
+          .input {
+            padding: 12px 15px;
+            background-color: #f6f8fb;
+            border: 1px solid #ced4da;
+            border-radius: 30px;
+            width: 350px;
+            font-size: 20px;
+            .search {
+              font-size: 25px;
+              color: #000;
+            }
+            input {
+              background-color: transparent;
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+      .table {
+        padding: 0px 10px;
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 500px;
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          .table-heading {
+            border-top-left-radius: 50px;
+            border-top-right-radius: 10px;
+            background-color: #f6f8fb;
+          }
+          td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgb(219, 219, 219);
+            font-size: 20px;
+            font-weight: 600;
+
+            img {
+              margin-right: 10px;
+              width: 50px;
+              margin: 10px;
+            }
+          }
+          th {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 20px 15px;
+            text-align: left;
+          }
+          .time {
+            h3 {
+              background-color: #f6f8fb;
+              color: #718ebf;
+              border-radius: 50px;
+              margin: 0px 10px;
+              padding: 10px 15px;
+              font-weight: bold;
+              font-size: 20px;
+              text-align: center;
+              width: 150px;
+            }
+          }
+          .action {
+            .view {
+              width: 60px;
+              background-color: #f6f8fb;
+              color: #39973d;
+              border-radius: 10px;
+              padding: 16px;
+              font-size: 25px;
+              text-align: center;
+            }
+
+            .view {
+              color: #0eabeb;
+              margin: 0px 10px;
+            }
+
+            .delete {
+              color: #e11d29;
+            }
+          }
+        }
+      }
+    }
+  }
+}

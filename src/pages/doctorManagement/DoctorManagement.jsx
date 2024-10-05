@@ -5,6 +5,7 @@ import { BsGenderFemale } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+
 export default function DoctorManagement() {
   return <>
     <div>
@@ -496,7 +497,6 @@ export default function DoctorManagement() {
               </table>
             </div>
           </div>
-
         </div>
       </div>
     </div>
