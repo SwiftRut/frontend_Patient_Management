@@ -9,6 +9,7 @@ import { Chart } from "chart.js";
 import Chat from "./pages/Chat.jsx";
 import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import AdminMobile from "./pages/adminRegester/AdminMobile.jsx";
+import AdminOtp from "./pages/adminRegester/AdminOtp.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             {/* admin component */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
+            <Route path="/AdminOtp" element={<AdminOtp />} />
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
 
