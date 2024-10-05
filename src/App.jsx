@@ -7,6 +7,8 @@ import AdminPanel from "./pages/AdminPanel";
 import { Chart } from "chart.js";
 import AdminRegistration from "./pages/AdminRegistration.jsx";
 import ChatApp from "./pages/Chat.jsx";
+import Bill from "./component/Bill.jsx";
+import Onsite from "./pages/doctorManagement/Onsite.jsx";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
+            <Route path="/onsite" element={<Onsite />} />
+            {/* <Route path="/bill" element={<Bill />} /> */}
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
             <Route
