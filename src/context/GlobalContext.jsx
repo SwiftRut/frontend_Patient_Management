@@ -46,6 +46,7 @@ export const GlobalProvider = ({ children }) => {
     throw error
     }
   }
+
   return (
     <GlobalContext.Provider value={{
         allHospitals,

@@ -42,8 +42,8 @@ const apiService = {
 
   //Admin
   GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),        
-  EditAdminProfile: (id, userData) => api.put(`/admin/edit-profile/${id}`, userData),
-  ChangePassword: (id) => api.put(`/admin/change-password/${id}`),
+  EditAdminProfile: (id, userData) => api.patch(`/admin/edit-profile/${id}`, userData),
+  ChangePassword: (id, userData) => api.patch(`/admin/change-password/${id}`, userData),
 };
 
 export default apiService;
