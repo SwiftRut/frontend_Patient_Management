@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import "./component/sidebar.css";
 import AdminPanel from "./pages/AdminPanel";
+import AdminRegistration from "./pages/AdminRegistration";
+import Chat from "./pages/Chat";
+import { Chart } from "./pages/Chart";
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
           <Routes>
             <Route path="/registration" element={<Registration />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin-registeration" element={<AdminRegistration />} />
+            <Route path="/charts" element={<Chart />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/" element={<AdminPanel />}>
               <Route path="doctorManagement" />
               <Route path="profile/*" />
