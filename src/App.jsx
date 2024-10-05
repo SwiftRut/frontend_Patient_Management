@@ -6,11 +6,16 @@ import "./pages/pages.css";
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import AdminPanel from "./pages/AdminPanel";
 import { Chart } from "chart.js";
+
 import Chat from "./pages/Chat.jsx";
 import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import AdminMobile from "./pages/adminRegester/AdminMobile.jsx";
 import AdminOtp from "./pages/adminRegester/AdminOtp.jsx";
 import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
+
+import Bill from "./component/Bill.jsx";
+import Onsite from "./pages/doctorManagement/Onsite.jsx";
+
 
 function App() {
   return (
@@ -18,6 +23,7 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
+
             <Route path="/login" element={<Login />} />
 
             {/* admin component */}
@@ -25,6 +31,13 @@ function App() {
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
+
+            <Route path="/onsite" element={<Onsite />} />
+            {/* <Route path="/bill" element={<Bill />} /> */}
+
+            <Route path="/login" element={<Login />} />
+          
+
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
 
@@ -35,8 +48,8 @@ function App() {
 
               <Route path="patientManagement" />
 
-              <Route path="invoiceManagement" />
-              <Route path="paymentHistory" />
+              <Route path="monitorBilling" />
+              <Route path="insuranceClaims" />
               <Route path="paymentMethod" />
 
               <Route path="reportingAndAnalytics" />
