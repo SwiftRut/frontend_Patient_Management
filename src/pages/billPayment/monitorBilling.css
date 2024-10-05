@@ -1,0 +1,196 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.monitor-section .row .main {
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #fff;
+  padding: 10px;
+  height: 100%;
+}
+.monitor-section .row .main .top {
+  justify-content: space-between;
+  padding: 10px 10px 20px;
+}
+.monitor-section .row .main .top .heading {
+  font-weight: 700;
+  font-size: 25px;
+}
+.monitor-section .row .main .top .search-btn {
+  justify-content: space-between;
+}
+.monitor-section .row .main .top .search-btn .input {
+  padding: 12px 15px;
+  background-color: #f6f8fb;
+  border: 1px solid #ced4da;
+  border-radius: 30px;
+  width: 350px;
+  font-size: 20px;
+}
+.monitor-section .row .main .top .search-btn .input .search {
+  font-size: 25px;
+  color: #000;
+}
+.monitor-section .row .main .top .search-btn .input input {
+  background-color: transparent;
+  padding-left: 10px;
+}
+.monitor-section .row .main .top .search-btn .edit-btn {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 12px 12px;
+  margin-left: 10px;
+  border: 1px solid #0eabeb;
+}
+.monitor-section .row .main .top .search-btn .edit-btn .icon {
+  background-color: white;
+  color: #0eabeb;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.monitor-section .row .main .top .search-btn .edit-btn .text {
+  font-size: 20px;
+  color: #0eabeb;
+  font-weight: 600;
+}
+.monitor-section .row .main .top .search-btn .btn {
+  background-color: #0eabeb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-left: 10px;
+}
+.monitor-section .row .main .top .search-btn .btn .icon {
+  background-color: white;
+  color: #0eabeb;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.monitor-section .row .main .top .search-btn .btn .text {
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+}
+.monitor-section .row .main .table {
+  padding: 0px 10px;
+  width: 100%;
+}
+.monitor-section .row .main .table table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+.monitor-section .row .main .table table .table-heading {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-color: #f6f8fb;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.monitor-section .row .main .table table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  font-size: 20px;
+  font-weight: 600;
+}
+.monitor-section .row .main .table table td img {
+  margin-right: 10px;
+  width: 50px;
+}
+.monitor-section .row .main .table table th {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px 15px;
+  text-align: center;
+}
+.monitor-section .row .main .table table tbody {
+  display: block;
+  height: 585px;
+  overflow-y: auto;
+}
+.monitor-section .row .main .table table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.monitor-section .row .main .table table tbody::-webkit-scrollbar {
+  width: 10px;
+}
+.monitor-section .row .main .table table tbody::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.monitor-section .row .main .table table tbody::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+.monitor-section .row .main .table table .status h3 {
+  color: #39973d !important;
+}
+.monitor-section .row .main .table table .red h3 {
+  color: #e11d29 !important;
+}
+.monitor-section .row .main .table table .red h3,
+.monitor-section .row .main .table table .status h3,
+.monitor-section .row .main .table table .time h3 {
+  background-color: #f6f8fb;
+  color: #718ebf;
+  border-radius: 50px;
+  margin: 0px 10px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  width: 150px;
+}
+.monitor-section .row .main .table table .action .edit,
+.monitor-section .row .main .table table .action .view,
+.monitor-section .row .main .table table .action .delete {
+  background-color: #f6f8fb;
+  color: #39973d;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 25px;
+  text-align: center;
+}
+.monitor-section .row .main .table table .action .view {
+  color: #0eabeb;
+  margin: 0px 10px;
+}
+.monitor-section .row .main .table table .action .delete {
+  color: #e11d29;
+}/*# sourceMappingURL=monitorBilling.css.map */

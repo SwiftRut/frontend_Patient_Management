@@ -1,0 +1,66 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.onsite-section .row .main {
+  margin: 10px;
+  background-color: #fff;
+  padding: 10px;
+  width: 50%;
+}
+.onsite-section .row .main .top {
+  padding: 10px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.onsite-section .row .main .top .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin-right: 10px;
+  border: 1px solid rgb(226, 226, 226);
+}
+.onsite-section .row .main .top h3 {
+  color: #030229;
+  font-size: 28px;
+  font-weight: 700;
+}
+.onsite-section .row .main .box {
+  margin: 20px 0;
+}
+.onsite-section .row .main .deatils {
+  background-color: #f6f8fb;
+  border-radius: 10px;
+  padding: 10px;
+}/*# sourceMappingURL=Onsite.css.map */
