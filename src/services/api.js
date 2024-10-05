@@ -33,7 +33,17 @@ const apiService = {
 
   //Hospital
   CreateHospital: (userData) => api.post('/hospital/create-hospital', userData),
-  GetAllHospitals: (userData) => api.get('/hospital/get-all-hospitals', userData),
+  GetAllHospitals: () => api.get('/hospital/get-all-hospitals'),
+
+  //Doctor
+  CreateDoctor: (userData) => api.post('/doctor/addDoctor', userData),
+  GetAllDoctors: (userData) => api.get('/doctor/getAllDoctors', userData),
+  GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
+
+  //Admin
+  GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),        
+  EditAdminProfile: (userData, id) => api.put(`/admin/change-password/${id}`, userData),
+  ChangePassword: (id) => api.put(`/admin/change-password/${id}`),
 };
 
 export default apiService;

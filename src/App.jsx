@@ -21,7 +21,6 @@ function App() {
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
-
             <Route path="/" element={<AdminPanel />}>
               <Route path="doctorManagement" />
               <Route path="profile/*" />
