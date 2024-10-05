@@ -66,13 +66,13 @@ const PatientRegistration = () => {
   };
 
   return (
-    <div className="registration-section">
+    <div className="patient-registration-section">
       <div className="row">
         <div className="main">
           <div className="form">
             <div className="content">
               <div className="head">
-                <p>Registration</p>
+                <p>Registration </p>
               </div>
               <div className="form-box">
                   {error && <div className="error-message">{error}</div>}
@@ -136,6 +136,81 @@ const PatientRegistration = () => {
 
                   <div className="input-box">
                     <div className="label">
+                      Age <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Age"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Height(cm) <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Height"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Weight(kg) <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Enter Weight"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Gender <span>*</span>
+                    </div>
+
+                    <select name="" id="">
+                      <option>Select Gender</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Blood Group <span>*</span>
+                    </div>
+
+                    <select name="" id="">
+                      <option>Select Blood Group</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Date of Birth <span>*</span>
+                    </div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Select Date"
+                      required
+                    />
+                  </div>
+
+
+                  <div className="input-box">
+                    <div className="label">
                       Country <span>*</span>
                     </div>
                     <select
@@ -195,6 +270,18 @@ const PatientRegistration = () => {
 
                   <div className="input-box">
                     <div className="label">
+                      Address <span>*</span>
+                    </div>
+                    <input
+                      type="text"
+                      name="password"
+                      placeholder="Enter Address"
+                      required
+                    />
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
                       Password <span>*</span>
                     </div>
                     <input
@@ -220,6 +307,8 @@ const PatientRegistration = () => {
                       required
                     />
                   </div>
+
+
 
                   <div className="condition">
                     <div className="policies">
