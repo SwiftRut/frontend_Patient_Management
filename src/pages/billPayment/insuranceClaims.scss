@@ -30,8 +30,8 @@ input {
   align-items: center;
 }
 
-//   section start
-.patient-section {
+// section start
+.insurance-section {
   .row {
     .main {
       border-radius: 15px;
@@ -39,24 +39,6 @@ input {
       background-color: #fff;
       padding: 10px;
       height: 100%;
-      .top-menu {
-        border-bottom: 1px solid rgb(219, 219, 219);
-        padding: 20px 10px 0;
-        button {
-          background: none;
-          border: none;
-          margin-right: 25px;
-          font-size: 20px;
-          color: #667080;
-          font-weight: 400;
-          cursor: pointer;
-          padding-bottom: 20px;
-        }
-        button:focus {
-          border-bottom: 5px solid #0eabeb;
-          color: #0eabeb;
-        }
-      }
       .top {
         justify-content: space-between;
         padding: 10px 10px 20px;
@@ -82,6 +64,49 @@ input {
               padding-left: 10px;
             }
           }
+          .edit-btn {
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 12px 12px;
+            margin-left: 10px;
+            border: 1px solid #0eabeb;
+
+            .icon {
+              background-color: white;
+              color: #0eabeb;
+              border-radius: 5px;
+              padding: 2px;
+              font-size: 20px;
+              margin-right: 10px;
+            }
+
+            .text {
+              font-size: 20px;
+              color: #0eabeb;
+              font-weight: 600;
+            }
+          }
+          .btn {
+            background-color: #0eabeb;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-left: 10px;
+
+            .icon {
+              background-color: white;
+              color: #0eabeb;
+              border-radius: 5px;
+              padding: 2px;
+              font-size: 20px;
+              margin-right: 10px;
+            }
+
+            .text {
+              font-size: 20px;
+              color: white;
+              font-weight: 600;
+            }
+          }
         }
       }
       .table {
@@ -98,25 +123,26 @@ input {
             background-color: #f6f8fb;
             display: table;
             width: 100%;
-            table-layout: fixed;
+            // table-layout: fixed;
           }
           td {
             padding: 15px;
             text-align: center;
             border-bottom: 1px solid rgb(219, 219, 219);
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
+            color: #4f4f4f;
 
             img {
               margin-right: 10px;
               width: 50px;
-              margin: 10px;
+              padding-bottom: 11px;
             }
           }
           th {
             font-weight: bold;
-            font-size: 20px;
-            padding: 20px 15px;
+            font-size: 18px;
+            padding: 20px 10px;
             text-align: center;
           }
           tbody {
@@ -139,6 +165,12 @@ input {
           tbody::-webkit-scrollbar-track {
             background-color: #f0f0f0;
           }
+          .status {
+            h3 {
+              color: #39973d !important;
+            }
+          }
+          .status,
           .time {
             h3 {
               background-color: #f6f8fb;
@@ -154,22 +186,16 @@ input {
           }
           .action {
             .view {
-              width: 60px;
               background-color: #f6f8fb;
-              color: #39973d;
               border-radius: 10px;
               padding: 16px;
               font-size: 25px;
               text-align: center;
-            }
-
-            .view {
               color: #0eabeb;
               margin: 0px 10px;
-            }
-
-            .delete {
-              color: #e11d29;
+              width: 60px !important;
+              display: flex;
+              justify-content: center;
             }
           }
         }
