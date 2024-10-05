@@ -25,6 +25,7 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  background-color: white;
 }
 
 .registration-section .row .main .form {
@@ -63,6 +64,9 @@ input {
 }
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -430,6 +434,9 @@ input {
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -522,6 +529,302 @@ input {
   width: 50%;
 }
 
+.admin-mobile-section .row .main .form {
+  padding: 120px 100px;
+  width: 50%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content {
+  padding: 40px 40px;
+  border: 1px solid #F4F4F4;
+  border-radius: 15px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .head {
+  padding-bottom: 15px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .note p {
+  color: #4F4F4F;
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box {
+  padding-top: 10px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form {
+  justify-content: space-between;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box:nth-child(1) {
+  width: 100%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp {
+  padding: 15px 0px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button {
+  width: 100%;
+  background-color: #F6F8FB;
+  color: #4F4F4F;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button:hover {
+  background-color: #0EABEB;
+  color: white;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  color: #5678E9;
+}
+.admin-mobile-section .row .main .img-box {
+  width: 50%;
+}
+
+.admin-otp-section .row .main .form {
+  padding: 120px 100px;
+  width: 50%;
+}
+.admin-otp-section .row .main .form .admin-otp-content {
+  padding: 40px 40px;
+  border: 1px solid #F4F4F4;
+  border-radius: 15px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .head {
+  padding-bottom: 15px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.admin-otp-section .row .main .form .admin-otp-content .note p {
+  color: #4F4F4F;
+  font-size: 16px;
+  font-weight: 500;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box {
+  padding-top: 10px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form {
+  justify-content: space-between;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(1) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(2) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(2) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(3) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(3) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(4) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(4) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(5) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(5) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(6) {
+  width: 15%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(6) input {
+  width: 100%;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .resend-otp {
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .resend-otp .sec p {
+  align-items: center;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .resend-otp .sec p span {
+  padding: 0px 5px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .resend-otp .r-otp button {
+  color: #5678E9;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify {
+  padding: 15px 0px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify button {
+  width: 100%;
+  background-color: #F6F8FB;
+  color: #4F4F4F;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify button:hover {
+  background-color: #0EABEB;
+  color: white;
+}
+.admin-otp-section .row .main .img-box {
+  width: 50%;
+}
+
+.changePassword-section .row .main .form {
+  padding: 120px 100px;
+  width: 50%;
+}
+.changePassword-section .row .main .form .changePassword-content {
+  padding: 40px 40px;
+  border: 1px solid #F4F4F4;
+  border-radius: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .head {
+  padding-bottom: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box {
+  padding-top: 10px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form {
+  justify-content: space-between;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box .eye {
+  position: absolute;
+  top: 27px;
+  right: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(1) {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(2) {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(2) input {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp {
+  padding: 15px 0px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button {
+  width: 100%;
+  background-color: #F6F8FB;
+  color: #4F4F4F;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button:hover {
+  background-color: #0EABEB;
+  color: white;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  color: #5678E9;
+}
+.changePassword-section .row .main .img-box {
+  width: 50%;
+}
+
 .login-section .row .main .form {
   padding: 120px;
   width: 50%;
@@ -558,6 +861,9 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
