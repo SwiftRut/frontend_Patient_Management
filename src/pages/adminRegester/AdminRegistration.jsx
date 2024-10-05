@@ -222,6 +222,10 @@ const AdminRegistration = () => {
                         placeholder="Enter Password"
                         required
                       />
+                      <div className="eye">
+                        <img src="../img/eye-slash.png" alt="" />
+                        {/* <img src="../img/Vector.png" alt="" /> */}
+                      </div>
                     </div>
 
                     <div className="input-box">
@@ -236,6 +240,10 @@ const AdminRegistration = () => {
                         placeholder="Confirm Password"
                         required
                       />
+                      <div className="eye">
+                        <img src="../img/eye-slash.png" alt="" />
+                        {/* <img src="../img/Vector.png" alt="" /> */}
+                      </div>
                     </div>
 
                     <div className="condition">

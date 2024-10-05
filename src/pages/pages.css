@@ -728,6 +728,97 @@ input {
   width: 50%;
 }
 
+.changePassword-section .row .main .form {
+  padding: 120px 100px;
+  width: 50%;
+}
+.changePassword-section .row .main .form .changePassword-content {
+  padding: 40px 40px;
+  border: 1px solid #F4F4F4;
+  border-radius: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .head {
+  padding-bottom: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .head p {
+  font-size: 34px;
+  font-weight: 600;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box {
+  padding-top: 10px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form {
+  justify-content: space-between;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
+  border: 1px solid #718EBF;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
+  color: #A7A7A7;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box .eye {
+  position: absolute;
+  top: 27px;
+  right: 15px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(1) {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(1) input {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(2) {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box:nth-child(2) input {
+  width: 100%;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp {
+  padding: 15px 0px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button {
+  width: 100%;
+  background-color: #F6F8FB;
+  color: #4F4F4F;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button:hover {
+  background-color: #0EABEB;
+  color: white;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+  color: #5678E9;
+}
+.changePassword-section .row .main .img-box {
+  width: 50%;
+}
+
 .login-section .row .main .form {
   padding: 120px;
   width: 50%;
