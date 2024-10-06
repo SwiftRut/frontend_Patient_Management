@@ -13,7 +13,7 @@ export const Edit = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-
+  const [imageBlob, setImageBlob] = useState(null);
   useEffect(() => {
     const loadCountries = () => {
       const allCountries = Country.getAllCountries().map(country => ({
@@ -57,16 +57,48 @@ export const Edit = () => {
       [name]: value
     }));
   };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const blob = new Blob([file], { type: file.type });
+      setImageBlob(blob);
+      
+      // Create a preview URL for the image
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfile((prevProfile) => ({
+          ...prevProfile,
+          profilePic: e.target.result
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await editAdminProfile(user.id, profile);
+      // Create a new FormData object
+      const formData = new FormData();
+      
+      // Append all profile data to formData
+      Object.keys(profile).forEach(key => {
+        formData.append(key, profile[key]);
+      });
+      
+      // Append the image blob if it exists
+      if (imageBlob) {
+        formData.append('profilePic', imageBlob, 'profile.jpg');
+      }
+      console.log(formData,profile)
+      // Call the editAdminProfile function with formData
+      await editAdminProfile(user.id, formData);
       navigate('/profile');
     } catch (error) {
       console.error('Error saving profile:', error);
     }
   };
+
 
   return (
     <div>
@@ -82,11 +114,21 @@ export const Edit = () => {
                 <div className="left">
                   <div className="img-box">
                     <div className="img">
-                      <img src="../img/profile.png" alt="" />
+                      <img src={profile?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
                     </div>
                     <div className="change-profile">
                       <ul>
-                        <li><FaCamera /><span>Change Profile</span></li>
+                        <li>
+                        <input 
+                            type="file" 
+                            id="profilePic" 
+                            name="profilePic" 
+                            style={{display: 'none'}} 
+                            onChange={handleImageChange}
+                            accept="image/*"
+                          />
+                          <label htmlFor="profilePic"><FaCamera /><span>Change Profile</span></label>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -212,7 +254,7 @@ export const Edit = () => {
                             <button type="submit">Save</button>
                           </div>
                           <div className="cancel-btn">
-                            <button type="button" onClick={() => setProfile({...adminData})}>Cancel</button>
+                            <button type="button" onClick={() => {setProfile({...adminData});navigate('/profile')}}>Cancel</button>
                           </div>
                         </div>
                       </form>

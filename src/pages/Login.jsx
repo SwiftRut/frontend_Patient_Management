@@ -6,7 +6,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat22@gmail.com",
+    identifier: "mohitdudhat@gmail.com",
     password: "123@abc",
     remember: "true",
   });

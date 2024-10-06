@@ -33,7 +33,7 @@ function App() {
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             <Route path="/onsite" element={<Onsite />} />
-            {/* <Route path="/bill" element={<Bill />} /> */}
+            <Route path="/bill" element={<Bill />} />
 
             <Route path="/login" element={<Login />} />
           
