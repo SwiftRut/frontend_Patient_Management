@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useGlobal } from "../../context/GlobalContext";
 import { Country, City, State } from "country-state-city";
-import Select, { components } from 'react-select';
+import Select, { components } from "react-select";
 import PropTypes from "prop-types";
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -44,7 +43,6 @@ const AdminRegistration = () => {
   };
   useEffect(() => {
     fetchData();
-    console.log(allHospitals)
   }, []);
 
   const handleChange = (e) => {
@@ -90,6 +88,10 @@ const AdminRegistration = () => {
     }
 
     try {
+      console.log(
+        formData,
+        "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data"
+      );
       await AdminRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -127,7 +129,7 @@ const AdminRegistration = () => {
   );
   SelectMenuButton.propTypes = {
     children: PropTypes.node,
-  }
+  };
   return (
     <>
       <div className="registration-section">
@@ -261,11 +263,23 @@ const AdminRegistration = () => {
                       </div>
                       <Select
                         name="hospital"
-                        value={allHospitals.find(hospital => hospital._id === formData.hospital)}
+                        value={
+                          allHospitals.find(
+                            (hospital) => hospital._id === formData.hospital
+                          )
+                            ? {
+                                label: allHospitals.find(
+                                  (hospital) =>
+                                    hospital._id === formData.hospital
+                                ).name,
+                                value: formData.hospital,
+                              }
+                            : null
+                        }
                         onChange={(selectedOption) =>
                           setFormData((prevState) => ({
                             ...prevState,
-                            hospital: selectedOption._id,
+                            hospital: selectedOption.value,
                           }))
                         }
                         options={allHospitals.map((hospital) => ({
@@ -387,7 +401,10 @@ const AdminRegistration = () => {
                             >
                               <option value="">Select Country</option>
                               {countries.map((country) => (
-                                <option key={country.isoCode} value={country.isoCode}>
+                                <option
+                                  key={country.isoCode}
+                                  value={country.isoCode}
+                                >
                                   {country.name}
                                 </option>
                               ))}
@@ -405,8 +422,13 @@ const AdminRegistration = () => {
                               required
                             >
                               <option value="">Select State</option>
-                              {State.getStatesOfCountry(hospitalFormData.country).map((state) => (
-                                <option key={state.isoCode} value={state.isoCode}>
+                              {State.getStatesOfCountry(
+                                hospitalFormData.country
+                              ).map((state) => (
+                                <option
+                                  key={state.isoCode}
+                                  value={state.isoCode}
+                                >
                                   {state.name}
                                 </option>
                               ))}
@@ -424,7 +446,10 @@ const AdminRegistration = () => {
                               required
                             >
                               <option value="">Select City</option>
-                              {City.getCitiesOfState(hospitalFormData.country, hospitalFormData.state).map((city) => (
+                              {City.getCitiesOfState(
+                                hospitalFormData.country,
+                                hospitalFormData.state
+                              ).map((city) => (
                                 <option key={city.name} value={city.name}>
                                   {city.name}
                                 </option>
@@ -448,7 +473,12 @@ const AdminRegistration = () => {
 
                           <div className="btn flex">
                             <div className="cancel-btn">
-                              <button type="button" onClick={() => setIsModalOpen(false)}>Cancel</button>
+                              <button
+                                type="button"
+                                onClick={() => setIsModalOpen(false)}
+                              >
+                                Cancel
+                              </button>
                             </div>
 
                             <div className="save-btn">
