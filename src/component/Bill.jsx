@@ -1,4 +1,4 @@
-import "../component/Bill.css";
+import "../component/bill.css";
 export default function Bill() {
   return (
     <>

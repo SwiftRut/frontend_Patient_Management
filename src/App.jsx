@@ -15,7 +15,8 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
-
+import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
+import CashPayment from "./pages/billPayment/CashPayment.jsx";
 
 function App() {
   return (
@@ -23,20 +24,23 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
-
             <Route path="/login" element={<Login />} />
 
             {/* admin component */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
+            <Route
+              path="/AdminChangePassword"
+              element={<AdminChangePassword />}
+            />
 
             <Route path="/onsite" element={<Onsite />} />
-            {/* <Route path="/bill" element={<Bill />} /> */}
+            <Route path="/details" element={<PatientDetails />} />
+            <Route path="/bill" element={<Bill />} />
+            <Route path="/cash" element={<CashPayment />} />
 
             <Route path="/login" element={<Login />} />
-          
 
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
@@ -56,7 +60,10 @@ function App() {
             </Route>
 
             {/* patient component */}
-            <Route path="/patientRegistration" element={<PatientRegistration />} />
+            <Route
+              path="/patientRegistration"
+              element={<PatientRegistration />}
+            />
           </Routes>
         </BrowserRouter>
       </div>
