@@ -1,5 +1,5 @@
-import React from 'react'
-import '../dashboard/dashboard.css'
+import React from "react";
+import "../dashboard/dashboard.css";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
@@ -64,18 +64,22 @@ const Dashboard = () => {
                         <p>Patients Statistics</p>
                       </div>
                       <div className="menu">
-                        <ul className='flex'>
-                          <li> <a href="">Year</a></li>
-                          <li><a href="">Month</a></li>
-                          <li><a href="">Week</a></li>
+                        <ul className="flex">
+                          <li>
+                            {" "}
+                            <a href="">Year</a>
+                          </li>
+                          <li>
+                            <a href="">Month</a>
+                          </li>
+                          <li>
+                            <a href="">Week</a>
+                          </li>
                         </ul>
                       </div>
                     </div>
-                    <div className="graph">
-
-                    </div>
+                    <div className="graph"></div>
                   </div>
-
                 </div>
               </div>
               <div className="Billing-data">
@@ -84,16 +88,20 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className='flex'><FaAddressCard />Create Bills</button>
+                    <button className="flex">
+                      <FaAddressCard />
+                      Create Bills
+                    </button>
                   </div>
                 </div>
                 <div className="pending-bill">
                   <div className="bill-status">
-                    <p>Pending Bills : <span>00</span></p>
+                    <p>
+                      Pending Bills : <span>00</span>
+                    </p>
                   </div>
 
                   <div className="pending-bill-data">
-
                     {/* When there is no data */}
 
                     {/* <div className="img">
@@ -105,7 +113,7 @@ const Dashboard = () => {
                     <div className="bill-table">
                       <table>
                         <thead>
-                          <tr >
+                          <tr>
                             <th>Bill No</th>
                             <th>Patient Name </th>
                             <th>Disease Name</th>
@@ -115,16 +123,16 @@ const Dashboard = () => {
                         </thead>
 
                         <tbody>
-                          <tr >
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -137,19 +145,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
                           </tr>
-                          
-                          <tr >
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -162,17 +168,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -185,17 +191,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -208,17 +214,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -231,17 +237,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -254,17 +260,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -277,17 +283,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -300,17 +306,17 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
-                          </tr> <tr >
+                          </tr>{" "}
+                          <tr>
                             <td className="bill-num">
                               <p>5654</p>
                             </td>
 
-                            <td className='patient-name'>
+                            <td className="patient-name">
                               <p>Charlie Vaccaro</p>
                             </td>
 
-                            <td className='disease-name'>
+                            <td className="disease-name">
                               <p>Colds and Flu</p>
                             </td>
 
@@ -323,14 +329,11 @@ const Dashboard = () => {
                                 <FaEye />
                               </div>
                             </td>
-
                           </tr>
                         </tbody>
                       </table>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
@@ -344,8 +347,115 @@ const Dashboard = () => {
                         <p>Todays Appointments List</p>
                       </div>
                     </div>
-                    <div className="img">
+                    {/* When there is no data */}
+
+                    {/* <div className="img">
                       <img src="../img/Frame1.png" alt="" />
+                    </div> */}
+
+                    {/* When there is data */}
+
+                    <div className="appointments-list flex">
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -364,9 +474,18 @@ const Dashboard = () => {
                     <div className="details">
                       <div className="content">
                         <ul>
-                          <li className='new'><FaBox />New Patients <span>0</span></li>
-                          <li className='old'><FaBox />Old Patients <span>0</span></li>
-                          <li className='total'><FaBox />Total Patients <span>0</span></li>
+                          <li className="new">
+                            <FaBox />
+                            New Patients <span>0</span>
+                          </li>
+                          <li className="old">
+                            <FaBox />
+                            Old Patients <span>0</span>
+                          </li>
+                          <li className="total">
+                            <FaBox />
+                            Total Patients <span>0</span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -374,12 +493,11 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
