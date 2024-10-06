@@ -16,7 +16,7 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import Invoice from "./pages/invoice/Invoice.jsx";
-
+import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 
 function App() {
   return (
@@ -24,7 +24,6 @@ function App() {
       <div className="main-content">
         <BrowserRouter>
           <Routes>
-
             <Route path="/login" element={<Login />} />
 
             {/* admin component */}
@@ -37,7 +36,6 @@ function App() {
             {/* <Route path="/bill" element={<Bill />} /> */}
 
             <Route path="/login" element={<Login />} />
-          
 
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
@@ -59,11 +57,13 @@ function App() {
             {/* patient component */}
             <Route path="/patientRegistration" element={<PatientRegistration />} />
 
-          {/* invoice component  */}
+            {/* invoice component  */}
+            <Route path="/invoice" element={<Invoice />} />
 
-
-          <Route path="/invoice" element={<Invoice/>}/>
-
+            {/* doctor routers */}
+            <Route path="/doctor" element={<DoctorPanel />}>
+              <Route path="profile/*" />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>
