@@ -1,4 +1,3 @@
-import React from "react";
 import { DoctorAside } from "./DoctorAside";
 import DoctorProfileData from "./DoctorProfileData";
 import { Route, Routes } from "react-router-dom";

@@ -1,6 +1,12 @@
-import React from 'react'
+import { useState } from "react";
 
 const DoctorProfileChangePassord = () => {
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = () => {};
+
   return (
     <div className="ProfileChangePassword-section">
       <div className="right">
@@ -11,10 +17,9 @@ const DoctorProfileChangePassord = () => {
             </div>
             <div className="discription">
               <p>
-                To change your password, please fill in the fields below. Your
-                password must contain at least 8 characters, it must also
-                include at least one uppercase letter, one lowercase letter,
-                one number, and one special character.
+                To change your password, please fill in the fields below. Your password must contain
+                at least 8 characters, it must also include at least one uppercase letter, one
+                lowercase letter, one number, and one special character.
               </p>
             </div>
           </div>
@@ -64,7 +69,7 @@ const DoctorProfileChangePassord = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorProfileChangePassord
+export default DoctorProfileChangePassord;
