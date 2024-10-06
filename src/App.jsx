@@ -15,6 +15,7 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
+import Invoice from "./pages/invoice/Invoice.jsx";
 
 
 function App() {
@@ -57,6 +58,12 @@ function App() {
 
             {/* patient component */}
             <Route path="/patientRegistration" element={<PatientRegistration />} />
+
+          {/* invoice component  */}
+
+
+          <Route path="/invoice" element={<Invoice/>}/>
+
           </Routes>
         </BrowserRouter>
       </div>
