@@ -9,7 +9,7 @@ export const Edit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { editAdminProfile, adminData } = useGlobal();
-  const [profile, setProfile] = useState({...adminData});
+  const [profile, setProfile] = useState({...adminData,hospitalName:adminData?.hospital?.name});
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -114,7 +114,7 @@ export const Edit = () => {
                 <div className="left">
                   <div className="img-box">
                     <div className="img">
-                      <img src={profile?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
+                      <img src={adminData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
                     </div>
                     <div className="change-profile">
                       <ul>
@@ -192,7 +192,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="hospitalName"
-                            value={profile.hospitalName || ''}
+                            value={profile?.hospitalName || ''}
                             onChange={handleInputChange}
                             placeholder="Hospital Name"
                           />
