@@ -343,8 +343,9 @@ const Dashboard = () => {
                 <div className="today-appointments">
                   <div className="appointments-content">
                     <div className="head">
-                      <div className="title">
+                      <div className="title flex">
                         <p>Todays Appointments List</p>
+                        <span>View All</span>
                       </div>
                     </div>
                     {/* When there is no data */}

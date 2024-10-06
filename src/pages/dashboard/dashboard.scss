@@ -311,10 +311,16 @@
                 justify-content: space-between;
 
                 .title {
+                  justify-content: space-between;
+                  align-items: center;
                   p {
                     color: #030229;
                     font-size: 26px;
                     font-weight: 700;
+                  }
+                  span {
+                    color: #5678E9;
+                    cursor: pointer;
                   }
                 }
               }

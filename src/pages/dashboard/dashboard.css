@@ -252,10 +252,18 @@
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head {
   justify-content: space-between;
 }
+.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head .title {
+  justify-content: space-between;
+  align-items: center;
+}
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head .title p {
   color: #030229;
   font-size: 26px;
   font-weight: 700;
+}
+.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head .title span {
+  color: #5678E9;
+  cursor: pointer;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .img {
   height: 85%;
