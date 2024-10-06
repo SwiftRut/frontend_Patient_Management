@@ -24,7 +24,7 @@ export const DoctorAside = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"changePassword"}>
+            <NavLink to={"/doctor/profile/changePassword"}>
               <FaLock /> <span>Change Password</span>
             </NavLink>
           </li>

@@ -2,6 +2,7 @@ import React from "react";
 import { DoctorAside } from "./DoctorAside";
 import DoctorProfileData from "./DoctorProfileData";
 import { Route, Routes } from "react-router-dom";
+import DoctorProfileChangePassord from "./DoctorProfileChangePassord";
 
 export default function DoctorProfile() {
   return (
@@ -20,7 +21,7 @@ export default function DoctorProfile() {
                 <div className="right">
                   <Routes>
                     <Route path="" element={<DoctorProfileData />} />
-                    {/* <Route path="changePassword" element={<ProfileChangePassword />} /> */}
+                    <Route path="changePassword" element={<DoctorProfileChangePassord />} />
                     {/* <Route path="termsCondition" element={<ProfileTermsCondition />} /> */}
                     {/* <Route path="privacyPolicy" element={<ProfilePrivacyPolicy />} /> */}
                   </Routes>
