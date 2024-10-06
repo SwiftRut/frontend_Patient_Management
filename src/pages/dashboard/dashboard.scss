@@ -133,6 +133,7 @@
           padding: 20px;
           background-color: white;
           border-radius: 15px;
+          height: 443px;
 
           .head {
             justify-content: space-between;
@@ -190,7 +191,109 @@
                 }
               }
 
+              .bill-table {
+                table {
+                  padding: 0px 10px;
+                  width: 100%;
+                  overflow-y: scroll;
 
+                  thead {
+                    tr {
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+                      background-color: #f6f8fb;
+                    }
+
+                    th {
+                      color: #030229;
+                      font-size: 13px;
+                      font-weight: 600;
+                      padding: 12px 14px;
+                    }
+                  }
+
+                  tbody {
+                    height: 100%;
+                    overflow-y: auto;
+                    width: 100%;
+
+                    tr {
+                      padding: 5px 0px;
+
+                      td {
+                        text-align: center;
+                      }
+
+                      .bill-num {
+                        background: #F6F8FB;
+                        border-radius: 33px;
+
+                        p {
+                          color: #718EBF;
+                          text-align: center;
+                          padding: 5px 18px;
+                        }
+                      }
+
+                      .patient-name,
+                      .disease-name {
+                        p {
+                          color: #4F4F4F;
+                          font-size: 12px;
+                          font-weight: 500;
+                        }
+                      }
+
+                      .status {
+                        p {
+                          background-color: #39973D1A;
+                          color: #39973D;
+                          font-size: 13px;
+                          font-weight: 600;
+                          padding: 6px 20px;
+                          border-radius: 30px;
+                        }
+                      }
+
+                      .action {
+                        justify-content: center;
+                        align-items: center;
+
+                        .box {
+                          width: 28px;
+                          height: 28px;
+                          background-color: #F6F8FB;
+                          justify-content: center;
+                          align-items: center;
+
+                          svg {
+                            margin: 0px auto;
+                            color: #0EABEB;
+                          }
+                        }
+                      }
+                    }
+                  }
+
+
+
+
+
+                  tbody::-webkit-scrollbar {
+                    width: 10px;
+                  }
+
+                  tbody::-webkit-scrollbar-thumb {
+                    background-color: #ccc;
+                    border-radius: 10px;
+                  }
+
+                  tbody::-webkit-scrollbar-track {
+                    background-color: #f0f0f0;
+                  }
+
+                }
+              }
 
             }
           }
@@ -333,7 +436,6 @@
           }
         }
       }
-
 
     }
   }
