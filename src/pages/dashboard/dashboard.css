@@ -144,6 +144,9 @@
 .deshbord-section .row .main .top .Billing-data .head .btn button svg {
   color: #FFFFFF;
 }
+.deshbord-section .row .main .top .Billing-data .pending-bill {
+  height: 85%;
+}
 .deshbord-section .row .main .top .Billing-data .pending-bill .bill-status {
   padding-top: 10px;
 }
@@ -158,21 +161,27 @@
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data {
   padding-top: 40px;
+  height: 90%;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .img img {
   margin: 0px auto;
 }
+.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-color: #030229 #F4F4F4;
+  scrollbar-width: thin;
+}
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table {
   padding: 0px 10px;
   width: 100%;
-  overflow-y: scroll;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table thead tr {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: #f6f8fb;
 }
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table thead th {
+.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table thead tr th {
   color: #030229;
   font-size: 13px;
   font-weight: 600;
@@ -180,7 +189,6 @@
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody {
   height: 100%;
-  overflow-y: auto;
   width: 100%;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr {
@@ -226,16 +234,6 @@
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .action .box svg {
   margin: 0px auto;
   color: #0EABEB;
-}
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody::-webkit-scrollbar {
-  width: 10px;
-}
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
 }
 .deshbord-section .row .main .bottom {
   padding: 10px 20px;

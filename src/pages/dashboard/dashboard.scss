@@ -167,6 +167,8 @@
           }
 
           .pending-bill {
+            height: 85%;
+
             .bill-status {
               padding-top: 10px;
 
@@ -184,6 +186,7 @@
 
             .pending-bill-data {
               padding-top: 40px;
+              height: 90%;
 
               .img {
                 img {
@@ -192,30 +195,36 @@
               }
 
               .bill-table {
+                height: 100%;
+                  overflow-y: scroll;
+                    scrollbar-color: #030229 #F4F4F4;
+                    scrollbar-width: thin;
+               
+
                 table {
                   padding: 0px 10px;
                   width: 100%;
-                  overflow-y: scroll;
+                  
 
                   thead {
                     tr {
                       border-top-left-radius: 10px;
                       border-top-right-radius: 10px;
                       background-color: #f6f8fb;
-                    }
 
-                    th {
-                      color: #030229;
-                      font-size: 13px;
-                      font-weight: 600;
-                      padding: 12px 14px;
+                      th {
+                        color: #030229;
+                        font-size: 13px;
+                        font-weight: 600;
+                        padding: 12px 14px;
+                      }
                     }
                   }
 
                   tbody {
                     height: 100%;
-                    overflow-y: auto;
                     width: 100%;
+                    
 
                     tr {
                       padding: 5px 0px;
@@ -274,24 +283,6 @@
                       }
                     }
                   }
-
-
-
-
-
-                  tbody::-webkit-scrollbar {
-                    width: 10px;
-                  }
-
-                  tbody::-webkit-scrollbar-thumb {
-                    background-color: #ccc;
-                    border-radius: 10px;
-                  }
-
-                  tbody::-webkit-scrollbar-track {
-                    background-color: #f0f0f0;
-                  }
-
                 }
               }
 
