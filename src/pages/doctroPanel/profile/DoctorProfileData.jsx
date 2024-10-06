@@ -1,4 +1,6 @@
-import React from 'react'
+import React from "react";
+import { FaEdit } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const DoctorProfileData = () => {
   return (
@@ -22,28 +24,28 @@ const DoctorProfileData = () => {
             <div className="label">
               First Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name"/>
+            <input disabled type="text" placeholder="Enter First Name" />
           </div>
 
           <div className="input-box">
             <div className="label">
               Last Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter Last Name"/>
+            <input disabled type="text" placeholder="Enter Last Name" />
           </div>
 
           <div className="input-box">
             <div className="label">
               Email Address <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Email Address"/>
+            <input disabled type="text" placeholder=" Email Address" />
           </div>
 
           <div className="input-box">
             <div className="label">
               Phone Number* <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Phone Number*"  />
+            <input disabled type="text" placeholder=" Phone Number*" />
           </div>
 
           <div className="input-box">
@@ -57,7 +59,7 @@ const DoctorProfileData = () => {
             <div className="label">
               Gender <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Gender"  />
+            <input disabled type="text" placeholder="Gender" />
           </div>
 
           <div className="input-box">
@@ -83,7 +85,7 @@ const DoctorProfileData = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorProfileData
+export default DoctorProfileData;

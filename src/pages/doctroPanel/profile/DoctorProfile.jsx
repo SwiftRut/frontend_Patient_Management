@@ -4,8 +4,9 @@ import DoctorProfileData from "./DoctorProfileData";
 import { Route, Routes } from "react-router-dom";
 
 export default function DoctorProfile() {
-  return <div>
-    <div className="profile-section">
+  return (
+    <div>
+      <div className="profile-section">
         <div className="row">
           <div className="main">
             <div className="top"></div>
@@ -18,7 +19,7 @@ export default function DoctorProfile() {
 
                 <div className="right">
                   <Routes>
-                    {/* <Route path="/doctor/profile" element={<DoctorProfileData />} /> */}
+                    <Route path="" element={<DoctorProfileData />} />
                     {/* <Route path="changePassword" element={<ProfileChangePassword />} /> */}
                     {/* <Route path="termsCondition" element={<ProfileTermsCondition />} /> */}
                     {/* <Route path="privacyPolicy" element={<ProfilePrivacyPolicy />} /> */}
@@ -29,5 +30,6 @@ export default function DoctorProfile() {
           </div>
         </div>
       </div>
-  </div>;
+    </div>
+  );
 }
