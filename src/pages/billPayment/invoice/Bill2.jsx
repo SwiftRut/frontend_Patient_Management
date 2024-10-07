@@ -1,16 +1,16 @@
-import "../component/bill2.css";
+import "../invoice/bill2.css";
 export default function Bill2() {
   return (
     <>
-      <div class="invoice">
+      <div className="invoice">
         <div className="head">
           <img src="/img/logo.png" width="300px" />
           <div className="title">
             <h3>Invoice</h3>
           </div>
         </div>
-        <div class="content">
-          <div class="billing-info">
+        <div className="content">
+          <div className="billing-info">
             <div>
               <h3>Billing To:</h3>
               <h3> Adeline Palmerston</h3>
@@ -77,7 +77,7 @@ export default function Bill2() {
             </tbody>
           </table>
           <div className="flex justify-between">
-            <div class="payment-method">
+            <div className="payment-method">
               <strong>Payment Method</strong>
               <p>
                 Bank Name :<span> State Bank Of India</span>
@@ -85,7 +85,7 @@ export default function Bill2() {
                 Account No. :<span>1234567890</span>
               </p>
             </div>
-            <div class="totals">
+            <div className="totals">
               <p>
                 <strong>Sub Total :</strong> <span>$ 2110.00</span>
               </p>
@@ -97,7 +97,7 @@ export default function Bill2() {
               </p>
             </div>
           </div>
-          <div class="terms">
+          <div className="terms">
             <strong>Term & Conditions:</strong>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -105,7 +105,7 @@ export default function Bill2() {
             </p>
           </div>
         </div>
-        <div class="footer flex justify-between">
+        <div className="footer flex justify-between">
           <p>Call: +00854 22354 </p> <p>Email: Hello@Gmail.com</p>
         </div>
       </div>

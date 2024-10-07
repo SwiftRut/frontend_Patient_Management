@@ -1,4 +1,4 @@
-import "../component/bill3.css";
+import "../invoice/bill3.css";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
@@ -54,7 +54,7 @@ export default function Bill3() {
                 123 Anywhere Street, Any City
               </p>
             </section>
-            <section class="invoice-details">
+            <section className="invoice-details">
               <p>Invoice Date : 30 May, 2020</p>
               <p>
                 <strong>Total Due:</strong> <span>$ 1,251</span>
@@ -103,7 +103,7 @@ export default function Bill3() {
               </tr>
             </tbody>
           </table>
-          <section class="totals">
+          <section className="totals">
             <p>
               <strong>Sub Total:</strong> <span>$ 21100.00</span>
             </p>
@@ -116,14 +116,14 @@ export default function Bill3() {
           </section>
         </main>
         <footer>
-          <section class="terms">
+          <section className="terms">
             <h3>Term and Conditions</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
               malesuada lacus vel eros faucibus, et finibus nisi porta.
             </p>
           </section>
-          <section class="signature">
+          <section className="signature">
             <h3>Signature</h3>
           </section>
         </footer>
