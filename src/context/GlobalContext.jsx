@@ -6,6 +6,8 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
     const [allHospitals, setAllHospitals] = useState([]);
     const [adminData, setAdminData] = useState({});
+    const [userData, setUserData] = useState({});
+
     useEffect(()=>{
     },[])
     const getAllHospitals = async () => {
@@ -30,8 +32,7 @@ export const GlobalProvider = ({ children }) => {
     const getAdminProfile = async (id) => {
       try{
       const response = await apiService.GetAdminProfile(id);
-      console.log(response.data);
-      setAdminData(response.data);
+      setUserData(response.data);
       }catch(error){
       console.log(error);
       throw error
@@ -46,17 +47,60 @@ export const GlobalProvider = ({ children }) => {
     throw error
     }
   }
+  const editPatientProfile = async (id, userData) => {
+    try{
+    const response = await apiService.EditPatientProfile(id, userData);
+    setAdminData(response.data.data);
+    }catch(error){
+    console.log(error);
+    throw error
+    }
+  }
+  
+  const getPatientProfile= async () => {
+    try{
+      const response = await apiService.GetPatientProfile(id);
+      setUserData(response.data);
+      }catch(error){
+      console.log(error);
+      throw error
+      }
+  }
 
+  const editDoctorProfile = async (id, userData) => {
+    try{
+    const response = await apiService.EditDoctor(id, userData);
+    setAdminData(response.data.data);
+    }catch(error){
+    console.log(error);
+    throw error
+    }
+  }
+  
+  const getDoctorProfile= async () => {
+    try{
+      const response = await apiService.GetDoctorById(id);
+      setUserData(response.data);
+      }catch(error){
+      console.log(error);
+      throw error
+      }
+  }
+  
   return (
     <GlobalContext.Provider value={{
         allHospitals,
-        adminData,
-        setAdminData,
+        userData,
+        setUserData,
         setAllHospitals,
         getAllHospitals,
         createHospital,
         getAdminProfile,
-        editAdminProfile
+        editAdminProfile,
+        getPatientProfile,
+        editPatientProfile,
+        getDoctorProfile,
+        editDoctorProfile
      }}>
       {children}
     </GlobalContext.Provider>

@@ -1,63 +1,173 @@
 import { FaCamera } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
-import { useEdit } from '../../hooks/useEdit';
-import { useLocationData } from '../../hooks/useLocationData';
-import Prop
+import {useNavigate } from 'react-router-dom';
+import { useLocationData } from "../../hooks/useLocationData";
+import { useEdit } from "../../hooks/useEdit";
+
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
   const { countries, states, cities, loadStates, loadCities } = useLocationData(profile.country, profile.state);
 
   return (
-    <div className="edit-section">
-      <div className="row">
-        <div className="main">
-          <div className="profile-setting">
-            <div className="head"><p>Profile Setting</p></div>
-            <div className="content flex">
-              <div className="left">
-                <div className="img-box">
-                  <img src={profile.profilePic || "../img/profile.png"} alt="" className="rounded-full" />
-                  <div className="change-profile">
-                    <input 
-                      type="file" 
-                      id="profilePic" 
-                      name="profilePic" 
-                      style={{display: 'none'}} 
-                      onChange={handleImageChange}
-                      accept="image/*"
-                    />
-                    <label htmlFor="profilePic">
-                      <FaCamera />
-                      <span>Change Profile</span>
-                    </label>
+    <div>
+      <div className="edit-section">
+        <div className="row">
+          <div className="main">
+            <div className="top"></div>
+            <div className="profile-setting">
+              <div className="head">
+                <p>Profile Setting</p>
+              </div>
+              <div className="content flex">
+                <div className="left">
+                  <div className="img-box">
+                    <div className="img">
+                      <img src={profile?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
+                    </div>
+                    <div className="change-profile">
+                      <ul>
+                        <li>
+                        <input 
+                            type="file" 
+                            id="profilePic" 
+                            name="profilePic" 
+                            style={{display: 'none'}} 
+                            onChange={handleImageChange}
+                            accept="image/*"
+                          />
+                          <label htmlFor="profilePic"><FaCamera /><span>Change Profile</span></label>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="right">
-                <div className="content">
-                  <div className="title"><p>Edit Profile</p></div>
-                  <form onSubmit={handleFormSubmit} className="flex form-box">
-                    <Input label="First Name" name="firstName" value={profile.firstName} handleChange={handleInputChange} required />
-                    <Input label="Last Name" name="lastName" value={profile.lastName} handleChange={handleInputChange} required />
-                    <Input label="Email Address" name="email" value={profile.email} handleChange={handleInputChange} required />
-                    <Input label="Phone Number" name="phone" value={profile.phone} handleChange={handleInputChange} required />
-                    <Input label="Hospital Name" name="hospitalName" value={profile.hospitalName} handleChange={handleInputChange} required />
-                    <Select label="Gender" name="gender" value={profile.gender} options={["Male", "Female"]} handleChange={handleInputChange} required />
-                    <Select label="Country" name="country" value={profile.country} options={countries} handleChange={(e) => {
-                      handleInputChange(e);
-                      loadStates();
-                    }} required />
-                    <Select label="State" name="state" value={profile.state} options={states} handleChange={(e) => {
-                      handleInputChange(e);
-                      loadCities();
-                    }} required />
-                    <Select label="City" name="city" value={profile.city} options={cities} handleChange={handleInputChange} required />
-                    <div className="flex">
-                      <button type="submit" className="save-btn">Save</button>
-                      <button type="button" onClick={() => navigate('/profile')} className="cancel-btn">Cancel</button>
+
+                <div className="right">
+                  <div className="content">
+                    <div className="head">
+                      <div className="title">
+                        <p>Edit Profile</p>
+                      </div>
                     </div>
-                  </form>
+                    <div className="form-box">
+                      <form onSubmit={handleFormSubmit} className="flex">
+                        <div className="input-box">
+                          <div className="label">First Name <span>*</span></div>
+                          <input
+                            type="text"
+                            name="firstName"
+                            value={profile?.firstName || ''}
+                            onChange={handleInputChange}
+                            placeholder="Enter First Name"
+                          />
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Last Name <span>*</span></div>
+                          <input
+                            type="text"
+                            name="lastName"
+                            value={profile.lastName || ''}
+                            onChange={handleInputChange}
+                            placeholder="Enter Last Name"
+                          />
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Email Address <span>*</span></div>
+                          <input
+                            type="text"
+                            name="email"
+                            value={profile.email || ''}
+                            onChange={handleInputChange}
+                            placeholder="Email Address"
+                          />
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Phone Number <span>*</span></div>
+                          <input
+                            type="text"
+                            name="phone"
+                            value={profile.phone || ''}
+                            onChange={handleInputChange}
+                            placeholder="Phone Number"
+                          />
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Hospital Name <span>*</span></div>
+                          <input
+                            type="text"
+                            name="hospitalName"
+                            value={profile?.hospitalName || ''}
+                            onChange={handleInputChange}
+                            placeholder="Hospital Name"
+                          />
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Gender <span>*</span></div>
+                          <select
+                            name="gender"
+                            value={profile.gender || ''}
+                            onChange={handleInputChange}
+                          >
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">Country <span>*</span></div>
+                          <select
+                            name="country"
+                            value={profile.country || ''}
+                            onChange={(e) => handleInputChange({ target: { name: 'country', value: e.target.value } })}
+                          >
+                            {countries.map(country => (
+                              <option key={country.value} value={country.value}>{country.label}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">State <span>*</span></div>
+                          <select
+                            name="state"
+                            value={profile.state || ''}
+                            onChange={(e) => handleInputChange({ target: { name: 'state', value: e.target.value } })}
+                          >
+                            {states.map(state => (
+                              <option key={state.value} value={state.value}>{state.label}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">City <span>*</span></div>
+                          <select
+                            name="city"
+                            value={profile.city || ''}
+                            onChange={(e) => handleInputChange({ target: { name: 'city', value: e.target.value } })}
+                          >
+                            {cities.map(city => (
+                              <option key={city.value} value={city.value}>{city.label}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="save-btn">
+                            <button type="submit">Save</button>
+                          </div>
+                          <div className="cancel-btn">
+                            <button type="button" onClick={() => {setProfile({...profile});navigate('/profile')}}>Cancel</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -67,53 +177,3 @@ export const Edit = () => {
     </div>
   );
 };
-
-const Input = ({ label, name, value, handleChange, required = false }) => (
-  <div className="input-box">
-    <label className="label">{label}{required && <span>*</span>}</label>
-    <input
-      type="text"
-      name={name}
-      value={value || ''}
-      onChange={handleChange}
-      placeholder={`Enter ${label}`}
-      required={required}
-    />
-  </div>
-);
-Input.PropTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired
-}
-const Select = ({ label, name, value, options, handleChange, required = false }) => (
-  <div className="input-box">
-    <label className="label">{label}{required && <span>*</span>}</label>
-    <select
-      name={name}
-      value={value || ''}
-      onChange={handleChange}
-      required={required}
-    >
-      <option value="">Select {label}</option>
-      {options.map((option, index) =>
-        typeof option === 'string' ? (
-          <option key={index} value={option}>{option}</option>
-        ) : (
-          <option key={option.value} value={option.value}>{option.label}</option>
-        )
-      )}
-    </select>
-  </div>
-);
-
-Select.PropTypes = {
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired
-}

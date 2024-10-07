@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
   const [loading, setLoading] = useState(true);
-  const {getAdminProfile} = useGlobal();
+  const {getAdminProfile, getDoctorProfile} = useGlobal();
   const PatientLogin = async (userData) => {
     console.log(userData);
     setLoading(true);
@@ -96,7 +96,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const UniversalLogin = async function (userData) {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.UniversalLogin(userData);
@@ -104,7 +103,14 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
-      await getAdminProfile(response.data.user.id);
+
+      //here we have call the function based on the user role
+      if(response.data.user.role === "doctor"){
+        await getDoctorProfile(response.data.user.id);
+      }
+      else if(response.data.user.role === "admin"){
+        await getAdminProfile(response.data.user.id);
+      }
       return true;
     } catch (error) {
       console.error('Login error:', error);

@@ -6,10 +6,10 @@ import { useAuth } from './useAuth';
 export const useEdit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { editAdminProfile, adminData } = useGlobal();
+  const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
-    ...adminData,
-    hospitalName: adminData?.hospital?.name,
+    ...userData,
+    hospitalName: userData?.hospital?.name,
   });
   const [imageBlob, setImageBlob] = useState(null);
 
@@ -44,8 +44,15 @@ export const useEdit = () => {
       const formData = new FormData();
       Object.keys(profile).forEach((key) => formData.append(key, profile[key]));
       if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
-      await editAdminProfile(user.id, formData);
-      navigate('/profile');
+      if (user.role === 'doctor') {
+        await editDoctorProfile(user.id, formData);
+        navigate('/doctor/profile');
+        return;
+      }else if(user.role === 'admin'){
+        await editAdminProfile(user.id, formData);
+        navigate('/profile');
+        return;
+      }
     } catch (error) {
       console.error('Error saving profile:', error);
     }

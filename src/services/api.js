@@ -19,6 +19,8 @@ const apiService = {
   // Patient
   PatientLogin: (userData) => api.post("/patient/login", userData),
   PatientRegister: (userData) => api.post("/patient/register", userData),
+  GetPatientProfile:(id) => api.get(`/patient/getPatient/${id}`),
+  EditPatientProfile:(id, userData) => api.put(`/patient/editPatient/${id}`, userData),
 
   // Admin
   AdminLogin: (userData) => api.post("/admin/login", userData),
@@ -47,11 +49,11 @@ const apiService = {
   GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
   EditDoctor: (id, userData) => api.patch(`/doctor/getDoctorById/${id}`, userData),
 
+
   //Admin
   GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),        
   EditAdminProfile: (id, userData) => api.patch(`/admin/edit-profile/${id}`, userData),
   ChangePassword: (id, userData) => api.patch(`/admin/change-password/${id}`, userData),
-
 };
 
 export default apiService;
