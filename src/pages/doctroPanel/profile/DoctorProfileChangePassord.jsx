@@ -1,14 +1,15 @@
 import { useState } from "react";
+import '../profile/doctorProfile.css'
 
 const DoctorProfileChangePassord = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => { };
 
   return (
-    <div className="ProfileChangePassword-section">
+    <div className="doctor-ProfileChangePassword-section">
       <div className="right">
         <div className="content">
           <div className="head">

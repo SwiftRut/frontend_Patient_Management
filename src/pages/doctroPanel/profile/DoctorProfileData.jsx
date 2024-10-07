@@ -3,6 +3,7 @@ import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { useGlobal } from "../../../hooks/useGlobal";
+import '../profile/doctorProfile.css'
 
 const DoctorProfileData = () => {
   const { user } = useAuth();
@@ -25,7 +26,7 @@ const DoctorProfileData = () => {
           <p>Profile</p>
         </div>
         <div className="edit">
-          <NavLink to={"/edit"}>
+          <NavLink to={"/doctor/edit"}>
             <button className="flex">
               <FaEdit />
               <span>Edit Profile</span>
