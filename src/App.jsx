@@ -21,8 +21,9 @@ import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
 import CashPayment from "./pages/billPayment/CashPayment.jsx";
 import Delete from "./pages/doctorManagement/Delete.jsx";
-import Bill2 from "./component/Bill2.jsx";
-import Bill3 from "./component/Bill3.jsx";
+import AddNewField from "./pages/billPayment/invoice/AddNewField.jsx";
+import Bill2 from "./pages/billPayment/invoice/Bill2.jsx";
+import Bill3 from "./pages/billPayment/invoice/Bill3.jsx";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
-            <Route path="/resetPassword" element={< AdminChangePassword/>} />
+            <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin component */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
@@ -43,6 +44,8 @@ function App() {
               element={<AdminChangePassword />}
             />
 
+            {/* manashvi temp start*/}
+            <Route path="/addnewfield" element={<AddNewField />} />
             <Route path="/onsite" element={<Onsite />} />
             <Route path="/details" element={<PatientDetails />} />
             <Route path="/bill" element={<Bill />} />
@@ -50,6 +53,7 @@ function App() {
             <Route path="/bill3" element={<Bill3 />} />
             <Route path="/cash" element={<CashPayment />} />
             <Route path="/delete" element={<Delete />} />
+            {/* manashvi temp end*/}
 
             <Route path="/login" element={<Login />} />
 
@@ -71,7 +75,10 @@ function App() {
             </Route>
 
             {/* patient component */}
-            <Route path="/patientRegistration" element={<PatientRegistration />} />
+            <Route
+              path="/patientRegistration"
+              element={<PatientRegistration />}
+            />
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
