@@ -14,8 +14,13 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 import Chart from "./pages/Chart.jsx";
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
+
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
+
+import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
+import CashPayment from "./pages/billPayment/CashPayment.jsx";
+import Delete from "./pages/doctorManagement/Delete.jsx";
 
 function App() {
   return (
@@ -31,10 +36,16 @@ function App() {
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
+            <Route
+              path="/AdminChangePassword"
+              element={<AdminChangePassword />}
+            />
 
             <Route path="/onsite" element={<Onsite />} />
+            <Route path="/details" element={<PatientDetails />} />
             <Route path="/bill" element={<Bill />} />
+            <Route path="/cash" element={<CashPayment />} />
+            <Route path="/delete" element={<Delete />} />
 
             <Route path="/login" element={<Login />} />
 

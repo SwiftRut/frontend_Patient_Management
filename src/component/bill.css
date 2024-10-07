@@ -37,9 +37,8 @@ input {
 .bill-section .row .main .bill {
   width: 70%;
   border-radius: 20px;
-  background-color: #fff;
   position: relative;
-  margin: 30px;
+  margin: auto;
   overflow: hidden;
   padding: 20px 20px 0;
 }
