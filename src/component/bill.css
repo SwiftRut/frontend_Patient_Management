@@ -37,6 +37,7 @@ input {
 .bill-section .row .main .bill {
   width: 70%;
   border-radius: 20px;
+  background-color: #fff;
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -109,7 +110,7 @@ input {
   text-align: left;
 }
 .bill-section .row .main .bill .data td {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 16px;
 }
 .bill-section .row .main .bill .data thead {

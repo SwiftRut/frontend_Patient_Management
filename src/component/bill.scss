@@ -44,7 +44,7 @@ input {
       .bill {
         width: 70%;
         border-radius: 20px;
-        // background-color: #fff;
+        background-color: #fff;
         position: relative;
         margin: auto;
         overflow: hidden;
@@ -121,9 +121,9 @@ input {
             padding: 10px;
             text-align: left;
           }
-          td{
-            color: #4F4F4F;
-            font-size: 16px ;
+          td {
+            color: #4f4f4f;
+            font-size: 16px;
           }
           thead {
             background-color: #0eabeb;
@@ -131,23 +131,22 @@ input {
             font-size: 18px;
             tr {
               border-top-left-radius: 10px;
-              
             }
           }
         }
         .total {
-            text-align: right;
-            font-weight: bold;
-            padding: 10px 0;
-          }
-        .end{
-            background-color: #0eabeb;
-            color: #fff;
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }  
+          text-align: right;
+          font-weight: bold;
+          padding: 10px 0;
+        }
+        .end {
+          background-color: #0eabeb;
+          color: #fff;
+          font-size: 18px;
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+        }
       }
     }
   }
