@@ -567,6 +567,8 @@
                       justify-content: end;
 
                       .cancel-btn {
+                        padding-left: 20px;
+
                         button {
                           color: black;
                           border: 1px solid #D3D3D3;
@@ -579,7 +581,6 @@
                       }
 
                       .save-btn {
-                        padding-left: 15px;
 
                         button {
                           padding: 12px 14px;

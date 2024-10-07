@@ -17,6 +17,8 @@ import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
+import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
+import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 
 function App() {
   return (
@@ -62,7 +64,8 @@ function App() {
 
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
-              <Route path="profile/*" />
+              <Route path="profile/*" element={<DoctorProfile />} />
+              <Route path="edit" />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -418,6 +418,9 @@
   display: flex;
   justify-content: end;
 }
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .cancel-btn {
+  padding-left: 20px;
+}
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .cancel-btn button {
   color: black;
   border: 1px solid #D3D3D3;
@@ -426,9 +429,6 @@
   font-size: 20px;
   font-weight: 600;
   width: 160px;
-}
-.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn {
-  padding-left: 15px;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn button {
   padding: 12px 14px;
