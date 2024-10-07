@@ -3,15 +3,17 @@ import { FaLock } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { NavLink } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
 
 export default function AsideProfile() {
+  const {adminData} = useGlobal();
   return (
     <div className="left">
       <div className="img-box">
         <div className="img">
-          <img src="../img/profile.png" alt="" />
+          <img src={adminData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
         </div>
-        <p>Lincoln Philips</p>
+        <p>{adminData ? `${adminData?.firstName} ${adminData?.lastName}` : 'Lincoln Philips'}</p>
       </div>
       <div className="menu">
         <p>Menu</p>

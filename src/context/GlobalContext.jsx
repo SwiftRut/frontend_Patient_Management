@@ -1,7 +1,7 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
-const GlobalContext = createContext();
+export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
     const [allHospitals, setAllHospitals] = useState([]);
@@ -65,4 +65,3 @@ export const GlobalProvider = ({ children }) => {
 GlobalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-export const useGlobal = () => useContext(GlobalContext);

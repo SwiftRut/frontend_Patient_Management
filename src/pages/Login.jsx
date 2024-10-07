@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat22@gmail.com",
+    identifier: "mohitdudhat@gmail.com",
     password: "123@abc",
     remember: "true",
   });

@@ -12,7 +12,7 @@ export default function Bill() {
                   <h3>Invoice</h3>
                 </div>
               </div>
-              <div class="patient-info flex">
+              <div className="patient-info flex">
                 <div>
                   <h2>Dr. Bharat Patel</h2>
                   <p>
@@ -21,7 +21,7 @@ export default function Bill() {
                     eu.
                   </p>
                 </div>
-                <div class="invoice-info">
+                <div className="invoice-info">
                   <table>
                     <tr>
                       <td>Bill No</td>
@@ -117,7 +117,7 @@ export default function Bill() {
                   </tr>
                 </tbody>
               </table>
-              <div class="total">
+              <div className="total">
                 <p>Amount: ₹ 25,840.00</p>
                 <p>Discount 5% : ₹ 1,292.00</p>
                 <p>Tax: ₹ 120.00</p>

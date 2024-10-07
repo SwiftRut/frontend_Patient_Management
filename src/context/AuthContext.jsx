@@ -1,13 +1,14 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
-const AuthContext = createContext();
+import { useGlobal } from '../hooks/useGlobal';
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
   const [loading, setLoading] = useState(true);
-
+  const {getAdminProfile} = useGlobal();
   const PatientLogin = async (userData) => {
     console.log(userData);
     setLoading(true);
@@ -103,6 +104,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
+      await getAdminProfile(response.data.user.id);
       return true;
     } catch (error) {
       console.error('Login error:', error);
@@ -113,7 +115,9 @@ export const AuthProvider = ({ children }) => {
   }
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     delete axios.defaults.headers.common['Authorization'];
+    window.location.href = '/';
     setUser(null);
   };
 
@@ -126,4 +130,3 @@ export const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-export const useAuth = () => useContext(AuthContext);
