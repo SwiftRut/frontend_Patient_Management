@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
 import { Country, City, State } from "country-state-city";
@@ -14,9 +15,9 @@ const AdminRegistration = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: "123@abc",
-    confirmPassword: "123@abc",
-    phone: "4123456780",
+    password: "",
+    confirmPassword: "",
+    phone: "",
     country: "",
     state: "",
     city: "",
