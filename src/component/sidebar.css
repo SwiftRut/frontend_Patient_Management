@@ -52,6 +52,7 @@ input {
   background-color: #fff;
 }
 .sidebar .asite .menu ul li {
+  margin: 10px 0px;
   display: flex;
   align-items: center;
   color: #818194;

@@ -230,6 +230,9 @@ input {
 .patient-registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.patient-registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .patient-registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -574,6 +577,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -658,6 +664,9 @@ input {
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -773,6 +782,9 @@ input {
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -937,26 +949,4 @@ input {
 }
 .login-section .row .main .img-box {
   width: 50%;
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  max-width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
-}
-/*# sourceMappingURL=pages.css.map */
+}/*# sourceMappingURL=pages.css.map */
