@@ -3,6 +3,7 @@ import {useNavigate } from 'react-router-dom';
 import { useLocationData } from "../../hooks/useLocationData";
 import { useEdit } from "../../hooks/useEdit";
 
+
 export const Edit = () => {
   const navigate = useNavigate();
   const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();

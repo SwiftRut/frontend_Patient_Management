@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import DoctorProfileChangePassord from "./DoctorProfileChangePassord";
 
 export default function DoctorProfile() {
+
   return (
     <div>
       <div className="profile-section">

@@ -79,7 +79,7 @@ export const GlobalProvider = ({ children }) => {
   const getDoctorProfile= async (id) => {
     try{
       const response = await apiService.GetDoctorById(id);
-      setUserData(response.data);
+      setUserData(response.data.data);
       }catch(error){
       console.log(error);
       throw error

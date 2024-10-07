@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
+import { useGlobal } from "../../../hooks/useGlobal";
 
 const DoctorProfileData = () => {
+  const { user } = useAuth();
+  const {userData ,getDoctorProfile} = useGlobal();
+  console.log(userData)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          await getDoctorProfile(user.id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  },[])
   return (
     <div className="content">
       <div className="head flex">
@@ -24,7 +39,7 @@ const DoctorProfileData = () => {
             <div className="label">
               First Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name" />
+            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName}/>
           </div>
 
           <div className="input-box">

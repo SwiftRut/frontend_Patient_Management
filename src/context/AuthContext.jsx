@@ -96,6 +96,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const UniversalLogin = async function (userData) {
+    console.log("inside UniversalLogin", userData);
     setLoading(true);
     try {
       const response = await apiService.UniversalLogin(userData);
@@ -106,9 +107,11 @@ export const AuthProvider = ({ children }) => {
 
       //here we have call the function based on the user role
       if(response.data.user.role === "doctor"){
+        console.log("doctor profile fetching");
         await getDoctorProfile(response.data.user.id);
       }
       else if(response.data.user.role === "admin"){
+        console.log("admin profile fetching");
         await getAdminProfile(response.data.user.id);
       }
       return true;
