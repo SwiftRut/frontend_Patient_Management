@@ -25,7 +25,6 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
-  background-color: white;
 }
 
 .registration-section .row .main .form {
@@ -64,9 +63,6 @@ input {
 }
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
-}
-.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #A7A7A7;
 }
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -436,9 +432,6 @@ input {
 }
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
-}
-.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #A7A7A7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -873,9 +866,6 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
-}
-.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #A7A7A7;
 }
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;

@@ -182,10 +182,17 @@ const Dashboard = () => {
                         <p>Patients Statistics</p>
                       </div>
                       <div className="menu">
-                        <ul className='flex'>
-                          <li> <a href="">Year</a></li>
-                          <li><a href="">Month</a></li>
-                          <li><a href="">Week</a></li>
+                        <ul className="flex">
+                          <li>
+                            {" "}
+                            <a href="">Year</a>
+                          </li>
+                          <li>
+                            <a href="">Month</a>
+                          </li>
+                          <li>
+                            <a href="">Week</a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -193,7 +200,6 @@ const Dashboard = () => {
                     <Line data={lineData} options={lineOptions} />
                     </div>
                   </div>
-
                 </div>
               </div>
               <div className="Billing-data">
@@ -202,439 +208,252 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className='flex'><FaAddressCard />Create Bills</button>
+                    <button className="flex">
+                      <FaAddressCard />
+                      Create Bills
+                    </button>
                   </div>
                 </div>
                 <div className="pending-bill">
                   <div className="bill-status">
-                    <p>Pending Bills : <span>00</span></p>
+                    <p>
+                      Pending Bills : <span>00</span>
+                    </p>
                   </div>
 
                   <div className="pending-bill-data">
+                    {/* When there is no data */}
 
                     {/* <div className="img">
                       <img src="../img/FrameBill.png" alt="" />
                     </div> */}
 
+                    {/* When there is data */}
+
                     <div className="bill-table">
-                      <div className="table">
-                        <table>
-                          <thead>
-                            <tr className="table-heading">
-                              <th>Doctor Name</th>
-                              <th>Gender</th>
-                              <th>Qualification</th>
-                              <th>Specialty</th>
-                              <th>Working Time</th>
-                              <th>Patient Check Up Time</th>
-                              <th>Break Time</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="flex align-center">
-                                <div className="avatar">
-                                  <img src="/img/Avatar.png" />
-                                </div>
-                                <div className="name">
-                                  <h3>Dr. Marcus Philips</h3>
-                                </div>
-                              </td>
-                              <td><BsGenderFemale className="gender" /></td>
-                              <td>MBBS</td>
-                              <td>Internal Medicine</td>
-                              <td className="time">
-                                <h3>6 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>4 Hour</h3>
-                              </td>
-                              <td className="time">
-                                <h3>1 Hour</h3>
-                              </td>
-                              <td className="flex action">
-                                <div className="edit">
-                                  <FaEdit />
-                                </div>
-                                <div className="view">
-                                  <FaEye />
-                                </div>
-                                <div className="delete">
-                                  <MdDelete />
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Bill No</th>
+                            <th>Patient Name </th>
+                            <th>Disease Name</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>{" "}
+                          <tr>
+                            <td className="bill-num">
+                              <p>5654</p>
+                            </td>
+
+                            <td className="patient-name">
+                              <p>Charlie Vaccaro</p>
+                            </td>
+
+                            <td className="disease-name">
+                              <p>Colds and Flu</p>
+                            </td>
+
+                            <td className="status">
+                              <p>Paid</p>
+                            </td>
+
+                            <td className="action flex">
+                              <div className="box flex">
+                                <FaEye />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
@@ -644,12 +463,120 @@ const Dashboard = () => {
                 <div className="today-appointments">
                   <div className="appointments-content">
                     <div className="head">
-                      <div className="title">
+                      <div className="title flex">
                         <p>Todays Appointments List</p>
+                        <span>View All</span>
                       </div>
                     </div>
-                    <div className="img">
+                    {/* When there is no data */}
+
+                    {/* <div className="img">
                       <img src="../img/Frame1.png" alt="" />
+                    </div> */}
+
+                    {/* When there is data */}
+
+                    <div className="appointments-list flex">
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -669,9 +596,18 @@ const Dashboard = () => {
                     <div className="details">
                       <div className="content">
                         <ul>
-                          <li className='new'><FaBox />New Patients <span>0</span></li>
-                          <li className='old'><FaBox />Old Patients <span>0</span></li>
-                          <li className='total'><FaBox />Total Patients <span>0</span></li>
+                          <li className="new">
+                            <FaBox />
+                            New Patients <span>0</span>
+                          </li>
+                          <li className="old">
+                            <FaBox />
+                            Old Patients <span>0</span>
+                          </li>
+                          <li className="total">
+                            <FaBox />
+                            Total Patients <span>0</span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -679,12 +615,11 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
