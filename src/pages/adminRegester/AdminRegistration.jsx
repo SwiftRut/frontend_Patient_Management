@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +14,7 @@ const AdminRegistration = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    phone: "4123456780",
+    phone: "",
     country: "",
     state: "",
     city: "",
