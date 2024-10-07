@@ -17,6 +17,7 @@ import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
 import CashPayment from "./pages/billPayment/CashPayment.jsx";
+import Delete from "./pages/doctorManagement/Delete.jsx";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/details" element={<PatientDetails />} />
             <Route path="/bill" element={<Bill />} />
             <Route path="/cash" element={<CashPayment />} />
+            <Route path="/delete" element={<Delete />} />
 
             <Route path="/login" element={<Login />} />
 
