@@ -1,8 +1,8 @@
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { useGlobal } from "../../context/GlobalContext";
 import { useEffect } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function ProfileData() {
   const { user } = useAuth();

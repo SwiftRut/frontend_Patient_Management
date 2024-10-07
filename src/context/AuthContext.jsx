@@ -1,10 +1,9 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState } from 'react';
 import axios from 'axios';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import { useGlobal } from './GlobalContext';
-const AuthContext = createContext();
+import { useGlobal } from '../hooks/useGlobal';
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
@@ -131,4 +130,3 @@ export const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-export const useAuth = () => useContext(AuthContext);

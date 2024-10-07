@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import { Country, City, State } from "country-state-city";
+import { useAuth } from "../hooks/useAuth";
 
 const AdminRegistration = () => {
   const navigate = useNavigate();

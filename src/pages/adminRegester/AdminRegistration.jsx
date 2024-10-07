@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { useGlobal } from "../../context/GlobalContext";
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();

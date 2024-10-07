@@ -4,7 +4,7 @@ import { MdNotificationImportant } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { FaAngleDown } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import { useGlobal } from "../context/GlobalContext";
+import { useGlobal } from "../hooks/useGlobal";
 
 const Header = () => {
   const { adminData } = useGlobal();

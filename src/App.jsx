@@ -5,14 +5,13 @@ import "./pages/pages.css";
 
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import AdminPanel from "./pages/AdminPanel";
-import { Chart } from "chart.js";
 
 import Chat from "./pages/Chat.jsx";
 import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import AdminMobile from "./pages/adminRegester/AdminMobile.jsx";
 import AdminOtp from "./pages/adminRegester/AdminOtp.jsx";
 import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
-
+import Chart from "./pages/Chart.jsx";
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 

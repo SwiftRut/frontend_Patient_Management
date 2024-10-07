@@ -3,7 +3,7 @@ import { FaLock } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { NavLink } from "react-router-dom";
-import { useGlobal } from "../../context/GlobalContext";
+import { useGlobal } from "../../hooks/useGlobal";
 
 export default function AsideProfile() {
   const {adminData} = useGlobal();

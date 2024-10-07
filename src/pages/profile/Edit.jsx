@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FaCamera } from "react-icons/fa6";
-import { useGlobal } from '../../context/GlobalContext';
-import { useAuth } from '../../context/AuthContext';
 import { Country, State, City } from 'country-state-city';
 import {useNavigate } from 'react-router-dom';
+import { useGlobal } from '../../hooks/useGlobal';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Edit = () => {
   const navigate = useNavigate();
