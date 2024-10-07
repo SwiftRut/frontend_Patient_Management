@@ -64,6 +64,9 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -396,12 +399,8 @@ input {
   width: 50%;
 }
 
-.hospital-section .row .main .form {
-  padding: 120px;
-  width: 50%;
-}
 .hospital-section .row .main .form .content {
-  padding: 60px 60px;
+  padding: 20px;
   background-color: white;
   border-radius: 15px;
 }
@@ -429,9 +428,13 @@ input {
   padding: 12px 14px;
   border: 1px solid #D9D9D9;
   border-radius: 10px;
+  width: 100%;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -866,6 +869,9 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
