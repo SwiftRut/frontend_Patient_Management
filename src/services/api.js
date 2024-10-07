@@ -39,11 +39,13 @@ const apiService = {
   CreateDoctor: (userData) => api.post('/doctor/addDoctor', userData),
   GetAllDoctors: (userData) => api.get('/doctor/getAllDoctors', userData),
   GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
+  EditDoctor: (id, userData) => api.patch(`/doctor/getDoctorById/${id}`, userData),
 
   //Admin
   GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),        
   EditAdminProfile: (id, userData) => api.patch(`/admin/edit-profile/${id}`, userData),
   ChangePassword: (id, userData) => api.patch(`/admin/change-password/${id}`, userData),
+
 };
 
 export default apiService;

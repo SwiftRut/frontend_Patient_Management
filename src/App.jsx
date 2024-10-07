@@ -16,7 +16,7 @@ import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
-
+import Scheduler from "./component/Schedular.jsx";
 function App() {
   return (
     <>
@@ -58,7 +58,8 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
-
+            <Route path="/schedular" element={<Scheduler />} />
+            
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" />
