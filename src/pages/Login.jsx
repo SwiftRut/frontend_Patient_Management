@@ -4,12 +4,17 @@ import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin } = useAuth();
+  const { UniversalLogin, user } = useAuth();
   const [formData, setFormData] = useState({
     identifier: "mohitdudhat@gmail.com",
     password: "123@abc",
     remember: "true",
-  });
+  });  
+  // const [formData, setFormData] = useState({
+  //   identifier: "fiyadoctor1@gmail.com",
+  //   password: "Fiya@123",
+  //   remember: "true",
+  // });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -25,7 +30,11 @@ const Login = () => {
     try {
       const success = await UniversalLogin(formData);
       if (success) {
-        navigate("/");
+        if(user.role === 'admin') {
+          navigate("/");
+        }else if(user.role === 'doctor') {
+          navigate("/doctor/profile");
+        }
       }
     } catch (err) {
       console.error(err);

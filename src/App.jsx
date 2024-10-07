@@ -7,7 +7,6 @@ import PatientRegistration from "./pages/PatientRegistration.jsx";
 import AdminPanel from "./pages/AdminPanel";
 
 import Chat from "./pages/Chat.jsx";
-import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import AdminMobile from "./pages/adminRegester/AdminMobile.jsx";
 import AdminOtp from "./pages/adminRegester/AdminOtp.jsx";
 import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
@@ -17,6 +16,7 @@ import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import Scheduler from "./component/Schedular.jsx";
+import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 function App() {
   return (
     <>

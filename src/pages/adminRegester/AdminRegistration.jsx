@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
+
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
@@ -15,9 +15,9 @@ const AdminRegistration = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
+    password: "123@abc",
+    confirmPassword: "123@abc",
+    phone: "4123456780",
     country: "",
     state: "",
     city: "",

@@ -26,7 +26,6 @@ const apiService = {
   AdminLogin: (userData) => api.post("/admin/login", userData),
   AdminRegister: (userData) => api.post("/admin/register", userData),
 
-  // Doctor
   DoctorLogin: (userData) => api.post("/doctor/login", userData),
   DoctorRegister: (userData) => api.post("/doctor/register", userData),
 
@@ -35,8 +34,8 @@ const apiService = {
 
   //Hospital
   CreateHospital: (userData) => api.post("/hospital/create-hospital", userData),
-  GetAllHospital: (userData) =>
-    api.post("/hospital/get-all-hospitals", userData),
+  GetAllHospitals: (userData) =>
+    api.get("/hospital/get-all-hospitals", userData),
 
   ForgetPassword: (userData) => api.post("/forgetPassword", userData),
   VerifyOtp: (userData) => api.post("/verifyOtp", userData),

@@ -6,14 +6,14 @@ import { NavLink } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
 
 export default function AsideProfile() {
-  const {adminData} = useGlobal();
+  const {userData} = useGlobal();
   return (
     <div className="left">
       <div className="img-box">
         <div className="img">
-          <img src={adminData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
+          <img src={userData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
         </div>
-        <p>{adminData ? `${adminData?.firstName} ${adminData?.lastName}` : 'Lincoln Philips'}</p>
+        <p>{userData ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
       </div>
       <div className="menu">
         <p>Menu</p>

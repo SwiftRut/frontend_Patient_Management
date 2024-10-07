@@ -5,7 +5,6 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
     const [allHospitals, setAllHospitals] = useState([]);
-    const [adminData, setAdminData] = useState({});
     const [userData, setUserData] = useState({});
 
     useEffect(()=>{
@@ -41,7 +40,7 @@ export const GlobalProvider = ({ children }) => {
   const editAdminProfile = async (id, userData) => {
     try{
     const response = await apiService.EditAdminProfile(id, userData);
-    setAdminData(response.data.data);
+    setUserData(response.data.data);
     }catch(error){
     console.log(error);
     throw error
@@ -50,14 +49,14 @@ export const GlobalProvider = ({ children }) => {
   const editPatientProfile = async (id, userData) => {
     try{
     const response = await apiService.EditPatientProfile(id, userData);
-    setAdminData(response.data.data);
+    setUserData(response.data.data);
     }catch(error){
     console.log(error);
     throw error
     }
   }
   
-  const getPatientProfile= async () => {
+  const getPatientProfile= async (id) => {
     try{
       const response = await apiService.GetPatientProfile(id);
       setUserData(response.data);
@@ -70,14 +69,14 @@ export const GlobalProvider = ({ children }) => {
   const editDoctorProfile = async (id, userData) => {
     try{
     const response = await apiService.EditDoctor(id, userData);
-    setAdminData(response.data.data);
+    setUserData(response.data.data);
     }catch(error){
     console.log(error);
     throw error
     }
   }
   
-  const getDoctorProfile= async () => {
+  const getDoctorProfile= async (id) => {
     try{
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data);
