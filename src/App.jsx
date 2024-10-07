@@ -24,6 +24,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/verifyOtp" element={<AdminOtp />} />
+            <Route path="/resetPassword" element={< AdminChangePassword/>} />
 
             {/* admin component */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
