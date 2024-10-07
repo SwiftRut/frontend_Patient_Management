@@ -19,6 +19,7 @@ import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
 import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
+import CreateBill from "./pages/invoice/CreateBill.jsx";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
+            <Route path="/CreateBill" element={<CreateBill />} />
 
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
