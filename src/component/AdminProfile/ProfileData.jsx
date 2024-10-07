@@ -1,12 +1,13 @@
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { useGlobal } from "../../context/GlobalContext";
 import { useEffect } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function ProfileData() {
   const { user } = useAuth();
   const {getAdminProfile, adminData } = useGlobal();
+  console.log(adminData)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +67,7 @@ export default function ProfileData() {
             <div className="label">
               Hospital Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Hospital Name" value={adminData?.hospital}/>
+            <input disabled type="text" placeholder=" Hospital Name" value={adminData?.hospital?.name}/>
           </div>
 
           <div className="input-box">
