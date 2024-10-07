@@ -6,6 +6,11 @@ import Dashboard from "./dashboard/Dashboard";
 import DoctorManagement from "./doctorManagement/DoctorManagement";
 import Profile from "./profile/Profile";
 import { Edit } from "./profile/Edit";
+import PatientManagement from "./patientManagement/PatientManagement";
+import ReportingAndAnalytics from "./ReportingAndAnalytics/ReportingAndAnalytics";
+import MonitorBilling from "./billPayment/MonitorBilling";
+import InsuranceClaims from "./billPayment/InsuranceClaims";
+import PaymentMethod from "./billPayment/PaymentMethod";
 
 export default function AdminPanel() {
   return (
@@ -19,6 +24,17 @@ export default function AdminPanel() {
         <Route path="doctorManagement" element={<DoctorManagement />} />
         <Route path="profile/*" element={<Profile />} />
         <Route path="edit" element={<Edit />} />
+
+        <Route path="patientManagement" element={<PatientManagement />} />
+
+        <Route path="monitorBilling" element={<MonitorBilling />} />
+        <Route path="insuranceClaims" element={<InsuranceClaims />} />
+        <Route path="paymentMethod" element={<PaymentMethod />} />
+
+        <Route
+          path="reportingAndAnalytics"
+          element={<ReportingAndAnalytics />}
+        />
       </Routes>
     </>
   );

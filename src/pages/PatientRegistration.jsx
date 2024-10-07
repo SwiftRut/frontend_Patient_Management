@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
-import { useAuth } from "../context/AuthContext";
 import { Country, City, State } from "country-state-city";
+import { useAuth } from "../hooks/useAuth";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -75,9 +75,9 @@ const PatientRegistration = () => {
                 <p>Registration </p>
               </div>
               <div className="form-box">
-                {error && <div className="error-message">{error}</div>}
+                  {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-
+                  
                   <div className="input-box">
                     <div className="label">
                       First Name <span>*</span>

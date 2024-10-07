@@ -1,0 +1,217 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+// section start
+.payment-section {
+  .row {
+    .main {
+      border-radius: 15px;
+      margin: 10px;
+      background-color: #fff;
+      padding: 10px;
+      height: 100%;
+      .top {
+        justify-content: space-between;
+        padding: 10px 10px 20px;
+        .heading {
+          font-weight: 700;
+          font-size: 25px;
+        }
+        .search-btn {
+          justify-content: space-between;
+          .input {
+            padding: 12px 15px;
+            background-color: #f6f8fb;
+            border: 1px solid #ced4da;
+            border-radius: 30px;
+            width: 350px;
+            font-size: 20px;
+            .search {
+              font-size: 25px;
+              color: #000;
+            }
+            input {
+              background-color: transparent;
+              padding-left: 10px;
+            }
+          }
+          .edit-btn {
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 12px 12px;
+            margin-left: 10px;
+            border: 1px solid #0eabeb;
+
+            .icon {
+              background-color: white;
+              color: #0eabeb;
+              border-radius: 5px;
+              padding: 2px;
+              font-size: 20px;
+              margin-right: 10px;
+            }
+
+            .text {
+              font-size: 20px;
+              color: #0eabeb;
+              font-weight: 600;
+            }
+          }
+          .btn {
+            background-color: #0eabeb;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-left: 10px;
+
+            .icon {
+              background-color: white;
+              color: #0eabeb;
+              border-radius: 5px;
+              padding: 2px;
+              font-size: 20px;
+              margin-right: 10px;
+            }
+
+            .text {
+              font-size: 20px;
+              color: white;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .table {
+        padding: 0px 10px;
+        width: 100%;
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          overflow-y: scroll;
+          max-height: 500px;
+          .table-heading {
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            background-color: #f6f8fb;
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+          }
+          td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgb(219, 219, 219);
+            font-size: 20px;
+            font-weight: 600;
+
+            img {
+              margin-right: 10px;
+              width: 50px;
+            }
+          }
+          th {
+            font-weight: bold;
+            font-size: 20px;
+            padding: 20px 15px;
+            text-align: left;
+          }
+          tbody {
+            display: block;
+            height: 585px;
+            overflow-y: auto;
+
+            tr {
+              display: table;
+              width: 100%;
+            }
+          }
+          tbody::-webkit-scrollbar {
+            width: 10px;
+          }
+          tbody::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+          }
+          tbody::-webkit-scrollbar-track {
+            background-color: #f0f0f0;
+          }
+          .status {
+            h3 {
+              color: #39973d !important;
+            }
+          }
+          .red {
+            h3 {
+              color: #e11d29 !important;
+            }
+          }
+          .red,
+          .status,
+          .time {
+            h3 {
+              background-color: #f6f8fb;
+              color: #718ebf;
+              border-radius: 50px;
+              margin: 0px 10px;
+              padding: 10px 15px;
+              font-weight: bold;
+              font-size: 20px;
+              text-align: center;
+              width: 150px;
+            }
+          }
+          .action {
+            .edit,
+            .view,
+            .delete {
+              background-color: #f6f8fb;
+              color: #39973d;
+              border-radius: 10px;
+              padding: 16px;
+              font-size: 25px;
+              text-align: center;
+            }
+
+            .view {
+              color: #0eabeb;
+              margin: 0px 10px;
+            }
+
+            .delete {
+              color: #e11d29;
+              width: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.bill-section .row .main .bill {
+  width: 70%;
+  border-radius: 20px;
+  background-color: #fff;
+  position: relative;
+  margin: 30px;
+  overflow: hidden;
+  padding: 20px 20px 0;
+}
+.bill-section .row .main .bill .invoice {
+  position: absolute;
+  content: "";
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #e7f7fd;
+  top: -120px;
+  right: 10px;
+}
+.bill-section .row .main .bill .invoice h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+  font-size: 40px;
+  font-weight: 600;
+  color: #0eabeb;
+}
+.bill-section .row .main .bill .patient-info {
+  padding: 20px 40px 20px 20px;
+  justify-content: space-between;
+}
+.bill-section .row .main .bill .patient-info h2 {
+  font-size: 35px;
+  font-weight: 700;
+}
+.bill-section .row .main .bill .patient-info p {
+  color: #818194;
+  font-size: 16px;
+}
+.bill-section .row .main .bill .invoice-info tr td {
+  font-size: 18px;
+}
+.bill-section .row .main .bill .invoice-info tr td:nth-child(1) {
+  font-weight: 600;
+}
+.bill-section .row .main .bill .patient-details {
+  background-color: #e7f7fd;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 15px 0;
+}
+.bill-section .row .main .bill .patient-details table {
+  width: 100%;
+  font-size: 20px;
+}
+.bill-section .row .main .bill .patient-details table tr {
+  padding: 5px 0;
+}
+.bill-section .row .main .bill .patient-details table tr td:nth-child(1) {
+  font-weight: 600;
+}
+.bill-section .row .main .bill .patient-details table tr td:nth-child(2) {
+  color: #818194;
+}
+.bill-section .row .main .bill .data {
+  width: 100%;
+  border: none !important;
+}
+.bill-section .row .main .bill .data th,
+.bill-section .row .main .bill .data td {
+  border: none;
+  padding: 10px;
+  text-align: left;
+}
+.bill-section .row .main .bill .data td {
+  color: #4F4F4F;
+  font-size: 16px;
+}
+.bill-section .row .main .bill .data thead {
+  background-color: #0eabeb;
+  color: #fff;
+  font-size: 18px;
+}
+.bill-section .row .main .bill .data thead tr {
+  border-top-left-radius: 10px;
+}
+.bill-section .row .main .bill .total {
+  text-align: right;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.bill-section .row .main .bill .end {
+  background-color: #0eabeb;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}/*# sourceMappingURL=bill.css.map */

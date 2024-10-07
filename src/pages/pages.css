@@ -25,7 +25,6 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
-  background-color: white;
 }
 
 .registration-section .row .main .form {
@@ -226,6 +225,9 @@ input {
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.patient-registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -568,6 +570,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
 }
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
+}
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
   color: #A7A7A7;
 }
@@ -652,6 +657,9 @@ input {
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::placeholder {
   color: #A7A7A7;
@@ -767,6 +775,9 @@ input {
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
   border: 1px solid #718EBF;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
   color: #A7A7A7;

@@ -133,6 +133,7 @@
           padding: 20px;
           background-color: white;
           border-radius: 15px;
+          height: 443px;
 
           .head {
             justify-content: space-between;
@@ -166,6 +167,8 @@
           }
 
           .pending-bill {
+            height: 85%;
+
             .bill-status {
               padding-top: 10px;
 
@@ -183,6 +186,7 @@
 
             .pending-bill-data {
               padding-top: 40px;
+              height: 90%;
 
               .img {
                 img {
@@ -190,7 +194,97 @@
                 }
               }
 
+              .bill-table {
+                height: 100%;
+                overflow-y: scroll;
+                scrollbar-color: #030229 #F4F4F4;
+                scrollbar-width: thin;
 
+
+                table {
+                  padding: 0px 10px;
+                  width: 100%;
+
+
+                  thead {
+                    tr {
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+                      background-color: #f6f8fb;
+
+                      th {
+                        color: #030229;
+                        font-size: 13px;
+                        font-weight: 600;
+                        padding: 12px 14px;
+                      }
+                    }
+                  }
+
+                  tbody {
+                    height: 100%;
+                    width: 100%;
+
+
+                    tr {
+                      padding: 5px 0px;
+
+                      td {
+                        text-align: center;
+                      }
+
+                      .bill-num {
+                        background: #F6F8FB;
+                        border-radius: 33px;
+
+                        p {
+                          color: #718EBF;
+                          text-align: center;
+                          padding: 5px 18px;
+                        }
+                      }
+
+                      .patient-name,
+                      .disease-name {
+                        p {
+                          color: #4F4F4F;
+                          font-size: 12px;
+                          font-weight: 500;
+                        }
+                      }
+
+                      .status {
+                        p {
+                          background-color: #39973D1A;
+                          color: #39973D;
+                          font-size: 13px;
+                          font-weight: 600;
+                          padding: 6px 20px;
+                          border-radius: 30px;
+                        }
+                      }
+
+                      .action {
+                        justify-content: center;
+                        align-items: center;
+
+                        .box {
+                          width: 28px;
+                          height: 28px;
+                          background-color: #F6F8FB;
+                          justify-content: center;
+                          align-items: center;
+
+                          svg {
+                            margin: 0px auto;
+                            color: #0EABEB;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
 
             }
           }
@@ -211,16 +305,22 @@
               background-color: white;
               padding: 20px;
               border-radius: 15px;
-              height: 300px;
+              height: 340px;
 
               .head {
                 justify-content: space-between;
 
                 .title {
+                  justify-content: space-between;
+                  align-items: center;
                   p {
                     color: #030229;
                     font-size: 26px;
                     font-weight: 700;
+                  }
+                  span {
+                    color: #5678E9;
+                    cursor: pointer;
                   }
                 }
               }
@@ -232,6 +332,68 @@
                 img {
                   margin: 0px auto;
                   height: 100%;
+                }
+              }
+
+              .appointments-list {
+                height: 85%;
+                justify-content: space-between;
+                align-items: center;
+                overflow-y: scroll;
+                scrollbar-color: #030229 #F4F4F4;
+                scrollbar-width: thin;
+
+                .box {
+                  width: 32%;
+                  padding: 5px 0px;
+
+                  .content {
+                    .heading {
+                      justify-content: space-between;
+                      align-items: center;
+                      background-color: #F6F8FB;
+                      padding: 10px 14px;
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+
+                      p {
+                        font-size: 18px;
+                        font-weight: 600;
+                      }
+
+                      span {
+                        padding: 6px 20px;
+                        background-color: #5678E91A;
+                        border-radius: 30px;
+                        color: #5678E9;
+                        font-size: 13px;
+                        font-weight: 600;
+                      }
+                    }
+
+                    .data {
+                      border: 1px solid #F4F4F4;
+                      padding: 10px 14px;
+
+                      ul {
+                        li {
+                          padding-bottom: 10px;
+
+                          p {
+                            font-size: 16px;
+                            font-weight: 400;
+                            color: #818194;
+                          }
+
+                          span {
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: #4F4F4F;
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
 
@@ -333,7 +495,6 @@
           }
         }
       }
-
 
     }
   }

@@ -34,7 +34,7 @@ input {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 30px;
+    // padding: 30px;
 
     .logo {
       font-weight: bold;
@@ -52,18 +52,63 @@ input {
       flex-direction: column;
 
       ul {
+        background-color: #fff;
         li {
           margin: 10px 0px;
 
           display: flex;
           align-items: center;
+          color: #818194;
+          padding: 5px 15px;
+          background-color: #fff;
+
+          .dropdown {
+            list-style: none;
+            padding: 0;
+
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            // max-height: 100px;
+            transition: max-height 0.3s ease-out;
+          }
+
+          .dropdown.open {
+            max-height: 200px; /* Maximum height when open */
+          }
+
+          .dropdown ul {
+            padding: 0;
+            margin: 0;
+          }
+          .dropdown li:hover {
+            background-color: #fff;
+          }
+
+          .dropdown li {
+            padding: 10px 15px;
+            background-color: #fff !important;
+          }
+
+          .dropdown li a {
+            color: #0eabeb;
+            text-decoration: none;
+          }
+
+          .dropdown li a:hover span {
+            color: #0eabeb;
+          }
 
           a {
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 15px 10px;
+            padding: 10px 10px;
             width: 100%;
+
+            font-size: 20px;
+            color: #0eabeb;
+
 
             img {
               color: #818194 !important;
@@ -73,15 +118,18 @@ input {
 
             span {
               color: #818194;
-              text-decoration: none;
               font-size: 20px;
             }
           }
-
         }
 
         li:hover {
-          background: linear-gradient(90deg, rgba(213, 241, 250, 1) 0%, rgba(255, 255, 255, 1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(213, 241, 250, 1) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
+          color: #0eabeb;
         }
       }
 
@@ -90,8 +138,7 @@ input {
           gap: 15px;
           justify-content: center;
           align-items: center;
-          color: #E11D29;
-          text-decoration: none;
+          color: #e11d29;
           padding: 20px;
           background-color: #e11d2a2a;
           width: 100%;
@@ -100,8 +147,6 @@ input {
         }
       }
     }
-
-
   }
 
   .content {
