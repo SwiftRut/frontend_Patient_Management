@@ -306,7 +306,7 @@ const DoctorAdd = () => {
             </div>
 
             <div className="save-btn flex">
-              <button>Save</button>
+              <button>Add</button>
             </div>
           </div>
         </div>
