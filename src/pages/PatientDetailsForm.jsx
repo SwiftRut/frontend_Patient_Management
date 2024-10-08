@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import AddFieldModal from "../AddFieldsModal";
+import DynamicField from "./DynamicField";
 
 const PatientDetailsForm = ({
   openModal,
