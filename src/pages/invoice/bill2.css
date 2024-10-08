@@ -42,24 +42,9 @@ input {
   max-width: 800px;
   margin: 0 auto;
 }
-.invoice .title {
-  position: absolute;
-  content: "";
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background-color: #e7f7fd;
-  top: -120px;
-  right: 436px;
-}
-.invoice .title h3 {
+.invoice .head {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 140px;
-  font-size: 40px;
-  font-weight: 600;
-  color: #0eabeb;
+  justify-content: space-between;
 }
 .invoice .content {
   padding: 20px;
@@ -73,12 +58,16 @@ input {
   font-size: 19px;
   font-weight: 700;
   color: #141414;
+  padding: 5px 0;
 }
 .invoice .content .billing-info span {
   font-size: 16px;
   font-weight: 400;
   color: #818194;
   padding: 10px 0;
+}
+.invoice .content .billing-info p {
+  padding-bottom: 5px;
 }
 .invoice .content .billing-info p strong {
   font-size: 16px;
@@ -135,10 +124,11 @@ input {
   margin-top: 20px;
 }
 .invoice .payment-method strong {
-  font-size: 15px;
+  font-size: 16px;
   color: #141414;
 }
 .invoice .payment-method p {
+  padding-top: 10px;
   font-size: 14px;
   font-weight: 400;
   color: #818194;
@@ -150,12 +140,13 @@ input {
   margin-top: 20px;
 }
 .invoice .terms strong {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: #141414;
 }
 .invoice .terms p {
-  font-size: 13pxx;
+  padding-top: 10px;
+  font-size: 13px;
   font-weight: 400;
   color: #818194;
 }

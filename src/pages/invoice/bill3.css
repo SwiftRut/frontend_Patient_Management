@@ -41,11 +41,12 @@ input {
   overflow: hidden;
   max-width: 800px;
   margin: 0 auto;
+  max-height: 950px;
 }
 .invoice2 header {
   background-color: #0eabeb;
   color: white;
-  padding: 20px;
+  padding: 10px 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 40px;
@@ -133,7 +134,7 @@ input {
 }
 .invoice2 main table th {
   background-color: #0eabeb;
-  padding: 20px;
+  padding: 10px;
   text-align: left;
   color: #fff;
 }
@@ -162,7 +163,7 @@ input {
 }
 
 footer {
-  padding: 20px;
+  padding: 10px 20px;
   border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-between;

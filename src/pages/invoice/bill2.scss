@@ -40,25 +40,9 @@ input {
   overflow: hidden;
   max-width: 800px;
   margin: 0 auto;
-  .title {
-    position: absolute;
-    content: "";
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background-color: #e7f7fd;
-    top: -120px;
-    right: 436px;
-
-    h3 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 140px;
-      font-size: 40px;
-      font-weight: 600;
-      color: #0eabeb;
-    }
+  .head {
+    display: flex;
+    justify-content: space-between;
   }
   .content {
     padding: 20px;
@@ -70,6 +54,7 @@ input {
         font-size: 19px;
         font-weight: 700;
         color: #141414;
+        padding: 5px 0;
       }
       span {
         font-size: 16px;
@@ -78,6 +63,7 @@ input {
         padding: 10px 0;
       }
       p {
+        padding-bottom: 5px;
         strong {
           font-size: 16px;
           padding-right: 10px;
@@ -137,10 +123,11 @@ input {
   .payment-method {
     margin-top: 20px;
     strong {
-      font-size: 15px;
+      font-size: 16px;
       color: #141414;
     }
     p {
+      padding-top: 10px;
       font-size: 14px;
       font-weight: 400;
       color: #818194;
@@ -152,12 +139,13 @@ input {
   .terms {
     margin-top: 20px;
     strong {
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 600;
       color: #141414;
     }
     p {
-      font-size: 13pxx;
+      padding-top: 10px;
+      font-size: 13px;
       font-weight: 400;
       color: #818194;
     }

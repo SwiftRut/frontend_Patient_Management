@@ -7,7 +7,7 @@ export default function Bill2() {
         <div className="head">
           <img src="/img/logo.png" width="300px" />
           <div className="title">
-            <h3>Invoice</h3>
+            <img src="/img/invoice.png"/>
           </div>
         </div>
         <div className="content">

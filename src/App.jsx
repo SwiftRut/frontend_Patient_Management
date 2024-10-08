@@ -23,6 +23,8 @@ import CashPayment from "./pages/billPayment/CashPayment.jsx";
 import Delete from "./pages/doctorManagement/Delete.jsx";
 import AddNewField from "./pages/invoice/AddNewField.jsx";
 import Bill2 from "./pages/invoice/Bill2.jsx";
+import EditDesignInvoice from "./pages/billPayment/EditDesignInvoice.jsx";
+import Bill3 from "./pages/invoice/Bill3.jsx";
 
 function App() {
   return (
@@ -49,9 +51,11 @@ function App() {
             <Route path="/details" element={<PatientDetails />} />
             <Route path="/bill" element={<Bill />} />
             <Route path="/bill2" element={<Bill2 />} />
-            <Route path="/bill3" element={<Bill />} />
+            {/* <Route path="/bill3" element={<Bill/>} /> */}
+            <Route path="/bill3" element={<Bill3 />} />
             <Route path="/cash" element={<CashPayment />} />
             <Route path="/delete" element={<Delete />} />
+            <Route path="/editinvoice" element={<EditDesignInvoice />} />
             {/* manashvi temp end*/}
 
             <Route path="/login" element={<Login />} />
