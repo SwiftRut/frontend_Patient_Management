@@ -11,7 +11,7 @@ const DoctorAdd = () => {
         <div className="row">
           <div className="main">
 
-            <div className="hospital-details">
+            <div className="top">
               <div className="content">
                 <div className="head">
                   <p> Add New Doctor</p>
@@ -250,7 +250,7 @@ const DoctorAdd = () => {
               </div>
             </div>
 
-            <div className="patient-details">
+            <div className="bottom">
               <div className="content">
 
                 <div className="details flex">

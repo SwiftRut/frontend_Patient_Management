@@ -9,7 +9,7 @@
             background-color: white;
             border-radius: 15px;
 
-            .hospital-details {
+            .top {
                 padding: 20px;
                 border: 2px solid #F4F4F4;
                 border-radius: 15px;
@@ -316,7 +316,7 @@
                 }
             }
 
-            .patient-details {
+            .bottom {
                 margin: 15px 0px;
                 padding: 20px;
                 border: 2px solid #F4F4F4;
@@ -391,8 +391,15 @@
 
                                     .link-icon {
                                         position: absolute;
-                                        top: 27px;
+                                        top: 25px;
                                         right: 15px;
+                                        background-color: #4F4F4F;
+                                        border-radius: 10px;
+                                        padding: 3px;
+                                        svg {
+                                            color: white;
+                                            font-size: 24px;
+                                        }
                                     }
 
                                     .minus-circle {
