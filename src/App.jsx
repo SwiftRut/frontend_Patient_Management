@@ -31,7 +31,6 @@ function App() {
 
             {/* admin component */}
 
-
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
@@ -48,10 +47,11 @@ function App() {
             {/* AdminPanel routs  */}
 
             <Route path="/" element={<AdminPanel />}>
-              <Route path="doctorManagement/*" />
-              <Route path="DoctorAdd" />
               <Route path="profile/*" />
               <Route path="edit" />
+
+              <Route path="doctorManagement/*" />
+              <Route path="doctorAdd" />
 
               <Route path="patientManagement" />
 

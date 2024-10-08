@@ -1,4 +1,6 @@
-import React from 'react'
+import React from "react";
+import { FaEdit } from "react-icons/fa";
+import { FaCircleMinus, FaImage } from "react-icons/fa6";
 
 const DoctorAdd = () => {
   return (
@@ -23,9 +25,10 @@ const DoctorAdd = () => {
                 <div className="details flex">
                   <div className="left">
                     <div className="upload-logo">
-
                       <FaImage />
-                      <p><span>Upload a file</span> or drag and drop</p>
+                      <p>
+                        <span>Upload a file</span> or drag and drop
+                      </p>
                       <h5>PNG, JPG, GIF up to 10MB</h5>
                     </div>
                   </div>
@@ -144,9 +147,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Doctor Name
-                        </div>
+                        <div className="label">Doctor Name</div>
                         <input type="text" placeholder="Enter Doctor Name" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -154,9 +155,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Description
-                        </div>
+                        <div className="label">Description</div>
                         <input type="text" placeholder="Enter Description" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -164,9 +163,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Discount (%)
-                        </div>
+                        <div className="label">Discount (%)</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -174,9 +171,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Tax
-                        </div>
+                        <div className="label">Tax</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -184,9 +179,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Amount
-                        </div>
+                        <div className="label">Amount</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -194,9 +187,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Total Amount
-                        </div>
+                        <div className="label">Total Amount</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -204,11 +195,9 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Payment Type
-                        </div>
+                        <div className="label">Payment Type</div>
                         <select name="" id="">
-                          <option >Select Payment Type</option>
+                          <option>Select Payment Type</option>
                         </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -216,9 +205,7 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Age
-                        </div>
+                        <div className="label">Age</div>
                         <input type="text" placeholder="Enter Age" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -226,11 +213,9 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Gender
-                        </div>
+                        <div className="label">Gender</div>
                         <select name="" id="">
-                          <option >Select Gender</option>
+                          <option>Select Gender</option>
                         </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -238,15 +223,12 @@ const DoctorAdd = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Address
-                        </div>
+                        <div className="label">Address</div>
                         <input type="text" placeholder="Enter Address" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
-
                     </form>
                   </div>
                 </div>
@@ -260,7 +242,7 @@ const DoctorAdd = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorAdd
+export default DoctorAdd;

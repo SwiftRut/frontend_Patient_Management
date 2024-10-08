@@ -20,12 +20,12 @@ export default function AdminPanel() {
 
       <Sidebar />
       <Routes>
-
         <Route path="" element={<Dashboard />} />
-        <Route path="doctorManagement" element={<DoctorManagement />} />
-        <Route path="DoctorAdd" element={<DoctorAdd />} />
         <Route path="profile/*" element={<Profile />} />
         <Route path="edit" element={<Edit />} />
+
+        <Route path="doctorManagement" element={<DoctorManagement />} />
+        <Route path="doctorAdd" element={<DoctorAdd />} />
 
         <Route path="patientManagement" element={<PatientManagement />} />
 
@@ -33,10 +33,7 @@ export default function AdminPanel() {
         <Route path="insuranceClaims" element={<InsuranceClaims />} />
         <Route path="paymentMethod" element={<PaymentMethod />} />
 
-        <Route
-          path="reportingAndAnalytics"
-          element={<ReportingAndAnalytics />}
-        />
+        <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
       </Routes>
     </>
   );
