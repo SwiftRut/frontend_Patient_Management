@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
     const [fieldType, setFieldType] = useState('Dropdown');
     const [selectionType, setSelectionType] = useState('Single');
-    const [dropdownName, setDropdownName] = useState('');
-    const [textFieldName, setTextFieldName] = useState('');
+    const [fieldName, setFieldName] = useState('');
     const [options, setOptions] = useState(['']);
     
     const handleOptionChange = (index, value) => {
@@ -17,31 +16,25 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
     const removeOption = (index) => setOptions(options.filter((_, i) => i !== index));
 
     const handleAdd = () => {
-        if (fieldType === 'Dropdown' && !dropdownName.trim()) {
-            alert('Please enter a dropdown name.');
-            return;
-        }
-        if (fieldType === 'Text Field' && !textFieldName.trim()) {
-            alert('Please enter a text field name.');
+        if (!fieldName.trim()) {
+            alert('Please enter a field name.');
             return;
         }
     
         onAddField({
             fieldType,
             selectionType: fieldType === 'Dropdown' ? selectionType : null,
-            name: fieldType === 'Dropdown' ? dropdownName : textFieldName,
+            name: fieldName,
             options: fieldType === 'Dropdown' ? options.filter(opt => opt.trim()) : null,
         });
     
         // Reset the fields
         setFieldType('Dropdown');
         setSelectionType('Single');
-        setDropdownName('');
-        setTextFieldName('');
+        setFieldName('');
         setOptions(['']);
         onClose();
     };
-    
 
     return (
         isOpen && (
@@ -75,71 +68,58 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
                     </div>
 
                     {fieldType === 'Dropdown' && (
-                        <>
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Selection</label>
-                                <select 
-                                    value={selectionType} 
-                                    onChange={(e) => setSelectionType(e.target.value)}
-                                    className="w-full p-2 border border-gray-300 rounded"
-                                >
-                                    <option value="Single">Single</option>
-                                    <option value="Multiple">Multiple</option>
-                                </select>
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Dropdown Name</label>
-                                <input
-                                    type="text"
-                                    value={dropdownName}
-                                    onChange={(e) => setDropdownName(e.target.value)}
-                                    placeholder="Enter Dropdown Name"
-                                    className="w-full p-2 border border-gray-300 rounded"
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Options</label>
-                                {options.map((option, index) => (
-                                    <div key={index} className="flex items-center mb-2">
-                                        <input
-                                            type="text"
-                                            value={option}
-                                            onChange={(e) => handleOptionChange(index, e.target.value)}
-                                            placeholder={`Value ${index + 1}`}
-                                            className="w-full p-2 border border-gray-300 rounded"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => removeOption(index)}
-                                            className="ml-2 text-red-500"
-                                        >
-                                            &times;
-                                        </button>
-                                    </div>
-                                ))}
-                                <button
-                                    type="button"
-                                    onClick={addOption}
-                                    className="text-blue-500 text-sm mt-1"
-                                >
-                                    + Add Option
-                                </button>
-                            </div>
-                        </>
+                        <div className="mb-4">
+                            <label className="block mb-2 text-sm">Selection</label>
+                            <select 
+                                value={selectionType} 
+                                onChange={(e) => setSelectionType(e.target.value)}
+                                className="w-full p-2 border border-gray-300 rounded"
+                            >
+                                <option value="Single">Single</option>
+                                <option value="Multiple">Multiple</option>
+                            </select>
+                        </div>
                     )}
 
-                    {fieldType === 'Text Field' && (
+                    <div className="mb-4">
+                        <label className="block mb-2 text-sm">Field Name</label>
+                        <input
+                            type="text"
+                            value={fieldName}
+                            onChange={(e) => setFieldName(e.target.value)}
+                            placeholder="Enter Field Name"
+                            className="w-full p-2 border border-gray-300 rounded"
+                        />
+                    </div>
+
+                    {fieldType === 'Dropdown' && (
                         <div className="mb-4">
-                            <label className="block mb-2 text-sm">Text Field Name</label>
-                            <input
-                                type="text"
-                                value={textFieldName}
-                                onChange={(e) => setTextFieldName(e.target.value)}
-                                placeholder="Enter Text Field Name"
-                                className="w-full p-2 border border-gray-300 rounded"
-                            />
+                            <label className="block mb-2 text-sm">Options</label>
+                            {options.map((option, index) => (
+                                <div key={index} className="flex items-center mb-2">
+                                    <input
+                                        type="text"
+                                        value={option}
+                                        onChange={(e) => handleOptionChange(index, e.target.value)}
+                                        placeholder={`Value ${index + 1}`}
+                                        className="w-full p-2 border border-gray-300 rounded"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => removeOption(index)}
+                                        className="ml-2 text-red-500"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            ))}
+                            <button
+                                type="button"
+                                onClick={addOption}
+                                className="text-blue-500 text-sm mt-1"
+                            >
+                                + Add Option
+                            </button>
                         </div>
                     )}
 

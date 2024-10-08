@@ -42,7 +42,6 @@ function App() {
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin component */}
-
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />

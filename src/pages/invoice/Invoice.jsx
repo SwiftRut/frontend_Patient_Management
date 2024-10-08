@@ -6,42 +6,46 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { FaEdit } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import AddFieldModal from "../../AddFieldsModal";
+import PatientDetailsForm from "../PatientDetailsForm";
 
 const Invoice = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { createBill, updateBill, bill, userData, getAdminProfile } = useGlobal();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await getAdminProfile(user.id);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    setFormData({
-      ...formData,
-      hospitalName: userData?.hospital?.name,
-      hospitalId: userData?.hospital?._id,
-      email: userData?.email,
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dynamicFields, setDynamicFields] = useState([]);
+  const [currentSection, setCurrentSection] = useState(null);
+    // State for managing patient form data
+    const [patientData, setPatientData] = useState({
+      name: '',
+      diseaseName: '',
+      doctorName: '',
+      description: '',
+      discount: '',
+      tax: '',
+      amount: '',
+      totalAmount: '',
+      paymentType: '',
+      age: '',
+      gender: '',
+      address: '',
     });
-    fetchData();
-  }, []);
-  console.log(userData);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+    const openModal = (section) => {
+      setCurrentSection(section);
+      setIsModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsModalOpen(false);
+      setCurrentSection(null);
+    };
   const [formData, setFormData] = useState({
     hospitalName: "",
     hospitalId: "",
     otherText: "",
     email: "",
     billDate: new Date().toISOString().slice(0, 10),
-    billTime: new Date().toLocaleTimeString(navigator.language, {
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
+    billTime:"",
     billNumber: "",
     phoneNumber: "",
     hospitalAddress: "",
@@ -76,7 +80,7 @@ const Invoice = () => {
       }
     };
     fetchData();
-  }, [user.id, getAdminProfile]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,72 +114,52 @@ const Invoice = () => {
   const handleFileChange = (e) => {
     setFormData(prevData => ({ ...prevData, logo: e.target.files[0] }));
   };
+  const [hospitalDynamicFields, setHospitalDynamicFields] = useState([]);
+  const [patientDynamicFields, setPatientDynamicFields] = useState([]);
 
-  const handleDynamicFieldChange = (index, value) => {
-    setDynamicFields(prevFields => {
-      const updatedFields = [...prevFields];
-      updatedFields[index] = { ...updatedFields[index], value };
-      return updatedFields;
-    });
-  };
-
-  const handleNewField = (field) => {
-    setDynamicFields(prevFields => [...prevFields, { ...field, value: '' }]);
-    closeModal();
-  };
-
-  const renderDynamicField = (field, index) => {
-    switch (field.fieldType) {
-      case 'Dropdown':
-        return (
-          <div className="input-box" key={index}>
-            <div className="label">{field.name}</div>
-            <select
-              value={field.value}
-              onChange={(e) => handleDynamicFieldChange(index, e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
-            >
-              <option value="">Select an option</option>
-              {field.options.map((option, optIndex) => (
-                <option key={optIndex} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            <div className="minus-circle">
-              <FaCircleMinus onClick={() => removeDynamicField(index)} />
-            </div>
-          </div>
-        );
-      case 'Text Field':
-        return (
-          <div className="input-box" key={index}>
-            <div className="label">{field.name}</div>
-            <input
-              type="text"
-              value={field.value}
-              onChange={(e) => handleDynamicFieldChange(index, e.target.value)}
-              placeholder={`Enter ${field.name}`}
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-            <div className="minus-circle">
-              <FaCircleMinus onClick={() => removeDynamicField(index)} />
-            </div>
-          </div>
-        );
-      default:
-        return null;
+  const handleDynamicFieldChange = (section, fieldName, value) => {
+    if (section === 'hospital') {
+      setFormData(prevData => ({ ...prevData, [fieldName]: value }));
+    } else if (section === 'patient') {
+      setPatientData(prevData => ({ ...prevData, [fieldName]: value }));
     }
   };
 
-  const removeDynamicField = (index) => {
-    setDynamicFields(prevFields => prevFields.filter((_, i) => i !== index));
+  const handleNewField = (field) => {
+    console.log('Handling new field:', field, 'for section:', currentSection);
+    if (currentSection === 'hospital') {
+      setHospitalDynamicFields(prevFields => [...prevFields, field]);
+      setFormData(prevData => ({ ...prevData, [field.name]: '' }));
+    } else if (currentSection === 'patient') {
+      setPatientDynamicFields(prevFields => [...prevFields, field]);
+      setPatientData(prevData => ({ ...prevData, [field.name]: '' }));
+    }
+    closeModal();
   };
 
+  const removeDynamicField = (section, index) => {
+    if (section === 'hospital') {
+      const fieldToRemove = hospitalDynamicFields[index];
+      setHospitalDynamicFields(prevFields => prevFields.filter((_, i) => i !== index));
+      setFormData(prevData => {
+        const newData = { ...prevData };
+        delete newData[fieldToRemove.name];
+        return newData;
+      });
+    } else if (section === 'patient') {
+      const fieldToRemove = patientDynamicFields[index];
+      setPatientDynamicFields(prevFields => prevFields.filter((_, i) => i !== index));
+      setPatientData(prevData => {
+        const newData = { ...prevData };
+        delete newData[fieldToRemove.name];
+        return newData;
+      });
+    }
+  };
+  console.log(hospitalDynamicFields)
   return (
     <div>
       {/* create-bill hospital & patient details section start  */}
-
       <div className="create-bill-section">
         <div className="row">
           <div className="main">
@@ -335,171 +319,16 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-                        <div className="input-box">
-                          <div className="label">Patient Name</div>
-                          <input
-                            type="text"
-                            name="patientName"
-                            value={formData.patientName}
-                            onChange={handleInputChange}
-                            placeholder="Enter Name"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Disease Name</div>
-                          <input
-                            type="text"
-                            name="diseaseName"
-                            value={formData.diseaseName}
-                            onChange={handleInputChange}
-                            placeholder="Enter Disease Name"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Doctor Name</div>
-                          <input
-                            type="text"
-                            name="doctorName"
-                            value={formData.doctorName}
-                            onChange={handleInputChange}
-                            placeholder="Enter Doctor Name"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Description</div>
-                          <input
-                            type="text"
-                            name="description"
-                            value={formData.description}
-                            onChange={handleInputChange}
-                            placeholder="Enter Description"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Discount (%)</div>
-                          <input
-                            type="number"
-                            name="discount"
-                            value={formData.discount}
-                            onChange={handleInputChange}
-                            placeholder="0000"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Tax</div>
-                          <input
-                            type="number"
-                            name="tax"
-                            value={formData.tax}
-                            onChange={handleInputChange}
-                            placeholder="0000"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Amount</div>
-                          <input
-                            type="number"
-                            name="amount"
-                            value={formData.amount}
-                            onChange={handleInputChange}
-                            placeholder="0000"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Total Amount</div>
-                          <input
-                            type="number"
-                            name="totalAmount"
-                            value={formData.totalAmount}
-                            onChange={handleInputChange}
-                            placeholder="0000"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Payment Type</div>
-                          <select
-                            name="paymentType"
-                            value={formData.paymentType}
-                            onChange={handleInputChange}
-                          >
-                            <option value="">Select Payment Type</option>
-                            <option value="cash">Cash</option>
-                            <option value="card">Card</option>
-                            <option value="online">Online</option>
-                          </select>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Age</div>
-                          <input
-                            type="number"
-                            name="age"
-                            value={formData.age}
-                            onChange={handleInputChange}
-                            placeholder="Enter Age"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Gender</div>
-                          <select
-                            name="gender"
-                            value={formData.gender}
-                            onChange={handleInputChange}
-                          >
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option><option value="female">Female</option>
-                            <option value="other">Other</option>
-                          </select>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                        <div className="input-box">
-                          <div className="label">Address</div>
-                          <input
-                            type="text"
-                            name="patientAddress"
-                            value={formData.patientAddress}
-                            onChange={handleInputChange}
-                            placeholder="Enter Address"
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        {dynamicFields.map((field, index) => renderDynamicField(field, index))}
-
-                        <div className="save-btn flex">
+                        {hospitalDynamicFields.map((field, index) => (
+                    <DynamicField
+                      key={index}
+                      field={field}
+                      value={formData[field.name] || ''}
+                      onChange={(name, value) => handleDynamicFieldChange('hospital', name, value)}
+                      onRemove={() => removeDynamicField('hospital', index)}
+                    />
+                  ))}
+                        <div className="save-btn flex ml-5">
                           <button type="submit">Save</button>
                         </div>
                       </form>
@@ -509,136 +338,26 @@ const Invoice = () => {
               </div>
             </div>
 
-            <div className="patient-details">
-              <div className="content">
-                <div className="head flex">
-                  <p>Patient</p>
-                  <button className="flex">
-                    <FaEdit />
-                    <span>Add New Field</span>
-                  </button>
-                </div>
-
-                <div className="details flex">
-                  <div className="form-box">
-                    <form action="" className="flex">
-                      <div className="input-box">
-                        <div className="label"> Name</div>
-                        <select name="" id="" style={{ width: "100%" }}>
-                          <input type="text" placeholder="Enter Name" />
-                          <option>Enter Name</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Disease Name</div>
-                        <input type="text" placeholder="Enter Disease Name" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Doctor Name</div>
-                        <select name="" id="" style={{ width: "100%" }}>
-                          <option>Enter Name</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Description</div>
-                        <input type="text" placeholder="Enter Description" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Discount (%)</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Tax</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Amount</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Total Amount</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Payment Type</div>
-                        <select name="" id="">
-                          <option>Select Payment Type</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Age</div>
-                        <input type="text" placeholder="Enter Age" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Gender</div>
-                        <select name="" id="">
-                          <option>Select Gender</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Address</div>
-                        <input type="text" placeholder="Enter Address" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <PatientDetailsForm
+              openModal={() => openModal('patient')}
+              patientData={patientData}
+              setPatientData={setPatientData}
+              dynamicFields={patientDynamicFields}
+              onDynamicFieldChange={(name, value) => handleDynamicFieldChange('patient', name, value)}
+              onRemoveDynamicField={(index) => removeDynamicField('patient', index)}
+            />
 
             <div className="save-btn flex">
-              <button>Save</button>
+              <button onClick={handleSubmit}>Save</button>
             </div>
           </div>
         </div>
       </div>
-      <AddFieldModal isOpen={isModalOpen} onClose={closeModal} onAddField={handleNewField} />
+      <AddFieldModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onAddField={(field) => handleNewField(currentSection, field)}
+      />
     </div>
   );
 };
