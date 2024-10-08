@@ -107,11 +107,7 @@ input {
   font-size: 20px;
 }
 .sidebar .asite .menu ul li:hover {
-  background: linear-gradient(
-    90deg,
-    rgb(213, 241, 250) 0%,
-    rgb(255, 255, 255) 100%
-  );
+  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
   color: #0eabeb;
 }
 .sidebar .asite .menu .logout-btn button {
@@ -129,4 +125,4 @@ input {
   width: 83%;
   margin-left: 17%;
   padding: 20px;
-} /*# sourceMappingURL=sidebar.css.map */
+}/*# sourceMappingURL=sidebar.css.map */

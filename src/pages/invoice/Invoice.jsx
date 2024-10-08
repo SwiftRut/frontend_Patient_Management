@@ -136,7 +136,10 @@ const Invoice = () => {
                     <form action="" className="flex">
                       <div className="input-box">
                         <div className="label"> Name</div>
+                        <select name="" id="" style={{width:"100%"}}>
                         <input type="text" placeholder="Enter Name" />
+                          <option >Enter Name</option>
+                        </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
@@ -154,7 +157,9 @@ const Invoice = () => {
                         <div className="label">
                         Doctor Name
                         </div>
-                        <input type="text" placeholder="Enter Doctor Name" />
+                        <select name="" id="" style={{width:"100%"}}>
+                          <option >Enter Name</option>
+                        </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>

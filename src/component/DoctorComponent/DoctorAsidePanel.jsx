@@ -27,15 +27,15 @@ export default function DoctorAsidePanel() {
               <li>
                 <NavLink to={"/"}>
                   <div className="icon">
-                  <FaCalendarAlt />
+                    <FaCalendarAlt />
                   </div>
                   <span>Appointment Management</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                <div className="icon">
-                  <IoMdListBox />
+                  <div className="icon">
+                    <IoMdListBox />
                   </div>
                   <span>Patient Record Accesst</span>
                 </NavLink>
@@ -46,9 +46,9 @@ export default function DoctorAsidePanel() {
               >
                 <NavLink>
                   <div className="flex" style={{ flexDirection: "row" }}>
-                  <div className="icon">
-                  <BsFillBagPlusFill />
-                  </div>
+                    <div className="icon">
+                      <BsFillBagPlusFill />
+                    </div>
                     <span className="menu-item">Prescription Tools</span>
                   </div>
                 </NavLink>
@@ -58,17 +58,12 @@ export default function DoctorAsidePanel() {
                   <ul style={{ width: "100%" }} className="dropdown">
                     <li>
                       <NavLink to={"/monitorBilling"}>
-                        <span>Monitor Billing</span>
+                        <span>create</span>
                       </NavLink>
                     </li>
                     <li>
                       <NavLink to={"/insuranceClaims"}>
-                        <span>insuranceClaims</span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to={"/paymentMethod"}>
-                        <span>Payment Methods</span>
+                        <span>Manage</span>
                       </NavLink>
                     </li>
                   </ul>
@@ -76,16 +71,16 @@ export default function DoctorAsidePanel() {
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
-                <div className="icon">
-                  <MdOutlineWifiCalling />
+                  <div className="icon">
+                    <MdOutlineWifiCalling />
                   </div>
                   <span>Teleconsultation Module</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                <div className="icon">
-                  <IoMdChatbubbles  />
+                  <div className="icon">
+                    <IoMdChatbubbles />
                   </div>
                   <span>Chat</span>
                 </NavLink>
@@ -93,7 +88,7 @@ export default function DoctorAsidePanel() {
             </ul>
             <div className="logout-btn">
               <button className="flex" onClick={() => logout()}>
-              <img src="../img/logout.png" alt="" /> Logout
+                <img src="../img/logout.png" alt="" /> Logout
               </button>
             </div>
           </div>

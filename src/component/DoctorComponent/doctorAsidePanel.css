@@ -67,7 +67,7 @@ input {
 .sidebar .asite .menu ul li .dropdown {
   list-style: none;
   padding: 0;
-  border: 1px solid #ddd;
+  border: none;
   border-radius: 4px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
@@ -84,6 +84,7 @@ input {
 }
 .sidebar .asite .menu ul li .dropdown li {
   padding: 10px 15px;
+  color: #818194 !important;
   background-color: #fff !important;
 }
 .sidebar .asite .menu ul li .dropdown li a {
