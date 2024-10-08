@@ -19,6 +19,7 @@ import Scheduler from "./component/Schedular.jsx";
 import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
 import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
+import CreateBill from "./pages/invoice/CreateBill.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/resetPassword" element={< AdminChangePassword/>} />
 
             {/* admin component */}
+
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
@@ -44,10 +46,15 @@ function App() {
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
 
+            {/* AdminPanel routs  */}
+
             <Route path="/" element={<AdminPanel />}>
-              <Route path="doctorManagement" />
               <Route path="profile/*" />
               <Route path="edit" />
+
+              <Route path="doctorManagement/*" />
+              <Route path="doctorAdd" />
+              <Route path="doctorEdit" />
 
               <Route path="patientManagement" />
 
@@ -65,6 +72,8 @@ function App() {
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/schedular" element={<Scheduler />} />
             
+            <Route path="/CreateBill" element={<CreateBill />} />
+
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" element={<DoctorProfile />} />

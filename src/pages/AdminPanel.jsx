@@ -11,6 +11,8 @@ import ReportingAndAnalytics from "./ReportingAndAnalytics/ReportingAndAnalytics
 import MonitorBilling from "./billPayment/MonitorBilling";
 import InsuranceClaims from "./billPayment/InsuranceClaims";
 import PaymentMethod from "./billPayment/PaymentMethod";
+import DoctorAdd from "./adminPanel/DoctorAdd";
+import DoctorEdit from "./adminPanel/DoctorEdit";
 
 export default function AdminPanel() {
   return (
@@ -19,11 +21,13 @@ export default function AdminPanel() {
 
       <Sidebar />
       <Routes>
-
         <Route path="" element={<Dashboard />} />
-        <Route path="doctorManagement" element={<DoctorManagement />} />
         <Route path="profile/*" element={<Profile />} />
         <Route path="edit" element={<Edit />} />
+
+        <Route path="doctorManagement" element={<DoctorManagement />} />
+        <Route path="doctorAdd" element={<DoctorAdd />} />
+        <Route path="doctorEdit" element={<DoctorEdit />} />
 
         <Route path="patientManagement" element={<PatientManagement />} />
 
@@ -31,10 +35,7 @@ export default function AdminPanel() {
         <Route path="insuranceClaims" element={<InsuranceClaims />} />
         <Route path="paymentMethod" element={<PaymentMethod />} />
 
-        <Route
-          path="reportingAndAnalytics"
-          element={<ReportingAndAnalytics />}
-        />
+        <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
       </Routes>
     </>
   );
