@@ -5,16 +5,16 @@ import { useAuth } from "../hooks/useAuth";
 const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin, user } = useAuth();
-  // const [formData, setFormData] = useState({
-  //   identifier: "mohitdudhat@gmail.com",
-  //   password: "123@abc",
-  //   remember: "true",
-  // });  
   const [formData, setFormData] = useState({
-    identifier: "fiyadoctor1@gmail.com",
-    password: "Fiya@123",
+    identifier: "mohitdudhat@gmail.com",
+    password: "123@abc",
     remember: "true",
-  });
+  });  
+  // const [formData, setFormData] = useState({
+  //   identifier: "fiyadoctor1@gmail.com",
+  //   password: "Fiya@123",
+  //   remember: "true",
+  // });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {

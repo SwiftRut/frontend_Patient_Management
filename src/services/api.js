@@ -53,6 +53,7 @@ const apiService = {
   GetBillById: (id) => api.get(`/bill/siglebill/${id}`),
   EditBill: (id, userData) => api.put(`/bill/billupdate/${id}`, userData),
   DeleteBill: (id) => api.delete(`/bill/deletebill/${id}`),
+  GetBills: () => api.get("/bill/getbill"),
 };
 
 export default apiService;
