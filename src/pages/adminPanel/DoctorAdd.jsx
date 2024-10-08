@@ -1,61 +1,60 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
+import './doctorManagement.css'
+import { FaLink } from "react-icons/fa6";
 
 const DoctorAdd = () => {
   return (
     <div>
-      <div className="create-bill-section">
+      <div className="doctorAdd-section">
         <div className="row">
           <div className="main">
-            <div className="title">
-              <p>Create Bill</p>
-            </div>
 
             <div className="hospital-details">
               <div className="content">
-                <div className="head flex">
-                  <p>Hospital Details</p>
-                  <button className="flex">
-                    <FaEdit />
-                    <span>Add New Field</span>
-                  </button>
+                <div className="head">
+                  <p> Add New Doctor</p>
                 </div>
 
                 <div className="details flex">
-                  <div className="left">
-                    <div className="upload-logo">
+                  <div className="left flex">
+                    <div className="choose-photo">
+                      <div className="image">
+                        <img src="../img/doctorAdd.png" alt="" />
+                      </div>
+
+                      <p>Choose Photo</p>
+                    </div>
+
+                    <div className="upload-sign">
+                      <div className="title">
+                        <p>Signature</p>
+                      </div>
+                    <div className="sign">
                       <FaImage />
                       <p>
-                        <span>Upload a file</span> or drag and drop
+                      Upload a file
                       </p>
-                      <h5>PNG, JPG, GIF up to 10MB</h5>
+                      <h5>PNG Up To 5MB</h5>
+                    </div>
                     </div>
                   </div>
                   <div className="right">
                     <div className="form-box">
                       <form action="" className="flex">
+
                         <div className="input-box">
-                          <div className="label">First Name</div>
-                          <input type="text" placeholder="Enter First Name" />
+                          <div className="label">Doctor Name</div>
+                          <input type="text" placeholder="Enter Doctor Name " />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
 
                         <div className="input-box">
-                          <div className="label">Other Text</div>
-                          <input type="text" placeholder="Enter Other Text" />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">
-                            Email <span>*</span>
-                          </div>
-                          <input type="text" placeholder="Enter Email" />
+                          <div className="label">Doctor Qualification</div>
+                          <input type="text" placeholder="Enter Doctor Qualification" />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -63,9 +62,11 @@ const DoctorAdd = () => {
 
                         <div className="input-box">
                           <div className="label">
-                            Bill Date <span>*</span>
+                          Gender 
                           </div>
-                          <input type="date" placeholder="Enter Bill Date" />
+                          <select name="" id="">
+                            <option >Select Gender</option>
+                          </select>
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -73,9 +74,9 @@ const DoctorAdd = () => {
 
                         <div className="input-box">
                           <div className="label">
-                            Bill Time <span>*</span>
+                          Specialty Type 
                           </div>
-                          <input type="text" placeholder="Enter Bill Time" />
+                          <input type="date" placeholder="Enter Specialty Type" />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -83,9 +84,11 @@ const DoctorAdd = () => {
 
                         <div className="input-box">
                           <div className="label">
-                            Bill Number <span>*</span>
+                          Work On
                           </div>
-                          <input type="text" placeholder="Enter Bill Number" />
+                          <select name="" id="">
+                            <option >Select Work On</option>
+                          </select>
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -93,9 +96,9 @@ const DoctorAdd = () => {
 
                         <div className="input-box">
                           <div className="label">
-                            Phone Number <span>*</span>
+                          Working Time
                           </div>
-                          <input type="text" placeholder="Phone Number" />
+                          <input type="text" placeholder="Enter Working Time" />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -103,13 +106,143 @@ const DoctorAdd = () => {
 
                         <div className="input-box">
                           <div className="label">
-                            Address <span>*</span>
+                          Check Up Time 
                           </div>
-                          <input type="text" placeholder="Enter Address" />
+                          <input type="text" placeholder="Enter Check Up Time" />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Break Time 
+                          </div>
+                          <input type="text" placeholder="Enter Break Time" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Experience 
+                          </div>
+                          <input type="text" placeholder="Enter Experience" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                            Phone Number 
+                          </div>
+                          <input type="text" placeholder="Enter Phone Number" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                            Age 
+                          </div>
+                          <input type="text" placeholder="Enter Age" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Doctor Email 
+                          </div>
+                          <input type="text" placeholder="Enter Doctor Email" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Country 
+                          </div>
+                          <select name="" id="">
+                            <option >Select Country</option>
+                            <option >1</option>
+                          </select>
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          State 
+                          </div>
+                          <select name="" id="">
+                            <option >Select State</option>
+                            <option >1</option>
+                          </select>
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          City 
+                          </div>
+                          <select name="" id="">
+                            <option >Select City</option>
+                            <option >1</option>
+                          </select>
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Zip code 
+                          </div>
+                          <input type="text" placeholder="Enter Zip code" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Doctor Address 
+                          </div>
+                          <input type="text" placeholder="Enter Doctor Address" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Description 
+                          </div>
+                          <input type="text" placeholder="Enter Description" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
+                        <div className="input-box">
+                          <div className="label">
+                          Online Consultation Rate 
+                          </div>
+                          <input type="text" placeholder="Enter Online Consultation Rate" />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+
                       </form>
                     </div>
                   </div>
@@ -119,112 +252,49 @@ const DoctorAdd = () => {
 
             <div className="patient-details">
               <div className="content">
-                <div className="head flex">
-                  <p>Patient</p>
-                  <button className="flex">
-                    <FaEdit />
-                    <span>Add New Field</span>
-                  </button>
-                </div>
 
                 <div className="details flex">
                   <div className="form-box">
                     <form action="" className="flex">
+
                       <div className="input-box">
-                        <div className="label"> Name</div>
-                        <input type="text" placeholder="Enter Name" />
+                        <div className="label"> Doctor Current Hospital</div>
+                        <input type="text" placeholder="Enter Doctor Current Hospital" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
 
                       <div className="input-box">
-                        <div className="label">Disease Name</div>
-                        <input type="text" placeholder="Enter Disease Name" />
+                        <div className="label"> Hospital Name</div>
+                        <input type="text" placeholder="Enter Hospital Name" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
 
                       <div className="input-box">
-                        <div className="label">Doctor Name</div>
-                        <input type="text" placeholder="Enter Doctor Name" />
+                        <div className="label">Hospital Address</div>
+                        <input type="text" placeholder="Enter Hospital Address" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
 
                       <div className="input-box">
-                        <div className="label">Description</div>
-                        <input type="text" placeholder="Enter Description" />
+                        <div className="label">Hospital Website Link</div>
+                        <input type="text" placeholder="Enter Hospital Website Link" />
+                        <div className="link-icon">
+                        <FaLink />
+                      </div>
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
 
                       <div className="input-box">
-                        <div className="label">Discount (%)</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Tax</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Amount</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Total Amount</div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Payment Type</div>
-                        <select name="" id="">
-                          <option>Select Payment Type</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Age</div>
-                        <input type="text" placeholder="Enter Age" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Gender</div>
-                        <select name="" id="">
-                          <option>Select Gender</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Address</div>
-                        <input type="text" placeholder="Enter Address" />
+                        <div className="label">Emergency Contact Number</div>
+                        <input type="text" placeholder="Enter Emergency Contact Number" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
