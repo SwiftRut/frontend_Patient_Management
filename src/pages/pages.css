@@ -33,7 +33,7 @@ input {
 }
 .registration-section .row .main .form .content {
   padding: 60px 60px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .registration-section .row .main .form .content .head {
@@ -58,14 +58,20 @@ input {
 }
 .registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .registration-section .row .main .form .content .form-box form .input-box .eye {
   position: absolute;
@@ -74,19 +80,19 @@ input {
 }
 .registration-section .row .main .form .content .form-box form .input-box select {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .registration-section .row .main .form .content .form-box form .input-box select:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
 }
 .registration-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   text-align: center;
 }
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
@@ -161,21 +167,21 @@ input {
   padding-left: 10px;
 }
 .registration-section .row .main .form .content .form-box form .condition .policies span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .registration-section .row .main .form .content .form-box form .condition .register-btn {
   padding: 15px 0px;
 }
 .registration-section .row .main .form .content .form-box form .condition .register-btn button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .registration-section .row .main .form .content .form-box form .condition .register-btn button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .registration-section .row .main .form .content .form-box form .condition .login-btn p {
@@ -195,7 +201,7 @@ input {
 }
 .patient-registration-section .row .main .form .content {
   padding: 60px 60px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .patient-registration-section .row .main .form .content .head {
@@ -220,14 +226,17 @@ input {
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.patient-registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box .eye {
   position: absolute;
@@ -236,19 +245,19 @@ input {
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box select {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box select:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   text-align: center;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
@@ -365,21 +374,21 @@ input {
   padding-left: 10px;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .policies span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .register-btn {
   padding: 15px 0px;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .register-btn button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .register-btn button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .login-btn p {
@@ -393,12 +402,8 @@ input {
   width: 50%;
 }
 
-.hospital-section .row .main .form {
-  padding: 120px;
-  width: 50%;
-}
 .hospital-section .row .main .form .content {
-  padding: 60px 60px;
+  padding: 20px;
   background-color: white;
   border-radius: 15px;
 }
@@ -424,31 +429,38 @@ input {
 }
 .hospital-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
+  width: 100%;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box select {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box select:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
 }
 .hospital-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   text-align: center;
 }
 .hospital-section .row .main .form .content .form-box form .input-box:nth-child(1) {
@@ -498,7 +510,7 @@ input {
 .hospital-section .row .main .form .content .form-box form .btn .cancel-btn button {
   text-align: center;
   width: 100%;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
@@ -511,11 +523,11 @@ input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   font-size: 20px;
 }
 .hospital-section .row .main .form .content .form-box form .btn .save-btn button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .hospital-section .row .main .form .img-box {
@@ -528,7 +540,7 @@ input {
 }
 .admin-mobile-section .row .main .form .admin-mobile-content {
   padding: 40px 40px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .head {
@@ -539,7 +551,7 @@ input {
   font-weight: 600;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .note p {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 16px;
   font-weight: 500;
 }
@@ -561,14 +573,17 @@ input {
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box:nth-child(1) {
   width: 100%;
@@ -585,14 +600,14 @@ input {
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .login-btn p {
@@ -601,7 +616,7 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
-  color: #5678E9;
+  color: #5678e9;
 }
 .admin-mobile-section .row .main .img-box {
   width: 50%;
@@ -613,7 +628,7 @@ input {
 }
 .admin-otp-section .row .main .form .admin-otp-content {
   padding: 40px 40px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .head {
@@ -624,7 +639,7 @@ input {
   font-weight: 600;
 }
 .admin-otp-section .row .main .form .admin-otp-content .note p {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 16px;
   font-weight: 500;
 }
@@ -646,14 +661,17 @@ input {
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box:nth-child(1) {
   width: 15%;
@@ -706,21 +724,21 @@ input {
   padding: 0px 5px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .resend-otp .r-otp button {
-  color: #5678E9;
+  color: #5678e9;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify {
   padding: 15px 0px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .admin-otp-section .row .main .img-box {
@@ -733,7 +751,7 @@ input {
 }
 .changePassword-section .row .main .form .changePassword-content {
   padding: 40px 40px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .changePassword-section .row .main .form .changePassword-content .head {
@@ -761,14 +779,17 @@ input {
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box .eye {
   position: absolute;
@@ -796,14 +817,14 @@ input {
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .login-btn p {
@@ -812,7 +833,7 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
-  color: #5678E9;
+  color: #5678e9;
 }
 .changePassword-section .row .main .img-box {
   width: 50%;
@@ -824,7 +845,7 @@ input {
 }
 .login-section .row .main .form .content {
   padding: 60px 60px;
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   border-radius: 15px;
 }
 .login-section .row .main .form .content .head {
@@ -849,14 +870,20 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
 .login-section .row .main .form .content .form-box form .input-box input:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
+}
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #A7A7A7;
 }
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .login-section .row .main .form .content .form-box form .input-box .eye {
   position: absolute;
@@ -865,19 +892,19 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box select {
   padding: 12px 14px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .login-section .row .main .form .content .form-box form .input-box select:focus {
-  border: 1px solid #718EBF;
+  border: 1px solid #718ebf;
 }
 .login-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   text-align: center;
 }
 .login-section .row .main .form .content .form-box form .input-box:nth-child(1) {
@@ -908,14 +935,14 @@ input {
 }
 .login-section .row .main .form .content .form-box form .condition .login-btn button {
   width: 100%;
-  background-color: #F6F8FB;
-  color: #4F4F4F;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
 }
 .login-section .row .main .form .content .form-box form .condition .login-btn button:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .login-section .row .main .form .content .form-box form .condition .registration-btn p {

@@ -126,6 +126,9 @@
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -334,6 +337,9 @@
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -524,6 +530,9 @@
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
   border: 1px solid #718ebf;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
   color: #a7a7a7;
