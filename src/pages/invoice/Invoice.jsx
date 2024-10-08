@@ -4,9 +4,8 @@ import "./invoice.css";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import { useGlobal } from "../../hooks/useGlobal";
 import { FaEdit } from "react-icons/fa";
-import { IoMdAdd } from "react-icons/io";
-import hospitalModel from "../../../../backend_Patient_Management/src/models/hospitalModel";
 import { useAuth } from "../../hooks/useAuth";
+import AddFieldModal from "../../AddFieldsModal";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -29,13 +28,15 @@ const Invoice = () => {
     fetchData();
   }, []);
   console.log(userData);
-  const [formData, setFormData] = useState({
-    // Hospital Details
-    hospitalName: userData?.hospital?.name,
 
-    hospitalId: userData?.hospital?._id,
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const [formData, setFormData] = useState({
+    hospitalName: "",
+    hospitalId: "",
     otherText: "",
-    email: userData?.email,
+    email: "",
     billDate: new Date().toISOString().slice(0, 10),
     billTime: new Date().toLocaleTimeString(navigator.language, {
       hour: "2-digit",
@@ -45,7 +46,6 @@ const Invoice = () => {
     phoneNumber: "",
     hospitalAddress: "",
     logo: null,
-    // Patient Details
     patientName: "",
     diseaseName: "",
     doctorName: "",
@@ -60,28 +60,116 @@ const Invoice = () => {
     patientAddress: "",
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAdminProfile(user.id);
+        setFormData(prevData => ({
+          ...prevData,
+          email: data?.email || "",
+          hospitalName: data?.hospital?.name || "",
+          hospitalId: data?.hospital?._id || "",
+          phoneNumber: data?.hospital?.phoneNumber || "",
+        }));
+      } catch (error) {
+        console.error("Error fetching admin profile:", error);
+      }
+    };
+    fetchData();
+  }, [user.id, getAdminProfile]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
     for (const key in formData) {
       data.append(key, formData[key]);
     }
+    
+    dynamicFields.forEach((field, index) => {
+      data.append(`dynamicField_${index}`, JSON.stringify(field));
+    });
 
-    if (bill.id) {
-      await updateBill(data, bill.id);
-    } else {
-      await createBill(data);
+    try {
+      if (bill.id) {
+        await updateBill(data, bill.id);
+      } else {
+        await createBill(data);
+      }
+      navigate("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle error (e.g., show error message to user)
     }
-    navigate("/");
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, logo: e.target.files[0] });
+    setFormData(prevData => ({ ...prevData, logo: e.target.files[0] }));
+  };
+
+  const handleDynamicFieldChange = (index, value) => {
+    setDynamicFields(prevFields => {
+      const updatedFields = [...prevFields];
+      updatedFields[index] = { ...updatedFields[index], value };
+      return updatedFields;
+    });
+  };
+
+  const handleNewField = (field) => {
+    setDynamicFields(prevFields => [...prevFields, { ...field, value: '' }]);
+    closeModal();
+  };
+
+  const renderDynamicField = (field, index) => {
+    switch (field.fieldType) {
+      case 'Dropdown':
+        return (
+          <div className="input-box" key={index}>
+            <div className="label">{field.name}</div>
+            <select
+              value={field.value}
+              onChange={(e) => handleDynamicFieldChange(index, e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="">Select an option</option>
+              {field.options.map((option, optIndex) => (
+                <option key={optIndex} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <div className="minus-circle">
+              <FaCircleMinus onClick={() => removeDynamicField(index)} />
+            </div>
+          </div>
+        );
+      case 'Text Field':
+        return (
+          <div className="input-box" key={index}>
+            <div className="label">{field.name}</div>
+            <input
+              type="text"
+              value={field.value}
+              onChange={(e) => handleDynamicFieldChange(index, e.target.value)}
+              placeholder={`Enter ${field.name}`}
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+            <div className="minus-circle">
+              <FaCircleMinus onClick={() => removeDynamicField(index)} />
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const removeDynamicField = (index) => {
+    setDynamicFields(prevFields => prevFields.filter((_, i) => i !== index));
   };
 
   return (
@@ -99,7 +187,7 @@ const Invoice = () => {
               <div className="content">
                 <div className="head flex">
                   <p>Hospital Details</p>
-                  <button className="flex">
+                  <button className="flex" onClick={openModal}>
                     <FaEdit />
                     <span>Add New Field</span>
                   </button>
@@ -324,7 +412,7 @@ const Invoice = () => {
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
-                        </div>{" "}
+                        </div>
                         <div className="input-box">
                           <div className="label">Amount</div>
                           <input
@@ -388,8 +476,7 @@ const Invoice = () => {
                             onChange={handleInputChange}
                           >
                             <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="male">Male</option><option value="female">Female</option>
                             <option value="other">Other</option>
                           </select>
                           <div className="minus-circle">
@@ -409,6 +496,9 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
+
+                        {dynamicFields.map((field, index) => renderDynamicField(field, index))}
+
                         <div className="save-btn flex">
                           <button type="submit">Save</button>
                         </div>
@@ -548,8 +638,7 @@ const Invoice = () => {
           </div>
         </div>
       </div>
-
-      {/* create-bill hospital & patient details section end */}
+      <AddFieldModal isOpen={isModalOpen} onClose={closeModal} onAddField={handleNewField} />
     </div>
   );
 };

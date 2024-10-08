@@ -33,6 +33,7 @@ export const GlobalProvider = ({ children }) => {
       try{
       const response = await apiService.GetAdminProfile(id);
       setUserData(response.data);
+      return response.data;
       }catch(error){
       console.log(error);
       throw error
