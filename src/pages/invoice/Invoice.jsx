@@ -10,15 +10,18 @@ const Invoice = () => {
   const { createBill, updateBill, bill } = useGlobal();
 
   const [formData, setFormData] = useState({
-    firstName: "",
+    // Hospital Details
+    hospitalName: "",
     otherText: "",
     email: "",
     billDate: "",
     billTime: "",
     billNumber: "",
     phoneNumber: "",
-    address: "",
-    name: "",
+    hospitalAddress: "",
+    logo: null,
+    // Patient Details
+    patientName: "",
     diseaseName: "",
     doctorName: "",
     description: "",
@@ -30,7 +33,6 @@ const Invoice = () => {
     age: "",
     gender: "",
     patientAddress: "",
-    logo: null,
   });
 
   const handleSubmit = async (e) => {
@@ -41,7 +43,7 @@ const Invoice = () => {
     }
 
     if (bill.id) {
-      await updateBill(data,bill.id);
+      await updateBill(data, bill.id);
     } else {
       await createBill(data);
     }
@@ -83,7 +85,9 @@ const Invoice = () => {
                     <div className="upload-logo">
                       <label htmlFor="logo-upload">
                         <FaImage />
-                        <p><span>Upload a file</span> or drag and drop</p>
+                        <p>
+                          <span>Upload a file</span> or drag and drop
+                        </p>
                         <h5>PNG, JPG, GIF up to 10MB</h5>
                       </label>
                       <input
@@ -99,19 +103,18 @@ const Invoice = () => {
                     <div className="form-box">
                       <form className="flex" onSubmit={handleSubmit}>
                         <div className="input-box">
-                          <div className="label">First Name</div>
+                          <div className="label">Name</div>
                           <input
                             type="text"
-                            name="firstName"
-                            value={formData.firstName}
+                            name="hospitalName"
+                            value={formData.hospitalName}
                             onChange={handleInputChange}
-                            placeholder="Enter First Name"
+                            placeholder="Enter Name"
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
                           <div className="label">Other Text</div>
                           <input
@@ -125,104 +128,113 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Email <span>*</span></div>
+                          <div className="label">
+                            Email <span>*</span>
+                          </div>
                           <input
-                            type="text"
+                            type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder="Enter Email"
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Bill Date <span>*</span></div>
+                          <div className="label">
+                            Bill Date <span>*</span>
+                          </div>
                           <input
                             type="date"
                             name="billDate"
                             value={formData.billDate}
                             onChange={handleInputChange}
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Bill Time <span>*</span></div>
+                          <div className="label">
+                            Bill Time <span>*</span>
+                          </div>
                           <input
-                            type="text"
+                            type="time"
                             name="billTime"
                             value={formData.billTime}
                             onChange={handleInputChange}
-                            placeholder="Enter Bill Time"
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Bill Number <span>*</span></div>
+                          <div className="label">
+                            Bill Number <span>*</span>
+                          </div>
                           <input
                             type="text"
                             name="billNumber"
                             value={formData.billNumber}
                             onChange={handleInputChange}
                             placeholder="Enter Bill Number"
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Phone Number <span>*</span></div>
+                          <div className="label">
+                            Phone Number <span>*</span>
+                          </div>
                           <input
-                            type="text"
+                            type="tel"
                             name="phoneNumber"
                             value={formData.phoneNumber}
                             onChange={handleInputChange}
-                            placeholder="Phone Number"
+                            placeholder="Enter Phone Number"
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
-                          <div className="label">Address <span>*</span></div>
+                          <div className="label">
+                            Address <span>*</span>
+                          </div>
                           <input
                             type="text"
-                            name="address"
-                            value={formData.address}
+                            name="hospitalAddress"
+                            value={formData.hospitalAddress}
                             onChange={handleInputChange}
                             placeholder="Enter Address"
+                            required
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
                           <div className="label">Patient Name</div>
                           <input
                             type="text"
-                            name="name"
-                            value={formData.name}
+                            name="patientName"
+                            value={formData.patientName}
                             onChange={handleInputChange}
-                            placeholder="Enter Patient Name"
+                            placeholder="Enter Name"
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
                           <div className="label">Disease Name</div>
                           <input
@@ -236,7 +248,6 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
                           <div className="label">Doctor Name</div>
                           <input
@@ -250,7 +261,6 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-
                         <div className="input-box">
                           <div className="label">Description</div>
                           <input
@@ -264,9 +274,116 @@ const Invoice = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-
-                        {/* Repeat for additional fields as needed */}
-
+                        <div className="input-box">
+                          <div className="label">Discount (%)</div>
+                          <input
+                            type="number"
+                            name="discount"
+                            value={formData.discount}
+                            onChange={handleInputChange}
+                            placeholder="0000"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Tax</div>
+                          <input
+                            type="number"
+                            name="tax"
+                            value={formData.tax}
+                            onChange={handleInputChange}
+                            placeholder="0000"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>{" "}
+                        <div className="input-box">
+                          <div className="label">Amount</div>
+                          <input
+                            type="number"
+                            name="amount"
+                            value={formData.amount}
+                            onChange={handleInputChange}
+                            placeholder="0000"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Total Amount</div>
+                          <input
+                            type="number"
+                            name="totalAmount"
+                            value={formData.totalAmount}
+                            onChange={handleInputChange}
+                            placeholder="0000"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Payment Type</div>
+                          <select
+                            name="paymentType"
+                            value={formData.paymentType}
+                            onChange={handleInputChange}
+                          >
+                            <option value="">Select Payment Type</option>
+                            <option value="cash">Cash</option>
+                            <option value="card">Card</option>
+                            <option value="online">Online</option>
+                          </select>
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Age</div>
+                          <input
+                            type="number"
+                            name="age"
+                            value={formData.age}
+                            onChange={handleInputChange}
+                            placeholder="Enter Age"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Gender</div>
+                          <select
+                            name="gender"
+                            value={formData.gender}
+                            onChange={handleInputChange}
+                          >
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Address</div>
+                          <input
+                            type="text"
+                            name="patientAddress"
+                            value={formData.patientAddress}
+                            onChange={handleInputChange}
+                            placeholder="Enter Address"
+                          />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
                         <div className="save-btn flex">
                           <button type="submit">Save</button>
                         </div>
