@@ -52,6 +52,7 @@ function App() {
 
               <Route path="doctorManagement/*" />
               <Route path="doctorAdd" />
+              <Route path="doctorEdit" />
 
               <Route path="patientManagement" />
 
