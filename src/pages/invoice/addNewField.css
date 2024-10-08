@@ -1,0 +1,226 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 25%;
+}
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #030229;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+.modal .field-type {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #f6f8fb;
+  padding: 10px 20px;
+}
+.modal .field-type .check {
+  color: #0eabeb !important;
+}
+.modal .field-type .radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  color: #818194;
+}
+.modal .field-type .radio-label .radio-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+}
+.modal .field-type .radio-label .radio-custom:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #3498db;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.2s;
+}
+.modal .field-type .radio-label input[type=radio] {
+  display: none;
+}
+.modal .field-type .radio-label input[type=radio]:checked + .radio-custom:before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal .dropdown {
+  margin-bottom: 20px;
+  position: relative;
+}
+.modal .dropdown label {
+  position: absolute;
+  top: -13px;
+  left: 14px;
+  background-color: white;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #030229;
+}
+.modal .dropdown select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: white;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: #141414;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+.modal .input {
+  position: relative;
+  margin-bottom: 15px;
+}
+.modal .input .label {
+  position: absolute;
+  top: -12px;
+  left: 14px;
+  background-color: white;
+  font-size: 18;
+  font-weight: 500;
+  color: #030229;
+}
+.modal .input input {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #141414;
+}
+.modal .values .input-box {
+  position: relative;
+  width: 45%;
+  margin-right: 10px;
+}
+.modal .values .input-box input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.modal .values .input-box input:nth-child(3) {
+  margin-bottom: 20px;
+  display: block;
+}
+.modal .values .input-box .minus-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #a7a7a7;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 5px;
+  top: -7px;
+  right: -7px;
+}
+.modal .add {
+  justify-content: center;
+}
+.modal .add h3 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5678e9;
+}
+.modal .add .icon {
+  padding: 4px;
+  background-color: #5678e9;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.modal .actions {
+  display: flex;
+  justify-content: space-between;
+}
+.modal .actions button {
+  width: 50%;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: #f5f5f5 0.2s;
+  margin-top: 15px;
+  margin-right: 5px;
+}
+.modal .actions .btn-cancel {
+  font-size: 16px;
+  color: #141414;
+  border: 1px solid #d3d3d3;
+}
+.modal .actions .btn-add {
+  background-color: #f6f8fb;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #4f4f4f;
+  transition: all 0.5s;
+}
+.modal .actions .btn-add:hover {
+  background-color: #0eabeb;
+  color: #fff;
+}/*# sourceMappingURL=addNewField.css.map */

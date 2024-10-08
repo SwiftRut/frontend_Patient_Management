@@ -4,30 +4,31 @@ import "./invoice.css";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import { useGlobal } from "../../hooks/useGlobal";
 import { FaEdit } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
 import hospitalModel from "../../../../backend_Patient_Management/src/models/hospitalModel";
 import { useAuth } from "../../hooks/useAuth";
 
 const Invoice = () => {
   const navigate = useNavigate();
-  const { user }= useAuth();
-  const { createBill, updateBill, bill,userData,getAdminProfile } = useGlobal();
+  const { user } = useAuth();
+  const { createBill, updateBill, bill, userData, getAdminProfile } = useGlobal();
   useEffect(() => {
     const fetchData = async () => {
       try {
-          await getAdminProfile(user.id);
+        await getAdminProfile(user.id);
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     setFormData({
       ...formData,
       hospitalName: userData?.hospital?.name,
       hospitalId: userData?.hospital?._id,
       email: userData?.email,
-    })
+    });
     fetchData();
-  },[])
-  console.log(userData)
+  }, []);
+  console.log(userData);
   const [formData, setFormData] = useState({
     // Hospital Details
     hospitalName: userData?.hospital?.name,
@@ -36,7 +37,10 @@ const Invoice = () => {
     otherText: "",
     email: userData?.email,
     billDate: new Date().toISOString().slice(0, 10),
-    billTime: new Date().toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }),
+    billTime: new Date().toLocaleTimeString(navigator.language, {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
     billNumber: "",
     phoneNumber: "",
     hospitalAddress: "",
@@ -430,7 +434,10 @@ const Invoice = () => {
                     <form action="" className="flex">
                       <div className="input-box">
                         <div className="label"> Name</div>
-                        <input type="text" placeholder="Enter Name" />
+                        <select name="" id="" style={{ width: "100%" }}>
+                          <input type="text" placeholder="Enter Name" />
+                          <option>Enter Name</option>
+                        </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
@@ -445,19 +452,17 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Doctor Name
-                        </div>
-                        <input type="text" placeholder="Enter Doctor Name" />
+                        <div className="label">Doctor Name</div>
+                        <select name="" id="" style={{ width: "100%" }}>
+                          <option>Enter Name</option>
+                        </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Description
-                        </div>
+                        <div className="label">Description</div>
                         <input type="text" placeholder="Enter Description" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -465,9 +470,7 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Discount (%)
-                        </div>
+                        <div className="label">Discount (%)</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -475,9 +478,7 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Tax
-                        </div>
+                        <div className="label">Tax</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -485,9 +486,7 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Amount
-                        </div>
+                        <div className="label">Amount</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -495,9 +494,7 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Total Amount
-                        </div>
+                        <div className="label">Total Amount</div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -505,11 +502,9 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Payment Type
-                        </div>
+                        <div className="label">Payment Type</div>
                         <select name="" id="">
-                          <option >Select Payment Type</option>
+                          <option>Select Payment Type</option>
                         </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -517,9 +512,7 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Age
-                        </div>
+                        <div className="label">Age</div>
                         <input type="text" placeholder="Enter Age" />
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -527,11 +520,9 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Gender
-                        </div>
+                        <div className="label">Gender</div>
                         <select name="" id="">
-                          <option >Select Gender</option>
+                          <option>Select Gender</option>
                         </select>
                         <div className="minus-circle">
                           <FaCircleMinus />
@@ -539,15 +530,12 @@ const Invoice = () => {
                       </div>
 
                       <div className="input-box">
-                        <div className="label">
-                          Address
-                        </div>
+                        <div className="label">Address</div>
                         <input type="text" placeholder="Enter Address" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
-
                     </form>
                   </div>
                 </div>

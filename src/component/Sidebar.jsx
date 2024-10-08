@@ -42,11 +42,13 @@ const Sidebar = () => {
                 onClick={toggleAccordion}
                 style={{ display: "flex", flexDirection: "column" }}
               >
+                <NavLink>
                 <img
                   src="/img/BillingAndPayments.png"
                   alt="Billing and Payments"
                 />
                 <span className="menu-item">Billing and Payments</span>
+                </NavLink>
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (

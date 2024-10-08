@@ -33,122 +33,148 @@ input {
 }
 
 // section start
-.bill-section {
-  .row {
-    .main {
-      //   border-radius: 15px;
-      //   margin: 10px;
-      //   background-color: #fff;
-      //   padding: 10px;
-      //   height: 100%;
-      .bill {
-        width: 70%;
-        border-radius: 20px;
-        // background-color: #fff;
-        position: relative;
-        margin: auto;
-        overflow: hidden;
-        padding: 20px 20px 0;
-        .invoice {
-          position: absolute;
-          content: "";
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
-          background-color: #e7f7fd;
-          top: -120px;
-          right: 10px;
+.invoice {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 
-          h3 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 140px;
-            font-size: 40px;
-            font-weight: 600;
-            color: #0eabeb;
-          }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    img {
+      padding-left: 20px;
+    }
+  }
+  .wrapper {
+    padding: 0 20px;
+    .billing-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      .info {
+        width: 60%;
+      }
+      h3 {
+        font-size: 19px;
+        font-weight: 700;
+        color: #141414;
+        padding: 5px 0;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        color: #818194;
+        padding: 10px 0;
+      }
+      p {
+        padding-bottom: 5px;
+        strong {
+          font-size: 16px;
+          padding-right: 10px;
         }
-        .patient-info {
-          padding: 20px 40px 20px 20px;
-          justify-content: space-between;
-          h2 {
-            font-size: 35px;
-            font-weight: 700;
-          }
-          p {
-            color: #818194;
-            font-size: 16px;
-          }
+        span {
+          color: #818194;
+          font-size: 16px;
         }
-        .invoice-info {
-          tr {
-            td {
-              font-size: 18px;
-            }
-            td:nth-child(1) {
-              font-weight: 600;
-            }
-          }
-        }
-        .patient-details {
-          background-color: #e7f7fd;
-          padding: 20px;
-          border-radius: 20px;
-          margin: 15px 0;
-          table {
-            width: 100%;
-            font-size: 20px;
-            tr {
-              padding: 5px 0;
-              td:nth-child(1) {
-                font-weight: 600;
-              }
-              td:nth-child(2) {
-                color: #818194;
-              }
-            }
-          }
-        }
-        .data {
-          width: 100%;
-          //   border-collapse: collapse;
-          border: none !important;
-
-          th,
-          td {
-            border: none;
-            padding: 10px;
-            text-align: left;
-          }
-          td{
-            color: #4F4F4F;
-            font-size: 16px ;
-          }
-          thead {
-            background-color: #0eabeb;
-            color: #fff;
-            font-size: 18px;
-            tr {
-              border-top-left-radius: 10px;
-              
-            }
-          }
-        }
-        .total {
-            text-align: right;
-            font-weight: bold;
-            padding: 10px 0;
-          }
-        .end{
-            background-color: #0eabeb;
-            color: #fff;
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }  
       }
     }
+    .invoice__patient {
+      background-color: #f1f5f9;
+      padding: 15px;
+      border-radius: 8px;
+      p {
+        margin: 0px 0;
+        font-size: 17px;
+        font-weight: 600;
+        color: #141414;
+        span{
+          font-size: 16px;
+          font-weight: 400;
+          color: #818194;
+          padding-left: 5px;
+        }
+      }
+
+    }
+    .invoice__table {
+      width: 100%;
+      border-collapse: collapse;
+      margin : 10px 0;
+
+      td{
+        font-size: 14px;
+        font-weight: 600;
+        color: #4F4F4F;
+      }
+
+      th,
+      td {
+        border: none;
+        padding: 5px 10px;
+        text-align: left;
+        background-color: white;
+      }
+
+      th {
+        background-color: #3498db;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .amount {
+        text-align: right;
+      }
+    }
+
+    .invoice__total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 18px;
+
+      
+      .color{
+        color: #3498db!important;
+      }
+
+      table {
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+
+        td:nth-child(1){
+          font-size: 18px;
+          font-weight: 700;
+          color: #141414;
+        }
+
+        td {
+          font-size: 16px;
+          font-weight: 700;
+          color: #4F4F4F;
+          padding: 1px;
+          background-color: white;
+          border: none;
+        }
+
+        .label {
+          text-align: left;
+        }
+
+        .value {
+          text-align: right;
+        }
+      }
+    }
+  }
+  .footer {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 15px;
   }
 }
