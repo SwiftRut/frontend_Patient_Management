@@ -30,6 +30,8 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             {/* admin component */}
+
+
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
@@ -43,8 +45,11 @@ function App() {
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
 
+            {/* AdminPanel routs  */}
+
             <Route path="/" element={<AdminPanel />}>
-              <Route path="doctorManagement" />
+              <Route path="doctorManagement/*" />
+              <Route path="DoctorAdd" />
               <Route path="profile/*" />
               <Route path="edit" />
 
