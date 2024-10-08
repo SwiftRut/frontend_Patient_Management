@@ -44,10 +44,15 @@ const apiService = {
   CreateHospital: (userData) => api.post("/hospital/create-hospital", userData),
   GetAllHospitals: (userData) =>
     api.get("/hospital/get-all-hospitals", userData),
-
   ForgetPassword: (userData) => api.post("/forgetPassword", userData),
   VerifyOtp: (userData) => api.post("/verifyOtp", userData),
   ResetPassword: (userData) => api.post("/resetPassword", userData),
+
+  // Bill
+  CreateBill: (userData) => api.post("/bill/createbill", userData),
+  GetBillById: (id) => api.get(`/bill/siglebill/${id}`),
+  EditBill: (id, userData) => api.put(`/bill/billupdate/${id}`, userData),
+  DeleteBill: (id) => api.delete(`/bill/deletebill/${id}`),
 };
 
 export default apiService;
