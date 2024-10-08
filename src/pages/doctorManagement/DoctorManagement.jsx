@@ -1,48 +1,53 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import "../doctorManagement/doctorManagement.css"; // Make sure the path is correct
+import "../doctorManagement/doctorManagement.css";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import apiService from '../../services/api.js'; // Adjust the import path as necessary
+import apiService from '../../services/api.js';
+import { useNavigate } from "react-router-dom";
+import Onsite from './Onsite'; // Import the Onsite component
 
 export default function DoctorManagement() {
-  const [doctors, setDoctors] = useState([]); // State to hold doctor data
-  const [loading, setLoading] = useState(true); // State to manage loading state
-  const [error, setError] = useState(null); // State for error handling
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState(null); // Store selected doctor details
+  const [showOnsite, setShowOnsite] = useState(false); // State for modal visibility
+  const navigate = useNavigate();
 
-  // Fetch all doctors when the component mounts
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        setLoading(true); // Set loading to true before the API call
+        setLoading(true);
         const response = await apiService.GetAllDoctors({});
-        console.log(response.data.data); // Add this line to check the actual doctor data structure
-        setDoctors(response.data.data); // Assuming response.data contains the list of doctors
+        setDoctors(response.data.data);
       } catch (error) {
-        console.error("Error fetching doctor data:", error);
         setError("Error fetching doctors: " + (error.response ? error.response.data.message : error.message));
       } finally {
         setLoading(false);
       }
     };
-
     fetchDoctors();
-  }, []); // Empty dependency array means this runs once when the component mounts
+  }, [navigate]);
 
-  // Function to handle deleting a doctor
+  const handleAddDoctor = () => {
+    navigate("/doctorAdd");
+  };
+
+  const handleEditDoctor = (doctorId) => {
+    navigate(`/doctorEdit/${doctorId}`);
+  };
+
   const handleDeleteDoctor = async (id) => {
-    if (window.confirm("Are you sure you want to delete this doctor?")) { // Confirmation dialog
+    if (window.confirm("Are you sure you want to delete this doctor?")) {
       try {
         setLoading(true);
         await apiService.DeleteDoctor(id);
-        // After successful deletion, fetch the updated doctor list
         setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== id));
       } catch (error) {
-        console.error("Error deleting doctor:", error);
         setError("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
       } finally {
         setLoading(false);
@@ -50,7 +55,15 @@ export default function DoctorManagement() {
     }
   };
 
-  // Function to render the doctors' table
+  const handleViewDoctorDetails = (doctor) => {
+    setSelectedDoctor(doctor); // Set the selected doctor details
+    setShowOnsite(true); // Show the Onsite modal
+  };
+
+  const filteredDoctors = doctors.filter(doctor =>
+    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const renderDoctorsTable = () => {
     return (
       <div className="table">
@@ -68,9 +81,9 @@ export default function DoctorManagement() {
             </tr>
           </thead>
           <tbody>
-            {doctors.length > 0 ? (
-              doctors.map((doctor) => (
-                <tr key={doctor._id}> {/* Update the key to doctor._id */}
+            {filteredDoctors.length > 0 ? (
+              filteredDoctors.map((doctor) => (
+                <tr key={doctor._id}>
                   <td className="flex align-center">
                     <div className="avatar">
                       <img src="/img/Avatar.png" alt={doctor.name} />
@@ -98,10 +111,10 @@ export default function DoctorManagement() {
                     <h3>{doctor.breakTime}</h3>
                   </td>
                   <td className="flex action">
-                    <div className="edit">
+                    <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
                       <FaEdit />
                     </div>
-                    <div className="view">
+                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
                       <FaEye />
                     </div>
                     <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
@@ -144,10 +157,10 @@ export default function DoctorManagement() {
                     type="text"
                     placeholder="Search Doctor"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                <button className="btn flex align-center">
+                <button className="btn flex align-center" onClick={handleAddDoctor}>
                   <div className="icon">
                     <MdAdd />
                   </div>
@@ -157,12 +170,28 @@ export default function DoctorManagement() {
                 </button>
               </div>
             </div>
-            {loading && <h3>Loading...</h3>} {/* Show loading message */}
-            {error && <h3 style={{ color: "red" }}>{error}</h3>} {/* Show error message */}
-            {!loading && !error && renderDoctorsTable()} {/* Only render table if not loading and no error */}
+            {loading && <h3>Loading...</h3>}
+            {error && <h3 style={{ color: "red" }}>{error}</h3>}
+            {!loading && !error && renderDoctorsTable()}
           </div>
         </div>
       </div>
+
+      {/* Modal for Onsite component */}
+      {showOnsite && (
+        <div className="onsite-modal">
+          <div className="onsite-modal-content">
+            <div className="onsite-modal-header">
+              <h3>Doctor Details</h3>
+              <button className="close-button" onClick={() => setShowOnsite(false)}>
+                &times;
+              </button>
+            </div>
+            <Onsite selectedDoctor={selectedDoctor} /> {/* Pass selected doctor to Onsite */}
+          </div>
+          <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
+        </div>
+      )}
     </div>
   );
 }

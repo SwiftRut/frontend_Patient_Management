@@ -29,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
-            <Route path="/resetPassword" element={< AdminChangePassword/>} />
+            <Route path="/resetPassword" element={< AdminChangePassword />} />
 
             {/* admin component */}
 
@@ -54,7 +54,7 @@ function App() {
 
               <Route path="doctorManagement/*" />
               <Route path="doctorAdd" />
-              <Route path="doctorEdit" />
+              <Route path="doctorEdit/:doctorId" />
 
               <Route path="patientManagement" />
 
@@ -71,7 +71,7 @@ function App() {
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/schedular" element={<Scheduler />} />
-            
+
             <Route path="/CreateBill" element={<CreateBill />} />
 
             {/* doctor routers */}
