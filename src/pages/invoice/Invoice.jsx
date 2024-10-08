@@ -1,21 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./invoice.css";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import { useGlobal } from "../../hooks/useGlobal";
 import { FaEdit } from "react-icons/fa";
+import hospitalModel from "../../../../backend_Patient_Management/src/models/hospitalModel";
+import { useAuth } from "../../hooks/useAuth";
 
 const Invoice = () => {
   const navigate = useNavigate();
-  const { createBill, updateBill, bill } = useGlobal();
-
+  const { user }= useAuth();
+  const { createBill, updateBill, bill,userData,getAdminProfile } = useGlobal();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          await getAdminProfile(user.id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    setFormData({
+      ...formData,
+      hospitalName: userData?.hospital?.name,
+      hospitalId: userData?.hospital?._id,
+      email: userData?.email,
+    })
+    fetchData();
+  },[])
+  console.log(userData)
   const [formData, setFormData] = useState({
     // Hospital Details
-    hospitalName: "",
+    hospitalName: userData?.hospital?.name,
+
+    hospitalId: userData?.hospital?._id,
     otherText: "",
-    email: "",
-    billDate: "",
-    billTime: "",
+    email: userData?.email,
+    billDate: new Date().toISOString().slice(0, 10),
+    billTime: new Date().toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }),
     billNumber: "",
     phoneNumber: "",
     hospitalAddress: "",
