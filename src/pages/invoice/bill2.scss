@@ -1,0 +1,160 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+
+// section start
+.invoice {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  .head {
+    display: flex;
+    justify-content: space-between;
+  }
+  .content {
+    padding: 20px;
+    .billing-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      h3 {
+        font-size: 19px;
+        font-weight: 700;
+        color: #141414;
+        padding: 5px 0;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 400;
+        color: #818194;
+        padding: 10px 0;
+      }
+      p {
+        padding-bottom: 5px;
+        strong {
+          font-size: 16px;
+          padding-right: 10px;
+        }
+        span {
+          color: #818194;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    tr:nth-child(even) {
+      background-color: #f6f8fb;
+    }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+    td {
+      color: #4f4f4f;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .totals {
+    margin-top: 20px;
+    text-align: right;
+    strong {
+      font-size: 17px;
+      font-weight: 600;
+      color: #141414;
+    }
+    span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #818194;
+      padding-left: 10px;
+    }
+    p:nth-child(3) {
+      strong {
+        color: #0eabeb;
+      }
+      span {
+        color: #0eabeb;
+      }
+    }
+  }
+  .payment-method {
+    margin-top: 20px;
+    strong {
+      font-size: 16px;
+      color: #141414;
+    }
+    p {
+      padding-top: 10px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #818194;
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+  .terms {
+    margin-top: 20px;
+    strong {
+      font-size: 17px;
+      font-weight: 600;
+      color: #141414;
+    }
+    p {
+      padding-top: 10px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #818194;
+    }
+  }
+  .footer {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 15px;
+  }
+}

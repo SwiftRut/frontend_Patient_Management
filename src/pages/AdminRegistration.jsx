@@ -465,7 +465,6 @@ const AdminRegistration = () => {
           </div>
         </div>
       )}
-      {/* create-Hospital form end */}
     </>
   );
 };

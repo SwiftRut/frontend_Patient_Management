@@ -38,7 +38,7 @@ input {
 
         .content {
           padding: 60px 60px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -51,7 +51,6 @@ input {
           }
 
           .form-box {
-
             form {
               justify-content: space-between;
 
@@ -68,15 +67,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -85,26 +84,27 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 select {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
                   outline: none;
                   background-color: white;
-                  color: #A7A7A7;
+                  color: #a7a7a7;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   option {
                     button {
                       width: 100%;
                       padding: 12px 14px;
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       text-align: center;
                     }
                   }
@@ -206,7 +206,7 @@ input {
                   }
 
                   span {
-                    color: #5678E9;
+                    color: #5678e9;
                   }
                 }
 
@@ -215,15 +215,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -264,7 +263,7 @@ input {
 
         .content {
           padding: 60px 60px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -277,7 +276,6 @@ input {
           }
 
           .form-box {
-
             form {
               justify-content: space-between;
 
@@ -294,15 +292,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -311,26 +309,27 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 select {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
                   outline: none;
                   background-color: white;
-                  color: #A7A7A7;
+                  color: #a7a7a7;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   option {
                     button {
                       width: 100%;
                       padding: 12px 14px;
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       text-align: center;
                     }
                   }
@@ -471,8 +470,6 @@ input {
                     width: 100%;
                   }
                 }
-
-
               }
 
               .condition {
@@ -490,7 +487,7 @@ input {
                   }
 
                   span {
-                    color: #5678E9;
+                    color: #5678e9;
                   }
                 }
 
@@ -499,15 +496,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -537,17 +533,15 @@ input {
 
 // patient registration section end
 
-// create-hospital section start 
+// create-hospital section start
 
 .hospital-section {
   .row {
     .main {
       .form {
-        padding: 120px;
-        width: 50%;
 
         .content {
-          padding: 60px 60px;
+          padding: 20px;
           background-color: white;
           border-radius: 15px;
 
@@ -561,7 +555,6 @@ input {
           }
 
           .form-box {
-
             form {
               justify-content: space-between;
 
@@ -578,36 +571,37 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
+                  width: 100%;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
                 select {
                   width: 100%;
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
                   outline: none;
                   background-color: white;
-                  color: #A7A7A7;
+                  color: #a7a7a7;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   option {
                     button {
                       width: 100%;
                       padding: 12px 14px;
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       text-align: center;
                     }
                   }
@@ -673,7 +667,7 @@ input {
                   button {
                     text-align: center;
                     width: 100%;
-                    border: 1px solid #D3D3D3;
+                    border: 1px solid #d3d3d3;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
@@ -688,11 +682,11 @@ input {
                     width: 100%;
                     padding: 12px 14px;
                     border-radius: 10px;
-                    background-color: #F6F8FB;
+                    background-color: #f6f8fb;
                     font-size: 20px;
 
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -723,7 +717,7 @@ input {
 
         .admin-mobile-content {
           padding: 40px 40px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -737,7 +731,7 @@ input {
 
           .note {
             p {
-              color: #4F4F4F;
+              color: #4f4f4f;
               font-size: 16px;
               font-weight: 500;
             }
@@ -762,15 +756,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -792,15 +786,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -813,7 +806,7 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
-                    color: #5678E9;
+                    color: #5678e9;
                   }
                 }
               }
@@ -842,7 +835,7 @@ input {
 
         .admin-otp-content {
           padding: 40px 40px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -856,7 +849,7 @@ input {
 
           .note {
             p {
-              color: #4F4F4F;
+              color: #4f4f4f;
               font-size: 16px;
               font-weight: 500;
             }
@@ -881,15 +874,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -940,7 +933,6 @@ input {
                     width: 100%;
                   }
                 }
-
               }
 
               .condition {
@@ -963,7 +955,7 @@ input {
 
                   .r-otp {
                     button {
-                      color: #5678E9;
+                      color: #5678e9;
                     }
                   }
                 }
@@ -973,15 +965,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -1012,7 +1003,7 @@ input {
 
         .changePassword-content {
           padding: 40px 40px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1043,15 +1034,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -1060,7 +1051,8 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 &:nth-child(1) {
@@ -1089,15 +1081,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
@@ -1110,7 +1101,7 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
-                    color: #5678E9;
+                    color: #5678e9;
                   }
                 }
               }
@@ -1128,7 +1119,7 @@ input {
 
 //admin changePassword section end
 
-// login section start 
+// login section start
 
 .login-section {
   .row {
@@ -1139,7 +1130,7 @@ input {
 
         .content {
           padding: 60px 60px;
-          border: 1px solid #F4F4F4;
+          border: 1px solid #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1152,7 +1143,6 @@ input {
           }
 
           .form-box {
-
             form {
               justify-content: space-between;
 
@@ -1169,15 +1159,15 @@ input {
 
                 input {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   &::placeholder {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                   }
                 }
 
@@ -1186,26 +1176,27 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 select {
                   padding: 12px 14px;
-                  border: 1px solid #D9D9D9;
+                  border: 1px solid #d9d9d9;
                   border-radius: 10px;
                   outline: none;
                   background-color: white;
-                  color: #A7A7A7;
+                  color: #a7a7a7;
 
                   &:focus {
-                    border: 1px solid #718EBF
+                    border: 1px solid #718ebf;
                   }
 
                   option {
                     button {
                       width: 100%;
                       padding: 12px 14px;
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       text-align: center;
                     }
                   }
@@ -1237,7 +1228,8 @@ input {
                   align-items: center;
 
                   .remember {
-                    input {}
+                    input {
+                    }
 
                     p {
                       padding-left: 15px;
@@ -1245,7 +1237,8 @@ input {
                   }
 
                   .forgot {
-                    span {}
+                    span {
+                    }
                   }
                 }
 
@@ -1254,15 +1247,14 @@ input {
 
                   button {
                     width: 100%;
-                    background-color: #F6F8FB;
-                    color: #4F4F4F;
+                    background-color: #f6f8fb;
+                    color: #4f4f4f;
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
 
-
                     &:hover {
-                      background-color: #0EABEB;
+                      background-color: #0eabeb;
                       color: white;
                     }
                   }
