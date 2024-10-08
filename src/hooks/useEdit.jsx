@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGlobal } from './useGlobal';
 import { useAuth } from './useAuth';
+import { useGlobal } from './useGlobal';
 
 export const useEdit = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export const useEdit = () => {
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
     ...userData,
-    hospitalName: userData?.hospital?.name,
+    hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
   });
   const [imageBlob, setImageBlob] = useState(null);
 
@@ -17,6 +17,9 @@ export const useEdit = () => {
     const { name, value } = e.target;
     setProfile((prevProfile) => ({
       ...prevProfile,
+      // if(user.role === 'doctor' && name === 'hospitalName'){
+        
+      // }
       [name]: value,
     }));
   };

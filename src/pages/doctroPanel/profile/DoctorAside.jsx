@@ -5,15 +5,17 @@ import { FaStickyNote } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import '../profile/doctorProfile.css'
+import { useGlobal } from "../../../hooks/useGlobal";
 
 export const DoctorAside = () => {
+  const { userData } = useGlobal();
   return (
     <div className="left">
       <div className="img-box">
         <div className="img">
-          <img src="../../img/dr-profile.png" alt="" />
+          <img src={userData?.avatar || "../../img/dr-profile.png"} className='rounded-full' />
         </div>
-        <p>Lincoln Philips</p>
+        <p>{userData ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
       </div>
       <div className="menu">
         <p>Menu</p>

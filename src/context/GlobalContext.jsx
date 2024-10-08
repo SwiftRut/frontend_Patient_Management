@@ -67,6 +67,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   const editDoctorProfile = async (id, userData) => {
+    console.log("inside eding doctor profile", userData);
     try{
     const response = await apiService.EditDoctor(id, userData);
     setUserData(response.data.data);
@@ -80,6 +81,7 @@ export const GlobalProvider = ({ children }) => {
     try{
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data.data);
+      console.log(response.data.data);
       }catch(error){
       console.log(error);
       throw error
