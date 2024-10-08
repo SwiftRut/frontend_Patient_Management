@@ -3,6 +3,7 @@ import { FaEdit } from "react-icons/fa";
 import "./invoice.css";
 import { FaCircleMinus } from "react-icons/fa6";
 import { FaImage } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
 
 const Invoice = () => {
   return (

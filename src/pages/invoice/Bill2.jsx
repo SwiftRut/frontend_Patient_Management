@@ -2,6 +2,7 @@ import "../invoice/bill2.css";
 export default function Bill2() {
   return (
     <>
+      <div className="main">
       <div className="invoice">
         <div className="head">
           <img src="/img/logo.png" width="300px" />
@@ -108,6 +109,7 @@ export default function Bill2() {
         <div className="footer flex justify-between">
           <p>Call: +00854 22354 </p> <p>Email: Hello@Gmail.com</p>
         </div>
+      </div>
       </div>
     </>
   );

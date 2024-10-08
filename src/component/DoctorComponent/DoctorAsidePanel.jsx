@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
-import "./sidebar.css";
+import "../DoctorComponent/doctorAsidePanel.css";
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoMdListBox } from "react-icons/io";
+import { BsFillBagPlusFill } from "react-icons/bs";
+import { MdOutlineWifiCalling } from "react-icons/md";
+import { IoMdChatbubbles } from "react-icons/io";
 
-const Sidebar = () => {
+export default function DoctorAsidePanel() {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
   const { logout } = useAuth();
   const toggleAccordion = () => {
@@ -21,20 +26,18 @@ const Sidebar = () => {
             <ul>
               <li>
                 <NavLink to={"/"}>
-                  <img src="/img/Dashboard.png" />
-                  <span>Dashboard</span>
+                  <div className="icon">
+                  <FaCalendarAlt />
+                  </div>
+                  <span>Appointment Management</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                  <img src="/img/Doctor-Management.png" />
-                  <span>Doctor Management</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/patientManagement"}>
-                  <img src="/img/Patient-Management.png" />
-                  <span>Patient Management</span>
+                <div className="icon">
+                  <IoMdListBox />
+                  </div>
+                  <span>Patient Record Accesst</span>
                 </NavLink>
               </li>
               <li
@@ -42,11 +45,12 @@ const Sidebar = () => {
                 style={{ display: "flex", flexDirection: "column" }}
               >
                 <NavLink>
-                <img
-                  src="/img/BillingAndPayments.png"
-                  alt="Billing and Payments"
-                />
-                <span className="menu-item">Billing and Payments</span>
+                  <div className="flex" style={{ flexDirection: "row" }}>
+                  <div className="icon">
+                  <BsFillBagPlusFill />
+                  </div>
+                    <span className="menu-item">Prescription Tools</span>
+                  </div>
                 </NavLink>
 
                 {/* Accordion Dropdown */}
@@ -71,15 +75,25 @@ const Sidebar = () => {
                 )}
               </li>
               <li>
+                <NavLink to={"/patientManagement"}>
+                <div className="icon">
+                  <MdOutlineWifiCalling />
+                  </div>
+                  <span>Teleconsultation Module</span>
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                  <img src="/img/ReportingAndAnalytics.png" />
-                  <span>Reporting and Analytics</span>
+                <div className="icon">
+                  <IoMdChatbubbles  />
+                  </div>
+                  <span>Chat</span>
                 </NavLink>
               </li>
             </ul>
             <div className="logout-btn">
               <button className="flex" onClick={() => logout()}>
-                <img src="../img/logout.png" alt="" /> Logout
+              <img src="../img/logout.png" alt="" /> Logout
               </button>
             </div>
           </div>
@@ -87,6 +101,4 @@ const Sidebar = () => {
       </div>
     </>
   );
-};
-
-export default Sidebar;
+}

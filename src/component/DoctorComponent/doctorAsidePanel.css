@@ -22,6 +22,10 @@ input {
   flex-wrap: wrap;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .sidebar {
   display: flex;
   flex-direction: row;
@@ -58,6 +62,7 @@ input {
   color: #818194;
   padding: 5px 15px;
   background-color: #fff;
+  transition: all 0.7s;
 }
 .sidebar .asite .menu ul li .dropdown {
   list-style: none;
@@ -97,22 +102,23 @@ input {
   font-size: 20px;
   color: #0eabeb;
 }
-.sidebar .asite .menu ul li a img {
+.sidebar .asite .menu ul li a .icon {
   color: #818194 !important;
   padding-right: 15px;
-  width: 50px;
+  font-size: 25px;
 }
 .sidebar .asite .menu ul li a span {
   color: #818194;
   font-size: 20px;
 }
 .sidebar .asite .menu ul li:hover {
-  background: linear-gradient(
-    90deg,
-    rgb(213, 241, 250) 0%,
-    rgb(255, 255, 255) 100%
-  );
-  color: #0eabeb;
+  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
+}
+.sidebar .asite .menu ul li:hover span {
+  color: #0eabeb !important;
+}
+.sidebar .asite .menu ul li:hover .icon {
+  color: #0eabeb !important;
 }
 .sidebar .asite .menu .logout-btn button {
   gap: 15px;
@@ -129,4 +135,4 @@ input {
   width: 83%;
   margin-left: 17%;
   padding: 20px;
-} /*# sourceMappingURL=sidebar.css.map */
+}/*# sourceMappingURL=doctorAsidePanel.css.map */
