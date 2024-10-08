@@ -3,6 +3,7 @@ import axios from 'axios';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
 import { useGlobal } from '../hooks/useGlobal';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const {getAdminProfile, getDoctorProfile} = useGlobal();
   const PatientLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.PatientLogin(userData);
@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const PatientRegister = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const { data } = await apiService.PatientRegister(userData);
@@ -44,7 +43,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const AdminLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.AdminLogin(userData);
@@ -62,7 +60,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const AdminRegister = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const { data } = await apiService.AdminRegister(userData);
@@ -78,7 +75,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const DoctorLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.DoctorLogin(userData);
@@ -122,12 +118,25 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   }
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
-    window.location.href = '/';
-    setUser(null);
+
+  const logout = async () => {
+    try {
+      // Call the logout API
+      await apiService.UniversalLogout();
+      
+      // Clear localStorage and remove Authorization header
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      delete axios.defaults.headers.common['Authorization'];
+      
+      // Redirect to login page
+      window.location.href = '/login';
+      
+      // Reset user state
+      setUser(null);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -136,6 +145,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

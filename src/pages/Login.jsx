@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Login = () => {
     remember: "true",
   });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,15 +74,17 @@ const Login = () => {
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter Password"
-                      />
-                      <div className="eye">
-                        <img src="../img/eye-slash.png" alt="eye" />
+                      <div className="password-input-container">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          placeholder="Enter Password"
+                        />
+                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                        </div>
                       </div>
                     </div>
 
@@ -100,16 +104,16 @@ const Login = () => {
                           />
                           <p>Remember me</p>
                         </div>
-                        <div className="forgot">
-                          <span>Forgot password?</span>
+                        <div className="forgot" onClick={() => navigate("/AdminMobile")}>
+                          <span style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Forgot password?</span>
                         </div>
                       </div>
 
                       <div className="login-btn">
                         <button type="submit">Login</button>
                       </div>
-                      <div className="registration-btn">
-                        <p>Don’t have an account? Register</p>
+                      <div className="registration-btn" onClick={() => navigate("/adminRegistration")}>
+                        <p style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Don’t have an account? Register</p>
                       </div>
                     </div>
                   </form>

@@ -37,8 +37,12 @@ const apiService = {
   GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
   EditDoctor: (id, userData) => api.put(`/doctor/editDoctor/${id}`, userData),
 
-  // Universal Login
+  // Universal Login /logout
   UniversalLogin: (userData) => api.post("/login", userData),
+  UniversalLogout: (userData) => api.post("/logout", userData),
+  ForgetPassword: (userData) => api.post("/forgetPassword", userData),
+  VerifyOtp: (userData) => api.post("/verifyOtp", userData),
+  ResetPassword: (userData) => api.post("/resetPassword", userData),
 
   //Hospital
   CreateHospital: (userData) => api.post("/hospital/create-hospital", userData),
@@ -53,6 +57,21 @@ const apiService = {
   GetBillById: (id) => api.get(`/bill/siglebill/${id}`),
   EditBill: (id, userData) => api.put(`/bill/billupdate/${id}`, userData),
   DeleteBill: (id) => api.delete(`/bill/deletebill/${id}`),
+  GetAllHospital: (userData) =>
+    api.post("/hospital/get-all-hospitals", userData),
+
+  //Doctor
+  CreateDoctor: (userData) => api.post("/doctor/addDoctor", userData),
+  GetAllDoctors: (userData) => api.get("/doctor/getAllDoctors", userData),
+  GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
+  DeleteDoctor: (id) => api.delete(`/doctor/deleteDoctor/${id}`),
+
+  //Admin
+  GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),
+  EditAdminProfile: (id, userData) =>
+    api.patch(`/admin/edit-profile/${id}`, userData),
+  ChangePassword: (id, userData) =>
+    api.patch(`/admin/change-password/${id}`, userData),
 };
 
 export default apiService;
