@@ -25,6 +25,7 @@ import {
   Legend,
 } from "chart.js";
 import { useGlobal } from "../../hooks/useGlobal";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -36,6 +37,7 @@ ChartJS.register(
   Legend
 );
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [timePeriod, setTimePeriod] = useState("Week");
   const { getBills, allBills } = useGlobal();
   console.log(allBills);
@@ -238,7 +240,7 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className="flex">
+                    <button className="flex" onClick={() => navigate("/invoice")}>
                       <FaAddressCard />
                       Create Bills
                     </button>
