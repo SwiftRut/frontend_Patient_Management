@@ -4,6 +4,7 @@ import { FaLock } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { NavLink } from "react-router-dom";
+import '../profile/doctorProfile.css'
 
 export const DoctorAside = () => {
   return (
@@ -29,12 +30,12 @@ export const DoctorAside = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"termsCondition"}>
+            <NavLink to={"/doctor/profile/termsCondition"}>
               <FaStickyNote /> <span>Terms & Condition</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to={"privacyPolicy"}>
+            <NavLink to={"/doctor/profile/privacyPolicy"}>
               <SiSpringsecurity /> <span>Privacy Policy</span>
             </NavLink>
           </li>

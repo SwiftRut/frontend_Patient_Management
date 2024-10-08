@@ -17,6 +17,10 @@ import Onsite from "./pages/doctorManagement/Onsite.jsx";
 
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
+import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
+import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
+import CreateBill from "./pages/invoice/CreateBill.jsx";
+import EditBill from "./pages/invoice/EditBill.jsx";
 
 import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
 import CashPayment from "./pages/billPayment/CashPayment.jsx";
@@ -33,6 +37,7 @@ function App() {
             <Route path="/resetPassword" element={< AdminChangePassword/>} />
 
             {/* admin component */}
+
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
@@ -52,10 +57,15 @@ function App() {
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
 
+            {/* AdminPanel routs  */}
+
             <Route path="/" element={<AdminPanel />}>
-              <Route path="doctorManagement" />
               <Route path="profile/*" />
               <Route path="edit" />
+
+              <Route path="doctorManagement/*" />
+              <Route path="doctorAdd" />
+              <Route path="doctorEdit" />
 
               <Route path="patientManagement" />
 
@@ -71,10 +81,13 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
+            <Route path="/createBill" element={<CreateBill />} />
+            <Route path="/editBill" element={<EditBill />} />
 
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
-              <Route path="profile/*" />
+              <Route path="profile/*" element={<DoctorProfile />} />
+              <Route path="edit" />
             </Route>
           </Routes>
         </BrowserRouter>

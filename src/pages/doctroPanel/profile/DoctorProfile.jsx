@@ -2,11 +2,14 @@ import { DoctorAside } from "./DoctorAside";
 import DoctorProfileData from "./DoctorProfileData";
 import { Route, Routes } from "react-router-dom";
 import DoctorProfileChangePassord from "./DoctorProfileChangePassord";
+import DoctorProfileTermsCondition from "./DoctorProfileTermsCondition";
+import DoctorProfilePrivacyPolicy from "./DoctorProfilePrivacyPolicy";
+import '../profile/doctorProfile.css'
 
 export default function DoctorProfile() {
   return (
     <div>
-      <div className="profile-section">
+      <div className="doctor-profile-section">
         <div className="row">
           <div className="main">
             <div className="top"></div>
@@ -21,8 +24,8 @@ export default function DoctorProfile() {
                   <Routes>
                     <Route path="" element={<DoctorProfileData />} />
                     <Route path="changePassword" element={<DoctorProfileChangePassord />} />
-                    {/* <Route path="termsCondition" element={<ProfileTermsCondition />} /> */}
-                    {/* <Route path="privacyPolicy" element={<ProfilePrivacyPolicy />} /> */}
+                    <Route path="termsCondition" element={<DoctorProfileTermsCondition />} />
+                    <Route path="privacyPolicy" element={<DoctorProfilePrivacyPolicy />} />
                   </Routes>
                 </div>
               </div>

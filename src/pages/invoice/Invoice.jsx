@@ -7,7 +7,7 @@ import { FaImage } from "react-icons/fa";
 const Invoice = () => {
   return (
     <div>
-      {/* create-bill section start  */}
+      {/* create-bill hospital & patient details section start  */}
 
       <div className="create-bill-section">
         <div className="row">
@@ -29,10 +29,10 @@ const Invoice = () => {
                 <div className="details flex">
                   <div className="left">
                     <div className="upload-logo">
-                      
-                    <FaImage />
-                    <p><span>Upload a file</span> or drag and drop</p>
-                    <h5>PNG, JPG, GIF up to 10MB</h5>
+
+                      <FaImage />
+                      <p><span>Upload a file</span> or drag and drop</p>
+                      <h5>PNG, JPG, GIF up to 10MB</h5>
                     </div>
                   </div>
                   <div className="right">
@@ -151,7 +151,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Doctor Name
+                          Doctor Name
                         </div>
                         <input type="text" placeholder="Enter Doctor Name" />
                         <div className="minus-circle">
@@ -161,9 +161,9 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Description 
+                          Description
                         </div>
-                        <input type="date" placeholder="Enter Description" />
+                        <input type="text" placeholder="Enter Description" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
@@ -171,7 +171,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Discount (%) 
+                          Discount (%)
                         </div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
@@ -181,7 +181,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Tax 
+                          Tax
                         </div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
@@ -191,7 +191,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Amount 
+                          Amount
                         </div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
@@ -201,17 +201,17 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Total Amount 
+                          Total Amount
                         </div>
                         <input type="text" placeholder="0000" />
                         <div className="minus-circle">
                           <FaCircleMinus />
                         </div>
                       </div>
-                      
+
                       <div className="input-box">
                         <div className="label">
-                        Payment Type 
+                          Payment Type
                         </div>
                         <select name="" id="">
                           <option >Select Payment Type</option>
@@ -223,7 +223,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Age 
+                          Age
                         </div>
                         <input type="text" placeholder="Enter Age" />
                         <div className="minus-circle">
@@ -233,7 +233,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Gender 
+                          Gender
                         </div>
                         <select name="" id="">
                           <option >Select Gender</option>
@@ -245,7 +245,7 @@ const Invoice = () => {
 
                       <div className="input-box">
                         <div className="label">
-                        Address 
+                          Address
                         </div>
                         <input type="text" placeholder="Enter Address" />
                         <div className="minus-circle">
@@ -266,7 +266,7 @@ const Invoice = () => {
         </div>
       </div>
 
-      {/* create-bill section end */}
+      {/* create-bill hospital & patient details section end */}
     </div>
   );
 };
