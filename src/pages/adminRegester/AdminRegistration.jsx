@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
+
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
@@ -15,9 +15,9 @@ const AdminRegistration = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
+    password: "123@abc",
+    confirmPassword: "123@abc",
+    phone: "4123456780",
     country: "",
     state: "",
     city: "",
@@ -350,150 +350,157 @@ const AdminRegistration = () => {
 
       {/* create-Hospital form start */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="hospital-section">
-              <div className="row">
-                <div className="main">
-                  <div className="form">
-                    <div className="content">
-                      <div className="head">
-                        <p>Add New Hospital</p>
-                      </div>
-                      <div className="form-box">
-                        <form onSubmit={handleHospitalSubmit} className="flex">
-                          <div className="input-box">
-                            <div className="label">
-                              Hospital Name <span>*</span>
-                            </div>
-                            <input
-                              type="text"
-                              name="name"
-                              value={hospitalFormData.name}
-                              onChange={handleHospitalFormChange}
-                              placeholder="Enter Hospital Name"
-                              required
-                            />
+      <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <div className="hospital-section">
+                  <div className="row">
+                    <div className="main">
+                      <div className="form">
+                        <div className="content">
+                          <div className="head">
+                            <p>Add New Hospital</p>
                           </div>
-
-                          <div className="input-box">
-                            <div className="label">
-                              Hospital Address <span>*</span>
-                            </div>
-                            <input
-                              type="text"
-                              name="address"
-                              value={hospitalFormData.address}
-                              onChange={handleHospitalFormChange}
-                              placeholder="Enter Hospital Address"
-                              required
-                            />
-                          </div>
-
-                          <div className="input-box">
-                            <div className="label">
-                              Country <span>*</span>
-                            </div>
-                            <select
-                              name="country"
-                              value={hospitalFormData.country}
-                              onChange={handleHospitalFormChange}
-                              required
+                          <div className="form-box">
+                            <form
+                              onSubmit={handleHospitalSubmit}
+                              className="flex"
                             >
-                              <option value="">Select Country</option>
-                              {countries.map((country) => (
-                                <option
-                                  key={country.isoCode}
-                                  value={country.isoCode}
+                              <div className="input-box">
+                                <div className="label">
+                                  Hospital Name <span>*</span>
+                                </div>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  value={hospitalFormData.name}
+                                  onChange={handleHospitalFormChange}
+                                  placeholder="Enter Hospital Name"
+                                  required
+                                />
+                              </div>
+
+                              <div className="input-box">
+                                <div className="label">
+                                  Hospital Address <span>*</span>
+                                </div>
+                                <input
+                                  type="text"
+                                  name="address"
+                                  value={hospitalFormData.address}
+                                  onChange={handleHospitalFormChange}
+                                  placeholder="Enter Hospital Address"
+                                  required
+                                />
+                              </div>
+
+                              <div className="input-box">
+                                <div className="label">
+                                  Country <span>*</span>
+                                </div>
+                                <select
+                                  name="country"
+                                  value={hospitalFormData.country}
+                                  onChange={handleHospitalFormChange}
+                                  required
                                 >
-                                  {country.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                                  <option value="">Select Country</option>
+                                  {countries.map((country) => (
+                                    <option
+                                      key={country.isoCode}
+                                      value={country.isoCode}
+                                    >
+                                      {country.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
 
-                          <div className="input-box">
-                            <div className="label">
-                              State <span>*</span>
-                            </div>
-                            <select
-                              name="state"
-                              value={hospitalFormData.state}
-                              onChange={handleHospitalFormChange}
-                              required
-                            >
-                              <option value="">Select State</option>
-                              {State.getStatesOfCountry(
-                                hospitalFormData.country
-                              ).map((state) => (
-                                <option
-                                  key={state.isoCode}
-                                  value={state.isoCode}
+                              <div className="input-box">
+                                <div className="label">
+                                  State <span>*</span>
+                                </div>
+                                <select
+                                  name="state"
+                                  value={hospitalFormData.state}
+                                  onChange={handleHospitalFormChange}
+                                  required
                                 >
-                                  {state.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                                  <option value="">Select State</option>
+                                  {State.getStatesOfCountry(
+                                    hospitalFormData.country
+                                  ).map((state) => (
+                                    <option
+                                      key={state.isoCode}
+                                      value={state.isoCode}
+                                    >
+                                      {state.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
 
-                          <div className="input-box">
-                            <div className="label">
-                              City <span>*</span>
-                            </div>
-                            <select
-                              name="city"
-                              value={hospitalFormData.city}
-                              onChange={handleHospitalFormChange}
-                              required
-                            >
-                              <option value="">Select City</option>
-                              {City.getCitiesOfState(
-                                hospitalFormData.country,
-                                hospitalFormData.state
-                              ).map((city) => (
-                                <option key={city.name} value={city.name}>
-                                  {city.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
+                              <div className="input-box">
+                                <div className="label">
+                                  City <span>*</span>
+                                </div>
+                                <select
+                                  name="city"
+                                  value={hospitalFormData.city}
+                                  onChange={handleHospitalFormChange}
+                                  required
+                                >
+                                  <option value="">Select City</option>
+                                  {City.getCitiesOfState(
+                                    hospitalFormData.country,
+                                    hospitalFormData.state
+                                  ).map((city) => (
+                                    <option key={city.name} value={city.name}>
+                                      {city.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
 
-                          <div className="input-box">
-                            <div className="label">
-                              Zip Code <span>*</span>
-                            </div>
-                            <input
-                              type="text"
-                              name="zipcode"
-                              value={hospitalFormData.zipcode}
-                              onChange={handleHospitalFormChange}
-                              placeholder="Enter Zip Code"
-                              required
-                            />
-                          </div>
+                              <div className="input-box">
+                                <div className="label">
+                                  Zip Code <span>*</span>
+                                </div>
+                                <input
+                                  type="text"
+                                  name="zipcode"
+                                  value={hospitalFormData.zipcode}
+                                  onChange={handleHospitalFormChange}
+                                  placeholder="Enter Zip Code"
+                                  required
+                                />
+                              </div>
 
-                          <div className="btn flex">
-                            <div className="cancel-btn">
-                              <button
-                                type="button"
-                                onClick={() => setIsModalOpen(false)}
-                              >
-                                Cancel
-                              </button>
-                            </div>
+                              <div className="btn flex">
+                                <div className="cancel-btn">
+                                  <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
 
-                            <div className="save-btn">
-                              <button type="submit">Save</button>
-                            </div>
+                                <div className="save-btn">
+                                  <button type="submit">Save</button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                        </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div>{" "}
         </div>
       )}
       {/* create-Hospital form end */}

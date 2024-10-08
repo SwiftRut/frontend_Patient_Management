@@ -3,12 +3,12 @@ import "../pages.css";
 import { IoTimeOutline } from "react-icons/io5";
 import { useRef, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import apiService from '../../services/api.js';
+import apiService from '../../services/api.js'; // Import your API service
 
 const AdminOtp = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { identifier } = location.state || {}; // Access the identifier passed from the previous component
+  const { identifier } = location.state || {};
   const inputRefs = useRef([]);
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [error, setError] = useState("");
@@ -17,12 +17,12 @@ const AdminOtp = () => {
   const [timer, setTimer] = useState(300); // 5 minutes = 300 seconds
 
   useEffect(() => {
-    // Timer logic
+    // Timer logic for disabling the resend button for 5 minutes
     const interval = setInterval(() => {
       if (timer > 0) {
         setTimer((prevTimer) => prevTimer - 1);
       } else {
-        setIsResendDisabled(false); // Enable resend OTP button when timer reaches 0
+        setIsResendDisabled(false);
       }
     }, 1000);
 
@@ -38,7 +38,6 @@ const AdminOtp = () => {
   const handleInputChange = (index, event) => {
     const { value } = event.target;
     if (!/^\d*$/.test(value)) {
-      // If the input is not a digit, clear the input
       event.target.value = "";
       return;
     }
@@ -47,13 +46,11 @@ const AdminOtp = () => {
     newOtp[index] = value;
     setOtp(newOtp);
 
-    // Move to next input when one digit is entered
     if (value.length === 1 && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1].focus();
     }
   };
 
-  // Handle backspace to move to the previous input
   const handleKeyDown = (index, event) => {
     if (event.key === "Backspace" && index > 0 && otp[index] === "") {
       inputRefs.current[index - 1].focus();
@@ -65,7 +62,7 @@ const AdminOtp = () => {
     setError('');
     setSuccessMessage('');
 
-    const enteredOtp = otp.join(''); // Combine the OTP array into a string
+    const enteredOtp = otp.join('');
 
     if (enteredOtp.length !== 6) {
       setError("Please enter a valid 6-digit OTP.");
@@ -92,12 +89,14 @@ const AdminOtp = () => {
   const handleResendOtp = async () => {
     setError('');
     setSuccessMessage('');
-    setIsResendDisabled(true); // Disable button until timer expires
-    setTimer(300); // Reset the timer to 5 minutes
+    setIsResendDisabled(true);
+    setTimer(300);
 
     try {
-      const response = await apiService.ForgotPassword({ identifier });
-      setSuccessMessage(response.data.message); // Show success message upon sending OTP
+      console.log(identifier)
+      const response = await apiService.ForgetPassword({ identifier });
+
+      setSuccessMessage(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message);
@@ -123,10 +122,10 @@ const AdminOtp = () => {
                 </div>
 
                 {/* Display success message */}
-                {successMessage && <div className="success-message">{successMessage}</div>}
+                {successMessage && <div className="success-message" style={{ "color": "green" }}>{successMessage}</div>}
 
                 {/* Display error message */}
-                {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message" style={{ "color": "red" }}>{error}</div>}
 
                 <div className="admin-otp-form-box">
                   <form className="flex" onSubmit={handleSubmit}>
@@ -157,7 +156,6 @@ const AdminOtp = () => {
                           <button
                             type="button"
                             onClick={handleResendOtp}
-                            disabled={isResendDisabled}
                           >
                             Resend OTP
                           </button>

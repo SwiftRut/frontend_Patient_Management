@@ -7,6 +7,7 @@ import DoctorProfilePrivacyPolicy from "./DoctorProfilePrivacyPolicy";
 import '../profile/doctorProfile.css'
 
 export default function DoctorProfile() {
+
   return (
     <div>
       <div className="doctor-profile-section">

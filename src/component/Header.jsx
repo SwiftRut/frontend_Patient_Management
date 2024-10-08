@@ -7,7 +7,8 @@ import { NavLink } from "react-router-dom";
 import { useGlobal } from "../hooks/useGlobal";
 
 const Header = () => {
-  const { adminData } = useGlobal();
+  const { userData } = useGlobal();
+  console.log(userData);
   return (
     <div className="header">
       <div className="breadcrumbs">
@@ -32,9 +33,9 @@ const Header = () => {
           </div>
           <NavLink to={"/profile"}>
             <div className="user">
-            <img src={adminData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
+            <img src={userData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
               <div>
-                <p>{adminData ? `${adminData?.firstName} ${adminData?.lastName}` : 'Lincoln Philips'}</p>
+                <p>{userData && userData.firstName && userData.lastName ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
                 <span>Admin</span>
               </div>
             </div>

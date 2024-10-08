@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import "../doctorManagement/Onsite.css";
 import { IoIosArrowBack } from "react-icons/io";

@@ -1,105 +1,65 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useGlobal } from "../context/GlobalContext";
-import { useLocationData } from "../hooks/useLocationData";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './useAuth';
+import { useGlobal } from './useGlobal';
 
-const useEdit = () => {
+export const useEdit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { editAdminProfile, adminData } = useGlobal();
-  const [profile, setProfile] = useState({ ...adminData, hospitalName: adminData?.hospital?.name });
+  const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
+  const [profile, setProfile] = useState({
+    ...userData,
+    hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
+  });
   const [imageBlob, setImageBlob] = useState(null);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
-  const {
-    countries,
-    states,
-    cities,
-    setSelectedCountry,
-    setSelectedState
-  } = useLocationData();
-
-  useEffect(() => {
-    setSelectedCountry(profile.country);
-  }, [profile.country, setSelectedCountry]);
-
-  useEffect(() => {
-    setSelectedState(profile.state);
-  }, [profile.state, setSelectedState]);
-
-  const handleInputChange = useCallback((e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfile((prevProfile) => ({
       ...prevProfile,
-      [name]: value
+      // if(user.role === 'doctor' && name === 'hospitalName'){
+        
+      // }
+      [name]: value,
     }));
-  }, []);
+  };
 
-  const handleImageChange = useCallback((e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (!file.type.startsWith('image/')) {
-        setError('Please upload a valid image file.');
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
-        setError('File size should be less than 5MB.');
-        return;
-      }
       const blob = new Blob([file], { type: file.type });
       setImageBlob(blob);
+
       const reader = new FileReader();
       reader.onload = (e) => {
         setProfile((prevProfile) => ({
           ...prevProfile,
-          profilePic: e.target.result
+          profilePic: e.target.result,
         }));
-      };
-      reader.onerror = (error) => {
-        console.error('Error reading file:', error);
-        setError('Error reading file.');
       };
       reader.readAsDataURL(file);
     }
-  }, []);
+  };
 
-  const handleFormSubmit = useCallback(async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      setError(null);
-      setSuccess(null);
       const formData = new FormData();
-      Object.keys(profile).forEach(key => {
-        formData.append(key, profile[key]);
-      });
-      if (imageBlob) {
-        formData.append('profilePic', imageBlob, 'profile.jpg');
+      Object.keys(profile).forEach((key) => formData.append(key, profile[key]));
+      if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
+      if (user.role === 'doctor') {
+        await editDoctorProfile(user.id, formData);
+        navigate('/doctor/profile');
+        return;
+      }else if(user.role === 'admin'){
+        await editAdminProfile(user.id, formData);
+        navigate('/profile');
+        return;
       }
-      await editAdminProfile(user.id, formData);
-      setSuccess('Profile updated successfully!');
-      navigate('/profile');
     } catch (error) {
       console.error('Error saving profile:', error);
-      setError('Error saving profile. Please try again.');
     }
-  }, [profile, imageBlob, editAdminProfile, user.id, navigate]);
-
-  return {
-    profile,
-    setProfile,
-    countries,
-    states,
-    cities,
-    imageBlob,
-    setImageBlob,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-    error,
-    success
   };
-};
 
-export default useEdit;
+  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit };
+};

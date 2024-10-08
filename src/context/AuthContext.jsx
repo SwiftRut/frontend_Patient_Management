@@ -3,14 +3,14 @@ import axios from 'axios';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
 import { useGlobal } from '../hooks/useGlobal';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
   const [loading, setLoading] = useState(true);
-  const {getAdminProfile} = useGlobal();
+  const {getAdminProfile, getDoctorProfile} = useGlobal();
   const PatientLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.PatientLogin(userData);
@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const PatientRegister = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const { data } = await apiService.PatientRegister(userData);
@@ -44,7 +43,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const AdminLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.AdminLogin(userData);
@@ -62,7 +60,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const AdminRegister = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const { data } = await apiService.AdminRegister(userData);
@@ -78,7 +75,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const DoctorLogin = async (userData) => {
-    console.log(userData);
     setLoading(true);
     try {
       const response = await apiService.DoctorLogin(userData);
@@ -96,7 +92,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const UniversalLogin = async function (userData) {
-    console.log(userData);
+    console.log("inside UniversalLogin", userData);
     setLoading(true);
     try {
       const response = await apiService.UniversalLogin(userData);
@@ -104,7 +100,16 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
-      await getAdminProfile(response.data.user.id);
+
+      //here we have call the function based on the user role
+      if(response.data.user.role === "doctor"){
+        console.log("doctor profile fetching");
+        await getDoctorProfile(response.data.user.id);
+      }
+      else if(response.data.user.role === "admin"){
+        console.log("admin profile fetching");
+        await getAdminProfile(response.data.user.id);
+      }
       return true;
     } catch (error) {
       console.error('Login error:', error);
@@ -113,12 +118,25 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   }
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
-    window.location.href = '/';
-    setUser(null);
+
+  const logout = async () => {
+    try {
+      // Call the logout API
+      await apiService.UniversalLogout();
+      
+      // Clear localStorage and remove Authorization header
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      delete axios.defaults.headers.common['Authorization'];
+      
+      // Redirect to login page
+      window.location.href = '/login';
+      
+      // Reset user state
+      setUser(null);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -127,6 +145,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
