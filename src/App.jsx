@@ -38,7 +38,7 @@ function App() {
             <Route path="/AdminOtp" element={<AdminOtp />} />
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
-            <Route path="/onsite" element={<Onsite />} />
+            <Route path="/onsite/:id" element={<Onsite />} />
             <Route path="/bill" element={<Bill />} />
 
             <Route path="/login" element={<Login />} />

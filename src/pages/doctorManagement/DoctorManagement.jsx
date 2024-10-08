@@ -58,6 +58,7 @@ export default function DoctorManagement() {
   const handleViewDoctorDetails = (doctor) => {
     setSelectedDoctor(doctor); // Set the selected doctor details
     setShowOnsite(true); // Show the Onsite modal
+    navigate(`/onsite/${doctor._id}`);
   };
 
   const filteredDoctors = doctors.filter(doctor =>

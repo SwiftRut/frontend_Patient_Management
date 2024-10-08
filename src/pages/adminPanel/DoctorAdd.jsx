@@ -22,6 +22,9 @@ const countryCodes = [
 const DoctorAdd = () => {
   const navigate = useNavigate();
 
+  const [signaturePreview, setSignaturePreview] = useState(null);
+  const [profilePicturePreview, setProfilePicturePreview] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     qualification: '',
@@ -47,7 +50,9 @@ const DoctorAdd = () => {
     hospitalName: '',
     hospitalAddress: '',
     worksiteLink: '',
-    emergencyContactNo: ''
+    emergencyContactNo: '',
+    signature: null,
+    profilePicture: null
   });
 
   const handleChange = (e) => {
@@ -56,6 +61,43 @@ const DoctorAdd = () => {
       ...formData,
       [name]: value
     });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
+      setFormData((prevData) => ({
+        ...prevData,
+        signature: file, // Store the file in the state
+      }));
+
+      // Create a preview of the uploaded image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSignaturePreview(reader.result); // Set the preview URL
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please upload a PNG or JPEG file up to 5MB.");
+    }
+  };
+
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
+      setFormData((prevData) => ({
+        ...prevData,
+        profilePicture: file,
+      }));
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicturePreview(reader.result); 
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please upload a PNG or JPEG file up to 5MB for the profile picture.");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -87,10 +129,27 @@ const DoctorAdd = () => {
                 <div className="details flex">
                   <div className="left flex">
                     <div className="choose-photo">
-                      <div className="image">
-                        <img src="../img/doctorAdd.png" alt="" />
+                      <div className="image" onClick={() => document.getElementById("profilePictureUpload").click()}>
+                        {profilePicturePreview ? (
+                          <img
+                            src={profilePicturePreview}
+                            alt="Profile Preview"
+                            style={{ width: "100%", height: "auto", cursor: 'pointer' }}
+                          />
+                        ) : (
+                          <img src="../img/doctorAdd.png" alt="" style={{ cursor: 'pointer' }} />
+                        )}
                       </div>
-                      <p>Choose Photo</p>
+                      <input
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        onChange={handleProfilePictureChange}
+                        style={{ display: "none" }}
+                        id="profilePictureUpload"
+                      />
+                      <p style={{ cursor: 'pointer' }} onClick={() => document.getElementById("profilePictureUpload").click()}>
+                        Choose Photo
+                      </p>
                     </div>
                     <div className="upload-sign">
                       <div className="title">
@@ -98,8 +157,18 @@ const DoctorAdd = () => {
                       </div>
                       <div className="sign">
                         <FaImage />
-                        <p>Upload a file</p>
-                        <h5>PNG Up To 5MB</h5>
+                        <input
+                          type="file"
+                          accept="image/png, image/jpeg"
+                          onChange={handleFileChange}
+                          style={{ display: 'none' }}
+                          id="signatureUpload"
+                        />
+                        <label htmlFor="signatureUpload" style={{ cursor: 'pointer' }}>
+                          Upload a file
+                        </label>
+                        <h5>PNG or JPEG Up To 5MB</h5>
+                        {signaturePreview && <img src={signaturePreview} alt="Signature Preview" style={{ width: '100%', marginTop: '10px' }} />}
                       </div>
                     </div>
                   </div>
