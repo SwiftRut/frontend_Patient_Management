@@ -1,23 +1,80 @@
+import { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
+import { useGlobal } from "../../context/GlobalContext";
+import { useAuth } from "../../context/AuthContext";
+import { Country, State, City } from "country-state-city";
 import { useNavigate } from "react-router-dom";
-import { useLocationData } from "../../hooks/useLocationData";
-import { useEdit } from "../../hooks/useEdit";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-  } = useEdit();
-  const { countries, states, cities, loadStates, loadCities } = useLocationData(
-    profile.country,
-    profile.state
-  );
+  const { user } = useAuth();
+  const { editAdminProfile, adminData } = useGlobal();
+  const [profile, setProfile] = useState({ ...adminData });
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    const loadCountries = () => {
+      const allCountries = Country.getAllCountries().map((country) => ({
+        value: country.isoCode,
+        label: country.name,
+      }));
+      setCountries(allCountries);
+    };
+    loadCountries();
+  }, []);
+
+  useEffect(() => {
+    if (profile.country) {
+      const statesList = State.getStatesOfCountry(profile.country).map(
+        (state) => ({
+          value: state.isoCode,
+          label: state.name,
+        })
+      );
+      setStates(statesList);
+    } else {
+      setStates([]);
+    }
+    setCities([]); // Reset cities if country changes
+  }, [profile.country]);
+
+  useEffect(() => {
+    if (profile.state) {
+      const citiesList = City.getCitiesOfState(
+        profile.country,
+        profile.state
+      ).map((city) => ({
+        value: city.name,
+        label: city.name,
+      }));
+      setCities(citiesList);
+    } else {
+      setCities([]);
+    }
+  }, [profile.state]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await editAdminProfile(user.id, profile);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
+  };
+
   return (
-    <div>
+    <div className="main-content">
       <div className="edit-section">
         <div className="row">
           <div className="main">
@@ -30,27 +87,13 @@ export const Edit = () => {
                 <div className="left">
                   <div className="img-box">
                     <div className="img">
-                      <img
-                        src={profile?.avatar || "../img/profile.png"}
-                        alt=""
-                        className="rounded-full"
-                      />
+                      <img src="../img/profile.png" alt="" />
                     </div>
                     <div className="change-profile">
                       <ul>
                         <li>
-                          <input
-                            type="file"
-                            id="profilePic"
-                            name="profilePic"
-                            style={{ display: "none" }}
-                            onChange={handleImageChange}
-                            accept="image/*"
-                          />
-                          <label htmlFor="profilePic">
-                            <FaCamera />
-                            <span>Change Profile</span>
-                          </label>
+                          <FaCamera />
+                          <span>Change Profile</span>
                         </li>
                       </ul>
                     </div>
@@ -125,7 +168,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="hospitalName"
-                            value={profile?.hospitalName || ""}
+                            value={profile.hospitalName || ""}
                             onChange={handleInputChange}
                             placeholder="Hospital Name"
                           />
@@ -221,10 +264,7 @@ export const Edit = () => {
                           <div className="cancel-btn">
                             <button
                               type="button"
-                              onClick={() => {
-                                setProfile({ ...profile });
-                                navigate("/profile");
-                              }}
+                              onClick={() => setProfile({ ...adminData })}
                             >
                               Cancel
                             </button>

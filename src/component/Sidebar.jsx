@@ -1,12 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";  // Ensure you import the useAuth hook
 
 const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
-  const { logout } = useAuth();  // Destructure the logout function from useAuth hook
 
+  // Function to toggle the accordion state
   const toggleAccordion = () => {
     setAccordionOpen((prevState) => !prevState);
   };
@@ -22,19 +21,19 @@ const Sidebar = () => {
             <ul>
               <li>
                 <NavLink to={"/"}>
-                  <img src="/img/Dashboard.png" alt="Dashboard" />
+                  <img src="/img/Dashboard.png" />
                   <span>Dashboard</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                  <img src="/img/Doctor-Management.png" alt="Doctor Management" />
+                  <img src="/img/Doctor-Management.png" />
                   <span>Doctor Management</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
-                  <img src="/img/Patient-Management.png" alt="Patient Management" />
+                  <img src="/img/Patient-Management.png" />
                   <span>Patient Management</span>
                 </NavLink>
               </li>
@@ -42,13 +41,11 @@ const Sidebar = () => {
                 onClick={toggleAccordion}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <NavLink>
                 <img
                   src="/img/BillingAndPayments.png"
                   alt="Billing and Payments"
                 />
                 <span className="menu-item">Billing and Payments</span>
-                </NavLink>
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (
@@ -60,7 +57,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                       <NavLink to={"/insuranceClaims"}>
-                        <span>Insurance Claims</span>
+                        <span>insuranceClaims</span>
                       </NavLink>
                     </li>
                     <li>
@@ -73,15 +70,14 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                  <img src="/img/ReportingAndAnalytics.png" alt="Reporting and Analytics" />
+                  <img src="/img/ReportingAndAnalytics.png" />
                   <span>Reporting and Analytics</span>
                 </NavLink>
               </li>
             </ul>
             <div className="logout-btn">
-              {/* Logout button calls the logout function */}
-              <button className="flex" onClick={logout}>
-                <img src="../img/logout.png" alt="Logout" /> Logout
+              <button className="flex">
+                <img src="../img/logout.png" alt="" /> Logout
               </button>
             </div>
           </div>

@@ -1,13 +1,12 @@
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useGlobal } from "../../context/GlobalContext";
 import { useEffect } from "react";
-import { useGlobal } from "../../hooks/useGlobal";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 
 export default function ProfileData() {
   const { user } = useAuth();
-  const {getAdminProfile, userData } = useGlobal();
-  console.log(userData)
+  const {getAdminProfile, adminData } = useGlobal();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,63 +38,63 @@ export default function ProfileData() {
             <div className="label">
               First Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName}/>
+            <input disabled type="text" placeholder="Enter First Name" value={adminData?.firstName}/>
           </div>
 
           <div className="input-box">
             <div className="label">
               Last Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter Last Name" value={userData?.lastName}/>
+            <input disabled type="text" placeholder="Enter Last Name" value={adminData?.lastName}/>
           </div>
 
           <div className="input-box">
             <div className="label">
               Email Address <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Email Address" value={userData?.email} />
+            <input disabled type="text" placeholder=" Email Address" value={adminData?.email} />
           </div>
 
           <div className="input-box">
             <div className="label">
               Phone Number* <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Phone Number*" value={userData?.phone} />
+            <input disabled type="text" placeholder=" Phone Number*" value={adminData?.phone} />
           </div>
 
           <div className="input-box">
             <div className="label">
               Hospital Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Hospital Name" value={userData?.hospital?.name}/>
+            <input disabled type="text" placeholder=" Hospital Name" value={adminData?.hospital}/>
           </div>
 
           <div className="input-box">
             <div className="label">
               Gender <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Gender" value={userData?.gender} />
+            <input disabled type="text" placeholder="Gender" value={adminData?.gender} />
           </div>
 
           <div className="input-box">
             <div className="label">
               City <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" City" value={userData?.city}/>
+            <input disabled type="text" placeholder=" City" value={adminData?.city}/>
           </div>
 
           <div className="input-box">
             <div className="label">
               State <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" State" value={userData?.state}/>
+            <input disabled type="text" placeholder=" State" value={adminData?.state}/>
           </div>
 
           <div className="input-box">
             <div className="label">
               Country <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Country" value={userData?.country}/>
+            <input disabled type="text" placeholder=" Country" value={adminData?.country}/>
           </div>
         </form>
       </div>

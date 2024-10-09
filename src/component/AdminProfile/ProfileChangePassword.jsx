@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../../pages/profile/profile.css';
 import apiService from "../../services/api";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 
 const ProfileChangePassword = () => {
   const { user } = useAuth();

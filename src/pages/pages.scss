@@ -25,6 +25,7 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  background-color: white;
 }
 
 //admin registration section start
@@ -35,10 +36,12 @@ input {
       .form {
         padding: 120px;
         width: 50%;
+        background-color: #fff;
 
         .content {
           padding: 60px 60px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -83,9 +86,6 @@ input {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
 
                 select {
@@ -245,6 +245,69 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 700px;
+          height: 700px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 1px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -539,9 +602,11 @@ input {
   .row {
     .main {
       .form {
+        padding: 120px;
+        width: 50%;
 
         .content {
-          padding: 20px;
+          padding: 60px 60px;
           background-color: white;
           border-radius: 15px;
 
@@ -573,7 +638,6 @@ input {
                   padding: 12px 14px;
                   border: 1px solid #d9d9d9;
                   border-radius: 10px;
-                  width: 100%;
 
                   &:focus {
                     border: 1px solid #718ebf;
@@ -1127,10 +1191,14 @@ input {
       .form {
         padding: 120px;
         width: 50%;
-
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .content {
           padding: 60px 60px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1141,7 +1209,6 @@ input {
               font-weight: 600;
             }
           }
-
           .form-box {
             form {
               justify-content: space-between;
@@ -1156,7 +1223,6 @@ input {
                   left: 14px;
                   background-color: white;
                 }
-
                 input {
                   padding: 12px 14px;
                   border: 1px solid #d9d9d9;
@@ -1165,21 +1231,15 @@ input {
                   &:focus {
                     border: 1px solid #718ebf;
                   }
-
                   &::placeholder {
                     color: #a7a7a7;
                   }
                 }
-
                 .eye {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
-
                 select {
                   padding: 12px 14px;
                   border: 1px solid #d9d9d9;
@@ -1187,11 +1247,9 @@ input {
                   outline: none;
                   background-color: white;
                   color: #a7a7a7;
-
                   &:focus {
                     border: 1px solid #718ebf;
                   }
-
                   option {
                     button {
                       width: 100%;
@@ -1201,50 +1259,33 @@ input {
                     }
                   }
                 }
-
                 &:nth-child(1) {
                   width: 100%;
-
                   input {
                     width: 100%;
                   }
                 }
-
                 &:nth-child(2) {
                   width: 100%;
-
                   input {
                     width: 100%;
                   }
                 }
               }
-
               .condition {
                 width: 100%;
                 padding-top: 20px;
-
                 .remember-forgot {
                   justify-content: space-between;
                   align-items: center;
-
                   .remember {
-                    input {
-                    }
-
                     p {
                       padding-left: 15px;
                     }
                   }
-
-                  .forgot {
-                    span {
-                    }
-                  }
                 }
-
                 .login-btn {
                   padding: 15px 0px;
-
                   button {
                     width: 100%;
                     background-color: #f6f8fb;
@@ -1252,14 +1293,13 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-
+                    transition: all 0.5s;
                     &:hover {
                       background-color: #0eabeb;
                       color: white;
                     }
                   }
                 }
-
                 .registration-btn {
                   p {
                     font-family: Lato;
@@ -1274,12 +1314,73 @@ input {
           }
         }
       }
-
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
 }
-
 // login section end

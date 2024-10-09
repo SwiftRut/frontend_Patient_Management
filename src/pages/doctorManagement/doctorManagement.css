@@ -65,14 +65,14 @@ input {
   padding-left: 10px;
 }
 .dr-managment-section .row .main .top .search-btn .btn {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   border-radius: 10px;
   padding: 12px 14px;
   margin-left: 10px;
 }
 .dr-managment-section .row .main .top .search-btn .btn .icon {
   background-color: white;
-  color: #0EABEB;
+  color: #0eabeb;
   border-radius: 5px;
   padding: 2px;
   font-size: 20px;
@@ -85,13 +85,14 @@ input {
 }
 .dr-managment-section .row .main .table {
   padding: 0px 10px;
-  width: 100%;
 }
 .dr-managment-section .row .main .table table {
   width: 100%;
   border-collapse: collapse;
   overflow-y: scroll;
   max-height: 500px;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 .dr-managment-section .row .main .table table .table-heading {
   border-top-left-radius: 30px;
@@ -102,11 +103,11 @@ input {
   table-layout: fixed;
 }
 .dr-managment-section .row .main .table table td {
-  padding: 15px;
-  text-align: center;
+  padding: 10px 0;
   border-bottom: 1px solid rgb(219, 219, 219);
   font-size: 20px;
   font-weight: 600;
+  vertical-align: middle;
 }
 .dr-managment-section .row .main .table table td img {
   margin-right: 10px;
@@ -115,8 +116,9 @@ input {
 .dr-managment-section .row .main .table table th {
   font-weight: bold;
   font-size: 20px;
-  padding: 20px 15px;
-  text-align: left;
+  padding: 20px 0px;
+  text-align: center;
+  vertical-align: middle;
 }
 .dr-managment-section .row .main .table table tbody {
   display: block;
@@ -181,7 +183,7 @@ input {
 }
 .dr-managment-section .row .main .image h1 {
   text-align: center;
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 26px;
   font-weight: 500;
   padding-top: 15px;

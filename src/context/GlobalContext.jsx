@@ -1,13 +1,11 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import apiService from '../services/api';
 import PropTypes from 'prop-types';
-export const GlobalContext = createContext();
+const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
     const [allHospitals, setAllHospitals] = useState([]);
-    const [userData, setUserData] = useState({});
-    const [bill, setBill] = useState({});
-    const [allBills, setAllBills] = useState([]);
+    const [adminData, setAdminData] = useState({});
     useEffect(()=>{
     },[])
     const getAllHospitals = async () => {
@@ -32,7 +30,8 @@ export const GlobalProvider = ({ children }) => {
     const getAdminProfile = async (id) => {
       try{
       const response = await apiService.GetAdminProfile(id);
-      setUserData(response.data);
+      console.log(response.data);
+      setAdminData(response.data);
       }catch(error){
       console.log(error);
       throw error
@@ -41,104 +40,23 @@ export const GlobalProvider = ({ children }) => {
   const editAdminProfile = async (id, userData) => {
     try{
     const response = await apiService.EditAdminProfile(id, userData);
-    setUserData(response.data.data);
+    setAdminData(response.data.data);
     }catch(error){
     console.log(error);
     throw error
     }
-  }
-  const editPatientProfile = async (id, userData) => {
-    try{
-    const response = await apiService.EditPatientProfile(id, userData);
-    setUserData(response.data.data);
-    }catch(error){
-    console.log(error);
-    throw error
-    }
-  }
-  
-  const getPatientProfile= async (id) => {
-    try{
-      const response = await apiService.GetPatientProfile(id);
-      setUserData(response.data);
-      }catch(error){
-      console.log(error);
-      throw error
-      }
   }
 
-  const editDoctorProfile = async (id, userData) => {
-    console.log("inside eding doctor profile", userData);
-    try{
-    const response = await apiService.EditDoctor(id, userData);
-    setUserData(response.data.data);
-    }catch(error){
-    console.log(error);
-    throw error
-    }
-  }
-  
-  const getDoctorProfile= async (id) => {
-    try{
-      const response = await apiService.GetDoctorById(id);
-      setUserData(response.data.data);
-      console.log(response.data.data);
-      }catch(error){
-      console.log(error);
-      throw error
-      }
-  }
-  const createBill = async (userData) => {
-    console.log(userData)
-    try {
-      const response = await apiService.CreateBill(userData);
-      console.log(response);
-      setBill(response.data.data);
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  }
-  const updateBill = async (userData,id) => {
-  try{
-    const response = await apiService.EditBill(userData,id);
-    console.log(response);
-    setBill(response.data.data);
-  }catch(error){
-    console.log(error);
-    throw error
-  }
-}
-
-const getBills = async () => {
-  try{
-  const response = await apiService.GetBills();
-  setAllBills(response.data.data);
-  }catch(error){
-  console.log(error);
-  throw error
-  }
-}
   return (
     <GlobalContext.Provider value={{
         allHospitals,
-        userData,
-        setUserData,
+        adminData,
+        setAdminData,
         setAllHospitals,
         getAllHospitals,
         createHospital,
         getAdminProfile,
-        editAdminProfile,
-        getPatientProfile,
-        editPatientProfile,
-        getDoctorProfile,
-        editDoctorProfile,
-        updateBill,
-        createBill,
-        bill,
-        setBill,
-        allBills,
-        getBills
+        editAdminProfile
      }}>
       {children}
     </GlobalContext.Provider>
@@ -147,3 +65,4 @@ const getBills = async () => {
 GlobalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+export const useGlobal = () => useContext(GlobalContext);

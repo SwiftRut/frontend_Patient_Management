@@ -36,14 +36,13 @@ input {
     .main {
       border-radius: 15px;
       margin: 10px;
+      margin-left: 10px !important;
       background-color: #fff;
-      padding: 10px;
+      // padding: 10px;
       height: 100%;
-
       .top-menu {
         border-bottom: 1px solid rgb(219, 219, 219);
         padding: 20px 10px 0;
-
         button {
           background: none;
           border: none;
@@ -54,25 +53,20 @@ input {
           cursor: pointer;
           padding-bottom: 20px;
         }
-
         button:focus {
           border-bottom: 5px solid #0eabeb;
           color: #0eabeb;
         }
       }
-
       .top {
         justify-content: space-between;
         padding: 10px 10px 20px;
-
         .heading {
           font-weight: 700;
           font-size: 25px;
         }
-
         .search-btn {
           justify-content: space-between;
-
           .input {
             padding: 12px 15px;
             background-color: #f6f8fb;
@@ -80,12 +74,10 @@ input {
             border-radius: 30px;
             width: 350px;
             font-size: 20px;
-
             .search {
               font-size: 25px;
               color: #000;
             }
-
             input {
               background-color: transparent;
               padding-left: 10px;
@@ -93,17 +85,14 @@ input {
           }
         }
       }
-
       .table {
         padding: 0px 10px;
         width: 100%;
-
         table {
           width: 100%;
           border-collapse: collapse;
           overflow-y: scroll;
           max-height: 500px;
-
           .table-heading {
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
@@ -112,7 +101,6 @@ input {
             width: 100%;
             table-layout: fixed;
           }
-
           td {
             padding: 15px;
             text-align: center;
@@ -126,14 +114,12 @@ input {
               margin: 10px;
             }
           }
-
           th {
             font-weight: bold;
             font-size: 20px;
-            padding: 20px 15px;
+            padding: 15px;
             text-align: center;
           }
-
           tbody {
             display: block;
             height: 585px;
@@ -144,20 +130,16 @@ input {
               width: 100%;
             }
           }
-
           tbody::-webkit-scrollbar {
             width: 10px;
           }
-
           tbody::-webkit-scrollbar-thumb {
             background-color: #ccc;
             border-radius: 10px;
           }
-
           tbody::-webkit-scrollbar-track {
             background-color: #f0f0f0;
           }
-
           .time {
             h3 {
               background-color: #f6f8fb;
@@ -171,7 +153,6 @@ input {
               width: 150px;
             }
           }
-
           .action {
             .view {
               width: 60px;

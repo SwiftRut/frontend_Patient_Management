@@ -9,7 +9,7 @@ import ProfilePrivacyPolicy from "../../component/AdminProfile/ProfilePrivacyPol
 
 export default function Profile() {
   return (
-    <div>
+    <div className="main-content">
       <div className="profile-section">
         <div className="row">
           <div className="main">
@@ -24,9 +24,18 @@ export default function Profile() {
                 <div className="right">
                   <Routes>
                     <Route path="/" element={<ProfileData />} />
-                    <Route path="changePassword" element={<ProfileChangePassword />} />
-                    <Route path="termsCondition" element={<ProfileTermsCondition />} />
-                    <Route path="privacyPolicy" element={<ProfilePrivacyPolicy />} />
+                    <Route
+                      path="changePassword"
+                      element={<ProfileChangePassword />}
+                    />
+                    <Route
+                      path="termsCondition"
+                      element={<ProfileTermsCondition />}
+                    />
+                    <Route
+                      path="privacyPolicy"
+                      element={<ProfilePrivacyPolicy />}
+                    />
                   </Routes>
                 </div>
               </div>

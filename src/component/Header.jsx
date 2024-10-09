@@ -4,11 +4,8 @@ import { MdNotificationImportant } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { FaAngleDown } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import { useGlobal } from "../hooks/useGlobal";
 
 const Header = () => {
-  const { userData } = useGlobal();
-  console.log(userData);
   return (
     <div className="header">
       <div className="breadcrumbs">
@@ -33,9 +30,9 @@ const Header = () => {
           </div>
           <NavLink to={"/profile"}>
             <div className="user">
-            <img src={userData?.avatar || "../img/profile.png"} alt="" className='rounded-full' />
+              <img src="/img/avtar.png" />
               <div>
-                <p>{userData && userData.firstName && userData.lastName ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
+                <p>Lincoln Philips</p>
                 <span>Admin</span>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { FaEye } from "react-icons/fa";
 export default function PatientManagement() {
   return (
     <>
-      <div className="patient-section">
+      <div className="patient-section main-content">
         <div className="row">
           <div className="main">
             <div className="flex top-menu">
@@ -27,6 +27,7 @@ export default function PatientManagement() {
                 </div>
               </div>
             </div>
+            <div className="grid">
             <div className="table">
               <table>
                 <thead>
@@ -494,6 +495,7 @@ export default function PatientManagement() {
                   </tr>
                 </tbody>
               </table>
+            </div>
             </div>
           </div>
         </div>

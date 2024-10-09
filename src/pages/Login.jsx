@@ -1,23 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import "./pages.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin, user } = useAuth();
+  const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat@gmail.com",
+    identifier: "mohitdudhat22@gmail.com",
     password: "123@abc",
     remember: "true",
-  });  
-  // const [formData, setFormData] = useState({
-  //   identifier: "fiyadoctor1@gmail.com",
-  //   password: "Fiya@123",
-  //   remember: "true",
-  // });
+  });
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,16 +21,35 @@ const Login = () => {
     }));
   };
 
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const success = await UniversalLogin(formData);
       if (success) {
-        if(user.role === 'admin') {
-          navigate("/");
-        }else if(user.role === 'doctor') {
-          navigate("/doctor/profile/");
-        }
+        navigate("/");
       }
     } catch (err) {
       console.error(err);
@@ -48,7 +61,7 @@ const Login = () => {
     <>
       <div className="login-section">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="content">
                 <div className="head">
@@ -74,17 +87,15 @@ const Login = () => {
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <div className="password-input-container">
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          placeholder="Enter Password"
-                        />
-                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
-                        </div>
+                      <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Enter Password"
+                      />
+                      <div className="eye">
+                        <img src="../img/eye-slash.png" alt="eye" />
                       </div>
                     </div>
 
@@ -104,23 +115,41 @@ const Login = () => {
                           />
                           <p>Remember me</p>
                         </div>
-                        <div className="forgot" onClick={() => navigate("/AdminMobile")}>
-                          <span style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Forgot password?</span>
+                        <div className="forgot">
+                          <span>Forgot password?</span>
                         </div>
                       </div>
 
                       <div className="login-btn">
                         <button type="submit">Login</button>
                       </div>
-                      <div className="registration-btn" onClick={() => navigate("/adminRegistration")}>
-                        <p style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Don’t have an account? Register</p>
+                      <div className="registration-btn">
+                        <p>Don’t have an account? Register</p>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div class="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div class="dots">
+                  <span class="dot active"></span>
+                  <span class="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
