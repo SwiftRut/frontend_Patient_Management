@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "../doctorManagement/Onsite.css";
 import apiService from "../../services/api.js";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { TbBuildingHospital } from "react-icons/tb";
 import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 
-const Onsite = ({ selectedDoctor }) => {
+
+
+const Onsite = ({ selectedDoctor, setShowOnsite }) => {
   const { id } = useParams();
-  const [doctor, setDoctor] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  // const navigate = useNavigate();
-  console.log("<<<<<doctor", selectedDoctor);
+
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
         setLoading(true);
         const response = await apiService.GetDoctorById(id);
-        console.log("response>>>>>>>>>", response);
         setDoctor(response.data.data);
       } catch (error) {
         setError(
@@ -35,7 +32,8 @@ const Onsite = ({ selectedDoctor }) => {
   }, [id]);
 
   const handleBack = () => {
-    navigate("/doctorManagement");
+    // navigate("/doctorManagement");
+    setShowOnsite(false)
   };
 
   return (
@@ -45,7 +43,7 @@ const Onsite = ({ selectedDoctor }) => {
           <div className="row">
             <div className="main">
               <div className="top flex align-center">
-                <div className="icon">
+                <div className="icon" onClick={handleBack}>
                   <IoIosArrowBack />
                 </div>
                 <h3>Doctor Management</h3>
