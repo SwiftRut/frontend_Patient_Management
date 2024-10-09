@@ -121,15 +121,12 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      // Call the logout API
       await apiService.UniversalLogout();
       
-      // Clear localStorage and remove Authorization header
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       delete axios.defaults.headers.common['Authorization'];
       
-      // Redirect to login page
       window.location.href = '/login';
       
       // Reset user state

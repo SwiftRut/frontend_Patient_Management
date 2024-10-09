@@ -46,19 +46,19 @@ function App() {
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route
-              path="/AdminChangePassword"
-              element={<AdminChangePassword />}
-            />
+            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             {/* manashvi temp start*/}
             <Route path="/addnewfield" element={<AddNewField />} />
-            <Route path="/onsite" element={<Onsite />} />
+
             <Route path="/details" element={<PatientDetails />} />
+            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
+
             <Route path="/bill" element={<Bill />} />
             <Route path="/bill2" element={<Bill2 />} />
             {/* <Route path="/bill3" element={<Bill/>} /> */}
             <Route path="/bill3" element={<Bill3 />} />
+
             <Route path="/cash" element={<CashPayment />} />
             <Route path="/delete" element={<Delete />} />
             <Route path="/editinvoice" element={<EditDesignInvoice />} />
@@ -77,7 +77,7 @@ function App() {
 
               <Route path="doctorManagement/*" />
               <Route path="doctorAdd" />
-              <Route path="doctorEdit" />
+              <Route path="doctorEdit/:doctorId" />
 
               <Route path="patientManagement" />
 
@@ -89,10 +89,7 @@ function App() {
             </Route>
 
             {/* patient component */}
-            <Route
-              path="/patientRegistration"
-              element={<PatientRegistration />}
-            />
+            <Route path="/patientRegistration" element={<PatientRegistration />} />
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
@@ -100,7 +97,7 @@ function App() {
             <Route path="/editBill" element={<EditBill />} />
 
             <Route path="/schedular" element={<Scheduler />} />
-            
+
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" element={<DoctorProfile />} />
