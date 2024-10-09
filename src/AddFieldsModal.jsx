@@ -1,166 +1,137 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
+import { TiMinus } from "react-icons/ti";
 const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
-    const [fieldType, setFieldType] = useState('Dropdown');
-    const [selectionType, setSelectionType] = useState('Single');
-    const [dropdownName, setDropdownName] = useState('');
-    const [textFieldName, setTextFieldName] = useState('');
-    const [options, setOptions] = useState(['']);
-    
-    const handleOptionChange = (index, value) => {
-        const newOptions = [...options];
-        newOptions[index] = value;
-        setOptions(newOptions);
-    };
+  const [fieldType, setFieldType] = useState("Dropdown");
+  const [selectionType, setSelectionType] = useState("Single");
+  const [fieldName, setFieldName] = useState("");
+  const [options, setOptions] = useState([""]);
 
-    const addOption = () => setOptions([...options, '']);
-    const removeOption = (index) => setOptions(options.filter((_, i) => i !== index));
+  const handleOptionChange = (index, value) => {
+    const newOptions = [...options];
+    newOptions[index] = value;
+    setOptions(newOptions);
+  };
 
-    const handleAdd = () => {
-        if (fieldType === 'Dropdown' && !dropdownName.trim()) {
-            alert('Please enter a dropdown name.');
-            return;
-        }
-        if (fieldType === 'Text Field' && !textFieldName.trim()) {
-            alert('Please enter a text field name.');
-            return;
-        }
-    
-        onAddField({
-            fieldType,
-            selectionType: fieldType === 'Dropdown' ? selectionType : null,
-            name: fieldType === 'Dropdown' ? dropdownName : textFieldName,
-            options: fieldType === 'Dropdown' ? options.filter(opt => opt.trim()) : null,
-        });
-    
-        // Reset the fields
-        setFieldType('Dropdown');
-        setSelectionType('Single');
-        setDropdownName('');
-        setTextFieldName('');
-        setOptions(['']);
-        onClose();
-    };
-    
+  const addOption = () => setOptions([...options, ""]);
+  const removeOption = (index) => setOptions(options.filter((_, i) => i !== index));
 
-    return (
-        isOpen && (
-            <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-                <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-                    <h2 className="text-lg font-semibold mb-4">Add New Field</h2>
+  const handleAdd = () => {
+    if (!fieldName.trim()) {
+      alert("Please enter a field name.");
+      return;
+    }
 
-                    <div className="mb-4">
-                        <label className="mr-2">
-                            <input 
-                                type="radio" 
-                                name="fieldType" 
-                                value="Dropdown" 
-                                checked={fieldType === 'Dropdown'}
-                                onChange={() => setFieldType('Dropdown')}
-                                className="mr-1" 
-                            />
-                            Dropdown
-                        </label>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="fieldType" 
-                                value="Text Field" 
-                                checked={fieldType === 'Text Field'}
-                                onChange={() => setFieldType('Text Field')}
-                                className="mr-1" 
-                            />
-                            Text Field
-                        </label>
-                    </div>
+    onAddField({
+      fieldType,
+      selectionType: fieldType === "Dropdown" ? selectionType : null,
+      name: fieldName,
+      options: fieldType === "Dropdown" ? options.filter((opt) => opt.trim()) : null,
+    });
 
-                    {fieldType === 'Dropdown' && (
-                        <>
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Selection</label>
-                                <select 
-                                    value={selectionType} 
-                                    onChange={(e) => setSelectionType(e.target.value)}
-                                    className="w-full p-2 border border-gray-300 rounded"
-                                >
-                                    <option value="Single">Single</option>
-                                    <option value="Multiple">Multiple</option>
-                                </select>
-                            </div>
+    // Reset fields after adding
+    setFieldType("Dropdown");
+    setSelectionType("Single");
+    setFieldName("");
+    setOptions([""]);
+    onClose();
+  };
 
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Dropdown Name</label>
-                                <input
-                                    type="text"
-                                    value={dropdownName}
-                                    onChange={(e) => setDropdownName(e.target.value)}
-                                    placeholder="Enter Dropdown Name"
-                                    className="w-full p-2 border border-gray-300 rounded"
-                                />
-                            </div>
+  return (
+    isOpen && (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div className="bg-white rounded-lg shadow-lg w-1/3">
+      <div className="modal-overlay">
+        <div className="modal w-full p-6">
+          <h2>Add New Field</h2>
 
-                            <div className="mb-4">
-                                <label className="block mb-2 text-sm">Options</label>
-                                {options.map((option, index) => (
-                                    <div key={index} className="flex items-center mb-2">
-                                        <input
-                                            type="text"
-                                            value={option}
-                                            onChange={(e) => handleOptionChange(index, e.target.value)}
-                                            placeholder={`Value ${index + 1}`}
-                                            className="w-full p-2 border border-gray-300 rounded"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => removeOption(index)}
-                                            className="ml-2 text-red-500"
-                                        >
-                                            &times;
-                                        </button>
-                                    </div>
-                                ))}
-                                <button
-                                    type="button"
-                                    onClick={addOption}
-                                    className="text-blue-500 text-sm mt-1"
-                                >
-                                    + Add Option
-                                </button>
-                            </div>
-                        </>
-                    )}
+          <div className="field-type">
+            <label className="radio-label check">
+              <input
+                type="radio"
+                name="fieldType"
+                value="Dropdown"
+                checked={fieldType === "Dropdown"}
+                onChange={() => setFieldType("Dropdown")}
+              />
+              <span className="radio-custom"></span>
+              Dropdown
+            </label>
+            |
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="fieldType"
+                value="Text Field"
+                checked={fieldType === "Text Field"}
+                onChange={() => setFieldType("Text Field")}
+              />
+              <span className="radio-custom"></span>
+              Text field
+            </label>
+          </div>
 
-                    {fieldType === 'Text Field' && (
-                        <div className="mb-4">
-                            <label className="block mb-2 text-sm">Text Field Name</label>
-                            <input
-                                type="text"
-                                value={textFieldName}
-                                onChange={(e) => setTextFieldName(e.target.value)}
-                                placeholder="Enter Text Field Name"
-                                className="w-full p-2 border border-gray-300 rounded"
-                            />
-                        </div>
-                    )}
-
-                    <div className="flex justify-end mt-4">
-                        <button 
-                            onClick={onClose} 
-                            className="bg-gray-200 text-gray-800 px-4 py-2 rounded mr-2"
-                        >
-                            Cancel
-                        </button>
-                        <button 
-                            onClick={handleAdd} 
-                            className="bg-blue-500 text-white px-4 py-2 rounded"
-                        >
-                            Add
-                        </button>
-                    </div>
-                </div>
+          {fieldType === "Dropdown" && (
+            <div className="dropdown">
+              <label htmlFor="selection">Selection</label>
+              <select
+                id="selection"
+                value={selectionType}
+                onChange={(e) => setSelectionType(e.target.value)}
+              >
+                <option value="Single">Single</option>
+                <option value="Multiple">Multiple</option>
+              </select>
             </div>
-        )
-    );
+          )}
+
+          <div className="input">
+            <div className="label">Dropdown Name</div>
+            <input
+              type="text"
+              value={fieldName}
+              onChange={(e) => setFieldName(e.target.value)}
+              placeholder="Enter Field Name"
+            />
+          </div>
+
+          {fieldType === "Dropdown" && (
+            <div className="values">
+              <div className="flex">
+                {options.map((option, index) => (
+                  <div key={index} className="input-box">
+                    <div className="minus-circle" onClick={() => removeOption(index)}>
+                      <TiMinus />
+                    </div>
+                    <input
+                      type="text"
+                      value={option}
+                      onChange={(e) => handleOptionChange(index, e.target.value)}
+                      placeholder={`Value ${index + 1}`}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="add flex align-center" onClick={addOption}>
+                <div className="icon">
+                  <IoMdAdd />
+                </div>
+                <h3>Add Option</h3>
+              </div>
+            </div>
+          )}
+
+          <div className="actions">
+            <button onClick={onClose} className="btn-cancel">Cancel</button>
+            <button onClick={handleAdd} className="btn-add">Add</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    )
+  );
 };
+
 
 export default AddFieldModal;

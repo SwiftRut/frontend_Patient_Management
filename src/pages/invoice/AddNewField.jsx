@@ -5,7 +5,6 @@ import { TiMinus } from "react-icons/ti";
 export default function AddNewField() {
   return (
     <>
-      {/* dropdown */}
       <div className="modal">
         <h2>Add New Field</h2>
         <div className="field-type">
