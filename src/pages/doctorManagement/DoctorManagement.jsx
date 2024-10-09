@@ -188,7 +188,7 @@ export default function DoctorManagement() {
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} />
+            <Onsite selectedDoctor={selectedDoctor} setShowOnsite={setShowOnsite} />
           </div>
           <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
         </div>

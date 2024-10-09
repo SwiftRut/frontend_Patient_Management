@@ -10,11 +10,13 @@ import { IoLocation } from "react-icons/io5";
 
 
 
-const Onsite = ({ selectedDoctor }) => {
+const Onsite = ({ selectedDoctor, setShowOnsite }) => {
+  // console.log(setShowOnsite)
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
@@ -31,7 +33,8 @@ const Onsite = ({ selectedDoctor }) => {
   }, [id]);
 
   const handleBack = () => {
-    navigate("/doctorManagement");
+    // navigate("/doctorManagement");
+    setShowOnsite(false)
   };
 
   return (
@@ -41,7 +44,7 @@ const Onsite = ({ selectedDoctor }) => {
           <div className="row">
             <div className="main">
               <div className="top flex align-center">
-                <div className="icon">
+                <div className="icon" onClick={handleBack}>
                   <IoIosArrowBack />
                 </div>
                 <h3>Doctor Management</h3>
