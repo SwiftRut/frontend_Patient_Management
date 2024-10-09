@@ -1,9 +1,9 @@
-import React from 'react';
-import { FaCircleMinus } from 'react-icons/fa6';
+import React from "react";
+import { FaCircleMinus } from "react-icons/fa6";
 
 const DynamicField = ({ field, value, onChange, onRemove }) => {
   switch (field.fieldType) {
-    case 'Dropdown':
+    case "Dropdown":
       return (
         <div className="input-box">
           <div className="label">{field.name}</div>
@@ -24,7 +24,7 @@ const DynamicField = ({ field, value, onChange, onRemove }) => {
           </div>
         </div>
       );
-    case 'Text Field':
+    case "Text Field":
       return (
         <div className="input-box">
           <div className="label">{field.name}</div>

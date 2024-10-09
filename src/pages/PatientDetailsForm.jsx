@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
-import AddFieldModal from "../AddFieldsModal";
+import DynamicField from "./DynamicField"; // Ensure this is imported
 
 const PatientDetailsForm = ({
   openModal,
@@ -9,7 +9,7 @@ const PatientDetailsForm = ({
   setPatientData,
   dynamicFields,
   onDynamicFieldChange,
-  onRemoveDynamicField
+  onRemoveDynamicField,
 }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -186,11 +186,7 @@ const PatientDetailsForm = ({
 
               <div className="input-box">
                 <div className="label">Gender</div>
-                <select
-                  name="gender"
-                  value={patientData.gender}
-                  onChange={handleSelectChange}
-                >
+                <select name="gender" value={patientData.gender} onChange={handleSelectChange}>
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -218,7 +214,7 @@ const PatientDetailsForm = ({
                 <DynamicField
                   key={index}
                   field={field}
-                  value={patientData[field.name] || ''}
+                  value={patientData[field.name] || ""}
                   onChange={onDynamicFieldChange}
                   onRemove={() => onRemoveDynamicField(index)}
                 />
@@ -226,7 +222,7 @@ const PatientDetailsForm = ({
             </form>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   );
 };
