@@ -24,8 +24,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useGlobal } from "../../hooks/useGlobal";
 import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
 
 ChartJS.register(
   CategoryScale,

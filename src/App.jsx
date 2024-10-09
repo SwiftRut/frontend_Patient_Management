@@ -42,7 +42,6 @@ function App() {
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin component */}
-
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
@@ -95,7 +94,6 @@ function App() {
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill" element={<EditBill />} />
-
             <Route path="/schedular" element={<Scheduler />} />
 
             {/* doctor routers */}
