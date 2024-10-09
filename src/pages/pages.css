@@ -64,6 +64,9 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -225,6 +228,9 @@ input {
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.patient-registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -427,6 +433,9 @@ input {
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -564,6 +573,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -648,6 +660,9 @@ input {
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -764,6 +779,9 @@ input {
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -851,6 +869,9 @@ input {
 }
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;

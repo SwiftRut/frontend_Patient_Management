@@ -296,25 +296,130 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="appointments-list flex">
-                    {appointments.map((appointment) => (
-                      <div className="box" key={appointment.id}>
+            <div className="bottom flex">
+              <div className="appointments-data">
+                <div className="today-appointments">
+                  <div className="appointments-content">
+                    <div className="head">
+                      <div className="title flex">
+                        <p>Todays Appointments List</p>
+                        <span>View All</span>
+                      </div>
+                    </div>
+                    {/* When there is no data */}
+
+                    {/* <div className="img">
+                      <img src="../img/Frame1.png" alt="" />
+                    </div> */}
+
+                    {/* When there is data */}
+
+                    <div className="appointments-list flex">
+                      <div className="box">
                         <div className="content">
                           <div className="heading flex">
-                            <p>{appointment.patientName}</p>
-                            <span>{appointment.type}</span>
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
                           </div>
                           <div className="data">
                             <ul>
-                              <li><p>Doctor Name</p><span>{appointment.doctorName}</span></li>
-                              <li><p>Disease Name</p><span>{appointment.disease}</span></li>
-                              <li><p>Appointment Time</p><span>{appointment.time}</span></li>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    ))}
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="box">
+                        <div className="content">
+                          <div className="heading flex">
+                            <p>Roger Lubin</p>
+                            <span>Onsite</span>
+                          </div>
+                          <div className="data">
+                            <ul>
+                              <li>
+                                <p>Doctor Name</p>
+                                <span>Leo Geidt</span>
+                              </li>
+                              <li>
+                                <p>Disease Name</p>
+                                <span>Meningococcal Disease</span>
+                              </li>
+                              <li>
+                                <p>Appointment Time</p>
+                                <span>10:00 AM</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+              </div>
+              <PatientsBreakdown/>
+            </div>
           </div>
         </div>
       </div>
