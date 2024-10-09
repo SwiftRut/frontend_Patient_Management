@@ -25,7 +25,7 @@ export default function DoctorAsidePanel() {
           <div className="menu flex">
             <ul>
               <li>
-                <NavLink to={"/"}>
+                <NavLink to={"/doctor"}>
                   <div className="icon">
                     <FaCalendarAlt />
                   </div>
@@ -33,7 +33,7 @@ export default function DoctorAsidePanel() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/doctorManagement"}>
+                <NavLink to={"/doctor/patientRecordAccesst"}>
                   <div className="icon">
                     <IoMdListBox />
                   </div>
@@ -57,12 +57,12 @@ export default function DoctorAsidePanel() {
                 {isAccordionOpen && (
                   <ul style={{ width: "100%" }} className="dropdown">
                     <li>
-                      <NavLink to={"/monitorBilling"}>
+                      <NavLink to={"/doctor/createPrescriptionTools"}>
                         <span>create</span>
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to={"/insuranceClaims"}>
+                      <NavLink to={"/doctor/managePrescriptionTools"}>
                         <span>Manage</span>
                       </NavLink>
                     </li>
@@ -70,7 +70,7 @@ export default function DoctorAsidePanel() {
                 )}
               </li>
               <li>
-                <NavLink to={"/patientManagement"}>
+                <NavLink to={"/doctor/teleconsultationModule"}>
                   <div className="icon">
                     <MdOutlineWifiCalling />
                   </div>
@@ -78,7 +78,7 @@ export default function DoctorAsidePanel() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/reportingAndAnalytics"}>
+                <NavLink to={"/doctor/chatScreen"}>
                   <div className="icon">
                     <IoMdChatbubbles />
                   </div>

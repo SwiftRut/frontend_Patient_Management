@@ -27,7 +27,7 @@ export default function AdminPanel() {
 
         <Route path="doctorManagement" element={<DoctorManagement />} />
         <Route path="doctorAdd" element={<DoctorAdd />} />
-        <Route path="doctorEdit" element={<DoctorEdit />} />
+        <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
 
         <Route path="patientManagement" element={<PatientManagement />} />
 
