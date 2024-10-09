@@ -25,7 +25,6 @@ input {
 .sidebar {
   display: flex;
   flex-direction: row;
-
   .asite {
     background-color: white;
     color: #d4d4d4;
@@ -34,105 +33,120 @@ input {
     position: fixed;
     top: 0;
     left: 0;
-    // padding: 30px;
-
     .logo {
       font-weight: bold;
       margin-bottom: 20px;
       text-align: center;
-
       img {
         width: 250px;
       }
     }
-
     .menu {
       height: 80%;
       justify-content: space-between;
       flex-direction: column;
-
       ul {
         background-color: #fff;
         li {
           margin: 10px 0px;
-
           display: flex;
           align-items: center;
           color: #818194;
-          padding: 5px 15px;
+          padding: 5px 0px;
           background-color: #fff;
-
-          .dropdown {
-            list-style: none;
-            padding: 0;
-
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            // max-height: 100px;
-            transition: max-height 0.3s ease-out;
+          position: relative;
+          border: none;
+          transition: background-color 0.5s ease;
+          .padding {
+            padding: 5px 15px;
+            display: flex;
           }
+          &:focus-within {
+            background: linear-gradient(
+              90deg,
+              rgba(213, 241, 250, 1) 0%,
+              rgba(255, 255, 255, 1) 100%
+            );
+            color: #0eabeb !important;
+            outline: none;
+            span {
+              color: #0eabeb;
+            }
+            img {
+              color: #0eabeb;
+            }
 
-          .dropdown.open {
-            max-height: 200px; /* Maximum height when open */
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: 0;
+              margin: 5px 0;
+              height: calc(100% - 20px);
+              width: 5px;
+              background-color: #0eabeb;
+              border-top-left-radius: 15px;
+              border-bottom-left-radius: 15px;
+            }
           }
-
-          .dropdown ul {
-            padding: 0;
-            margin: 0;
-          }
-          .dropdown li:hover {
-            background-color: #fff;
-          }
-
-          .dropdown li {
-            padding: 10px 15px;
-            background-color: #fff !important;
-          }
-
-          .dropdown li a {
-            color: #0eabeb;
-            text-decoration: none;
-          }
-
-          .dropdown li a:hover span {
-            color: #0eabeb;
-          }
-
           a {
             display: flex;
             justify-content: flex-start;
             align-items: center;
             padding: 10px 10px;
             width: 100%;
-
             font-size: 20px;
             color: #0eabeb;
-
-
             img {
-              color: #818194 !important;
+              color: #818194;
               padding-right: 15px;
               width: 50px;
             }
-
             span {
               color: #818194;
               font-size: 20px;
             }
           }
-        }
+          .dropdown {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
 
-        li:hover {
-          background: linear-gradient(
-            90deg,
-            rgba(213, 241, 250, 1) 0%,
-            rgba(255, 255, 255, 1) 100%
-          );
-          color: #0eabeb;
+            &.open {
+              max-height: 200px; 
+            }
+
+            li {
+              padding: 10px 15px;
+              background-color: #fff !important;
+              color: #818194!important; 
+              transition: background-color 0.3s ease; 
+              span{
+                color: #818194;
+              }
+              a {
+                color: #818194; 
+                text-decoration: none; 
+                display: block; 
+                height: 100%; 
+                width: 100%; 
+                &:hover {
+                  span {
+                    color: #0eabeb; 
+                  }
+                }
+              }
+              &:hover {
+                background-color: #818194;
+                cursor: pointer; 
+              }
+            }
+          }
         }
       }
-
       .logout-btn {
         button {
           gap: 15px;
@@ -148,7 +162,6 @@ input {
       }
     }
   }
-
   .content {
     width: 83%;
     margin-left: 17%;

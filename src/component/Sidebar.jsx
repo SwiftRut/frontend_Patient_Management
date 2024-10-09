@@ -21,31 +21,41 @@ const Sidebar = () => {
             <ul>
               <li>
                 <NavLink to={"/"}>
-                  <img src="/img/Dashboard.png" />
-                  <span>Dashboard</span>
+                  <div className="padding">
+                    <img src="/img/Dashboard.png" />
+                    <span>Dashboard</span>
+                  </div>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                  <img src="/img/Doctor-Management.png" />
-                  <span>Doctor Management</span>
+                  <div className="padding">
+                    <img src="/img/Doctor-Management.png" />
+                    <span>Doctor Management</span>
+                  </div>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
-                  <img src="/img/Patient-Management.png" />
-                  <span>Patient Management</span>
+                  <div className="padding">
+                    <img src="/img/Patient-Management.png" />
+                    <span>Patient Management</span>
+                  </div>
                 </NavLink>
               </li>
               <li
                 onClick={toggleAccordion}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <img
-                  src="/img/BillingAndPayments.png"
-                  alt="Billing and Payments"
-                />
-                <span className="menu-item">Billing and Payments</span>
+                <NavLink>
+                  <div className="padding">
+                    <img
+                      src="/img/BillingAndPayments.png"
+                      alt="Billing and Payments"
+                    />
+                    <span className="menu-item">Billing and Payments</span>
+                  </div>
+                </NavLink>
 
                 {/* Accordion Dropdown */}
                 {isAccordionOpen && (
@@ -70,8 +80,10 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                  <img src="/img/ReportingAndAnalytics.png" />
-                  <span>Reporting and Analytics</span>
+                  <div className="padding">
+                    <img src="/img/ReportingAndAnalytics.png" />
+                    <span>Reporting and Analytics</span>
+                  </div>
                 </NavLink>
               </li>
             </ul>

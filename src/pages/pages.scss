@@ -589,6 +589,69 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -762,6 +825,69 @@ input {
 
         .img-box {
           width: 50%;
+          padding: 150px;
+          position: relative;
+          background-color: #f6f8fb;
+          .slider {
+            position: relative;
+            width: 650px;
+            height: 650px;
+            img {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              display: none;
+            }
+            .dots {
+              position: absolute;
+              bottom: -20px;
+              left: 55%;
+              transform: translateX(-50%);
+              text-align: center;
+              .dot {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
+                cursor: pointer;
+                margin: 0 5px;
+              }
+              .dot.active {
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
+                width: 30px;
+                border-radius: 10px;
+              }
+            }
+          }
+
+          .vector-1 {
+            width: 30%;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+          }
+          .vector-2 {
+            width: 30%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+          }
+          .vector-dot {
+            width: 10%;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+          }
         }
       }
     }
@@ -778,10 +904,14 @@ input {
       .form {
         padding: 120px 100px;
         width: 50%;
-
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .admin-mobile-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -855,6 +985,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
+                    transition: all 0.5s;
 
                     &:hover {
                       background-color: #0eabeb;
@@ -881,6 +1012,69 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -896,10 +1090,15 @@ input {
       .form {
         padding: 120px 100px;
         width: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .admin-otp-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1034,7 +1233,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-
+                    transition: all 0.5s;
                     &:hover {
                       background-color: #0eabeb;
                       color: white;
@@ -1049,6 +1248,69 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -1064,10 +1326,15 @@ input {
       .form {
         padding: 120px 100px;
         width: 50%;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        display: flex;
 
         .changePassword-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1114,9 +1381,6 @@ input {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
 
                 &:nth-child(1) {
@@ -1150,7 +1414,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
-
+                    transition: all 0.5s;
                     &:hover {
                       background-color: #0eabeb;
                       color: white;
@@ -1176,6 +1440,69 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 120px;
+        position: relative;
+        background-color: #f6f8fb;
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              cursor: pointer;
+              margin: 0 5px;
+            }
+            .dot.active {
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }

@@ -30,6 +30,10 @@ input {
   align-items: center;
 }
 
+.bg_color {
+  background-color: #f6f8fb;
+}
+
 .dr-managment-section .row .main {
   border-radius: 15px;
   margin: 10px;
@@ -83,84 +87,9 @@ input {
   color: white;
   font-weight: 600;
 }
-.dr-managment-section .row .main .table {
-  padding: 0px 10px;
-}
-.dr-managment-section .row .main .table table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow-y: scroll;
-  max-height: 500px;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-.dr-managment-section .row .main .table table .table-heading {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  background-color: #f6f8fb;
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-.dr-managment-section .row .main .table table td {
-  padding: 10px 0;
-  border-bottom: 1px solid rgb(219, 219, 219);
-  font-size: 20px;
-  font-weight: 600;
-  vertical-align: middle;
-}
-.dr-managment-section .row .main .table table td img {
-  margin-right: 10px;
-  width: 50px;
-}
-.dr-managment-section .row .main .table table th {
-  font-weight: bold;
-  font-size: 20px;
-  padding: 20px 0px;
-  text-align: center;
-  vertical-align: middle;
-}
-.dr-managment-section .row .main .table table tbody {
-  display: block;
-  height: 585px;
-  overflow-y: auto;
-}
-.dr-managment-section .row .main .table table tbody tr {
-  display: table;
-  width: 100%;
-}
-.dr-managment-section .row .main .table table tbody::-webkit-scrollbar {
-  width: 10px;
-}
-.dr-managment-section .row .main .table table tbody::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-.dr-managment-section .row .main .table table tbody::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
-}
-.dr-managment-section .row .main .table table .gender {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #f6f8fb;
-  color: #718ebf;
-  padding: 10px;
-}
-.dr-managment-section .row .main .table table .time h3 {
-  background-color: #f6f8fb;
-  color: #718ebf;
-  border-radius: 50px;
-  margin: 0px 10px;
-  padding: 10px 15px;
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  width: 150px;
-}
-.dr-managment-section .row .main .table table .action .edit,
-.dr-managment-section .row .main .table table .action .view,
-.dr-managment-section .row .main .table table .action .delete {
+.dr-managment-section .row .main .action .edit,
+.dr-managment-section .row .main .action .view,
+.dr-managment-section .row .main .action .delete {
   background-color: #f6f8fb;
   color: #39973d;
   border-radius: 10px;
@@ -168,11 +97,76 @@ input {
   font-size: 25px;
   text-align: center;
 }
-.dr-managment-section .row .main .table table .action .view {
+.dr-managment-section .row .main .action .edit .view,
+.dr-managment-section .row .main .action .view .view,
+.dr-managment-section .row .main .action .delete .view {
   color: #0eabeb;
   margin: 0px 10px;
 }
-.dr-managment-section .row .main .table table .action .delete {
+.dr-managment-section .row .main .action .edit .view .delete,
+.dr-managment-section .row .main .action .view .view .delete,
+.dr-managment-section .row .main .action .delete .view .delete {
+  color: #e11d29;
+}
+.dr-managment-section .row .main .grid {
+  position: relative;
+  width: 100%;
+}
+.dr-managment-section .row .main .grid .grid-container {
+  overflow-y: auto;
+  height: 700px;
+  width: 100%;
+}
+.dr-managment-section .row .main .grid .table-header {
+  background: #f6f8fb !important;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.dr-managment-section .row .main table {
+  border-spacing: 0;
+  width: 100%;
+}
+.dr-managment-section .row .main table td {
+  background: #fff;
+  color: #4f4f4f;
+  padding: 15px 25px;
+}
+.dr-managment-section .row .main table th {
+  height: 0;
+  line-height: 0;
+  padding: 20px 15px;
+  color: transparent;
+  border: none;
+  white-space: nowrap;
+}
+.dr-managment-section .row .main table th div {
+  position: absolute;
+  background: transparent;
+  color: #030229;
+  padding: 9px 25px;
+  top: 0;
+  margin-left: -25px;
+  line-height: normal;
+}
+.dr-managment-section .row .main table .action .edit,
+.dr-managment-section .row .main table .action .view,
+.dr-managment-section .row .main table .action .delete {
+  background-color: #f6f8fb;
+  color: #39973d;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 25px;
+  text-align: center;
+}
+.dr-managment-section .row .main table .action .edit .view,
+.dr-managment-section .row .main table .action .view .view,
+.dr-managment-section .row .main table .action .delete .view {
+  color: #0eabeb;
+  margin: 0px 10px;
+}
+.dr-managment-section .row .main table .action .edit .view .delete,
+.dr-managment-section .row .main table .action .view .view .delete,
+.dr-managment-section .row .main table .action .delete .view .delete {
   color: #e11d29;
 }
 .dr-managment-section .row .main .image {

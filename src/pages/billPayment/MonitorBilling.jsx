@@ -7,7 +7,7 @@ import { RiEditBoxFill } from "react-icons/ri";
 export default function MonitorBilling() {
   return (
     <>
-      <div className="monitor-section">
+      <div className="monitor-section main-content">
         <div className="row">
           <div className="main">
             <div className="main">

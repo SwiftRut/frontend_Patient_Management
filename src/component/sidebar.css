@@ -56,37 +56,38 @@ input {
   display: flex;
   align-items: center;
   color: #818194;
+  padding: 5px 0px;
+  background-color: #fff;
+  position: relative;
+  border: none;
+  transition: background-color 0.5s ease;
+}
+.sidebar .asite .menu ul li .padding {
   padding: 5px 15px;
-  background-color: #fff;
+  display: flex;
 }
-.sidebar .asite .menu ul li .dropdown {
-  list-style: none;
-  padding: 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+.sidebar .asite .menu ul li:focus-within {
+  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
+  color: #0eabeb !important;
+  outline: none;
 }
-.sidebar .asite .menu ul li .dropdown.open {
-  max-height: 200px; /* Maximum height when open */
-}
-.sidebar .asite .menu ul li .dropdown ul {
-  padding: 0;
-  margin: 0;
-}
-.sidebar .asite .menu ul li .dropdown li:hover {
-  background-color: #fff;
-}
-.sidebar .asite .menu ul li .dropdown li {
-  padding: 10px 15px;
-  background-color: #fff !important;
-}
-.sidebar .asite .menu ul li .dropdown li a {
+.sidebar .asite .menu ul li:focus-within span {
   color: #0eabeb;
-  text-decoration: none;
 }
-.sidebar .asite .menu ul li .dropdown li a:hover span {
+.sidebar .asite .menu ul li:focus-within img {
   color: #0eabeb;
+}
+.sidebar .asite .menu ul li:focus-within::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px 0;
+  height: calc(100% - 20px);
+  width: 5px;
+  background-color: #0eabeb;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .sidebar .asite .menu ul li a {
   display: flex;
@@ -98,7 +99,7 @@ input {
   color: #0eabeb;
 }
 .sidebar .asite .menu ul li a img {
-  color: #818194 !important;
+  color: #818194;
   padding-right: 15px;
   width: 50px;
 }
@@ -106,9 +107,39 @@ input {
   color: #818194;
   font-size: 20px;
 }
-.sidebar .asite .menu ul li:hover {
-  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
+.sidebar .asite .menu ul li .dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.sidebar .asite .menu ul li .dropdown.open {
+  max-height: 200px;
+}
+.sidebar .asite .menu ul li .dropdown li {
+  padding: 10px 15px;
+  background-color: #fff !important;
+  color: #818194 !important;
+  transition: background-color 0.3s ease;
+}
+.sidebar .asite .menu ul li .dropdown li span {
+  color: #818194;
+}
+.sidebar .asite .menu ul li .dropdown li a {
+  color: #818194;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.sidebar .asite .menu ul li .dropdown li a:hover span {
   color: #0eabeb;
+}
+.sidebar .asite .menu ul li .dropdown li:hover {
+  background-color: #818194;
+  cursor: pointer;
 }
 .sidebar .asite .menu .logout-btn button {
   gap: 15px;

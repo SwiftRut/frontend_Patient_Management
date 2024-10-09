@@ -9,7 +9,7 @@ import { MdDelete } from "react-icons/md";
 export default function DoctorManagement() {
   return (
     <>
-      <div className="main-content">
+      <div className="main-content bg_color">
         <div className="dr-managment-section">
           <div className="row">
             {/* without data */}
@@ -83,7 +83,7 @@ export default function DoctorManagement() {
                   </button>
                 </div>
               </div>
-              <div className="table">
+              {/* <div className="table">
                 <table>
                   <thead>
                     <tr className="table-heading">
@@ -520,6 +520,778 @@ export default function DoctorManagement() {
                     </tr>
                   </tbody>
                 </table>
+              </div> */}
+              <div class="grid">
+                <div class="grid-container">
+                  <table>
+                    <thead>
+                      <tr class="table-header">
+                        <th>
+                          Doctor Name<div>Doctor Name</div>
+                        </th>
+                        <th>
+                          Gender<div>Gender</div>
+                        </th>
+                        <th>
+                          Qualification<div>Qualification</div>
+                        </th>
+                        <th>
+                          Specialty<div>Specialty</div>
+                        </th>
+                        <th>
+                          Working Time<div>Working Time</div>
+                        </th>
+                        <th>
+                          Patient Check Up Time<div>Patient Check Up Time</div>
+                        </th>
+                        <th>
+                          <div>Break Time</div>Break Time
+                        </th>
+                        <th>
+                          <div>Action</div>Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="flex align-center">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" />
+                          </div>
+                          <div className="name">
+                            <h3>Dr. Marcus Philips</h3>
+                          </div>
+                        </td>
+                        <td>
+                          <BsGenderFemale className="gender" />
+                        </td>
+                        <td>MBBS</td>
+                        <td>Internal Medicine</td>
+                        <td className="time">
+                          <h3>6 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>4 Hour</h3>
+                        </td>
+                        <td className="time">
+                          <h3>1 Hour</h3>
+                        </td>
+                        <td className="flex action">
+                          <div className="edit">
+                            <FaEdit />
+                          </div>
+                          <div className="view">
+                            <FaEye />
+                          </div>
+                          <div className="delete">
+                            <MdDelete />
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

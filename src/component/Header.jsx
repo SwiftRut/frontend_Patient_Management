@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="header main-content">
       <div className="breadcrumbs">
         <img src="/img/home-2.png" />
         <IoIosArrowForward className="icon" />
