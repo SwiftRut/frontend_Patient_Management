@@ -25,7 +25,7 @@ export default function DoctorAsidePanel() {
           <div className="menu flex">
             <ul>
               <li>
-                <NavLink to={"/doctor/appointmentManagement"}>
+                <NavLink to={"/doctor"}>
                   <div className="icon">
                     <FaCalendarAlt />
                   </div>

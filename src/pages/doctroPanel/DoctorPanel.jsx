@@ -20,7 +20,7 @@ export default function DoctorPanel() {
       <Routes>
         <Route path="profile/*" element={<DoctorProfile />} />
         <Route path="edit" element={<DoctorProfileEdit />} />
-        <Route path="appointmentManagement" element={<AppointmentManagement />} />
+        <Route path="" element={<AppointmentManagement />} />
         <Route path="patientRecordAccesst" element={<PatientRecordAccesst />} />
         <Route path="createPrescriptionTools" element={<CreatePrescriptionTools />} />
         <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
