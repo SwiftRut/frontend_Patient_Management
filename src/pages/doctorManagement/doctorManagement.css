@@ -87,8 +87,59 @@ input {
   color: white;
   font-weight: 600;
 }
-.dr-managment-section .row .main .action .edit,
-.dr-managment-section .row .main .action .view,
+.dr-managment-section .row .main .grid {
+  position: relative;
+  padding-top: 37px;
+  background: #f6f8fb;
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.dr-managment-section .row .main .grid-container {
+  overflow-y: auto;
+  height: 640px;
+}
+.dr-managment-section .row .main table {
+  border-spacing: 0;
+  width: 100%;
+}
+.dr-managment-section .row .main th {
+  height: 20px;
+  line-height: 20px;
+  padding-top: 0;
+  padding-bottom: 10px;
+  color: transparent;
+  border: none;
+  white-space: nowrap;
+}
+.dr-managment-section .row .main th div {
+  position: absolute;
+  background: transparent;
+  color: #030229;
+  padding: 10px 25px;
+  top: 0;
+  height: 20px;
+  line-height: normal;
+}
+.dr-managment-section .row .main td {
+  background: #fff;
+  padding: 10px;
+}
+.dr-managment-section .row .main tbody {
+  background-color: #fff;
+}
+.dr-managment-section .row .main img {
+  margin-right: 10px;
+  width: 50px;
+}
+.dr-managment-section .row .main .gender {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f6f8fb;
+  color: #718ebf;
+  padding: 10px;
+}
 .dr-managment-section .row .main .action .delete {
   background-color: #f6f8fb;
   color: #39973d;
@@ -97,78 +148,23 @@ input {
   font-size: 25px;
   text-align: center;
 }
-.dr-managment-section .row .main .action .edit .view,
-.dr-managment-section .row .main .action .view .view,
 .dr-managment-section .row .main .action .delete .view {
+  background-color: #f6f8fb;
   color: #0eabeb;
   margin: 0px 10px;
-}
-.dr-managment-section .row .main .action .edit .view .delete,
-.dr-managment-section .row .main .action .view .view .delete,
-.dr-managment-section .row .main .action .delete .view .delete {
-  color: #e11d29;
-}
-.dr-managment-section .row .main .grid {
-  position: relative;
-  width: 100%;
-}
-.dr-managment-section .row .main .grid .grid-container {
-  overflow-y: auto;
-  height: 700px;
-  width: 100%;
-}
-.dr-managment-section .row .main .grid .table-header {
-  background: #f6f8fb !important;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-.dr-managment-section .row .main table {
-  border-spacing: 0;
-  width: 100%;
-}
-.dr-managment-section .row .main table td {
-  background: #fff;
-  color: #4f4f4f;
-  padding: 15px 25px;
-}
-.dr-managment-section .row .main table th {
-  height: 0;
-  line-height: 0;
-  padding: 20px 15px;
-  color: transparent;
-  border: none;
-  white-space: nowrap;
-}
-.dr-managment-section .row .main table th div {
-  position: absolute;
-  background: transparent;
-  color: #030229;
-  padding: 9px 25px;
-  top: 0;
-  font-size: 20px;
-  margin-left: -25px;
-  line-height: normal;
-}
-.dr-managment-section .row .main table .action .edit,
-.dr-managment-section .row .main table .action .view,
-.dr-managment-section .row .main table .action .delete {
-  background-color: #f6f8fb;
-  color: #39973d;
   border-radius: 10px;
   padding: 16px;
   font-size: 25px;
   text-align: center;
 }
-.dr-managment-section .row .main table .action .edit .view,
-.dr-managment-section .row .main table .action .view .view,
-.dr-managment-section .row .main table .action .delete .view {
-  color: #0eabeb;
-  margin: 0px 10px;
-}
-.dr-managment-section .row .main table .action .edit .view .delete,
-.dr-managment-section .row .main table .action .view .view .delete,
-.dr-managment-section .row .main table .action .delete .view .delete {
+.dr-managment-section .row .main .action .delete .view .delete {
   color: #e11d29;
+  background-color: #f6f8fb;
+  margin: 0px 10px;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 25px;
+  text-align: center;
 }
 .dr-managment-section .row .main .image {
   padding: 95px;
