@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../doctorManagement/Onsite.css";
-import apiService from '../../services/api.js';
+import apiService from "../../services/api.js";
 import { useParams, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { TbBuildingHospital } from "react-icons/tb";
@@ -8,24 +8,25 @@ import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 
-
-
 const Onsite = ({ selectedDoctor }) => {
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // const navigate = useNavigate();
-  console.log("<<<<<doctor", selectedDoctor)
+  console.log("<<<<<doctor", selectedDoctor);
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
         setLoading(true);
         const response = await apiService.GetDoctorById(id);
-        console.log("response>>>>>>>>>", response)
+        console.log("response>>>>>>>>>", response);
         setDoctor(response.data.data);
       } catch (error) {
-        setError("Error fetching doctor details: " + (error.response ? error.response.data.message : error.message));
+        setError(
+          "Error fetching doctor details: " +
+            (error.response ? error.response.data.message : error.message)
+        );
       } finally {
         setLoading(false);
       }
@@ -248,7 +249,7 @@ const Onsite = ({ selectedDoctor }) => {
                   </tr>
                 </table>
               </div>
-            </div> */}
+            </div>
 
             {/* online */}
             <div className="working-details">
@@ -291,8 +292,7 @@ const Onsite = ({ selectedDoctor }) => {
                   <div className="text">
                     <h2>Hospital Address</h2>
                     <p>
-                      151-152 ,gopinath doc, manik chowk, Satelight road, Mota
-                      varacha Jamnagar.
+                      151-152 ,gopinath doc, manik chowk, Satelight road, Mota varacha Jamnagar.
                     </p>
                   </div>
                 </li>
@@ -301,7 +301,7 @@ const Onsite = ({ selectedDoctor }) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
