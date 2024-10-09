@@ -51,7 +51,7 @@ function App() {
             />
 
             {/* manashvi temp start*/}
-            <Route path="/addnewfield" element={<AddNewField />} />
+            {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
             <Route path="/onsite" element={<Onsite />} />
             <Route path="/details" element={<PatientDetails />} />
             <Route path="/bill/:id" element={<Bill />} />
