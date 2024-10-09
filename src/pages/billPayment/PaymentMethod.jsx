@@ -4,8 +4,10 @@ import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { RiEditBoxFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export default function PaymentMethod() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="payment-section">
@@ -27,7 +29,7 @@ export default function PaymentMethod() {
                     <div className="icon">
                       <RiEditBoxFill />
                     </div>
-                    <div className="text">
+                    <div className="text" onClick={() => navigate("/invoice")} >
                       <h3>Edit Design Invoice</h3>
                     </div>
                   </button>
@@ -35,7 +37,7 @@ export default function PaymentMethod() {
                     <div className="icon">
                       <MdAdd />
                     </div>
-                    <div className="text">
+                    <div className="text" onClick={() => navigate("/createbill")}>
                       <h3>Create Bills</h3>
                     </div>
                   </button>

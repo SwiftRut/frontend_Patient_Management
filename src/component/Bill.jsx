@@ -1,5 +1,23 @@
+import { useParams } from "react-router-dom";
 import "../component/bill.css";
+import { useGlobal } from "../hooks/useGlobal";
+import { useEffect } from "react";
 export default function Bill() {
+  const {id} = useParams();
+  const { getBillById } = useGlobal();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBillById(id);
+        console.log(data, "data")
+        setFormData({
+          ...data,});
+      } catch (error) {
+        console.error("Error fetching admin profile:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <>
       {/* <div className="main">

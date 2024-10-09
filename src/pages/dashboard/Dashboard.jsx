@@ -24,8 +24,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useGlobal } from "../../hooks/useGlobal";
 import { useNavigate } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
 
 ChartJS.register(
   CategoryScale,
@@ -240,7 +240,7 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className="flex" onClick={() => navigate("/invoice")}>
+                    <button className="flex" onClick={() => navigate("/createbill")}>
                       <FaAddressCard />
                       Create Bills
                     </button>
