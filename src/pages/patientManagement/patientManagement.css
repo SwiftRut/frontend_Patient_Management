@@ -33,8 +33,8 @@ input {
 .patient-section .row .main {
   border-radius: 15px;
   margin: 10px;
-  margin-left: 10px !important;
   background-color: #fff;
+  padding: 10px;
   height: 100%;
 }
 .patient-section .row .main .top-menu {
@@ -115,7 +115,7 @@ input {
 .patient-section .row .main .table table th {
   font-weight: bold;
   font-size: 20px;
-  padding: 15px;
+  padding: 20px 15px;
   text-align: center;
 }
 .patient-section .row .main .table table tbody {
