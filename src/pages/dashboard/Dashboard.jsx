@@ -71,6 +71,13 @@ const Dashboard = () => {
       title: { display: true, text: "Product Distribution" },
     },
   };
+  const appointments = [
+    { id: 1, patientName: "Roger Lubin", doctorName: "Leo Geidt", disease: "Meningococcal Disease", time: "10:00 AM", type: "Onsite" },
+    { id: 2, patientName: "Sarah Blake", doctorName: "Anna Doe", disease: "Flu", time: "12:00 PM", type: "Virtual" },
+    { id: 3, patientName: "Mark Fisher", doctorName: "Emily Clark", disease: "COVID-19", time: "2:00 PM", type: "Onsite" },
+    { id: 4, patientName: "Nina Smith", doctorName: "Michael Scott", disease: "Allergies", time: "3:30 PM", type: "Virtual" },
+  ];
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -289,130 +296,25 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="bottom flex">
-              <div className="appointments-data">
-                <div className="today-appointments">
-                  <div className="appointments-content">
-                    <div className="head">
-                      <div className="title flex">
-                        <p>Todays Appointments List</p>
-                        <span>View All</span>
-                      </div>
-                    </div>
-                    {/* When there is no data */}
-
-                    {/* <div className="img">
-                      <img src="../img/Frame1.png" alt="" />
-                    </div> */}
-
-                    {/* When there is data */}
-
-                    <div className="appointments-list flex">
-                      <div className="box">
+            <div className="appointments-list flex">
+                    {appointments.map((appointment) => (
+                      <div className="box" key={appointment.id}>
                         <div className="content">
                           <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
+                            <p>{appointment.patientName}</p>
+                            <span>{appointment.type}</span>
                           </div>
                           <div className="data">
                             <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
+                              <li><p>Doctor Name</p><span>{appointment.doctorName}</span></li>
+                              <li><p>Disease Name</p><span>{appointment.disease}</span></li>
+                              <li><p>Appointment Time</p><span>{appointment.time}</span></li>
                             </ul>
                           </div>
                         </div>
                       </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </div>
-              </div>
-              <PatientsBreakdown/>
-            </div>
           </div>
         </div>
       </div>
