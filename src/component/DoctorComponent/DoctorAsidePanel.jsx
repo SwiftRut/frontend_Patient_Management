@@ -44,7 +44,7 @@ export default function DoctorAsidePanel() {
                 onClick={toggleAccordion}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <NavLink to={" "}>
+                <NavLink>
                   <div className="flex" style={{ flexDirection: "row" }}>
                     <div className="icon">
                       <BsFillBagPlusFill />
