@@ -15,9 +15,9 @@ export default function DoctorManagement() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedDoctor, setSelectedDoctor] = useState(null); // Store selected doctor details
-  const [showOnsite, setShowOnsite] = useState(false); // State for modal visibility
-  const [selectedDoctorId, setSelectedDoctorId] = useState(null); // State for delete doctor modal
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [showOnsite, setShowOnsite] = useState(false);
+  const [selectedDoctorId, setSelectedDoctorId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
