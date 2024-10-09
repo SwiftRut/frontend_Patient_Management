@@ -100,8 +100,9 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const updateBill = async (userData, id) => {
+    console.log(userData);
     try {
-      const response = await apiService.EditBill(userData, id);
+      const response = await apiService.EditBill(id, userData);
       console.log(response);
       setBill(response.data.data);
     } catch (error) {
@@ -122,12 +123,24 @@ export const GlobalProvider = ({ children }) => {
   const getBillById = async (id) => {
     try{
       const response = await apiService.GetBillById(id);
+      console.log(response);
       setBill(response.data.data);
+      return response.data.data;
       }catch(error){
       console.log(error);
       throw error
       }
     }
+    const deleteBill = async (id) => {
+      console.log(id);
+      try {
+        const response = await apiService.DeleteBill(id);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    };
   return (
     <GlobalContext.Provider
       value={{
@@ -150,6 +163,7 @@ export const GlobalProvider = ({ children }) => {
         allBills,
         getBills,
         getBillById,
+        deleteBill
       }}
     >
       {children}
