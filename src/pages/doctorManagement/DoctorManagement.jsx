@@ -87,7 +87,7 @@ export default function DoctorManagement() {
                 <tr key={doctor._id}>
                   <td className="flex align-center">
                     <div className="avatar">
-                      <img src="/img/Avatar.png" alt={doctor.name} />
+                      <img src={doctor.avatar} alt={doctor.name} />
                     </div>
                     <div className="name">
                       <h3>{doctor.name}</h3>

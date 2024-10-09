@@ -11,7 +11,7 @@ import { IoLocation } from "react-icons/io5";
 
 
 const Onsite = ({ selectedDoctor, setShowOnsite }) => {
-  // console.log(setShowOnsite)
+  console.log(selectedDoctor)
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
