@@ -102,6 +102,12 @@ function App() {
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" element={<DoctorProfile />} />
               <Route path="edit" />
+              <Route path="appointmentManagement" />
+              <Route path="patientRecordAccesst" />
+              <Route path="createPrescriptionTools" />
+              <Route path="managePrescriptionTools" />
+              <Route path="teleconsultationModule" />
+              <Route path="chatScreen" />
             </Route>
           </Routes>
         </BrowserRouter>

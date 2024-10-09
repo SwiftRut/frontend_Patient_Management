@@ -1,6 +1,7 @@
 // doctor add section start 
 
-.doctorAdd-section, .doctorEdit-section  {
+.doctorAdd-section,
+.doctorEdit-section {
     padding: 20px;
 
     .row {
@@ -37,6 +38,7 @@
                             .choose-photo {
                                 margin: 0px auto;
                                 margin-top: 30px;
+
                                 .image {
                                     width: 186px;
                                     height: 186px;
@@ -58,8 +60,10 @@
                             .upload-sign {
                                 margin: 0px auto;
                                 width: 100%;
+
                                 .title {
                                     padding-bottom: 15px;
+
                                     p {
                                         color: black 1;
                                         font-size: 16px;
@@ -396,6 +400,7 @@
                                         background-color: #4F4F4F;
                                         border-radius: 10px;
                                         padding: 3px;
+
                                         svg {
                                             color: white;
                                             font-size: 24px;
