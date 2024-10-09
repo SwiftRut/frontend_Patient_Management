@@ -111,10 +111,22 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   }
-  const logout = () => {
-    localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
-    setUser(null);
+
+  const logout = async () => {
+    try {
+      await apiService.UniversalLogout();
+      
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      delete axios.defaults.headers.common['Authorization'];
+      
+      window.location.href = '/login';
+      
+      // Reset user state
+      setUser(null);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
