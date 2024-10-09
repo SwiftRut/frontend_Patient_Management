@@ -240,7 +240,7 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className="flex" onClick={() => navigate("/invoice")}>
+                    <button className="flex" onClick={() => navigate("/createbill")}>
                       <FaAddressCard />
                       Create Bills
                     </button>

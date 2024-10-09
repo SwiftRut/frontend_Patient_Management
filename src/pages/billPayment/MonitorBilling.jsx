@@ -1,17 +1,23 @@
 import "../billPayment/monitorBilling.css";
 import { CiSearch } from "react-icons/ci";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdDelete } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { RiEditBoxFill } from "react-icons/ri";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function MonitorBilling() {
-  const { getBills, allBills } = useGlobal();
+  const navigate = useNavigate();
+  const { getBills, allBills, deleteBill } = useGlobal();
   console.log(allBills)
   useEffect(() => {
     getBills();
   }, []);
+  const handleDelete = async (id) => {
+     await deleteBill(id);
+     await getBills();
+  }
   return (
     <div className="monitor-section">
       <div className="row">
@@ -31,7 +37,7 @@ export default function MonitorBilling() {
                 <div className="icon">
                   <RiEditBoxFill />
                 </div>
-                <div className="text">
+                <div className="text" onClick={() => navigate("/invoice")}>
                   <h3>Edit Design Invoice</h3>
                 </div>
               </button>
@@ -39,7 +45,7 @@ export default function MonitorBilling() {
                 <div className="icon">
                   <MdAdd />
                 </div>
-                <div className="text">
+                <div className="text" onClick={() => navigate("/createbill")}>
                   <h3>Create Bills</h3>
                 </div>
               </button>
@@ -74,11 +80,18 @@ export default function MonitorBilling() {
                       <td className="time">
                         <h3>{bill.time}</h3>
                       </td>
-                      <td className="flex action">
-                        <div className="view">
-                          <FaEye />
-                        </div>
-                      </td>
+                      <td className="flex space-x-2 justify-center items-center action">
+  <div className="view hover:text-blue-500 cursor-pointer">
+    <FaEye onClick={() => navigate(`/bill/${bill._id}`)}/>
+  </div>
+  <div className="edit hover:text-yellow-500 cursor-pointer">
+    <RiEditBoxFill  onClick={() => navigate(`/editBill/${bill._id}`)} />
+  </div>
+  <div className="delete hover:text-red-500 cursor-pointer">
+    <MdDelete onClick={() => handleDelete(bill._id)}/>
+  </div>
+</td>
+
                     </tr>
                   ))
                 ) : (

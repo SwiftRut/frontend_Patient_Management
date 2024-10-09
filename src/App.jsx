@@ -53,9 +53,8 @@ function App() {
             <Route path="/details" element={<PatientDetails />} />
             {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
 
-            <Route path="/bill" element={<Bill />} />
+            <Route path="/bill/:id" element={<Bill />} />
             <Route path="/bill2" element={<Bill2 />} />
-            {/* <Route path="/bill3" element={<Bill/>} /> */}
             <Route path="/bill3" element={<Bill3 />} />
 
             <Route path="/cash" element={<CashPayment />} />
@@ -93,7 +92,7 @@ function App() {
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/createBill" element={<CreateBill />} />
-            <Route path="/editBill" element={<EditBill />} />
+            <Route path="/editBill/:id" element={<EditBill />} />
             <Route path="/schedular" element={<Scheduler />} />
 
             {/* doctor routers */}

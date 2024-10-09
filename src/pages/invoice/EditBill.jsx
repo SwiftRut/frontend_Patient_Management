@@ -6,11 +6,12 @@ import { FaImage } from "react-icons/fa";
 import InputField from './InputField';
 import { formDataObject, HospitalBillFields, PatientBillFields } from './Contants';
 import { useAuth } from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
 
 const EditBill = () => {
   const navigate = useNavigate();
+  const {id} = useParams();
   const { user } = useAuth();
   const { createBill, updateBill, bill, getBillById } = useGlobal();
   const [formData, setFormData] = useState(formDataObject);
@@ -25,14 +26,8 @@ const EditBill = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData, "<<<<<<<<<<<<<< formdata");
-    console.log(bill, "<<<<<<<<<<<<<< bill");
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
-    console.log(data, "<<<<<<<<<<<<<< data");
     try {
-      await updateBill(data, bill.id);
+      await updateBill(formData, bill.id);
       // navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -41,7 +36,8 @@ const EditBill = () => {
     useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getBillById(user.id);
+        const data = await getBillById(id);
+        console.log(data, "data")
         setFormData({
           ...data,});
       } catch (error) {
