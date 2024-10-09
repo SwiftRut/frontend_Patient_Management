@@ -50,7 +50,7 @@ const Onsite = ({ selectedDoctor }) => {
                 <h3>Doctor Management</h3>
               </div>
               <div className="box">
-                <img src="/img/box.png" width="100%" />
+                <img src={selectedDoctor.avatar} width="100%" />
               </div>
               <div className="deatils">
                 <div className="table">
