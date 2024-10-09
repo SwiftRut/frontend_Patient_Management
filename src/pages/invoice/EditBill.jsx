@@ -1,190 +1,96 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaEdit } from "react-icons/fa";
 import "./invoice.css";
 import { FaCircleMinus } from "react-icons/fa6";
 import { FaImage } from "react-icons/fa";
+import InputField from './InputField';
+import { formDataObject, HospitalBillFields, PatientBillFields } from './Contants';
+import { useAuth } from '../../hooks/useAuth';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useGlobal } from '../../hooks/useGlobal';
 
 const EditBill = () => {
+  const navigate = useNavigate();
+  const {id} = useParams();
+  const { user } = useAuth();
+  const { createBill, updateBill, bill, getBillById } = useGlobal();
+  const [formData, setFormData] = useState(formDataObject);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData, "<<<<<<<<<<<<<< formdata");
+    try {
+      await updateBill(formData, bill.id);
+      // navigate("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBillById(id);
+        console.log(data, "data")
+        setFormData({
+          ...data,});
+      } catch (error) {
+        console.error("Error fetching admin profile:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div>
-      {/* Edit bill start  */}
-
-      <div className="editBill-section">
+      <div className="bill-insurance-section">
         <div className="row">
           <div className="main">
             <div className="title">
-              <p>Edit Bill</p>
+              <p>Create Bill</p>
             </div>
 
             <div className="patient-details">
               <div className="content">
+                <div className="details flex">
+                  <div className="form-box">
+                    <form onSubmit={handleSubmit} className="flex">
+                      {HospitalBillFields.map((field, index) => (
+                        <InputField
+                          key={index}
+                          {...field}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                        />
+                      ))}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="insurance-details">
+              <div className="content">
+                <div className="head">
+                  <p>Insurance Details</p>
+                </div>
 
                 <div className="details flex">
                   <div className="form-box">
-                    <form action="" className="flex">
-
-                      <div className="input-box">
-                        <div className="label"> Patient Name</div>
-                        <input type="text" placeholder="Enter Patient Name" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label"> Phone Number</div>
-                        <input type="text" placeholder="Enter Phone Number " />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Gender
-                        </div>
-                        <select name="" id="">
-                          <option >Select Gender</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Age
-                        </div>
-                        <input type="text" placeholder="Enter Age" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Doctor Name
-                        </div>
-                        <input type="text" placeholder="Enter Doctor Name" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">Disease Name</div>
-                        <input type="text" placeholder="Enter Disease Name" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Description
-                        </div>
-                        <input type="text" placeholder="Enter Description" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Payment Type
-                        </div>
-                        <select name="" id="">
-                          <option >Select Payment Type</option>
-                        </select>
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Bill Date <span>*</span>
-                        </div>
-                        <input type="date" placeholder="Enter Bill Date" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Bill Time <span>*</span>
-                        </div>
-                        <input type="text" placeholder="Enter Bill Time" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Bill Number <span>*</span>
-                        </div>
-                        <input type="text" placeholder="Enter Bill Number" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Discount (%)
-                        </div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Tax
-                        </div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Amount
-                        </div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Total Amount
-                        </div>
-                        <input type="text" placeholder="0000" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
-
-
-
-
-                      <div className="input-box">
-                        <div className="label">
-                          Address
-                        </div>
-                        <input type="text" placeholder="Enter Address" />
-                        <div className="minus-circle">
-                          <FaCircleMinus />
-                        </div>
-                      </div>
-
+                    <form className="flex">
+                      {PatientBillFields.map((field, index) => (
+                        <InputField
+                          key={index}
+                          {...field}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                        />
+                      ))}
                     </form>
                   </div>
                 </div>
@@ -192,15 +98,13 @@ const EditBill = () => {
             </div>
 
             <div className="save-btn flex">
-              <button>Save</button>
+              <button type="submit" form="create-bill-form" onClick={handleSubmit}>Save</button>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Edit bill End */}
     </div>
-  )
+  );
 }
 
 export default EditBill
