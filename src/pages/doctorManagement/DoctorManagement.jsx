@@ -56,9 +56,8 @@ export default function DoctorManagement() {
   };
 
   const handleViewDoctorDetails = (doctor) => {
-    setSelectedDoctor(doctor); // Set the selected doctor details
-    setShowOnsite(true); // Show the Onsite modal
-    navigate(`/onsite/${doctor._id}`);
+    setSelectedDoctor(doctor);
+    setShowOnsite(true);
   };
 
   const filteredDoctors = doctors.filter(doctor =>
@@ -67,76 +66,78 @@ export default function DoctorManagement() {
 
   const renderDoctorsTable = () => {
     return (
-      <div className="table">
-        <table>
-          <thead>
-            <tr className="table-heading">
-              <th>Doctor Name</th>
-              <th>Gender</th>
-              <th>Qualification</th>
-              <th>Specialty</th>
-              <th>Working Time</th>
-              <th>Patient Check Up Time</th>
-              <th>Break Time</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredDoctors.length > 0 ? (
-              filteredDoctors.map((doctor) => (
-                <tr key={doctor._id}>
-                  <td className="flex align-center">
-                    <div className="avatar">
-                      <img src="/img/Avatar.png" alt={doctor.name} />
-                    </div>
-                    <div className="name">
-                      <h3>{doctor.name}</h3>
-                    </div>
-                  </td>
-                  <td>
-                    {doctor.gender === "female" ? (
-                      <BsGenderFemale className="gender" />
-                    ) : (
-                      <BsGenderMale className="gender" />
-                    )}
-                  </td>
-                  <td>{doctor.qualification}</td>
-                  <td>{doctor.speciality}</td>
-                  <td className="time">
-                    <h3>{doctor.workingOn}</h3>
-                  </td>
-                  <td className="time">
-                    <h3>{doctor.patientCheckupTime}</h3>
-                  </td>
-                  <td className="time">
-                    <h3>{doctor.breakTime}</h3>
-                  </td>
-                  <td className="flex action">
-                    <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
-                      <FaEdit />
-                    </div>
-                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
-                      <FaEye />
-                    </div>
-                    <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
-                      <MdDelete />
+      <>
+        <div className="table">
+          <table>
+            <thead>
+              <tr className="table-heading">
+                <th>Doctor Name</th>
+                <th>Gender</th>
+                <th>Qualification</th>
+                <th>Specialty</th>
+                <th>Working Time</th>
+                <th>Patient Check Up Time</th>
+                <th>Break Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredDoctors.length > 0 ? (
+                filteredDoctors.map((doctor) => (
+                  <tr key={doctor._id}>
+                    <td className="flex align-center">
+                      <div className="avatar">
+                        <img src="/img/Avatar.png" alt={doctor.name} />
+                      </div>
+                      <div className="name">
+                        <h3>{doctor.name}</h3>
+                      </div>
+                    </td>
+                    <td>
+                      {doctor.gender === "female" ? (
+                        <BsGenderFemale className="gender" />
+                      ) : (
+                        <BsGenderMale className="gender" />
+                      )}
+                    </td>
+                    <td>{doctor.qualification}</td>
+                    <td>{doctor.speciality}</td>
+                    <td className="time">
+                      <h3>{doctor.workingOn}</h3>
+                    </td>
+                    <td className="time">
+                      <h3>{doctor.patientCheckupTime}</h3>
+                    </td>
+                    <td className="time">
+                      <h3>{doctor.breakTime}</h3>
+                    </td>
+                    <td className="flex action">
+                      <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
+                        <FaEdit />
+                      </div>
+                      <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
+                        <FaEye />
+                      </div>
+                      <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
+                        <MdDelete />
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="8" className="text-center">
+                    <div className="image">
+                      <img src="/img/no_doctors.png" alt="No data" />
+                      <h1>No Doctor Found</h1>
                     </div>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="8" className="text-center">
-                  <div className="image">
-                    <img src="/img/no_doctors.png" alt="No data" />
-                    <h1>No Doctor Found</h1>
-                  </div>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   };
 
@@ -188,7 +189,7 @@ export default function DoctorManagement() {
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} /> {/* Pass selected doctor to Onsite */}
+            <Onsite selectedDoctor={selectedDoctor} />
           </div>
           <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
         </div>
