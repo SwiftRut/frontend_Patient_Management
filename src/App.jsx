@@ -13,6 +13,7 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 import Chart from "./pages/Chart.jsx";
 import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
+
 import Invoice from "./pages/invoice/Invoice.jsx";
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import Scheduler from "./component/Schedular.jsx";
@@ -20,6 +21,15 @@ import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
 import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 import CreateBill from "./pages/invoice/CreateBill.jsx";
+import EditBill from "./pages/invoice/EditBill.jsx";
+
+import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
+import CashPayment from "./pages/billPayment/CashPayment.jsx";
+import Delete from "./pages/doctorManagement/Delete.jsx";
+import AddNewField from "./pages/invoice/AddNewField.jsx";
+import Bill2 from "./pages/invoice/Bill2.jsx";
+import EditDesignInvoice from "./pages/billPayment/EditDesignInvoice.jsx";
+import Bill3 from "./pages/invoice/Bill3.jsx";
 
 function App() {
   return (
@@ -29,7 +39,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
-            <Route path="/resetPassword" element={< AdminChangePassword />} />
+            <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin component */}
 
@@ -38,8 +48,21 @@ function App() {
             <Route path="/AdminOtp" element={<AdminOtp />} />
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
-            <Route path="/onsite/:id" element={<Onsite />} />
+            {/* manashvi temp start*/}
+            <Route path="/addnewfield" element={<AddNewField />} />
+
+            <Route path="/details" element={<PatientDetails />} />
+            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
+
             <Route path="/bill" element={<Bill />} />
+            <Route path="/bill2" element={<Bill2 />} />
+            {/* <Route path="/bill3" element={<Bill/>} /> */}
+            <Route path="/bill3" element={<Bill3 />} />
+
+            <Route path="/cash" element={<CashPayment />} />
+            <Route path="/delete" element={<Delete />} />
+            <Route path="/editinvoice" element={<EditDesignInvoice />} />
+            {/* manashvi temp end*/}
 
             <Route path="/login" element={<Login />} />
 
@@ -70,14 +93,21 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
-            <Route path="/schedular" element={<Scheduler />} />
+            <Route path="/createBill" element={<CreateBill />} />
+            <Route path="/editBill" element={<EditBill />} />
 
-            <Route path="/CreateBill" element={<CreateBill />} />
+            <Route path="/schedular" element={<Scheduler />} />
 
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" element={<DoctorProfile />} />
               <Route path="edit" />
+              <Route path="appointmentManagement" />
+              <Route path="patientRecordAccesst" />
+              <Route path="createPrescriptionTools" />
+              <Route path="managePrescriptionTools" />
+              <Route path="teleconsultationModule" />
+              <Route path="chatScreen" />
             </Route>
           </Routes>
         </BrowserRouter>
