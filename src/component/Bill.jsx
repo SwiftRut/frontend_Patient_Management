@@ -1,31 +1,49 @@
 import { useParams } from "react-router-dom";
 import "../component/bill.css";
 import { useGlobal } from "../hooks/useGlobal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 export default function Bill() {
   const { id } = useParams();
   const { getBillById } = useGlobal();
+
+  const [formData, setFormData] = useState({
+    billNumber: "",
+    description: "",
+    paymentType: "",
+    date: "",
+    time: "",
+    amount: 0,
+    discount: 0,
+    tax: 0,
+    totalAmount: 0,
+    status: "",
+    patientId: "",
+    doctorId: "",
+    insuranceId: "",
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getBillById(id);
-        console.log(data, "data");
         setFormData({
           ...data,
         });
       } catch (error) {
-        console.error("Error fetching admin profile:", error);
+        console.error("Error fetching billing data:", error);
       }
     };
     fetchData();
   }, []);
+
   return (
     <>
       <div className="invoice">
         <div className="head">
-          <img src="/img/logo.png" width="200px" />
+          <img src="/img/logo.png" width="200px" alt="Logo" />
           <div className="title">
-            <img src="/img/invoice.png" />
+            <img src="/img/invoice.png" alt="Invoice" />
           </div>
         </div>
         <div className="wrapper">
@@ -33,47 +51,46 @@ export default function Bill() {
             <div className="info">
               <h3> Dr. Bharat Patel</h3>
               <span>
-                {" "}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis turpis nulla,
                 finibus sodales erat porta eu.
               </span>
             </div>
             <div>
               <p>
-                <strong>Bill No :</strong> <span>1234</span>
+                <strong>Bill No :</strong> <span>{formData.billNumber}</span>
               </p>
               <p>
-                <strong>Date :</strong> <span>20 June, 2020</span>
+                <strong>Date :</strong> <span>{new Date(formData.date).toLocaleDateString()}</span>
               </p>
               <p>
-                <strong>Bill Time :</strong> <span>10:45 PM</span>
+                <strong>Bill Time :</strong> <span>{formData.time}</span>
               </p>
             </div>
           </div>
           <div className="invoice__patient flex">
             <div>
               <p>
-                Name : <span>Miracle Kenter</span>
+                Name : <span>{formData.patientId?.name || "N/A"}</span>
               </p>
               <p>
-                Gender : <span>Male</span>
+                Gender : <span>{formData.patientId?.gender || "N/A"}</span>
               </p>
               <p>
-                Age : <span>36 Years</span>
+                Age : <span>{formData.patientId?.age || "N/A"} Years</span>
               </p>
               <p>
-                Address : <span>B-105 Virat Bungalows Punagam Motavaracha Jamnagar.</span>
+                Address : <span>{formData.patientId?.address || "N/A"}</span>
               </p>
             </div>
             <div>
               <p>
-                Disease Name : <span>Stomach Ach</span>{" "}
+                Disease Name : <span>{formData.description}</span>
               </p>
               <p>
-                Phone Number : <span> +1234567890</span>
+                Phone Number : <span>{formData.patientId?.phone || "+1234567890"}</span>
               </p>
               <p>
-                Payment Type : <span> Online</span>
+                Payment Type : <span>{formData.paymentType}</span>
               </p>
             </div>
           </div>
@@ -88,28 +105,10 @@ export default function Bill() {
             </thead>
             <tbody>
               <tr>
-                <td>Neuromuscular blockers</td>
-                <td className="amount">₹12000.00</td>
+                <td>{formData.description}</td>
+                <td className="amount">₹{formData.amount.toFixed(2)}</td>
                 <td>1</td>
-                <td className="amount">₹2400.00</td>
-              </tr>
-              <tr>
-                <td>Neuromuscular blockers</td>
-                <td className="amount">₹ 800.00</td>
-                <td>1</td>
-                <td className="amount">₹1600.00</td>
-              </tr>
-              <tr>
-                <td>Leucovorin with high dose methotrexate (HDMTX)</td>
-                <td className="amount">₹ 1000.00</td>
-                <td>1</td>
-                <td className="amount">₹2000.00</td>
-              </tr>
-              <tr>
-                <td>Hydroxyurea for sickle cell disease</td>
-                <td className="amount">₹ 20.00</td>
-                <td>1</td>
-                <td className="amount">₹ 40.00</td>
+                <td className="amount">₹{(formData.amount * 1).toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
@@ -117,25 +116,27 @@ export default function Bill() {
             <table>
               <tr>
                 <td className="label">Amount :</td>
-                <td className="value">₹ 25,840.00</td>
+                <td className="value">₹{formData.amount.toFixed(2)}</td>
               </tr>
               <tr>
-                <td className="label">Discount 5% :</td>
-                <td className="value">₹ 1,292.00</td>
+                <td className="label">Discount {formData.discount}% :</td>
+                <td className="value">
+                  ₹{((formData.amount * formData.discount) / 100).toFixed(2)}
+                </td>
               </tr>
               <tr>
                 <td className="label">Tax :</td>
-                <td className="value">₹ 120.00</td>
+                <td className="value">₹{formData.tax.toFixed(2)}</td>
               </tr>
               <tr>
                 <td className="label color">Total :</td>
-                <td className="value color">₹ 24,668.00</td>
+                <td className="value color">₹{formData.totalAmount.toFixed(2)}</td>
               </tr>
             </table>
           </div>
         </div>
         <div className="footer flex justify-between">
-          <p>Call: +00854 22354 </p> <p>Email: Hello@Gmail.com</p>
+          <p>Call: +00854 22354</p> <p>Email: Hello@Gmail.com</p>
         </div>
       </div>
     </>

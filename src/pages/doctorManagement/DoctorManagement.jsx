@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import "../doctorManagement/doctorManagement.css"; // Make sure the path is correct
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
-import { BsGenderFemale } from "react-icons/bs";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import apiService from '../../services/api.js'; // Adjust the import path as necessary
+import apiService from "../../services/api.js"; // Adjust the import path as necessary
 
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]); // State to hold doctor data
@@ -25,7 +25,10 @@ export default function DoctorManagement() {
         setDoctors(response.data.data); // Assuming response.data contains the list of doctors
       } catch (error) {
         console.error("Error fetching doctor data:", error);
-        setError("Error fetching doctors: " + (error.response ? error.response.data.message : error.message));
+        setError(
+          "Error fetching doctors: " +
+            (error.response ? error.response.data.message : error.message)
+        );
       } finally {
         setLoading(false);
       }
@@ -36,7 +39,8 @@ export default function DoctorManagement() {
 
   // Function to handle deleting a doctor
   const handleDeleteDoctor = async (id) => {
-    if (window.confirm("Are you sure you want to delete this doctor?")) { // Confirmation dialog
+    if (window.confirm("Are you sure you want to delete this doctor?")) {
+      // Confirmation dialog
       try {
         setLoading(true);
         await apiService.DeleteDoctor(id);
@@ -44,7 +48,9 @@ export default function DoctorManagement() {
         setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== id));
       } catch (error) {
         console.error("Error deleting doctor:", error);
-        setError("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
+        setError(
+          "Error deleting doctor: " + (error.response ? error.response.data.message : error.message)
+        );
       } finally {
         setLoading(false);
       }
@@ -71,7 +77,9 @@ export default function DoctorManagement() {
           <tbody>
             {doctors.length > 0 ? (
               doctors.map((doctor) => (
-                <tr key={doctor._id}> {/* Update the key to doctor._id */}
+                <tr key={doctor._id}>
+                  {" "}
+                  {/* Update the key to doctor._id */}
                   <td className="flex align-center">
                     <div className="avatar">
                       <img src="/img/Avatar.png" alt={doctor.name} />
@@ -160,7 +168,8 @@ export default function DoctorManagement() {
             </div>
             {loading && <h3>Loading...</h3>} {/* Show loading message */}
             {error && <h3 style={{ color: "red" }}>{error}</h3>} {/* Show error message */}
-            {!loading && !error && renderDoctorsTable()} {/* Only render table if not loading and no error */}
+            {!loading && !error && renderDoctorsTable()}{" "}
+            {/* Only render table if not loading and no error */}
           </div>
         </div>
       </div>
