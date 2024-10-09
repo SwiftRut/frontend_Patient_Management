@@ -97,7 +97,6 @@ function App() {
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill" element={<EditBill />} />
-
             <Route path="/schedular" element={<Scheduler />} />
             
             {/* doctor routers */}
