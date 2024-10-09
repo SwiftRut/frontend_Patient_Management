@@ -8,14 +8,16 @@ import { MdDelete } from "react-icons/md";
 import apiService from '../../services/api.js';
 import { useNavigate } from "react-router-dom";
 import Onsite from './Onsite'; // Import the Onsite component
+import Delete from "./Delete.jsx";
 
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedDoctor, setSelectedDoctor] = useState(null); // Store selected doctor details
-  const [showOnsite, setShowOnsite] = useState(false); // State for modal visibility
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [showOnsite, setShowOnsite] = useState(false);
+  const [selectedDoctorId, setSelectedDoctorId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,18 +43,17 @@ export default function DoctorManagement() {
     navigate(`/doctorEdit/${doctorId}`);
   };
 
-  const handleDeleteDoctor = async (id) => {
-    if (window.confirm("Are you sure you want to delete this doctor?")) {
-      try {
-        setLoading(true);
-        await apiService.DeleteDoctor(id);
-        setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== id));
-      } catch (error) {
-        setError("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
-      } finally {
-        setLoading(false);
-      }
-    }
+  const handleDeleteClick = (id) => {
+    setSelectedDoctorId(id);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedDoctorId(null);
+  };
+
+  const handleDeleteSuccess = (deletedId) => {
+    setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== deletedId));
+    setSelectedDoctorId(null); // Close modal after delete
   };
 
   const handleViewDoctorDetails = (doctor) => {
@@ -66,78 +67,76 @@ export default function DoctorManagement() {
 
   const renderDoctorsTable = () => {
     return (
-      <>
-        <div className="table">
-          <table>
-            <thead>
-              <tr className="table-heading">
-                <th>Doctor Name</th>
-                <th>Gender</th>
-                <th>Qualification</th>
-                <th>Specialty</th>
-                <th>Working Time</th>
-                <th>Patient Check Up Time</th>
-                <th>Break Time</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredDoctors.length > 0 ? (
-                filteredDoctors.map((doctor) => (
-                  <tr key={doctor._id}>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" alt={doctor.name} />
-                      </div>
-                      <div className="name">
-                        <h3>{doctor.name}</h3>
-                      </div>
-                    </td>
-                    <td>
-                      {doctor.gender === "female" ? (
-                        <BsGenderFemale className="gender" />
-                      ) : (
-                        <BsGenderMale className="gender" />
-                      )}
-                    </td>
-                    <td>{doctor.qualification}</td>
-                    <td>{doctor.speciality}</td>
-                    <td className="time">
-                      <h3>{doctor.workingOn}</h3>
-                    </td>
-                    <td className="time">
-                      <h3>{doctor.patientCheckupTime}</h3>
-                    </td>
-                    <td className="time">
-                      <h3>{doctor.breakTime}</h3>
-                    </td>
-                    <td className="flex action">
-                      <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
-                        <FaEdit />
-                      </div>
-                      <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
-                        <FaEye />
-                      </div>
-                      <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
-                        <MdDelete />
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="8" className="text-center">
-                    <div className="image">
-                      <img src="/img/no_doctors.png" alt="No data" />
-                      <h1>No Doctor Found</h1>
+      <div className="table">
+        <table>
+          <thead>
+            <tr className="table-heading">
+              <th>Doctor Name</th>
+              <th>Gender</th>
+              <th>Qualification</th>
+              <th>Specialty</th>
+              <th>Working Time</th>
+              <th>Patient Check Up Time</th>
+              <th>Break Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredDoctors.length > 0 ? (
+              filteredDoctors.map((doctor) => (
+                <tr key={doctor._id}>
+                  <td className="flex align-center">
+                    <div className="avatar">
+                      <img src={doctor.avatar} alt={doctor.name} />
+                    </div>
+                    <div className="name">
+                      <h3>{doctor.name}</h3>
+                    </div>
+                  </td>
+                  <td>
+                    {doctor.gender === "female" ? (
+                      <BsGenderFemale className="gender" />
+                    ) : (
+                      <BsGenderMale className="gender" />
+                    )}
+                  </td>
+                  <td>{doctor.qualification}</td>
+                  <td>{doctor.speciality}</td>
+                  <td className="time">
+                    <h3>{doctor.workingOn}</h3>
+                  </td>
+                  <td className="time">
+                    <h3>{doctor.patientCheckupTime}</h3>
+                  </td>
+                  <td className="time">
+                    <h3>{doctor.breakTime}</h3>
+                  </td>
+                  <td className="flex action">
+                    <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
+                      <FaEdit />
+                    </div>
+                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
+                      <FaEye />
+                    </div>
+                    <div className="delete" onClick={() => handleDeleteClick(doctor._id)}>
+                      <MdDelete />
                     </div>
                   </td>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="8" className="text-center">
+                  <div className="image">
+                    <img src="/img/no_doctors.png" alt="No data" />
+                    <h1>No Doctor Found</h1>
+                  </div>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     );
   };
 
@@ -189,10 +188,19 @@ export default function DoctorManagement() {
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} />
+            <Onsite selectedDoctor={selectedDoctor} setShowOnsite={setShowOnsite} />
           </div>
           <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
         </div>
+      )}
+
+      {/* Modal for Delete doctor */}
+      {selectedDoctorId && (
+        <Delete
+          deleteId={selectedDoctorId}
+          onClose={handleCloseModal}
+          onDeleteSuccess={handleDeleteSuccess}
+        />
       )}
     </div>
   );
