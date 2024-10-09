@@ -1,8 +1,41 @@
 import "../patientManagement/PatientManagement.css";
 import { CiSearch } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
+import { useState } from "react";
+import PatientDetails from "./PatientDetails.jsx"; // Import the PatientDetails component
 
 export default function PatientManagement() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
+
+
+  const patients = [
+    {
+      name: "Marcus Philips",
+      issue: "Stomach Ache",
+      doctor: "Dr. Mathew Best",
+      disease: "Viral Infection",
+      time: "4:30 PM",
+      type: "Online",
+      phone: "92584 58475",
+      age: "27 Years",
+      gender: "Male",
+      address: "B-408 Swastik society, Shivaji marg mota varacha rajkot.",
+      date: "2 Jan, 2022",
+    },
+    // Add more patient objects as needed...
+  ];
+
+  const openModal = (patient) => {
+    setSelectedPatient(patient);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPatient(null);
+  };
+
   return (
     <>
       <div className="patient-section">
@@ -34,470 +67,59 @@ export default function PatientManagement() {
                     <th>Patient Name</th>
                     <th>Patient Issue</th>
                     <th>Doctor Name</th>
-                    <th>Dieses Name</th>
+                    <th>Diseases Name</th>
                     <th>Appointment Time</th>
                     <th>Appointment Type</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td className="flex align-center">
-                      <div className="avatar">
-                        <img src="/img/Avatar.png" />
-                      </div>
-                      <div className="name">
-                        <h3>Marcus Philips</h3>
-                      </div>
-                    </td>
-                    <td>
-                      <h3>Stomach Ache</h3>
-                    </td>
-                    <td>
-                      <h3>Dr. Mathew Best</h3>
-                    </td>
-                    <td>
-                      <h3>Viral Infection</h3>
-                    </td>
-                    <td className="time">
-                      <h3>4:30 PM</h3>
-                    </td>
-                    <td className="time">
-                      <h3>Online</h3>
-                    </td>
-                    <td className="action">
-                      <div className="view">
-                        <FaEye />
-                      </div>
-                    </td>
-                  </tr>
+                  {patients.map((patient, index) => (
+                    <tr key={index}>
+                      <td className="flex align-center">
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" alt="Avatar" />
+                        </div>
+                        <div className="name">
+                          <h3>{patient.name}</h3>
+                        </div>
+                      </td>
+                      <td>
+                        <h3>{patient.issue}</h3>
+                      </td>
+                      <td>
+                        <h3>{patient.doctor}</h3>
+                      </td>
+                      <td>
+                        <h3>{patient.disease}</h3>
+                      </td>
+                      <td className="time">
+                        <h3>{patient.time}</h3>
+                      </td>
+                      <td className="time">
+                        <h3>{patient.type}</h3>
+                      </td>
+                      <td className="action">
+                        <div className="view" onClick={() => openModal(patient)}>
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <PatientDetails patient={selectedPatient} closeModal={closeModal} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
