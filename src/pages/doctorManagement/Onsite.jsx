@@ -15,14 +15,11 @@ const Onsite = ({ selectedDoctor }) => {
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const navigate = useNavigate();
-  console.log("<<<<<doctor", selectedDoctor)
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
         setLoading(true);
         const response = await apiService.GetDoctorById(id);
-        console.log("response>>>>>>>>>", response)
         setDoctor(response.data.data);
       } catch (error) {
         setError("Error fetching doctor details: " + (error.response ? error.response.data.message : error.message));
@@ -248,7 +245,7 @@ const Onsite = ({ selectedDoctor }) => {
                   </tr>
                 </table>
               </div>
-            </div> */}
+            </div>
 
             {/* online */}
             <div className="working-details">
