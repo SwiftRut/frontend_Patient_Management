@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { IoMdAdd } from "react-icons/io";
+import { TiMinus } from "react-icons/ti";
 const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
   const [fieldType, setFieldType] = useState("Dropdown");
   const [selectionType, setSelectionType] = useState("Single");
@@ -28,7 +29,7 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
       options: fieldType === "Dropdown" ? options.filter((opt) => opt.trim()) : null,
     });
 
-    // Reset the fields
+    // Reset fields after adding
     setFieldType("Dropdown");
     setSelectionType("Single");
     setFieldName("");
@@ -38,42 +39,45 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
 
   return (
     isOpen && (
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-        <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-          <h2 className="text-lg font-semibold mb-4">Add New Field</h2>
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div className="bg-white rounded-lg shadow-lg w-1/3">
+      <div className="modal-overlay">
+        <div className="modal w-full p-6">
+          <h2>Add New Field</h2>
 
-          <div className="mb-4">
-            <label className="mr-2">
+          <div className="field-type">
+            <label className="radio-label check">
               <input
                 type="radio"
                 name="fieldType"
                 value="Dropdown"
                 checked={fieldType === "Dropdown"}
                 onChange={() => setFieldType("Dropdown")}
-                className="mr-1"
               />
+              <span className="radio-custom"></span>
               Dropdown
             </label>
-            <label>
+            |
+            <label className="radio-label">
               <input
                 type="radio"
                 name="fieldType"
                 value="Text Field"
                 checked={fieldType === "Text Field"}
                 onChange={() => setFieldType("Text Field")}
-                className="mr-1"
               />
-              Text Field
+              <span className="radio-custom"></span>
+              Text field
             </label>
           </div>
 
           {fieldType === "Dropdown" && (
-            <div className="mb-4">
-              <label className="block mb-2 text-sm">Selection</label>
+            <div className="dropdown">
+              <label htmlFor="selection">Selection</label>
               <select
+                id="selection"
                 value={selectionType}
                 onChange={(e) => setSelectionType(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
               >
                 <option value="Single">Single</option>
                 <option value="Multiple">Multiple</option>
@@ -81,56 +85,53 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
             </div>
           )}
 
-          <div className="mb-4">
-            <label className="block mb-2 text-sm">Field Name</label>
+          <div className="input">
+            <div className="label">Dropdown Name</div>
             <input
               type="text"
               value={fieldName}
               onChange={(e) => setFieldName(e.target.value)}
               placeholder="Enter Field Name"
-              className="w-full p-2 border border-gray-300 rounded"
             />
           </div>
 
           {fieldType === "Dropdown" && (
-            <div className="mb-4">
-              <label className="block mb-2 text-sm">Options</label>
-              {options.map((option, index) => (
-                <div key={index} className="flex items-center mb-2">
-                  <input
-                    type="text"
-                    value={option}
-                    onChange={(e) => handleOptionChange(index, e.target.value)}
-                    placeholder={`Value ${index + 1}`}
-                    className="w-full p-2 border border-gray-300 rounded"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeOption(index)}
-                    className="ml-2 text-red-500"
-                  >
-                    &times;
-                  </button>
+            <div className="values">
+              <div className="flex">
+                {options.map((option, index) => (
+                  <div key={index} className="input-box">
+                    <div className="minus-circle" onClick={() => removeOption(index)}>
+                      <TiMinus />
+                    </div>
+                    <input
+                      type="text"
+                      value={option}
+                      onChange={(e) => handleOptionChange(index, e.target.value)}
+                      placeholder={`Value ${index + 1}`}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="add flex align-center" onClick={addOption}>
+                <div className="icon">
+                  <IoMdAdd />
                 </div>
-              ))}
-              <button type="button" onClick={addOption} className="text-blue-500 text-sm mt-1">
-                + Add Option
-              </button>
+                <h3>Add Option</h3>
+              </div>
             </div>
           )}
 
-          <div className="flex justify-end mt-4">
-            <button onClick={onClose} className="bg-gray-200 text-gray-800 px-4 py-2 rounded mr-2">
-              Cancel
-            </button>
-            <button onClick={handleAdd} className="bg-blue-500 text-white px-4 py-2 rounded">
-              Add
-            </button>
+          <div className="actions">
+            <button onClick={onClose} className="btn-cancel">Cancel</button>
+            <button onClick={handleAdd} className="btn-add">Add</button>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     )
   );
 };
+
 
 export default AddFieldModal;

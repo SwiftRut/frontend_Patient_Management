@@ -25,7 +25,7 @@ export default function DoctorAsidePanel() {
           <div className="menu flex">
             <ul>
               <li>
-                <NavLink to={"/doctor/appointmentManagement"}>
+                <NavLink to={"/doctor"}>
                   <div className="icon">
                     <FaCalendarAlt />
                   </div>
@@ -44,7 +44,7 @@ export default function DoctorAsidePanel() {
                 onClick={toggleAccordion}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <NavLink to={" "}>
+                <NavLink>
                   <div className="flex" style={{ flexDirection: "row" }}>
                     <div className="icon">
                       <BsFillBagPlusFill />
