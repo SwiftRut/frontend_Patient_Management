@@ -122,7 +122,7 @@ const DoctorProfileEdit = () => {
                 <div className="img-box">
                   <div className="img">
                     <img
-                      src={profile?.avatar || "../img/profile.png"}
+                      src={profile?.avatar || "../img/dr-profile.png"}
                       alt=""
                       className="rounded-full"
                     />
