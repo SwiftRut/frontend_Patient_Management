@@ -47,7 +47,7 @@ export default function InsuranceClaims() {
               <div className="table">
                 <table>
                   <thead>
-                    <tr className="table-heading">
+                    <tr>
                       <th>Bill Number</th>
                       <th>Doctor Name</th>
                       <th>Patient Name</th>
