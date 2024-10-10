@@ -348,10 +348,10 @@ const AdminRegistration = () => {
         </div>
       </div>
 
-      {/* create-Hospital form start */}
+      {/* Modal */}
       {isModalOpen && (
-      <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-  <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
             <div className="modal-overlay">
               <div className="modal-content">
                 <div className="hospital-section">
@@ -503,7 +503,6 @@ const AdminRegistration = () => {
           </div>{" "}
         </div>
       )}
-      {/* create-Hospital form end */}
     </>
   );
 };
