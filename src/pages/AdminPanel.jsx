@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import Sidebar from "../component/Sidebar";
 import Header from "../component/Header";
 import Dashboard from "./dashboard/Dashboard";
@@ -18,7 +17,6 @@ export default function AdminPanel() {
   return (
     <>
       <Header />
-
       <Sidebar />
       <Routes>
         <Route path="" element={<Dashboard />} />
