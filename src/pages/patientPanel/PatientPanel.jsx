@@ -1,8 +1,7 @@
 import React from "react";
-import PatientProfile from "./profile/PatientProfile";
-import Header from "../../component/Header";
-import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel";
 import { Route, Routes } from "react-router-dom";
+
+import PatientProfile from "./profile/PatientProfile";
 import PersonalHealthRecord from "./profile/PersonalHealthRecord";
 import Prescriptions from "./profile/Prescriptions";
 import TestReport from "./profile/TestReport";
@@ -10,14 +9,15 @@ import MedicalHistory from "./profile/MedicalHistory";
 import AllAppointment from "./profile/Allappoiment";
 import Appointment from "./Appointment";
 import AppointmentBooking from "./AppointmentBooking";
-import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
 import ChatScreen1 from "./ChatScreen1";
+import PatientHeader from "../../component/DoctorComponent/PatientHeader";
+import PatientAsidePanel from "../../component/DoctorComponent/PatientAsidePanel";
 
 export default function PatientPanel() {
   return (
     <>
-      <Header />
-      <DoctorAsidePanel />
+      <PatientHeader />
+      <PatientAsidePanel />
 
       <Routes>
         <Route path="" element={<PersonalHealthRecord />} />

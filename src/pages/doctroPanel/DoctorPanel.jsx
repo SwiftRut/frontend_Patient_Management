@@ -1,5 +1,5 @@
-import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel.jsx";
-import DoctorHeader from "../../component/DoctorComponent/DoctorHeader.jsx";
+import DoctorAsidePanel from "../../component/DoctorComponent/PatientAsidePanel.jsx";
+import DoctorHeader from "../../component/DoctorComponent/PatientHeader.jsx";
 import DoctorProfile from "./profile/DoctorProfile.jsx";
 import { Route, Routes } from "react-router-dom";
 import "../doctroPanel/profile/doctorProfile.css";
