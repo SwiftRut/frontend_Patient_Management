@@ -131,42 +131,44 @@ export const GlobalProvider = ({ children }) => {
       console.log(error);
       throw error;
     }
-    const deleteBill = async (id) => {
-      console.log(id);
-      try {
-        const response = await apiService.DeleteBill(id);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
-    };
-    const getAllAppointments= async () => {
-      try {
-        const response = await apiService.GetAllAppointments();
-        console.log(response, "response");
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
+  }
+
+  const deleteBill = async (id) => {
+    console.log(id);
+    try {
+      const response = await apiService.DeleteBill(id);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-    const getAppointmentById = async (id) => {
-      try{
-        const response = await apiService.GetAppointmentById();
-        console.log(response);
-      }catch (error) {
-        console.log(error);
-        throw error;
-      }
+  };
+  const getAllAppointments= async () => {
+    try {
+      const response = await apiService.GetAllAppointments();
+      console.log(response, "response");
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-    const editAppointment = async (id, userData) => {
-      try{
-        const response = await apiService.EditAppointment(id,userData);
-        console.log(response);
-      }catch (error) {
-      
-      }
+  }
+  const getAppointmentById = async (id) => {
+    try{
+      const response = await apiService.GetAppointmentById();
+      console.log(response);
+    }catch (error) {
+      console.log(error);
+      throw error;
     }
+  }
+  const editAppointment = async (id, userData) => {
+    try{
+      const response = await apiService.EditAppointment(id,userData);
+      console.log(response);
+    }catch (error) {
+    
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
