@@ -2,14 +2,14 @@ import { NavLink } from "react-router-dom";
 import "./patientAsidePanel.css";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { FaCalendarAlt } from "react-icons/fa";
-import { IoMdListBox } from "react-icons/io";
-import { BsFillBagPlusFill } from "react-icons/bs";
-import { MdOutlineWifiCalling } from "react-icons/md";
+import { RiContactsBookFill } from "react-icons/ri";
+import { FaCalendarCheck } from "react-icons/fa";
+import { FaFilePrescription } from "react-icons/fa6";
+import { FaLaptopMedical } from "react-icons/fa6"
 import { IoMdChatbubbles } from "react-icons/io";
+import { RiBillLine } from "react-icons/ri";
 
 export default function PatientAsidePanel() {
-  const [isAccordionOpen, setAccordionOpen] = useState(false);
   const { logout } = useAuth();
   const toggleAccordion = () => {
     setAccordionOpen((prevState) => !prevState);
@@ -27,51 +27,33 @@ export default function PatientAsidePanel() {
               <li>
                 <NavLink to={"/doctor"}>
                   <div className="icon">
-                    <FaCalendarAlt />
+                    <RiContactsBookFill />
                   </div>
-                  <span>Appointment Management</span>
+                  <span>Personal Health Record</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctor/patientRecordAccesst"}>
                   <div className="icon">
-                    <IoMdListBox />
+                    <FaCalendarCheck />
                   </div>
-                  <span>Patient Record Accesst</span>
+                  <span>Appointment Booking</span>
                 </NavLink>
               </li>
-              <li onClick={toggleAccordion} style={{ display: "flex", flexDirection: "column" }}>
+              <li>
                 <NavLink>
-                  <div className="flex" style={{ flexDirection: "row" }}>
                     <div className="icon">
-                      <BsFillBagPlusFill />
+                      <FaFilePrescription />
                     </div>
-                    <span className="menu-item">Prescription Tools</span>
-                  </div>
+                    <span className="menu-item">Prescription Access</span>
                 </NavLink>
-
-                {/* Accordion Dropdown */}
-                {isAccordionOpen && (
-                  <ul style={{ width: "100%" }} className="dropdown">
-                    <li>
-                      <NavLink to={"/doctor/createPrescriptionTools"}>
-                        <span>create</span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to={"/doctor/managePrescriptionTools"}>
-                        <span>Manage</span>
-                      </NavLink>
-                    </li>
-                  </ul>
-                )}
               </li>
               <li>
                 <NavLink to={"/doctor/teleconsultationModule"}>
                   <div className="icon">
-                    <MdOutlineWifiCalling />
+                    <FaLaptopMedical />
                   </div>
-                  <span>Teleconsultation Module</span>
+                  <span>Teleconsultation Access</span>
                 </NavLink>
               </li>
               <li>
@@ -80,6 +62,14 @@ export default function PatientAsidePanel() {
                     <IoMdChatbubbles />
                   </div>
                   <span>Chat</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/doctor/chatScreen"}>
+                  <div className="icon">
+                    <RiBillLine />
+                  </div>
+                  <span>Bill</span>
                 </NavLink>
               </li>
             </ul>

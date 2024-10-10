@@ -15,6 +15,8 @@ export default function DoctorAsidePanel() {
     setAccordionOpen((prevState) => !prevState);
   };
 
+  
+
   return (
     <>
       <div className="sidebar">
