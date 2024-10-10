@@ -20,7 +20,7 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
               Old
             </span>
           )}
-          <VisibilityIcon className="text-gray-400" onClick={() => navigate(`/prescription-view/${id}`)} />
+          <VisibilityIcon className="text-gray-400" onClick={() => navigate(`/doctor/prescriptionView/${id}`)} />
         </div>
       </div>
       <div className="text-sm text-gray-600 mb-4">

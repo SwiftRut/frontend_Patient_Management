@@ -1,20 +1,24 @@
-import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel";
-import Header from "../../component/Header";
-import DoctorProfile from "./profile/DoctorProfile";
+import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel.jsx";
+import DoctorHeader from "../../component/DoctorComponent/DoctorHeader.jsx";
+import DoctorProfile from "./profile/DoctorProfile.jsx";
 import { Route, Routes } from "react-router-dom";
 import '../doctroPanel/profile/doctorProfile.css'
-import DoctorProfileEdit from "./profile/DoctorProfileEdit";
-import AppointmentManagement from "./AppointmentManagement";
-import PatientRecordAccesst from "./PatientRecordAccesst";
-import CreatePrescriptionTools from "./CreatePrescriptionTools";
-import ManagePrescriptionTools from "./ManagePrescriptionTools";
-import TeleconsultationModule from "./TeleconsultationModule";
-import ChatScreen from "./ChatScreen";
+import DoctorProfileEdit from "./profile/DoctorProfileEdit.jsx";
+import AppointmentManagement from "./AppointmentManagement.jsx";
+import PatientRecordAccesst from "./PatientRecordAccesst.jsx";
+import CreatePrescriptionTools from "./CreatePrescriptionTools.jsx";
+import ManagePrescriptionTools from "./ManagePrescriptionTools.jsx";
+import TeleconsultationModule from "./TeleconsultationModule.jsx";
+import ChatScreen from "./ChatScreen.jsx";
+import AppointmentTimeSlot from "./AppointmentTimeSlot.jsx";
+import PatientDetail from "./PatientDetail.jsx";
+import PrescriptionView from "./PrescriptionView.jsx";
+
 
 export default function DoctorPanel() {
   return (
     <>
-      <Header />
+      <DoctorHeader />
       <DoctorAsidePanel />
 
       <Routes>
@@ -26,6 +30,9 @@ export default function DoctorPanel() {
         <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
         <Route path="teleconsultationModule" element={<TeleconsultationModule />} />
         <Route path="chatScreen" element={<ChatScreen />} />
+        <Route path="appointmentTimeSlot" element={<AppointmentTimeSlot />} />
+        <Route path="patientDetail/:id" element={<PatientDetail />} />
+        <Route path="prescriptionView/:id" element={<PrescriptionView />} />
       </Routes>
     </>
   );

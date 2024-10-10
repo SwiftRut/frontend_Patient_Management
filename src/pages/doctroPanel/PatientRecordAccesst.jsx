@@ -82,7 +82,7 @@ export default function PatientRecordAccesst() {
                 </td>
                 <td className="p-3">
                   <IconButton color="primary">
-                    <Visibility onClick={() => navigate(`/patient-detail/${patient.id}`)} />
+                    <Visibility onClick={() => navigate(`/doctor/patientDetail/${patient.id}`)} />
                   </IconButton>
                 </td>
               </tr>
