@@ -1,65 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, IconButton, TextField, InputAdornment } from '@mui/material';
 import { CalendarToday, Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import CustomDateModal from '../../component/modals/CustomDateModal.jsx';
 import CancelAppointmentModal from '../../component/modals/CancelAppointmentModal.jsx';
-import apiService from '../../services/api.js';
+import { useAuth } from '../../hooks/useAuth.jsx';
+import { useGlobal } from '../../hooks/useGlobal.jsx';
 
 export default function AppointmentManagement() {
+  const { user } = useAuth();
+  const { getAllAppointments, allAppointements } = useGlobal();
 
-  // Initialize with static data
-  const [appointments, setAppointments] = useState({
-    today: [
-      {
-        patientName: 'Marcus Philips',
-        diseaseName: 'Viral Infection',
-        patientIssue: 'Stomach Ache',
-        appointmentDate: '2024-10-10',
-        appointmentTime: '4:30 PM',
-        appointmentType: 'Online',
-      },
-      {
-        patientName: 'Julianna Warren',
-        diseaseName: 'Diabetes',
-        patientIssue: 'High Blood Sugar',
-        appointmentDate: '2024-10-10',
-        appointmentTime: '2:40 PM',
-        appointmentType: 'Onsite',
-      },
-    ],
-    upcoming: [
-      {
-        patientName: 'London Shaffer',
-        diseaseName: 'Viral Infection',
-        patientIssue: 'Feeling Tired',
-        appointmentDate: '2024-10-12',
-        appointmentTime: '5:35 PM',
-        appointmentType: 'Onsite',
-      },
-    ],
-    previous: [
-      {
-        patientName: 'Leslie Mccray',
-        diseaseName: 'Blood Pressure',
-        patientIssue: 'Headache',
-        appointmentDate: '2024-10-08',
-        appointmentTime: '9:30 AM',
-        appointmentType: 'Online',
-      },
-    ],
-    canceled: [
-      {
-        patientName: 'Marcus Philips',
-        diseaseName: 'Viral Infection',
-        patientIssue: 'Stomach Ache',
-        appointmentDate: '2024-10-07',
-        appointmentTime: '4:30 PM',
-        appointmentType: 'Onsite',
-      },
-    ],
-  });
+  useEffect(() => {
+    getAllAppointments();
+  }, []);
 
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('Today Appointment');
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);

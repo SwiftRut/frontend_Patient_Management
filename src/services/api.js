@@ -76,6 +76,15 @@ const apiService = {
     api.patch(`/admin/edit-profile/${id}`, userData),
   ChangePassword: (id, userData) =>
     api.patch(`/admin/change-password/${id}`, userData),
+
+    //Appointments
+    GetAllAppointments: () => 
+      api.get(`/appoinment/allappoinment`),
+   GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
+   EditAppointment: (id, userData) => api.put(`/appoinment/updateappointment/${id}`, userData),
+   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
+
+   
 };
 
 export default apiService;
