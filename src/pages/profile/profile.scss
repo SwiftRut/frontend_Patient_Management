@@ -391,15 +391,19 @@
                     background-color: #F6F8FB;
                     border-radius: 10px;
 
-                    svg {
-                      color: #4F4F4F;
-                    }
+                    label {
+                      align-items: center;
 
-                    span {
-                      color: #4F4F4F;
-                      padding-left: 15px;
-                      font-size: 20px;
-                      font-weight: 600;
+                      svg {
+                        color: #4F4F4F;
+                      }
+
+                      span {
+                        color: #4F4F4F;
+                        padding-left: 15px;
+                        font-size: 20px;
+                        font-weight: 600;
+                      }
                     }
                   }
                 }

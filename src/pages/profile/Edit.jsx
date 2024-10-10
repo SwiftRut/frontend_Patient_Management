@@ -47,7 +47,7 @@ export const Edit = () => {
                             onChange={handleImageChange}
                             accept="image/*"
                           />
-                          <label htmlFor="profilePic">
+                          <label htmlFor="profilePic" className="flex">
                             <FaCamera />
                             <span>Change Profile</span>
                           </label>

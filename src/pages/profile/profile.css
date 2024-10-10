@@ -284,10 +284,13 @@
   background-color: #F6F8FB;
   border-radius: 10px;
 }
-.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li svg {
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label {
+  align-items: center;
+}
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label svg {
   color: #4F4F4F;
 }
-.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li span {
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label span {
   color: #4F4F4F;
   padding-left: 15px;
   font-size: 20px;
