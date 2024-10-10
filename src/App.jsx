@@ -75,9 +75,10 @@ function App() {
 
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
+              <Route path="" />
               <Route path="profile/*" element={<DoctorProfile />} />
               <Route path="edit" />
-              <Route path="" />
+
               <Route path="patientRecordAccesst" />
               <Route path="createPrescriptionTools" />
               <Route path="managePrescriptionTools" />
@@ -94,24 +95,20 @@ function App() {
             <Route path="/patient" element={<PatientPanel />}>
               <Route path="profile/*" />
               <Route path="profileEdit" />
-
-              {/* <Route path="doctorManagement/*" /> */}
-              {/* <Route path="doctorAdd" /> */}
-              {/* <Route path="doctorEdit/:doctorId" /> */}
-
-              {/* <Route path="patientManagement" /> */}
-
-              {/* <Route path="monitorBilling" /> */}
-              {/* <Route path="insuranceClaims" /> */}
-              {/* <Route path="paymentMethod" /> */}
-
-              {/* <Route path="reportingAndAnalytics" /> */}
+              <Route path="prescriptions" />
+              <Route path="testReport" />
+              <Route path="medicalHistory" />
+              <Route path="allAppointment" />
+              <Route path="appointment" />
+              <Route path="appointmentBooking" />
+              <Route path="chatScreen" />
             </Route>
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill/:id" element={<EditBill />} />
+
             <Route path="/schedular" element={<Scheduler />} />
 
             {/* manashvi temp start*/}

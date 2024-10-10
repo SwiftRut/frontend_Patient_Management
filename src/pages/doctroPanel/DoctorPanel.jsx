@@ -2,7 +2,7 @@ import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel.j
 import DoctorHeader from "../../component/DoctorComponent/DoctorHeader.jsx";
 import DoctorProfile from "./profile/DoctorProfile.jsx";
 import { Route, Routes } from "react-router-dom";
-import '../doctroPanel/profile/doctorProfile.css'
+import "../doctroPanel/profile/doctorProfile.css";
 import DoctorProfileEdit from "./profile/DoctorProfileEdit.jsx";
 import AppointmentManagement from "./AppointmentManagement.jsx";
 import PatientRecordAccesst from "./PatientRecordAccesst.jsx";
@@ -13,7 +13,6 @@ import ChatScreen from "./ChatScreen.jsx";
 import AppointmentTimeSlot from "./AppointmentTimeSlot.jsx";
 import PatientDetail from "./PatientDetail.jsx";
 import PrescriptionView from "./PrescriptionView.jsx";
-
 
 export default function DoctorPanel() {
   return (
