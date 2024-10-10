@@ -244,4 +244,54 @@ ol {
   font-weight: 600;
   text-align: center;
   padding: 20px;
+}
+
+.cp-tool {
+  border-radius: 10px;
+}
+.cp-tool .head {
+  background-color: #F6F8FB;
+  padding: 15px 15px;
+  border-radius: 10px 10px 0px 0px;
+}
+.cp-tool .box-data {
+  padding: 15px 15px;
+}
+.cp-tool .cp-add {
+  padding-top: 30px;
+}
+.cp-tool .cp-add button {
+  padding: 12px 14px;
+  background-color: #0EABEB;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+}
+.cp-tool h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.cp-tool h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #030229;
+}
+.cp-tool p {
+  color: #818194;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+.cp-tool p span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4F4F4F;
+}
+.cp-tool p .onside {
+  color: #5678E9;
 }/*# sourceMappingURL=doctorPanel.css.map */

@@ -13,6 +13,7 @@ import ChatScreen from "./ChatScreen.jsx";
 import AppointmentTimeSlot from "./AppointmentTimeSlot.jsx";
 import PatientDetail from "./PatientDetail.jsx";
 import PrescriptionView from "./PrescriptionView.jsx";
+import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
 
 
 export default function DoctorPanel() {
@@ -33,6 +34,7 @@ export default function DoctorPanel() {
         <Route path="appointmentTimeSlot" element={<AppointmentTimeSlot />} />
         <Route path="patientDetail/:id" element={<PatientDetail />} />
         <Route path="prescriptionView/:id" element={<PrescriptionView />} />
+        <Route path="createPrescriptionForm/:id" element={<CreatePrescriptionForm />} />
       </Routes>
     </>
   );

@@ -340,6 +340,68 @@ ol {
 
 }
 
-
-
 // Patient Record Accesst component end
+
+
+// createPrescription tools start 
+
+.cp-tool {
+  border-radius: 10px;
+
+  .head {
+    background-color: #F6F8FB;
+    padding: 15px 15px;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .box-data {
+    padding: 15px 15px;
+  }
+
+  .cp-add {
+    padding-top: 30px;
+
+    button {
+      padding: 12px 14px;
+      background-color: #0EABEB;
+      border-radius: 10px;
+      font-size: 19px;
+      font-weight: 600;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #030229;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #030229;
+  }
+
+  p {
+    color: #818194;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px;
+
+    span {
+      font-size: 16px;
+      font-weight: 700;
+      color: #4F4F4F;
+    }
+
+    .onside {
+      color: #5678E9;
+    }
+  }
+}
+
+// createPrescription tools end

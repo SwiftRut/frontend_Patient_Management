@@ -86,6 +86,7 @@ function App() {
               <Route path="appointmentTimeSlot" />
               <Route path="patientDetail/:id" />
               <Route path="prescriptionView/:id" />
+              <Route path="createPrescriptionForm/:id" />
             </Route>
 
             {/* patient routers */}
