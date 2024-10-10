@@ -1,9 +1,10 @@
 import React from "react";
-import PatientProfile from "./profile/PatientProfile";
 import { Route, Routes } from "react-router-dom";
+
+import PatientProfile from "./profile/PatientProfile";
 import PersonalHealthRecord from "./profile/PersonalHealthRecord";
 import PatientHeader from "../../component/DoctorComponent/PatientHeader";
-import PatientAsidePanel from "../../component/DoctorComponent/PatientAsidePanel";
+import PatientAsidePanel from "../../component/DoctorComponent/PatientAsidePanel";;
 
 export default function PatientPanel() {
   return (
