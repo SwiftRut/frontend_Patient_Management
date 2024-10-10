@@ -119,10 +119,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       delete axios.defaults.headers.common['Authorization'];
-      
       window.location.href = '/login';
-      
-      // Reset user state
       setUser(null);
     } catch (error) {
       console.error('Logout failed:', error);

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Bill() {
   const { id } = useParams();
   const { getBillById } = useGlobal();
-
+  
   const [formData, setFormData] = useState({
     billNumber: "",
     description: "",
@@ -51,8 +51,7 @@ export default function Bill() {
             <div className="info">
               <h3> Dr. Bharat Patel</h3>
               <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis turpis nulla,
-                finibus sodales erat porta eu.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis turpis nulla, finibus sodales erat porta eu.
               </span>
             </div>
             <div>
@@ -120,9 +119,7 @@ export default function Bill() {
               </tr>
               <tr>
                 <td className="label">Discount {formData.discount}% :</td>
-                <td className="value">
-                  ₹{((formData.amount * formData.discount) / 100).toFixed(2)}
-                </td>
+                <td className="value">₹{((formData.amount * formData.discount) / 100).toFixed(2)}</td>
               </tr>
               <tr>
                 <td className="label">Tax :</td>

@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
+  const { logout } = useAuth();
 
   // Function to toggle the accordion state
   const toggleAccordion = () => {
@@ -88,8 +90,9 @@ const Sidebar = () => {
               </li>
             </ul>
             <div className="logout-btn">
-              <button className="flex">
-                <img src="../img/logout.png" alt="" /> Logout
+              {/* Logout button calls the logout function */}
+              <button className="flex" onClick={() => logout()}>
+                <img src="../img/logout.png" alt="Logout" /> Logout
               </button>
             </div>
           </div>
