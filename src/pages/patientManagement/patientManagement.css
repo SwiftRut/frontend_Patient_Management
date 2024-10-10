@@ -1,0 +1,166 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.patient-section .row .main {
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #fff;
+  padding: 10px;
+  height: 100%;
+}
+.patient-section .row .main .top-menu {
+  border-bottom: 1px solid rgb(219, 219, 219);
+  padding: 20px 10px 0;
+}
+.patient-section .row .main .top-menu button {
+  background: none;
+  border: none;
+  margin-right: 25px;
+  font-size: 20px;
+  color: #667080;
+  font-weight: 400;
+  cursor: pointer;
+  padding-bottom: 20px;
+}
+.patient-section .row .main .top-menu button:focus {
+  border-bottom: 5px solid #0eabeb;
+  color: #0eabeb;
+}
+.patient-section .row .main .top {
+  justify-content: space-between;
+  padding: 10px 10px 20px;
+}
+.patient-section .row .main .top .heading {
+  font-weight: 700;
+  font-size: 25px;
+}
+.patient-section .row .main .top .search-btn {
+  justify-content: space-between;
+}
+.patient-section .row .main .top .search-btn .input {
+  padding: 12px 15px;
+  background-color: #f6f8fb;
+  border: 1px solid #ced4da;
+  border-radius: 30px;
+  width: 350px;
+  font-size: 20px;
+}
+.patient-section .row .main .top .search-btn .input .search {
+  font-size: 25px;
+  color: #000;
+}
+.patient-section .row .main .top .search-btn .input input {
+  background-color: transparent;
+  padding-left: 10px;
+}
+.patient-section .row .main .table {
+  padding: 0px 10px;
+  width: 100%;
+}
+.patient-section .row .main .table table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+.patient-section .row .main .table table .table-heading {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background-color: #f6f8fb;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.patient-section .row .main .table table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  font-size: 20px;
+  font-weight: 600;
+}
+.patient-section .row .main .table table td img {
+  margin-right: 10px;
+  width: 50px;
+  margin: 10px;
+}
+.patient-section .row .main .table table th {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px 15px;
+  text-align: center;
+}
+.patient-section .row .main .table table tbody {
+  display: block;
+  height: 585px;
+  overflow-y: auto;
+}
+.patient-section .row .main .table table tbody tr {
+  display: table;
+  width: 100%;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar {
+  width: 10px;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.patient-section .row .main .table table tbody::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+.patient-section .row .main .table table .time h3 {
+  background-color: #f6f8fb;
+  color: #718ebf;
+  border-radius: 50px;
+  margin: 0px 10px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  width: 150px;
+}
+.patient-section .row .main .table table .action .view {
+  width: 60px;
+  background-color: #f6f8fb;
+  color: #39973d;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 25px;
+  text-align: center;
+}
+.patient-section .row .main .table table .action .view {
+  color: #0eabeb;
+  margin: 0px 10px;
+}
+.patient-section .row .main .table table .action .delete {
+  color: #e11d29;
+}/*# sourceMappingURL=patientManagement.css.map */
