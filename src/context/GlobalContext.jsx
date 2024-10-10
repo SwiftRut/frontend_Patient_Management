@@ -121,26 +121,26 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const getBillById = async (id) => {
-    try{
+    try {
       const response = await apiService.GetBillById(id);
       console.log(response);
       setBill(response.data.data);
       return response.data.data;
-      }catch(error){
+    } catch (error) {
       console.log(error);
-      throw error
-      }
+      throw error;
     }
-    const deleteBill = async (id) => {
-      console.log(id);
-      try {
-        const response = await apiService.DeleteBill(id);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
-    };
+  };
+  const deleteBill = async (id) => {
+    console.log(id);
+    try {
+      const response = await apiService.DeleteBill(id);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -163,7 +163,7 @@ export const GlobalProvider = ({ children }) => {
         allBills,
         getBills,
         getBillById,
-        deleteBill
+        deleteBill,
       }}
     >
       {children}

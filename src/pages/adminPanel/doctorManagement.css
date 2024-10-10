@@ -107,7 +107,8 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form {
   justify-content: start;
   row-gap: 10px;
-  column-gap: 21px;
+  -moz-column-gap: 21px;
+       column-gap: 21px;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box {
@@ -130,6 +131,9 @@
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input:focus,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input::-moz-placeholder, .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input::placeholder,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input::placeholder {
@@ -372,7 +376,8 @@
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form,
 .doctorEdit-section .row .main .bottom .content .details .form-box form {
-  column-gap: 31px;
+  -moz-column-gap: 31px;
+       column-gap: 31px;
   row-gap: 15px;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box,
@@ -396,6 +401,9 @@
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input:focus,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input::-moz-placeholder, .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input::placeholder,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input::placeholder {

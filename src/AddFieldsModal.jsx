@@ -40,7 +40,7 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
   return (
     isOpen && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-  <div className="bg-white rounded-lg shadow-lg w-1/3">
+  <div className="bg-white rounded-lg shadow-lg w-1/5">
       <div className="modal-overlay">
         <div className="modal w-full p-6">
           <h2>Add New Field</h2>

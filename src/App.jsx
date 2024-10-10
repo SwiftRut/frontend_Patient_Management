@@ -48,8 +48,8 @@ function App() {
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             {/* manashvi temp start*/}
-            <Route path="/addnewfield" element={<AddNewField />} />
-
+            {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
+            <Route path="/onsite" element={<Onsite />} />
             <Route path="/details" element={<PatientDetails />} />
             {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
 
