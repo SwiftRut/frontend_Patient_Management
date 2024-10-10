@@ -8,6 +8,7 @@ export const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
+  const [allAppointements, setAllAppointements] = useState([]);
   useEffect(() => {}, []);
   const getAllHospitals = async () => {
     try {
@@ -141,6 +142,32 @@ export const GlobalProvider = ({ children }) => {
         throw error;
       }
     };
+    const getAllAppointments= async () => {
+      try {
+        const response = await apiService.GetAllAppointments();
+        console.log(response, "response");
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    }
+    const getAppointmentById = async (id) => {
+      try{
+        const response = await apiService.GetAppointmentById();
+        console.log(response);
+      }catch (error) {
+        console.log(error);
+        throw error;
+      }
+    }
+    const editAppointment = async (id, userData) => {
+      try{
+        const response = await apiService.EditAppointment(id,userData);
+        console.log(response);
+      }catch (error) {
+      
+      }
+    }
   return (
     <GlobalContext.Provider
       value={{
@@ -163,7 +190,12 @@ export const GlobalProvider = ({ children }) => {
         allBills,
         getBills,
         getBillById,
-        deleteBill
+        deleteBill,
+        setAllAppointements,
+        getAllAppointments,
+        getAppointmentById,
+        editAppointment,
+        allAppointements,
       }}
     >
       {children}

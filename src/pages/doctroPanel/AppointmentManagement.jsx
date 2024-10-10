@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, IconButton, TextField, InputAdornment } from '@mui/material';
 import { CalendarToday, Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import CustomDateModal from '../../component/modals/CustomDateModal.jsx';
 import CancelAppointmentModal from '../../component/modals/CancelAppointmentModal.jsx';
+import { useAuth } from '../../hooks/useAuth.jsx';
+import { useGlobal } from '../../hooks/useGlobal.jsx';
 
 export default function AppointmentManagement() {
+  const { user } = useAuth();
+  const { getAllAppointments, allAppointements } = useGlobal();
 
+  useEffect(() => {
+    getAllAppointments();
+  }, []);
+
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('Today Appointment');
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
