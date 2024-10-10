@@ -10,14 +10,14 @@ import { useNavigate } from "react-router-dom";
 export default function MonitorBilling() {
   const navigate = useNavigate();
   const { getBills, allBills, deleteBill } = useGlobal();
-  console.log(allBills)
+  console.log(allBills);
   useEffect(() => {
     getBills();
   }, []);
   const handleDelete = async (id) => {
-     await deleteBill(id);
-     await getBills();
-  }
+    await deleteBill(id);
+    await getBills();
+  };
   return (
     <div className="monitor-section">
       <div className="row">
@@ -74,24 +74,23 @@ export default function MonitorBilling() {
                       <td>{bill.description}</td>
                       <td>{bill.paymentType}</td>
                       <td className={`status ${bill.status === "Unpaid" ? "red" : ""}`}>
-        <h3>{bill.status}</h3>
-      </td>
+                        <h3>{bill.status}</h3>
+                      </td>
                       <td>{new Date(bill.date).toLocaleDateString()}</td>
                       <td className="time">
                         <h3>{bill.time}</h3>
                       </td>
                       <td className="flex space-x-2 justify-center items-center action">
-  <div className="view hover:text-blue-500 cursor-pointer">
-    <FaEye onClick={() => navigate(`/bill/${bill._id}`)}/>
-  </div>
-  <div className="edit hover:text-yellow-500 cursor-pointer">
-    <RiEditBoxFill  onClick={() => navigate(`/editBill/${bill._id}`)} />
-  </div>
-  <div className="delete hover:text-red-500 cursor-pointer">
-    <MdDelete onClick={() => handleDelete(bill._id)}/>
-  </div>
-</td>
-
+                        <div className="view hover:text-blue-500 cursor-pointer">
+                          <FaEye onClick={() => navigate(`/bill/${bill._id}`)} />
+                        </div>
+                        <div className="edit hover:text-yellow-500 cursor-pointer">
+                          <RiEditBoxFill onClick={() => navigate(`/editBill/${bill._id}`)} />
+                        </div>
+                        <div className="delete hover:text-red-500 cursor-pointer">
+                          <MdDelete onClick={() => handleDelete(bill._id)} />
+                        </div>
+                      </td>
                     </tr>
                   ))
                 ) : (
