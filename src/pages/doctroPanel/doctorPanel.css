@@ -43,6 +43,10 @@ ol {
   font-weight: 400px;
 }
 
+.css-1ll44ll-MuiOutlinedInput-notchedOutline {
+  border: 0px !important;
+}
+
 .time-slot button {
   background-color: #0EABEB;
   padding: 12px 14px;
@@ -84,4 +88,36 @@ ol {
   background-color: #F6F8FB;
   padding: 7px;
   margin: 0px 5px;
+}
+
+.custom-date h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #030229;
+}
+.custom-date .close-btn button:hover {
+  background-color: rgba(239, 91, 91, 0.337);
+}
+.custom-date .close-btn button svg {
+  color: white;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.condition .reset {
+  width: 48%;
+  color: #141414;
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.condition .delete {
+  width: 48%;
+  background-color: #0EABEB;
+  color: white;
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
 }/*# sourceMappingURL=doctorPanel.css.map */

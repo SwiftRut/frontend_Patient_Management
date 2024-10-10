@@ -192,11 +192,11 @@ export default function AppointmentManagement() {
                 </td>
                 <td className="p-3 btn">
                   <IconButton color="primary" onClick={() => setOpenCustomDateModal(true)}>
-                    <CalendarToday style={{ color: 'purple' }} />
+                    <CalendarToday style={{ color: '#E11D29' }} />
                   </IconButton>
 
                   <IconButton color="secondary" onClick={() => setOpenCancelAppointmentModal(true)}>
-                    <CalendarToday style={{ color: 'red' }} />
+                    <CalendarToday style={{ color: '#5678E9' }} />
                   </IconButton>
                 </td>
               </tr>
