@@ -27,30 +27,30 @@ const PatientDetail = () => {
   ];
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md m-6">
+    <div className="p-details p-6 bg-white rounded-lg shadow-md m-6">
       <h2 className="text-lg font-semibold mb-4">Patient Details</h2>
 
       {/* Patient Details Section */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">
           <img src={patientData.imageUrl} alt="Patient" className="w-24 h-24 rounded-full" />
-          <div>
-            <h3 className="text-xl font-semibold">{patientData.name}</h3>
-            <p>Patient Number: {patientData.number}</p>
-            <p>Doctor Name: {patientData.doctorName}</p>
-            <p>Patient Age: {patientData.age}</p>
-            <p>Patient Gender: {patientData.gender}</p>
+          <div className='p-record'>
+            <p className="text-xl font-semibold">{patientData.name}</p>
+            <p>Patient Number :<span>{patientData.number}</span> </p>
+            <p> Doctor Name :  <span> {patientData.doctorName} </span></p>
+            <p> Patient Age :  <span> {patientData.age} </span></p>
+            <p> Patient Gender :  <span> {patientData.gender} </span></p>
           </div>
-        </div>
-        <div className="text-right">
+        </div >
+        <div className="p-btn text-right">
           <Button variant="contained" color="primary">
             + Add Record
           </Button>
         </div>
-      </div>
+      </div >
 
       {/* Appointment Details */}
-      <div className="bg-gray-50 p-4 rounded-lg">
+      < div className="p-table bg-gray-50 p-4 rounded-lg" >
         <h3 className="text-lg font-semibold mb-4">All Appointments</h3>
         <table className="min-w-full table-auto">
           <thead className="bg-gray-100">
@@ -84,8 +84,8 @@ const PatientDetail = () => {
             ))}
           </tbody>
         </table>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

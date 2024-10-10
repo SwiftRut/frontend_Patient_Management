@@ -22,37 +22,48 @@ export default function PatientRecordAccesst() {
     patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md m-6">
-      <h2 className="text-lg font-semibold mb-4">Patient Record Access</h2>
+    <div className="patioentRecord p-6 bg-white rounded-lg shadow-md m-6">
 
       {/* Search and Filter Section */}
       <div className="flex justify-between items-center mb-4">
-        <TextField
-          variant="outlined"
-          placeholder="Search Patient"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Select
-          value={timeFilter}
-          onChange={(e) => setTimeFilter(e.target.value)}
-          variant="outlined"
-        >
-          <MenuItem value="Month">Month</MenuItem>
-          <MenuItem value="Week">Week</MenuItem>
-          <MenuItem value="Day">Day</MenuItem>
-        </Select>
+        <div className="left">
+          <h2 className="text-lg font-semibold mb-4">Patient Record Access</h2>
+        </div>
+
+        <div className="right flex justify-between items-center mb-4">
+          <div className="pr-search">
+            <TextField
+              variant="outlined"
+              placeholder="Search Patient"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </div>
+
+          <div className="pr-select">
+            <Select
+              value={timeFilter}
+              onChange={(e) => setTimeFilter(e.target.value)}
+              variant="outlined"
+            >
+              <MenuItem value="Month">Month</MenuItem>
+              <MenuItem value="Week">Week</MenuItem>
+              <MenuItem value="Day">Day</MenuItem>
+            </Select>
+          </div>
+        </div>
+
       </div>
 
       {/* Table of Patient Records */}
-      <div className="max-h-[600px] overflow-y-auto">
+      <div className="pr-data max-h-[600px] overflow-y-auto">
         <table className="min-w-full table-auto">
           <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
@@ -75,7 +86,7 @@ export default function PatientRecordAccesst() {
                 <td className="p-3">{patient.lastAppointmentDate}</td>
                 <td className="p-3 text-blue-600">{patient.lastAppointmentTime}</td>
                 <td className="p-3">{patient.age}</td>
-                <td className="p-3">
+                <td className="p-3 gender">
                   <span className={patient.gender === 'Male' ? 'text-blue-500' : 'text-pink-500'}>
                     {patient.gender === 'Male' ? '♂' : '♀'}
                   </span>
