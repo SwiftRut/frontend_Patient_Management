@@ -24,7 +24,9 @@ input {
 .align-center {
   align-items: center;
 }
-
+.justify-between {
+  justify-content: space-between;
+}
 .sidebar {
   display: flex;
   flex-direction: row;
@@ -41,7 +43,6 @@ input {
 
     .logo {
       font-weight: bold;
-      margin-bottom: 20px;
       text-align: center;
 
       img {
@@ -50,7 +51,7 @@ input {
     }
 
     .menu {
-      height: 80%;
+      height: 85%;
       justify-content: space-between;
       flex-direction: column;
 
@@ -88,7 +89,7 @@ input {
 
           .dropdown li {
             padding: 10px 15px;
-            color: #818194!important;
+            color: #818194 !important;
             background-color: #fff !important;
           }
 
@@ -107,9 +108,7 @@ input {
             align-items: center;
             padding: 10px 10px;
             width: 100%;
-
             font-size: 20px;
-            color: #0eabeb;
 
             .icon {
               color: #818194 !important;
@@ -138,10 +137,56 @@ input {
           }
         }
       }
-
+      .aside-img {
+        width: 80%;
+        margin: auto;
+        background-color: #f4f4f4;
+        text-align: center;
+        position: relative;
+        padding: 90px 10px 10px;
+        margin-bottom: 20px;
+        border-radius:10px ;
+        img {
+          position: absolute;
+          top: -70px;
+          left: 60px;
+        }
+        .text {
+          h3 {
+            color: #141414;
+            font-size: 18px;
+            font-weight: 600;
+          }
+          p {
+            color: #4f4f4f;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 10px 0;
+          }
+          .btn {
+            display: flex;
+            justify-content: center;
+            button {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #fff;
+              padding: 10px 15px;
+              background-color: #0eabeb;
+              font-size: 20px;
+              border-radius: 10px;
+              h3 {
+                color: #fff;
+                padding-left: 10px;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
       .logout-btn {
         button {
-          gap: 15px;
+          // gap: 15px;
           justify-content: center;
           align-items: center;
           color: #e11d29;
