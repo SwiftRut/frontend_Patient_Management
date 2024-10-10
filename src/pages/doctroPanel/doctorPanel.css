@@ -294,4 +294,42 @@ ol {
 }
 .cp-tool p .onside {
   color: #5678E9;
+}
+
+.manage-p .today,
+.manage-p .older {
+  color: #0EABEB;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.manage-p .head {
+  align-items: center;
+}
+.manage-p .head .tital p {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.manage-p .head .mp-tool {
+  background-color: #F6F8FB;
+  border-radius: 15px;
+}
+.manage-p table thead tr th {
+  background-color: #F6F8FB;
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  text-align: center;
+  padding: 20px;
+}
+.manage-p table tbody tr td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4F4F4F;
+  text-align: center;
+}
+.manage-p table tbody tr .type span {
+  padding: 0px 15px;
+  display: inline-block;
 }/*# sourceMappingURL=doctorPanel.css.map */

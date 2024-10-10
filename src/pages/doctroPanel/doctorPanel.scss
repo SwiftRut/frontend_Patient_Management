@@ -405,3 +405,72 @@ ol {
 }
 
 // createPrescription tools end
+
+// managePrescription tools start 
+
+.manage-p {
+
+  .today,
+  .older {
+    color: #0EABEB;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+
+  .head {
+    align-items: center;
+
+    .tital {
+
+      p {
+        font-size: 26px;
+        font-weight: 700;
+        color: #030229;
+      }
+    }
+
+    .mp-tool {
+      background-color: #F6F8FB;
+      border-radius: 15px;
+    }
+  }
+
+  table {
+    thead {
+      tr {
+        th {
+          background-color: #F6F8FB;
+          font-size: 18px;
+          font-weight: 700;
+          color: #030229;
+          text-align: center;
+          padding: 20px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          font-size: 18px;
+          font-weight: 600;
+          color: #4F4F4F;
+          text-align: center;
+        }
+
+        .type {
+          span {
+            padding: 0px 15px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+// managePrescription tools end 
