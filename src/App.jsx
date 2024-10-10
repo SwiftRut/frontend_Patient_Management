@@ -3,33 +3,42 @@ import Login from "./pages/Login";
 import "./component/sidebar.css";
 import "./pages/pages.css";
 
-import PatientRegistration from "./pages/PatientRegistration.jsx";
-import AdminPanel from "./pages/AdminPanel";
-
-import Chat from "./pages/Chat.jsx";
+// admin
+import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
 import AdminMobile from "./pages/adminRegester/AdminMobile.jsx";
 import AdminOtp from "./pages/adminRegester/AdminOtp.jsx";
 import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
-import Chart from "./pages/Chart.jsx";
-import Bill from "./component/Bill.jsx";
-import Onsite from "./pages/doctorManagement/Onsite.jsx";
+
+import AdminPanel from "./pages/AdminPanel";
 
 import Invoice from "./pages/invoice/Invoice.jsx";
-import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
-import Scheduler from "./component/Schedular.jsx";
-import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
-import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
-import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 import CreateBill from "./pages/invoice/CreateBill.jsx";
 import EditBill from "./pages/invoice/EditBill.jsx";
 
+// doctor
+import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
+import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
+import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
+
+// patient
+import PatientRegistration from "./pages/PatientRegistration.jsx";
+
+import PatientPanel from "./pages/patientPanel/PatientPanel.jsx";
 import PatientDetails from "./pages/patientManagement/PatientDetails.jsx";
+
+// extra
+import Scheduler from "./component/Schedular.jsx";
+import Bill from "./component/Bill.jsx";
+import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import CashPayment from "./pages/billPayment/CashPayment.jsx";
 import Delete from "./pages/doctorManagement/Delete.jsx";
 import AddNewField from "./pages/invoice/AddNewField.jsx";
 import Bill2 from "./pages/invoice/Bill2.jsx";
 import EditDesignInvoice from "./pages/billPayment/EditDesignInvoice.jsx";
 import Bill3 from "./pages/invoice/Bill3.jsx";
+
+import Chart from "./pages/Chart.jsx";
+import Chat from "./pages/Chat.jsx";
 
 function App() {
   return (
@@ -84,7 +93,7 @@ function App() {
 
             <Route path="/patient" element={<PatientPanel />}>
               <Route path="profile/*" />
-              {/* <Route path="edit" /> */}
+              <Route path="profileEdit" />
 
               {/* <Route path="doctorManagement/*" /> */}
               {/* <Route path="doctorAdd" /> */}
