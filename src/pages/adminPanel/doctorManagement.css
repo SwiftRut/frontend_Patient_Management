@@ -107,7 +107,8 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form {
   justify-content: start;
   row-gap: 10px;
-  column-gap: 21px;
+  -moz-column-gap: 21px;
+       column-gap: 21px;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box {
@@ -130,6 +131,9 @@
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input:focus,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input::-moz-placeholder, .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input::placeholder,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input::placeholder {
@@ -203,24 +207,24 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(6) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(6) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(6) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(6) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(6) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(7) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(8) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(9),
@@ -243,8 +247,8 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(12),
@@ -259,24 +263,24 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(13) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(13) select,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(13) select {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(13) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(13) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) select,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) select {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) select,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) select {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16),
@@ -309,6 +313,21 @@
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(19) input,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(19) input {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(19) input::placeholder,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(19) input::placeholder {
+  color: #a7a7a7;
+}
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(20),
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(20) {
+  width: 32%;
+}
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(20) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(20) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .bottom,
@@ -357,7 +376,8 @@
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form,
 .doctorEdit-section .row .main .bottom .content .details .form-box form {
-  column-gap: 31px;
+  -moz-column-gap: 31px;
+       column-gap: 31px;
   row-gap: 15px;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box,
@@ -381,6 +401,9 @@
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input:focus,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+.doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input::-moz-placeholder, .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box input::placeholder,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box input::placeholder {
@@ -481,4 +504,29 @@
 .doctorEdit-section .row .main .save-btn button:hover {
   background-color: #0EABEB;
   color: white;
+}
+
+.doctorEdit-section .input-box:nth-child(5) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(5) input {
+  width: 100%;
+}
+.doctorEdit-section .input-box:nth-child(6) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(6) input {
+  width: 100%;
+}
+.doctorEdit-section .input-box:nth-child(7) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(7) input {
+  width: 100%;
+}
+.doctorEdit-section .input-box:nth-child(8) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(8) input {
+  width: 100%;
 }/*# sourceMappingURL=doctorManagement.css.map */

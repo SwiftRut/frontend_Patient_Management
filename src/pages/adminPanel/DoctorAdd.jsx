@@ -92,7 +92,7 @@ const DoctorAdd = () => {
 
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfilePicturePreview(reader.result); 
+        setProfilePicturePreview(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
@@ -114,6 +114,7 @@ const DoctorAdd = () => {
     } catch (error) {
       console.error('Error adding doctor:', error);
     }
+
   };
 
   return (
@@ -121,368 +122,380 @@ const DoctorAdd = () => {
       <div className="doctorAdd-section">
         <div className="row">
           <div className="main">
-            <div className="top">
-              <div className="content">
-                <div className="head">
-                  <p>Add New Doctor</p>
-                </div>
-                <div className="details flex">
-                  <div className="left flex">
-                    <div className="choose-photo">
-                      <div className="image" onClick={() => document.getElementById("profilePictureUpload").click()}>
-                        {profilePicturePreview ? (
-                          <img
-                            src={profilePicturePreview}
-                            alt="Profile Preview"
-                            style={{ width: "100%", height: "auto", cursor: 'pointer' }}
-                          />
-                        ) : (
-                          <img src="../img/doctorAdd.png" alt="" style={{ cursor: 'pointer' }} />
-                        )}
-                      </div>
-                      <input
-                        type="file"
-                        accept="image/png, image/jpeg"
-                        onChange={handleProfilePictureChange}
-                        style={{ display: "none" }}
-                        id="profilePictureUpload"
-                      />
-                      <p style={{ cursor: 'pointer' }} onClick={() => document.getElementById("profilePictureUpload").click()}>
-                        Choose Photo
-                      </p>
-                    </div>
-                    <div className="upload-sign">
-                      <div className="title">
-                        <p>Signature</p>
-                      </div>
-                      <div className="sign">
-                        <FaImage />
+
+            <form action="" onSubmit={handleSubmit}>
+              <div className="top">
+                <div className="content">
+                  <div className="head">
+                    <p>Add New Doctor</p>
+                  </div>
+                  <div className="details flex">
+                    <div className="left flex">
+                      <div className="choose-photo">
+                        <div className="image" onClick={() => document.getElementById("profilePictureUpload").click()}>
+                          {profilePicturePreview ? (
+                            <img
+                              src={profilePicturePreview}
+                              alt="Profile Preview"
+                              style={{ width: "100%", height: "auto", cursor: 'pointer' }}
+                            />
+                          ) : (
+                            <img src="../img/doctorAdd.png" alt="" style={{ cursor: 'pointer' }} />
+                          )}
+                        </div>
                         <input
                           type="file"
                           accept="image/png, image/jpeg"
-                          onChange={handleFileChange}
-                          style={{ display: 'none' }}
-                          id="signatureUpload"
+                          onChange={handleProfilePictureChange}
+                          style={{ display: "none" }}
+                          id="profilePictureUpload"
                         />
-                        <label htmlFor="signatureUpload" style={{ cursor: 'pointer' }}>
-                          Upload a file
-                        </label>
-                        <h5>PNG or JPEG Up To 5MB</h5>
-                        {signaturePreview && <img src={signaturePreview} alt="Signature Preview" style={{ width: '100%', marginTop: '10px' }} />}
+                        <p style={{ cursor: 'pointer' }} onClick={() => document.getElementById("profilePictureUpload").click()}>
+                          Choose Photo
+                        </p>
+                      </div>
+                      <div className="upload-sign">
+                        <div className="title">
+                          <p>Signature</p>
+                        </div>
+                        <div className="sign">
+                          <FaImage />
+                          <input
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            onChange={handleFileChange}
+                            style={{ display: 'none' }}
+                            id="signatureUpload"
+                          />
+                          <label htmlFor="signatureUpload" style={{ cursor: 'pointer' }}>
+                            Upload a file
+                          </label>
+                          <h5>PNG or JPEG Up To 5MB</h5>
+                          {signaturePreview && <img src={signaturePreview} alt="Signature Preview" style={{ width: '100%', marginTop: '10px' }} />}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="form-box">
+                        <form className="flex">
+                          <div className="input-box">
+                            <div className="label">Doctor Name</div>
+                            <input
+                              type="text"
+                              name="name"
+                              placeholder="Enter Doctor Name"
+                              maxLength={50}
+                              value={formData.doctorName}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Doctor Qualification</div>
+                            <input
+                              type="text"
+                              name="qualification"
+                              placeholder="Enter Doctor Qualification"
+                              maxLength={100}
+                              value={formData.qualification}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Gender</div>
+                            <select name="gender" value={formData.gender} onChange={handleChange}>
+                              <option>Select Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </select>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Specialty Type</div>
+                            <input
+                              type="text"
+                              name="speciality"
+                              placeholder="Enter Specialty Type"
+                              maxLength={100}
+                              value={formData.speciality}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Working Time</div>
+                            <div className="time-range">
+                              <select name="workingTime" value={formData.workingTime} onChange={handleChange}>
+                                <option value="">Start Time</option>
+                                {timeOptions.map((time, index) => (
+                                  <option key={index} value={time}>{time}</option>
+                                ))}
+                              </select>
+
+                            </div>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Work On</div>
+                            <select
+                              name="workingOn"
+                              value={formData.workingOn}
+                              onChange={handleChange}
+                            >
+                              <option value="">Select Work Type</option>
+                              <option value="Part-time">Part-time</option>
+                              <option value="Full-time">Full-time</option>
+                              <option value="Contract">Contract</option>
+                            </select>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Check Up Time</div>
+                            <div className="time-range">
+                              <select
+                                name="patientCheckupTime"
+                                value={formData.patientCheckupTime}
+                                onChange={handleChange}
+                              >
+                                <option value="">Start Time</option>
+                                {timeOptions.map((time, index) => (
+                                  <option key={index} value={time}>{time}</option>
+                                ))}
+                              </select>
+
+                            </div>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Break Time</div>
+                            <div className="time-range">
+                              <select
+                                name="breakTime"
+                                value={formData.breakTime}
+                                onChange={handleChange}
+                              >
+                                <option value="">Start Time</option>
+                                {timeOptions.map((time, index) => (
+                                  <option key={index} value={time}>{time}</option>
+                                ))}
+                              </select>
+
+                            </div>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Experience</div>
+                            <input
+                              type="text"
+                              name="experience"
+                              placeholder="Enter Experience in Years"
+                              maxLength={10}
+                              value={formData.experience}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Phone Number</div>
+                            <input
+                              type="text"
+                              name="phone"
+                              placeholder="Enter Phone Number"
+                              maxLength={15}
+                              value={formData.phoneNumber}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Country Code</div>
+                            <select name="countryCode" value={formData.countryCode} onChange={handleChange}>
+                              {countryCodes.map((country, index) => (
+                                <option key={index} value={country.code}>{country.code} ({country.country})</option>
+                              ))}
+                            </select>
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Age</div>
+                            <input
+                              type="number"
+                              name="age"
+                              placeholder="Enter Age"
+                              maxLength={3}
+                              value={formData.age}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Email</div>
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="Enter Email"
+                              maxLength={100}
+                              value={formData.email}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Country</div>
+                            <input
+                              type="text"
+                              name="country"
+                              placeholder="Enter Country"
+                              maxLength={100}
+                              value={formData.country}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">State</div>
+                            <input
+                              type="text"
+                              name="state"
+                              placeholder="Enter State"
+                              maxLength={100}
+                              value={formData.state}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">City</div>
+                            <input
+                              type="text"
+                              name="city"
+                              placeholder="Enter City"
+                              maxLength={100}
+                              value={formData.city}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Zip Code</div>
+                            <input
+                              type="text"
+                              name="zipCode"
+                              placeholder="Enter Zip Code"
+                              maxLength={10}
+                              value={formData.zipCode}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Address</div>
+                            <input
+                              type="text"
+                              name="doctorAddress"
+                              placeholder="Enter Address"
+                              maxLength={200}
+                              value={formData.address}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Description</div>
+                            <input
+                              name="description"
+                              placeholder="Enter Description"
+                              maxLength={500}
+                              value={formData.description}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Online Consultation Rate</div>
+                            <input
+                              type="number"
+                              name="onlineConsultationRate"
+                              placeholder="Enter Rate"
+                              maxLength={10}
+                              value={formData.onlineConsultationRate}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
-                  <div className="right">
+                </div>
+              </div>
+
+              <div className="bottom">
+                <div className="content">
+                  <div className="details">
                     <div className="form-box">
-                      <form onSubmit={handleSubmit} className="flex">
-                        <div className="input-box">
-                          <div className="label">Doctor Name</div>
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="Enter Doctor Name"
-                            maxLength={50}
-                            value={formData.doctorName}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Doctor Qualification</div>
-                          <input
-                            type="text"
-                            name="qualification"
-                            placeholder="Enter Doctor Qualification"
-                            maxLength={100}
-                            value={formData.qualification}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Gender</div>
-                          <select name="gender" value={formData.gender} onChange={handleChange}>
-                            <option>Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                          </select>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Specialty Type</div>
-                          <input
-                            type="text"
-                            name="speciality"
-                            placeholder="Enter Specialty Type"
-                            maxLength={100}
-                            value={formData.speciality}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Working Time</div>
-                          <div className="time-range">
-                            <select name="workingTime" value={formData.workingTime} onChange={handleChange}>
-                              <option value="">Start Time</option>
-                              {timeOptions.map((time, index) => (
-                                <option key={index} value={time}>{time}</option>
-                              ))}
-                            </select>
-
-                          </div>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Work On</div>
-                          <select
-                            name="workingOn"
-                            value={formData.workingOn}
-                            onChange={handleChange}
-                          >
-                            <option value="">Select Work Type</option>
-                            <option value="Part-time">Part-time</option>
-                            <option value="Full-time">Full-time</option>
-                            <option value="Contract">Contract</option>
-                          </select>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-
-                        <div className="input-box">
-                          <div className="label">Check Up Time</div>
-                          <div className="time-range">
-                            <select
-                              name="patientCheckupTime"
-                              value={formData.patientCheckupTime}
-                              onChange={handleChange}
-                            >
-                              <option value="">Start Time</option>
-                              {timeOptions.map((time, index) => (
-                                <option key={index} value={time}>{time}</option>
-                              ))}
-                            </select>
-
-                          </div>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Break Time</div>
-                          <div className="time-range">
-                            <select
-                              name="breakTime"
-                              value={formData.breakTime}
-                              onChange={handleChange}
-                            >
-                              <option value="">Start Time</option>
-                              {timeOptions.map((time, index) => (
-                                <option key={index} value={time}>{time}</option>
-                              ))}
-                            </select>
-
-                          </div>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Experience</div>
-                          <input
-                            type="text"
-                            name="experience"
-                            placeholder="Enter Experience in Years"
-                            maxLength={10}
-                            value={formData.experience}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Phone Number</div>
-                          <input
-                            type="text"
-                            name="phone"
-                            placeholder="Enter Phone Number"
-                            maxLength={15}
-                            value={formData.phoneNumber}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Country Code</div>
-                          <select name="countryCode" value={formData.countryCode} onChange={handleChange}>
-                            {countryCodes.map((country, index) => (
-                              <option key={index} value={country.code}>{country.code} ({country.country})</option>
-                            ))}
-                          </select>
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Age</div>
-                          <input
-                            type="number"
-                            name="age"
-                            placeholder="Enter Age"
-                            maxLength={3}
-                            value={formData.age}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Email</div>
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="Enter Email"
-                            maxLength={100}
-                            value={formData.email}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Country</div>
-                          <input
-                            type="text"
-                            name="country"
-                            placeholder="Enter Country"
-                            maxLength={100}
-                            value={formData.country}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">State</div>
-                          <input
-                            type="text"
-                            name="state"
-                            placeholder="Enter State"
-                            maxLength={100}
-                            value={formData.state}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">City</div>
-                          <input
-                            type="text"
-                            name="city"
-                            placeholder="Enter City"
-                            maxLength={100}
-                            value={formData.city}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Zip Code</div>
-                          <input
-                            type="text"
-                            name="zipCode"
-                            placeholder="Enter Zip Code"
-                            maxLength={10}
-                            value={formData.zipCode}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Address</div>
-                          <input
-                            type="text"
-                            name="doctorAddress"
-                            placeholder="Enter Address"
-                            maxLength={200}
-                            value={formData.address}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Description</div>
-                          <textarea
-                            name="description"
-                            placeholder="Enter Description"
-                            maxLength={500}
-                            value={formData.description}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
-                        <div className="input-box">
-                          <div className="label">Online Consultation Rate</div>
-                          <input
-                            type="number"
-                            name="onlineConsultationRate"
-                            placeholder="Enter Rate"
-                            maxLength={10}
-                            value={formData.onlineConsultationRate}
-                            onChange={handleChange}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-
+                      <form className="flex">
                         <div className="input-box">
                           <div className="label">Current Hospital</div>
                           <input
@@ -557,16 +570,17 @@ const DoctorAdd = () => {
                             <FaCircleMinus />
                           </div>
                         </div>
-
-                        <div className="button-box">
-                          <button type="submit">Add Doctor</button>
-                        </div>
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div className="save-btn flex">
+                <button type="submit">Add </button>
+              </div>
+            </form>
+
           </div>
         </div>
       </div>

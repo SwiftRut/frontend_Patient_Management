@@ -26,6 +26,8 @@ import {
 } from "chart.js";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
+import PatientsStatistics from "../../PatientsStatistics";
+import PatientsBreakdown from "../../PatienBreakDown";
 
 ChartJS.register(
   CategoryScale,
@@ -69,6 +71,13 @@ const Dashboard = () => {
       title: { display: true, text: "Product Distribution" },
     },
   };
+  const appointments = [
+    { id: 1, patientName: "Roger Lubin", doctorName: "Leo Geidt", disease: "Meningococcal Disease", time: "10:00 AM", type: "Onsite" },
+    { id: 2, patientName: "Sarah Blake", doctorName: "Anna Doe", disease: "Flu", time: "12:00 PM", type: "Virtual" },
+    { id: 3, patientName: "Mark Fisher", doctorName: "Emily Clark", disease: "COVID-19", time: "2:00 PM", type: "Onsite" },
+    { id: 4, patientName: "Nina Smith", doctorName: "Michael Scott", disease: "Allergies", time: "3:30 PM", type: "Virtual" },
+  ];
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -172,7 +181,7 @@ const Dashboard = () => {
           <div className="main">
             <div className="top flex">
               <div className="Patients-data">
-                <div className="total-data flex">
+                <div className="total-data flex mb-4">
                   <div className="total-Patients">
                     <div className="content">
                       <div className="logo">
@@ -207,32 +216,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="Patients-Statistics">
-                  <div className="patients-content">
-                    <div className="head flex">
-                      <div className="title">
-                        <p>Patients Statistics</p>
-                      </div>
-                      <div className="menu">
-                        <ul className="flex">
-                          <li>
-                            {" "}
-                            <a href="">Year</a>
-                          </li>
-                          <li>
-                            <a href="">Month</a>
-                          </li>
-                          <li>
-                            <a href="">Week</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="graph">
-                      <Line data={lineData} options={lineOptions} />
-                    </div>
-                  </div>
-                </div>
+                  <PatientsStatistics />
               </div>
               <div className="Billing-data">
                 <div className="head flex">
@@ -434,39 +418,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="Summary-data">
-                <div className="head">
-                  <div className="title">
-                    <p>Patients Summary</p>
-                  </div>
-                </div>
-                <div className="Summary-status">
-                  <div className="Patients-data flex">
-                    <div className="img">
-                      {/* <img src="../img/Group.png" alt="" /> */}
-                      <Pie data={pieData} options={pieOptions} />
-                    </div>
-                    <div className="details">
-                      <div className="content">
-                        <ul>
-                          <li className="new">
-                            <FaBox />
-                            New Patients <span>0</span>
-                          </li>
-                          <li className="old">
-                            <FaBox />
-                            Old Patients <span>0</span>
-                          </li>
-                          <li className="total">
-                            <FaBox />
-                            Total Patients <span>0</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <PatientsBreakdown/>
             </div>
           </div>
         </div>

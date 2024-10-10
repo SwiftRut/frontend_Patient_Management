@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";  // Ensure you import the useAuth hook
+import { useAuth } from "../hooks/useAuth";
 
 const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
-  const { logout } = useAuth();  // Destructure the logout function from useAuth hook
+  const { logout } = useAuth();
 
   const toggleAccordion = () => {
     setAccordionOpen((prevState) => !prevState);
@@ -80,7 +80,7 @@ const Sidebar = () => {
             </ul>
             <div className="logout-btn">
               {/* Logout button calls the logout function */}
-              <button className="flex" onClick={logout}>
+              <button className="flex" onClick={() => logout()}>
                 <img src="../img/logout.png" alt="Logout" /> Logout
               </button>
             </div>

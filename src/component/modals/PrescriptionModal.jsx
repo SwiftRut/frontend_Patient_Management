@@ -77,7 +77,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
 
           <div className="mt-4 flex justify-between">
             <div>
-              
+
               <div className="border-t w-32 mt-4">
                 <img src={signature} alt="Signature" />
               </div>
