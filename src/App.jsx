@@ -105,6 +105,7 @@ function App() {
               <Route path="managePrescriptionTools" />
               <Route path="teleconsultationModule" />
               <Route path="chatScreen" />
+              <Route path="appointmentTimeSlot" />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -10,6 +10,7 @@ import CreatePrescriptionTools from "./CreatePrescriptionTools";
 import ManagePrescriptionTools from "./ManagePrescriptionTools";
 import TeleconsultationModule from "./TeleconsultationModule";
 import ChatScreen from "./ChatScreen";
+import AppointmentTimeSlot from "./AppointmentTimeSlot";
 
 export default function DoctorPanel() {
   return (
@@ -26,6 +27,7 @@ export default function DoctorPanel() {
         <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
         <Route path="teleconsultationModule" element={<TeleconsultationModule />} />
         <Route path="chatScreen" element={<ChatScreen />} />
+        <Route path="appointmentTimeSlot" element={<AppointmentTimeSlot />} />
       </Routes>
     </>
   );

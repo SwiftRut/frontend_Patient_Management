@@ -89,7 +89,7 @@ export default function AppointmentManagement() {
             }}
           />
           {/* Appointment Time Slot Button */}
-          <Button variant="contained" color="primary" className="!text-sm" onClick={() => navigate('/appointment-time-slot')}>
+          <Button variant="contained" color="primary" className="!text-sm" onClick={() => navigate('/doctor/appointmentTimeSlot')}>
             Appointment Time Slot
           </Button>
         </div>
