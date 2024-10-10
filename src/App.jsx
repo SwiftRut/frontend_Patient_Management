@@ -41,33 +41,11 @@ function App() {
             <Route path="/verifyOtp" element={<AdminOtp />} />
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
-            {/* admin component */}
+            {/* admin routers */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
             <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/AdminOtp" element={<AdminOtp />} />
             <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
-
-            {/* manashvi temp start*/}
-            {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
-            <Route path="/onsite" element={<Onsite />} />
-            <Route path="/details" element={<PatientDetails />} />
-            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
-
-            <Route path="/bill/:id" element={<Bill />} />
-            <Route path="/bill2" element={<Bill2 />} />
-            <Route path="/bill3" element={<Bill3 />} />
-
-            <Route path="/cash" element={<CashPayment />} />
-            <Route path="/delete" element={<Delete />} />
-            <Route path="/editinvoice" element={<EditDesignInvoice />} />
-            {/* manashvi temp end*/}
-
-            <Route path="/login" element={<Login />} />
-
-            <Route path="/charts" element={<Chart />} />
-            <Route path="/chat" element={<Chat />} />
-
-            {/* AdminPanel routs  */}
 
             <Route path="/" element={<AdminPanel />}>
               <Route path="profile/*" />
@@ -86,15 +64,6 @@ function App() {
               <Route path="reportingAndAnalytics" />
             </Route>
 
-            {/* patient component */}
-            <Route path="/patientRegistration" element={<PatientRegistration />} />
-
-            {/* invoice component  */}
-            <Route path="/invoice" element={<Invoice />} />
-            <Route path="/createBill" element={<CreateBill />} />
-            <Route path="/editBill/:id" element={<EditBill />} />
-            <Route path="/schedular" element={<Scheduler />} />
-
             {/* doctor routers */}
             <Route path="/doctor" element={<DoctorPanel />}>
               <Route path="profile/*" element={<DoctorProfile />} />
@@ -109,6 +78,50 @@ function App() {
               <Route path="patientDetail/:id" />
               <Route path="prescriptionView/:id" />
             </Route>
+
+            {/* patient routers */}
+            <Route path="/patientRegistration" element={<PatientRegistration />} />
+
+            <Route path="/patient" element={<PatientPanel />}>
+              <Route path="profile/*" />
+              {/* <Route path="edit" /> */}
+
+              {/* <Route path="doctorManagement/*" /> */}
+              {/* <Route path="doctorAdd" /> */}
+              {/* <Route path="doctorEdit/:doctorId" /> */}
+
+              {/* <Route path="patientManagement" /> */}
+
+              {/* <Route path="monitorBilling" /> */}
+              {/* <Route path="insuranceClaims" /> */}
+              {/* <Route path="paymentMethod" /> */}
+
+              {/* <Route path="reportingAndAnalytics" /> */}
+            </Route>
+
+            {/* invoice component  */}
+            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/createBill" element={<CreateBill />} />
+            <Route path="/editBill/:id" element={<EditBill />} />
+            <Route path="/schedular" element={<Scheduler />} />
+
+            {/* manashvi temp start*/}
+            {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
+            <Route path="/onsite" element={<Onsite />} />
+            <Route path="/details" element={<PatientDetails />} />
+            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
+
+            <Route path="/bill/:id" element={<Bill />} />
+            <Route path="/bill2" element={<Bill2 />} />
+            <Route path="/bill3" element={<Bill3 />} />
+
+            <Route path="/cash" element={<CashPayment />} />
+            <Route path="/delete" element={<Delete />} />
+            <Route path="/editinvoice" element={<EditDesignInvoice />} />
+            {/* manashvi temp end*/}
+
+            <Route path="/charts" element={<Chart />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
         </BrowserRouter>
       </div>
