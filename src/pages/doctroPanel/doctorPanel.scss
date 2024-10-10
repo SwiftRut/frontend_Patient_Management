@@ -1,0 +1,116 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thead {
+  button {
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+    color: #667080;
+  }
+}
+
+.menu {
+  h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #030229;
+  }
+}
+
+.search {
+  padding: 12px 15px;
+  background-color: #F6F8FB;
+  border: 0px;
+  border-radius: 50px;
+  // outline: none;
+
+  &::placeholder {
+    color: #A7A7A7;
+    font-size: 16px;
+    font-weight: 400px;
+  }
+}
+
+
+// .css-1ll44ll-MuiOutlinedInput-notchedOutline {
+//   border: 0px !important;
+// }
+
+.time-slot {
+  button {
+    background-color: #0EABEB;
+    padding: 12px 14px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.t-data {
+  padding-top: 30px;
+
+  table {
+    thead {
+      tr {
+        background-color: #F6F8FB;
+
+        th {
+          font-size: 18px;
+          font-weight: 700;
+          color: #030229;
+          padding: 20px;
+          text-align: start;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          color: #4F4F4F;
+          font-size: 18px;
+          font-weight: 600;
+          text-align: start;
+          padding: 20px;
+        }
+
+        h3 {
+          background-color: #F6F8FB;
+          width: 111px;
+          padding: 10px 0px;
+          display: inline-block;
+          text-align: center;
+          border-radius: 33px;
+          color: #718EBF;
+        }
+
+
+        .btn {
+          button {
+            background-color: #F6F8FB;
+            padding: 7px;
+            margin: 0px 5px;
+          }
+        }
+      }
+    }
+  }
+}
