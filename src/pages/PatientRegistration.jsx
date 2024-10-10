@@ -30,20 +30,20 @@ const PatientRegistration = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
 
-    if (name === 'country') {
-      const selectedCountry = countries.find(country => country.isoCode === value);
+    if (name === "country") {
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       setStates(State.getStatesOfCountry(selectedCountry.isoCode));
-      setFormData(prevState => ({ ...prevState, state: '', city: '' }));
+      setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
       setCities([]);
-    } else if (name === 'state') {
-      const selectedState = states.find(state => state.isoCode === value);
+    } else if (name === "state") {
+      const selectedState = states.find((state) => state.isoCode === value);
       setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
-      setFormData(prevState => ({ ...prevState, city: '' }));
+      setFormData((prevState) => ({ ...prevState, city: "" }));
     }
   };
 
@@ -57,7 +57,6 @@ const PatientRegistration = () => {
     }
 
     try {
-      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await PatientRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -75,9 +74,8 @@ const PatientRegistration = () => {
                 <p>Registration </p>
               </div>
               <div className="form-box">
-                  {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-                  
                   <div className="input-box">
                     <div className="label">
                       First Name <span>*</span>
@@ -138,36 +136,21 @@ const PatientRegistration = () => {
                     <div className="label">
                       Age <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Age"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Age" required />
                   </div>
 
                   <div className="input-box">
                     <div className="label">
                       Height(cm) <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Height"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Height" required />
                   </div>
 
                   <div className="input-box">
                     <div className="label">
                       Weight(kg) <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Weight"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Weight" required />
                   </div>
 
                   <div className="input-box">
@@ -200,14 +183,8 @@ const PatientRegistration = () => {
                     <div className="label">
                       Date of Birth <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Select Date"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Select Date" required />
                   </div>
-
 
                   <div className="input-box">
                     <div className="label">
@@ -272,12 +249,7 @@ const PatientRegistration = () => {
                     <div className="label">
                       Address <span>*</span>
                     </div>
-                    <input
-                      type="text"
-                      name="password"
-                      placeholder="Enter Address"
-                      required
-                    />
+                    <input type="text" name="password" placeholder="Enter Address" required />
                   </div>
 
                   <div className="input-box">
@@ -308,8 +280,6 @@ const PatientRegistration = () => {
                     />
                   </div>
 
-
-
                   <div className="condition">
                     <div className="policies">
                       <input type="checkbox" required />
@@ -323,7 +293,10 @@ const PatientRegistration = () => {
                       <button type="submit">Register</button>
                     </div>
                     <div className="login-btn">
-                      <p>Already have an account? <span onClick={() => navigate('/login')}>Login</span></p>
+                      <p>
+                        Already have an account?{" "}
+                        <span onClick={() => navigate("/login")}>Login</span>
+                      </p>
                     </div>
                   </div>
                 </form>

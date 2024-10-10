@@ -66,11 +66,14 @@ const PatientHeader = () => {
           <Link underline="hover" color="inherit" to="/">
             Home
           </Link>
-          <Typography color="textPrimary">{selectedOption} Management</Typography>
+          <Typography color="textPrimary">
+            {selectedOption} Management
+          </Typography>
         </Breadcrumbs>
       </div>
 
       {/* Search Bar */}
+      <div className="flex">
       <div className="flex items-center bg-gray-200 rounded-full px-4">
         <InputBase
           placeholder="Quick Search"
@@ -84,7 +87,11 @@ const PatientHeader = () => {
           <span>{selectedOption}</span>
           <ArrowDropDown />
         </IconButton>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={() => handleClose(null)}
+        >
           <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
           <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
           <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
@@ -109,6 +116,7 @@ const PatientHeader = () => {
             </Typography>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
