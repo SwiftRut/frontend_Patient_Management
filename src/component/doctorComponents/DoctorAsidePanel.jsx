@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../DoctorComponent/doctorAsidePanel.css";
+import "./doctorAsidePanel.css";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -40,10 +40,7 @@ export default function DoctorAsidePanel() {
                   <span>Patient Record Accesst</span>
                 </NavLink>
               </li>
-              <li
-                onClick={toggleAccordion}
-                style={{ display: "flex", flexDirection: "column" }}
-              >
+              <li onClick={toggleAccordion} style={{ display: "flex", flexDirection: "column" }}>
                 <NavLink>
                   <div className="flex" style={{ flexDirection: "row" }}>
                     <div className="icon">
