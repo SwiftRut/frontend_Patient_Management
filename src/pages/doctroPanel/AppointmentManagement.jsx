@@ -20,23 +20,27 @@ export default function AppointmentManagement() {
   const [activeTab, setActiveTab] = useState('Today Appointment');
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
-
   const navigate = useNavigate();
-  const [appointments, setAppointments] = useState({
-    today: [
-      { patientName: 'Marcus Philips', diseaseName: 'Viral Infection', patientIssue: 'Stomach Ache', appointmentDate: '2 Jan, 2022', appointmentTime: '4:30 PM', appointmentType: 'Online' },
-      { patientName: 'Julianna Warren', diseaseName: 'Diabetes', patientIssue: 'Stomach Ache', appointmentDate: '3 Jan, 2022', appointmentTime: '2:40 PM', appointmentType: 'Onsite' },
-    ],
-    upcoming: [
-      { patientName: 'London Shaffer', diseaseName: 'Viral Infection', patientIssue: 'Feeling Tired', appointmentDate: '5 Jan, 2022', appointmentTime: '5:35 PM', appointmentType: 'Onsite' },
-    ],
-    previous: [
-      { patientName: 'Leslie Mccray', diseaseName: 'Blood Pressure', patientIssue: 'Headache', appointmentDate: '6 Jan, 2022', appointmentTime: '9:30 PM', appointmentType: 'Online' },
-    ],
-    canceled: [
-      { patientName: 'Marcus Philips', diseaseName: 'Viral Infection', patientIssue: 'Stomach Ache', appointmentDate: '7 Jan, 2022', appointmentTime: '4:30 PM', appointmentType: 'Onsite' },
-    ],
-  });
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await apiService.AllAppointments();
+        const appointmentData = response.data;
+
+        setAppointments({
+          today: appointmentData.today || [],
+          upcoming: appointmentData.upcoming || [],
+          previous: appointmentData.previous || [],
+          canceled: appointmentData.canceled || [],
+        });
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
 
   // Get appointments based on active tab
   const getAppointments = () => {
@@ -54,7 +58,6 @@ export default function AppointmentManagement() {
     }
   };
 
-  // Filter appointments based on search term
   const filteredAppointments = getAppointments().filter((appointment) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     return (
@@ -65,7 +68,6 @@ export default function AppointmentManagement() {
   });
 
   return (
-
     <div className="p-6 bg-white rounded-lg shadow-md m-6">
       {/* Tabs */}
       <div className="flex justify-between items-center mb-4">
@@ -98,7 +100,7 @@ export default function AppointmentManagement() {
             }}
           />
           {/* Appointment Time Slot Button */}
-          <Button variant="contained" color="primary" className="!text-sm" onClick={() => navigate('/appointment-time-slot')}>
+          <Button variant="contained" color="primary" className="!text-sm" onClick={() => navigate('/doctor/appointmentTimeSlot')}>
             Appointment Time Slot
           </Button>
         </div>
@@ -147,7 +149,5 @@ export default function AppointmentManagement() {
       <CustomDateModal open={openCustomDateModal} onClose={() => setOpenCustomDateModal(false)} />
       <CancelAppointmentModal open={openCancelAppointmentModal} onClose={() => setOpenCancelAppointmentModal(false)} />
     </div>
-  )
+  );
 }
-
-
