@@ -47,14 +47,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+
+            <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin routers */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
-            <Route path="/AdminMobile" element={<AdminMobile />} />
-            <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             <Route path="/" element={<AdminPanel />}>
               <Route path="profile/*" />
@@ -103,6 +102,9 @@ function App() {
               <Route path="appointmentBooking" />
               <Route path="chatScreen" />
             </Route>
+
+            {/* extra routes */}
+            <Route path="/abc" element={<Invoice />} />
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />

@@ -5,7 +5,7 @@ import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import { useGlobal } from "../../hooks/useGlobal";
 import { FaEdit } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
-import AddFieldModal from "../../AddFieldsModal";
+import AddFieldModal from "../../component/modals/AddFieldsModal";
 import PatientDetailsForm from "../PatientDetailsForm";
 import DynamicField from "../DynamicField";
 import HospitalDetailsForm from "../HospitalDetailsForm";
