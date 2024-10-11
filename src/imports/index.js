@@ -1,42 +1,41 @@
-// imports/index.js
-import { lazy } from "react";
+import { lazyLoader } from "../utils/lazyLoader";
 
 // Admin Components
-export const Login = lazy(() => import("../pages/Login"));
-export const AdminRegistration = lazy(() => import("../pages/adminRegester/AdminRegistration"));
-export const AdminMobile = lazy(() => import("../pages/adminRegester/AdminMobile"));
-export const AdminOtp = lazy(() => import("../pages/adminRegester/AdminOtp"));
-export const AdminChangePassword = lazy(() => import("../pages/adminRegester/AdminChangePassword"));
-export const AdminPanel = lazy(() => import("../pages/AdminPanel"));
+export const Login = lazyLoader("pages/Login");
+export const AdminRegistration = lazyLoader("pages/adminRegister/AdminRegistration");
+export const AdminMobile = lazyLoader("pages/adminRegister/AdminMobile");
+export const AdminOtp = lazyLoader("pages/adminRegister/AdminOtp");
+export const AdminChangePassword = lazyLoader("pages/adminRegister/AdminChangePassword");
+export const AdminPanel = lazyLoader("pages/AdminPanel");
 
 // Invoice Components
-export const Invoice = lazy(() => import("../pages/invoice/Invoice"));
-export const CreateBill = lazy(() => import("../pages/invoice/CreateBill"));
-export const EditBill = lazy(() => import("../pages/invoice/EditBill"));
+export const Invoice = lazyLoader("pages/invoice/Invoice");
+export const CreateBill = lazyLoader("pages/invoice/CreateBill");
+export const EditBill = lazyLoader("pages/invoice/EditBill");
 
 // Doctor Components
-export const DoctorPanel = lazy(() => import("../pages/doctroPanel/DoctorPanel"));
-export const DoctorProfile = lazy(() => import("../pages/doctroPanel/profile/DoctorProfile"));
+export const DoctorPanel = lazyLoader("pages/doctroPanel/DoctorPanel");
+export const DoctorProfile = lazyLoader("pages/doctroPanel/profile/DoctorProfile");
 
 // Patient Components
-export const PatientRegistration = lazy(() => import("../pages/PatientRegistration"));
-export const PatientPanel = lazy(() => import("../pages/patientPanel/PatientPanel"));
-export const PatientDetails = lazy(() => import("../pages/patientManagement/PatientDetails"));
+export const PatientRegistration = lazyLoader("pages/PatientRegistration");
+export const PatientPanel = lazyLoader("pages/patientPanel/PatientPanel");
+export const PatientDetails = lazyLoader("pages/patientManagement/PatientDetails");
 
 // Extra Components
-export const Scheduler = lazy(() => import("../component/Schedular"));
-export const Bill = lazy(() => import("../component/Bill"));
-export const Onsite = lazy(() => import("../pages/doctorManagement/Onsite"));
-export const CashPayment = lazy(() => import("../pages/billPayment/CashPayment"));
-export const Delete = lazy(() => import("../pages/doctorManagement/Delete"));
-export const Bill2 = lazy(() => import("../pages/invoice/Bill2"));
-export const EditDesignInvoice = lazy(() => import("../pages/billPayment/EditDesignInvoice"));
-export const Bill3 = lazy(() => import("../pages/invoice/Bill3"));
+export const Scheduler = lazyLoader("component/Schedular");
+export const Bill = lazyLoader("component/Bill");
+export const Onsite = lazyLoader("pages/doctorManagement/Onsite");
+export const CashPayment = lazyLoader("pages/billPayment/CashPayment");
+export const Delete = lazyLoader("pages/doctorManagement/Delete");
+export const Bill2 = lazyLoader("pages/invoice/Bill2");
+export const EditDesignInvoice = lazyLoader("pages/billPayment/EditDesignInvoice");
+export const Bill3 = lazyLoader("pages/invoice/Bill3");
 
 // Charts, Chat, and Video Call
-export const Chart = lazy(() => import("../pages/Chart"));
-export const Chat = lazy(() => import("../pages/Chat"));
-export const VideoCall = lazy(() => import("../VideoCall"));
+export const Chart = lazyLoader("pages/Chart");
+export const Chat = lazyLoader("pages/Chat");
+export const VideoCall = lazyLoader("VideoCall");
 
 // Common Components (not lazy-loaded)
 export { default as Loading } from "../component/common/Loading";
