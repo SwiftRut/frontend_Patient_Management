@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import apiService from '../../services/api.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from "react-toastify"
 import '../pages.css'
 
 export default function AdminChangePassword() {
@@ -45,11 +46,13 @@ export default function AdminChangePassword() {
 
     // Validation checks
     if (!newPassword || !confirmPassword) {
+      toast.error('Both password and confirm password are required')
       setError('Both fields are required.');
       return;
     }
 
     if (newPassword !== confirmPassword) {
+      toast.error('Passwords do not match')
       setError('Passwords do not match.');
       return;
     }
@@ -60,13 +63,16 @@ export default function AdminChangePassword() {
         password: newPassword,
         confirmPassword: confirmPassword
       });
+      toast.success('Password reset successfully');
       setSuccessMessage(response.data.message);
 
       navigate('/login');
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message);
         setError(error.response.data.message);
       } else {
+        toast.error('Something went wrong. Please try again.');
         setError('Something went wrong. Please try again.');
       }
     }
