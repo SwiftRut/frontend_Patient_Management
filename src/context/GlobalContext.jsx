@@ -131,7 +131,7 @@ export const GlobalProvider = ({ children }) => {
       console.log(error);
       throw error;
     }
-  }
+  };
 
   const deleteBill = async (id) => {
     console.log(id);
@@ -143,7 +143,7 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  const getAllAppointments= async () => {
+  const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
       console.log(response, "response");
@@ -151,22 +151,23 @@ export const GlobalProvider = ({ children }) => {
       console.log(error);
       throw error;
     }
-  }
+  };
   const getAppointmentById = async (id) => {
-    try{
+    try {
       const response = await apiService.GetAppointmentById();
       console.log(response);
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
-  }
+  };
+
   const editAppointment = async (id, userData) => {
-    try{
-      const response = await apiService.EditAppointment(id,userData);
+    try {
+      const response = await apiService.EditAppointment(id, userData);
       console.log(response);
-    }catch (error) {
-    
+    } catch (error) {
+      console.log(error);
     }
   }
   const getChatHistory = async (doctorId, patientId) => {

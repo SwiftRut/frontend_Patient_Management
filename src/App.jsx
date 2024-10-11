@@ -51,16 +51,16 @@ function App() {
         <Suspense fallback={<TailSpin height="80" width="80" color="blue" ariaLabel="loading" />}>
           <Routes>
             <Route path="/login" element={<Login />} />
+
+            <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin routers */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
-            <Route path="/AdminMobile" element={<AdminMobile />} />
-            <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             <Route path="/" element={<AdminPanel />}>
+              <Route path="" />
               <Route path="profile/*" />
               <Route path="edit" />
 
@@ -91,6 +91,7 @@ function App() {
               <Route path="appointmentTimeSlot" />
               <Route path="patientDetail/:id" />
               <Route path="prescriptionView/:id" />
+              <Route path="createPrescriptionForm/:id" />
             </Route>
 
             {/* patient routers */}
@@ -107,6 +108,9 @@ function App() {
               <Route path="appointmentBooking" />
               <Route path="chatScreen" />
             </Route>
+
+            {/* extra routes */}
+            {/* <Route path="/abc" element={<PatientsStatistics />} /> */}
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />

@@ -28,7 +28,7 @@ const AppointmentTimeSlot = () => {
   ]);
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md m-6">
+    <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
       <h3 className="text-lg font-semibold mb-4">Appointment Time Slot</h3>
       <Calendar
         localizer={localizer}

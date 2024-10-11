@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Login = () => {
     identifier: "mohitdudhat@gmail.com",
     password: "123@abc",
     remember: "true",
-  });  
+  });
   // const [formData, setFormData] = useState({
   //   identifier: "fiyadoctor1@gmail.com",
   //   password: "Fiya@123",
@@ -32,9 +32,9 @@ const Login = () => {
     try {
       const success = await UniversalLogin(formData);
       if (success) {
-        if(user.role === 'admin') {
+        if (user.role === "admin") {
           navigate("/");
-        }else if(user.role === 'doctor') {
+        } else if (user.role === "doctor") {
           navigate("/doctor/profile/");
         }
       }
@@ -105,15 +105,30 @@ const Login = () => {
                           <p>Remember me</p>
                         </div>
                         <div className="forgot" onClick={() => navigate("/AdminMobile")}>
-                          <span style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Forgot password?</span>
+                          <span
+                            style={{
+                              cursor: "pointer",
+                              color: "blue",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            Forgot password?
+                          </span>
                         </div>
                       </div>
 
                       <div className="login-btn">
                         <button type="submit">Login</button>
                       </div>
-                      <div className="registration-btn" onClick={() => navigate("/adminRegistration")}>
-                        <p style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}>Don’t have an account? Register</p>
+                      <div
+                        className="registration-btn"
+                        onClick={() => navigate("/adminRegistration")}
+                      >
+                        <p
+                          style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                        >
+                          Don’t have an account? Register
+                        </p>
                       </div>
                     </div>
                   </form>
