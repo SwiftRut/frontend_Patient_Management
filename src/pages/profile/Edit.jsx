@@ -5,13 +5,7 @@ import { useEdit } from "../../hooks/useEdit";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
   const { countries, states, cities, loadStates, loadCities } = useLocationData(
     profile.country,
     profile.state

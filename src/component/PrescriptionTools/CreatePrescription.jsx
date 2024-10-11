@@ -7,11 +7,9 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
   const navigate = useNavigate();
 
   return (
-    <div className="cp-tool bg-white shadow-lg rounded-lgw-full relative">
-      <div className="head flex justify-between">
-
+    <div className="bg-white shadow-lg rounded-lg p-4 w-full relative">
+      <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-lg text-gray-800">{name}</h2>
-
         <div className="flex items-center">
           {isNew ? (
             <span className="bg-blue-100 text-blue-500 px-2 py-1 rounded-full text-sm font-medium mr-2">
@@ -22,13 +20,12 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
               Old
             </span>
           )}
-
-          <VisibilityIcon className="text-[#0EABEB]" onClick={() => navigate(`/doctor/prescriptionView/${id}`)} />
+          <VisibilityIcon className="text-gray-400" onClick={() => navigate(`/doctor/prescriptionView/${id}`)} />
         </div>
       </div>
-      <div className="box-data text-sm text-gray-600 mb-4">
+      <div className="text-sm text-gray-600 mb-4">
         <p>
-          Appointment Type: <span className="onside text-blue-500 font-semibold">{appointmentType}</span>
+          Appointment Type: <span className="text-blue-500 font-semibold">{appointmentType}</span>
         </p>
         <p>
           Patient Age: <span className="font-semibold">{age} Years</span>
@@ -39,22 +36,17 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
         <p>
           Appointment Time: <span className="font-semibold">{time}</span>
         </p>
-
-
-        <div className="cp-add">
-          <Button
-            variant="contained"
-            className="bg-blue-500 text-white w-full py-2"
-            style={{
-              borderRadius: "8px",
-            }}
-            onClick={() => navigate(`/doctor/createPrescriptionForm/${id}`)}
-          >
-            Create Prescription
-          </Button>
-        </div>
       </div>
-
+      <Button
+        variant="contained"
+        className="bg-blue-500 text-white w-full py-2"
+        style={{
+          borderRadius: "8px",
+        }}
+        onClick={() => navigate(`/create-prescription/${id}`)}
+      >
+        Create Prescription
+      </Button>
       <div
         className="absolute top-0 left-0 w-full h-full rounded-lg"
         style={{

@@ -1,5 +1,6 @@
 import React from "react";
 import "../style.css";
+import { NavLink } from "react-router-dom";
 
 const PersonalHealthRecord = () => {
   return (
@@ -8,10 +9,13 @@ const PersonalHealthRecord = () => {
         <div className="h-48 bg-white p-3 rounded-lg shadow-lg mt-3">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-semibold">Patient Details</h2>
-            <button className="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+            <NavLink
+              to={"/patient/profile/profileEdit"}
+              className="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            >
               <i className="fas fa-edit mr-1"></i> {/* Icon */}
               Edit Profile
-            </button>
+            </NavLink>
           </div>
           <div className="flex items-start space-x-4">
             <div className="w-24 h-full flex items-center">

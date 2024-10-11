@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
+import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
-import { useAuth } from "../hooks/useAuth";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -28,22 +28,45 @@ const PatientRegistration = () => {
     setCountries(Country.getAllCountries());
   }, []);
 
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
 
-    if (name === 'country') {
-      const selectedCountry = countries.find(country => country.isoCode === value);
+    if (name === "country") {
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       setStates(State.getStatesOfCountry(selectedCountry.isoCode));
-      setFormData(prevState => ({ ...prevState, state: '', city: '' }));
+      setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
       setCities([]);
-    } else if (name === 'state') {
-      const selectedState = states.find(state => state.isoCode === value);
+    } else if (name === "state") {
+      const selectedState = states.find((state) => state.isoCode === value);
       setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
-      setFormData(prevState => ({ ...prevState, city: '' }));
+      setFormData((prevState) => ({ ...prevState, city: "" }));
     }
   };
 
@@ -57,7 +80,6 @@ const PatientRegistration = () => {
     }
 
     try {
-      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await PatientRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -68,16 +90,15 @@ const PatientRegistration = () => {
   return (
     <div className="patient-registration-section">
       <div className="row">
-        <div className="main">
+        <div className="main flex">
           <div className="form">
             <div className="content">
               <div className="head">
                 <p>Registration </p>
               </div>
               <div className="form-box">
-                  {error && <div className="error-message">{error}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-                  
                   <div className="input-box">
                     <div className="label">
                       First Name <span>*</span>
@@ -138,36 +159,21 @@ const PatientRegistration = () => {
                     <div className="label">
                       Age <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Age"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Age" required />
                   </div>
 
                   <div className="input-box">
                     <div className="label">
                       Height(cm) <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Height"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Height" required />
                   </div>
 
                   <div className="input-box">
                     <div className="label">
                       Weight(kg) <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Enter Weight"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Enter Weight" required />
                   </div>
 
                   <div className="input-box">
@@ -200,14 +206,8 @@ const PatientRegistration = () => {
                     <div className="label">
                       Date of Birth <span>*</span>
                     </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Select Date"
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Select Date" required />
                   </div>
-
 
                   <div className="input-box">
                     <div className="label">
@@ -272,12 +272,7 @@ const PatientRegistration = () => {
                     <div className="label">
                       Address <span>*</span>
                     </div>
-                    <input
-                      type="text"
-                      name="password"
-                      placeholder="Enter Address"
-                      required
-                    />
+                    <input type="text" name="password" placeholder="Enter Address" required />
                   </div>
 
                   <div className="input-box">
@@ -308,8 +303,6 @@ const PatientRegistration = () => {
                     />
                   </div>
 
-
-
                   <div className="condition">
                     <div className="policies">
                       <input type="checkbox" required />
@@ -323,14 +316,35 @@ const PatientRegistration = () => {
                       <button type="submit">Register</button>
                     </div>
                     <div className="login-btn">
-                      <p>Already have an account? <span onClick={() => navigate('/login')}>Login</span></p>
+                      <p>
+                        Already have an account?{" "}
+                        <span onClick={() => navigate("/login")}>Login</span>
+                      </p>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          <div className="img-box"></div>
+          <div className="img-box">
+            <div className="slider">
+              <img src="/img/register.png" alt="Image 1" />
+              <img src="/img/register2.png" alt="Image 2" />
+              <div className="dots">
+                <span className="dot active"></span>
+                <span className="dot"></span>
+              </div>
+            </div>
+            <div className="vector-1">
+              <img src="/img/Vector-1.png" width="100%" />
+            </div>
+            <div className="vector-2">
+              <img src="/img/Vector-2.png" width="100%" />
+            </div>
+            <div className="vector-dot">
+              <img src="/img/Vector-dot.png" width="100%" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

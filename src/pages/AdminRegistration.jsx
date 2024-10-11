@@ -46,6 +46,7 @@ const AdminRegistration = () => {
     fetchData();
     console.log(allHospitals)
   }, []);
+   
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -465,6 +466,7 @@ const AdminRegistration = () => {
           </div>
         </div>
       )}
+      {/* create-Hospital form end */}
     </>
   );
 };

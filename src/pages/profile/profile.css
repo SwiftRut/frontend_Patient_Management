@@ -126,6 +126,9 @@
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -337,6 +340,9 @@
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -421,9 +427,6 @@
   display: flex;
   justify-content: end;
 }
-.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .cancel-btn {
-  padding-left: 20px;
-}
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .cancel-btn button {
   color: black;
   border: 1px solid #D3D3D3;
@@ -432,6 +435,9 @@
   font-size: 20px;
   font-weight: 600;
   width: 160px;
+}
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn {
+  padding-left: 15px;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(10) .save-btn button {
   padding: 12px 14px;
@@ -527,6 +533,9 @@
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
   border: 1px solid #718ebf;
+}
+.ProfileChangePassword-section .right .content .form-box form .change-input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
   color: #a7a7a7;
