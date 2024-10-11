@@ -5,7 +5,7 @@
 .doctor-profile-section .row .main .profile-setting {
   width: 80%;
   margin: 0px auto;
-  margin-top: -15%;
+  margin-top: -12%;
 }
 .doctor-profile-section .row .main .profile-setting .head {
   padding-bottom: 15px;
@@ -125,9 +125,6 @@
 }
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
-}
-.doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -337,9 +334,6 @@
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
-}
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -530,9 +524,6 @@
 }
 .doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
   border: 1px solid #718ebf;
-}
-.doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
   color: #a7a7a7;
