@@ -1,3 +1,4 @@
+import { useAuth } from "./hooks/useAuth";
 import {
   Login,
   AdminRegistration,
@@ -109,7 +110,9 @@ import ProtectedRoute from "./routes/PrivateRoute";
 //   { path: "/charts", element: <Chart /> },
 //   { path: "/chat", element: <Chat /> },
 // ];
-const userRole = "doctor";
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user.role,"<<<<<<<<<<<<<< userfrom router config");
+const userRole = user.role;
 //with protection
 const routesConfig = [
   { path: "/login", element: <Login />, allowedRoles: [] },
