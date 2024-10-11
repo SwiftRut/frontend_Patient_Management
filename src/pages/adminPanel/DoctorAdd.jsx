@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from '../../services/api.js';
 import './doctorManagement.css';
@@ -63,47 +63,93 @@ const DoctorAdd = () => {
     });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e, fileType) => {
     const file = e.target.files[0];
-    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
+    if (file) {
+      if (file.type !== "image/png" && file.type !== "image/jpeg") {
+        alert("Please upload a PNG or JPEG file.");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size should not exceed 5MB.");
+        return;
+      }
+
       setFormData((prevData) => ({
         ...prevData,
-        signature: file, // Store the file in the state
+        [fileType]: file,
       }));
 
-      // Create a preview of the uploaded image
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSignaturePreview(reader.result); // Set the preview URL
+        if (fileType === 'signature') {
+          setSignaturePreview(reader.result);
+        } else if (fileType === 'profilePicture') {
+          setProfilePicturePreview(reader.result);
+        }
       };
       reader.readAsDataURL(file);
-    } else {
-      alert("Please upload a PNG or JPEG file up to 5MB.");
     }
-  };
+  };``
 
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
-    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
+
+    // Validate the file
+    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
       setFormData((prevData) => ({
         ...prevData,
-        profilePicture: file,
+        profilePicture: file, // store the file itself
       }));
 
+      // Create a preview for the image
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfilePicturePreview(reader.result);
+        setProfilePicturePreview(reader.result); // Set the preview image URL
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a PNG or JPEG file up to 5MB for the profile picture.");
+      alert("Please upload a valid PNG or JPEG file for the profile picture.");
+    }
+  };
+
+  const handleSignatureChange = (e) => {
+    const file = e.target.files[0];
+
+    // Validate the file
+    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
+      setFormData((prevData) => ({
+        ...prevData,
+        signature: file, // store the signature file itself
+      }));
+
+      // Create a preview for the signature image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSignaturePreview(reader.result); // Set the signature preview image URL
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please upload a valid PNG or JPEG file for the signature.");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullPhoneNumber = formData.countryCode + formData.phone;
-    const dataToSubmit = { ...formData, phone: fullPhoneNumber };
+    const dataToSubmit = new FormData();
+
+    Object.keys(formData).forEach(key => {
+      if (key === 'signature' || key === 'profilePicture') {
+        if (formData[key]) {
+          dataToSubmit.append(key, formData[key]);
+        }
+      } else {
+        dataToSubmit.append(key, formData[key]);
+      }
+    });
+
+    dataToSubmit.set('phone', fullPhoneNumber);
 
     try {
       const response = await apiService.CreateDoctor(dataToSubmit);
@@ -114,7 +160,6 @@ const DoctorAdd = () => {
     } catch (error) {
       console.error('Error adding doctor:', error);
     }
-
   };
 
   return (
@@ -149,6 +194,7 @@ const DoctorAdd = () => {
                           onChange={handleProfilePictureChange}
                           style={{ display: "none" }}
                           id="profilePictureUpload"
+                          name="profilePicture"
                         />
                         <p style={{ cursor: 'pointer' }} onClick={() => document.getElementById("profilePictureUpload").click()}>
                           Choose Photo
@@ -163,9 +209,10 @@ const DoctorAdd = () => {
                           <input
                             type="file"
                             accept="image/png, image/jpeg"
-                            onChange={handleFileChange}
+                            onChange={handleSignatureChange}
                             style={{ display: 'none' }}
                             id="signatureUpload"
+                            name="signature"
                           />
                           <label htmlFor="signatureUpload" style={{ cursor: 'pointer' }}>
                             Upload a file

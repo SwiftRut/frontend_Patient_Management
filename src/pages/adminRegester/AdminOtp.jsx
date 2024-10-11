@@ -3,6 +3,8 @@ import { IoTimeOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import apiService from '../../services/api.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminOtp() {
   const location = useLocation();
@@ -10,10 +12,8 @@ export default function AdminOtp() {
   const { identifier } = location.state || {};
   const inputRefs = useRef([]);
   const [otp, setOtp] = useState(new Array(6).fill(""));
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [isResendDisabled, setIsResendDisabled] = useState(true);
-  const [timer, setTimer] = useState(300); // 5 minutes = 300 seconds
+  const [timer, setTimer] = useState(60); // 1 minutes = 60 seconds
 
   useEffect(() => {
     const slider = document.querySelector(".slider");
@@ -40,6 +40,7 @@ export default function AdminOtp() {
     }
   }, []);
 
+  // Countdown Timer for Resend OTP
   useEffect(() => {
     const interval = setInterval(() => {
       if (timer > 0) {
@@ -84,13 +85,10 @@ export default function AdminOtp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccessMessage('');
-
     const enteredOtp = otp.join('');
 
     if (enteredOtp.length !== 6) {
-      setError("Please enter a valid 6-digit OTP.");
+      toast.error("Please enter a valid 6-digit OTP.");
       return;
     }
 
@@ -100,37 +98,36 @@ export default function AdminOtp() {
         otp: enteredOtp,
       });
 
-      setSuccessMessage(response.data.message);
+      toast.success(response.data.message);
       navigate('/resetPassword', { state: { identifier } });
     } catch (error) {
       if (error.response && error.response.data) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again.');
       }
     }
   };
 
   const handleResendOtp = async () => {
-    setError('');
-    setSuccessMessage('');
     setIsResendDisabled(true);
-    setTimer(300);
+    setTimer(60);
 
     try {
       const response = await apiService.ForgetPassword({ identifier });
-      setSuccessMessage(response.data.message);
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again.');
       }
     }
   };
 
   return (
     <div>
+      <ToastContainer />
       <div className="admin-otp-section">
         <div className="row">
           <div className="main flex">
@@ -144,12 +141,6 @@ export default function AdminOtp() {
                   <p>Please enter the 6-digit code that was sent to your phone number.</p>
                 </div>
 
-                {/* Display success message */}
-                {successMessage && <div className="success-message" style={{ color: "green" }}>{successMessage}</div>}
-
-                {/* Display error message */}
-                {error && <div className="error-message" style={{ color: "red" }}>{error}</div>}
-
                 <div className="admin-otp-form-box">
                   <form className="flex" onSubmit={handleSubmit}>
                     {[...Array(6)].map((_, index) => (
@@ -159,7 +150,7 @@ export default function AdminOtp() {
                           maxLength="1"
                           pattern="\d*"
                           inputMode="numeric"
-                          ref={(el) => (inputRefs.current[index] = el)} // Fixed here
+                          ref={(el) => (inputRefs.current[index] = el)}
                           onChange={(e) => handleInputChange(index, e)}
                           onKeyDown={(e) => handleKeyDown(index, e)}
                           style={{ MozAppearance: "textfield" }}
@@ -179,7 +170,7 @@ export default function AdminOtp() {
                           <button
                             type="button"
                             onClick={handleResendOtp}
-                            disabled={isResendDisabled} // Disable button based on state
+                            disabled={isResendDisabled}
                           >
                             Resend OTP
                           </button>

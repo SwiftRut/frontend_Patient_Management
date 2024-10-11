@@ -9,17 +9,19 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 import apiService from "../../services/api.js";
 import "./doctorPanel.css";
 
+
 export default function AppointmentManagement() {
-  const { user } = useAuth();
-  const { getAllAppointments, allAppointements } = useGlobal();
+  // const { user } = useAuth();
+  // const { getAllAppointments, allAppointements } = useGlobal();
 
   useEffect(() => {
-    getAllAppointments();
+    getAppointments();
   }, []);
 
   // const [searchResults, setSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("Today Appointment");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState('Today Appointment');
+
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
   const navigate = useNavigate();
@@ -74,6 +76,7 @@ export default function AppointmentManagement() {
       },
     ],
   });
+
 
   useEffect(() => {
     const fetchAppointments = async () => {
