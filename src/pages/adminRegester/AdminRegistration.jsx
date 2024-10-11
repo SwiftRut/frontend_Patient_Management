@@ -42,6 +42,30 @@ const AdminRegistration = () => {
     setCountries(Country.getAllCountries());
     await getAllHospitals();
   };
+
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -54,9 +78,7 @@ const AdminRegistration = () => {
     }));
 
     if (name === "country") {
-      const selectedCountry = countries.find(
-        (country) => country.isoCode === value
-      );
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       if (selectedCountry) {
         setStates(State.getStatesOfCountry(selectedCountry.isoCode));
         setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
@@ -65,9 +87,7 @@ const AdminRegistration = () => {
     } else if (name === "state") {
       const selectedState = states.find((state) => state.isoCode === value);
       if (selectedState) {
-        setCities(
-          City.getCitiesOfState(formData.country, selectedState.isoCode)
-        );
+        setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
         setFormData((prevState) => ({ ...prevState, city: "" }));
       }
     }
@@ -89,10 +109,7 @@ const AdminRegistration = () => {
     }
 
     try {
-      console.log(
-        formData,
-        "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data"
-      );
+      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await AdminRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -120,10 +137,7 @@ const AdminRegistration = () => {
   const SelectMenuButton = (props) => (
     <components.MenuList {...props}>
       {props.children}
-      <button
-        className="add-new-hospital "
-        onClick={() => setIsModalOpen(true)}
-      >
+      <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
         Add New Hospital
       </button>
     </components.MenuList>
@@ -133,9 +147,9 @@ const AdminRegistration = () => {
   };
   return (
     <>
-      <div className="registration-section">
+      <div className="registration-section ">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="content">
                 <div className="head">
@@ -265,13 +279,10 @@ const AdminRegistration = () => {
                       <Select
                         name="hospital"
                         value={
-                          allHospitals.find(
-                            (hospital) => hospital._id === formData.hospital
-                          )
+                          allHospitals.find((hospital) => hospital._id === formData.hospital)
                             ? {
                                 label: allHospitals.find(
-                                  (hospital) =>
-                                    hospital._id === formData.hospital
+                                  (hospital) => hospital._id === formData.hospital
                                 ).name,
                                 value: formData.hospital,
                               }
@@ -324,8 +335,7 @@ const AdminRegistration = () => {
                       <div className="policies">
                         <input type="checkbox" required />
                         <p>
-                          I agree to all the <span>T&C</span> and{" "}
-                          <span>Privacy Policies.</span>
+                          I agree to all the <span>T&C</span> and <span>Privacy Policies.</span>
                         </p>
                       </div>
 
@@ -343,15 +353,33 @@ const AdminRegistration = () => {
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Modal */}
       {isModalOpen && (
-        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
             <div className="modal-overlay">
               <div className="modal-content">
                 <div className="hospital-section">
@@ -363,10 +391,7 @@ const AdminRegistration = () => {
                             <p>Add New Hospital</p>
                           </div>
                           <div className="form-box">
-                            <form
-                              onSubmit={handleHospitalSubmit}
-                              className="flex"
-                            >
+                            <form onSubmit={handleHospitalSubmit} className="flex">
                               <div className="input-box">
                                 <div className="label">
                                   Hospital Name <span>*</span>
@@ -407,10 +432,7 @@ const AdminRegistration = () => {
                                 >
                                   <option value="">Select Country</option>
                                   {countries.map((country) => (
-                                    <option
-                                      key={country.isoCode}
-                                      value={country.isoCode}
-                                    >
+                                    <option key={country.isoCode} value={country.isoCode}>
                                       {country.name}
                                     </option>
                                   ))}
@@ -428,16 +450,13 @@ const AdminRegistration = () => {
                                   required
                                 >
                                   <option value="">Select State</option>
-                                  {State.getStatesOfCountry(
-                                    hospitalFormData.country
-                                  ).map((state) => (
-                                    <option
-                                      key={state.isoCode}
-                                      value={state.isoCode}
-                                    >
-                                      {state.name}
-                                    </option>
-                                  ))}
+                                  {State.getStatesOfCountry(hospitalFormData.country).map(
+                                    (state) => (
+                                      <option key={state.isoCode} value={state.isoCode}>
+                                        {state.name}
+                                      </option>
+                                    )
+                                  )}
                                 </select>
                               </div>
 
@@ -479,10 +498,7 @@ const AdminRegistration = () => {
 
                               <div className="btn flex">
                                 <div className="cancel-btn">
-                                  <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                  >
+                                  <button type="button" onClick={() => setIsModalOpen(false)}>
                                     Cancel
                                   </button>
                                 </div>

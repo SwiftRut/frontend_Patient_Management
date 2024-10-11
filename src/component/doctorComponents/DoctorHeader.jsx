@@ -1,28 +1,36 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Breadcrumbs, Typography, IconButton, InputBase, Badge, Avatar, Menu, MenuItem } from '@mui/material';
-import { Notifications, ArrowDropDown } from '@mui/icons-material';
-import admin from "../../assets/admin-image.png"
-
+import { useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import {
+  Breadcrumbs,
+  Typography,
+  IconButton,
+  InputBase,
+  Badge,
+  Avatar,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { Notifications, ArrowDropDown } from "@mui/icons-material";
+import admin from "../../assets/admin-image.png";
 
 const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedOption, setSelectedOption] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const user = {
-    firstName: 'Lincoln',
-    lastName: 'Philips',
-    email: 'lincon@gmail.com',
-    phoneNumber: '99130 53222',
-    hospitalName: 'Silver Park Medical Center',
+    firstName: "Lincoln",
+    lastName: "Philips",
+    email: "lincon@gmail.com",
+    phoneNumber: "99130 53222",
+    hospitalName: "Silver Park Medical Center",
     Password: "123456",
-    gender: 'Male',
-    city: 'Ahmedabad',
-    state: 'Gujarat',
-    country: 'India',
-    role: 'doctor'
-  }
+    gender: "Male",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    country: "India",
+    role: "doctor",
+  };
 
   const navigate = useNavigate();
 
@@ -45,7 +53,7 @@ const DoctorHeader = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       handleSearch();
     }
   };
@@ -66,7 +74,7 @@ const DoctorHeader = () => {
       <div className="flex items-center bg-gray-200 rounded-full px-4">
         <InputBase
           placeholder="Quick Search"
-          inputProps={{ 'aria-label': 'search' }}
+          inputProps={{ "aria-label": "search" }}
           className="flex-grow"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -76,14 +84,10 @@ const DoctorHeader = () => {
           <span>{selectedOption}</span>
           <ArrowDropDown />
         </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => handleClose(null)}
-        >
-          <MenuItem onClick={() => handleClose('All')}>All</MenuItem>
-          <MenuItem onClick={() => handleClose('Doctor')}>Doctor</MenuItem>
-          <MenuItem onClick={() => handleClose('Patient')}>Patient</MenuItem>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+          <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
+          <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
+          <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
         </Menu>
       </div>
 
@@ -94,13 +98,19 @@ const DoctorHeader = () => {
             <Notifications />
           </Badge>
         </IconButton>
-        <div className="flex items-center">
-          <Avatar src={admin} alt="User Image" />
-          <div className="ml-2">
-            <Typography variant="body2" fontWeight="bold">{user.firstName} {user.lastName}</Typography>
-            <Typography variant="caption" color="textSecondary">{user.role}</Typography>
+        <NavLink to={"/doctor/profile"}>
+          <div className="flex items-center">
+            <Avatar src={admin} alt="User Image" />
+            <div className="ml-2">
+              <Typography variant="body2" fontWeight="bold">
+                {user.firstName} {user.lastName}
+              </Typography>
+              <Typography variant="caption" color="textSecondary">
+                {user.role}
+              </Typography>
+            </div>
           </div>
-        </div>
+        </NavLink>
       </div>
     </div>
   );
