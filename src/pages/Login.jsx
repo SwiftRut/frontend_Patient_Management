@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -12,13 +12,31 @@ const Login = () => {
     password: "123@abc",
     remember: "true",
   });
-  // const [formData, setFormData] = useState({
-  //   identifier: "fiyadoctor1@gmail.com",
-  //   password: "Fiya@123",
-  //   remember: "true",
-  // });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
