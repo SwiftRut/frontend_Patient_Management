@@ -126,9 +126,6 @@
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
-}
 .profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -287,10 +284,13 @@
   background-color: #F6F8FB;
   border-radius: 10px;
 }
-.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li svg {
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label {
+  align-items: center;
+}
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label svg {
   color: #4F4F4F;
 }
-.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li span {
+.edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label span {
   color: #4F4F4F;
   padding-left: 15px;
   font-size: 20px;
@@ -336,9 +336,6 @@
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
-}
-.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -530,9 +527,6 @@
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
   border: 1px solid #718ebf;
-}
-.ProfileChangePassword-section .right .content .form-box form .change-input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
   color: #a7a7a7;

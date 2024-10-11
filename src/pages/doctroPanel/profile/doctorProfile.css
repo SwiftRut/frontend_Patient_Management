@@ -126,9 +126,6 @@
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
-}
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -287,14 +284,18 @@
   background-color: #F6F8FB;
   border-radius: 10px;
 }
-.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li svg {
+.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label {
+  align-items: center;
+}
+.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label svg {
   color: #4F4F4F;
 }
-.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li span {
+.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label span {
   color: #4F4F4F;
   padding-left: 15px;
   font-size: 20px;
   font-weight: 600;
+  display: inline-block;
 }
 .doctor-edit-section .row .main .profile-setting .content .right {
   width: 77%;
@@ -336,9 +337,6 @@
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
-}
-.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -530,9 +528,6 @@
 }
 .doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input:focus {
   border: 1px solid #718ebf;
-}
-.doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input::-moz-placeholder {
-  color: #a7a7a7;
 }
 .doctor-ProfileChangePassword-section .right .content .form-box form .change-input-box input::placeholder {
   color: #a7a7a7;
