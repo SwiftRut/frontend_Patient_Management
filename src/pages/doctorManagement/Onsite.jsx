@@ -3,6 +3,10 @@ import "../doctorManagement/Onsite.css";
 import apiService from "../../services/api.js";
 import { useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import { TbBuildingHospital } from "react-icons/tb";
+import { IoLinkSharp } from "react-icons/io5";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { IoLocation } from "react-icons/io5";
 
 
 
@@ -196,16 +200,50 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
               <div className="table" style={{ marginTop: "20px" }}>
                 <table>
                   <tr>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <h3>Age</h3>
+                      <p>36 Years</p>
+                    </td>
+                    <td>
+                      <h3>Email</h3>
+                      <p>kenzi.lawson@example.com</p>
+                    </td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <h3>Phone</h3>
+                      <p>89564 25462</p>
+                    </td>
+                    <td>
+                      <h3>Online Consultation Rate</h3>
+                      <p>₹ 1,000</p>
+                    </td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <h3>Country</h3>
+                      <p>India</p>
+                    </td>
+                    <td>
+                      <h3>State</h3>
+                      <p>Gujarat</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h3>Zip Code</h3>
+                      <p>382002</p>
+                    </td>
+                    <td>
+                      <h3>City</h3>
+                      <p>Gandhinagar</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <h3>Address</h3>
+                      <p>B-105 Virat Bungalows Punagam Motavaracha Jamnagar.</p>
+                    </td>
                   </tr>
                 </table>
               </div>

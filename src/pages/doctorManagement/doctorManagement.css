@@ -30,10 +30,6 @@ input {
   align-items: center;
 }
 
-.bg_color {
-  background-color: #f6f8fb;
-}
-
 .dr-managment-section .row .main {
   border-radius: 15px;
   margin: 10px;
@@ -87,52 +83,22 @@ input {
   color: white;
   font-weight: 600;
 }
-.dr-managment-section .row .main .grid {
-  position: relative;
-  padding-top: 37px;
-  background: #f6f8fb;
-  width: 100%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-.dr-managment-section .row .main .grid-container {
-  overflow-y: auto;
-  height: 640px;
-}
 .dr-managment-section .row .main table {
-  border-spacing: 0;
+  border-collapse: collapse;
   width: 100%;
-}
-.dr-managment-section .row .main th {
-  height: 20px;
-  line-height: 20px;
-  padding-top: 0;
-  padding-bottom: 10px;
-  color: transparent;
-  border: none;
-  white-space: nowrap;
-}
-.dr-managment-section .row .main th div {
-  position: absolute;
-  background: transparent;
-  color: #030229;
-  padding: 10px 25px;
-  top: 0;
-  height: 20px;
-  line-height: normal;
+  table-layout: fixed;
 }
 .dr-managment-section .row .main td {
-  background: #fff;
-  padding: 10px;
+  padding: 20px 5px !important;
+  color: #4f4f4f;
+  font-size: 18px;
+  font-weight: 600;
 }
-.dr-managment-section .row .main tbody {
-  background-color: #fff;
-}
-.dr-managment-section .row .main img {
+.dr-managment-section .row .main td img {
   margin-right: 10px;
   width: 50px;
 }
-.dr-managment-section .row .main .gender {
+.dr-managment-section .row .main td .gender {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -152,7 +118,7 @@ input {
   text-align: center;
   width: 150px;
 }
-.dr-managment-section .row .main .action .delete {
+.dr-managment-section .row .main .action .edit {
   background-color: #f6f8fb;
   color: #39973d;
   border-radius: 10px;
@@ -164,20 +130,14 @@ input {
   color: #0eabeb;
   margin: 0px 10px;
   background-color: #f6f8fb;
-}
-.dr-managment-section .row .main .action .delete .view {
-  background-color: #f6f8fb;
-  color: #0eabeb;
-  margin: 0px 10px;
   border-radius: 10px;
   padding: 16px;
   font-size: 25px;
   text-align: center;
 }
-.dr-managment-section .row .main .action .delete .view .delete {
+.dr-managment-section .row .main .action .delete {
   color: #e11d29;
   background-color: #f6f8fb;
-  margin: 0px 10px;
   border-radius: 10px;
   padding: 16px;
   font-size: 25px;
@@ -234,4 +194,4 @@ input {
   font-size: 26px;
   font-weight: 500;
   padding-top: 15px;
-} /*# sourceMappingURL=doctorManagement.css.map */
+}/*# sourceMappingURL=doctorManagement.css.map */

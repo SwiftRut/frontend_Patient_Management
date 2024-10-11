@@ -38,27 +38,25 @@ export default function PatientManagement() {
 
   return (
     <>
-      <div className="">
-        <div className="patient-section main-content">
-          <div className="row">
-            <div className="main">
-              <div className="flex top-menu">
-                <button>Today Appointment</button>
-                <button>Upcoming Appointment</button>
-                <button>Previous Appointment</button>
-                <button>Cancel Appointment</button>
+      <div className="patient-section">
+        <div className="row">
+          <div className="main">
+            <div className="flex top-menu">
+              <button>Today Appointment</button>
+              <button>Upcoming Appointment</button>
+              <button>Previous Appointment</button>
+              <button>Cancel Appointment</button>
+            </div>
+            <div className="top flex align-center">
+              <div className="heading">
+                <h3>Today Appointment</h3>
               </div>
-              <div className="top flex align-center">
-                <div className="heading">
-                  <h3>Today Appointment</h3>
-                </div>
-                <div className="search-btn flex">
-                  <div className="input flex align-center">
-                    <div className="search">
-                      <CiSearch />
-                    </div>
-                    <input type="text" placeholder="Search Patient" />
+              <div className="search-btn flex">
+                <div className="input flex align-center">
+                  <div className="search">
+                    <CiSearch />
                   </div>
+                  <input type="text" placeholder="Search Patient" />
                 </div>
               </div>
             </div>
