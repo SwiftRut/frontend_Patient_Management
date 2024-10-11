@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./pages.css";
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin, user } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat@gmail.com",
-    password: "123@abc",
-    remember: "true",
+    identifier: "",
+    password: "",
+    remember: "",
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -52,13 +53,16 @@ const Login = () => {
       const success = await UniversalLogin(formData);
       if (success) {
         if (user.role === "admin") {
+          toast.success("admin login successfully")
           navigate("/");
         } else if (user.role === "doctor") {
+          toast.success("doctor login successfully")
           navigate("/doctor/profile/");
         }
       }
     } catch (err) {
       console.error(err);
+      toast.error("Login failed. Please check your credentials.")
       setError("Login failed. Please check your credentials.");
     }
   };
