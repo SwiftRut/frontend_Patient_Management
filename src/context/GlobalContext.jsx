@@ -169,7 +169,39 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
+  const getChatHistory = async (doctorId, patientId) => {
+    try{
+      const response = await apiService.GetChatHistory(doctorId,patientId);
+      console.log(response.data);
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getDoctorContacts = async (patientId) => {
+    try{
+      const response = await apiService.GetDoctorContacts(
+        patientId);
+      console.log(response.data,"<< doctor contats");
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getPatientContacts = async (doctorId) => {
+    try{
+      const response = await apiService.GetPatientContacts(
+        doctorId);
+      console.log(response.data,"<< patient contats");
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -187,6 +219,8 @@ export const GlobalProvider = ({ children }) => {
         editDoctorProfile,
         updateBill,
         createBill,
+        getDoctorContacts,
+        getPatientContacts,
         bill,
         setBill,
         allBills,
@@ -197,7 +231,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements,
+        allAppointements,getChatHistory
       }}
     >
       {children}
