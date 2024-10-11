@@ -37,6 +37,11 @@ ol {
   border: 0px;
   border-radius: 50px;
 }
+.search::-moz-placeholder {
+  color: #A7A7A7;
+  font-size: 16px;
+  font-weight: 400px;
+}
 .search::placeholder {
   color: #A7A7A7;
   font-size: 16px;
@@ -160,13 +165,7 @@ ol {
   box-sizing: border-box;
   position: relative;
   cursor: text;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: relative;
   border: 1px solid #D3D3D3;
