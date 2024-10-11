@@ -39,7 +39,7 @@ import Bill3 from "./pages/invoice/Bill3.jsx";
 
 import Chart from "./pages/Chart.jsx";
 import Chat from "./pages/Chat.jsx";
-
+import VideoCall from "./VideoCall.jsx";
 function App() {
   return (
     <>
@@ -124,6 +124,7 @@ function App() {
             <Route path="/cash" element={<CashPayment />} />
             <Route path="/delete" element={<Delete />} />
             <Route path="/editinvoice" element={<EditDesignInvoice />} />
+            <Route path="/videocall" element={<VideoCall />} />
             {/* manashvi temp end*/}
 
             <Route path="/charts" element={<Chart />} />

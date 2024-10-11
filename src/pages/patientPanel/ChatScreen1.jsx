@@ -28,7 +28,7 @@ const ChatScreen1 = () => {
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
   const { getAllDoctors, allDoctor } = useDoctor();
   const { getAllPatients, allPatient } = usePatient();
-  const {getChatHistory} = useGlobal();
+  const {getChatHistory, getPatientContacts ,getDoctorContacts} = useGlobal();
   const handleChatClick = (chat) => {
     setSelectedChat(chat);
   };
@@ -66,6 +66,7 @@ const ChatScreen1 = () => {
 
       const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
       setMessages(messageHistory);
+      getDoctorContacts(patientId);
     };
 
     fetchData();

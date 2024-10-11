@@ -87,6 +87,8 @@ const apiService = {
 
    //Chats
    GetChatHistory: (doctorId, patientId) => api.get(`/chat/${doctorId}/${patientId}`),
+   GetDoctorContacts: (id) => api.get(`/chat/contacts/patient/${id}`),
+   GetPatientContacts: (id) => api.get(`/chat/contacts/doctor/${id}`),
 };
 
 export default apiService;
