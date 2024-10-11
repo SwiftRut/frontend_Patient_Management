@@ -8,6 +8,7 @@ export const GlobalProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
+  const [allAppointements, setAllAppointements] = useState([]);
   useEffect(() => {}, []);
   const getAllHospitals = async () => {
     try {
@@ -131,6 +132,7 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
+
   const deleteBill = async (id) => {
     console.log(id);
     try {
@@ -141,6 +143,65 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
+  const getAllAppointments = async () => {
+    try {
+      const response = await apiService.GetAllAppointments();
+      console.log(response, "response");
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+  const getAppointmentById = async (id) => {
+    try {
+      const response = await apiService.GetAppointmentById();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const editAppointment = async (id, userData) => {
+    try {
+      const response = await apiService.EditAppointment(id, userData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const getChatHistory = async (doctorId, patientId) => {
+    try{
+      const response = await apiService.GetChatHistory(doctorId,patientId);
+      console.log(response.data);
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getDoctorContacts = async (patientId) => {
+    try{
+      const response = await apiService.GetDoctorContacts(
+        patientId);
+      console.log(response.data,"<< doctor contats");
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getPatientContacts = async (doctorId) => {
+    try{
+      const response = await apiService.GetPatientContacts(
+        doctorId);
+      console.log(response.data,"<< patient contats");
+      return response.data;
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -158,12 +219,19 @@ export const GlobalProvider = ({ children }) => {
         editDoctorProfile,
         updateBill,
         createBill,
+        getDoctorContacts,
+        getPatientContacts,
         bill,
         setBill,
         allBills,
         getBills,
         getBillById,
         deleteBill,
+        setAllAppointements,
+        getAllAppointments,
+        getAppointmentById,
+        editAppointment,
+        allAppointements,getChatHistory
       }}
     >
       {children}

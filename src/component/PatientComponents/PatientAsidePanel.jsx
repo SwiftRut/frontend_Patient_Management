@@ -25,56 +25,56 @@ export default function PatientAsidePanel() {
           </div>
           <div className="menu flex">
             <div>
-            <ul>
-              <li>
-                <NavLink to={"/doctor"}>
-                  <div className="icon">
-                    <RiContactsBookFill />
-                  </div>
-                  <span>Personal Health Record</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/doctor/patientRecordAccesst"}>
-                  <div className="icon">
-                    <FaCalendarCheck />
-                  </div>
-                  <span>Appointment Booking</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink>
-                  <div className="icon">
-                    <FaFilePrescription />
-                  </div>
-                  <span className="menu-item">Prescription Access</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/doctor/teleconsultationModule"}>
-                  <div className="icon">
-                    <FaLaptopMedical />
-                  </div>
-                  <span>Teleconsultation Access</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/doctor/chatScreen"}>
-                  <div className="icon">
-                    <IoMdChatbubbles />
-                  </div>
-                  <span>Chat</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to={"/doctor/chatScreen"}>
-                  <div className="icon">
-                    <RiBillLine />
-                  </div>
-                  <span>Bill</span>
-                </NavLink>
-              </li>
-            </ul>
+              <ul>
+                <li>
+                  <NavLink to={"/patient"}>
+                    <div className="icon">
+                      <RiContactsBookFill />
+                    </div>
+                    <span>Personal Health Record</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/patient/appointment"}>
+                    <div className="icon">
+                      <FaCalendarCheck />
+                    </div>
+                    <span>Appointment Booking</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/patient"}>
+                    <div className="icon">
+                      <FaFilePrescription />
+                    </div>
+                    <span className="menu-item">Prescription Access</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/patient"}>
+                    <div className="icon">
+                      <FaLaptopMedical />
+                    </div>
+                    <span>Teleconsultation Access</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/patient/chatScreen"}>
+                    <div className="icon">
+                      <IoMdChatbubbles />
+                    </div>
+                    <span>Chat</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to={"/patient"}>
+                    <div className="icon">
+                      <RiBillLine />
+                    </div>
+                    <span>Bill</span>
+                  </NavLink>
+                </li>
+              </ul>
             </div>
             <div>
               <div>
@@ -87,9 +87,9 @@ export default function PatientAsidePanel() {
                     <p>You have to fill up the form to be admitted to the hospital.</p>
                     <div className="btn">
                       <button>
-                        < FaCalendarAlt/>
+                        <FaCalendarAlt />
                         <h3> Appointment</h3>
-                        </button>
+                      </button>
                     </div>
                   </div>
                 </div>

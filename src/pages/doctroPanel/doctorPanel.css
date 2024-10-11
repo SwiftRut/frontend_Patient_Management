@@ -1,0 +1,334 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thead button {
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 600;
+  color: #667080;
+}
+
+.menu h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+
+.search {
+  padding: 12px 15px;
+  background-color: #F6F8FB;
+  border: 0px;
+  border-radius: 50px;
+}
+.search::-moz-placeholder {
+  color: #A7A7A7;
+  font-size: 16px;
+  font-weight: 400px;
+}
+.search::placeholder {
+  color: #A7A7A7;
+  font-size: 16px;
+  font-weight: 400px;
+}
+
+.css-1ll44ll-MuiOutlinedInput-notchedOutline {
+  border: 0px !important;
+}
+
+.time-slot button {
+  background-color: #0EABEB;
+  padding: 12px 14px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.t-data {
+  padding-top: 30px;
+}
+.t-data table thead tr {
+  background-color: #F6F8FB;
+}
+.t-data table thead tr th {
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  padding: 20px;
+  text-align: start;
+}
+.t-data table tbody tr td {
+  color: #4F4F4F;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: start;
+  padding: 20px;
+}
+.t-data table tbody tr h3 {
+  background-color: #F6F8FB;
+  width: 111px;
+  padding: 10px 0px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 33px;
+  color: #718EBF;
+}
+.t-data table tbody tr .btn button {
+  background-color: #F6F8FB;
+  padding: 7px;
+  margin: 0px 5px;
+}
+
+.custom-date h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #030229;
+}
+.custom-date .close-btn button:hover {
+  background-color: rgba(239, 91, 91, 0.337);
+}
+.custom-date .close-btn button svg {
+  color: white;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.condition .reset {
+  width: 48%;
+  color: #141414;
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.condition .delete {
+  width: 48%;
+  background-color: #0EABEB;
+  color: white;
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.AppointmentTimeSlot h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+
+.patioentRecord h2 {
+  color: #030229;
+  font-size: 26px;
+  font-weight: 700;
+}
+.patioentRecord .pr-search {
+  background-color: #F6F8FB;
+  border-radius: 50px;
+  width: 335px;
+  margin-right: 20px;
+}
+.patioentRecord .pr-select select {
+  font-size: 20px;
+  font-family: 600;
+  color: #141414;
+}
+.patioentRecord .pr-select select option {
+  font-size: 20px;
+  font-family: 600;
+  color: #141414;
+}
+.patioentRecord .css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  line-height: 1.5em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid #D3D3D3;
+  padding-left: 15px;
+  width: 154px;
+}
+
+.pr-data table thead tr th {
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  background-color: #F6F8FB;
+  padding: 20px;
+  text-align: center;
+}
+.pr-data table tbody tr td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4F4F4F;
+  padding: 20px;
+  text-align: center;
+}
+.pr-data table tbody tr .gender span {
+  background-color: #F6F8FB;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 50%;
+  line-height: 2;
+}
+
+.p-details h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.p-details .p-record p {
+  color: #A7A7A7;
+  font-size: 20px;
+  font-weight: 500;
+}
+.p-details .p-record p span {
+  display: inline-block;
+  color: #141414;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.p-btn button {
+  background-color: #0EABEB;
+  color: white;
+  padding: 12px 14px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.p-table h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+  padding-bottom: 15px;
+}
+.p-table table thead tr th {
+  color: #030229;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 20px;
+}
+.p-table table tbody tr td {
+  color: #4F4F4F;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+}
+
+.cp-tool {
+  border-radius: 10px;
+}
+.cp-tool .head {
+  background-color: #F6F8FB;
+  padding: 15px 15px;
+  border-radius: 10px 10px 0px 0px;
+}
+.cp-tool .box-data {
+  padding: 15px 15px;
+}
+.cp-tool .cp-add {
+  padding-top: 30px;
+}
+.cp-tool .cp-add button {
+  padding: 12px 14px;
+  background-color: #0EABEB;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+}
+.cp-tool h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.cp-tool h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #030229;
+}
+.cp-tool p {
+  color: #818194;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+.cp-tool p span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4F4F4F;
+}
+.cp-tool p .onside {
+  color: #5678E9;
+}
+
+.manage-p .today,
+.manage-p .older {
+  color: #0EABEB;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.manage-p .head {
+  align-items: center;
+}
+.manage-p .head .tital p {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.manage-p .head .mp-tool {
+  background-color: #F6F8FB;
+  border-radius: 15px;
+}
+.manage-p table thead tr th {
+  background-color: #F6F8FB;
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  text-align: center;
+  padding: 20px;
+}
+.manage-p table tbody tr td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4F4F4F;
+  text-align: center;
+}
+.manage-p table tbody tr .type span {
+  padding: 0px 15px;
+  display: inline-block;
+}/*# sourceMappingURL=doctorPanel.css.map */
