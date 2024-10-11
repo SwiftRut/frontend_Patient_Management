@@ -6,7 +6,11 @@ import { Country, City, State } from "country-state-city";
 import { useGlobal } from "../context/GlobalContext";
 import Select, { components } from 'react-select';
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AdminRegistration = () => {
+  toast.success("done")
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
@@ -15,9 +19,9 @@ const AdminRegistration = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: "123@abc",
-    confirmPassword: "123@abc",
-    phone: "4123456780",
+    password: "",
+    confirmPassword: "",
+    phone: "",
     country: "",
     state: "",
     city: "",
@@ -46,7 +50,7 @@ const AdminRegistration = () => {
     fetchData();
     console.log(allHospitals)
   }, []);
-   
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,14 +90,17 @@ const AdminRegistration = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
       setError("Passwords do not match");
       return;
     }
 
     try {
       await AdminRegister(formData);
+      toast.success("register successfully")
       navigate("/login");
     } catch (error) {
+      toast.error(error.response?.data?.message || "Registration failed");
       setError(error.response?.data?.message || "Registration failed");
     }
   };
@@ -111,7 +118,9 @@ const AdminRegistration = () => {
         zipcode: "",
       });
       setIsModalOpen(false);
+      toast.success("Hospital added successfully!");
     } catch (error) {
+      toast.error("Error creating hospital");
       console.error("Error creating hospital:", error);
     }
   };
@@ -131,6 +140,8 @@ const AdminRegistration = () => {
   }
   return (
     <>
+      <ToastContainer />
+
       <div className="registration-section">
         <div className="row">
           <div className="main">

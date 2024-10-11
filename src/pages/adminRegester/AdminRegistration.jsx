@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
-
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { toast } from "react-toastify"
+
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const { AdminRegister } = useAuth();
@@ -104,15 +105,17 @@ const AdminRegistration = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match")
       setError("Passwords do not match");
       return;
     }
 
     try {
-      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await AdminRegister(formData);
+      toast.success("register successfully")
       navigate("/login");
     } catch (error) {
+      toast.error(error.response.data.message);
       setError(error.response?.data?.message || "Registration failed");
     }
   };
@@ -131,6 +134,7 @@ const AdminRegistration = () => {
       });
       setIsModalOpen(false);
     } catch (error) {
+      toast.error("Error creating hospital")
       console.error("Error creating hospital:", error);
     }
   };
@@ -281,11 +285,11 @@ const AdminRegistration = () => {
                         value={
                           allHospitals.find((hospital) => hospital._id === formData.hospital)
                             ? {
-                                label: allHospitals.find(
-                                  (hospital) => hospital._id === formData.hospital
-                                ).name,
-                                value: formData.hospital,
-                              }
+                              label: allHospitals.find(
+                                (hospital) => hospital._id === formData.hospital
+                              ).name,
+                              value: formData.hospital,
+                            }
                             : null
                         }
                         onChange={(selectedOption) =>

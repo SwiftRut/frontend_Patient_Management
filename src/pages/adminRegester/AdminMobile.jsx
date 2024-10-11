@@ -67,12 +67,12 @@ const AdminMobile = () => {
               </div>
             </div>
             <div className="img-box">
-              <div class="slider">
+              <div className="slider">
                 <img src="/img/register.png" alt="Image 1" />
                 <img src="/img/register2.png" alt="Image 2" />
-                <div class="dots">
-                  <span class="dot active"></span>
-                  <span class="dot"></span>
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
                 </div>
               </div>
               <div className="vector-1">

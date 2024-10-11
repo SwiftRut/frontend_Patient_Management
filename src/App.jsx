@@ -2,6 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import "./component/sidebar.css";
 import "./pages/pages.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // admin
 import AdminRegistration from "./pages/adminRegester/AdminRegistration.jsx";
@@ -45,6 +48,7 @@ function App() {
       {/* <div className="main-content"> */}
       <BrowserRouter>
         <Routes>
+
           <Route path="/login" element={<Login />} />
 
           <Route path="/AdminMobile" element={<AdminMobile />} />
@@ -133,6 +137,9 @@ function App() {
           <Route path="/charts" element={<Chart />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>
+
+        <ToastContainer />
+
       </BrowserRouter>
       {/* </div> */}
     </>
