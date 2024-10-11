@@ -6,19 +6,19 @@ import Bill from "../../component/Bill";
 export default function EditDesignInvoice() {
   return (
     <>
-      <div class="container">
+      <div className="container">
         <div className="title">
-        <h1>Select Invoice Theme</h1>
+          <h1>Select Invoice Theme</h1>
         </div>
-        <div class="theme-selector">
-          <div class="invoice-samples">
-            <div class="invoice">
+        <div className="theme-selector">
+          <div className="invoice-samples">
+            <div className="invoice">
               <Bill />
             </div>
-            <div class="invoice">
+            <div className="invoice">
               <Bill3 />
             </div>
-            <div class="invoice">
+            <div className="invoice">
               <Bill2 />
             </div>
           </div>

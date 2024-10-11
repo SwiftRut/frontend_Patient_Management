@@ -3,8 +3,8 @@ import { MdCancel } from "react-icons/md";
 
 export default function PatientDetails({ patient, closeModal }) {
   return (
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
         <div className="patientdetails-section">
           <div className="row">
             <div className="details">

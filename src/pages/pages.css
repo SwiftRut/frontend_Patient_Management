@@ -72,9 +72,11 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
+
 .registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
+
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -744,9 +746,11 @@ input {
 .hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
+
 .hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
+
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -1833,9 +1837,6 @@ input {
 .login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #a7a7a7;
-}
 .login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
@@ -1964,3 +1965,18 @@ input {
   right: 0px;
   top: 0px;
 } /*# sourceMappingURL=pages.css.map */
+.password-input-container {
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eye svg {
+  color: #333; /* Adjust this for better visibility */
+}

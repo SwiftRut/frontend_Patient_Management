@@ -22,7 +22,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
       } catch (error) {
         setError(
           "Error fetching doctor details: " +
-            (error.response ? error.response.data.message : error.message)
+          (error.response ? error.response.data.message : error.message)
         );
       } finally {
         setLoading(false);
@@ -37,8 +37,8 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
   };
 
   return (
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
         <div className="onsite-section">
           <div className="row">
             <div className="main">
