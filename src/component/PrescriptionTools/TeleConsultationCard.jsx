@@ -5,7 +5,7 @@ import EventIcon from '@mui/icons-material/Event';
 // PatientCard component
 const TeleConsultationCard = ({ patient }) => {
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md transition transform hover:-translate-y-1 hover:shadow-xl">
+    <div className="p-0 bg-white rounded-lg shadow-md transition transform hover:-translate-y-1 hover:shadow-xl">
       <div className="mb-4">
         <h3 className="text-lg font-semibold">{patient.name}</h3>
         <p>
@@ -25,12 +25,12 @@ const TeleConsultationCard = ({ patient }) => {
           {patient.time}
         </p>
       </div>
-      <div className="flex gap-4">
+      <div className="p-4 flex justify-between gap-4">
         <Button
           variant="contained"
           color="success"
           startIcon={<CallIcon />}
-          className="hover:bg-green-700"
+          className="join hover:bg-green-700"
         >
           Join Call
         </Button>
@@ -38,7 +38,7 @@ const TeleConsultationCard = ({ patient }) => {
           variant="contained"
           color="primary"
           startIcon={<EventIcon />}
-          className="hover:bg-blue-700"
+          className="reschedule hover:bg-blue-700"
         >
           Reschedule
         </Button>
