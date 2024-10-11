@@ -20,7 +20,16 @@ export const DoctorProfile = lazyLoader("pages/doctroPanel/profile/DoctorProfile
 // Patient Components
 export const PatientRegistration = lazyLoader("pages/PatientRegistration");
 export const PatientPanel = lazyLoader("pages/patientPanel/PatientPanel");
+export const PersonalHealthRecord = lazyLoader("pages/patientPanel/profile/PersonalHealthRecord");
 export const PatientDetails = lazyLoader("pages/patientManagement/PatientDetails");
+export const PatientProfile = lazyLoader("pages/patientPanel/profile/PatientProfile");
+export const Prescriptions = lazyLoader("pages/patientPanel/profile/Prescriptions");
+export const TestReport = lazyLoader("pages/patientPanel/profile/TestReport");
+export const MedicalHistory = lazyLoader("pages/patientPanel/profile/MedicalHistory");
+export const AllAppointment = lazyLoader("pages/patientPanel/profile/Allappoiment");
+export const Appointment = lazyLoader("pages/patientPanel/Appointment");
+export const AppointmentBooking = lazyLoader("pages/patientPanel/AppointmentBooking");
+export const ChatScreen1 = lazyLoader("pages/patientPanel/ChatScreen1");
 
 // Extra Components
 export const Scheduler = lazyLoader("component/Schedular");

@@ -154,7 +154,7 @@ export const GlobalProvider = ({ children }) => {
   };
   const getAppointmentById = async (id) => {
     try {
-      const response = await apiService.GetAppointmentById();
+      const response = await apiService.GetAppointmentById(id);
       console.log(response);
     } catch (error) {
       console.log(error);
