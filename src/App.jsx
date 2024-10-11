@@ -39,6 +39,7 @@ import Bill3 from "./pages/invoice/Bill3.jsx";
 
 import Chart from "./pages/Chart.jsx";
 import Chat from "./pages/Chat.jsx";
+import PatientTable from "./component/temp/PatientTableScreen.jsx";
 
 function App() {
   return (
@@ -104,7 +105,7 @@ function App() {
             </Route>
 
             {/* extra routes */}
-            <Route path="/abc" element={<Invoice />} />
+            <Route path="/abc" element={<PatientTable />} />
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
