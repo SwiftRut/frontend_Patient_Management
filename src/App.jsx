@@ -45,7 +45,7 @@ const VideoCall = lazy(() => import("./VideoCall.jsx"));
 function App() {
   return (
     <>
-        <Suspense fallback={<TailSpin height="80" width="80" color="blue" ariaLabel="loading" />}>
+ 
       <div className="main-content">
         <BrowserRouter>
         <Suspense fallback={<TailSpin height="80" width="80" color="blue" ariaLabel="loading" />}>
@@ -138,9 +138,9 @@ function App() {
             <Route path="/charts" element={<Chart />} />
             <Route path="/chat" element={<Chat />} />
           </Routes>
+      </Suspense>
         </BrowserRouter>
       </div>
-      </Suspense>
     </>
   );
 }
