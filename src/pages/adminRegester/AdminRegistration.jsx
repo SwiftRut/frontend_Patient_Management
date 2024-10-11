@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
-
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify"
+
 const AdminRegistration = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "123@abc",
-    confirmPassword: "123@abc",
-    phone: "4123456780",
+    password: "",
+    confirmPassword: "",
+    phone: "",
     country: "",
     state: "",
     city: "",
@@ -104,15 +107,17 @@ const AdminRegistration = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match")
       setError("Passwords do not match");
       return;
     }
 
     try {
-      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await AdminRegister(formData);
+      toast.success("register successfully")
       navigate("/login");
     } catch (error) {
+      toast.error(error.response.data.message);
       setError(error.response?.data?.message || "Registration failed");
     }
   };
@@ -131,6 +136,7 @@ const AdminRegistration = () => {
       });
       setIsModalOpen(false);
     } catch (error) {
+      toast.error("Error creating hospital")
       console.error("Error creating hospital:", error);
     }
   };
@@ -281,11 +287,11 @@ const AdminRegistration = () => {
                         value={
                           allHospitals.find((hospital) => hospital._id === formData.hospital)
                             ? {
-                                label: allHospitals.find(
-                                  (hospital) => hospital._id === formData.hospital
-                                ).name,
-                                value: formData.hospital,
-                              }
+                              label: allHospitals.find(
+                                (hospital) => hospital._id === formData.hospital
+                              ).name,
+                              value: formData.hospital,
+                            }
                             : null
                         }
                         onChange={(selectedOption) =>
@@ -307,14 +313,18 @@ const AdminRegistration = () => {
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter Password"
-                        required
-                      />
+                      <div className="password-input-container">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          placeholder="Enter Password"
+                        />
+                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                        </div>
+                      </div>
                     </div>
 
                     <div className="input-box">
@@ -322,13 +332,16 @@ const AdminRegistration = () => {
                         Confirm Password <span>*</span>
                       </div>
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         placeholder="Confirm Password"
                         required
                       />
+                      <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                      </div>
                     </div>
 
                     <div className="condition">

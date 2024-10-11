@@ -197,12 +197,12 @@ const AppointmentBooking = () => {
                   </>
                 ) : (
                   <>
-                    <div class="grid grid-cols-1 md:grid-cols-10 gap-4">
-                      <div class="col-span-7 p-3">
+                    <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                      <div className="col-span-7 p-3">
                         <AppointmentTimeSlot1 />
                       </div>
 
-                      <div class="col-span-3 px-2 py-3">
+                      <div className="col-span-3 px-2 py-3">
                         <div className="bg-white w-full border-1 py-3 rounded-md">
                           <h5 className="px-3">Doctor Details</h5>
                           <hr />

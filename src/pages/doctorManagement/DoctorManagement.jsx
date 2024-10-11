@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../doctorManagement/doctorManagement.css";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import apiService from "../../services/api.js";
+// import apiService from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
 import Onsite from "./Onsite"; // Import the Onsite component
 import Delete from "./Delete.jsx";
-
+import { useDoctor } from "../../hooks/useDoctor.jsx";
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,13 +19,11 @@ export default function DoctorManagement() {
   const [showOnsite, setShowOnsite] = useState(false);
   const [selectedDoctorId, setSelectedDoctorId] = useState(null);
   const navigate = useNavigate();
-
+  const { getAllDoctors, allDoctors } = useDoctor();
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        setLoading(true);
-        const response = await apiService.GetAllDoctors({});
-        setDoctors(response.data.data);
+        await getAllDoctors();
       } catch (error) {
         setError(
           "Error fetching doctors: " +
@@ -66,7 +64,7 @@ export default function DoctorManagement() {
     setShowOnsite(true);
   };
 
-  const filteredDoctors = doctors.filter((doctor) =>
+  const filteredDoctors = allDoctors.filter((doctor) =>
     doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
