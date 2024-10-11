@@ -123,7 +123,7 @@ const AdminRegistration = () => {
   };
   return (
     <>
-      <div className="registration-section">
+      <div className="registration-section ">
         <div className="row">
           <div className="main">
             <div className="form">

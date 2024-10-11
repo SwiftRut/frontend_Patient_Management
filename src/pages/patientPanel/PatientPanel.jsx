@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import PatientProfile from "./profile/PatientProfile";
@@ -18,18 +17,19 @@ export default function PatientPanel() {
     <>
       <PatientHeader />
       <PatientAsidePanel />
-
-      <Routes>
-        <Route path="" element={<PersonalHealthRecord />} />
-        <Route path="profile/*" element={<PatientProfile />} />
-        <Route path="/prescriptions" element={<Prescriptions />} />
-        <Route path="/testReport" element={<TestReport />} />
-        <Route path="/medicalHistory" element={<MedicalHistory />} />
-        <Route path="/allAppointment" element={<AllAppointment />} />
-        <Route path="/appointment" element={<Appointment />} />
-        <Route path="/appointmentBooking" element={<AppointmentBooking />} />
-        <Route path="/chatScreen" element={<ChatScreen1 />} />
-      </Routes>
+      <div className="main-content">
+        <Routes>
+          <Route path="" element={<PersonalHealthRecord />} />
+          <Route path="profile/*" element={<PatientProfile />} />
+          <Route path="/prescriptions" element={<Prescriptions />} />
+          <Route path="/testReport" element={<TestReport />} />
+          <Route path="/medicalHistory" element={<MedicalHistory />} />
+          <Route path="/allAppointment" element={<AllAppointment />} />
+          <Route path="/appointment" element={<Appointment />} />
+          <Route path="/appointmentBooking" element={<AppointmentBooking />} />
+          <Route path="/chatScreen" element={<ChatScreen1 />} />
+        </Routes>
+      </div>
     </>
   );
 }
