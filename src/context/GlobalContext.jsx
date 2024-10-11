@@ -173,6 +173,7 @@ export const GlobalProvider = ({ children }) => {
     try{
       const response = await apiService.GetChatHistory(doctorId,patientId);
       console.log(response.data);
+      return response.data;
     }catch (error) {
       console.log(error);
       throw error;

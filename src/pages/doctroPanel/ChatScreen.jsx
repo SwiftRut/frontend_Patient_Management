@@ -24,38 +24,33 @@ const ChatScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const [doctorId, setDoctorId] = useState(null);
-  const [patientId, setPatientId] = useState(null);
-  const { getAllDoctors, allDoctor } = useDoctor();
-  const { getAllPatients, allPatient } = usePatient();
-  const {getChatHistory} = useGlobal();
+  const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
+  const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
+  const { getAllDoctors } = useDoctor();
+  const { getAllPatients } = usePatient();
+  const { getChatHistory } = useGlobal();
 
   const handleChatClick = (chat) => {
     setSelectedChat(chat);
   };
-
   const filteredChats = initialChats.filter(
     (chat) =>
       chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       chat.message.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const sendMessage = async() => {
+  const sendMessage = async () => {
     if (doctorId && patientId && messageInput.trim()) {
-      socket.emit("message", { doctorId, patientId, messageInput, senderId: doctorId, receiverId: patientId });
-      setMessages((prev) => [
-        ...prev,
-        {
-          sender: "You",
-          message: messageInput,
-          senderId: doctorId,
-          receiverId: patientId,
-          time: new Date().toLocaleTimeString(),
-        },
-      ]);
+      const messageData = {
+        doctorId,
+        patientId,
+        messageContent: messageInput,
+        senderId: doctorId,
+        receiverId: patientId,
+        timestamp: new Date().toISOString(),
+      };
+      socket.emit("message", messageData);
       setMessageInput("");
     }
-    await getChatHistory(doctorId, patientId);
   };
 
   useEffect(() => {
@@ -64,12 +59,16 @@ const ChatScreen = () => {
       const fetchedPatientId = await getAllPatients();
       setDoctorId(fetchedDoctorId);
       setPatientId(fetchedPatientId);
-      
+
       if (fetchedDoctorId && fetchedPatientId) {
         socket.emit("joinRoom", { doctorId: fetchedDoctorId, patientId: fetchedPatientId });
         console.log("Joining room", fetchedDoctorId, fetchedPatientId);
       }
+
+      const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
+      setMessages(messageHistory);
     };
+
     fetchData();
 
     socket.on("message", (message) => {
@@ -80,11 +79,9 @@ const ChatScreen = () => {
       socket.off("message");
     };
   }, []);
-
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
-      {/* Sidebar with search and chat list */}
-      <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
+          <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
         <div className="mb-4">
           <TextField
             fullWidth
@@ -123,7 +120,6 @@ const ChatScreen = () => {
           ))}
         </List>
       </div>
-
       {/* Chat window */}
       <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col">
         <div className="flex items-center mb-4">
@@ -138,13 +134,15 @@ const ChatScreen = () => {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`mb-2 ${msg.sender === "You" ? "text-right" : "text-left"}`}
+              className={`mb-2 ${msg.senderId === "670475d7639c7f96cadbd05c" ? "text-right" : "text-left"}`}
             >
               <div className="inline-block">
                 <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
-                  {msg.message}
+                  {msg.messageContent}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">{msg.time}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {new Date(msg.timestamp).toLocaleTimeString()}
+                </p>
               </div>
             </div>
           ))}
