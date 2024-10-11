@@ -24,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-const Chart = () => {
+export const Chart = () => {
   const lineData = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
@@ -109,4 +109,3 @@ const Chart = () => {
     </div>
   );
 };
-export default Chart;

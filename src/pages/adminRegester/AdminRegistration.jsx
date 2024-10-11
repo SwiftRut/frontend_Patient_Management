@@ -54,9 +54,7 @@ const AdminRegistration = () => {
     }));
 
     if (name === "country") {
-      const selectedCountry = countries.find(
-        (country) => country.isoCode === value
-      );
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       if (selectedCountry) {
         setStates(State.getStatesOfCountry(selectedCountry.isoCode));
         setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
@@ -65,9 +63,7 @@ const AdminRegistration = () => {
     } else if (name === "state") {
       const selectedState = states.find((state) => state.isoCode === value);
       if (selectedState) {
-        setCities(
-          City.getCitiesOfState(formData.country, selectedState.isoCode)
-        );
+        setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
         setFormData((prevState) => ({ ...prevState, city: "" }));
       }
     }
@@ -89,10 +85,7 @@ const AdminRegistration = () => {
     }
 
     try {
-      console.log(
-        formData,
-        "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data"
-      );
+      console.log(formData, "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data");
       await AdminRegister(formData);
       navigate("/login");
     } catch (error) {
@@ -120,10 +113,7 @@ const AdminRegistration = () => {
   const SelectMenuButton = (props) => (
     <components.MenuList {...props}>
       {props.children}
-      <button
-        className="add-new-hospital "
-        onClick={() => setIsModalOpen(true)}
-      >
+      <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
         Add New Hospital
       </button>
     </components.MenuList>
@@ -265,13 +255,10 @@ const AdminRegistration = () => {
                       <Select
                         name="hospital"
                         value={
-                          allHospitals.find(
-                            (hospital) => hospital._id === formData.hospital
-                          )
+                          allHospitals.find((hospital) => hospital._id === formData.hospital)
                             ? {
                                 label: allHospitals.find(
-                                  (hospital) =>
-                                    hospital._id === formData.hospital
+                                  (hospital) => hospital._id === formData.hospital
                                 ).name,
                                 value: formData.hospital,
                               }
@@ -324,8 +311,7 @@ const AdminRegistration = () => {
                       <div className="policies">
                         <input type="checkbox" required />
                         <p>
-                          I agree to all the <span>T&C</span> and{" "}
-                          <span>Privacy Policies.</span>
+                          I agree to all the <span>T&C</span> and <span>Privacy Policies.</span>
                         </p>
                       </div>
 
@@ -350,8 +336,8 @@ const AdminRegistration = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
             <div className="modal-overlay">
               <div className="modal-content">
                 <div className="hospital-section">
@@ -363,10 +349,7 @@ const AdminRegistration = () => {
                             <p>Add New Hospital</p>
                           </div>
                           <div className="form-box">
-                            <form
-                              onSubmit={handleHospitalSubmit}
-                              className="flex"
-                            >
+                            <form onSubmit={handleHospitalSubmit} className="flex">
                               <div className="input-box">
                                 <div className="label">
                                   Hospital Name <span>*</span>
@@ -407,10 +390,7 @@ const AdminRegistration = () => {
                                 >
                                   <option value="">Select Country</option>
                                   {countries.map((country) => (
-                                    <option
-                                      key={country.isoCode}
-                                      value={country.isoCode}
-                                    >
+                                    <option key={country.isoCode} value={country.isoCode}>
                                       {country.name}
                                     </option>
                                   ))}
@@ -428,16 +408,13 @@ const AdminRegistration = () => {
                                   required
                                 >
                                   <option value="">Select State</option>
-                                  {State.getStatesOfCountry(
-                                    hospitalFormData.country
-                                  ).map((state) => (
-                                    <option
-                                      key={state.isoCode}
-                                      value={state.isoCode}
-                                    >
-                                      {state.name}
-                                    </option>
-                                  ))}
+                                  {State.getStatesOfCountry(hospitalFormData.country).map(
+                                    (state) => (
+                                      <option key={state.isoCode} value={state.isoCode}>
+                                        {state.name}
+                                      </option>
+                                    )
+                                  )}
                                 </select>
                               </div>
 
@@ -479,10 +456,7 @@ const AdminRegistration = () => {
 
                               <div className="btn flex">
                                 <div className="cancel-btn">
-                                  <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                  >
+                                  <button type="button" onClick={() => setIsModalOpen(false)}>
                                     Cancel
                                   </button>
                                 </div>

@@ -32,7 +32,6 @@ import Bill from "./component/Bill.jsx";
 import Onsite from "./pages/doctorManagement/Onsite.jsx";
 import CashPayment from "./pages/billPayment/CashPayment.jsx";
 import Delete from "./pages/doctorManagement/Delete.jsx";
-import AddNewField from "./pages/invoice/AddNewField.jsx";
 import Bill2 from "./pages/invoice/Bill2.jsx";
 import EditDesignInvoice from "./pages/billPayment/EditDesignInvoice.jsx";
 import Bill3 from "./pages/invoice/Bill3.jsx";
@@ -47,16 +46,16 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+
+            <Route path="/AdminMobile" element={<AdminMobile />} />
             <Route path="/verifyOtp" element={<AdminOtp />} />
             <Route path="/resetPassword" element={<AdminChangePassword />} />
 
             {/* admin routers */}
             <Route path="/adminRegistration" element={<AdminRegistration />} />
-            <Route path="/AdminMobile" element={<AdminMobile />} />
-            <Route path="/AdminOtp" element={<AdminOtp />} />
-            <Route path="/AdminChangePassword" element={<AdminChangePassword />} />
 
             <Route path="/" element={<AdminPanel />}>
+              <Route path="" />
               <Route path="profile/*" />
               <Route path="edit" />
 
@@ -87,6 +86,7 @@ function App() {
               <Route path="appointmentTimeSlot" />
               <Route path="patientDetail/:id" />
               <Route path="prescriptionView/:id" />
+              <Route path="createPrescriptionForm/:id" />
             </Route>
 
             {/* patient routers */}
@@ -103,6 +103,9 @@ function App() {
               <Route path="appointmentBooking" />
               <Route path="chatScreen" />
             </Route>
+
+            {/* extra routes */}
+            {/* <Route path="/abc" element={<PatientsStatistics />} /> */}
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />

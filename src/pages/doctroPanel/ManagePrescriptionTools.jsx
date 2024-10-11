@@ -59,22 +59,29 @@ const ManagePrescriptionTools = () => {
   );
 
   return (
-    <div className="p-8 bg-white min-h-screen shadow-lg rounded-lg">
+    <div className="manage-p p-8 bg-white min-h-screen shadow-lg rounded-lg">
       {/* Tabs */}
       <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)}>
-        <Tab label="Today Prescription" />
-        <Tab label="Older Prescription" />
+        <Tab label="Today Prescription" className='today' />
+        <Tab label="Older Prescription" className='older' />
       </Tabs>
 
-      {/* Search Field */}
-      <div className="mt-4 mb-6">
-        <TextField
-          label="Search Patient"
-          variant="outlined"
-          fullWidth
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="head flex justify-between">
+
+        <div className="tital">
+          <p>Name change</p>
+        </div>
+
+        {/* Search Field */}
+        <div className="mt-4 mb-6 mp-tool">
+          <TextField
+            label="Search Patient"
+            variant="outlined"
+            fullWidth
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       {/* Table */}
@@ -95,7 +102,7 @@ const ManagePrescriptionTools = () => {
             <TableRow key={index}>
               <TableCell>{patient.name}</TableCell>
               <TableCell>{patient.number}</TableCell>
-              <TableCell>
+              <TableCell className='type'>
                 <Badge
                   badgeContent={patient.type}
                   color={patient.type === 'Online' ? 'warning' : 'primary'}
@@ -112,7 +119,7 @@ const ManagePrescriptionTools = () => {
               </TableCell>
               <TableCell>
                 <IconButton onClick={handleModalOpen} >
-                  <Visibility />
+                  <Visibility style={{ color: '#0EABEB' }} />
                 </IconButton>
               </TableCell>
             </TableRow>
