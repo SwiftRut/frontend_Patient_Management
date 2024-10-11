@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
 
 const PatientRegistration = () => {

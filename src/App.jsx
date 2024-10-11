@@ -18,7 +18,7 @@ import EditBill from "./pages/invoice/EditBill.jsx";
 // doctor
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
-import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
+// import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 
 // patient
 import PatientRegistration from "./pages/PatientRegistration.jsx";
@@ -42,99 +42,99 @@ import VideoCall from "./VideoCall.jsx";
 function App() {
   return (
     <>
-      <div className="main-content">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
+      {/* <div className="main-content"> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
-            <Route path="/AdminMobile" element={<AdminMobile />} />
-            <Route path="/verifyOtp" element={<AdminOtp />} />
-            <Route path="/resetPassword" element={<AdminChangePassword />} />
+          <Route path="/AdminMobile" element={<AdminMobile />} />
+          <Route path="/verifyOtp" element={<AdminOtp />} />
+          <Route path="/resetPassword" element={<AdminChangePassword />} />
 
-            {/* admin routers */}
-            <Route path="/adminRegistration" element={<AdminRegistration />} />
+          {/* admin routers */}
+          <Route path="/adminRegistration" element={<AdminRegistration />} />
 
-            <Route path="/" element={<AdminPanel />}>
-              <Route path="" />
-              <Route path="profile/*" />
-              <Route path="edit" />
+          <Route path="/" element={<AdminPanel />}>
+            <Route path="" />
+            <Route path="profile/*" />
+            <Route path="edit" />
 
-              <Route path="doctorManagement/*" />
-              <Route path="doctorAdd" />
-              <Route path="doctorEdit/:doctorId" />
+            <Route path="doctorManagement/*" />
+            <Route path="doctorAdd" />
+            <Route path="doctorEdit/:doctorId" />
 
-              <Route path="patientManagement" />
+            <Route path="patientManagement" />
 
-              <Route path="monitorBilling" />
-              <Route path="insuranceClaims" />
-              <Route path="paymentMethod" />
+            <Route path="monitorBilling" />
+            <Route path="insuranceClaims" />
+            <Route path="paymentMethod" />
 
-              <Route path="reportingAndAnalytics" />
-            </Route>
+            <Route path="reportingAndAnalytics" />
+          </Route>
 
-            {/* doctor routers */}
-            <Route path="/doctor" element={<DoctorPanel />}>
-              <Route path="" />
-              <Route path="profile/*" element={<DoctorProfile />} />
-              <Route path="edit" />
+          {/* doctor routers */}
+          <Route path="/doctor" element={<DoctorPanel />}>
+            <Route path="" />
+            <Route path="profile/*" element={<DoctorProfile />} />
+            <Route path="edit" />
 
-              <Route path="patientRecordAccesst" />
-              <Route path="createPrescriptionTools" />
-              <Route path="managePrescriptionTools" />
-              <Route path="teleconsultationModule" />
-              <Route path="chatScreen" />
-              <Route path="appointmentTimeSlot" />
-              <Route path="patientDetail/:id" />
-              <Route path="prescriptionView/:id" />
-              <Route path="createPrescriptionForm/:id" />
-            </Route>
+            <Route path="patientRecordAccesst" />
+            <Route path="createPrescriptionTools" />
+            <Route path="managePrescriptionTools" />
+            <Route path="teleconsultationModule" />
+            <Route path="chatScreen" />
+            <Route path="appointmentTimeSlot" />
+            <Route path="patientDetail/:id" />
+            <Route path="prescriptionView/:id" />
+            <Route path="createPrescriptionForm/:id" />
+          </Route>
 
-            {/* patient routers */}
-            <Route path="/patientRegistration" element={<PatientRegistration />} />
+          {/* patient routers */}
+          <Route path="/patientRegistration" element={<PatientRegistration />} />
 
-            <Route path="/patient" element={<PatientPanel />}>
-              <Route path="profile/*" />
-              <Route path="profileEdit" />
-              <Route path="prescriptions" />
-              <Route path="testReport" />
-              <Route path="medicalHistory" />
-              <Route path="allAppointment" />
-              <Route path="appointment" />
-              <Route path="appointmentBooking" />
-              <Route path="chatScreen" />
-            </Route>
+          <Route path="/patient" element={<PatientPanel />}>
+            <Route path="profile/*" />
+            <Route path="profileEdit" />
+            <Route path="prescriptions" />
+            <Route path="testReport" />
+            <Route path="medicalHistory" />
+            <Route path="allAppointment" />
+            <Route path="appointment" />
+            <Route path="appointmentBooking" />
+            <Route path="chatScreen" />
+          </Route>
 
-            {/* extra routes */}
-            {/* <Route path="/abc" element={<PatientsStatistics />} /> */}
+          {/* extra routes */}
+          {/* <Route path="/abc" element={<PatientsStatistics />} /> */}
 
-            {/* invoice component  */}
-            <Route path="/invoice" element={<Invoice />} />
-            <Route path="/createBill" element={<CreateBill />} />
-            <Route path="/editBill/:id" element={<EditBill />} />
+          {/* invoice component  */}
+          <Route path="/invoice" element={<Invoice />} />
+          <Route path="/createBill" element={<CreateBill />} />
+          <Route path="/editBill/:id" element={<EditBill />} />
 
-            <Route path="/schedular" element={<Scheduler />} />
+          <Route path="/schedular" element={<Scheduler />} />
 
-            {/* manashvi temp start*/}
-            {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
-            <Route path="/onsite" element={<Onsite />} />
-            <Route path="/details" element={<PatientDetails />} />
-            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
+          {/* manashvi temp start*/}
+          {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
+          <Route path="/onsite" element={<Onsite />} />
+          <Route path="/details" element={<PatientDetails />} />
+          {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
 
-            <Route path="/bill/:id" element={<Bill />} />
-            <Route path="/bill2" element={<Bill2 />} />
-            <Route path="/bill3" element={<Bill3 />} />
+          <Route path="/bill/:id" element={<Bill />} />
+          <Route path="/bill2" element={<Bill2 />} />
+          <Route path="/bill3" element={<Bill3 />} />
 
-            <Route path="/cash" element={<CashPayment />} />
-            <Route path="/delete" element={<Delete />} />
-            <Route path="/editinvoice" element={<EditDesignInvoice />} />
-            <Route path="/videocall" element={<VideoCall />} />
-            {/* manashvi temp end*/}
+          <Route path="/cash" element={<CashPayment />} />
+          <Route path="/delete" element={<Delete />} />
+          <Route path="/editinvoice" element={<EditDesignInvoice />} />
+          <Route path="/videocall" element={<VideoCall />} />
+          {/* manashvi temp end*/}
 
-            <Route path="/charts" element={<Chart />} />
-            <Route path="/chat" element={<Chat />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+          <Route path="/charts" element={<Chart />} />
+          <Route path="/chat" element={<Chat />} />
+        </Routes>
+      </BrowserRouter>
+      {/* </div> */}
     </>
   );
 }

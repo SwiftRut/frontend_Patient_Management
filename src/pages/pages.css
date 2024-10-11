@@ -36,7 +36,9 @@ input {
 .registration-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .registration-section .row .main .form .content .head {
@@ -71,7 +73,7 @@ input {
   color: #a7a7a7;
 }
 .registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -743,7 +745,7 @@ input {
   color: #a7a7a7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
@@ -902,7 +904,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .head {
@@ -1154,7 +1158,9 @@ input {
 .admin-otp-section .row .main .form .admin-otp-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .head {
@@ -1508,7 +1514,9 @@ input {
 .changePassword-section .row .main .form .changePassword-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .changePassword-section .row .main .form .changePassword-content .head {
@@ -1789,7 +1797,9 @@ input {
 .login-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .login-section .row .main .form .content .head {
