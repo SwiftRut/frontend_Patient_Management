@@ -36,7 +36,9 @@ input {
 .registration-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .registration-section .row .main .form .content .head {
@@ -53,75 +55,29 @@ input {
   position: relative;
   padding: 15px 0px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  .label {
+.registration-section .row .main .form .content .form-box form .input-box .label {
   position: absolute;
   top: 4px;
   left: 14px;
   background-color: white;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input {
+.registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input:focus {
+.registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
+
+.registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::placeholder {
+
+.registration-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
 .registration-section .row .main .form .content .form-box form .input-box .eye {
@@ -129,15 +85,7 @@ input {
   top: 27px;
   right: 15px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select {
+.registration-section .row .main .form .content .form-box form .input-box select {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
@@ -145,305 +93,93 @@ input {
   background-color: white;
   color: #a7a7a7;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select:focus {
+.registration-section .row .main .form .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select
-  option
-  button {
+.registration-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
   background-color: #0eabeb;
   text-align: center;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
   width: 48%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(1) input {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(2) {
   width: 48%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(2) input {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(3) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(3) {
   width: 48%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(3)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(4) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(4) {
   width: 48%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(4)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(4) input {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(5) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(5) {
   width: 30%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(5)
-  select {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(5) select {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(6) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(6) {
   width: 30%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(6)
-  select {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(6) select {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(7) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(7) {
   width: 30%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(7)
-  select {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(7) select {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(8) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(8)
-  select {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) select {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(9) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(9)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(9) input {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(10) {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(10) {
   width: 100%;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(10)
-  input {
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(10) input {
   width: 100%;
 }
 .registration-section .row .main .form .content .form-box form .condition {
   width: 100%;
   padding-top: 20px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  input {
+.registration-section .row .main .form .content .form-box form .condition .policies input {
   width: 20px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  p {
+.registration-section .row .main .form .content .form-box form .condition .policies p {
   display: inline-block;
   padding-left: 10px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  span {
+.registration-section .row .main .form .content .form-box form .condition .policies span {
   color: #5678e9;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .register-btn {
+.registration-section .row .main .form .content .form-box form .condition .register-btn {
   padding: 15px 0px;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .register-btn
-  button {
+.registration-section .row .main .form .content .form-box form .condition .register-btn button {
   width: 100%;
   background-color: #f6f8fb;
   color: #4f4f4f;
@@ -464,16 +200,7 @@ input {
   background-color: #0eabeb;
   color: white;
 }
-.registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .login-btn
-  p {
+.registration-section .row .main .form .content .form-box form .condition .login-btn p {
   font-family: Lato;
   font-size: 16px;
   font-weight: 400;
@@ -557,53 +284,22 @@ input {
 .patient-registration-section .row .main .form .content .form-box form {
   justify-content: space-between;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box {
+.patient-registration-section .row .main .form .content .form-box form .input-box {
   position: relative;
   padding: 15px 0px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  .label {
+.patient-registration-section .row .main .form .content .form-box form .input-box .label {
   position: absolute;
   top: 4px;
   left: 14px;
   background-color: white;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input {
+.patient-registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input:focus {
+.patient-registration-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
 .patient-registration-section
@@ -628,28 +324,12 @@ input {
   input::placeholder {
   color: #a7a7a7;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  .eye {
+.patient-registration-section .row .main .form .content .form-box form .input-box .eye {
   position: absolute;
   top: 27px;
   right: 15px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select {
+.patient-registration-section .row .main .form .content .form-box form .input-box select {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
@@ -657,15 +337,7 @@ input {
   background-color: white;
   color: #a7a7a7;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select:focus {
+.patient-registration-section .row .main .form .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
 }
 .patient-registration-section
@@ -684,14 +356,7 @@ input {
   background-color: #0eabeb;
   text-align: center;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
   width: 48%;
 }
 .patient-registration-section
@@ -705,14 +370,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(2) {
   width: 48%;
 }
 .patient-registration-section
@@ -726,14 +384,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(3) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(3) {
   width: 48%;
 }
 .patient-registration-section
@@ -747,14 +398,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(4) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(4) {
   width: 48%;
 }
 .patient-registration-section
@@ -768,14 +412,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(5) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(5) {
   width: 30%;
 }
 .patient-registration-section
@@ -789,14 +426,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(6) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(6) {
   width: 30%;
 }
 .patient-registration-section
@@ -810,14 +440,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(7) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(7) {
   width: 30%;
 }
 .patient-registration-section
@@ -831,14 +454,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(8) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
   width: 30%;
 }
 .patient-registration-section
@@ -852,14 +468,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(9) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
   width: 30%;
 }
 .patient-registration-section
@@ -873,14 +482,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(10) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(10) {
   width: 30%;
 }
 .patient-registration-section
@@ -894,14 +496,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(11) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(11) {
   width: 30%;
 }
 .patient-registration-section
@@ -915,14 +510,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(12) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(12) {
   width: 30%;
 }
 .patient-registration-section
@@ -936,14 +524,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(13) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(13) {
   width: 30%;
 }
 .patient-registration-section
@@ -957,14 +538,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(13) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(13) {
   width: 30%;
 }
 .patient-registration-section
@@ -978,14 +552,7 @@ input {
   select {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(14) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(14) {
   width: 100%;
 }
 .patient-registration-section
@@ -999,14 +566,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(15) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(15) {
   width: 100%;
 }
 .patient-registration-section
@@ -1020,14 +580,7 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(16) {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(16) {
   width: 100%;
 }
 .patient-registration-section
@@ -1041,63 +594,21 @@ input {
   input {
   width: 100%;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition {
+.patient-registration-section .row .main .form .content .form-box form .condition {
   width: 100%;
   padding-top: 20px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  input {
+.patient-registration-section .row .main .form .content .form-box form .condition .policies input {
   width: 20px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  p {
+.patient-registration-section .row .main .form .content .form-box form .condition .policies p {
   display: inline-block;
   padding-left: 10px;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .policies
-  span {
+.patient-registration-section .row .main .form .content .form-box form .condition .policies span {
   color: #5678e9;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .register-btn {
+.patient-registration-section .row .main .form .content .form-box form .condition .register-btn {
   padding: 15px 0px;
 }
 .patient-registration-section
@@ -1130,16 +641,7 @@ input {
   background-color: #0eabeb;
   color: white;
 }
-.patient-registration-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .login-btn
-  p {
+.patient-registration-section .row .main .form .content .form-box form .condition .login-btn p {
   font-family: Lato;
   font-size: 16px;
   font-weight: 400;
@@ -1238,48 +740,18 @@ input {
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input:focus {
+.hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
+
+.hospital-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::placeholder {
+
+.hospital-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
 .hospital-section .row .main .form .content .form-box form .input-box select {
@@ -1291,157 +763,49 @@ input {
   background-color: white;
   color: #a7a7a7;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select:focus {
+.hospital-section .row .main .form .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select
-  option
-  button {
+.hospital-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
   background-color: #0eabeb;
   text-align: center;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(1) {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1)
-  input {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(1) input {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(2) {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2)
-  input {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(2) input {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(3) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(3) {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(3)
-  input {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(4) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(4) {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(4)
-  input {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(4) input {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(5) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(5) {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(5)
-  select {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(5) select {
   width: 100%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(6) {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(6) {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(6)
-  select {
+.hospital-section .row .main .form .content .form-box form .input-box:nth-child(6) select {
   width: 100%;
 }
 .hospital-section .row .main .form .content .form-box form .btn {
@@ -1452,16 +816,7 @@ input {
 .hospital-section .row .main .form .content .form-box form .btn .cancel-btn {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .btn
-  .cancel-btn
-  button {
+.hospital-section .row .main .form .content .form-box form .btn .cancel-btn button {
   text-align: center;
   width: 100%;
   border: 1px solid #d3d3d3;
@@ -1472,16 +827,7 @@ input {
 .hospital-section .row .main .form .content .form-box form .btn .save-btn {
   width: 48%;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .btn
-  .save-btn
-  button {
+.hospital-section .row .main .form .content .form-box form .btn .save-btn button {
   text-align: center;
   width: 100%;
   padding: 12px 14px;
@@ -1489,16 +835,7 @@ input {
   background-color: #f6f8fb;
   font-size: 20px;
 }
-.hospital-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .btn
-  .save-btn
-  button:hover {
+.hospital-section .row .main .form .content .form-box form .btn .save-btn button:hover {
   background-color: #0eabeb;
   color: white;
 }
@@ -1571,7 +908,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .head {
@@ -1586,21 +925,10 @@ input {
   font-size: 16px;
   font-weight: 500;
 }
-.admin-mobile-section
-  .row
-  .main
-  .form
-  .admin-mobile-content
-  .admin-mobile-form-box {
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box {
   padding-top: 10px;
 }
-.admin-mobile-section
-  .row
-  .main
-  .form
-  .admin-mobile-content
-  .admin-mobile-form-box
-  form {
+.admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form {
   justify-content: space-between;
 }
 .admin-mobile-section
@@ -1834,7 +1162,9 @@ input {
 .admin-otp-section .row .main .form .admin-otp-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .head {
@@ -1852,49 +1182,20 @@ input {
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box {
   padding-top: 10px;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form {
   justify-content: space-between;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form
-  .input-box {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box {
   position: relative;
   padding: 15px 0px;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form
-  .input-box
-  .label {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box .label {
   position: absolute;
   top: 4px;
   left: 14px;
   background-color: white;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form
-  .input-box
-  input {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
@@ -2058,14 +1359,7 @@ input {
   input {
   width: 100%;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form
-  .condition {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition {
   width: 100%;
   padding-top: 20px;
 }
@@ -2121,15 +1415,7 @@ input {
   button {
   color: #5678e9;
 }
-.admin-otp-section
-  .row
-  .main
-  .form
-  .admin-otp-content
-  .admin-otp-form-box
-  form
-  .condition
-  .verify {
+.admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify {
   padding: 15px 0px;
 }
 .admin-otp-section
@@ -2232,7 +1518,9 @@ input {
 .changePassword-section .row .main .form .changePassword-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .changePassword-section .row .main .form .changePassword-content .head {
@@ -2242,21 +1530,10 @@ input {
   font-size: 34px;
   font-weight: 600;
 }
-.changePassword-section
-  .row
-  .main
-  .form
-  .changePassword-content
-  .changePassword-form-box {
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box {
   padding-top: 10px;
 }
-.changePassword-section
-  .row
-  .main
-  .form
-  .changePassword-content
-  .changePassword-form-box
-  form {
+.changePassword-section .row .main .form .changePassword-content .changePassword-form-box form {
   justify-content: space-between;
 }
 .changePassword-section
@@ -2524,7 +1801,9 @@ input {
 .login-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .login-section .row .main .form .content .head {
@@ -2555,37 +1834,10 @@ input {
 .login-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
+.login-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
   color: #a7a7a7;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::-moz-placeholder {
-  color: #a7a7a7;
-}
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  input::placeholder {
+.login-section .row .main .form .content .form-box form .input-box input::placeholder {
   color: #a7a7a7;
 }
 .login-section .row .main .form .content .form-box form .input-box .eye {
@@ -2601,117 +1853,42 @@ input {
   background-color: white;
   color: #a7a7a7;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select:focus {
+.login-section .row .main .form .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box
-  select
-  option
-  button {
+.login-section .row .main .form .content .form-box form .input-box select option button {
   width: 100%;
   padding: 12px 14px;
   background-color: #0eabeb;
   text-align: center;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1) {
+.login-section .row .main .form .content .form-box form .input-box:nth-child(1) {
   width: 100%;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(1)
-  input {
+.login-section .row .main .form .content .form-box form .input-box:nth-child(1) input {
   width: 100%;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2) {
+.login-section .row .main .form .content .form-box form .input-box:nth-child(2) {
   width: 100%;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .input-box:nth-child(2)
-  input {
+.login-section .row .main .form .content .form-box form .input-box:nth-child(2) input {
   width: 100%;
 }
 .login-section .row .main .form .content .form-box form .condition {
   width: 100%;
   padding-top: 20px;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .remember-forgot {
+.login-section .row .main .form .content .form-box form .condition .remember-forgot {
   justify-content: space-between;
   align-items: center;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .remember-forgot
-  .remember
-  p {
+.login-section .row .main .form .content .form-box form .condition .remember-forgot .remember p {
   padding-left: 15px;
 }
 .login-section .row .main .form .content .form-box form .condition .login-btn {
   padding: 15px 0px;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .login-btn
-  button {
+.login-section .row .main .form .content .form-box form .condition .login-btn button {
   width: 100%;
   background-color: #f6f8fb;
   color: #4f4f4f;
@@ -2720,29 +1897,11 @@ input {
   font-size: 20px;
   transition: all 0.5s;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .login-btn
-  button:hover {
+.login-section .row .main .form .content .form-box form .condition .login-btn button:hover {
   background-color: #0eabeb;
   color: white;
 }
-.login-section
-  .row
-  .main
-  .form
-  .content
-  .form-box
-  form
-  .condition
-  .registration-btn
-  p {
+.login-section .row .main .form .content .form-box form .condition .registration-btn p {
   font-family: Lato;
   font-size: 16px;
   font-weight: 400;

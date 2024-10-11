@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../dashboard/dashboard.css";
+import "./dashboard.css";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
@@ -28,7 +28,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [timePeriod, setTimePeriod] = useState("Week");
   const { getBills, allBills } = useGlobal();
-  console.log(allBills);
+
   const pieData = {
     labels: ["Product A", "Product B", "Product C"],
     datasets: [
