@@ -4,18 +4,11 @@ import { IoIosArrowForward } from "react-icons/io";
 // import { CiSearch } from "react-icons/ci";
 // import { FaAngleDown } from "react-icons/fa6";
 // import { NavLink } from "react-router-dom";
-import {
-  Typography,
-  IconButton,
-  InputBase,
-  Badge,
-  Avatar,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Typography, IconButton, InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
 import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import { useGlobal } from "../hooks/useGlobal";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -68,11 +61,7 @@ const Header = () => {
             <span>{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={() => handleClose(null)}
-          >
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
             <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
             <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
@@ -84,17 +73,19 @@ const Header = () => {
               <Notifications />
             </Badge>
           </IconButton>
-          <div className="flex items-center">
-            <Avatar src="/img/avtar.png" alt="User Image" />
-            <div className="ml-2">
-              <Typography variant="body2" fontWeight="bold">
-                Lincoln Philips
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                Admin
-              </Typography>
+          <NavLink to={"/profile"}>
+            <div className="flex items-center">
+              <Avatar src="/img/avtar.png" alt="User Image" />
+              <div className="ml-2">
+                <Typography variant="body2" fontWeight="bold">
+                  Lincoln Philips
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  Admin
+                </Typography>
+              </div>
             </div>
-          </div>
+          </NavLink>
         </div>
       </div>
     </div>

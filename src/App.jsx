@@ -55,6 +55,7 @@ function App() {
             <Route path="/adminRegistration" element={<AdminRegistration />} />
 
             <Route path="/" element={<AdminPanel />}>
+              <Route path="" />
               <Route path="profile/*" />
               <Route path="edit" />
 
