@@ -210,6 +210,7 @@
   padding: 20px;
   background-color: white;
   border-radius: 15px;
+  height: 443px;
 }
 .deshbord-section .row .main .top .Billing-data .head {
   justify-content: space-between;
@@ -234,6 +235,9 @@
 .deshbord-section .row .main .top .Billing-data .head .btn button svg {
   color: #ffffff;
 }
+.deshbord-section .row .main .top .Billing-data .pending-bill {
+  height: 85%;
+}
 .deshbord-section .row .main .top .Billing-data .pending-bill .bill-status {
   padding-top: 10px;
 }
@@ -248,9 +252,225 @@
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data {
   padding-top: 40px;
+  height: 90%;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .img img {
   margin: 0px auto;
+}
+.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-color: #030229 #f4f4f4;
+  scrollbar-width: thin;
+}
+.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table {
+  padding: 0px 10px;
+  width: 100%;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  thead
+  tr {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f6f8fb;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  thead
+  tr
+  th {
+  color: #030229;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 14px;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody {
+  height: 100%;
+  width: 100%;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr {
+  padding: 5px 0px;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  td {
+  text-align: center;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .bill-num {
+  background: #f6f8fb;
+  border-radius: 33px;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .bill-num
+  p {
+  color: #718ebf;
+  text-align: center;
+  padding: 5px 18px;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .patient-name
+  p,
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .disease-name
+  p {
+  color: #4f4f4f;
+  font-size: 12px;
+  font-weight: 500;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .status
+  p {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  color: #39973d;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 20px;
+  border-radius: 30px;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .action {
+  justify-content: center;
+  align-items: center;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .action
+  .box {
+  width: 28px;
+  height: 28px;
+  background-color: #f6f8fb;
+  justify-content: center;
+  align-items: center;
+}
+.deshbord-section
+  .row
+  .main
+  .top
+  .Billing-data
+  .pending-bill
+  .pending-bill-data
+  .bill-table
+  table
+  tbody
+  tr
+  .action
+  .box
+  svg {
+  margin: 0px auto;
+  color: #0eabeb;
 }
 .deshbord-section .row .main .bottom {
   padding: 10px 20px;
@@ -264,7 +484,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  height: 300px;
+  height: 340px;
 }
 .deshbord-section
   .row
@@ -284,11 +504,36 @@
   .today-appointments
   .appointments-content
   .head
+  .title {
+  justify-content: space-between;
+  align-items: center;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .head
   .title
   p {
   color: #030229;
   font-size: 26px;
   font-weight: 700;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .head
+  .title
+  span {
+  color: #5678e9;
+  cursor: pointer;
 }
 .deshbord-section
   .row
@@ -312,6 +557,150 @@
   img {
   margin: 0px auto;
   height: 100%;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list {
+  height: 85%;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: scroll;
+  scrollbar-color: #030229 #f4f4f4;
+  scrollbar-width: thin;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box {
+  width: 32%;
+  padding: 5px 0px;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .heading {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f6f8fb;
+  padding: 10px 14px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .heading
+  p {
+  font-size: 18px;
+  font-weight: 600;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .heading
+  span {
+  padding: 6px 20px;
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  border-radius: 30px;
+  color: #5678e9;
+  font-size: 13px;
+  font-weight: 600;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .data {
+  border: 1px solid #f4f4f4;
+  padding: 10px 14px;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .data
+  ul
+  li {
+  padding-bottom: 10px;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .data
+  ul
+  li
+  p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #818194;
+}
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .appointments-list
+  .box
+  .content
+  .data
+  ul
+  li
+  span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4f4f4f;
 }
 .deshbord-section .row .main .bottom .Summary-data {
   width: 40%;
