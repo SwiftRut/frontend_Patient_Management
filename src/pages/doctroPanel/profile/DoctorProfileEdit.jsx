@@ -3,7 +3,6 @@ import { FaCamera } from "react-icons/fa6";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Country, State, City } from "country-state-city";
 import { useEdit } from "../../../hooks/useEdit";
-import './doctorProfile.css'
 
 const DoctorProfileEdit = () => {
   const navigate = useNavigate();
@@ -122,7 +121,7 @@ const DoctorProfileEdit = () => {
                 <div className="img-box">
                   <div className="img">
                     <img
-                      src={profile?.avatar || "../img/dr-profile.png"}
+                      src={profile?.avatar || "../img/profile.png"}
                       alt=""
                       className="rounded-full"
                     />
@@ -138,7 +137,7 @@ const DoctorProfileEdit = () => {
                           onChange={handleImageChange}
                           accept="image/*"
                         />
-                        <label htmlFor="profilePic" className="flex">
+                        <label htmlFor="profilePic">
                           <FaCamera />
                           <span>Change Profile</span>
                         </label>
@@ -152,7 +151,7 @@ const DoctorProfileEdit = () => {
                 <div className="content">
                   <div className="head">
                     <div className="title">
-                      <p>Edit Profile </p>
+                      <p>Edit Profile</p>
                     </div>
                   </div>
                   <div className="form-box">

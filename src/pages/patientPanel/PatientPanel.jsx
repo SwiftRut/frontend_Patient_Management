@@ -1,27 +1,35 @@
-import React from "react";
-import PatientProfile from "./profile/PatientProfile";
-import Header from "../../component/Header";
-import DoctorAsidePanel from "../../component/DoctorComponent/DoctorAsidePanel";
 import { Route, Routes } from "react-router-dom";
+
+import PatientProfile from "./profile/PatientProfile";
 import PersonalHealthRecord from "./profile/PersonalHealthRecord";
+import Prescriptions from "./profile/Prescriptions";
+import TestReport from "./profile/TestReport";
+import MedicalHistory from "./profile/MedicalHistory";
+import AllAppointment from "./profile/Allappoiment";
+import Appointment from "./Appointment";
+import AppointmentBooking from "./AppointmentBooking";
+import ChatScreen1 from "./ChatScreen1";
+import PatientHeader from "../../component/PatientComponents/patientHeader";
+import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePanel";
 
 export default function PatientPanel() {
   return (
     <>
-      <Header />
-      <DoctorAsidePanel />
-
-      <Routes>
-        <Route path="" element={<PersonalHealthRecord />} />
-        <Route path="profile/*" element={<PatientProfile />} />
-        {/* <Route path="edit" element={<DoctorProfileEdit />} /> */}
-        {/* <Route path="" element={<AppointmentManagement />} /> */}
-        {/* <Route path="patientRecordAccesst" element={<PatientRecordAccesst />} /> */}
-        {/* <Route path="createPrescriptionTools" element={<CreatePrescriptionTools />} /> */}
-        {/* <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} /> */}
-        {/* <Route path="teleconsultationModule" element={<TeleconsultationModule />} /> */}
-        {/* <Route path="chatScreen" element={<ChatScreen />} /> */}
-      </Routes>
+      <PatientHeader />
+      <PatientAsidePanel />
+      <div className="main-content">
+        <Routes>
+          <Route path="" element={<PersonalHealthRecord />} />
+          <Route path="profile/*" element={<PatientProfile />} />
+          <Route path="/prescriptions" element={<Prescriptions />} />
+          <Route path="/testReport" element={<TestReport />} />
+          <Route path="/medicalHistory" element={<MedicalHistory />} />
+          <Route path="/allAppointment" element={<AllAppointment />} />
+          <Route path="/appointment" element={<Appointment />} />
+          <Route path="/appointmentBooking" element={<AppointmentBooking />} />
+          <Route path="/chatScreen" element={<ChatScreen1 />} />
+        </Routes>
+      </div>
     </>
   );
 }

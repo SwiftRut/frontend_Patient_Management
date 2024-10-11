@@ -122,8 +122,12 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
               )}
 
               <div className="actions">
-                <button onClick={onClose} className="btn-cancel">Cancel</button>
-                <button onClick={handleAdd} className="btn-add">Add</button>
+                <button onClick={onClose} className="btn-cancel">
+                  Cancel
+                </button>
+                <button onClick={handleAdd} className="btn-add">
+                  Add
+                </button>
               </div>
             </div>
           </div>
@@ -132,6 +136,5 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
     )
   );
 };
-
 
 export default AddFieldModal;

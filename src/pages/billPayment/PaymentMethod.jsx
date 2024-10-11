@@ -46,7 +46,7 @@ export default function PaymentMethod() {
               <div className="table">
                 <table>
                   <thead>
-                    <tr className="table-heading">
+                    <tr>
                       <th>Bill Number</th>
                       <th>Patient Name</th>
                       <th>Disease Name</th>
