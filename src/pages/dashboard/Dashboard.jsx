@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../dashboard/dashboard.css";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { FaAddressCard } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 
 import { FaEye } from "react-icons/fa";
-import { Line,  Pie } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,8 +20,8 @@ import {
 } from "chart.js";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
-import PatientsStatistics from "../../PatientsStatistics";
-import PatientsBreakdown from "../../PatienBreakDown";
+import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics";
+import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
@@ -54,10 +54,38 @@ const Dashboard = () => {
     },
   };
   const appointments = [
-    { id: 1, patientName: "Roger Lubin", doctorName: "Leo Geidt", disease: "Meningococcal Disease", time: "10:00 AM", type: "Onsite" },
-    { id: 2, patientName: "Sarah Blake", doctorName: "Anna Doe", disease: "Flu", time: "12:00 PM", type: "Virtual" },
-    { id: 3, patientName: "Mark Fisher", doctorName: "Emily Clark", disease: "COVID-19", time: "2:00 PM", type: "Onsite" },
-    { id: 4, patientName: "Nina Smith", doctorName: "Michael Scott", disease: "Allergies", time: "3:30 PM", type: "Virtual" },
+    {
+      id: 1,
+      patientName: "Roger Lubin",
+      doctorName: "Leo Geidt",
+      disease: "Meningococcal Disease",
+      time: "10:00 AM",
+      type: "Onsite",
+    },
+    {
+      id: 2,
+      patientName: "Sarah Blake",
+      doctorName: "Anna Doe",
+      disease: "Flu",
+      time: "12:00 PM",
+      type: "Virtual",
+    },
+    {
+      id: 3,
+      patientName: "Mark Fisher",
+      doctorName: "Emily Clark",
+      disease: "COVID-19",
+      time: "2:00 PM",
+      type: "Onsite",
+    },
+    {
+      id: 4,
+      patientName: "Nina Smith",
+      doctorName: "Michael Scott",
+      disease: "Allergies",
+      time: "3:30 PM",
+      type: "Virtual",
+    },
   ];
 
   const [chartData, setChartData] = useState({
@@ -195,7 +223,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                  <PatientsStatistics />
+                <PatientsStatistics />
               </div>
               <div className="Billing-data">
                 <div className="head flex">
@@ -393,7 +421,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <PatientsBreakdown/>
+              <PatientsBreakdown />
             </div>
           </div>
         </div>

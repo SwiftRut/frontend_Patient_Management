@@ -7,7 +7,6 @@ const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
   const { logout } = useAuth();
 
-  // Function to toggle the accordion state
   const toggleAccordion = () => {
     setAccordionOpen((prevState) => !prevState);
   };
@@ -23,26 +22,20 @@ const Sidebar = () => {
             <ul>
               <li>
                 <NavLink to={"/"}>
-                  <div className="padding">
-                    <img src="/img/Dashboard.png" />
-                    <span>Dashboard</span>
-                  </div>
+                  <img src="/img/Dashboard.png" alt="Dashboard" />
+                  <span>Dashboard</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                  <div className="padding">
-                    <img src="/img/Doctor-Management.png" />
-                    <span>Doctor Management</span>
-                  </div>
+                  <img src="/img/Doctor-Management.png" alt="Doctor Management" />
+                  <span>Doctor Management</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
-                  <div className="padding">
-                    <img src="/img/Patient-Management.png" />
-                    <span>Patient Management</span>
-                  </div>
+                  <img src="/img/Patient-Management.png" alt="Patient Management" />
+                  <span>Patient Management</span>
                 </NavLink>
               </li>
               <li
@@ -50,13 +43,11 @@ const Sidebar = () => {
                 style={{ display: "flex", flexDirection: "column" }}
               >
                 <NavLink>
-                  <div className="padding">
-                    <img
-                      src="/img/BillingAndPayments.png"
-                      alt="Billing and Payments"
-                    />
-                    <span className="menu-item">Billing and Payments</span>
-                  </div>
+                <img
+                  src="/img/BillingAndPayments.png"
+                  alt="Billing and Payments"
+                />
+                <span className="menu-item">Billing and Payments</span>
                 </NavLink>
 
                 {/* Accordion Dropdown */}
@@ -69,7 +60,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                       <NavLink to={"/insuranceClaims"}>
-                        <span>insuranceClaims</span>
+                        <span>Insurance Claims</span>
                       </NavLink>
                     </li>
                     <li>
@@ -82,10 +73,8 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                  <div className="padding">
-                    <img src="/img/ReportingAndAnalytics.png" />
-                    <span>Reporting and Analytics</span>
-                  </div>
+                  <img src="/img/ReportingAndAnalytics.png" alt="Reporting and Analytics" />
+                  <span>Reporting and Analytics</span>
                 </NavLink>
               </li>
             </ul>

@@ -18,22 +18,18 @@ const CustomDateModal = ({ open, onClose }) => {
 
   return (
     <Modal open={open} onClose={onClose}>
-      <div className="custom-date fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-[320px]">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-[320px]">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">Custom Date</h2>
-
-          <div className="close-btn">
-            <IconButton onClick={onClose}>
-              <Close />
-            </IconButton>
-          </div>
-
+          <IconButton onClick={onClose}>
+            <Close />
+          </IconButton>
         </div>
         <div className="mb-4">
           <TextField
             label="From Date"
             type="date"
-            InputLabelProps={{ shrink: true }}
+            InputLabelProps={{ shrink: true }}  
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
             fullWidth
@@ -43,15 +39,15 @@ const CustomDateModal = ({ open, onClose }) => {
           <TextField
             label="To Date"
             type="date"
-            InputLabelProps={{ shrink: true }}
+            InputLabelProps={{ shrink: true }} 
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
             fullWidth
           />
         </div>
-        <div className="condition flex justify-between">
-          <Button variant="outlined" className='reset' onClick={handleReset}>Reset</Button>
-          <Button variant="contained" className='delete' color="primary" onClick={handleApply}>Apply</Button>
+        <div className="flex justify-between">
+          <Button variant="outlined" onClick={handleReset}>Reset</Button>
+          <Button variant="contained" color="primary" onClick={handleApply}>Apply</Button>
         </div>
       </div>
     </Modal>
