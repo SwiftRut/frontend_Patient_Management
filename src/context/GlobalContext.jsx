@@ -169,6 +169,15 @@ export const GlobalProvider = ({ children }) => {
     
     }
   }
+  const getChatHistory = async (doctorId, patientId) => {
+    try{
+      const response = await apiService.GetChatHistory(doctorId,patientId);
+      console.log(response.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
@@ -196,7 +205,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements,
+        allAppointements,getChatHistory
       }}
     >
       {children}

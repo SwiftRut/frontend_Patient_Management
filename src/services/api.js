@@ -22,6 +22,7 @@ const apiService = {
   GetPatientProfile: (id) => api.get(`/patient/getPatient/${id}`),
   EditPatientProfile: (id, userData) =>
     api.put(`/patient/editPatient/${id}`, userData),
+  GetAllPatients: () => api.get("/patient/getAllPatient"),
 
   // Admin
   AdminLogin: (userData) => api.post("/admin/login", userData),
@@ -84,7 +85,8 @@ const apiService = {
    EditAppointment: (id, userData) => api.put(`/appoinment/updateappointment/${id}`, userData),
    DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
 
-   
+   //Chats
+   GetChatHistory: (doctorId, patientId) => api.get(`/chat/${doctorId}/${patientId}`),
 };
 
 export default apiService;
