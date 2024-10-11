@@ -12,6 +12,7 @@ import InsuranceClaims from "./billPayment/InsuranceClaims";
 import PaymentMethod from "./billPayment/PaymentMethod";
 import DoctorAdd from "./adminPanel/DoctorAdd";
 import DoctorEdit from "./adminPanel/DoctorEdit";
+import CreateBill from "./invoice/CreateBill";
 
 export default function AdminPanel() {
   return (
@@ -23,6 +24,8 @@ export default function AdminPanel() {
         <Route path="" element={<Dashboard />} />
         <Route path="profile/*" element={<Profile />} />
         <Route path="edit" element={<Edit />} />
+
+        <Route path="/createBill" element={<CreateBill />} />
 
         <Route path="doctorManagement" element={<DoctorManagement />} />
         <Route path="doctorAdd" element={<DoctorAdd />} />
