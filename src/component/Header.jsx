@@ -16,7 +16,6 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { userData } = useGlobal();
-  console.log(userData);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

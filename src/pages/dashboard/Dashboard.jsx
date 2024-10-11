@@ -29,20 +29,12 @@ import { useGlobal } from "../../hooks/useGlobal";
 import PatientsStatistics from "../../PatientsStatistics";
 import PatientsBreakdown from "../../PatienBreakDown";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const navigate = useNavigate();
   const [timePeriod, setTimePeriod] = useState("Week");
   const { getBills, allBills } = useGlobal();
-  console.log(allBills);
+
   const pieData = {
     labels: ["Product A", "Product B", "Product C"],
     datasets: [
@@ -54,11 +46,7 @@ const Dashboard = () => {
           "rgba(54, 162, 235, 0.6)",
           "rgba(255, 206, 86, 0.6)",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-        ],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
         borderWidth: 1,
       },
     ],
@@ -72,10 +60,38 @@ const Dashboard = () => {
     },
   };
   const appointments = [
-    { id: 1, patientName: "Roger Lubin", doctorName: "Leo Geidt", disease: "Meningococcal Disease", time: "10:00 AM", type: "Onsite" },
-    { id: 2, patientName: "Sarah Blake", doctorName: "Anna Doe", disease: "Flu", time: "12:00 PM", type: "Virtual" },
-    { id: 3, patientName: "Mark Fisher", doctorName: "Emily Clark", disease: "COVID-19", time: "2:00 PM", type: "Onsite" },
-    { id: 4, patientName: "Nina Smith", doctorName: "Michael Scott", disease: "Allergies", time: "3:30 PM", type: "Virtual" },
+    {
+      id: 1,
+      patientName: "Roger Lubin",
+      doctorName: "Leo Geidt",
+      disease: "Meningococcal Disease",
+      time: "10:00 AM",
+      type: "Onsite",
+    },
+    {
+      id: 2,
+      patientName: "Sarah Blake",
+      doctorName: "Anna Doe",
+      disease: "Flu",
+      time: "12:00 PM",
+      type: "Virtual",
+    },
+    {
+      id: 3,
+      patientName: "Mark Fisher",
+      doctorName: "Emily Clark",
+      disease: "COVID-19",
+      time: "2:00 PM",
+      type: "Onsite",
+    },
+    {
+      id: 4,
+      patientName: "Nina Smith",
+      doctorName: "Michael Scott",
+      disease: "Allergies",
+      time: "3:30 PM",
+      type: "Virtual",
+    },
   ];
 
   const [chartData, setChartData] = useState({
@@ -113,10 +129,7 @@ const Dashboard = () => {
           "Nov",
           "Dec",
         ];
-        data = [
-          1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400,
-          3600,
-        ];
+        data = [1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400, 3600];
         break;
       case "Month":
         labels = [...Array(30)].map((_, i) => i + 1);
@@ -216,7 +229,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                  <PatientsStatistics />
+                <PatientsStatistics />
               </div>
               <div className="Billing-data">
                 <div className="head flex">
@@ -266,11 +279,7 @@ const Dashboard = () => {
                               </td>
 
                               <td className="patient-name">
-                                <p>
-                                  {bill.patientId
-                                    ? bill.patientId.name
-                                    : "Unknown"}
-                                </p>
+                                <p>{bill.patientId ? bill.patientId.name : "Unknown"}</p>
                               </td>
 
                               <td className="disease-name">
@@ -418,7 +427,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <PatientsBreakdown/>
+              <PatientsBreakdown />
             </div>
           </div>
         </div>

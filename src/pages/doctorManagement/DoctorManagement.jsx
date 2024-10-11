@@ -55,9 +55,7 @@ export default function DoctorManagement() {
   };
 
   const handleDeleteSuccess = (deletedId) => {
-    setDoctors((prevDoctors) =>
-      prevDoctors.filter((doctor) => doctor._id !== deletedId)
-    );
+    setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== deletedId));
     setSelectedDoctorId(null); // Close modal after delete
   };
 
@@ -117,22 +115,13 @@ export default function DoctorManagement() {
                     <h3>{doctor.breakTime}</h3>
                   </td>
                   <td className="flex action">
-                    <div
-                      className="edit"
-                      onClick={() => handleEditDoctor(doctor._id)}
-                    >
+                    <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
                       <FaEdit />
                     </div>
-                    <div
-                      className="view"
-                      onClick={() => handleViewDoctorDetails(doctor)}
-                    >
+                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
                       <FaEye />
                     </div>
-                    <div
-                      className="delete"
-                      onClick={() => handleDeleteClick(doctor._id)}
-                    >
+                    <div className="delete" onClick={() => handleDeleteClick(doctor._id)}>
                       <MdDelete />
                     </div>
                   </td>
@@ -175,10 +164,7 @@ export default function DoctorManagement() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                <button
-                  className="btn flex align-center"
-                  onClick={handleAddDoctor}
-                >
+                <button className="btn flex align-center" onClick={handleAddDoctor}>
                   <div className="icon">
                     <MdAdd />
                   </div>
@@ -201,22 +187,13 @@ export default function DoctorManagement() {
           <div className="onsite-modal-content">
             <div className="onsite-modal-header">
               <h3>Doctor Details</h3>
-              <button
-                className="close-button"
-                onClick={() => setShowOnsite(false)}
-              >
+              <button className="close-button" onClick={() => setShowOnsite(false)}>
                 &times;
               </button>
             </div>
-            <Onsite
-              selectedDoctor={selectedDoctor}
-              setShowOnsite={setShowOnsite}
-            />
+            <Onsite selectedDoctor={selectedDoctor} setShowOnsite={setShowOnsite} />
           </div>
-          <div
-            className="onsite-modal-overlay"
-            onClick={() => setShowOnsite(false)}
-          ></div>
+          <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
         </div>
       )}
 

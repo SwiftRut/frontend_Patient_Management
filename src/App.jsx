@@ -12,13 +12,11 @@ import AdminChangePassword from "./pages/adminRegester/AdminChangePassword.jsx";
 import AdminPanel from "./pages/AdminPanel";
 
 import Invoice from "./pages/invoice/Invoice.jsx";
-import CreateBill from "./pages/invoice/CreateBill.jsx";
 import EditBill from "./pages/invoice/EditBill.jsx";
 
 // doctor
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
-import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 
 // patient
 import PatientRegistration from "./pages/PatientRegistration.jsx";
@@ -63,6 +61,7 @@ function App() {
               <Route path="doctorAdd" />
               <Route path="doctorEdit/:doctorId" />
 
+              <Route path="createBill" />
               <Route path="patientManagement" />
 
               <Route path="monitorBilling" />
@@ -109,7 +108,6 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
-            <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill/:id" element={<EditBill />} />
 
             <Route path="/schedular" element={<Scheduler />} />
