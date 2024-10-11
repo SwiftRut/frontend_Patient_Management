@@ -18,25 +18,24 @@ export default function AdminPanel() {
     <>
       <Header />
       <Sidebar />
-      <div className="main-content">
-        <Routes>
-          <Route path="" element={<Dashboard />} />
-          <Route path="profile/*" element={<Profile />} />
-          <Route path="edit" element={<Edit />} />
 
-          <Route path="doctorManagement" element={<DoctorManagement />} />
-          <Route path="doctorAdd" element={<DoctorAdd />} />
-          <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
+      <Routes>
+        <Route path="" element={<Dashboard />} />
+        <Route path="profile/*" element={<Profile />} />
+        <Route path="edit" element={<Edit />} />
 
-          <Route path="patientManagement" element={<PatientManagement />} />
+        <Route path="doctorManagement" element={<DoctorManagement />} />
+        <Route path="doctorAdd" element={<DoctorAdd />} />
+        <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
 
-          <Route path="monitorBilling" element={<MonitorBilling />} />
-          <Route path="insuranceClaims" element={<InsuranceClaims />} />
-          <Route path="paymentMethod" element={<PaymentMethod />} />
+        <Route path="patientManagement" element={<PatientManagement />} />
 
-          <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
-        </Routes>
-      </div>
+        <Route path="monitorBilling" element={<MonitorBilling />} />
+        <Route path="insuranceClaims" element={<InsuranceClaims />} />
+        <Route path="paymentMethod" element={<PaymentMethod />} />
+
+        <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
+      </Routes>
     </>
   );
 }
