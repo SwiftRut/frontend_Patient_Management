@@ -6,10 +6,12 @@ import Select, { components } from "react-select";
 import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify"
 
 const AdminRegistration = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
   const [formData, setFormData] = useState({
@@ -311,14 +313,18 @@ const AdminRegistration = () => {
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter Password"
-                        required
-                      />
+                      <div className="password-input-container">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          placeholder="Enter Password"
+                        />
+                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                        </div>
+                      </div>
                     </div>
 
                     <div className="input-box">
@@ -326,13 +332,16 @@ const AdminRegistration = () => {
                         Confirm Password <span>*</span>
                       </div>
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         placeholder="Confirm Password"
                         required
                       />
+                      <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                      </div>
                     </div>
 
                     <div className="condition">

@@ -4,8 +4,6 @@ import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./pages.css";
 import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 
 const Login = () => {
   const navigate = useNavigate();
