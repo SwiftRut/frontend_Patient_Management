@@ -5,6 +5,7 @@ import "./component/sidebar.css";
 import "./pages/pages.css";
 import Loading from "./component/common/Loading.jsx";
 
+
 // Lazy-loaded admin components
 const Login = lazy(() => import("./pages/Login"));
 const AdminRegistration = lazy(
@@ -159,6 +160,7 @@ function App() {
           </Suspense>
         </BrowserRouter>
       </div>
+
     </>
   );
 }
