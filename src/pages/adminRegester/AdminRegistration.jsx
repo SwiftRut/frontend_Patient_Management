@@ -42,6 +42,30 @@ const AdminRegistration = () => {
     setCountries(Country.getAllCountries());
     await getAllHospitals();
   };
+
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -123,9 +147,9 @@ const AdminRegistration = () => {
   };
   return (
     <>
-      <div className="registration-section">
+      <div className="registration-section ">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="content">
                 <div className="head">
@@ -329,7 +353,25 @@ const AdminRegistration = () => {
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

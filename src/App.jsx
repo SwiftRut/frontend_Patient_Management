@@ -4,6 +4,7 @@ import { TailSpin } from 'react-loader-spinner';
 import "./component/sidebar.css";
 import "./pages/pages.css";
 
+
 // Lazy-loaded admin components
 const Login = lazy(() => import("./pages/Login"));
 const AdminRegistration = lazy(() => import("./pages/adminRegester/AdminRegistration.jsx"));
@@ -141,6 +142,7 @@ function App() {
       </Suspense>
         </BrowserRouter>
       </div>
+
     </>
   );
 }
