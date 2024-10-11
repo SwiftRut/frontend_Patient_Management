@@ -18,7 +18,6 @@ import EditBill from "./pages/invoice/EditBill.jsx";
 // doctor
 import DoctorPanel from "./pages/doctroPanel/DoctorPanel.jsx";
 import DoctorProfile from "./pages/doctroPanel/profile/DoctorProfile.jsx";
-// import DoctorProfileEdit from "./pages/doctroPanel/profile/DoctorProfileEdit.jsx";
 
 // patient
 import PatientRegistration from "./pages/PatientRegistration.jsx";

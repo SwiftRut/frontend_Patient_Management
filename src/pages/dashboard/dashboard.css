@@ -37,9 +37,18 @@
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .logo svg,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .logo svg {
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .logo
+  svg {
   width: 30px;
-  color: #2E7793;
+  color: #2e7793;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .dr-logo,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .dr-logo,
@@ -48,18 +57,53 @@
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .dr-logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .dr-logo svg,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .dr-logo svg {
-  color: #5E5E9E;
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .dr-logo
+  svg {
+  color: #5e5e9e;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .appo-logo,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .appo-logo,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .appo-logo {
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .appo-logo {
   background-color: rgba(65, 177, 97, 0.1490196078);
 }
-.deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .appo-logo svg,
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Patients
+  .content
+  .appo-logo
+  svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .appo-logo svg,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .appo-logo svg {
-  color: #41B161;
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .appo-logo
+  svg {
+  color: #41b161;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details,
@@ -68,14 +112,32 @@
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details p,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details p,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details p {
-  color: #A7A7A7;
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .details
+  p {
+  color: #a7a7a7;
   font-size: 18px;
   font-weight: 400;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details span,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details span,
-.deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details span {
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .total-data
+  .total-Appointments
+  .content
+  .details
+  span {
   display: block;
   color: #030229;
   font-size: 34px;
@@ -93,22 +155,51 @@
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head {
   justify-content: space-between;
 }
-.deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head .title p {
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .Patients-Statistics
+  .patients-content
+  .head
+  .title
+  p {
   color: #030229;
   font-size: 26px;
   font-weight: 700;
 }
-.deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head .menu ul li {
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .Patients-Statistics
+  .patients-content
+  .head
+  .menu
+  ul
+  li {
   padding: 8px 0px;
   font-weight: 400;
-  color: #A7A7A7;
+  color: #a7a7a7;
   display: inline-block;
   border-radius: 10px;
   width: 78px;
   text-align: center;
 }
-.deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head .menu ul li:hover {
-  background-color: #0EABEB;
+.deshbord-section
+  .row
+  .main
+  .top
+  .Patients-data
+  .Patients-Statistics
+  .patients-content
+  .head
+  .menu
+  ul
+  li:hover {
+  background-color: #0eabeb;
   color: white;
 }
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .graph {
@@ -134,14 +225,14 @@
   justify-content: center;
   font-size: 20px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px 14px;
   border-radius: 10px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   gap: 10px;
 }
 .deshbord-section .row .main .top .Billing-data .head .btn button svg {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .bill-status {
   padding-top: 10px;
@@ -175,19 +266,50 @@
   border-radius: 15px;
   height: 300px;
 }
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .head {
   justify-content: space-between;
 }
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head .title p {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .head
+  .title
+  p {
   color: #030229;
   font-size: 26px;
   font-weight: 700;
 }
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .img {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .img {
   height: 85%;
   padding-top: 20px;
 }
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .img img {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .appointments-data
+  .today-appointments
+  .appointments-content
+  .img
+  img {
   margin: 0px auto;
   height: 100%;
 }
@@ -201,14 +323,14 @@
   font-size: 26px;
   font-weight: 700;
   color: #030229;
-  border-bottom: 1px solid #F4F4F4;
+  border-bottom: 1px solid #f4f4f4;
   padding-bottom: 10px;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status {
   padding-top: 20px;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border-radius: 15px;
   align-items: center;
   padding: 25px;
@@ -222,39 +344,123 @@
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details {
   width: 60%;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content {
   width: 70%;
   background-color: white;
   border-radius: 15px;
   padding: 15px;
   margin: 0px auto;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul li {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  li {
   display: flex;
   gap: 15px;
   align-items: center;
   padding: 10px;
   font-size: 18px;
   font-weight: 600;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .new svg {
-  color: #E78B00;
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .new
+  svg {
+  color: #e78b00;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .new span {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .new
+  span {
   display: inline-block;
-  color: #E78B00;
+  color: #e78b00;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .old svg {
-  color: #00AA33;
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .old
+  svg {
+  color: #00aa33;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .old span {
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .old
+  span {
   display: inline-block;
-  color: #00AA33;
+  color: #00aa33;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .total svg {
-  color: #0314C9;
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .total
+  svg {
+  color: #0314c9;
 }
-.deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .total span {
-  color: #0314C9;
-}/*# sourceMappingURL=dashboard.css.map */
+.deshbord-section
+  .row
+  .main
+  .bottom
+  .Summary-data
+  .Summary-status
+  .Patients-data
+  .details
+  .content
+  ul
+  .total
+  span {
+  color: #0314c9;
+} /*# sourceMappingURL=dashboard.css.map */
