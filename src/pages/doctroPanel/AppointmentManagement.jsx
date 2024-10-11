@@ -24,6 +24,58 @@ export default function AppointmentManagement() {
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
   const navigate = useNavigate();
 
+  const [appointments, setAppointments] = useState({
+    today: [
+      {
+        patientName: "Marcus Philips",
+        diseaseName: "Viral Infection",
+        patientIssue: "Stomach Ache",
+        appointmentDate: "2 Jan, 2022",
+        appointmentTime: "4:30 PM",
+        appointmentType: "Online",
+      },
+      {
+        patientName: "Julianna Warren",
+        diseaseName: "Diabetes",
+        patientIssue: "Stomach Ache",
+        appointmentDate: "3 Jan, 2022",
+        appointmentTime: "2:40 PM",
+        appointmentType: "Onsite",
+      },
+    ],
+    upcoming: [
+      {
+        patientName: "London Shaffer",
+        diseaseName: "Viral Infection",
+        patientIssue: "Feeling Tired",
+        appointmentDate: "5 Jan, 2022",
+        appointmentTime: "5:35 PM",
+        appointmentType: "Onsite",
+      },
+    ],
+    previous: [
+      {
+        patientName: "Leslie Mccray",
+        diseaseName: "Blood Pressure",
+        patientIssue: "Headache",
+        appointmentDate: "6 Jan, 2022",
+        appointmentTime: "9:30 PM",
+        appointmentType: "Online",
+      },
+    ],
+    canceled: [
+      {
+        patientName: "Marcus Philips",
+        diseaseName: "Viral Infection",
+        patientIssue: "Stomach Ache",
+        appointmentDate: "7 Jan, 2022",
+        appointmentTime: "4:30 PM",
+        appointmentType: "Onsite",
+      },
+    ],
+  });
+
+
   useEffect(() => {
     const fetchAppointments = async () => {
       try {

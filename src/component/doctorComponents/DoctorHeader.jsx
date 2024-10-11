@@ -59,7 +59,7 @@ const DoctorHeader = () => {
   };
 
   return (
-    <div className="w-full bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
+    <div className="header w-full bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
       {/* Breadcrumb */}
       <div>
         <Breadcrumbs aria-label="breadcrumb">
