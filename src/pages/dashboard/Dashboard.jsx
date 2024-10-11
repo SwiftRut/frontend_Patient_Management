@@ -53,6 +53,7 @@ const Dashboard = () => {
       title: { display: true, text: "Product Distribution" },
     },
   };
+  
   const appointments = [
     {
       id: 1,
