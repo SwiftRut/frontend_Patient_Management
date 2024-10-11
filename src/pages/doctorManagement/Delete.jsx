@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "../doctorManagement/delete.css";
 import { MdDeleteSweep } from "react-icons/md";
 import apiService from "../../services/api";

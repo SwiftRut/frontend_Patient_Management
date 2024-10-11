@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import apiService from '../../services/api.js';
+import { toast } from "react-toastify"
 import '../pages.css';
 
 const AdminMobile = () => {
@@ -20,17 +21,20 @@ const AdminMobile = () => {
     setSuccessMessage('');
 
     if (!identifier) {
+      toast.error('Please enter an email or phone number');
       setError('Please enter an email or phone number');
       return;
     }
 
     try {
       const response = await apiService.ForgetPassword({ identifier });
+      toast.success(response.data.message)
       setSuccessMessage(response.data.message);
 
       navigate('/verifyOtp', { state: { identifier } });
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       } else {
         setError('Something went wrong. Please try again.');
@@ -44,19 +48,23 @@ const AdminMobile = () => {
     setSuccessMessage('');
 
     if (!identifier || !password) {
+      toast.error('Please enter email/phone and password')
       setError('Please enter email/phone and password');
       return;
     }
 
     try {
       const response = await apiService.UniversalLogin({ identifier, password });
+      toast.success(response.data.message)
       setSuccessMessage(response.data.message);
       navigate('/dashboard'); // After successful login
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       } else {
         setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again');
       }
     }
   };
@@ -86,6 +94,18 @@ const AdminMobile = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage, { position: toast.POSITION.TOP_RIGHT });
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { position: toast.POSITION.TOP_RIGHT });
+    }
+  }, [error]);
+
   return (
     <>
       <div className="admin-mobile-section">
@@ -100,12 +120,6 @@ const AdminMobile = () => {
                 <div className="note">
                   <p>{isLoginMode ? 'Enter your credentials to log in.' : 'Enter your email or phone and we’ll send you an OTP to reset your password.'}</p>
                 </div>
-
-                {/* Display success message */}
-                {successMessage && <div className="success-message" style={{ color: "green" }}>{successMessage}</div>}
-
-                {/* Display error message */}
-                {error && <div className="error-message" style={{ color: "red" }}>{error}</div>}
 
                 <div className="admin-mobile-form-box">
                   <form className="flex" onSubmit={isLoginMode ? handleLogin : handleSubmit}>
