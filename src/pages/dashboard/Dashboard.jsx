@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../dashboard/dashboard.css";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
 import { FaAddressCard } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
-import { FaRegStopCircle } from "react-icons/fa";
 
-import { CiSearch } from "react-icons/ci";
-import { MdAdd } from "react-icons/md";
-import { BsGenderFemale } from "react-icons/bs";
-import { FaEdit } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import { Line, Bar, Pie } from "react-chartjs-2";
+import { Line,  Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,15 +23,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import PatientsStatistics from "../../PatientsStatistics";
 import PatientsBreakdown from "../../PatienBreakDown";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const navigate = useNavigate();
   const [timePeriod, setTimePeriod] = useState("Week");
@@ -54,11 +40,7 @@ const Dashboard = () => {
           "rgba(54, 162, 235, 0.6)",
           "rgba(255, 206, 86, 0.6)",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-        ],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
         borderWidth: 1,
       },
     ],
@@ -113,10 +95,7 @@ const Dashboard = () => {
           "Nov",
           "Dec",
         ];
-        data = [
-          1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400,
-          3600,
-        ];
+        data = [1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400, 3600];
         break;
       case "Month":
         labels = [...Array(30)].map((_, i) => i + 1);
@@ -266,11 +245,7 @@ const Dashboard = () => {
                               </td>
 
                               <td className="patient-name">
-                                <p>
-                                  {bill.patientId
-                                    ? bill.patientId.name
-                                    : "Unknown"}
-                                </p>
+                                <p>{bill.patientId ? bill.patientId.name : "Unknown"}</p>
                               </td>
 
                               <td className="disease-name">

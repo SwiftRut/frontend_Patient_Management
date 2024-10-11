@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "./pages.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin, user } = useAuth();
+  const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat@gmail.com",
+    identifier: "mohitdudhat22@gmail.com",
     password: "123@abc",
     remember: "true",
   });
@@ -17,7 +19,6 @@ const Login = () => {
   //   remember: "true",
   // });
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,29 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +72,7 @@ const Login = () => {
     <>
       <div className="login-section">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="content">
                 <div className="head">
@@ -74,17 +98,15 @@ const Login = () => {
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <div className="password-input-container">
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          placeholder="Enter Password"
-                        />
-                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
-                        </div>
+                      <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Enter Password"
+                      />
+                      <div className="eye">
+                        <img src="../img/eye-slash.png" alt="eye" />
                       </div>
                     </div>
 
@@ -135,7 +157,6 @@ const Login = () => {
                 </div>
               </div>
             </div>
-
             <div className="img-box">
               <div class="slider">
                 <img src="/img/register.png" alt="Image 1" />
