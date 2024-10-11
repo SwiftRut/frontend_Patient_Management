@@ -43,7 +43,7 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
         style={{
           borderRadius: "8px",
         }}
-        onClick={() => navigate(`/create-prescription/${id}`)}
+        onClick={() => navigate(`/doctor/createPrescriptionForm/${id}`)}
       >
         Create Prescription
       </Button>
