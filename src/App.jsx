@@ -1,65 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
-import { TailSpin } from "react-loader-spinner";
+import { Suspense } from "react";
 import "./component/sidebar.css";
 import "./pages/pages.css";
-import Loading from "./component/common/Loading.jsx";
-
-
-// Lazy-loaded admin components
-const Login = lazy(() => import("./pages/Login"));
-const AdminRegistration = lazy(
-  () => import("./pages/adminRegester/AdminRegistration.jsx")
-);
-const AdminMobile = lazy(() => import("./pages/adminRegester/AdminMobile.jsx"));
-const AdminOtp = lazy(() => import("./pages/adminRegester/AdminOtp.jsx"));
-const AdminChangePassword = lazy(
-  () => import("./pages/adminRegester/AdminChangePassword.jsx")
-);
-const AdminPanel = lazy(() => import("./pages/AdminPanel"));
-
-// Lazy-loaded invoice components
-const Invoice = lazy(() => import("./pages/invoice/Invoice.jsx"));
-const CreateBill = lazy(() => import("./pages/invoice/CreateBill.jsx"));
-const EditBill = lazy(() => import("./pages/invoice/EditBill.jsx"));
-
-// Lazy-loaded doctor components
-const DoctorPanel = lazy(() => import("./pages/doctroPanel/DoctorPanel.jsx"));
-const DoctorProfile = lazy(
-  () => import("./pages/doctroPanel/profile/DoctorProfile.jsx")
-);
-
-// Lazy-loaded patient components
-const PatientRegistration = lazy(
-  () => import("./pages/PatientRegistration.jsx")
-);
-const PatientPanel = lazy(
-  () => import("./pages/patientPanel/PatientPanel.jsx")
-);
-const PatientDetails = lazy(
-  () => import("./pages/patientManagement/PatientDetails.jsx")
-);
-
-// Lazy-loaded extra components
-const Scheduler = lazy(() => import("./component/Schedular.jsx"));
-const Bill = lazy(() => import("./component/Bill.jsx"));
-const Onsite = lazy(() => import("./pages/doctorManagement/Onsite.jsx"));
-const CashPayment = lazy(() => import("./pages/billPayment/CashPayment.jsx"));
-const Delete = lazy(() => import("./pages/doctorManagement/Delete.jsx"));
-const Bill2 = lazy(() => import("./pages/invoice/Bill2.jsx"));
-const EditDesignInvoice = lazy(
-  () => import("./pages/billPayment/EditDesignInvoice.jsx")
-);
-const Bill3 = lazy(() => import("./pages/invoice/Bill3.jsx"));
-
-// Lazy-loaded charts, chat, and video call components
-const Chart = lazy(() => import("./pages/Chart.jsx"));
-const Chat = lazy(() => import("./pages/Chat.jsx"));
-const VideoCall = lazy(() => import("./VideoCall.jsx"));
+import {
+  Login, AdminRegistration, AdminMobile, AdminOtp, AdminChangePassword, AdminPanel,
+  Invoice, CreateBill, EditBill,
+  DoctorPanel, DoctorProfile,
+  PatientRegistration, PatientPanel, PatientDetails,
+  Scheduler, Bill, Onsite, CashPayment, Delete, Bill2, EditDesignInvoice, Bill3,
+  Chart, Chat, VideoCall,
+  Loading
+} from "./imports";
 function App() {
   return (
     <>
-      <div className="main-content">
+      <div>
         <BrowserRouter>
         <Suspense fallback={<Loading />}>
             <Routes>

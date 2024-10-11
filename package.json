@@ -22,20 +22,18 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
+    "classnames": "^2.5.1",
     "country-state-city": "^3.2.1",
-    "formik": "^2.4.6",
     "datepicker": "^0.0.0",
-<<<<<<< HEAD
+    "formik": "^2.4.6",
     "frontend-patient-management": "file:",
-=======
-    "yup": "^1.4.0",
->>>>>>> f1d8a86138e9faa3595fd56d6aae8535f419ded8
     "jquery-ui-dist": "^1.13.3",
     "lucide-react": "^0.447.0",
     "react": "^18.3.1",
     "react-big-calendar": "^1.15.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^5.3.0",
     "react-loader-spinner": "^6.1.6",
     "react-modal": "^3.16.1",
@@ -44,7 +42,8 @@
     "react-tabs": "^6.0.2",
     "recharts": "^2.12.7",
     "run": "^1.5.0",
-    "socket.io-client": "^4.8.0"
+    "socket.io-client": "^4.8.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
