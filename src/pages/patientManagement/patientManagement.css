@@ -91,6 +91,7 @@ input {
   color: #4f4f4f;
   font-size: 18px;
   font-weight: 600;
+  text-align: left !important;
 }
 .patient-section .row .main td img {
   margin-right: 10px;
@@ -117,7 +118,6 @@ input {
   width: 150px;
 }
 .patient-section .row .main .action .view {
-  width: 60px;
   color: #0eabeb;
   margin: 0px 10px;
   background-color: #f6f8fb;

@@ -103,27 +103,6 @@ input {
   color: white;
   font-weight: 600;
 }
-.insurance-section .row .main table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-.insurance-section .row .main td {
-  padding: 20px 5px !important;
-  color: #4f4f4f;
-  font-size: 18px;
-  font-weight: 600;
-}
-.insurance-section .row .main .status h3 {
-  color: #39973d !important;
-  background-color: #ebf5ec !important;
-}
-.insurance-section .row .main .red h3 {
-  color: #e11d29 !important;
-  background-color: #fce8ea !important;
-}
-.insurance-section .row .main .red h3,
-.insurance-section .row .main .status h3,
 .insurance-section .row .main .time h3 {
   background-color: #f6f8fb;
   color: #718ebf;
@@ -145,44 +124,4 @@ input {
   font-size: 25px;
   display: flex;
   margin: auto;
-}
-.insurance-section .row .main td,
-.insurance-section .row .main th {
-  padding: 5px;
-  min-width: 207px;
-  text-align: center;
-}
-.insurance-section .row .main tr:nth-child(1) {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-.insurance-section .row .main thead tr {
-  background: #f6f8fb;
-  color: #030229;
-  display: block;
-  position: relative;
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: 700;
-  width: 100%;
-}
-.insurance-section .row .main tbody {
-  display: block;
-  height: 570px;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.insurance-section .row .main tbody tr {
-  border-bottom: 1px solid rgb(245, 245, 245);
-}
-.insurance-section .row .main tbody::-webkit-scrollbar {
-  width: 10px;
-}
-.insurance-section .row .main tbody::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-.insurance-section .row .main tbody::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
 }/*# sourceMappingURL=insuranceClaims.css.map */

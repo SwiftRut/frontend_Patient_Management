@@ -70,25 +70,35 @@ export default function DoctorManagement() {
 
   const renderDoctorsTable = () => {
     return (
-      <div className="table">
-        <table>
-          <thead>
+      <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+        <table className="min-w-full table-auto">
+          <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
-              <th>Doctor Name</th>
-              <th>Gender</th>
-              <th>Qualification</th>
-              <th>Specialty</th>
-              <th>Working Time</th>
-              <th>Patient Check Up Time</th>
-              <th>Break Time</th>
-              <th>Action</th>
+              <th className="p-3 text-left text-lg font-semibold">
+                Doctor Name
+              </th>
+              <th className="p-3 text-left text-lg font-semibold">Gender</th>
+              <th className="p-3 text-left text-lg font-semibold">
+                Qualification
+              </th>
+              <th className="p-3 text-left text-lg font-semibold">Specialty</th>
+              <th className="p-3 text-left text-lg font-semibold">
+                Working Time
+              </th>
+              <th className="p-3 text-left text-lg font-semibold">
+                Patient Check Up Time
+              </th>
+              <th className="p-3 text-left text-lg font-semibold">
+                Break Time
+              </th>
+              <th className="p-3 text-left text-lg font-semibold">Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor) => (
-                <tr key={doctor._id}>
-                  <td className="flex align-center">
+                <tr key={doctor._id} className="border-t">
+                  <td className="flex align-center p-3">
                     <div className="avatar">
                       <img src={doctor.avatar} alt={doctor.name} />
                     </div>
@@ -96,25 +106,25 @@ export default function DoctorManagement() {
                       <h3>{doctor.name}</h3>
                     </div>
                   </td>
-                  <td>
+                  <td className="p-3">
                     {doctor.gender === "female" ? (
                       <BsGenderFemale className="gender" />
                     ) : (
                       <BsGenderMale className="gender" />
                     )}
                   </td>
-                  <td>{doctor.qualification}</td>
-                  <td>{doctor.speciality}</td>
-                  <td className="time">
+                  <td className="p-3">{doctor.qualification}</td>
+                  <td className="p-3">{doctor.speciality}</td>
+                  <td className="time p-3">
                     <h3>{doctor.workingOn}</h3>
                   </td>
-                  <td className="time">
+                  <td className="time p-3">
                     <h3>{doctor.patientCheckupTime}</h3>
                   </td>
-                  <td className="time">
+                  <td className="time p-3">
                     <h3>{doctor.breakTime}</h3>
                   </td>
-                  <td className="flex action">
+                  <td className="flex action p-3">
                     <div
                       className="edit"
                       onClick={() => handleEditDoctor(doctor._id)}
@@ -154,7 +164,7 @@ export default function DoctorManagement() {
 
   return (
     <div>
-      <div className="dr-managment-section">
+      <div className="dr-managment-section bg-gray">
         <div className="row">
           <div className="main">
             <div className="top flex align-center">

@@ -103,17 +103,6 @@ input {
   color: white;
   font-weight: 600;
 }
-.payment-section .row .main table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
-.payment-section .row .main td {
-  padding: 20px 5px !important;
-  color: #4f4f4f;
-  font-size: 18px;
-  font-weight: 600;
-}
 .payment-section .row .main .status h3 {
   color: #39973d !important;
   background-color: #ebf5ec !important;
@@ -152,45 +141,14 @@ input {
   padding: 16px;
   font-size: 25px;
   display: flex;
-  margin: auto;
 }
-.payment-section .row .main td,
-.payment-section .row .main th {
-  padding: 5px;
-  min-width: 207px;
-  text-align: center;
-}
-.payment-section .row .main tr:nth-child(1) {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-.payment-section .row .main thead tr {
-  background: #f6f8fb;
-  color: #030229;
-  display: block;
-  position: relative;
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: 700;
-  width: 100%;
-}
-.payment-section .row .main tbody {
-  display: block;
-  height: 580px;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.payment-section .row .main tbody tr {
-  border-bottom: 1px solid rgb(245, 245, 245);
-}
-.payment-section .row .main tbody::-webkit-scrollbar {
-  width: 10px;
-}
-.payment-section .row .main tbody::-webkit-scrollbar-thumb {
-  background-color: #ccc;
+.payment-section .row .main .action .delete {
+  width: 60px;
+  color: #0eabeb;
+  margin: 0px 10px;
+  background-color: #f6f8fb;
   border-radius: 10px;
-}
-.payment-section .row .main tbody::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
+  padding: 16px;
+  font-size: 25px;
+  display: flex;
 }/*# sourceMappingURL=paymentMethod.css.map */

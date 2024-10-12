@@ -38,32 +38,54 @@ export default function InsuranceClaims() {
                     <div className="icon">
                       <MdAdd />
                     </div>
-                    <div className="text" onClick={() => navigate("/createbill")}>
+                    <div
+                      className="text"
+                      onClick={() => navigate("/createbill")}
+                    >
                       <h3>Create Bills</h3>
                     </div>
                   </button>
                 </div>
               </div>
-              <div className="table">
-                <table>
-                  <thead>
+              <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+                <table className="min-w-full table-auto">
+                  <thead className="sticky top-0 bg-gray-100 z-10">
                     <tr>
-                      <th>Bill Number</th>
-                      <th>Doctor Name</th>
-                      <th>Patient Name</th>
-                      <th>Disease Name</th>
-                      <th>Insurance Company</th>
-                      <th>Insurance Plan</th>
-                      <th>Bill Date</th>
-                      <th>Action</th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Bill Number
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Doctor Name
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Patient Name
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Disease Name
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Insurance Company
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Insurance Plan
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Bill Date
+                      </th>
+                      <th className="p-3 text-left text-lg font-semibold">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -71,24 +93,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -96,24 +121,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -121,24 +149,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -146,24 +177,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -171,24 +205,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -196,24 +233,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -221,24 +261,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -246,24 +289,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -271,24 +317,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -296,24 +345,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -321,24 +373,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -346,24 +401,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -371,24 +429,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -396,24 +457,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -421,24 +485,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -446,24 +513,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -471,24 +541,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -496,24 +569,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -521,24 +597,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -546,24 +625,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -571,24 +653,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -596,24 +681,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -621,24 +709,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -646,24 +737,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -671,24 +765,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -696,24 +793,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -721,24 +821,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -746,24 +849,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -771,24 +877,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -796,24 +905,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>{" "}
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -821,24 +933,27 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>HDFC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Maternity</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td className="align-center" style={{ display: "flex" }}>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
                         <div className="avatar">
                           <img src="/img/Avatar.png" />
                         </div>
@@ -846,14 +961,70 @@ export default function InsuranceClaims() {
                           <h3>Dr. Marcus Philips</h3>
                         </div>
                       </td>
-                      <td>Internal Medicine</td>
-                      <td>Kadin Saris</td>
-                      <td>LIC Life Insurance</td>
-                      <td className="time">
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
                         <h3>Health</h3>
                       </td>
-                      <td>2 Jun, 2024</td>
-                      <td className="action">
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>{" "}
+                    <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">HDFC Life Insurance</td>
+                      <td className="time p-3">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td
+                        className="align-center p-3"
+                        style={{ display: "flex" }}
+                      >
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td className="p-3">Internal Medicine</td>
+                      <td className="p-3">Kadin Saris</td>
+                      <td className="p-3">LIC Life Insurance</td>
+                      <td className="time p-3">
+                        <h3>Health</h3>
+                      </td>
+                      <td className="p-3">2 Jun, 2024</td>
+                      <td className="action p-3">
                         <div className="view">
                           <FaEye />
                         </div>

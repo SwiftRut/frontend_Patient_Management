@@ -30,6 +30,10 @@ input {
   align-items: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .onsite-section .row .main {
   margin: 10px;
   background-color: #fff;
@@ -57,6 +61,39 @@ input {
 }
 .onsite-section .row .main .box {
   margin: 20px 0;
+  background-color: #2522a6;
+  border-radius: 10px;
+  padding: 20px;
+}
+.onsite-section .row .main .box img {
+  border-radius: 50%;
+}
+.onsite-section .row .main .box .info {
+  color: #fff;
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.onsite-section .row .main .box .info p {
+  display: flex;
+  color: #fff;
+  background-color: #718ebf;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+.onsite-section .row .main .box .info p h3 {
+  padding-left: 10px;
+}
+.onsite-section .row .main .box .btn button {
+  background-color: #39973D;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 16px;
+  border: 1px solid #fff;
+  padding: 10px 30px;
 }
 .onsite-section .row .main .deatils .table {
   width: 100%;
@@ -118,7 +155,7 @@ input {
   display: flex;
 }
 .onsite-section .row .main .working-details .hospital-data .text h2 {
-  color: #A7A7A7;
+  color: #a7a7a7;
   font-size: 20px;
   font-weight: 400;
 }

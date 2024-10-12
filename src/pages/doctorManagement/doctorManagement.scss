@@ -31,7 +31,11 @@ input {
 }
 
 //   section start
+.bg-gray{
+  background-color: #f6f8fb;
+}
 .dr-managment-section {
+  padding: 10px;
   .row {
     .main {
       border-radius: 15px;
@@ -94,16 +98,8 @@ input {
           }
         }
       }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        table-layout: fixed;
-      }
       td {
-        padding: 20px 5px !important;
-        color: #4f4f4f;
-        font-size: 18px;
-        font-weight: 600;
+        text-align: left!important;
         img {
           margin-right: 10px;
           width: 50px;
@@ -157,48 +153,6 @@ input {
           font-size: 25px;
           text-align: center;
         }
-      }
-      td,
-      th {
-        padding: 5px;
-        min-width: 207px;
-        text-align: center;
-      }
-      tr:nth-child(1) {
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-      }
-      thead tr {
-        background: #f6f8fb;
-        color: #030229;
-        display: block;
-        position: relative;
-        padding: 10px 0;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      tbody {
-        display: block;
-        height: 620px;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        tr{
-          border-bottom: 1px solid rgb(245, 245, 245);
-        }
-      }
-      tbody::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      tbody::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 10px;
-      }
-
-      tbody::-webkit-scrollbar-track {
-        background-color: #f0f0f0;
       }
 
       .image {

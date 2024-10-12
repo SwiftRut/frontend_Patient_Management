@@ -31,11 +31,10 @@ input {
 }
 
 .patientdetails-section .row .details {
-  width: 30%;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  margin: 50px;
 }
 .patientdetails-section .row .details .top {
   justify-content: space-between;
