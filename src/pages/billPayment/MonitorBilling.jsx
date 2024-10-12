@@ -19,7 +19,7 @@ export default function MonitorBilling() {
   //   await getBills();
   // };
   return (
-    <div className="monitor-section">
+    <div className="monitor-section bg-gray">
       <div className="row">
         <div className="main">
           <div className="top flex align-center">
@@ -51,56 +51,56 @@ export default function MonitorBilling() {
               </button>
             </div>
           </div>
-          <div className="table">
-            <table>
-              <thead>
-                <tr className="table-heading">
-                  <th>Bill Number</th>
-                  <th>Patient Name</th>
-                  <th>Disease Name</th>
-                  <th>Phone Number</th>
-                  <th>Status</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Action</th>
+          <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+            <table className="min-w-full table-auto">
+              <thead className="sticky top-0 bg-gray-100 z-10">
+                <tr>
+                  <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
+                  <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
+                  <th className="p-3 text-left text-lg font-semibold">Disease Name</th>
+                  <th className="p-3 text-left text-lg font-semibold">Phone Number</th>
+                  <th className="py-3 px-7 text-left text-lg font-semibold">Status</th>
+                  <th className="p-3 text-left text-lg font-semibold">Date</th>
+                  <th className="p-3 text-left text-lg font-semibold">Time</th>
+                  <th className="p-3 text-left text-lg font-semibold">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="time">
+                <tr className="border-t">
+                  <td className="time p-3">
                     <h3>5654</h3>
                   </td>
-                  <td>Alfredo Vaccaro</td>
-                  <td>Colds and Flu</td>
-                  <td>89564 25462</td>
+                  <td className="p-3">Alfredo Vaccaro</td>
+                  <td className="p-3">Colds and Flu</td>
+                  <td className="p-3">89564 25462</td>
                   <td className="status">
                     <h3>Paid</h3>
                   </td>
-                  <td>2 Jan, 2022</td>
-                  <td className="time">
+                  <td className="p-3">2 Jan, 2022</td>
+                  <td className="time p-3">
                     <h3>4:30 PM</h3>
                   </td>
-                  <td className="action">
+                  <td className="action p-3">
                     <div className="view">
                       <FaEye />
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="time">
+                  <td className="time p-3">
                     <h3>5654</h3>
                   </td>
-                  <td>Alfredo Vaccaro</td>
-                  <td>Colds and Flu</td>
-                  <td>89564 25462</td>
+                  <td className="p-3">Alfredo Vaccaro</td>
+                  <td className="p-3">Colds and Flu</td>
+                  <td className="p-3">89564 25462</td>
                   <td className="red">
                     <h3>Unpaid</h3>
                   </td>
-                  <td>2 Jan, 2022</td>
-                  <td className="time">
+                  <td className="p-3">2 Jan, 2022</td>
+                  <td className="time p-3">
                     <h3>4:30 PM</h3>
                   </td>
-                  <td className="action">
+                  <td className="action p-3">
                     <div className="view">
                       <FaEye />
                     </div>

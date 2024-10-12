@@ -17,28 +17,34 @@ import CreateBill from "./invoice/CreateBill";
 export default function AdminPanel() {
   return (
     <>
-      <Header />
+      
       <Sidebar />
 
-      <Routes>
-        <Route path="" element={<Dashboard />} />
-        <Route path="profile/*" element={<Profile />} />
-        <Route path="edit" element={<Edit />} />
+      <div className="main-content">
+      <Header />
+        <Routes>
+          <Route path="" element={<Dashboard />} />
+          <Route path="profile/*" element={<Profile />} />
+          <Route path="edit" element={<Edit />} />
 
-        <Route path="/createBill" element={<CreateBill />} />
+          <Route path="/createBill" element={<CreateBill />} />
 
-        <Route path="doctorManagement" element={<DoctorManagement />} />
-        <Route path="doctorAdd" element={<DoctorAdd />} />
-        <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
+          <Route path="doctorManagement" element={<DoctorManagement />} />
+          <Route path="doctorAdd" element={<DoctorAdd />} />
+          <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
 
-        <Route path="patientManagement" element={<PatientManagement />} />
+          <Route path="patientManagement" element={<PatientManagement />} />
 
-        <Route path="monitorBilling" element={<MonitorBilling />} />
-        <Route path="insuranceClaims" element={<InsuranceClaims />} />
-        <Route path="paymentMethod" element={<PaymentMethod />} />
+          <Route path="monitorBilling" element={<MonitorBilling />} />
+          <Route path="insuranceClaims" element={<InsuranceClaims />} />
+          <Route path="paymentMethod" element={<PaymentMethod />} />
 
-        <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
-      </Routes>
+          <Route
+            path="reportingAndAnalytics"
+            element={<ReportingAndAnalytics />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }

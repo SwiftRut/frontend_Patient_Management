@@ -38,7 +38,7 @@ export default function PatientManagement() {
 
   return (
     <>
-      <div className="patient-section">
+      <div className="patient-section bg-gray">
         <div className="row">
           <div className="main">
             <div className="flex top-menu">
@@ -60,23 +60,23 @@ export default function PatientManagement() {
                 </div>
               </div>
             </div>
-            <div className="table">
-              <table>
-                <thead>
-                  <tr className="table-heading">
-                    <th>Patient Name</th>
-                    <th>Patient Issue</th>
-                    <th>Doctor Name</th>
-                    <th>Diseases Name</th>
-                    <th>Appointment Time</th>
-                    <th>Appointment Type</th>
-                    <th>Action</th>
+            <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+              <table className="min-w-full table-auto">
+                <thead className="sticky top-0 bg-gray-100 z-10" >
+                  <tr >
+                    <th className="p-3 text-left text-lg font-semibold" >Patient Name</th>
+                    <th className="p-3 text-left text-lg font-semibold">Patient Issue</th>
+                    <th className="p-3 text-left text-lg font-semibold">Doctor Name</th>
+                    <th className="p-3 text-left text-lg font-semibold">Diseases Name</th>
+                    <th className="p-3 text-left text-lg font-semibold">Appointment Time</th>
+                    <th className="p-3 text-left text-lg font-semibold">Appointment Type</th>
+                    <th className="p-3 text-left text-lg font-semibold">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {patients.map((patient, index) => (
-                    <tr key={index}>
-                      <td className="flex align-center">
+                    <tr key={index} className="border-t">
+                      <td className="flex align-center p-3">
                         <div className="avatar">
                           <img src="/img/Avatar.png" alt="Avatar" />
                         </div>
@@ -84,22 +84,22 @@ export default function PatientManagement() {
                           <h3>{patient.name}</h3>
                         </div>
                       </td>
-                      <td>
+                      <td className="p-3">
                         <h3>{patient.issue}</h3>
                       </td>
-                      <td>
+                      <td className="p-3">
                         <h3>{patient.doctor}</h3>
                       </td>
-                      <td>
+                      <td className="p-3">
                         <h3>{patient.disease}</h3>
                       </td>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>{patient.time}</h3>
                       </td>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>{patient.type}</h3>
                       </td>
-                      <td className="action">
+                      <td className="action p-3">
                         <div className="view" onClick={() => openModal(patient)}>
                           <FaEye />
                         </div>

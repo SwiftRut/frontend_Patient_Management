@@ -43,36 +43,36 @@ export default function PaymentMethod() {
                   </button>
                 </div>
               </div>
-              <div className="table">
-                <table>
-                  <thead>
+              <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+                <table className="min-w-full table-auto">
+                  <thead className="sticky top-0 bg-gray-100 z-10">
                     <tr>
-                      <th>Bill Number</th>
-                      <th>Patient Name</th>
-                      <th>Disease Name</th>
-                      <th>Phone Number</th>
-                      <th>Status</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Action</th>
+                      <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
+                      <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
+                      <th className="p-3 text-left text-lg font-semibold">Disease Name</th>
+                      <th className="p-3 text-left text-lg font-semibold">Phone Number</th>
+                      <th className="p-3 text-left text-lg font-semibold">Status</th>
+                      <th className="p-3 text-left text-lg font-semibold">Date</th>
+                      <th className="p-3 text-left text-lg font-semibold">Time</th>
+                      <th className="p-3 text-left text-lg font-semibold">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                   <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -86,20 +86,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -113,20 +113,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -140,20 +140,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -166,20 +166,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -193,20 +193,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -219,20 +219,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -246,20 +246,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -272,20 +272,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -299,20 +299,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -325,20 +325,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -352,20 +352,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -378,20 +378,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -405,20 +405,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -431,20 +431,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -458,20 +458,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -484,20 +484,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -511,20 +511,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -537,20 +537,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -564,20 +564,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -590,20 +590,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -617,20 +617,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -643,20 +643,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -670,20 +670,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -696,20 +696,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -723,20 +723,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -749,20 +749,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -776,20 +776,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -802,20 +802,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -829,20 +829,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -855,20 +855,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -882,20 +882,20 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -908,20 +908,20 @@ export default function PaymentMethod() {
                         </div>
                       </td>
                     </tr> <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="status">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
                         <h3>Paid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
@@ -935,20 +935,126 @@ export default function PaymentMethod() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="time">
+                      <td className="time p-3">
                         <h3>5654</h3>
                       </td>
-                      <td>Alfredo Vaccaro</td>
-                      <td>Colds and Flu</td>
-                      <td>89564 25462</td>
-                      <td className="red">
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
                         <h3>Unpaid</h3>
                       </td>
-                      <td>2 Jan, 2022</td>
-                      <td className="time">
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
                         <h3>4:30 PM</h3>
                       </td>
-                      <td className="flex action">
+                      <td className="flex action p-3">
+                        <div className="edit">
+                          <FaEdit />
+                        </div>
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                        <div className="delete">
+                          <img
+                            src="/img/BillingAndPayments.png"/>
+                        </div>
+                      </td>
+                    </tr> <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
+                        <h3>Paid</h3>
+                      </td>
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
+                        <h3>4:30 PM</h3>
+                      </td>
+                      <td className="flex action p-3">
+                        <div className="edit">
+                          <FaEdit />
+                        </div>
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                        <div className="delete">
+                          <img
+                            src="/img/BillingAndPayments.png"/>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
+                        <h3>Unpaid</h3>
+                      </td>
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
+                        <h3>4:30 PM</h3>
+                      </td>
+                      <td className="flex action p-3">
+                        <div className="edit">
+                          <FaEdit />
+                        </div>
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                        <div className="delete">
+                          <img
+                            src="/img/BillingAndPayments.png"/>
+                        </div>
+                      </td>
+                    </tr> <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="status p-3">
+                        <h3>Paid</h3>
+                      </td>
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
+                        <h3>4:30 PM</h3>
+                      </td>
+                      <td className="flex action p-3">
+                        <div className="edit">
+                          <FaEdit />
+                        </div>
+                        <div className="view">
+                          <FaEye />
+                        </div>
+                        <div className="delete">
+                          <img
+                            src="/img/BillingAndPayments.png"/>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time p-3">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="p-3">Alfredo Vaccaro</td>
+                      <td className="p-3">Colds and Flu</td>
+                      <td className="p-3">89564 25462</td>
+                      <td className="red p-3">
+                        <h3>Unpaid</h3>
+                      </td>
+                      <td className="p-3">2 Jan, 2022</td>
+                      <td className="time p-3">
+                        <h3>4:30 PM</h3>
+                      </td>
+                      <td className="flex action p-3">
                         <div className="edit">
                           <FaEdit />
                         </div>
