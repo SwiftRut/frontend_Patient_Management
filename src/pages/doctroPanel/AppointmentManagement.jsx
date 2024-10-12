@@ -4,8 +4,6 @@ import { CalendarToday, Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
-import { useAuth } from "../../hooks/useAuth.jsx";
-import { useGlobal } from "../../hooks/useGlobal.jsx";
 import apiService from "../../services/api.js";
 import "./doctorPanel.css";
 
