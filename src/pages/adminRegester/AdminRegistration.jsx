@@ -140,17 +140,21 @@ const AdminRegistration = () => {
       console.error("Error creating hospital:", error);
     }
   };
-  const SelectMenuButton = (props) => (
-    <components.MenuList {...props}>
-      {props.children}
-      <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
-        Add New Hospital
-      </button>
-    </components.MenuList>
-  );
-  SelectMenuButton.propTypes = {
-    children: PropTypes.node,
-  };
+  const handelAddHospitalModel = () => {
+    console.log("hi")
+    setIsModalOpen(true)
+  }
+  // const SelectMenuButton = (props) => (
+  //   <components.MenuList {...props}>
+  //     {props.children}
+  //     <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
+  //       Add New Hospital
+  //     </button>
+  //   </components.MenuList>
+  // );
+  // SelectMenuButton.propTypes = {
+  //   children: PropTypes.node,
+  // };
   return (
     <>
       <div className="registration-section ">
@@ -282,7 +286,7 @@ const AdminRegistration = () => {
                       <div className="label">
                         Select Hospital <span>*</span>
                       </div>
-                      <Select
+                      {/* <Select
                         name="hospital"
                         value={
                           allHospitals.find((hospital) => hospital._id === formData.hospital)
@@ -304,10 +308,45 @@ const AdminRegistration = () => {
                           value: hospital._id,
                           label: hospital.name,
                         }))}
+                          {
+                          
+                          value: hospital._id,
+                          label: hospital.name,
+                        }
                         components={{ MenuList: SelectMenuButton }}
                         placeholder="Select Hospital"
                         isClearable
-                      />
+                      /> */}
+                      <select name="hospital" id=""
+                        value={
+                          allHospitals.find((hospital) => hospital._id === formData.hospital)
+                            ? {
+                              label: allHospitals.find(
+                                (hospital) => hospital._id === formData.hospital
+                              ).name,
+                              value: formData.hospital,
+                            }
+                            : null
+                        }
+                        onChange={(selectedOption) =>
+                          setFormData((prevState) => ({
+                            ...prevState,
+                            hospital: selectedOption.value,
+                          }))}
+                        placeholder="Select Hospital"
+                        isClearable>
+                        {allHospitals.map((hospital) => (
+                          <option key={hospital._id} value={hospital._id}>
+                            {hospital.name}
+                          </option>
+                        ))}
+                        //  add hospital
+                        <option>
+                          <button className="add-new-hospital " onClick={() => handelAddHospitalModel()}>
+                            Add New Hospital
+                          </button>
+                        </option>
+                      </select>
                     </div>
 
                     <div className="input-box">

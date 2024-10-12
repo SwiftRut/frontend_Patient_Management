@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
   const [allAppointements, setAllAppointements] = useState([]);
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   const getAllHospitals = async () => {
     try {
       const response = await apiService.GetAllHospitals();
@@ -171,33 +171,33 @@ export const GlobalProvider = ({ children }) => {
     }
   }
   const getChatHistory = async (doctorId, patientId) => {
-    try{
-      const response = await apiService.GetChatHistory(doctorId,patientId);
+    try {
+      const response = await apiService.GetChatHistory(doctorId, patientId);
       console.log(response.data);
       return response.data;
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
   }
   const getDoctorContacts = async (patientId) => {
-    try{
+    try {
       const response = await apiService.GetDoctorContacts(
         patientId);
-      console.log(response.data,"<< doctor contats");
+      console.log(response.data, "<< doctor contats");
       return response.data;
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
   }
   const getPatientContacts = async (doctorId) => {
-    try{
+    try {
       const response = await apiService.GetPatientContacts(
         doctorId);
-      console.log(response.data,"<< patient contats");
+      console.log(response.data, "<< patient contats");
       return response.data;
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
@@ -231,7 +231,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements,getChatHistory
+        allAppointements, getChatHistory
       }}
     >
       {children}
