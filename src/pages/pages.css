@@ -234,6 +234,10 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.registration-section .row .main .form .content .form-box form .condition .login-btn p span {
+  color: #5678E9;
 }
 .registration-section .row .main .img-box {
   width: 50%;
@@ -733,6 +737,9 @@ input {
   top: 0px;
 }
 
+.admin-mobile-section .row .main {
+  height: 100vh;
+}
 .admin-mobile-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -878,6 +885,9 @@ input {
   top: 0px;
 }
 
+.admin-otp-section .row .main {
+  height: 100vh;
+}
 .admin-otp-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -1058,6 +1068,9 @@ input {
   top: 0px;
 }
 
+.changePassword-section .row .main {
+  height: 100vh;
+}
 .changePassword-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -1209,6 +1222,9 @@ input {
   top: 0px;
 }
 
+.login-section .row .main {
+  height: 100vh;
+}
 .login-section .row .main .form {
   padding: 120px;
   width: 50%;
@@ -1242,6 +1258,9 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+}
+.login-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .login-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -1299,6 +1318,9 @@ input {
 .login-section .row .main .form .content .form-box form .condition .remember-forgot .remember p {
   padding-left: 15px;
 }
+.login-section .row .main .form .content .form-box form .condition .remember-forgot .forgot span {
+  color: #5678E9;
+}
 .login-section .row .main .form .content .form-box form .condition .login-btn {
   padding: 15px 0px;
 }
@@ -1321,6 +1343,10 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.login-section .row .main .form .content .form-box form .condition .registration-btn p span {
+  color: #5678E9;
 }
 .login-section .row .main .img-box {
   width: 50%;

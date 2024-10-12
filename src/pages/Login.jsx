@@ -131,8 +131,6 @@ const Login = () => {
                           <span
                             style={{
                               cursor: "pointer",
-                              color: "blue",
-                              textDecoration: "underline",
                             }}
                           >
                             Forgot password?
@@ -148,7 +146,7 @@ const Login = () => {
                         onClick={() => navigate("/adminRegistration")}
                       >
                         <p
-                          style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                          style={{ cursor: "pointer" }}
                         >
                           Don’t have an account? Register
                         </p>

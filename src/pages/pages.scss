@@ -295,6 +295,11 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
+                    color: #030229;
+
+                    span {
+                      color: #5678E9;
+                    }
                   }
                 }
               }
@@ -970,6 +975,8 @@ input {
 .admin-mobile-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
@@ -1160,6 +1167,8 @@ input {
 .admin-otp-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
@@ -1400,6 +1409,8 @@ input {
 .changePassword-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
@@ -1596,6 +1607,8 @@ input {
 .login-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px;
         width: 50%;
@@ -1632,6 +1645,10 @@ input {
                   top: 4px;
                   left: 14px;
                   background-color: white;
+
+                  span {
+                    color: red;
+                  }
                 }
 
                 input {
@@ -1706,7 +1723,15 @@ input {
                       padding-left: 15px;
                     }
                   }
+
+                  .forgot {
+                    span {
+                      color: #5678E9;
+                    }
+                  }
                 }
+
+
 
                 .login-btn {
                   padding: 15px 0px;
@@ -1734,6 +1759,11 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
+                    color: #030229;
+
+                    span {
+                      color: #5678E9;
+                    }
                   }
                 }
               }
