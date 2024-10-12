@@ -30,13 +30,6 @@ input {
   align-items: center;
 }
 
-.bg-gray {
-  background-color: #f6f8fb;
-}
-
-.patient-section {
-  padding: 10px;
-}
 .patient-section .row .main {
   border-radius: 15px;
   margin: 10px;
