@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Avatar,
   List,
@@ -28,16 +28,27 @@ const ChatScreen = () => {
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const { getChatHistory, getDoctorContacts, getPatientContacts } = useGlobal();
+  const { getChatHistory, getPatientContacts } = useGlobal();
+  
+  // Ref for message container
+  const msgContainerRef = useRef(null);
 
   const handleChatClick = (chat) => {
     setSelectedChat(chat);
   };
+
   const filteredChats = initialChats.filter(
     (chat) =>
       chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       chat.message.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const scrollToBottom = () => {
+    if (msgContainerRef.current) {
+      msgContainerRef.current.scrollTop = msgContainerRef.current.scrollHeight;
+    }
+  };
+
   const sendMessage = async () => {
     if (doctorId && patientId && messageInput.trim()) {
       const messageData = {
@@ -50,6 +61,7 @@ const ChatScreen = () => {
       };
       socket.emit("message", messageData);
       setMessageInput("");
+      scrollToBottom();
     }
   };
 
@@ -67,6 +79,7 @@ const ChatScreen = () => {
 
       const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
       setMessages(messageHistory);
+      scrollToBottom();
       getPatientContacts(doctorId);
     };
 
@@ -74,15 +87,23 @@ const ChatScreen = () => {
 
     socket.on("message", (message) => {
       setMessages((prev) => [...prev, message]);
+      scrollToBottom();
     });
 
     return () => {
       socket.off("message");
     };
   }, []);
+
+  // Auto scroll when messages array changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
-          <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
+      {/* Patient List */}
+      <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
         <div className="mb-4">
           <TextField
             fullWidth
@@ -121,8 +142,9 @@ const ChatScreen = () => {
           ))}
         </List>
       </div>
+
       {/* Chat window */}
-      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col">
+      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full">
         <div className="flex items-center mb-4">
           <Avatar src={selectedChat.profile} alt={selectedChat.name} />
           <div className="ml-4">
@@ -131,7 +153,11 @@ const ChatScreen = () => {
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto mb-4">
+        <div
+          ref={msgContainerRef}
+          id="msg_container"
+          className="flex-1 overflow-y-scroll mb-4"
+        >
           {messages.map((msg, index) => (
             <div
               key={index}
