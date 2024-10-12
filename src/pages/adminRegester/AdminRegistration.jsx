@@ -309,6 +309,7 @@ const AdminRegistration = () => {
                         isClearable
                       />
                     </div>
+
                     <div className="input-box">
                       <div className="label">
                         Password <span>*</span>
