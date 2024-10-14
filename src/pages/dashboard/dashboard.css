@@ -246,7 +246,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  height: 340px;
+  height: 310px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head {
   justify-content: space-between;
@@ -307,9 +307,6 @@
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data {
   border: 1px solid #f4f4f4;
   padding: 10px 14px;
-}
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data ul li {
-  padding-bottom: 10px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data ul li p {
   font-size: 16px;
