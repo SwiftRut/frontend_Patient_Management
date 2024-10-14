@@ -28,7 +28,7 @@ const PatientDetails = lazy(() => import("./pages/patientManagement/PatientDetai
 
 // Lazy-loaded extra components
 const Scheduler = lazy(() => import("./component/Schedular.jsx"));
-const Bill = lazy(() => import("./component/Bill.jsx"));
+const Bill = lazy(() => import("./pages/invoice/Bill.jsx"));
 const Onsite = lazy(() => import("./pages/doctorManagement/Onsite.jsx"));
 const CashPayment = lazy(() => import("./pages/billPayment/CashPayment.jsx"));
 const Delete = lazy(() => import("./pages/doctorManagement/Delete.jsx"));
@@ -61,7 +61,8 @@ function App() {
               <Route path="edit" />
 
               <Route path="createBill" />
-              <Route path="/editBill/:id" />
+              <Route path="editBill/:id" />
+              <Route path="bill/:id" />
 
               <Route path="doctorManagement/*" />
               <Route path="doctorAdd" />
@@ -108,7 +109,10 @@ function App() {
               <Route path="chatScreen" />
             </Route>
 
-            {/* extra routes */}
+            {/* other routes */}
+
+            <Route path="/bill2" element={<Bill2 />} />
+            <Route path="/bill3" element={<Bill3 />} />
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
@@ -119,10 +123,6 @@ function App() {
             {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
             <Route path="/onsite" element={<Onsite />} />
             <Route path="/details" element={<PatientDetails />} />
-
-            <Route path="/bill/:id" element={<Bill />} />
-            <Route path="/bill2" element={<Bill2 />} />
-            <Route path="/bill3" element={<Bill3 />} />
 
             <Route path="/cash" element={<CashPayment />} />
             <Route path="/delete" element={<Delete />} />

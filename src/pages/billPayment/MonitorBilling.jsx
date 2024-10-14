@@ -26,15 +26,6 @@ export default function MonitorBilling() {
       time: "4:30 PM",
     },
     {
-      billNumber: "5655",
-      patientName: "Marcus Philips",
-      diseaseName: "Stomach Ache",
-      phoneNumber: "92584 58475",
-      status: "Unpaid",
-      date: "3 Jan, 2022",
-      time: "5:00 PM",
-    },
-    {
       billNumber: "5656",
       patientName: "John Doe",
       diseaseName: "Headache",
@@ -195,7 +186,16 @@ export default function MonitorBilling() {
       status: "Unpaid",
       date: "21 Jan, 2022",
       time: "8:15 AM",
-    }
+    },
+    {
+      billNumber: "5673",
+      patientName: "Doctor Strange",
+      diseaseName: "Migraine",
+      phoneNumber: "89012 34567",
+      status: "Unpaid",
+      date: "21 Jan, 2022",
+      time: "8:15 AM",
+    },
   ];
 
   // Fetch bills when the component mounts
@@ -284,7 +284,7 @@ export default function MonitorBilling() {
                         <h3>{record.time}</h3>
                       </td>
                       <td className="action p-3">
-                        <div className="view" onClick={() => navigate(`/bill`)}>
+                        <div className="view" onClick={() => navigate(`/bill/${record.billNumber}`)}>
                           <FaEye />
                         </div>
                       </td>
