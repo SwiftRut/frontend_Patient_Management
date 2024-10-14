@@ -13,7 +13,15 @@ export default function AdminOtp() {
   const inputRefs = useRef([]);
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const [isResendDisabled, setIsResendDisabled] = useState(true);
-  const [timer, setTimer] = useState(60); // 1 minutes = 60 seconds
+  const [timer, setTimer] = useState(60); // 1 minute = 60 seconds
+
+  // Check if identifier is valid
+  useEffect(() => {
+    if (!identifier) {
+      toast.error("Invalid request. Please try again.");
+      navigate('/someFallbackRoute'); // Navigate to a fallback route
+    }
+  }, [identifier, navigate]);
 
   useEffect(() => {
     const slider = document.querySelector(".slider");
@@ -73,13 +81,19 @@ export default function AdminOtp() {
     setOtp(newOtp);
 
     if (value.length === 1 && index < inputRefs.current.length - 1) {
-      inputRefs.current[index + 1].focus();
+      const nextInput = inputRefs.current[index + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
   const handleKeyDown = (index, event) => {
     if (event.key === "Backspace" && index > 0 && event.target.value === "") {
-      inputRefs.current[index - 1].focus();
+      const prevInput = inputRefs.current[index - 1];
+      if (prevInput) {
+        prevInput.focus();
+      }
     }
   };
 
