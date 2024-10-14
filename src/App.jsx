@@ -109,7 +109,6 @@ function App() {
             </Route>
 
             {/* extra routes */}
-            {/* <Route path="/abc" element={<PatientsStatistics />} /> */}
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
@@ -120,7 +119,6 @@ function App() {
             {/* <Route path="/addnewfield" element={<AddNewField />} /> */}
             <Route path="/onsite" element={<Onsite />} />
             <Route path="/details" element={<PatientDetails />} />
-            {/* <Route path="/onsite/:id" element={<Onsite />} /> */}
 
             <Route path="/bill/:id" element={<Bill />} />
             <Route path="/bill2" element={<Bill2 />} />

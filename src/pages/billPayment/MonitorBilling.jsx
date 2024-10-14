@@ -237,7 +237,6 @@ export default function MonitorBilling() {
             className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
             style={{ maxHeight: "calc(100vh - 260px)" }}
           >
-            {" "}
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
@@ -269,7 +268,8 @@ export default function MonitorBilling() {
                       <h3>{record.time}</h3>
                     </td>
                     <td className="action p-3">
-                      <div className="view">
+                      {/* <div className="view" onClick={() => navigate(`/bill/${record._id}`)}> */}
+                      <div className="view" onClick={() => navigate(`/bill`)}>
                         <FaEye />
                       </div>
                     </td>
