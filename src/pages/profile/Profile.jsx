@@ -9,35 +9,24 @@ import ProfilePrivacyPolicy from "../../component/AdminProfile/ProfilePrivacyPol
 
 export default function Profile() {
   return (
-    <div className="main-content">
-      <div className="profile-section">
-        <div className="row">
-          <div className="main">
-            <div className="top"></div>
-            <div className="profile-setting">
-              <div className="head">
-                <p>Profile Setting</p>
-              </div>
-              <div className="content flex">
-                <AsideProfile />
+    <div className="profile-section">
+      <div className="row">
+        <div className="main">
+          <div className="top"></div>
+          <div className="profile-setting">
+            <div className="head">
+              <p>Profile Setting</p>
+            </div>
+            <div className="content flex">
+              <AsideProfile />
 
-                <div className="right">
-                  <Routes>
-                    <Route path="/" element={<ProfileData />} />
-                    <Route
-                      path="changePassword"
-                      element={<ProfileChangePassword />}
-                    />
-                    <Route
-                      path="termsCondition"
-                      element={<ProfileTermsCondition />}
-                    />
-                    <Route
-                      path="privacyPolicy"
-                      element={<ProfilePrivacyPolicy />}
-                    />
-                  </Routes>
-                </div>
+              <div className="right">
+                <Routes>
+                  <Route path="/" element={<ProfileData />} />
+                  <Route path="changePassword" element={<ProfileChangePassword />} />
+                  <Route path="termsCondition" element={<ProfileTermsCondition />} />
+                  <Route path="privacyPolicy" element={<ProfilePrivacyPolicy />} />
+                </Routes>
               </div>
             </div>
           </div>
