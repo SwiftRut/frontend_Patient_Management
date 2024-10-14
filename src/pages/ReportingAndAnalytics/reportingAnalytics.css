@@ -92,7 +92,7 @@
   font-weight: 800;
 }
 .reportingAnalytics-section .row .main .top {
-  padding: 10px 10px 10px 10px;
+  padding: 0px 10px 0px 10px;
 }
 .reportingAnalytics-section .row .main .top .appointment-data {
   padding: 0px 15px;
@@ -181,14 +181,14 @@
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content {
-  height: 400px;
+  height: 330px;
   background-color: white;
   padding: 20px;
   border-radius: 15px;
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .head .title p,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .head .title p {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: #030229;
 }
@@ -198,7 +198,7 @@
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .pending-bill .pending-bill-data {
-  padding-top: 40px;
+  padding-top: 10px;
   height: 90%;
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data .img img,
@@ -227,7 +227,7 @@
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data .bill-table table thead tr th,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .pending-bill .pending-bill-data .bill-table table thead tr th {
-  width: 30%;
+  width: 40%;
   color: #030229;
   font-size: 13px;
   font-weight: 600;
@@ -240,7 +240,7 @@
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data .bill-table table tbody tr,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .pending-bill .pending-bill-data .bill-table table tbody tr {
-  padding: 5px 0px;
+  padding: 5px 14px;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #F6F8FB;
@@ -294,7 +294,8 @@
   color: #0EABEB;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data {
-  width: 32.5%;
+  width: 32%;
+  height: 330px;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content {
   padding: 20px;
@@ -303,34 +304,35 @@
   height: 100%;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .head .title p {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: #030229;
   border-bottom: 1px solid #F4F4F4;
-  padding-bottom: 10px;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data {
   background-color: #F6F8FB;
   border-radius: 15px;
   align-items: center;
-  padding: 25px;
+  padding: 0px 20px;
+  justify-content: space-between;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data .img {
-  width: 40%;
+  width: 35%;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data .img img {
-  width: 145px;
+  width: 100%;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data .details {
   width: 60%;
+  padding: 5px 0px;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data .details .content {
   background-color: white;
   border-radius: 15px;
-  padding: 15px;
+  padding: 10px;
   margin: 0px auto;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .Summary-status .Patients-data .details .content ul li {
@@ -338,7 +340,7 @@
   gap: 15px;
   align-items: center;
   padding: 5px 0px;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   color: #4F4F4F;
 }
