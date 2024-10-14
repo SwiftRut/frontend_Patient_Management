@@ -13,26 +13,186 @@ export default function MonitorBilling() {
 
   // Example array of billing records with 20 records
   const billingRecords = [
-    { billNumber: "5654", patientName: "Alfredo Vaccaro", diseaseName: "Colds and Flu", phoneNumber: "89564 25462", status: "Paid", date: "2 Jan, 2022", time: "4:30 PM" },
-    { billNumber: "5655", patientName: "Marcus Philips", diseaseName: "Stomach Ache", phoneNumber: "92584 58475", status: "Unpaid", date: "3 Jan, 2022", time: "5:00 PM" },
-    { billNumber: "5656", patientName: "John Doe", diseaseName: "Headache", phoneNumber: "12345 67890", status: "Paid", date: "4 Jan, 2022", time: "3:00 PM" },
-    { billNumber: "5657", patientName: "Jane Smith", diseaseName: "Back Pain", phoneNumber: "23456 78901", status: "Unpaid", date: "5 Jan, 2022", time: "1:30 PM" },
-    { billNumber: "5658", patientName: "Sam Wilson", diseaseName: "Flu", phoneNumber: "34567 89012", status: "Paid", date: "6 Jan, 2022", time: "2:00 PM" },
-    { billNumber: "5659", patientName: "Sara Connor", diseaseName: "Allergy", phoneNumber: "45678 90123", status: "Unpaid", date: "7 Jan, 2022", time: "11:00 AM" },
-    { billNumber: "5660", patientName: "Tony Stark", diseaseName: "Chest Pain", phoneNumber: "56789 01234", status: "Paid", date: "8 Jan, 2022", time: "9:30 AM" },
-    { billNumber: "5661", patientName: "Bruce Wayne", diseaseName: "Insomnia", phoneNumber: "67890 12345", status: "Unpaid", date: "9 Jan, 2022", time: "6:00 PM" },
-    { billNumber: "5662", patientName: "Clark Kent", diseaseName: "Stress", phoneNumber: "78901 23456", status: "Paid", date: "10 Jan, 2022", time: "8:00 AM" },
-    { billNumber: "5663", patientName: "Diana Prince", diseaseName: "Flu", phoneNumber: "89012 34567", status: "Unpaid", date: "11 Jan, 2022", time: "10:15 AM" },
-    { billNumber: "5664", patientName: "Peter Parker", diseaseName: "Spider Bites", phoneNumber: "90123 45678", status: "Paid", date: "12 Jan, 2022", time: "12:00 PM" },
-    { billNumber: "5665", patientName: "Wade Wilson", diseaseName: "Broken Arm", phoneNumber: "01234 56789", status: "Unpaid", date: "13 Jan, 2022", time: "2:30 PM" },
-    { billNumber: "5666", patientName: "Natasha Romanoff", diseaseName: "Cold", phoneNumber: "12345 67890", status: "Paid", date: "14 Jan, 2022", time: "4:00 PM" },
-    { billNumber: "5667", patientName: "Steve Rogers", diseaseName: "Physical Exam", phoneNumber: "23456 78901", status: "Unpaid", date: "15 Jan, 2022", time: "9:00 AM" },
-    { billNumber: "5668", patientName: "Carol Danvers", diseaseName: "Nausea", phoneNumber: "34567 89012", status: "Paid", date: "16 Jan, 2022", time: "1:45 PM" },
-    { billNumber: "5669", patientName: "Thor Odinson", diseaseName: "Head Injury", phoneNumber: "45678 90123", status: "Unpaid", date: "17 Jan, 2022", time: "3:30 PM" },
-    { billNumber: "5670", patientName: "Bruce Banner", diseaseName: "Stomach Flu", phoneNumber: "56789 01234", status: "Paid", date: "18 Jan, 2022", time: "10:00 AM" },
-    { billNumber: "5671", patientName: "Loki Laufeyson", diseaseName: "Pneumonia", phoneNumber: "67890 12345", status: "Unpaid", date: "19 Jan, 2022", time: "11:30 AM" },
-    { billNumber: "5672", patientName: "Bucky Barnes", diseaseName: "Anxiety", phoneNumber: "78901 23456", status: "Paid", date: "20 Jan, 2022", time: "12:45 PM" },
-    { billNumber: "5673", patientName: "Doctor Strange", diseaseName: "Migraine", phoneNumber: "89012 34567", status: "Unpaid", date: "21 Jan, 2022", time: "8:15 AM" },
+    {
+      billNumber: "5654",
+      patientName: "Alfredo Vaccaro",
+      diseaseName: "Colds and Flu",
+      phoneNumber: "89564 25462",
+      status: "Paid",
+      date: "2 Jan, 2022",
+      time: "4:30 PM",
+    },
+    {
+      billNumber: "5655",
+      patientName: "Marcus Philips",
+      diseaseName: "Stomach Ache",
+      phoneNumber: "92584 58475",
+      status: "Unpaid",
+      date: "3 Jan, 2022",
+      time: "5:00 PM",
+    },
+    {
+      billNumber: "5656",
+      patientName: "John Doe",
+      diseaseName: "Headache",
+      phoneNumber: "12345 67890",
+      status: "Paid",
+      date: "4 Jan, 2022",
+      time: "3:00 PM",
+    },
+    {
+      billNumber: "5657",
+      patientName: "Jane Smith",
+      diseaseName: "Back Pain",
+      phoneNumber: "23456 78901",
+      status: "Unpaid",
+      date: "5 Jan, 2022",
+      time: "1:30 PM",
+    },
+    {
+      billNumber: "5658",
+      patientName: "Sam Wilson",
+      diseaseName: "Flu",
+      phoneNumber: "34567 89012",
+      status: "Paid",
+      date: "6 Jan, 2022",
+      time: "2:00 PM",
+    },
+    {
+      billNumber: "5659",
+      patientName: "Sara Connor",
+      diseaseName: "Allergy",
+      phoneNumber: "45678 90123",
+      status: "Unpaid",
+      date: "7 Jan, 2022",
+      time: "11:00 AM",
+    },
+    {
+      billNumber: "5660",
+      patientName: "Tony Stark",
+      diseaseName: "Chest Pain",
+      phoneNumber: "56789 01234",
+      status: "Paid",
+      date: "8 Jan, 2022",
+      time: "9:30 AM",
+    },
+    {
+      billNumber: "5661",
+      patientName: "Bruce Wayne",
+      diseaseName: "Insomnia",
+      phoneNumber: "67890 12345",
+      status: "Unpaid",
+      date: "9 Jan, 2022",
+      time: "6:00 PM",
+    },
+    {
+      billNumber: "5662",
+      patientName: "Clark Kent",
+      diseaseName: "Stress",
+      phoneNumber: "78901 23456",
+      status: "Paid",
+      date: "10 Jan, 2022",
+      time: "8:00 AM",
+    },
+    {
+      billNumber: "5663",
+      patientName: "Diana Prince",
+      diseaseName: "Flu",
+      phoneNumber: "89012 34567",
+      status: "Unpaid",
+      date: "11 Jan, 2022",
+      time: "10:15 AM",
+    },
+    {
+      billNumber: "5664",
+      patientName: "Peter Parker",
+      diseaseName: "Spider Bites",
+      phoneNumber: "90123 45678",
+      status: "Paid",
+      date: "12 Jan, 2022",
+      time: "12:00 PM",
+    },
+    {
+      billNumber: "5665",
+      patientName: "Wade Wilson",
+      diseaseName: "Broken Arm",
+      phoneNumber: "01234 56789",
+      status: "Unpaid",
+      date: "13 Jan, 2022",
+      time: "2:30 PM",
+    },
+    {
+      billNumber: "5666",
+      patientName: "Natasha Romanoff",
+      diseaseName: "Cold",
+      phoneNumber: "12345 67890",
+      status: "Paid",
+      date: "14 Jan, 2022",
+      time: "4:00 PM",
+    },
+    {
+      billNumber: "5667",
+      patientName: "Steve Rogers",
+      diseaseName: "Physical Exam",
+      phoneNumber: "23456 78901",
+      status: "Unpaid",
+      date: "15 Jan, 2022",
+      time: "9:00 AM",
+    },
+    {
+      billNumber: "5668",
+      patientName: "Carol Danvers",
+      diseaseName: "Nausea",
+      phoneNumber: "34567 89012",
+      status: "Paid",
+      date: "16 Jan, 2022",
+      time: "1:45 PM",
+    },
+    {
+      billNumber: "5669",
+      patientName: "Thor Odinson",
+      diseaseName: "Head Injury",
+      phoneNumber: "45678 90123",
+      status: "Unpaid",
+      date: "17 Jan, 2022",
+      time: "3:30 PM",
+    },
+    {
+      billNumber: "5670",
+      patientName: "Bruce Banner",
+      diseaseName: "Stomach Flu",
+      phoneNumber: "56789 01234",
+      status: "Paid",
+      date: "18 Jan, 2022",
+      time: "10:00 AM",
+    },
+    {
+      billNumber: "5671",
+      patientName: "Loki Laufeyson",
+      diseaseName: "Pneumonia",
+      phoneNumber: "67890 12345",
+      status: "Unpaid",
+      date: "19 Jan, 2022",
+      time: "11:30 AM",
+    },
+    {
+      billNumber: "5672",
+      patientName: "Bucky Barnes",
+      diseaseName: "Anxiety",
+      phoneNumber: "78901 23456",
+      status: "Paid",
+      date: "20 Jan, 2022",
+      time: "12:45 PM",
+    },
+    {
+      billNumber: "5673",
+      patientName: "Doctor Strange",
+      diseaseName: "Migraine",
+      phoneNumber: "89012 34567",
+      status: "Unpaid",
+      date: "21 Jan, 2022",
+      time: "8:15 AM",
+    },
   ];
 
   // Fetch bills when the component mounts
@@ -73,7 +233,11 @@ export default function MonitorBilling() {
               </button>
             </div>
           </div>
-          <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+          <div
+            className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+            style={{ maxHeight: "calc(100vh - 260px)" }}
+          >
+            {" "}
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
@@ -91,7 +255,9 @@ export default function MonitorBilling() {
                 {/* Map over billingRecords to create table rows */}
                 {billingRecords.map((record, index) => (
                   <tr key={index} className="border-t">
-                    <td className="time p-3"><h3>{record.billNumber}</h3></td>
+                    <td className="time p-3">
+                      <h3>{record.billNumber}</h3>
+                    </td>
                     <td className="p-3">{record.patientName}</td>
                     <td className="p-3">{record.diseaseName}</td>
                     <td className="p-3">{record.phoneNumber}</td>
@@ -99,9 +265,13 @@ export default function MonitorBilling() {
                       <h3>{record.status}</h3>
                     </td>
                     <td className="p-3">{record.date}</td>
-                    <td className="time p-3"><h3>{record.time}</h3></td>
+                    <td className="time p-3">
+                      <h3>{record.time}</h3>
+                    </td>
                     <td className="action p-3">
-                      <div className="view"><FaEye /></div>
+                      <div className="view">
+                        <FaEye />
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -113,4 +283,3 @@ export default function MonitorBilling() {
     </div>
   );
 }
-
