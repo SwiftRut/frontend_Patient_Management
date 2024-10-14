@@ -87,8 +87,9 @@ import ProtectedRoute from "./routes/PrivateRoute";
 //   { path: "/chat", element: <Chat /> },
 // ];
 const user = JSON.parse(localStorage.getItem("user"));
-console.log(user.role,"<<<<<<<<<<<<<< userfrom router config");
-const userRole = user.role;
+const userRole = user?.role || "No Role";
+console.log(userRole,"<<<<<<<<<<<<<< userfrom router config");
+
 //with protection
 const routesConfig = [
   { path: "/login", element: <Login />, allowedRoles: [] },
@@ -143,8 +144,7 @@ const routesConfig = [
   // Patient routes
   {
     path: "/patientRegistration",
-    element: <ProtectedRoute element={<PatientRegistration />} allowedRoles={['patient']} userRole={userRole} />,
-    allowedRoles: ['patient'],
+    element: <PatientRegistration />,
   },
   {
     path: "/patient",
