@@ -16,7 +16,6 @@ const AdminPanel = lazy(() => import("./pages/AdminPanel"));
 
 // Lazy-loaded invoice components
 const Invoice = lazy(() => import("./pages/invoice/Invoice.jsx"));
-const EditBill = lazy(() => import("./pages/invoice/EditBill.jsx"));
 
 // Lazy-loaded doctor components
 const DoctorPanel = lazy(() => import("./pages/doctroPanel/DoctorPanel.jsx"));
@@ -62,6 +61,7 @@ function App() {
               <Route path="edit" />
 
               <Route path="createBill" />
+              <Route path="/editBill/:id" />
 
               <Route path="doctorManagement/*" />
               <Route path="doctorAdd" />
@@ -113,7 +113,6 @@ function App() {
 
             {/* invoice component  */}
             <Route path="/invoice" element={<Invoice />} />
-            <Route path="/editBill/:id" element={<EditBill />} />
 
             <Route path="/schedular" element={<Scheduler />} />
 

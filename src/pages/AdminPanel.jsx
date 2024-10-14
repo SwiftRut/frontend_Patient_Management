@@ -13,6 +13,7 @@ import PaymentMethod from "./billPayment/PaymentMethod";
 import DoctorAdd from "./adminPanel/DoctorAdd";
 import DoctorEdit from "./adminPanel/DoctorEdit";
 import CreateBill from "./invoice/CreateBill";
+import EditBill from "./invoice/EditBill";
 
 export default function AdminPanel() {
   return (
@@ -27,6 +28,7 @@ export default function AdminPanel() {
           <Route path="edit" element={<Edit />} />
 
           <Route path="/createBill" element={<CreateBill />} />
+          <Route path="/editBill/:id" element={<EditBill />} />
 
           <Route path="doctorManagement" element={<DoctorManagement />} />
           <Route path="doctorAdd" element={<DoctorAdd />} />

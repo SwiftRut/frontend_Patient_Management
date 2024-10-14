@@ -30,6 +30,13 @@ input {
   align-items: center;
 }
 
+.bg-gray {
+  background-color: #f6f8fb;
+}
+
+.dr-managment-section {
+  padding: 10px;
+}
 .dr-managment-section .row .main {
   border-radius: 15px;
   margin: 10px;
@@ -83,20 +90,17 @@ input {
   color: white;
   font-weight: 600;
 }
-.dr-managment-section .row .main table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-}
 .dr-managment-section .row .main td {
-  padding: 20px 5px !important;
-  color: #4f4f4f;
-  font-size: 18px;
+  text-align: left !important;
   font-weight: 600;
+  color: rgb(110, 110, 110);
 }
 .dr-managment-section .row .main td img {
   margin-right: 10px;
   width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 .dr-managment-section .row .main td .gender {
   width: 50px;
@@ -112,18 +116,19 @@ input {
   color: #718ebf;
   border-radius: 50px;
   margin: 0px 10px;
-  padding: 10px 15px;
-  font-weight: bold;
-  font-size: 20px;
+  padding: 5px;
   text-align: center;
-  width: 150px;
+  width: 120px;
+}
+.dr-managment-section .row .main .action {
+  font-size: 18px;
 }
 .dr-managment-section .row .main .action .edit {
   background-color: #f6f8fb;
   color: #39973d;
   border-radius: 10px;
-  padding: 16px;
-  font-size: 25px;
+  font-size: 18px;
+  padding: 10px;
   text-align: center;
 }
 .dr-managment-section .row .main .action .view {
@@ -131,56 +136,15 @@ input {
   margin: 0px 10px;
   background-color: #f6f8fb;
   border-radius: 10px;
-  padding: 16px;
-  font-size: 25px;
   text-align: center;
+  padding: 10px;
 }
 .dr-managment-section .row .main .action .delete {
   color: #e11d29;
   background-color: #f6f8fb;
   border-radius: 10px;
-  padding: 16px;
-  font-size: 25px;
   text-align: center;
-}
-.dr-managment-section .row .main td,
-.dr-managment-section .row .main th {
-  padding: 5px;
-  min-width: 207px;
-  text-align: center;
-}
-.dr-managment-section .row .main tr:nth-child(1) {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
-.dr-managment-section .row .main thead tr {
-  background: #f6f8fb;
-  color: #030229;
-  display: block;
-  position: relative;
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: 700;
-}
-.dr-managment-section .row .main tbody {
-  display: block;
-  height: 620px;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.dr-managment-section .row .main tbody tr {
-  border-bottom: 1px solid rgb(245, 245, 245);
-}
-.dr-managment-section .row .main tbody::-webkit-scrollbar {
-  width: 10px;
-}
-.dr-managment-section .row .main tbody::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-}
-.dr-managment-section .row .main tbody::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
+  padding: 10px;
 }
 .dr-managment-section .row .main .image {
   padding: 95px;

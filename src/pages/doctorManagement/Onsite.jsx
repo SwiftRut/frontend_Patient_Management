@@ -8,8 +8,6 @@ import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 
-
-
 const Onsite = ({ selectedDoctor, setShowOnsite }) => {
   const { id } = useParams();
 
@@ -22,7 +20,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
       } catch (error) {
         setError(
           "Error fetching doctor details: " +
-          (error.response ? error.response.data.message : error.message)
+            (error.response ? error.response.data.message : error.message)
         );
       } finally {
         setLoading(false);
@@ -33,12 +31,12 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
 
   const handleBack = () => {
     // navigate("/doctorManagement");
-    setShowOnsite(false)
+    setShowOnsite(false);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
+      <div className="bg-white rounded-lg shadow-lg w-2/6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 h-5/6 m-3">
         <div className="onsite-section">
           <div className="row">
             <div className="main">
@@ -49,7 +47,21 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
                 <h3>Doctor Management</h3>
               </div>
               <div className="box">
-                <img src={selectedDoctor.avatar} width="100%" />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <img src={selectedDoctor.avatar} width="13%" />
+                    <div className="info">
+                      <h4>{selectedDoctor.name}</h4>
+                      <p>
+                        <img src="/image/vuesax.png" />
+                        <h3>{selectedDoctor.gender}</h3>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="btn">
+                    <button>Onsite</button>
+                  </div>
+                </div>
               </div>
               <div className="deatils">
                 <div className="table">
@@ -152,10 +164,10 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
               </div>
 
               {/* online */}
-              <div className="working-details">
+              <div className="working-details mt-5">
                 <div className="title flex">
                   <h3>Working On Online</h3>
-                  <p>{selectedDoctor.workingOn}</p>
+                  <p className="font-semibold">{selectedDoctor.workingOn}</p>
                 </div>
                 <ul>
                   <li className="hospital-data flex align-center">
@@ -196,105 +208,6 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
                   </li>
                 </ul>
               </div>
-
-              <div className="table" style={{ marginTop: "20px" }}>
-                <table>
-                  <tr>
-                    <td>
-                      <h3>Age</h3>
-                      <p>36 Years</p>
-                    </td>
-                    <td>
-                      <h3>Email</h3>
-                      <p>kenzi.lawson@example.com</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h3>Phone</h3>
-                      <p>89564 25462</p>
-                    </td>
-                    <td>
-                      <h3>Online Consultation Rate</h3>
-                      <p>₹ 1,000</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h3>Country</h3>
-                      <p>India</p>
-                    </td>
-                    <td>
-                      <h3>State</h3>
-                      <p>Gujarat</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <h3>Zip Code</h3>
-                      <p>382002</p>
-                    </td>
-                    <td>
-                      <h3>City</h3>
-                      <p>Gandhinagar</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={2}>
-                      <h3>Address</h3>
-                      <p>B-105 Virat Bungalows Punagam Motavaracha Jamnagar.</p>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-
-            {/* online */}
-            <div className="working-details">
-              <div className="title flex">
-                <h3>Working On Online</h3>
-                <p>Hospital</p>
-              </div>
-              <ul>
-                <li className="hospital-data flex align-center">
-                  <div className="icon">
-                    <TbBuildingHospital />
-                  </div>
-                  <div className="text">
-                    <h2>Hospital Name</h2>
-                    <p>Artemis Hospital</p>
-                  </div>
-                </li>
-                <li className="hospital-data flex align-center">
-                  <div className="icon">
-                    <IoLinkSharp />
-                  </div>
-                  <div className="text">
-                    <h2>Hospital Website Link</h2>
-                    <p>https://sample.edu/railway</p>
-                  </div>
-                </li>
-                <li className="hospital-data flex align-center">
-                  <div className="icon">
-                    <BiSolidPhoneCall />
-                  </div>
-                  <div className="text">
-                    <h2>Emergency Contact Number</h2>
-                    <p>48555-20103</p>
-                  </div>
-                </li>
-                <li className="hospital-data flex align-center">
-                  <div className="icon">
-                    <IoLocation />
-                  </div>
-                  <div className="text">
-                    <h2>Hospital Address</h2>
-                    <p>
-                      151-152 ,gopinath doc, manik chowk, Satelight road, Mota varacha Jamnagar.
-                    </p>
-                  </div>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

@@ -62,13 +62,12 @@ input {
 .sidebar .asite .menu ul li .dropdown {
   list-style: none;
   padding: 0;
-  border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
 .sidebar .asite .menu ul li .dropdown.open {
-  max-height: 200px; /* Maximum height when open */
+  max-height: 200px;
 }
 .sidebar .asite .menu ul li .dropdown ul {
   padding: 0;
