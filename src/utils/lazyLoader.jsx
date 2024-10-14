@@ -1,2 +1,4 @@
 import { lazy } from "react";
-export const lazyLoader = (path) => lazy(() => import(`../${path}`));
+
+export const lazyLoader = (path) => 
+  lazy(() => /* @vite-ignore */ import(`../${path}`));

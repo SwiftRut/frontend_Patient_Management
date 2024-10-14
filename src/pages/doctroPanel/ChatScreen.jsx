@@ -26,22 +26,32 @@ const ChatScreen = () => {
   const [messageInput, setMessageInput] = useState("");
   const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
+  const [patientContacts, setPatientContacts] = useState([]);
+  const [doctorContacts, setDoctorContacts] = useState([]);
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
   const { getChatHistory, getPatientContacts } = useGlobal();
   
+  console.log(patientContacts, "patientId");
+  console.log(doctorContacts, "doctorId");
+
   // Ref for message container
   const msgContainerRef = useRef(null);
 
-  const handleChatClick = (chat) => {
+  const handleChatClick = async (chat) => {
     setSelectedChat(chat);
+    const { id: selectedPatientId } = chat;
+    console.log(chat,  doctorId, "------------------------------------")
+    try {
+      const history = await getChatHistory(doctorId, chat._id);
+      setMessages(history);
+      console.log("Thisis the history", history); 
+      socket.emit("joinRoom", { doctorId, patientId: selectedPatientId });
+    } catch (error) {
+      console.error("Failed to fetch chat history:", error);
+    }
   };
-
-  const filteredChats = initialChats.filter(
-    (chat) =>
-      chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      chat.message.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  
 
   const scrollToBottom = () => {
     if (msgContainerRef.current) {
@@ -67,8 +77,8 @@ const ChatScreen = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedDoctorId = await getAllDoctors();
-      const fetchedPatientId = await getAllPatients();
+      const fetchedDoctorId = await getAllDoctors(); //return the single id for testing
+      const fetchedPatientId = await getAllPatients(); //return the single id for testing
       setDoctorId(fetchedDoctorId);
       setPatientId(fetchedPatientId);
 
@@ -80,7 +90,10 @@ const ChatScreen = () => {
       const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
       setMessages(messageHistory);
       scrollToBottom();
-      getPatientContacts(doctorId);
+      const patientContacts = await getPatientContacts(doctorId);
+      setPatientContacts(patientContacts);
+      const doctorContacts = await getPatientContacts(patientId);
+      setDoctorContacts(doctorContacts);
     };
 
     fetchData();
@@ -121,7 +134,7 @@ const ChatScreen = () => {
           />
         </div>
         <List>
-          {filteredChats.map((chat) => (
+          {patientContacts.map((chat) => (
             <ListItem
               button
               key={chat.id}
@@ -129,15 +142,15 @@ const ChatScreen = () => {
               selected={selectedChat.id === chat.id}
             >
               <ListItemAvatar>
-                <Avatar src={chat.profile} alt={chat.name} />
+                <Avatar src={chat.profile} alt={chat.firstName + " " + chat.lastName} />
               </ListItemAvatar>
               <ListItemText
-                primary={chat.name}
+                primary={chat.firstName + " " + chat.lastName}
                 secondary={chat.message}
                 primaryTypographyProps={{ fontWeight: "bold" }}
                 secondaryTypographyProps={{ color: "textSecondary" }}
               />
-              <span>{chat.time}</span>
+              <span>{chat.timestamp}</span>
             </ListItem>
           ))}
         </List>
