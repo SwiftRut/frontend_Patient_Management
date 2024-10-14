@@ -31,40 +31,38 @@
                   width: 50px;
                   border-radius: 50%;
                   height: 50px;
-                  background-color: #2E779326;
+                  background-color: #2e779326;
                   display: flex;
                   justify-content: center;
                   align-items: center;
 
                   svg {
                     width: 30px;
-                    color: #2E7793;
+                    color: #2e7793;
                   }
                 }
 
                 .dr-logo {
-                  background-color: #5E5E9E26;
+                  background-color: #5e5e9e26;
 
                   svg {
-                    color: #5E5E9E;
+                    color: #5e5e9e;
                   }
                 }
 
                 .appo-logo {
-                  background-color: #41B16126;
+                  background-color: #41b16126;
 
                   svg {
-                    color: #41B161;
+                    color: #41b161;
                   }
                 }
-
-
 
                 .details {
                   padding-left: 15px;
 
                   p {
-                    color: #A7A7A7;
+                    color: #a7a7a7;
                     font-size: 18px;
                     font-weight: 400;
                   }
@@ -105,14 +103,14 @@
                     li {
                       padding: 8px 0px;
                       font-weight: 400;
-                      color: #A7A7A7;
+                      color: #a7a7a7;
                       display: inline-block;
                       border-radius: 10px;
                       width: 78px;
                       text-align: center;
 
                       &:hover {
-                        background-color: #0EABEB;
+                        background-color: #0eabeb;
                         color: white;
                       }
                     }
@@ -123,7 +121,6 @@
               .graph {
                 height: 85%;
               }
-
             }
           }
         }
@@ -133,6 +130,7 @@
           padding: 20px;
           background-color: white;
           border-radius: 15px;
+          height: auto;
 
           .head {
             justify-content: space-between;
@@ -152,20 +150,22 @@
                 justify-content: center;
                 font-size: 20px;
                 font-weight: 600;
-                color: #FFFFFF;
+                color: #ffffff;
                 padding: 12px 14px;
                 border-radius: 10px;
-                background-color: #0EABEB;
+                background-color: #0eabeb;
                 gap: 10px;
 
                 svg {
-                  color: #FFFFFF;
+                  color: #ffffff;
                 }
               }
             }
           }
 
           .pending-bill {
+            height: 85%;
+
             .bill-status {
               padding-top: 10px;
 
@@ -183,6 +183,7 @@
 
             .pending-bill-data {
               padding-top: 40px;
+              height: 90%;
 
               .img {
                 img {
@@ -190,8 +191,94 @@
                 }
               }
 
+              .bill-table {
+                height: 100%;
+                overflow-y: scroll;
+                scrollbar-color: #030229 #f4f4f4;
+                scrollbar-width: thin;
 
+                table {
+                  padding: 0px 10px;
+                  width: 100%;
 
+                  thead {
+                    tr {
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+                      background-color: #f6f8fb;
+
+                      th {
+                        color: #030229;
+                        font-size: 13px;
+                        font-weight: 600;
+                        padding: 12px 14px;
+                      }
+                    }
+                  }
+
+                  tbody {
+                    height: 100%;
+                    width: 100%;
+
+                    tr {
+                      padding: 5px 0px;
+
+                      td {
+                        text-align: center;
+                      }
+
+                      .bill-num {
+                        background: #f6f8fb;
+                        border-radius: 33px;
+
+                        p {
+                          color: #718ebf;
+                          text-align: center;
+                          padding: 5px 18px;
+                        }
+                      }
+
+                      .patient-name,
+                      .disease-name {
+                        p {
+                          color: #4f4f4f;
+                          font-size: 12px;
+                          font-weight: 500;
+                        }
+                      }
+
+                      .status {
+                        p {
+                          background-color: #39973d1a;
+                          color: #39973d;
+                          font-size: 13px;
+                          font-weight: 600;
+                          padding: 6px 20px;
+                          border-radius: 30px;
+                        }
+                      }
+
+                      .action {
+                        justify-content: center;
+                        align-items: center;
+
+                        .box {
+                          width: 28px;
+                          height: 28px;
+                          background-color: #f6f8fb;
+                          justify-content: center;
+                          align-items: center;
+
+                          svg {
+                            margin: 0px auto;
+                            color: #0eabeb;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -206,21 +293,28 @@
           width: 60%;
 
           .today-appointments {
-
             .appointments-content {
               background-color: white;
               padding: 20px;
               border-radius: 15px;
-              height: 300px;
+              height: 340px;
 
               .head {
                 justify-content: space-between;
 
                 .title {
+                  justify-content: space-between;
+                  align-items: center;
+
                   p {
                     color: #030229;
                     font-size: 26px;
                     font-weight: 700;
+                  }
+
+                  span {
+                    color: #5678e9;
+                    cursor: pointer;
                   }
                 }
               }
@@ -235,6 +329,67 @@
                 }
               }
 
+              .appointments-list {
+                height: 85%;
+                justify-content: space-between;
+                align-items: center;
+                overflow-y: scroll;
+                scrollbar-color: #030229 #f4f4f4;
+                scrollbar-width: thin;
+
+                .box {
+                  width: 32%;
+                  padding: 5px 0px;
+
+                  .content {
+                    .heading {
+                      justify-content: space-between;
+                      align-items: center;
+                      background-color: #f6f8fb;
+                      padding: 10px 14px;
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+
+                      p {
+                        font-size: 18px;
+                        font-weight: 600;
+                      }
+
+                      span {
+                        padding: 6px 20px;
+                        background-color: #5678e91a;
+                        border-radius: 30px;
+                        color: #5678e9;
+                        font-size: 13px;
+                        font-weight: 600;
+                      }
+                    }
+
+                    .data {
+                      border: 1px solid #f4f4f4;
+                      padding: 10px 14px;
+
+                      ul {
+                        li {
+                          padding-bottom: 10px;
+
+                          p {
+                            font-size: 16px;
+                            font-weight: 400;
+                            color: #818194;
+                          }
+
+                          span {
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: #4f4f4f;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -251,7 +406,7 @@
                 font-size: 26px;
                 font-weight: 700;
                 color: #030229;
-                border-bottom: 1px solid #F4F4F4;
+                border-bottom: 1px solid #f4f4f4;
                 padding-bottom: 10px;
               }
             }
@@ -261,7 +416,7 @@
             padding-top: 20px;
 
             .Patients-data {
-              background-color: #F6F8FB;
+              background-color: #f6f8fb;
               border-radius: 15px;
               align-items: center;
               padding: 25px;
@@ -292,38 +447,38 @@
                       padding: 10px;
                       font-size: 18px;
                       font-weight: 600;
-                      color: #4F4F4F;
+                      color: #4f4f4f;
                     }
 
                     .new {
                       svg {
-                        color: #E78B00;
+                        color: #e78b00;
                       }
 
                       span {
                         display: inline-block;
-                        color: #E78B00;
+                        color: #e78b00;
                       }
                     }
 
                     .old {
                       svg {
-                        color: #00AA33;
+                        color: #00aa33;
                       }
 
                       span {
                         display: inline-block;
-                        color: #00AA33;
+                        color: #00aa33;
                       }
                     }
 
                     .total {
                       svg {
-                        color: #0314C9;
+                        color: #0314c9;
                       }
 
                       span {
-                        color: #0314C9;
+                        color: #0314c9;
                       }
                     }
                   }
@@ -333,8 +488,6 @@
           }
         }
       }
-
-
     }
   }
 }
