@@ -8,6 +8,7 @@ export default function PatientManagement() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [activeTab, setActiveTab] = useState("today"); // State for managing the active tab
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
   // Sample patient data for different tabs
   const patientsData = {
@@ -62,45 +63,6 @@ export default function PatientManagement() {
         age: "38 Years",
         gender: "Female",
         address: "789 Oak St, Chicago.",
-        date: "15 Oct, 2024",
-      },
-      {
-        name: "Tony Stark",
-        issue: "Fatigue",
-        doctor: "Dr. Stephen Strange",
-        disease: "Chronic Fatigue Syndrome",
-        time: "3:30 PM",
-        type: "Online",
-        phone: "555-8765",
-        age: "40 Years",
-        gender: "Male",
-        address: "101 Stark Tower, New York.",
-        date: "15 Oct, 2024",
-      },
-      {
-        name: "Bruce Wayne",
-        issue: "Chest Pain",
-        doctor: "Dr. Peter Parker",
-        disease: "Angina",
-        time: "9:00 AM",
-        type: "Offline",
-        phone: "65432 10987",
-        age: "35 Years",
-        gender: "Male",
-        address: "Wayne Manor, Gotham.",
-        date: "15 Oct, 2024",
-      },
-      {
-        name: "Clark Kent",
-        issue: "Vision Problems",
-        doctor: "Dr. Natasha Romanoff",
-        disease: "Astigmatism",
-        time: "10:30 AM",
-        type: "Online",
-        phone: "78901 23456",
-        age: "32 Years",
-        gender: "Male",
-        address: "Daily Planet, Metropolis.",
         date: "15 Oct, 2024",
       },
       {
@@ -258,8 +220,9 @@ export default function PatientManagement() {
         gender: "Male",
         address: "Avengers Compound.",
         date: "15 Oct, 2024",
-      },
+      }
     ],
+
     upcoming: [
       {
         name: "Alice Johnson",
@@ -274,7 +237,6 @@ export default function PatientManagement() {
         address: "123 Elm Street, Springfield.",
         date: "15 Oct, 2024",
       },
-      // Add more patient objects as needed...
     ],
     previous: [
       {
@@ -290,7 +252,6 @@ export default function PatientManagement() {
         address: "456 Oak Street, Metropolis.",
         date: "1 Oct, 2024",
       },
-      // Add more patient objects as needed...
     ],
     cancelled: [
       {
@@ -306,7 +267,6 @@ export default function PatientManagement() {
         address: "789 Pine Street, Gotham.",
         date: "10 Oct, 2024",
       },
-      // Add more patient objects as needed...
     ],
   };
 
@@ -322,6 +282,13 @@ export default function PatientManagement() {
 
   // Get the patients for the active tab
   const currentPatients = patientsData[activeTab];
+
+  // Filter patients based on search query
+  const filteredPatients = currentPatients.filter(patient =>
+    patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    patient.issue.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    patient.doctor.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -343,7 +310,12 @@ export default function PatientManagement() {
                   <div className="search">
                     <CiSearch />
                   </div>
-                  <input type="text" placeholder="Search Patient" />
+                  <input
+                    type="text"
+                    placeholder="Search Patient"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+                  />
                 </div>
               </div>
             </div>
@@ -351,7 +323,6 @@ export default function PatientManagement() {
               className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
               style={{ maxHeight: "calc(100vh - 260px)" }}
             >
-              {" "}
               <table className="min-w-full table-auto">
                 <thead className="sticky top-0 bg-gray-100 z-10">
                   <tr>
@@ -365,38 +336,44 @@ export default function PatientManagement() {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentPatients.map((patient, index) => (
-                    <tr key={index} className="border-t">
-                      <td className="flex align-center p-3">
-                        <div className="avatar">
-                          <img src="/img/Avatar.png" alt="Avatar" />
-                        </div>
-                        <div className="name">
-                          <h3>{patient.name}</h3>
-                        </div>
-                      </td>
-                      <td className="p-3">
-                        <h3>{patient.issue}</h3>
-                      </td>
-                      <td className="p-3">
-                        <h3>{patient.doctor}</h3>
-                      </td>
-                      <td className="p-3">
-                        <h3>{patient.disease}</h3>
-                      </td>
-                      <td className="time p-3">
-                        <h3>{patient.time}</h3>
-                      </td>
-                      <td className="time p-3">
-                        <h3>{patient.type}</h3>
-                      </td>
-                      <td className="action p-3">
-                        <div className="view" onClick={() => openModal(patient)}>
-                          <FaEye />
-                        </div>
-                      </td>
+                  {filteredPatients.length > 0 ? (
+                    filteredPatients.map((patient, index) => (
+                      <tr key={index} className="border-t">
+                        <td className="flex align-center p-3">
+                          <div className="avatar">
+                            <img src="/img/Avatar.png" alt="Avatar" />
+                          </div>
+                          <div className="name">
+                            <h3>{patient.name}</h3>
+                          </div>
+                        </td>
+                        <td className="p-3">
+                          <h3>{patient.issue}</h3>
+                        </td>
+                        <td className="p-3">
+                          <h3>{patient.doctor}</h3>
+                        </td>
+                        <td className="p-3">
+                          <h3>{patient.disease}</h3>
+                        </td>
+                        <td className="time p-3">
+                          <h3>{patient.time}</h3>
+                        </td>
+                        <td className="time p-3">
+                          <h3>{patient.type}</h3>
+                        </td>
+                        <td className="action p-3">
+                          <div className="view" onClick={() => openModal(patient)}>
+                            <FaEye />
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="7" className="p-3 text-center">No patients found.</td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>
