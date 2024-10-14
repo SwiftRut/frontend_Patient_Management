@@ -1,13 +1,13 @@
 .reportingAnalytics-section .row .main .total-data {
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients,
 .reportingAnalytics-section .row .main .total-data .total-Docters,
 .reportingAnalytics-section .row .main .total-data .total-Appointments {
   width: 25%;
-  padding: 20px 20px 0px 20px;
+  padding: 15px 20px 0px 15px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content,
 .reportingAnalytics-section .row .main .total-data .total-Docters .content,
@@ -17,7 +17,7 @@
   align-items: center;
   background-color: white;
   border-radius: 15px;
-  padding: 20px;
+  padding: 15px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details,
 .reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details,
@@ -92,7 +92,7 @@
   font-weight: 800;
 }
 .reportingAnalytics-section .row .main .top {
-  padding: 20px 20px 10px 20px;
+  padding: 10px 10px 10px 10px;
 }
 .reportingAnalytics-section .row .main .top .appointment-data {
   padding: 0px 15px;
@@ -171,18 +171,17 @@
   width: 100%;
 }
 .reportingAnalytics-section .row .main .bottom {
-  padding: 10px 20px;
+  padding: 10px 25px;
   padding-bottom: 30px;
   justify-content: space-between;
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data {
-  width: 33%;
-  padding: 20px;
+  width: 32.5%;
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content {
-  height: 443px;
+  height: 400px;
   background-color: white;
   padding: 20px;
   border-radius: 15px;
@@ -295,13 +294,13 @@
   color: #0EABEB;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data {
-  width: 33%;
-  padding: 20px;
+  width: 32.5%;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content {
   padding: 20px;
   background-color: white;
   border-radius: 15px;
+  height: 100%;
 }
 .reportingAnalytics-section .row .main .bottom .PatientsAge-data .content .head .title p {
   font-size: 26px;

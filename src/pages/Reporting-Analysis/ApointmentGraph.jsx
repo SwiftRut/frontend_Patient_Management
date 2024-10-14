@@ -64,7 +64,7 @@ const AppointmentGraph = () => {
       </div>
 
       {/* Chart Section */}
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={330}>
         <BarChart data={activeTab === 'Year' ? yearlyData : monthlyData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey={activeTab === 'Year' ? 'year' : 'month'} />
