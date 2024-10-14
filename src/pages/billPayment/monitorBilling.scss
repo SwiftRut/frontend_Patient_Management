@@ -113,6 +113,11 @@ input {
           }
         }
       }
+      td {
+        text-align: left !important;
+        font-weight: 600;
+        color: rgb(110, 110, 110);
+      }
       .status {
         h3 {
           color: #39973d !important;
@@ -133,24 +138,22 @@ input {
           color: #718ebf;
           border-radius: 50px;
           margin: 0px 10px;
-          padding: 10px 15px;
-          font-weight: bold;
-          font-size: 20px;
+          padding: 5px;
+          font-size: 18px;
           text-align: center;
-          width: 150px;
+          width: 120px;
         }
       }
       .action {
         .view {
-          width: 60px;
           color: #0eabeb;
           margin: 0px 10px;
           background-color: #f6f8fb;
           border-radius: 10px;
-          padding: 16px;
-          font-size: 25px;
-          display: flex;
-          margin: auto;
+          padding: 10px;
+          font-size: 18px;
+          text-align: center;
+          width: 35%;
         }
       }
     }

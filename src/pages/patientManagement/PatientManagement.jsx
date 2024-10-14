@@ -347,7 +347,11 @@ export default function PatientManagement() {
                 </div>
               </div>
             </div>
-            <div className="pr-data max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+            <div
+              className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+              style={{ maxHeight: "calc(100vh - 260px)" }}
+            >
+              {" "}
               <table className="min-w-full table-auto">
                 <thead className="sticky top-0 bg-gray-100 z-10">
                   <tr>
