@@ -19,7 +19,7 @@ export default function AdminPanel() {
   return (
     <>
       <Sidebar />
-      <div className="main-content">
+      <div className="main-content h-screen overflow-y-hidden">
         <Header />
 
         <Routes>

@@ -1,4 +1,4 @@
-import "../patientManagement/PatientManagement.css";
+import "./patientManagement.css";
 import { CiSearch } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";

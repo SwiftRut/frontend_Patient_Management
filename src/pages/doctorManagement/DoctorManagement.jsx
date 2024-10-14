@@ -21,7 +21,6 @@ export default function DoctorManagement() {
   const navigate = useNavigate();
   const { getAllDoctors, allDoctors } = useDoctor();
 
-  
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
@@ -70,8 +69,9 @@ export default function DoctorManagement() {
 
   const renderDoctorsTable = () => {
     return (
-      <div className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
-        <table className="min-w-full table-auto">
+      <div className="pr-data">
+        {/* <table className="min-w-full table-auto h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"> */}
+        <table className="min-w-full table-auto max-h-[600px] ">
           <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
               <th className="p-3 text-left text-lg font-semibold">Doctor Name</th>
