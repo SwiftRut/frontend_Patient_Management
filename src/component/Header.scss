@@ -28,15 +28,15 @@ input {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 20px;
+  padding: 15px 20px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 
   .breadcrumbs {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 400;
     border: 1px solid #d9d9d9;
-    padding: 18px 25px;
+    padding: 15px 20px;
     border-radius: 35px;
     display: flex;
     align-items: center;
