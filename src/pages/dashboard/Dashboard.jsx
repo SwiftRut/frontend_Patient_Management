@@ -19,15 +19,20 @@ import {
   Legend,
 } from "chart.js";
 import { useNavigate } from "react-router-dom";
-import { useGlobal } from "../../hooks/useGlobal";
-import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics";
-import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
+import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics.jsx";
+import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown.jsx";
+import apiService from '../../services/api.js';
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const navigate = useNavigate();
   const [timePeriod, setTimePeriod] = useState("Week");
   const { getBills, allBills } = useGlobal();
+  const [totalAppointments, setTotalAppointments] = useState(0);
+  const [totalPatients, setTotalPatients] = useState(0);
+  const [totalDoctors, setTotalDoctors] = useState(0);
 
   const pieData = {
     labels: ["Product A", "Product B", "Product C"],
@@ -181,6 +186,50 @@ const Dashboard = () => {
     },
   };
 
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await apiService.GetAllAppointments();
+        const data = response.data;
+        console.log("appointments>>>", data)
+        setTotalAppointments(data.length)
+        const today = new Date().toISOString().split('T')[0];
+        const filteredAppointments = data.filter(
+          (appointment) => appointment.appointmentDate === today
+        );
+        setTodaysAppointments(filteredAppointments);
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+    const fetchPatients = async () => {
+      try {
+        const response = await apiService.GetAllPatients();
+        const data = response.data.data;
+        setTotalPatients(data.length);
+      } catch (error) {
+        console.error('Error fetching patients:', error);
+      }
+    };
+
+    const fetchDoctors = async () => {
+      try {
+        const response = await apiService.GetAllDoctors();
+        const data = response.data.data;
+        setTotalDoctors(data.length);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
+
+
+    fetchAppointments();
+    fetchPatients();
+    fetchDoctors();
+  }, []);
+
+
+
   return (
     <>
       <div className="deshbord-section">
@@ -196,7 +245,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Patients</p>
-                        <span>00</span>
+                        <span>{totalPatients}</span>
                       </div>
                     </div>
                   </div>
@@ -207,7 +256,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Docters</p>
-                        <span>00</span>
+                        <span>{totalDoctors}</span>
                       </div>
                     </div>
                   </div>
@@ -218,7 +267,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Appointments</p>
-                        <span>00</span>
+                        <span>{totalAppointments}</span>
                       </div>
                     </div>
                   </div>
