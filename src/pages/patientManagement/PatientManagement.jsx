@@ -7,23 +7,75 @@ import PatientDetails from "./PatientDetails.jsx"; // Import the PatientDetails 
 export default function PatientManagement() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [activeTab, setActiveTab] = useState("today"); // State for managing the active tab
 
-  const patients = [
-    {
-      name: "Marcus Philips",
-      issue: "Stomach Ache",
-      doctor: "Dr. Mathew Best",
-      disease: "Viral Infection",
-      time: "4:30 PM",
-      type: "Online",
-      phone: "92584 58475",
-      age: "27 Years",
-      gender: "Male",
-      address: "B-408 Swastik society, Shivaji marg mota varacha rajkot.",
-      date: "2 Jan, 2022",
-    },
-    // Add more patient objects as needed...
-  ];
+  // Sample patient data for different tabs
+  const patientsData = {
+    today: [
+      {
+        name: "Marcus Philips",
+        issue: "Stomach Ache",
+        doctor: "Dr. Mathew Best",
+        disease: "Viral Infection",
+        time: "4:30 PM",
+        type: "Online",
+        phone: "92584 58475",
+        age: "27 Years",
+        gender: "Male",
+        address: "B-408 Swastik society, Shivaji marg mota varacha rajkot.",
+        date: "2 Jan, 2022",
+      },
+      // Add more patient objects as needed...
+    ],
+    upcoming: [
+      {
+        name: "Alice Johnson",
+        issue: "Headache",
+        doctor: "Dr. Susan Wright",
+        disease: "Migraine",
+        time: "3:00 PM",
+        type: "Offline",
+        phone: "12345 67890",
+        age: "30 Years",
+        gender: "Female",
+        address: "123 Elm Street, Springfield.",
+        date: "15 Oct, 2024",
+      },
+      // Add more patient objects as needed...
+    ],
+    previous: [
+      {
+        name: "John Doe",
+        issue: "Back Pain",
+        doctor: "Dr. John Smith",
+        disease: "Muscle Strain",
+        time: "10:00 AM",
+        type: "Online",
+        phone: "98765 43210",
+        age: "45 Years",
+        gender: "Male",
+        address: "456 Oak Street, Metropolis.",
+        date: "1 Oct, 2024",
+      },
+      // Add more patient objects as needed...
+    ],
+    cancelled: [
+      {
+        name: "Emma Watson",
+        issue: "Flu Symptoms",
+        doctor: "Dr. Emma Brown",
+        disease: "Influenza",
+        time: "1:00 PM",
+        type: "Online",
+        phone: "56789 01234",
+        age: "32 Years",
+        gender: "Female",
+        address: "789 Pine Street, Gotham.",
+        date: "10 Oct, 2024",
+      },
+      // Add more patient objects as needed...
+    ],
+  };
 
   const openModal = (patient) => {
     setSelectedPatient(patient);
@@ -35,20 +87,23 @@ export default function PatientManagement() {
     setSelectedPatient(null);
   };
 
+  // Get the patients for the active tab
+  const currentPatients = patientsData[activeTab];
+
   return (
     <>
       <div className="patient-section bg-gray">
         <div className="row">
           <div className="main">
             <div className="flex top-menu">
-              <button>Today Appointment</button>
-              <button>Upcoming Appointment</button>
-              <button>Previous Appointment</button>
-              <button>Cancel Appointment</button>
+              <button onClick={() => setActiveTab("today")}>Today Appointment</button>
+              <button onClick={() => setActiveTab("upcoming")}>Upcoming Appointment</button>
+              <button onClick={() => setActiveTab("previous")}>Previous Appointment</button>
+              <button onClick={() => setActiveTab("cancelled")}>Cancel Appointment</button>
             </div>
             <div className="top flex align-center">
               <div className="heading">
-                <h3>Today Appointment</h3>
+                <h3>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Appointments</h3>
               </div>
               <div className="search-btn flex">
                 <div className="input flex align-center">
@@ -73,7 +128,7 @@ export default function PatientManagement() {
                   </tr>
                 </thead>
                 <tbody>
-                  {patients.map((patient, index) => (
+                  {currentPatients.map((patient, index) => (
                     <tr key={index} className="border-t">
                       <td className="flex align-center p-3">
                         <div className="avatar">
