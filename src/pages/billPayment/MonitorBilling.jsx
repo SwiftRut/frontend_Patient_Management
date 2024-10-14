@@ -4,12 +4,15 @@ import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { RiEditBoxFill } from "react-icons/ri";
 import { useGlobal } from "../../hooks/useGlobal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function MonitorBilling() {
   const navigate = useNavigate();
   const { getBills, allBills } = useGlobal();
+
+  // Search query state
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Example array of billing records with 20 records
   const billingRecords = [
@@ -192,13 +195,20 @@ export default function MonitorBilling() {
       status: "Unpaid",
       date: "21 Jan, 2022",
       time: "8:15 AM",
-    },
+    }
   ];
 
   // Fetch bills when the component mounts
   useEffect(() => {
     getBills();
   }, [getBills]);
+
+  // Filter records based on the search query
+  const filteredRecords = billingRecords.filter((record) =>
+    record.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    record.diseaseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    record.billNumber.includes(searchQuery)
+  );
 
   return (
     <div className="monitor-section bg-gray">
@@ -213,7 +223,12 @@ export default function MonitorBilling() {
                 <div className="search">
                   <CiSearch />
                 </div>
-                <input type="text" placeholder="Search Patient" />
+                <input
+                  type="text"
+                  placeholder="Search Patient"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
               <button className="edit-btn flex align-center">
                 <div className="icon">
@@ -251,30 +266,37 @@ export default function MonitorBilling() {
                 </tr>
               </thead>
               <tbody>
-                {/* Map over billingRecords to create table rows */}
-                {billingRecords.map((record, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="time p-3">
-                      <h3>{record.billNumber}</h3>
-                    </td>
-                    <td className="p-3">{record.patientName}</td>
-                    <td className="p-3">{record.diseaseName}</td>
-                    <td className="p-3">{record.phoneNumber}</td>
-                    <td className={record.status === "Paid" ? "status" : "red"}>
-                      <h3>{record.status}</h3>
-                    </td>
-                    <td className="p-3">{record.date}</td>
-                    <td className="time p-3">
-                      <h3>{record.time}</h3>
-                    </td>
-                    <td className="action p-3">
-                      {/* <div className="view" onClick={() => navigate(`/bill/${record._id}`)}> */}
-                      <div className="view" onClick={() => navigate(`/bill`)}>
-                        <FaEye />
-                      </div>
+                {/* Map over filtered billing records to create table rows */}
+                {filteredRecords.length > 0 ? (
+                  filteredRecords.map((record, index) => (
+                    <tr key={index} className="border-t">
+                      <td className="time p-3">
+                        <h3>{record.billNumber}</h3>
+                      </td>
+                      <td className="p-3">{record.patientName}</td>
+                      <td className="p-3">{record.diseaseName}</td>
+                      <td className="p-3">{record.phoneNumber}</td>
+                      <td className={record.status === "Paid" ? "status" : "red"}>
+                        <h3>{record.status}</h3>
+                      </td>
+                      <td className="p-3">{record.date}</td>
+                      <td className="time p-3">
+                        <h3>{record.time}</h3>
+                      </td>
+                      <td className="action p-3">
+                        <div className="view" onClick={() => navigate(`/bill`)}>
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" className="p-3 text-center">
+                      No records found
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>

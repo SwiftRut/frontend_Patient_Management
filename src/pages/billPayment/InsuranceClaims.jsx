@@ -1,4 +1,5 @@
 import "../billPayment/insuranceClaims.css";
+import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
@@ -7,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function InsuranceClaims() {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(""); 
 
-  // Sample data for insurance claims
   const claimsData = [
     {
       billNumber: "5654",
@@ -17,7 +18,7 @@ export default function InsuranceClaims() {
       diseaseName: "Internal Medicine",
       insuranceCompany: "HDFC Life Insurance",
       insurancePlan: "Maternity",
-      billDate: "2 Jun, 2024"
+      billDate: "2 Jun, 2024",
     },
     {
       billNumber: "5655",
@@ -26,7 +27,7 @@ export default function InsuranceClaims() {
       diseaseName: "Pediatrics",
       insuranceCompany: "ICICI Lombard",
       insurancePlan: "Child Health",
-      billDate: "15 Jun, 2024"
+      billDate: "15 Jun, 2024",
     },
     {
       billNumber: "5656",
@@ -35,7 +36,7 @@ export default function InsuranceClaims() {
       diseaseName: "Orthopedics",
       insuranceCompany: "Max Bupa",
       insurancePlan: "Accident Care",
-      billDate: "22 Jun, 2024"
+      billDate: "22 Jun, 2024",
     },
     {
       billNumber: "5657",
@@ -135,8 +136,16 @@ export default function InsuranceClaims() {
       insuranceCompany: "Bharati AXA",
       insurancePlan: "Kidney Health",
       billDate: "25 Aug, 2024"
-    },
+    }
   ];
+
+  // Filter claims based on search query
+  const filteredClaims = claimsData.filter((claim) =>
+    claim.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    claim.doctorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    claim.diseaseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    claim.insuranceCompany.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -152,7 +161,12 @@ export default function InsuranceClaims() {
                   <div className="search">
                     <CiSearch />
                   </div>
-                  <input type="text" placeholder="Search Patient" />
+                  <input
+                    type="text"
+                    placeholder="Search Patient, Doctor, Disease, or Insurance"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
@@ -174,7 +188,7 @@ export default function InsuranceClaims() {
                   </tr>
                 </thead>
                 <tbody>
-                  {claimsData.map((claim, index) => (
+                  {filteredClaims.map((claim, index) => (
                     <tr key={index}>
                       <td className="time p-3">
                         <h3>{claim.billNumber}</h3>
@@ -201,6 +215,13 @@ export default function InsuranceClaims() {
                       </td>
                     </tr>
                   ))}
+                  {filteredClaims.length === 0 && (
+                    <tr>
+                      <td colSpan="8" className="text-center p-3">
+                        No claims found.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
