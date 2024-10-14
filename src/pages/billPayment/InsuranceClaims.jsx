@@ -1,8 +1,6 @@
 import "../billPayment/insuranceClaims.css";
 import { CiSearch } from "react-icons/ci";
-import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
-import { RiEditBoxFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 export default function InsuranceClaims() {
@@ -17,7 +15,7 @@ export default function InsuranceClaims() {
       diseaseName: "Internal Medicine",
       insuranceCompany: "HDFC Life Insurance",
       insurancePlan: "Maternity",
-      billDate: "2 Jun, 2024"
+      billDate: "2 Jun, 2024",
     },
     {
       billNumber: "5655",
@@ -26,7 +24,7 @@ export default function InsuranceClaims() {
       diseaseName: "Pediatrics",
       insuranceCompany: "ICICI Lombard",
       insurancePlan: "Child Health",
-      billDate: "15 Jun, 2024"
+      billDate: "15 Jun, 2024",
     },
     {
       billNumber: "5656",
@@ -35,7 +33,7 @@ export default function InsuranceClaims() {
       diseaseName: "Orthopedics",
       insuranceCompany: "Max Bupa",
       insurancePlan: "Accident Care",
-      billDate: "22 Jun, 2024"
+      billDate: "22 Jun, 2024",
     },
     {
       billNumber: "5657",
@@ -44,7 +42,7 @@ export default function InsuranceClaims() {
       diseaseName: "Cardiology",
       insuranceCompany: "HDFC Ergo",
       insurancePlan: "Heart Care",
-      billDate: "30 Jun, 2024"
+      billDate: "30 Jun, 2024",
     },
     {
       billNumber: "5658",
@@ -53,7 +51,7 @@ export default function InsuranceClaims() {
       diseaseName: "Dermatology",
       insuranceCompany: "Bajaj Allianz",
       insurancePlan: "Skin Health",
-      billDate: "10 Jul, 2024"
+      billDate: "10 Jul, 2024",
     },
     {
       billNumber: "5659",
@@ -62,7 +60,7 @@ export default function InsuranceClaims() {
       diseaseName: "Gastroenterology",
       insuranceCompany: "Aditya Birla",
       insurancePlan: "Digestive Care",
-      billDate: "15 Jul, 2024"
+      billDate: "15 Jul, 2024",
     },
     {
       billNumber: "5660",
@@ -71,7 +69,7 @@ export default function InsuranceClaims() {
       diseaseName: "Neurology",
       insuranceCompany: "Star Health",
       insurancePlan: "Brain Health",
-      billDate: "20 Jul, 2024"
+      billDate: "20 Jul, 2024",
     },
     {
       billNumber: "5661",
@@ -80,7 +78,7 @@ export default function InsuranceClaims() {
       diseaseName: "Ophthalmology",
       insuranceCompany: "Future Generali",
       insurancePlan: "Vision Care",
-      billDate: "25 Jul, 2024"
+      billDate: "25 Jul, 2024",
     },
     {
       billNumber: "5662",
@@ -89,7 +87,7 @@ export default function InsuranceClaims() {
       diseaseName: "Endocrinology",
       insuranceCompany: "New India Assurance",
       insurancePlan: "Hormonal Health",
-      billDate: "30 Jul, 2024"
+      billDate: "30 Jul, 2024",
     },
     {
       billNumber: "5663",
@@ -98,7 +96,7 @@ export default function InsuranceClaims() {
       diseaseName: "Psychiatry",
       insuranceCompany: "SBI Health",
       insurancePlan: "Mental Health",
-      billDate: "5 Aug, 2024"
+      billDate: "5 Aug, 2024",
     },
     {
       billNumber: "5664",
@@ -107,7 +105,7 @@ export default function InsuranceClaims() {
       diseaseName: "Rheumatology",
       insuranceCompany: "Kotak General Insurance",
       insurancePlan: "Joint Health",
-      billDate: "10 Aug, 2024"
+      billDate: "10 Aug, 2024",
     },
     {
       billNumber: "5665",
@@ -116,7 +114,7 @@ export default function InsuranceClaims() {
       diseaseName: "Oncology",
       insuranceCompany: "ManipalCigna",
       insurancePlan: "Cancer Care",
-      billDate: "15 Aug, 2024"
+      billDate: "15 Aug, 2024",
     },
     {
       billNumber: "5666",
@@ -125,7 +123,7 @@ export default function InsuranceClaims() {
       diseaseName: "Pulmonology",
       insuranceCompany: "Reliance Health",
       insurancePlan: "Lung Health",
-      billDate: "20 Aug, 2024"
+      billDate: "20 Aug, 2024",
     },
     {
       billNumber: "5667",
@@ -134,7 +132,7 @@ export default function InsuranceClaims() {
       diseaseName: "Urology",
       insuranceCompany: "Bharati AXA",
       insurancePlan: "Kidney Health",
-      billDate: "25 Aug, 2024"
+      billDate: "25 Aug, 2024",
     },
   ];
 
@@ -195,7 +193,7 @@ export default function InsuranceClaims() {
                       </td>
                       <td className="p-3">{claim.billDate}</td>
                       <td className="action p-3">
-                        <div className="view">
+                        <div className="view" onClick={() => navigate(`/bill/${claim._id}`)}>
                           <FaEye />
                         </div>
                       </td>

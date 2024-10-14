@@ -268,8 +268,7 @@ export default function MonitorBilling() {
                       <h3>{record.time}</h3>
                     </td>
                     <td className="action p-3">
-                      {/* <div className="view" onClick={() => navigate(`/bill/${record._id}`)}> */}
-                      <div className="view" onClick={() => navigate(`/bill`)}>
+                      <div className="view" onClick={() => navigate(`/bill/${record._id}`)}>
                         <FaEye />
                       </div>
                     </td>
