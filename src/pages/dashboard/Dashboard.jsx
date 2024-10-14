@@ -22,184 +22,35 @@ import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics.jsx";
 import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown.jsx";
-import apiService from '../../services/api.js';
-
+import apiService from "../../services/api.js";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [timePeriod, setTimePeriod] = useState("Week");
   const { getBills, allBills } = useGlobal();
   const [totalAppointments, setTotalAppointments] = useState(0);
+  const [todaysAppointments, setTodaysAppointments] = useState(0);
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalDoctors, setTotalDoctors] = useState(0);
 
-  const pieData = {
-    labels: ["Product A", "Product B", "Product C"],
-    datasets: [
-      {
-        label: "Product Distribution",
-        data: [40, 30, 30],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.6)",
-          "rgba(54, 162, 235, 0.6)",
-          "rgba(255, 206, 86, 0.6)",
-        ],
-        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const pieOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: true, position: "top" },
-      title: { display: true, text: "Product Distribution" },
-    },
-  };
-  const appointments = [
-    {
-      id: 1,
-      patientName: "Roger Lubin",
-      doctorName: "Leo Geidt",
-      disease: "Meningococcal Disease",
-      time: "10:00 AM",
-      type: "Onsite",
-    },
-    {
-      id: 2,
-      patientName: "Sarah Blake",
-      doctorName: "Anna Doe",
-      disease: "Flu",
-      time: "12:00 PM",
-      type: "Virtual",
-    },
-    {
-      id: 3,
-      patientName: "Mark Fisher",
-      doctorName: "Emily Clark",
-      disease: "COVID-19",
-      time: "2:00 PM",
-      type: "Onsite",
-    },
-    {
-      id: 4,
-      patientName: "Nina Smith",
-      doctorName: "Michael Scott",
-      disease: "Allergies",
-      time: "3:30 PM",
-      type: "Virtual",
-    },
-  ];
-
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [
-      {
-        label: "Patients",
-        data: [],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  });
-
   useEffect(() => {
-    updateChartData();
     getBills();
-  }, [timePeriod]);
-
-  const updateChartData = () => {
-    let labels, data;
-    switch (timePeriod) {
-      case "Year":
-        labels = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        data = [1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400, 3600];
-        break;
-      case "Month":
-        labels = [...Array(30)].map((_, i) => i + 1);
-        data = [...Array(30)].map(() => Math.floor(Math.random() * 100) + 50);
-        break;
-      default: // Week
-        labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        data = [20, 28, 18, 34, 18, 28, 36];
-    }
-
-    setChartData({
-      labels,
-      datasets: [
-        {
-          label: "Patients",
-          data: data,
-          borderColor: "rgb(75, 192, 192)",
-          tension: 0.1,
-        },
-      ],
-    });
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Patient Statistics",
-      },
-    },
-  };
-  const lineData = {
-    labels: ["January", "February", "March", "April", "May"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [120, 190, 300, 500, 200],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        fill: true,
-        tension: 0.4,
-      },
-    ],
-  };
-
-  const lineOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: true, position: "top" },
-      title: { display: true, text: "Monthly Sales Data" },
-    },
-  };
+  }, []);
 
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
         const response = await apiService.GetAllAppointments();
         const data = response.data;
-        console.log("appointments>>>", data)
-        setTotalAppointments(data.length)
-        const today = new Date().toISOString().split('T')[0];
+        console.log("appointments>>>", data);
+        setTotalAppointments(data.length);
+        const today = new Date().toISOString().split("T")[0];
         const filteredAppointments = data.filter(
           (appointment) => appointment.appointmentDate === today
         );
         setTodaysAppointments(filteredAppointments);
       } catch (error) {
-        console.error('Error fetching appointments:', error);
+        console.error("Error fetching appointments:", error);
       }
     };
     const fetchPatients = async () => {
@@ -208,7 +59,7 @@ const Dashboard = () => {
         const data = response.data.data;
         setTotalPatients(data.length);
       } catch (error) {
-        console.error('Error fetching patients:', error);
+        console.error("Error fetching patients:", error);
       }
     };
 
@@ -218,17 +69,14 @@ const Dashboard = () => {
         const data = response.data.data;
         setTotalDoctors(data.length);
       } catch (error) {
-        console.error('Error fetching doctors:', error);
+        console.error("Error fetching doctors:", error);
       }
     };
-
 
     fetchAppointments();
     fetchPatients();
     fetchDoctors();
   }, []);
-
-
 
   return (
     <>
