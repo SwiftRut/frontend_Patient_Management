@@ -13,7 +13,7 @@ const totalPatients = 100;
 
 export default function PatientsBreakdown() {
   return (
-    <div className="bg-white flex justify-center items-center rounded-lg w-[40%]">
+    <div className="bg-white flex justify-center items-center rounded-lg w-[42%]">
       {/* Chart Container */}
       <div className="w-64 h-64 bg-gray">
         <ResponsiveContainer>
