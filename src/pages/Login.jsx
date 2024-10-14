@@ -51,8 +51,8 @@ const Login = () => {
     try {
       const success = await UniversalLogin(formData);
       if (success) {
-        if (user.role === "admin") {
-          navigate("/");
+        if (user.role === "patient") {
+          navigate("/patient");
         } else if (user.role === "doctor") {
           navigate("/doctor/profile/");
         }
