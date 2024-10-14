@@ -7,13 +7,13 @@
       .total-data {
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
+        padding: 10px 10px;
 
         .total-Patients,
         .total-Docters,
         .total-Appointments {
           width: 25%;
-          padding: 20px 20px 0px 20px;
+          padding: 15px 20px 0px 15px;
 
           .content {
             display: flex;
@@ -21,7 +21,7 @@
             align-items: center;
             background-color: white;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
 
             .logo_details {
               align-items: center;
@@ -96,7 +96,7 @@
       }
 
       .top {
-        padding: 20px 20px 10px 20px;
+        padding: 10px 10px 10px 10px;
 
         .appointment-data {
           padding: 0px 15px;
@@ -207,18 +207,17 @@
       }
 
       .bottom {
-        padding: 10px 20px;
+        padding: 10px 25px;
         padding-bottom: 30px;
         justify-content: space-between;
 
         .patient-count-data,
         .doctor-count-data {
-          width: 33%;
-          padding: 20px;
+          width: 32.5%;
 
 
           .content {
-            height: 443px;
+            height: 400px;
             background-color: white;
             padding: 20px;
             border-radius: 15px;
@@ -348,13 +347,13 @@
         }
 
         .PatientsAge-data {
-          width: 33%;
-          padding: 20px;
+          width: 32.5%;
 
           .content {
             padding: 20px;
             background-color: white;
             border-radius: 15px;
+            height: 100%;
 
             .head {
               .title {

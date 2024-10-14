@@ -3,7 +3,7 @@
 }
 .deshbord-section .row .main .top .Patients-data {
   padding: 0px 15px;
-  width: 60%;
+  width: 58%;
 }
 .deshbord-section .row .main .top .Patients-data .total-data {
   justify-content: space-between;
@@ -15,7 +15,7 @@
   width: 32%;
   background-color: white;
   border-radius: 15px;
-  padding: 20px;
+  padding: 15px;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content,
@@ -70,7 +70,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details p,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details p {
   color: #a7a7a7;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details span,
@@ -78,7 +78,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details span {
   display: block;
   color: #030229;
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 800;
 }
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics {
@@ -115,8 +115,8 @@
   height: 85%;
 }
 .deshbord-section .row .main .top .Billing-data {
-  width: 40%;
-  padding: 20px;
+  width: 42%;
+  padding: 15px;
   background-color: white;
   border-radius: 15px;
   height: auto;
@@ -191,18 +191,16 @@
   height: 100%;
   width: 100%;
 }
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr {
-  padding: 5px 0px;
-}
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr td {
   text-align: center;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .bill-num {
-  background: #f6f8fb;
-  border-radius: 33px;
+  padding: 5px 0px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .bill-num p {
   color: #718ebf;
+  background: #f6f8fb;
+  border-radius: 33px;
   text-align: center;
   padding: 5px 18px;
 }
@@ -211,6 +209,7 @@
   color: #4f4f4f;
   font-size: 12px;
   font-weight: 500;
+  padding: 5px 0px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .status p {
   background-color: rgba(57, 151, 61, 0.1019607843);
@@ -228,8 +227,8 @@
   width: 28px;
   height: 28px;
   background-color: #f6f8fb;
-  justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .action .box svg {
   margin: 0px auto;
@@ -241,7 +240,7 @@
 }
 .deshbord-section .row .main .bottom .appointments-data {
   padding: 0px 15px;
-  width: 60%;
+  width: 58%;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content {
   background-color: white;
@@ -323,7 +322,7 @@
   color: #4f4f4f;
 }
 .deshbord-section .row .main .bottom .Summary-data {
-  width: 40%;
+  width: 42%;
   padding: 20px;
   background-color: white;
   border-radius: 15px;
