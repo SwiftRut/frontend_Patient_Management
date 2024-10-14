@@ -222,21 +222,7 @@ export default function PatientManagement() {
         date: "15 Oct, 2024",
       }
     ],
-    upcoming: [
-      {
-        name: "Alice Johnson",
-        issue: "Headache",
-        doctor: "Dr. Susan Wright",
-        disease: "Migraine",
-        time: "3:00 PM",
-        type: "Offline",
-        phone: "12345 67890",
-        age: "30 Years",
-        gender: "Female",
-        address: "123 Elm Street, Springfield.",
-        date: "15 Oct, 2024",
-      },
-    ],
+
     upcoming: [
       {
         name: "Alice Johnson",
