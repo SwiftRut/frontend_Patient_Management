@@ -3,6 +3,7 @@ import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from '../../services/api.js';
 import './doctorManagement.css';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const timeOptions = [
   "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -90,7 +91,7 @@ const DoctorAdd = () => {
       };
       reader.readAsDataURL(file);
     }
-  };``
+  }; ``
 
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
@@ -120,13 +121,13 @@ const DoctorAdd = () => {
     if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
       setFormData((prevData) => ({
         ...prevData,
-        signature: file, // store the signature file itself
+        signature: file,
       }));
 
       // Create a preview for the signature image
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSignaturePreview(reader.result); // Set the signature preview image URL
+        setSignaturePreview(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
@@ -156,9 +157,11 @@ const DoctorAdd = () => {
       console.log(response.data);
       if (response) {
         navigate("/doctorManagement");
+        toast.success('Doctor added successfully.');
       }
     } catch (error) {
       console.error('Error adding doctor:', error);
+      toast.error('Failed to add doctor. Please try again later.');
     }
   };
 
