@@ -106,7 +106,7 @@ export default function Bill3() {
           <section className="totals">
             <p>
               <strong>Sub Total:</strong> <span>$ 21100.00</span>
-            </p>
+            </p>  
             <p>
               <strong>Tax: </strong> <span>$ 25.00</span>
             </p>

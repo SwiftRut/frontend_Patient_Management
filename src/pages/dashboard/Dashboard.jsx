@@ -1,185 +1,61 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react';
 import "./dashboard.css";
-import { FaUsers } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
-import { FaFileAlt } from "react-icons/fa";
-import { FaAddressCard } from "react-icons/fa";
-import { FaBox } from "react-icons/fa";
+import { FaUsers, FaUser, FaFileAlt, FaAddressCard, FaEye } from 'react-icons/fa';
+import PatientsStatistics from '../../component/PatientComponents/PatientsStatistics.jsx';
+import PatientsBreakdown from '../../component/PatientComponents/PatienBreakDown.jsx';
+import { useNavigate } from 'react-router-dom';
+import apiService from '../../services/api.js';
 
-import { FaEye } from "react-icons/fa";
-import { Line, Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { useNavigate } from "react-router-dom";
-import { useGlobal } from "../../hooks/useGlobal";
-import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics";
-import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown";
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
+  const [todaysAppointments, setTodaysAppointments] = useState([]);
+  const [totalAppointments, setTotalAppointments] = useState(0);
+  const [totalPatients, setTotalPatients] = useState(0);
+  const [totalDoctors, setTotalDoctors] = useState(0);
+
   const navigate = useNavigate();
-  const [timePeriod, setTimePeriod] = useState("Week");
-  const { getBills, allBills } = useGlobal();
-
-  const pieData = {
-    labels: ["Product A", "Product B", "Product C"],
-    datasets: [
-      {
-        label: "Product Distribution",
-        data: [40, 30, 30],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.6)",
-          "rgba(54, 162, 235, 0.6)",
-          "rgba(255, 206, 86, 0.6)",
-        ],
-        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const pieOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: true, position: "top" },
-      title: { display: true, text: "Product Distribution" },
-    },
-  };
-  const appointments = [
-    {
-      id: 1,
-      patientName: "Roger Lubin",
-      doctorName: "Leo Geidt",
-      disease: "Meningococcal Disease",
-      time: "10:00 AM",
-      type: "Onsite",
-    },
-    {
-      id: 2,
-      patientName: "Sarah Blake",
-      doctorName: "Anna Doe",
-      disease: "Flu",
-      time: "12:00 PM",
-      type: "Virtual",
-    },
-    {
-      id: 3,
-      patientName: "Mark Fisher",
-      doctorName: "Emily Clark",
-      disease: "COVID-19",
-      time: "2:00 PM",
-      type: "Onsite",
-    },
-    {
-      id: 4,
-      patientName: "Nina Smith",
-      doctorName: "Michael Scott",
-      disease: "Allergies",
-      time: "3:30 PM",
-      type: "Virtual",
-    },
-  ];
-
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [
-      {
-        label: "Patients",
-        data: [],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  });
 
   useEffect(() => {
-    updateChartData();
-    getBills();
-  }, [timePeriod]);
+    const fetchAppointments = async () => {
+      try {
+        const response = await apiService.GetAllAppointments();
+        const data = response.data;
+        console.log("appointments>>>", data)
+        setTotalAppointments(data.length)
+        const today = new Date().toISOString().split('T')[0];
+        const filteredAppointments = data.filter(
+          (appointment) => appointment.appointmentDate === today
+        );
+        setTodaysAppointments(filteredAppointments);
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+    const fetchPatients = async () => {
+      try {
+        const response = await apiService.GetAllPatients();
+        const data = response.data.data;
+        setTotalPatients(data.length);
+      } catch (error) {
+        console.error('Error fetching patients:', error);
+      }
+    };
 
-  const updateChartData = () => {
-    let labels, data;
-    switch (timePeriod) {
-      case "Year":
-        labels = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        data = [1000, 1500, 2000, 1800, 2200, 2600, 2400, 2800, 3000, 3200, 3400, 3600];
-        break;
-      case "Month":
-        labels = [...Array(30)].map((_, i) => i + 1);
-        data = [...Array(30)].map(() => Math.floor(Math.random() * 100) + 50);
-        break;
-      default: // Week
-        labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-        data = [20, 28, 18, 34, 18, 28, 36];
-    }
+    const fetchDoctors = async () => {
+      try {
+        const response = await apiService.GetAllDoctors();
+        const data = response.data.data;
+        setTotalDoctors(data.length);
+      } catch (error) {
+        console.error('Error fetching doctors:', error);
+      }
+    };
 
-    setChartData({
-      labels,
-      datasets: [
-        {
-          label: "Patients",
-          data: data,
-          borderColor: "rgb(75, 192, 192)",
-          tension: 0.1,
-        },
-      ],
-    });
-  };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Patient Statistics",
-      },
-    },
-  };
-  const lineData = {
-    labels: ["January", "February", "March", "April", "May"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [120, 190, 300, 500, 200],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        fill: true,
-        tension: 0.4,
-      },
-    ],
-  };
+    fetchAppointments();
+    fetchPatients();
+    fetchDoctors();
+  }, []);
 
-  const lineOptions = {
-    responsive: true,
-    plugins: {
-      legend: { display: true, position: "top" },
-      title: { display: true, text: "Monthly Sales Data" },
-    },
-  };
 
   return (
     <>
@@ -196,7 +72,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Patients</p>
-                        <span>00</span>
+                        <span>{totalPatients}</span>
                       </div>
                     </div>
                   </div>
@@ -207,7 +83,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Docters</p>
-                        <span>00</span>
+                        <span>{totalDoctors}</span>
                       </div>
                     </div>
                   </div>
@@ -218,7 +94,7 @@ const Dashboard = () => {
                       </div>
                       <div className="details">
                         <p>Total Appointments</p>
-                        <span>00</span>
+                        <span>{totalAppointments}</span>
                       </div>
                     </div>
                   </div>
@@ -239,61 +115,52 @@ const Dashboard = () => {
                 </div>
                 <div className="pending-bill">
                   <div className="bill-status">
-                    <p>
-                      Pending Bills : <span>00</span>
-                    </p>
+                    <p>Pending Bills : <span>00</span></p>
                   </div>
 
                   <div className="pending-bill-data">
-                    {/* When there is no data */}
-
-                    {/* <div className="img">
-                      <img src="../img/FrameBill.png" alt="" />
-                    </div> */}
-
-                    {/* When there is data */}
-
-                    <div className="bill-table">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Bill No</th>
-                            <th>Patient Name</th>
-                            <th>Disease Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          {allBills.map((bill) => (
-                            <tr key={bill.id}>
-                              <td className="bill-num">
-                                <p>{bill.billNumber}</p>
-                              </td>
-
-                              <td className="patient-name">
-                                <p>{bill.patientId ? bill.patientId.name : "Unknown"}</p>
-                              </td>
-
-                              <td className="disease-name">
-                                <p>{bill.description}</p>
-                              </td>
-
-                              <td className="status">
-                                <p>{bill.status}</p>
-                              </td>
-
-                              <td className="action flex">
-                                <div className="box flex">
-                                  <FaEye />
-                                </div>
-                              </td>
+                    {todaysAppointments.length === 0 ? (
+                      <div className="img">
+                        <img src="../img/FrameBill.png" alt="No bills available" />
+                      </div>
+                    ) : (
+                      <div className="bill-table">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Bill No</th>
+                              <th>Patient Name</th>
+                              <th>Disease Name</th>
+                              <th>Status</th>
+                              <th>Action</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                          </thead>
+                          <tbody>
+                            {todaysAppointments.map((appointment) => (
+                              <tr key={appointment.id}>
+                                <td className="bill-num">
+                                  <p>{appointment.billNumber}</p>
+                                </td>
+                                <td className="patient-name">
+                                  <p>{appointment.patientId ? appointment.patientId.name : 'Unknown'}</p>
+                                </td>
+                                <td className="disease-name">
+                                  <p>{appointment.description}</p>
+                                </td>
+                                <td className="status">
+                                  <p>{appointment.status}</p>
+                                </td>
+                                <td className="action flex">
+                                  <div className="box flex">
+                                    <FaEye />
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -305,124 +172,53 @@ const Dashboard = () => {
                   <div className="appointments-content">
                     <div className="head">
                       <div className="title flex">
-                        <p>Todays Appointments List</p>
+                        <p>Today`s Appointments List</p>
                         <span>View All</span>
                       </div>
                     </div>
-                    {/* When there is no data */}
 
-                    {/* <div className="img">
-                      <img src="../img/Frame1.png" alt="" />
-                    </div> */}
-
-                    {/* When there is data */}
-
-                    <div className="appointments-list flex">
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                    {/* If there are no appointments for today, show an image */}
+                    {todaysAppointments.length === 0 ? (
+                      <div className="img">
+                        <img src="../img/Frame1.png" alt="No appointments available" />
                       </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
+                    ) : (
+                      <div className="appointments-list flex">
+                        {/* Map today's appointments */}
+                        {todaysAppointments.map((appointment) => (
+                          <div className="box" key={appointment._id}>
+                            <div className="content">
+                              <div className="heading flex">
+                                <p>{appointment.patientName}</p> {/* Assuming patientName exists */}
+                                <span>{appointment.type}</span>
+                              </div>
+                              <div className="data">
+                                <ul>
+                                  <li>
+                                    <p>Doctor Name</p>
+                                    <span>{appointment.doctorName}</span> {/* Assuming doctorName exists */}
+                                  </li>
+                                  <li>
+                                    <p>Disease Name</p>
+                                    <span>{appointment.diseaseName}</span> {/* Assuming diseaseName exists */}
+                                  </li>
+                                  <li>
+                                    <p>Appointment Time</p>
+                                    <span>{appointment.appointmentTime}</span> {/* Assuming appointmentTime exists */}
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
                           </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                        ))}
                       </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
               <PatientsBreakdown />
             </div>
+
           </div>
         </div>
       </div>

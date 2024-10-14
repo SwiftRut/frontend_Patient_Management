@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { TailSpin } from "react-loader-spinner";
 import "./component/sidebar.css";
 import "./pages/pages.css";
@@ -33,7 +33,7 @@ const Bill = lazy(() => import("./component/Bill.jsx"));
 const Onsite = lazy(() => import("./pages/doctorManagement/Onsite.jsx"));
 const CashPayment = lazy(() => import("./pages/billPayment/CashPayment.jsx"));
 const Delete = lazy(() => import("./pages/doctorManagement/Delete.jsx"));
-const AddNewField = lazy(() => import("./pages/invoice/AddNewField.jsx"));
+// const AddNewField = lazy(() => import("./pages/invoice/AddNewField.jsx"));
 const Bill2 = lazy(() => import("./pages/invoice/Bill2.jsx"));
 const EditDesignInvoice = lazy(() => import("./pages/billPayment/EditDesignInvoice.jsx"));
 const Bill3 = lazy(() => import("./pages/invoice/Bill3.jsx"));
@@ -126,6 +126,7 @@ function App() {
 
             <Route path="/bill/:id" element={<Bill />} />
             <Route path="/bill2" element={<Bill2 />} />
+            <Route path="/bill/:billNumber" element={<Bill2 />} />
             <Route path="/bill3" element={<Bill3 />} />
 
             <Route path="/cash" element={<CashPayment />} />

@@ -1,115 +1,125 @@
-import "../invoice/bill2.css";
-export default function Bill2() {
+import "../billPayment/insuranceClaims.css";
+import { CiSearch } from "react-icons/ci";
+import { MdAdd } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { RiEditBoxFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+
+export default function InsuranceClaims() {
+  const navigate = useNavigate();
+
+  // Function to handle eye icon click and navigate to Bill2 page
+  const handleViewBill = (billNumber) => {
+    // Navigate to Bill2 page and pass the bill number as a parameter (optional)
+    navigate(`/bill/${billNumber}`);
+  };
+
   return (
     <>
-      <div className="main">
-      <div className="invoice">
-        <div className="head">
-          <img src="/img/logo.png" width="300px" />
-          <div className="title">
-            <img src="/img/invoice.png"/>
+      <div className="insurance-section">
+        <div className="row">
+          <div className="main">
+            <div className="main">
+              <div className="top flex align-center">
+                <div className="heading">
+                  <h3>Insurance Claims</h3>
+                </div>
+                <div className="search-btn flex">
+                  <div className="input flex align-center">
+                    <div className="search">
+                      <CiSearch />
+                    </div>
+                    <input type="text" placeholder="Search Patient" />
+                  </div>
+                  <button className="edit-btn flex align-center">
+                    <div className="icon">
+                      <RiEditBoxFill />
+                    </div>
+                    <div className="text" onClick={() => navigate("/invoice")}>
+                      <h3>Edit Design Invoice</h3>
+                    </div>
+                  </button>
+                  <button className="btn flex align-center">
+                    <div className="icon">
+                      <MdAdd />
+                    </div>
+                    <div className="text" onClick={() => navigate("/createbill")}>
+                      <h3>Create Bills</h3>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div className="table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Bill Number</th>
+                      <th>Doctor Name</th>
+                      <th>Patient Name</th>
+                      <th>Disease Name</th>
+                      <th>Insurance Company</th>
+                      <th>Insurance Plan</th>
+                      <th>Bill Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="time">
+                        <h3>5654</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>HDFC Life Insurance</td>
+                      <td className="time">
+                        <h3>Maternity</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view" onClick={() => handleViewBill(5654)}>
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="time">
+                        <h3>5655</h3>
+                      </td>
+                      <td className="align-center" style={{ display: "flex" }}>
+                        <div className="avatar">
+                          <img src="/img/Avatar.png" />
+                        </div>
+                        <div className="name">
+                          <h3>Dr. Marcus Philips</h3>
+                        </div>
+                      </td>
+                      <td>Internal Medicine</td>
+                      <td>Kadin Saris</td>
+                      <td>LIC Life Insurance</td>
+                      <td className="time">
+                        <h3>Health</h3>
+                      </td>
+                      <td>2 Jun, 2024</td>
+                      <td className="action">
+                        <div className="view" onClick={() => handleViewBill(5655)}>
+                          <FaEye />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="content">
-          <div className="billing-info">
-            <div>
-              <h3>Billing To:</h3>
-              <h3> Adeline Palmerston</h3>
-              <span> 123 Anywhere St., Any City, ST 12345</span>
-            </div>
-            <div>
-              <p>
-                <strong>Invoice No :</strong> <span>1234</span>
-              </p>
-              <p>
-                <strong>Invoice Date :</strong> <span>20 June, 2020</span>
-              </p>
-              <p>
-                <strong>Due Date :</strong> <span>30 June, 2020</span>
-              </p>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr className="border">
-                <th>Item</th>
-                <th>Price</th>
-                <th>Qty</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-              <tr>
-                <td>Payment transferred</td>
-                <td>$ 120.00</td>
-                <td>2</td>
-                <td>$ 240.00</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="flex justify-between">
-            <div className="payment-method">
-              <strong>Payment Method</strong>
-              <p>
-                Bank Name :<span> State Bank Of India</span>
-                <br />
-                Account No. :<span>1234567890</span>
-              </p>
-            </div>
-            <div className="totals">
-              <p>
-                <strong>Sub Total :</strong> <span>$ 2110.00</span>
-              </p>
-              <p>
-                <strong>Discount 5% :</strong> <span>$ 255.00</span>
-              </p>
-              <p>
-                <strong>Total :</strong> <span>$ 2254.00</span>
-              </p>
-            </div>
-          </div>
-          <div className="terms">
-            <strong>Term & Conditions:</strong>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-        </div>
-        <div className="footer flex justify-between">
-          <p>Call: +00854 22354 </p> <p>Email: Hello@Gmail.com</p>
-        </div>
-      </div>
       </div>
     </>
   );

@@ -42,17 +42,39 @@ export default function AdminOtp() {
 
   // Countdown Timer for Resend OTP
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (timer > 0) {
-        setTimer((prevTimer) => prevTimer - 1);
-      } else {
-        setIsResendDisabled(false);
-        clearInterval(interval);
-      }
-    }, 1000);
+    const slider = document.querySelector(".slider");
 
-    return () => clearInterval(interval);
-  }, [timer]);
+    // Wait until the DOM is fully loaded and the images/dots are available
+    if (slider) {
+      const images = slider.querySelectorAll("img");
+      const dots = slider.querySelectorAll(".dot");
+
+      if (images.length === 0 || dots.length === 0) return;
+
+      let currentIndex = 0;
+      images[currentIndex].style.display = "block";
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          currentIndex = index;
+          updateSlider();
+        });
+      });
+
+      function updateSlider() {
+        images.forEach((image) => {
+          image.style.display = "none";
+        });
+        images[currentIndex].style.display = "block";
+        dots.forEach((dot, index) => {
+          if (dot) {
+            dot.classList.toggle("active", index === currentIndex);
+          }
+        });
+      }
+    }
+  }, []);
+
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
