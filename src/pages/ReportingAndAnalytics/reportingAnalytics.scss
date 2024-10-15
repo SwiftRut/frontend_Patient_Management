@@ -96,7 +96,7 @@
       }
 
       .top {
-        padding: 10px 10px 10px 10px;
+        padding: 0px 10px 0px 10px;
 
         .appointment-data {
           padding: 0px 15px;
@@ -217,7 +217,7 @@
 
 
           .content {
-            height: 400px;
+            height: 330px;
             background-color: white;
             padding: 20px;
             border-radius: 15px;
@@ -225,7 +225,7 @@
             .head {
               .title {
                 p {
-                  font-size: 26px;
+                  font-size: 24px;
                   font-weight: 700;
                   color: #030229;
                 }
@@ -236,7 +236,7 @@
               height: 85%;
 
               .pending-bill-data {
-                padding-top: 40px;
+                padding-top: 10px;
                 height: 90%;
 
                 .img {
@@ -266,7 +266,7 @@
                         align-items: center;
 
                         th {
-                          width: 30%;
+                          width: 40%;
                           color: #030229;
                           font-size: 13px;
                           font-weight: 600;
@@ -278,9 +278,10 @@
                     tbody {
                       height: 100%;
                       width: 100%;
+                     
 
                       tr {
-                        padding: 5px 0px;
+                        padding: 5px 14px;
                         justify-content: space-between;
                         align-items: center;
                         border-bottom: 1px solid #F6F8FB;
@@ -347,8 +348,8 @@
         }
 
         .PatientsAge-data {
-          width: 32.5%;
-
+          width: 32%;
+          height: 330px;
           .content {
             padding: 20px;
             background-color: white;
@@ -358,39 +359,39 @@
             .head {
               .title {
                 p {
-                  font-size: 26px;
+                  font-size: 24px;
                   font-weight: 700;
                   color: #030229;
                   border-bottom: 1px solid #F4F4F4;
-                  padding-bottom: 10px;
                 }
               }
             }
 
             .Summary-status {
-              padding-top: 20px;
+              padding-top: 10px;
 
               .Patients-data {
                 background-color: #F6F8FB;
                 border-radius: 15px;
                 align-items: center;
-                padding: 25px;
+                padding: 0px 20px;
+                justify-content: space-between;
 
                 .img {
-                  width: 40%;
+                  width: 35% ;
 
                   img {
-                    width: 145px;
+                    width: 100%;
                   }
                 }
 
                 .details {
                   width: 60%;
-
+                  padding: 5px 0px;
                   .content {
                     background-color: white;
                     border-radius: 15px;
-                    padding: 15px;
+                    padding: 10px;
                     margin: 0px auto;
 
                     ul {
@@ -399,7 +400,7 @@
                         gap: 15px;
                         align-items: center;
                         padding: 5px 0px;
-                        font-size: 17px;
+                        font-size: 15px;
                         font-weight: 600;
                         color: #4F4F4F;
 
