@@ -44,22 +44,22 @@ const Header = () => {
         <img src="/img/home-2.png" />
         <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
-  <NavLink to={"/"}>
-    <Typography variant="body2" color="inherit">
-      Home
-    </Typography>
-  </NavLink>
+          <NavLink to={"/"}>
+            <Typography variant="body2" color="inherit">
+              Home
+            </Typography>
+          </NavLink>
 
-  {location.pathname !== "/" && (
-    <NavLink to={location.pathname}>
-      <Typography variant="body2" color="textPrimary">
-        {
-          breadcrumbNames[location.pathname.split("/")[1]]
-        }
-      </Typography>
-    </NavLink>
-  )}
-</Breadcrumbs>
+          {location.pathname !== "/" && (
+            <NavLink to={location.pathname}>
+              <Typography variant="body2" color="textPrimary">
+                {
+                  breadcrumbNames[location.pathname.split("/")[1]]
+                }
+              </Typography>
+            </NavLink>
+          )}
+        </Breadcrumbs>
       </div>
       <div className="flex">
         <div className="flex items-right bg-gray-200 rounded-full px-4">
