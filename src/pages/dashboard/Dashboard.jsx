@@ -170,7 +170,7 @@ const Dashboard = () => {
                               </td>
 
                               <td className="patient-name">
-                                <p>{bill.patientId ? bill.patientId.name : "Unknown"}</p>
+                                <p>{bill.patientId ? bill.patientName : "Unknown"}</p>
                               </td>
 
                               <td className="disease-name">
