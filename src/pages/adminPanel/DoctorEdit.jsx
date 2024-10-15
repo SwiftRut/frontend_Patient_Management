@@ -112,14 +112,17 @@ const DoctorEdit = () => {
                       <div className="image">
                         <img src={doctorData.avatar} alt="Doctor Avatar" />
                       </div>
-                      <label htmlFor="photo-upload" className="upload-label">Choose Photo</label>
-                      <input
-                        id="photo-upload"
-                        type="file"
-                        accept="image/*"
-                        onChange={handlePhotoChange}
-                        style={{ display: 'none' }} // Hide the file input
-                      />
+
+                      <div className="choose-img">
+                        <label htmlFor="photo-upload" className="upload-label">Choose Photo</label>
+                        <input
+                          id="photo-upload"
+                          type="file"
+                          accept="image/*"
+                          onChange={handlePhotoChange}
+                          style={{ display: 'none' }} // Hide the file input
+                        />
+                      </div>
                     </div>
 
                     <div className="upload-sign">
