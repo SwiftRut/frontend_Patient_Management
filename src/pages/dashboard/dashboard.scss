@@ -8,7 +8,7 @@
 
         .Patients-data {
           padding: 0px 15px;
-          width: 60%;
+          width: 58%;
 
           .total-data {
             justify-content: space-between;
@@ -20,7 +20,7 @@
               width: 32%;
               background-color: white;
               border-radius: 15px;
-              padding: 20px;
+              padding: 15px;
 
               .content {
                 display: flex;
@@ -63,14 +63,14 @@
 
                   p {
                     color: #a7a7a7;
-                    font-size: 18px;
+                    font-size: 16px;
                     font-weight: 400;
                   }
 
                   span {
                     display: block;
                     color: #030229;
-                    font-size: 34px;
+                    font-size: 28px;
                     font-weight: 800;
                   }
                 }
@@ -126,8 +126,8 @@
         }
 
         .Billing-data {
-          width: 40%;
-          padding: 20px;
+          width: 42%;
+          padding: 15px;
           background-color: white;
           border-radius: 15px;
           height: auto;
@@ -221,18 +221,18 @@
                     width: 100%;
 
                     tr {
-                      padding: 5px 0px;
 
                       td {
                         text-align: center;
                       }
 
                       .bill-num {
-                        background: #f6f8fb;
-                        border-radius: 33px;
+                        padding: 5px 0px;
 
                         p {
                           color: #718ebf;
+                          background: #f6f8fb;
+                          border-radius: 33px;
                           text-align: center;
                           padding: 5px 18px;
                         }
@@ -244,6 +244,7 @@
                           color: #4f4f4f;
                           font-size: 12px;
                           font-weight: 500;
+                          padding: 5px 0px;
                         }
                       }
 
@@ -266,8 +267,8 @@
                           width: 28px;
                           height: 28px;
                           background-color: #f6f8fb;
-                          justify-content: center;
                           align-items: center;
+                          margin-top: 10px;
 
                           svg {
                             margin: 0px auto;
@@ -290,14 +291,14 @@
 
         .appointments-data {
           padding: 0px 15px;
-          width: 60%;
+          width: 58%;
 
           .today-appointments {
             .appointments-content {
               background-color: white;
               padding: 20px;
               border-radius: 15px;
-              height: 340px;
+              height: 310px;
 
               .head {
                 justify-content: space-between;
@@ -371,7 +372,7 @@
 
                       ul {
                         li {
-                          padding-bottom: 10px;
+
 
                           p {
                             font-size: 16px;
@@ -395,7 +396,7 @@
         }
 
         .Summary-data {
-          width: 40%;
+          width: 42%;
           padding: 20px;
           background-color: white;
           border-radius: 15px;

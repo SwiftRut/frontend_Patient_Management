@@ -1,10 +1,11 @@
 import "./Header.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { useGlobal } from "../hooks/useGlobal";
-import { Typography, IconButton, InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
+import { Typography, IconButton, InputBase, Badge, Avatar, Menu, MenuItem, Breadcrumbs } from "@mui/material";
 import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { breadcrumbNames } from "./constants";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -12,6 +13,8 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { userData } = useGlobal();
   console.log(userData);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,7 +28,6 @@ const Header = () => {
   };
   const handleSearch = () => {
     if (searchTerm) {
-      // Navigate to a search route with selectedOption and searchTerm as query parameters
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
     }
   };
@@ -35,12 +37,29 @@ const Header = () => {
       handleSearch();
     }
   };
+
   return (
     <div className="header">
       <div className="breadcrumbs">
         <img src="/img/home-2.png" />
         <IoIosArrowForward className="icon" />
-        Profile Setting
+        <Breadcrumbs aria-label="breadcrumb">
+  <NavLink to={"/"}>
+    <Typography variant="body2" color="inherit">
+      Home
+    </Typography>
+  </NavLink>
+
+  {location.pathname !== "/" && (
+    <NavLink to={location.pathname}>
+      <Typography variant="body2" color="textPrimary">
+        {
+          breadcrumbNames[location.pathname.split("/")[1]]
+        }
+      </Typography>
+    </NavLink>
+  )}
+</Breadcrumbs>
       </div>
       <div className="flex">
         <div className="flex items-right bg-gray-200 rounded-full px-4">
