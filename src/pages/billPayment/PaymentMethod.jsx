@@ -5,12 +5,20 @@ import { FaEye } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import CashPayment from "./CashPayment";
 
 export default function PaymentMethod() {
   const navigate = useNavigate();
 
   // State to store the search query
   const [searchQuery, setSearchQuery] = useState("");
+  const [isPayment, setIsPayment] = useState(false);
+  const [billData, setBillData] = useState(null);
+
+  const openModal = (data) => {
+    setBillData(data);
+    setIsPayment(true);
+  };
 
   // Array with 20 data objects
   const billingData = [
@@ -208,83 +216,99 @@ export default function PaymentMethod() {
   });
 
   return (
-    <div className="payment-section">
-      <div className="row">
-        <div className="main">
-          <div className="top flex align-center">
-            <div className="heading">
-              <h3>Billing Details</h3>
-            </div>
-            <div className="search-btn flex">
-              <div className="input flex align-center">
-                <div className="search">
-                  <CiSearch />
+    <>
+      <div className="payment-section">
+        <div className="row">
+          <div className="main">
+            <div className="top flex align-center">
+              <div className="heading">
+                <h3>Billing Details</h3>
+              </div>
+              <div className="search-btn flex">
+                <div className="input flex align-center">
+                  <div className="search">
+                    <CiSearch />
+                  </div>
+                  {/* Input for search functionality */}
+                  <input
+                    type="text"
+                    placeholder="Search Patient"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
                 </div>
-                {/* Input for search functionality */}
-                <input
-                  type="text"
-                  placeholder="Search Patient"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
               </div>
             </div>
-          </div>
-          <div
-            className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-            style={{ maxHeight: "calc(100vh - 260px)" }}
-          >
-            <table className="min-w-full table-auto">
-              <thead className="sticky top-0 bg-gray-100 z-10">
-                <tr>
-                  <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
-                  <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
-                  <th className="p-3 text-left text-lg font-semibold">Disease Name</th>
-                  <th className="p-3 text-left text-lg font-semibold">Phone Number</th>
-                  <th className="p-3 text-left text-lg font-semibold">Status</th>
-                  <th className="p-3 text-left text-lg font-semibold">Date</th>
-                  <th className="p-3 text-left text-lg font-semibold">Time</th>
-                  <th className="p-3 text-left text-lg font-semibold">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.length > 0 ? (
-                  filteredData.map((data, index) => (
-                    <tr key={index}>
-                      <td className="p-3">{data.billNumber}</td>
-                      <td className="p-3">{data.patientName}</td>
-                      <td className="p-3">{data.diseaseName}</td>
-                      <td className="p-3">{data.phoneNumber}</td>
-                      <td className={`p-3 ${data.status === "Paid" ? "status" : "red"}`}>
-                        <h3>{data.status}</h3>
-                      </td>
-                      <td className="p-3">{data.date}</td>
-                      <td className="p-3">{data.time}</td>
-                      <td className="flex action p-3">
-                        <div className="edit">
-                          <FaEdit />
-                        </div>
-                        <div className="view">
-                          <FaEye />
-                        </div>
-                        <div className="delete">
-                          <img src="/img/BillingAndPayments.png" />
-                        </div>
+            <div
+              className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+              style={{ maxHeight: "calc(100vh - 260px)" }}
+            >
+              <table className="min-w-full table-auto">
+                <thead className="sticky top-0 bg-gray-100 z-10">
+                  <tr>
+                    <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
+                    <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
+                    <th className="p-3 text-left text-lg font-semibold">Disease Name</th>
+                    <th className="p-3 text-left text-lg font-semibold">Phone Number</th>
+                    <th className="p-3 text-left text-lg font-semibold">Status</th>
+                    <th className="p-3 text-left text-lg font-semibold">Date</th>
+                    <th className="p-3 text-left text-lg font-semibold">Time</th>
+                    <th className="p-3 text-left text-lg font-semibold">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.length > 0 ? (
+                    filteredData.map((data, index) => (
+                      <tr key={index}>
+                        <td className="p-3">{data.billNumber}</td>
+                        <td className="p-3">{data.patientName}</td>
+                        <td className="p-3">{data.diseaseName}</td>
+                        <td className="p-3">{data.phoneNumber}</td>
+                        <td className={`p-3 ${data.status === "Paid" ? "status" : "red"}`}>
+                          <h3>{data.status}</h3>
+                        </td>
+                        <td className="p-3">{data.date}</td>
+                        <td className="p-3">{data.time}</td>
+                        <td className="flex action p-3">
+                          <div
+                            className="edit"
+                            onClick={() => navigate(`/editBill/${data.billNumber}`)}
+                          >
+                            <FaEdit />
+                          </div>
+                          <div
+                            className="view"
+                            onClick={() => navigate(`/bill/${data.billNumber}`)}
+                          >
+                            <FaEye />
+                          </div>
+                          <div className="delete" onClick={() => openModal(data)}>
+                            <img src="/img/BillingAndPayments.png" />
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="8" className="p-3 text-center">
+                        No results found
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="8" className="p-3 text-center">
-                      No results found
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {isPayment && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-lg">
+            <CashPayment setIsPayment={setIsPayment} billData={billData} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

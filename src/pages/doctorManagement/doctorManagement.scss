@@ -34,8 +34,10 @@ input {
 .bg-gray {
   background-color: #f6f8fb;
 }
+
 .dr-managment-section {
   padding: 10px;
+
   .row {
     .main {
       border-radius: 15px;
@@ -98,10 +100,12 @@ input {
           }
         }
       }
+
       td {
         text-align: left !important;
         font-weight: 600;
         color: rgb(110, 110, 110);
+
         img {
           margin-right: 10px;
           width: 50px;
@@ -109,6 +113,7 @@ input {
           overflow: hidden;
           border-radius: 50%;
         }
+
         .gender {
           width: 50px;
           height: 50px;
@@ -119,6 +124,7 @@ input {
           margin: auto;
         }
       }
+
       .time {
         h3 {
           background-color: #f6f8fb;
@@ -130,6 +136,7 @@ input {
           width: 120px;
         }
       }
+
       .action {
         font-size: 18px;
 
@@ -141,6 +148,7 @@ input {
           padding: 10px;
           text-align: center;
         }
+
         .view {
           color: #0eabeb;
           margin: 0px 10px;
@@ -149,6 +157,7 @@ input {
           text-align: center;
           padding: 10px;
         }
+
         .delete {
           color: #e11d29;
           background-color: #f6f8fb;
