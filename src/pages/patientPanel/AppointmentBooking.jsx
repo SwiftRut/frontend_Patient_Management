@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AppointmentTimeSlot from "./AppointmentTimeSlot1";
 import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
+import Calendar from "./Calendar";
 
 const AppointmentBooking = () => {
   const [specialty, setSpecialty] = useState("");
@@ -139,7 +140,7 @@ const AppointmentBooking = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <AppointmentTimeSlot />
+                    <Calendar />
                   </div>
 
                   <DoctorDetails />

@@ -1,4 +1,4 @@
-import{ useState } from "react";
+import { useState } from "react";
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import Dialog from "@mui/material/Dialog";
@@ -17,8 +17,8 @@ const localizer = momentLocalizer(moment);
 const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState(null);
-  const [end, setEnd] = useState(null);
+  const [start, setStart] = useState(moment()); // Set as moment() instead of null
+  const [end, setEnd] = useState(moment());     // Set as moment() instead of null
   const [desc, setDesc] = useState("");
   const [openSlot, setOpenSlot] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
@@ -32,16 +32,16 @@ const Calendar = () => {
   const handleSlotSelected = (slotInfo) => {
     setTitle("");
     setDesc("");
-    setStart(slotInfo.start);
-    setEnd(slotInfo.end);
+    setStart(moment(slotInfo.start)); // Ensure start is a moment object
+    setEnd(moment(slotInfo.end));     // Ensure end is a moment object
     setOpenSlot(true);
   };
 
   const handleEventSelected = (event) => {
     setOpenEvent(true);
     setClickedEvent(event);
-    setStart(event.start);
-    setEnd(event.end);
+    setStart(moment(event.start));
+    setEnd(moment(event.end));
     setTitle(event.title);
     setDesc(event.desc);
   };
@@ -126,13 +126,13 @@ const Calendar = () => {
             <TimePicker
               label="Start Time"
               value={start}
-              onChange={(newValue) => setStart(newValue)}
+              onChange={(newValue) => newValue && setStart(newValue)}
               renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
             />
             <TimePicker
               label="End Time"
               value={end}
-              onChange={(newValue) => setEnd(newValue)}
+              onChange={(newValue) => newValue && setEnd(newValue)}
               renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
             />
           </LocalizationProvider>
@@ -164,13 +164,13 @@ const Calendar = () => {
             <TimePicker
               label="Start Time"
               value={start}
-              onChange={(newValue) => setStart(newValue)}
+              onChange={(newValue) => newValue && setStart(newValue)}
               renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
             />
             <TimePicker
               label="End Time"
               value={end}
-              onChange={(newValue) => setEnd(newValue)}
+              onChange={(newValue) => newValue && setEnd(newValue)}
               renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
             />
           </LocalizationProvider>
