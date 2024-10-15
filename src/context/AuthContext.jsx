@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       const response = await apiService.PatientLogin(userData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.patient));
-      axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
+      axios.defaults.headers.common["Authorization"] = `Barer ${response.data.token}`;
       setUser(response.data.user);
       return true;
     } catch (error) {

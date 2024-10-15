@@ -22,4 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-src/pages/patientManagement/PatientManagement.css
+src/pages/patientManagement/PatientManagement
+package-lock.json

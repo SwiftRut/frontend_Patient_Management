@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Avatar,
   List,
@@ -17,7 +17,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { initialChats } from "./constant";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8001");
+const socket = io("http://192.168.0.105:8001");
 
 const ChatScreen1 = () => {
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
@@ -26,17 +26,22 @@ const ChatScreen1 = () => {
   const [messageInput, setMessageInput] = useState("");
   const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
-  const { getAllDoctors, allDoctor } = useDoctor();
-  const { getAllPatients, allPatient } = usePatient();
-  const {getChatHistory, getPatientContacts ,getDoctorContacts} = useGlobal();
+  const { getAllDoctors } = useDoctor();
+  const { getAllPatients } = usePatient();
+  const {getChatHistory ,getDoctorContacts} = useGlobal();
+
+  const messagesEndRef = useRef(null); // Ref for the bottom of the chat
+
   const handleChatClick = (chat) => {
     setSelectedChat(chat);
   };
+
   const filteredChats = initialChats.filter(
     (chat) =>
       chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       chat.message.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   const sendMessage = async () => {
     if (doctorId && patientId && messageInput.trim()) {
       const messageData = {
@@ -79,6 +84,14 @@ const ChatScreen1 = () => {
       socket.off("message");
     };
   }, []);
+
+  useEffect(() => {
+    // Scroll to bottom whenever messages change
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
       {/* Chat List (Sidebar) */}
@@ -135,25 +148,24 @@ const ChatScreen1 = () => {
         {/* Chat Messages */}
         <div className="flex-1 overflow-auto mb-4">
           {messages.map((msg, index) => (
-         <div
-         key={index}
-         className={`mb-2 ${msg?.receiverId !== "67042956a717e34ec74d0477" ? "text-right" : "text-left"}`}
-       >
+            <div
+              key={index}
+              className={`mb-2 ${msg?.receiverId !== "67042956a717e34ec74d0477" ? "text-right" : "text-left"}`}
+            >
               <div className="inline-block">
                 <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
                   {msg.messageContent}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">    {new Date(msg.timestamp).toLocaleTimeString()}</p>
+                <p className="text-xs text-gray-500 mt-1">{new Date(msg.timestamp).toLocaleTimeString()}</p>
               </div>
-              {/* Show image if it's an image message */}
+
               {msg?.type === "image" && (
                 <div className="my-2">
                   <img src={msg.imageUrl} alt="Chat Image" className="max-w-xs rounded-lg" />
-                  <p className="text-xs text-gray-500"> {new Date(msg.timestamp).toLocaleTimeString()}</p>
+                  <p className="text-xs text-gray-500">{new Date(msg.timestamp).toLocaleTimeString()}</p>
                 </div>
-              )} 
-              {/* Show file if it's a file message */}
-             {msg?.type === "file" && (
+              )}
+              {msg?.type === "file" && (
                 <div className="my-2 inline-block bg-gray-100 p-2 rounded-lg">
                   <p className="text-blue-500">{msg.fileName}</p>
                   <p className="text-xs text-gray-500">{msg.fileSize}</p>
@@ -161,14 +173,17 @@ const ChatScreen1 = () => {
               )}
             </div>
           ))}
+          {/* This empty div ensures scrolling to the bottom */}
+          <div ref={messagesEndRef} />
         </div>
 
-        {/* Input box (For future implementation) */}
+        {/* Input box */}
         <div className="mt-4">
           <TextField
             fullWidth
             variant="outlined"
             placeholder="Type a message..."
+            value={messageInput}
             onChange={(e) => setMessageInput(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
