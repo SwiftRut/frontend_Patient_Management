@@ -525,6 +525,15 @@ form .condition .login-btn p {
   display: inline-block;
 }
 
+.css-1peo4km-MuiPaper-root-MuiDialog-paper {
+  max-width: 602px;
+}
+
+.manage-prescription {
+  width: 650px;
+  margin: 0px auto;
+}
+
 .teli-module .teli-btn button {
   font-size: 17px;
   font-weight: 400;
