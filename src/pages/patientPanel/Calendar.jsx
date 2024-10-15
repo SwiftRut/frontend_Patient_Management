@@ -17,8 +17,8 @@ const localizer = momentLocalizer(moment);
 const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [title, setTitle] = useState("");
-  const [start, setStart] = useState(moment()); // Set as moment() instead of null
-  const [end, setEnd] = useState(moment());     // Set as moment() instead of null
+  const [start, setStart] = useState(moment()); // Moment instance
+  const [end, setEnd] = useState(moment());     // Moment instance
   const [desc, setDesc] = useState("");
   const [openSlot, setOpenSlot] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
@@ -32,8 +32,8 @@ const Calendar = () => {
   const handleSlotSelected = (slotInfo) => {
     setTitle("");
     setDesc("");
-    setStart(moment(slotInfo.start)); // Ensure start is a moment object
-    setEnd(moment(slotInfo.end));     // Ensure end is a moment object
+    setStart(moment(slotInfo.start)); // Convert to moment
+    setEnd(moment(slotInfo.end));     // Convert to moment
     setOpenSlot(true);
   };
 
@@ -47,14 +47,21 @@ const Calendar = () => {
   };
 
   const setNewAppointment = () => {
-    const appointment = { title, start, end, desc };
+    const appointment = { 
+      title, 
+      start: start.toDate(), // Convert to Date for Calendar
+      end: end.toDate(),     // Convert to Date for Calendar
+      desc 
+    };
     setEvents([...events, appointment]);
     handleClose();
   };
 
   const updateEvent = () => {
     const updatedEvents = events.map((event) =>
-      event === clickedEvent ? { ...event, title, desc, start, end } : event
+      event === clickedEvent 
+        ? { ...event, title, desc, start: start.toDate(), end: end.toDate() } 
+        : event
     );
     setEvents(updatedEvents);
     handleClose();
@@ -97,17 +104,16 @@ const Calendar = () => {
         localizer={localizer}
         events={events}
         views={["month", "week", "day", "agenda"]}
-        timeslots={2}
         defaultView="month"
         defaultDate={new Date()}
-        selectable={true}
+        selectable
         onSelectEvent={handleEventSelected}
         onSelectSlot={handleSlotSelected}
       />
 
       <Dialog open={openSlot} onClose={handleClose}>
         <DialogTitle>
-          {`Book an appointment on ${moment(start).format("MMMM Do YYYY")}`}
+          {`Book an appointment on ${start.format("MMMM Do YYYY")}`}
         </DialogTitle>
         <DialogContent>
           <TextField
@@ -142,7 +148,7 @@ const Calendar = () => {
 
       <Dialog open={openEvent} onClose={handleClose}>
         <DialogTitle>
-          {`View/Edit Appointment of ${moment(start).format("MMMM Do YYYY")}`}
+          {`View/Edit Appointment of ${start.format("MMMM Do YYYY")}`}
         </DialogTitle>
         <DialogContent>
           <TextField
