@@ -4,7 +4,7 @@ import "./invoice.css";
 import { FaCircleMinus } from "react-icons/fa6";
 import { FaImage } from "react-icons/fa";
 import InputField from './InputField';
-import { formDataObject, HospitalBillFields, PatientBillFields } from './Contants';
+import { formDataObject, PatientBillFields } from './Contants';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
@@ -46,6 +46,43 @@ const EditBill = () => {
     };
     fetchData();
   }, []);
+
+  const HospitalBillFields = [  
+    { label: "Patient Name", name: "patientName", type: "text" },
+    { label: "Phone Number", name: "phoneNumber", type: "text" },
+    { label: "Gender", name: "gender", type: "select", options: [
+      { label: "Select Gender", value: "" },
+      { label: "Male", value: "Male" },
+      { label: "Female", value: "Female" },
+      { label: "Other", value: "Other" }
+    ]},
+    { label: "Age", name: "age", type: "text" },
+    {
+      label: "Doctor Name",
+      name: "doctorId",
+      type: "select",
+      options: [
+        { label: "Select Doctor Name", value: "" },
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+      ],
+    },
+    { label: "Disease Name", name: "diseaseName", type: "text"},
+    { label: "Description", name: "description", type: "text" },
+    { label: "Payment Type", name: "paymentType", type: "select", options: [
+      { label: "Select Payment Type", value: "" },
+      { label: "Cash", value: "Cash" },
+      { label: "Insurance", value: "Insurance" },
+      { label: "Credit Card", value: "Credit Card" }
+    ]},
+    { label: "Bill Date", name: "billDate", type: "date" },
+    { label: "Bill Time", name: "billTime", type: "text" },
+    { label: "Bill Number", name: "billNumber", type: "text" },
+    { label: "Discount (%)", name: "discount", type: "text" },
+    { label: "Tax", name: "tax", type: "text" },
+    { label: "Amount", name: "amount", type: "text" },
+    { label: "Total Amount", name: "totalAmount", type: "text" },
+    { label: "Address", name: "address", type: "text" },
+  ];
   return (
     <div>
       <div className="bill-insurance-section">
