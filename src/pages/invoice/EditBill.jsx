@@ -8,12 +8,14 @@ import { formDataObject, PatientBillFields } from './Contants';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
+import { useDoctor } from '../../hooks/useDoctor';
 
 const EditBill = () => {
   const navigate = useNavigate();
   const {id} = useParams();
   const { user } = useAuth();
   const { createBill, updateBill, bill, getBillById } = useGlobal();
+  const { getAllDoctors, allDoctors } = useDoctor();
   const [formData, setFormData] = useState(formDataObject);
 
   const handleChange = (e) => {
@@ -28,7 +30,7 @@ const EditBill = () => {
     console.log(formData, "<<<<<<<<<<<<<< formdata");
     try {
       await updateBill(formData, bill.id);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -39,7 +41,16 @@ const EditBill = () => {
         const data = await getBillById(id);
         console.log(data, "data")
         setFormData({
-          ...data,});
+          ...data,
+          phoneNumber:data.phone,
+          doctorName: data.doctorId.name,
+          insuranceCompany : data.insuranceId.insuranceCompany,
+          insurancePlan: data.insuranceId.insurancePlan,
+          claimAmount : data.insuranceId.claimAmount,
+          claimedAmount: data.insuranceId.claimedAmount,
+          doctorId: data.doctorId?._id,
+        });
+        await getAllDoctors();
       } catch (error) {
         console.error("Error fetching admin profile:", error);
       }
@@ -62,7 +73,7 @@ const EditBill = () => {
       name: "doctorId",
       type: "select",
       options: [
-        { label: "Select Doctor Name", value: "" },
+        { label: "Select Doctor", value: "doctor" },
         ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
       ],
     },
@@ -111,29 +122,30 @@ const EditBill = () => {
               </div>
             </div>
 
-            <div className="insurance-details">
-              <div className="content">
-                <div className="head">
-                  <p>Insurance Details</p>
-                </div>
+            {formData.paymentType === "Insurance" && (
+              <div className="insurance-details">
+                <div className="content">
+                  <div className="head">
+                    <p>Insurance Details</p>
+                  </div>
 
-                <div className="details flex">
-                  <div className="form-box">
-                    <form className="flex">
-                      {PatientBillFields.map((field, index) => (
-                        <InputField
-                          key={index}
-                          {...field}
-                          value={formData[field.name]}
-                          onChange={handleChange}
-                        />
-                      ))}
-                    </form>
+                  <div className="details flex">
+                    <div className="form-box">
+                      <form className="flex">
+                        {PatientBillFields.map((field, index) => (
+                          <InputField
+                            key={index}
+                            {...field}
+                            value={formData[field.name]}
+                            onChange={handleChange}
+                          />
+                        ))}
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
+            )}
             <div className="save-btn flex">
               <button type="submit" form="create-bill-form" onClick={handleSubmit}>Save</button>
             </div>

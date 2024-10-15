@@ -30,7 +30,7 @@ const CreateBill = () => {
     }
     try {
       await createBill(data);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -68,7 +68,7 @@ const CreateBill = () => {
       { label: "Credit Card", value: "Credit Card" }
     ]},
     { label: "Bill Date", name: "billDate", type: "date" },
-    { label: "Bill Time", name: "billTime", type: "text" },
+    { label: "Bill Time", name: "billTime", type: "time" },
     { label: "Bill Number", name: "billNumber", type: "text" },
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
