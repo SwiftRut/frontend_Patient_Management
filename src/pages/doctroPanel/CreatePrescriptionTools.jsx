@@ -20,7 +20,7 @@ const CreatePrescriptionTools = () => {
   return (
     <div className="cp-tool p-8 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Today Appointment</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {appointmentData.map((appointment) => (
           <CreatePrescription
             key={appointment.id}

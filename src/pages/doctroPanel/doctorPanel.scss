@@ -56,6 +56,10 @@ ol {
   border: 0px !important;
 }
 
+.css-lzk69h-MuiButtonBase-root-MuiIconButton-root:hover {
+  border-radius: 10px;
+}
+
 .time-slot {
   button {
     background-color: #0EABEB;
@@ -362,10 +366,10 @@ ol {
     padding-top: 30px;
 
     button {
-      padding: 12px 14px;
+      padding: 10px 14px;
       background-color: #0EABEB;
       border-radius: 10px;
-      font-size: 19px;
+      font-size: 17px;
       font-weight: 600;
       color: white;
       text-transform: capitalize;
@@ -402,6 +406,276 @@ ol {
       color: #5678E9;
     }
   }
+
+}
+
+
+form {
+  justify-content: space-between;
+
+  .input-box {
+    position: relative;
+    padding: 15px 0px;
+
+    .label {
+      position: absolute;
+      top: 4px;
+      left: 14px;
+      background-color: white;
+    }
+
+    input {
+      padding: 12px 14px;
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+      background-color: white;
+
+      &:focus {
+        border: 1px solid #718ebf;
+      }
+
+      &::placeholder {
+        color: #a7a7a7;
+      }
+    }
+
+    &:nth-child(1) {
+      width: 32%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &:nth-child(2) {
+      width: 32%;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &:nth-child(3) {
+      width: 32%;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .condition {
+    width: 100%;
+    padding-top: 20px;
+
+    .policies {
+      input {
+        width: 20px;
+      }
+
+      p {
+        display: inline-block;
+        padding-left: 10px;
+      }
+
+      span {
+        color: #5678e9;
+      }
+    }
+
+    .register-btn {
+      padding: 15px 0px;
+
+      button {
+        width: 100%;
+        background-color: #f6f8fb;
+        color: #4f4f4f;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 20px;
+
+        &:hover {
+          background-color: #0eabeb;
+          color: white;
+        }
+      }
+    }
+
+    .login-btn {
+      p {
+        font-family: Lato;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.drug {
+  label {
+    background-color: white;
+    z-index: 2;
+  }
+
+  input,
+  .select {
+    border: 1px solid #D3D3D3;
+    border-radius: 10px;
+  }
+
+
+  .icon {
+    svg {
+      color: red;
+    }
+  }
+}
+
+.add-medicine {
+  padding-top: 25px;
+
+  button {
+    background-color: #0EABEB;
+    color: white;
+  }
+}
+
+.addition-note {
+  padding-top: 20px;
+
+  label {
+    padding: 10px;
+  }
+
+  textarea {
+    border: 1px solid #D3D3D3;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}
+
+.save-btn {
+  button {
+    background-color: #0EABEB;
+    color: white;
+  }
+}
+
+.Prescription-bill {
+  .head {
+    .logo {
+      img {}
+    }
+
+    .name {
+      p {
+        color: #0EABEB;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      span {
+        color: #818194;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .dr-details {
+    padding-top: 15px;
+
+    p {
+      color: #141414;
+      font-size: 16px;
+      font-weight: 600;
+      width: 50%;
+
+      span {
+        color: #818194;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .add {
+      width: 100%;
+    }
+  }
+
+  table {
+    thead {
+      tr {
+        th {}
+      }
+    }
+
+    tbody {
+      tr {
+        td {}
+
+        .duration {
+          span {
+            background-color: #39973D1A;
+            display: inline-block;
+            color: Green;
+            padding: 3px 10px;
+            border-radius: 20px;
+          }
+        }
+
+        .take {
+          span {
+            background-color: #5678E91A;
+            display: inline-block;
+            color: Light #718EBF;
+            padding: 3px 10px;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .note {
+    padding-top: 15px;
+
+    h3 {
+      color: #030229;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    p {
+      color: #4F4F4F;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  .condition {
+    padding-top: 15px;
+
+    .sign {
+      span {
+        color: #A7A7A7;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .btn {
+      button {
+        color: white;
+        background-color: #0EABEB;
+        padding: 8px 25px;
+        border-radius: 10px;
+      }
+    }
+  }
+
 }
 
 // createPrescription tools end
@@ -471,11 +745,7 @@ ol {
 
 }
 
-
-
 // managePrescription tools end 
-
-
 
 // teleconsultation module start 
 
