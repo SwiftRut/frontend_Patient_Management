@@ -33,7 +33,6 @@ const DoctorHeader = () => {
     role: "doctor",
   };
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -58,7 +57,7 @@ const DoctorHeader = () => {
     managePrescriptionTools: "Manage Presciption Tools",
     teleconsultationModule: "Teleconsultation Module",
     chatScreen: "Chat Screen",
-   };
+  };
   const handleSearch = () => {
     if (searchTerm) {
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
@@ -79,24 +78,16 @@ const DoctorHeader = () => {
           <Link underline="hover" color="inherit" to="/doctor">
             Home
           </Link>
+          {location.pathname !== "/" && <Link to={"/doctor"}>doctor</Link>}
           {location.pathname !== "/" && (
-    <Link to={"/doctor"}>
-        doctor
-    </Link>
-  )}
-         {location.pathname !== "/" && (
-    <NavLink to={location.pathname.split("/")[2]}>
-      <Typography variant="body2" color="textPrimary">
-        {
-          breadcrumbNames[location.pathname.split("/")[2]]
-        }
-      </Typography>
-    </NavLink>
-  )}  
+            <NavLink to={location.pathname.split("/")[2]}>
+              <Typography variant="body2" color="textPrimary">
+                {breadcrumbNames[location.pathname.split("/")[2]]}
+              </Typography>
+            </NavLink>
+          )}
         </Breadcrumbs>
       </div>
-
-      {/* Search Bar */}
       <div className="flex items-center bg-gray-200 rounded-full px-4">
         <InputBase
           placeholder="Quick Search"
@@ -110,7 +101,11 @@ const DoctorHeader = () => {
           <span>{selectedOption}</span>
           <ArrowDropDown />
         </IconButton>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={() => handleClose(null)}
+        >
           <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
           <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
           <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
