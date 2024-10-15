@@ -1,6 +1,4 @@
 
-
-
 import { useState } from 'react';
 import { Tabs, Tab, Button } from '@mui/material';
 import { DateRange } from '@mui/icons-material';
@@ -88,6 +86,8 @@ export default function TeleconsultationModule() {
   const [activeTab, setActiveTab] = useState(0);
   const [dateRange, setDateRange] = useState('2 March, 2022 - 13 March, 2022');
 
+  // console.log(activeTabelem);
+
   // Function to get data based on active tab
   const getCurrentAppointments = () => {
     switch (activeTab) {
@@ -104,12 +104,28 @@ export default function TeleconsultationModule() {
     }
   };
 
+  const getCurrentName = () => {
+    switch (activeTab) {
+      case 0:
+        return "Today Appointment"
+      case 1:
+        return "Upcoming Appointment";
+      case 2:
+        return "Previous Appointment";
+      case 3:
+        return "Cancel Appointment";
+      default:
+        return "Today Appointment";
+    }
+  };
+
+  const tabName = getCurrentName()
   const currentAppointments = getCurrentAppointments();
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
+    <div className="teli-module p-8 bg-gray-100 min-h-screen">
       {/* Tabs for different types of appointments */}
-      <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)}>
+      <Tabs className='teli-btn' value={activeTab} onChange={(elem, newValue) => setActiveTab(newValue)}>
         <Tab label="Today Appointment" />
         <Tab label="Upcoming Appointment" />
         <Tab label="Previous Appointment" />
@@ -117,15 +133,15 @@ export default function TeleconsultationModule() {
       </Tabs>
 
       {/* Date range display */}
-      <div className="mt-4 mb-6 flex justify-between items-center">
-        <h2 className="text-xl font-semibold">Teleconsultation Module</h2>
+      <div className="head mt-4 mb-6 flex justify-between items-center">
+        <h2 className="text-xl font-semibold">{tabName}</h2>
         <Button variant="outlined" startIcon={<DateRange />} color="secondary">
           {dateRange}
         </Button>
       </div>
 
       {/* Grid of Patient Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentAppointments.map((patient, index) => (
           <TeleConsultationCard key={index} patient={patient} />
         ))}

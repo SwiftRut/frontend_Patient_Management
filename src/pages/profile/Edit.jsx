@@ -209,7 +209,7 @@ export const Edit = () => {
                         </div>
 
                         <div className="input-box">
-                          <div className="save-btn">
+                          <div className="save-btn me-3">
                             <button type="submit">Save</button>
                           </div>
                           <div className="cancel-btn">

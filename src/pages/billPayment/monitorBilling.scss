@@ -31,7 +31,11 @@ input {
 }
 
 // section start
+.bg-gray {
+  background-color: #f6f8fb;
+}
 .monitor-section {
+  padding: 10px;
   .row {
     .main {
       border-radius: 15px;
@@ -109,16 +113,10 @@ input {
           }
         }
       }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        table-layout: fixed;
-      }
       td {
-        padding: 20px 5px !important;
-        color: #4f4f4f;
-        font-size: 18px;
+        text-align: left !important;
         font-weight: 600;
+        color: rgb(110, 110, 110);
       }
       .status {
         h3 {
@@ -140,68 +138,23 @@ input {
           color: #718ebf;
           border-radius: 50px;
           margin: 0px 10px;
-          padding: 10px 15px;
-          font-weight: bold;
-          font-size: 20px;
+          padding: 5px;
+          font-size: 18px;
           text-align: center;
-          width: 150px;
+          width: 120px;
         }
       }
       .action {
         .view {
-          width: 60px;
           color: #0eabeb;
           margin: 0px 10px;
           background-color: #f6f8fb;
           border-radius: 10px;
-          padding: 16px;
-          font-size: 25px;
-          display: flex;
-          margin: auto;
+          padding: 10px;
+          font-size: 18px;
+          text-align: center;
+          width: 35%;
         }
-      }
-      td,
-      th {
-        padding: 5px;
-        min-width: 207px;
-        text-align: center;
-      }
-      tr:nth-child(1) {
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-      }
-      thead tr {
-        background: #f6f8fb;
-        color: #030229;
-        display: block;
-        position: relative;
-        padding: 10px 0;
-        font-size: 16px;
-        font-weight: 700;
-        width: 100%;
-      }
-
-      tbody {
-        display: block;
-        height: 620px;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        tr {
-          border-bottom: 1px solid rgb(245, 245, 245);
-        }
-      }
-      tbody::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      tbody::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 10px;
-      }
-
-      tbody::-webkit-scrollbar-track {
-        background-color: #f0f0f0;
       }
     }
   }

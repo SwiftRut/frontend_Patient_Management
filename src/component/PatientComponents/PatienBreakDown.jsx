@@ -13,9 +13,10 @@ const totalPatients = 100;
 
 export default function PatientsBreakdown() {
   return (
-    <div className="bg-white flex justify-center items-center rounded-lg w-[40%]">
-      {/* Chart Container */}
-      <div className="w-64 h-64 bg-gray">
+    <div className="bg-white w-[40%] p-5">
+     <div className=" bg-gray rounded-lg flex justify-center items-center ">
+       {/* Chart Container */}
+       <div className="w-64 h-64 w-[40%]">
         <ResponsiveContainer>
           <PieChart>
             {/* Pie Component */}
@@ -47,7 +48,7 @@ export default function PatientsBreakdown() {
       </div>
 
       {/* Legend and Patient Info */}
-      <div className="me-4">
+      <div className="me-4 bg-white w-[50%] p-5 rounded-lg">
         <div className="flex flex-col items-start">
           <div className="flex items-center mb-2">
             <div className="w-4 h-4 mr-2 rounded-full bg-orange-500"></div>
@@ -66,6 +67,7 @@ export default function PatientsBreakdown() {
           </div>
         </div>
       </div>
+     </div>
     </div>
   );
 }

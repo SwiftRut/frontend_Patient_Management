@@ -23,19 +23,19 @@ const Sidebar = () => {
               <li>
                 <NavLink to={"/"}>
                   <img src="/img/Dashboard.png" alt="Dashboard" />
-                  <span>Dashboard</span>
+                  <p>Dashboard</p>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
                   <img src="/img/Doctor-Management.png" alt="Doctor Management" />
-                  <span>Doctor Management</span>
+                  <p>Doctor Management</p>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
                   <img src="/img/Patient-Management.png" alt="Patient Management" />
-                  <span>Patient Management</span>
+                  <p>Patient Management</p>
                 </NavLink>
               </li>
               <li
@@ -47,7 +47,7 @@ const Sidebar = () => {
                   src="/img/BillingAndPayments.png"
                   alt="Billing and Payments"
                 />
-                <span className="menu-item">Billing and Payments</span>
+                <p className="menu-item">Billing and Payments</p>
                 </NavLink>
 
                 {/* Accordion Dropdown */}
@@ -74,7 +74,7 @@ const Sidebar = () => {
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
                   <img src="/img/ReportingAndAnalytics.png" alt="Reporting and Analytics" />
-                  <span>Reporting and Analytics</span>
+                  <p>Reporting and Analytics</p>
                 </NavLink>
               </li>
             </ul>

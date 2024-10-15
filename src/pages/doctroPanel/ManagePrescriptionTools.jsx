@@ -49,6 +49,7 @@ const ManagePrescriptionTools = () => {
 
   // Choose the appropriate data based on the active tab
   const currentPatients = activeTab === 0 ? todayPatients : olderPatients;
+  const currentTabName = activeTab === 0 ? 'Today Patients' : "Older Patients";
 
   // Filtering the patient data based on search input
   const filteredPatients = currentPatients.filter(
@@ -69,7 +70,7 @@ const ManagePrescriptionTools = () => {
       <div className="head flex justify-between">
 
         <div className="tital">
-          <p>Name change</p>
+          <p>{currentTabName}</p>
         </div>
 
         {/* Search Field */}
