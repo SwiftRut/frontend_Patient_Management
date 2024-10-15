@@ -201,7 +201,7 @@ export default function MonitorBilling() {
   // Fetch bills when the component mounts
   useEffect(() => {
     getBills();
-  }, [getBills]);
+  }, []);
 
   // Filter records based on the search query
   const filteredRecords = billingRecords.filter(
