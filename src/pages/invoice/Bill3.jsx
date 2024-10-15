@@ -10,7 +10,7 @@ export default function Bill3() {
         <div className="border">
           <header>
             <div className="logo">
-              <img src="/img/logo-white.png" width="300px" />
+              <img src="/img/logo-white.png" width="200px" />
             </div>
             <div className="invoice-title">
               <h1>Invoice</h1>
@@ -23,11 +23,11 @@ export default function Bill3() {
             <section className="customer-info">
               <h2>Invoice To:</h2>
               <span>PLK Madhuvan Bank</span>
-              <p style={{ paddingTop: "10px" }}>
+              <p style={{ paddingTop: "5px" }}>
                 <BiSolidPhoneCall
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}
@@ -37,7 +37,7 @@ export default function Bill3() {
                 <IoMdMail
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}
@@ -47,7 +47,7 @@ export default function Bill3() {
                 <FaLocationDot
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}

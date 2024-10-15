@@ -54,7 +54,7 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .invoice2 header .logo {
   display: flex;
@@ -69,9 +69,9 @@ input {
   font-weight: 700;
 }
 .invoice2 header .invoice-title p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  margin: 5px 0 0;
+  margin: 0px 0 0;
 }
 .invoice2 .border {
   border: none;
@@ -86,27 +86,23 @@ input {
   margin-bottom: 30px;
 }
 .invoice2 main .customer-info h2 {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: #a7a7a7;
-  padding-bottom: 5px;
 }
 .invoice2 main .customer-info span {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #030229;
 }
 .invoice2 main .customer-info p {
   color: #4f4f4f;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
-}
-.invoice2 main .invoice-details {
-  margin-bottom: 20px;
 }
 .invoice2 main .invoice-details P {
   color: #4f4f4f;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   text-align: right;
 }
@@ -125,16 +121,18 @@ input {
 }
 .invoice2 main table tr {
   border: none;
+  font-size: 12px;
+  background-color: #fff !important;
 }
 .invoice2 main table td {
-  padding: 10px;
+  padding: 8px;
   text-align: left;
   font-size: 14px;
   color: #4f4f4f;
 }
 .invoice2 main table th {
   background-color: #0eabeb;
-  padding: 10px;
+  padding: 5px;
   text-align: left;
   color: #fff;
 }
@@ -175,7 +173,7 @@ footer .terms h3 {
   font-size: 18px;
   font-weight: 600;
   color: #030229;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 footer .terms p {
   font-size: 16px;
