@@ -20,7 +20,7 @@ export default function DoctorPanel() {
     <>
       <DoctorHeader />
       <DoctorAsidePanel />
-      <div className="main-content">
+      <div className="main-content h-full">
         <Routes>
           <Route path="profile/*" element={<DoctorProfile />} />
           <Route path="edit" element={<DoctorProfileEdit />} />

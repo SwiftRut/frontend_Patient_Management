@@ -30,25 +30,27 @@ input {
   align-items: center;
 }
 
-.container {
+.bill-box {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
+  margin: 10px;
 }
-.container .title h1 {
+.bill-box .title h1 {
   font-size: 26px;
   font-weight: 700;
   color: #030229;
   margin-bottom: 20px;
 }
-.container .theme-selector {
+.bill-box .theme-selector {
   display: flex;
+  justify-content: space-between;
 }
-.container .theme-selector .invoice-samples {
+.bill-box .theme-selector .invoice-samples {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
-.container .theme-selector .invoice-samples .invoice {
+.bill-box .theme-selector .invoice-samples .invoice {
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
 }/*# sourceMappingURL=editDesignInvoice.css.map */

@@ -28,7 +28,7 @@ input {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 10px 20px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 
@@ -36,7 +36,7 @@ input {
     font-size: 18px;
     font-weight: 400;
     border: 1px solid #d9d9d9;
-    padding: 15px 20px;
+    padding: 5px 20px;
     border-radius: 35px;
     display: flex;
     align-items: center;
@@ -51,61 +51,6 @@ input {
       padding-right: 10px;
       font-size: 30px;
       color: #ababab;
-    }
-  }
-
-  .user-search {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    justify-content: space-between;
-    padding: 0 10px;
-
-    .search-filter {
-      align-items: center;
-      margin-left: auto;
-      font-size: 0.9em;
-      color: #777;
-      padding-right: 10px;
-      border-left: 1px solid #ababab;
-      padding-left: 10px;
-
-      .filter-text {
-        margin-right: 10px;
-        font-size: 18px;
-      }
-    }
-
-    .notifiction {
-      width: 60px;
-      height: 60px;
-      font-size: 30px;
-      border-radius: 60%;
-      color: #4f4f4f;
-      background-color: #f6f8fb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .user {
-      margin-left: 20px;
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 60px;
-        height: 60px;
-        border-radius: 60%;
-        margin-right: 10px;
-      }
-
-      p {
-        display: block !important;
-        font-size: 20px;
-        padding-bottom: 5px;
-        font-weight: 700;
-      }
     }
   }
 }

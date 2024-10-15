@@ -20,7 +20,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
       } catch (error) {
         setError(
           "Error fetching doctor details: " +
-            (error.response ? error.response.data.message : error.message)
+          (error.response ? error.response.data.message : error.message)
         );
       } finally {
         setLoading(false);

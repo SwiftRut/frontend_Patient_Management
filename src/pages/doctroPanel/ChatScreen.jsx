@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Avatar,
   List,
@@ -17,7 +17,7 @@ import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8001");
+const socket = io("http://192.168.0.105:8001");
 
 const ChatScreen = () => {
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
@@ -26,18 +26,39 @@ const ChatScreen = () => {
   const [messageInput, setMessageInput] = useState("");
   const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
+  const [patientContacts, setPatientContacts] = useState([]);
+  const [doctorContacts, setDoctorContacts] = useState([]);
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const { getChatHistory, getDoctorContacts, getPatientContacts } = useGlobal();
+  const { getChatHistory, getPatientContacts } = useGlobal();
+  
+  console.log(patientContacts, "patientId");
+  console.log(doctorContacts, "doctorId");
 
-  const handleChatClick = (chat) => {
+  // Ref for message container
+  const msgContainerRef = useRef(null);
+
+  const handleChatClick = async (chat) => {
     setSelectedChat(chat);
+    const { id: selectedPatientId } = chat;
+    console.log(chat,  doctorId, "------------------------------------")
+    try {
+      const history = await getChatHistory(doctorId, chat._id);
+      setMessages(history);
+      console.log("Thisis the history", history); 
+      socket.emit("joinRoom", { doctorId, patientId: selectedPatientId });
+    } catch (error) {
+      console.error("Failed to fetch chat history:", error);
+    }
   };
-  const filteredChats = initialChats.filter(
-    (chat) =>
-      chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      chat.message.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  
+
+  const scrollToBottom = () => {
+    if (msgContainerRef.current) {
+      msgContainerRef.current.scrollTop = msgContainerRef.current.scrollHeight;
+    }
+  };
+
   const sendMessage = async () => {
     if (doctorId && patientId && messageInput.trim()) {
       const messageData = {
@@ -50,13 +71,14 @@ const ChatScreen = () => {
       };
       socket.emit("message", messageData);
       setMessageInput("");
+      scrollToBottom();
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedDoctorId = await getAllDoctors();
-      const fetchedPatientId = await getAllPatients();
+      const fetchedDoctorId = await getAllDoctors(); //return the single id for testing
+      const fetchedPatientId = await getAllPatients(); //return the single id for testing
       setDoctorId(fetchedDoctorId);
       setPatientId(fetchedPatientId);
 
@@ -67,22 +89,34 @@ const ChatScreen = () => {
 
       const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
       setMessages(messageHistory);
-      getPatientContacts(doctorId);
+      scrollToBottom();
+      const patientContacts = await getPatientContacts(doctorId);
+      setPatientContacts(patientContacts);
+      const doctorContacts = await getPatientContacts(patientId);
+      setDoctorContacts(doctorContacts);
     };
 
     fetchData();
 
     socket.on("message", (message) => {
       setMessages((prev) => [...prev, message]);
+      scrollToBottom();
     });
 
     return () => {
       socket.off("message");
     };
   }, []);
+
+  // Auto scroll when messages array changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
-          <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
+      {/* Patient List */}
+      <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
         <div className="mb-4">
           <TextField
             fullWidth
@@ -100,7 +134,7 @@ const ChatScreen = () => {
           />
         </div>
         <List>
-          {filteredChats.map((chat) => (
+          {patientContacts.map((chat) => (
             <ListItem
               button
               key={chat.id}
@@ -108,21 +142,22 @@ const ChatScreen = () => {
               selected={selectedChat.id === chat.id}
             >
               <ListItemAvatar>
-                <Avatar src={chat.profile} alt={chat.name} />
+                <Avatar src={chat.profile} alt={chat.firstName + " " + chat.lastName} />
               </ListItemAvatar>
               <ListItemText
-                primary={chat.name}
+                primary={chat.firstName + " " + chat.lastName}
                 secondary={chat.message}
                 primaryTypographyProps={{ fontWeight: "bold" }}
                 secondaryTypographyProps={{ color: "textSecondary" }}
               />
-              <span>{chat.time}</span>
+              <span>{chat.timestamp}</span>
             </ListItem>
           ))}
         </List>
       </div>
+
       {/* Chat window */}
-      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col">
+      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full">
         <div className="flex items-center mb-4">
           <Avatar src={selectedChat.profile} alt={selectedChat.name} />
           <div className="ml-4">
@@ -131,11 +166,15 @@ const ChatScreen = () => {
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto mb-4">
+        <div
+          ref={msgContainerRef}
+          id="msg_container"
+          className="flex-1 overflow-y-scroll mb-4"
+        >
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`mb-2 ${msg.senderId === "670475d7639c7f96cadbd05c" ? "text-right" : "text-left"}`}
+              className={`mb-2 ${msg?.receiverId === "67042956a717e34ec74d0477" ? "text-right" : "text-left"}`}
             >
               <div className="inline-block">
                 <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
