@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
@@ -57,7 +57,7 @@ export default function MonitorBilling() {
                 <div className="icon">
                   <RiEditBoxFill />
                 </div>
-                <div className="text">
+                <div className="text" onClick={() => navigate("/editinvoice")}>
                   <h3>Edit Design Invoice</h3>
                 </div>
               </button>

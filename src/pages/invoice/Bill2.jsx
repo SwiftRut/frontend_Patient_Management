@@ -2,7 +2,7 @@ import "../invoice/bill2.css";
 export default function Bill2() {
   return (
     <>
-      <div className="main flex justify-center items-center h-full">
+      <div className="main flex justify-center items-center">
         <div className="invoice">
           <div className="head">
             <img src="/img/logo.png" width="300px" />
@@ -98,6 +98,7 @@ export default function Bill2() {
                 </p>
               </div>
             </div>
+            <hr/>
             <div className="terms">
               <strong>Term & Conditions:</strong>
               <p>
