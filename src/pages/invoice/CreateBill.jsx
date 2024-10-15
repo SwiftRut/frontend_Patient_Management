@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import "./invoice.css";
-import { formDataObject, HospitalBillFields, PatientBillFields } from "./Contants";
+import { formDataObject, PatientBillFields } from "./Contants";
 import InputField from "./InputField";
+import { useDoctor } from "../../hooks/useDoctor";
 
 const CreateBill = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { createBill, updateBill, bill, getAdminProfile } = useGlobal();
+  const { getAllDoctors, allDoctors } = useDoctor();
   const [formData, setFormData] = useState(formDataObject);
 
   const handleChange = (e) => {
@@ -36,7 +38,27 @@ const CreateBill = () => {
       console.error("Error submitting form:", error);
     }
   };
-
+  useEffect(() => {
+    getAllDoctors();
+  }, []);
+const HospitalBillFields = [  
+    { label: "Patient Name", name: "patientName", type: "text" },
+    { label: "Phone Number", name: "phoneNumber", type: "text" },
+    { label: "Gender", name: "gender", type: "select", options: ["Select Gender", "Male", "Female", "Other"] },
+    { label: "Age", name: "age", type: "text" },
+    { label: "Doctor Name", name: "doctorName", type: "select", options: ["Select Doctor Name", ...allDoctors.map((doctor) => doctor.name)] , values: allDoctors.map((doctor) => doctor._id)},
+    { label: "Disease Name", name: "diseaseName", type: "text"},
+    { label: "Description", name: "description", type: "text" },
+    { label: "Payment Type", name: "paymentType", type: "select", options: ["Select Payment Type", "Cash", "Insurance", "Credit Card"] },
+    { label: "Bill Date", name: "billDate", type: "date" },
+    { label: "Bill Time", name: "billTime", type: "text" },
+    { label: "Bill Number", name: "billNumber", type: "text" },
+    { label: "Discount (%)", name: "discount", type: "text" },
+    { label: "Tax", name: "tax", type: "text" },
+    { label: "Amount", name: "amount", type: "text" },
+    { label: "Total Amount", name: "totalAmount", type: "text" },
+    { label: "Address", name: "address", type: "text" },
+  ]
   return (
     <div>
       <div className="bill-insurance-section">
@@ -65,7 +87,7 @@ const CreateBill = () => {
               </div>
             </div>
 
-            <div className="insurance-details">
+        {formData.paymentType === "Insurance" && <div className="insurance-details">
               <div className="content">
                 <div className="head">
                   <p>Insurance Details</p>
@@ -86,8 +108,7 @@ const CreateBill = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
+            </div>}
             <div className="save-btn flex">
               <button type="submit" form="create-bill-form" onClick={handleSubmit}>Save</button>
             </div>
