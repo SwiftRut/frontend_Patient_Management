@@ -22,7 +22,9 @@ export default function PatientRecordAccesst() {
     patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase())
   );
   return (
-    <div className="patioentRecord p-6 bg-white rounded-lg shadow-md m-6">
+    <div className="bg-[#e4e3e3] p-6 h-full">
+
+    <div className="patioentRecord p-6 bg-white rounded-lg shadow-md">
 
       {/* Search and Filter Section */}
       <div className="flex justify-between items-center mb-4">
@@ -101,6 +103,7 @@ export default function PatientRecordAccesst() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   )
 }
