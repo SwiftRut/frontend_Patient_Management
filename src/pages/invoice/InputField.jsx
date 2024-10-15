@@ -8,8 +8,8 @@ const InputField = ({ label, name, type, value, onChange, options }) => {
       {type === "select" ? (
         <select name={name} value={value} onChange={onChange}>
           {options.map((option, idx) => (
-            <option key={idx} value={option}>
-              {option}
+            <option key={idx} value={option.value}>
+              {option.label}
             </option>
           ))}
         </select>

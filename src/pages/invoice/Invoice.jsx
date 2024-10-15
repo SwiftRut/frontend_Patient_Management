@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 import PatientDetailsForm from "../PatientDetailsForm";
 import HospitalDetailsForm from "../HospitalDetailsForm";
 import AddFieldModal from "../../component/AddFieldsModal";
+import AddNewField from "./AddNewField";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -186,7 +187,7 @@ const Invoice = () => {
           </div>
         </div>
       </div>
-      <AddFieldModal
+      <AddNewField
         isOpen={isModalOpen}
         onClose={closeModal}
         onAddField={(field) => handleNewField(field)}
