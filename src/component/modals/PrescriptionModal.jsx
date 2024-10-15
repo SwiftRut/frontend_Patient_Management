@@ -15,7 +15,7 @@ import signature from "../../assets/signature.svg"
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" className='manage-prescription'>
       <DialogTitle>
         <div className="flex justify-between items-center">
           <span>Prescription</span>
@@ -24,16 +24,17 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
           </IconButton>
         </div>
       </DialogTitle>
+
       <DialogContent>
+
         <div className="p-4">
-          <div className="flex justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-blue-600">Hospital</h2>
-              <p>Medical Center</p>
+          <div className="head flex justify-between align-center">
+            <div className="logo">
+              <img src="/image/bill-logo.png" alt="" />
             </div>
-            <div>
-              <h3 className="font-bold text-blue-600">Dr. Bharat Patel</h3>
-              <p>Obstetrics and Gynecology</p>
+            <div className="name">
+              <p>Dr. Bharat Patel</p>
+              <span>Obstetrics and Gynecology</span>
             </div>
           </div>
 

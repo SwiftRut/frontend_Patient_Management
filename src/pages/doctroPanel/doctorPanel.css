@@ -37,11 +37,6 @@ ol {
   border: 0px;
   border-radius: 50px;
 }
-.search::-moz-placeholder {
-  color: #A7A7A7;
-  font-size: 16px;
-  font-weight: 400px;
-}
 .search::placeholder {
   color: #A7A7A7;
   font-size: 16px;
@@ -50,6 +45,10 @@ ol {
 
 .css-1ll44ll-MuiOutlinedInput-notchedOutline {
   border: 0px !important;
+}
+
+.css-lzk69h-MuiButtonBase-root-MuiIconButton-root:hover {
+  border-radius: 10px;
 }
 
 .time-slot button {
@@ -165,7 +164,13 @@ ol {
   box-sizing: border-box;
   position: relative;
   cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: relative;
   border: 1px solid #D3D3D3;
@@ -260,10 +265,10 @@ ol {
   padding-top: 30px;
 }
 .cp-tool .cp-add button {
-  padding: 12px 14px;
+  padding: 10px 14px;
   background-color: #0EABEB;
   border-radius: 10px;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 600;
   color: white;
   text-transform: capitalize;
@@ -293,6 +298,193 @@ ol {
 }
 .cp-tool p .onside {
   color: #5678E9;
+}
+
+form {
+  justify-content: space-between;
+}
+form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  background-color: white;
+}
+form .input-box input:focus {
+  border: 1px solid #718ebf;
+}
+form .input-box input::placeholder {
+  color: #a7a7a7;
+}
+form .input-box:nth-child(1) {
+  width: 32%;
+}
+form .input-box:nth-child(1) input {
+  width: 100%;
+}
+form .input-box:nth-child(2) {
+  width: 32%;
+}
+form .input-box:nth-child(2) input {
+  width: 100%;
+}
+form .input-box:nth-child(3) {
+  width: 32%;
+}
+form .input-box:nth-child(3) input {
+  width: 100%;
+}
+form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+form .condition .policies input {
+  width: 20px;
+}
+form .condition .policies p {
+  display: inline-block;
+  padding-left: 10px;
+}
+form .condition .policies span {
+  color: #5678e9;
+}
+form .condition .register-btn {
+  padding: 15px 0px;
+}
+form .condition .register-btn button {
+  width: 100%;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+form .condition .register-btn button:hover {
+  background-color: #0eabeb;
+  color: white;
+}
+form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+}
+
+.drug label {
+  background-color: white;
+  z-index: 2;
+}
+.drug input,
+.drug .select {
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+}
+.drug .icon svg {
+  color: red;
+}
+
+.add-medicine {
+  padding-top: 25px;
+}
+.add-medicine button {
+  background-color: #0EABEB;
+  color: white;
+}
+
+.addition-note {
+  padding-top: 20px;
+}
+.addition-note label {
+  padding: 10px;
+}
+.addition-note textarea {
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.save-btn button {
+  background-color: #0EABEB;
+  color: white;
+}
+
+.Prescription-bill .head .name p {
+  color: #0EABEB;
+  font-size: 24px;
+  font-weight: 700;
+}
+.Prescription-bill .head .name span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .dr-details {
+  padding-top: 15px;
+}
+.Prescription-bill .dr-details p {
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+  width: 50%;
+}
+.Prescription-bill .dr-details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .dr-details .add {
+  width: 100%;
+}
+.Prescription-bill table tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  display: inline-block;
+  color: Green;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.Prescription-bill table tbody tr .take span {
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  display: inline-block;
+  color: Light #718EBF;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.Prescription-bill .note {
+  padding-top: 15px;
+}
+.Prescription-bill .note h3 {
+  color: #030229;
+  font-size: 16px;
+  font-weight: 500;
+}
+.Prescription-bill .note p {
+  color: #4F4F4F;
+  font-size: 14px;
+  font-weight: 500;
+}
+.Prescription-bill .condition {
+  padding-top: 15px;
+}
+.Prescription-bill .condition .sign span {
+  color: #A7A7A7;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .condition .btn button {
+  color: white;
+  background-color: #0EABEB;
+  padding: 8px 25px;
+  border-radius: 10px;
 }
 
 .manage-p .today,
@@ -331,6 +523,15 @@ ol {
 .manage-p table tbody tr .type span {
   padding: 0px 15px;
   display: inline-block;
+}
+
+.css-1peo4km-MuiPaper-root-MuiDialog-paper {
+  max-width: 602px;
+}
+
+.manage-prescription {
+  width: 650px;
+  margin: 0px auto;
 }
 
 .teli-module .teli-btn button {
@@ -379,7 +580,7 @@ ol {
   color: #818194;
 }
 .teli-module .box .join {
-  width: 48%;
+  width: 47%;
   color: #FFFFFF;
   background-color: #39973D;
   padding: 12px 14px;
@@ -389,7 +590,7 @@ ol {
   font-size: 24px;
 }
 .teli-module .box .reschedule {
-  width: 48%;
+  width: 47%;
   color: #FFFFFF;
   background-color: #0EABEB;
   padding: 12px 14px;
