@@ -264,7 +264,7 @@ export default function PaymentMethod() {
                         <div className="edit">
                           <FaEdit />
                         </div>
-                        <div className="view">
+                        <div className="view" onClick={() => navigate(`/bill/${data.billNumber}`)}>
                           <FaEye />
                         </div>
                         <div className="delete">
