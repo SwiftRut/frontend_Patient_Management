@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./pages.css";
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin, user } = useAuth();
   const [formData, setFormData] = useState({
-    identifier: "mohitdudhat@gmail.com",
-    password: "123@abc",
-    remember: "true",
+    identifier: "",
+    password: "",
+    remember: "",
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -54,11 +55,13 @@ const Login = () => {
         if (user.role === "patient") {
           navigate("/patient");
         } else if (user.role === "doctor") {
+          toast.success("doctor login successfully")
           navigate("/doctor/profile/");
         }
       }
     } catch (err) {
       console.error(err);
+      toast.error("Login failed. Please check your credentials.")
       setError("Login failed. Please check your credentials.");
     }
   };
@@ -127,8 +130,6 @@ const Login = () => {
                           <span
                             style={{
                               cursor: "pointer",
-                              color: "blue",
-                              textDecoration: "underline",
                             }}
                           >
                             Forgot password?
@@ -144,7 +145,7 @@ const Login = () => {
                         onClick={() => navigate("/adminRegistration")}
                       >
                         <p
-                          style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                          style={{ cursor: "pointer" }}
                         >
                           Don’t have an account? Register
                         </p>

@@ -171,10 +171,10 @@ const Appointment = () => {
                           </div>
                           <div className="flex justify-between items-center">
                             <button className="px-3 py-2 border-2 m-2">
-                              <i class="fa-solid fa-business-time text-gray-600"></i> Cancle
+                              <i className="fa-solid fa-business-time text-gray-600"></i> Cancle
                             </button>
                             <button className="px-3 py-2 rounded-lg m-2 bg-btn-bg text-white">
-                              <i class="fa-solid fa-business-time  "></i> Reschedule
+                              <i className="fa-solid fa-business-time  "></i> Reschedule
                             </button>
                           </div>
                         </div>
@@ -409,10 +409,10 @@ const Appointment = () => {
                           </div>
                           <div className="flex justify-between items-center">
                             <button className="px-3 py-2 border-2 m-2">
-                              <i class="fa-solid fa-business-time text-gray-600"></i> Cancle
+                              <i className="fa-solid fa-business-time text-gray-600"></i> Cancle
                             </button>
                             <button className="px-3 py-2 rounded-lg m-2 bg-btn-bg text-white">
-                              <i class="fa-solid fa-business-time  "></i> Reschedule
+                              <i className="fa-solid fa-business-time  "></i> Reschedule
                             </button>
                           </div>
                         </div>

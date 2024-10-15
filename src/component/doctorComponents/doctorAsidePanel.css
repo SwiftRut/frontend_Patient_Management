@@ -73,7 +73,8 @@ input {
   transition: max-height 0.3s ease-out;
 }
 .sidebar .asite .menu ul li .dropdown.open {
-  max-height: 200px; /* Maximum height when open */
+  max-height: 200px;
+  /* Maximum height when open */
 }
 .sidebar .asite .menu ul li .dropdown ul {
   padding: 0;
@@ -136,4 +137,9 @@ input {
   width: 83%;
   margin-left: 17%;
   padding: 20px;
+}
+
+.header {
+  width: 83%;
+  margin-left: 17%;
 }/*# sourceMappingURL=doctorAsidePanel.css.map */

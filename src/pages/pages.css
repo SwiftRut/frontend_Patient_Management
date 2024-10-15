@@ -25,9 +25,11 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
-  background-color: white;
 }
 
+.registration-section .row .main {
+  height: 100vh;
+}
 .registration-section .row .main .form {
   padding: 120px;
   width: 50%;
@@ -58,6 +60,10 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+  z-index: 2;
+}
+.registration-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -143,6 +149,36 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(8) select {
   width: 100%;
 }
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-13cymwt-control {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  color: #a7a7a7;
+}
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-t3ipsp-control {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 50px;
+  outline: 0 !important;
+  position: relative;
+  transition: all 100ms;
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid #718ebf !important;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 0 0 1px #2684FF;
+  box-sizing: border-box;
+}
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-1nmdiq5-menu {
+  z-index: 3;
+}
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
   width: 100%;
 }
@@ -190,6 +226,10 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.registration-section .row .main .form .content .form-box form .condition .login-btn p span {
+  color: #5678E9;
 }
 .registration-section .row .main .img-box {
   width: 50%;
@@ -510,12 +550,7 @@ input {
   top: 0px;
 }
 
-.hospital-section .row .main .form {
-  padding: 120px;
-  width: 50%;
-}
 .hospital-section .row .main .form .content {
-  padding: 60px 60px;
   background-color: white;
   border-radius: 15px;
 }
@@ -539,10 +574,14 @@ input {
   left: 14px;
   background-color: white;
 }
+.hospital-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
+}
 .hospital-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+  width: 100%;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
@@ -696,6 +735,9 @@ input {
   top: 0px;
 }
 
+.admin-mobile-section .row .main {
+  height: 100vh;
+}
 .admin-mobile-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -844,6 +886,9 @@ input {
   top: 0px;
 }
 
+.admin-otp-section .row .main {
+  height: 100vh;
+}
 .admin-otp-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -1027,6 +1072,9 @@ input {
   top: 0px;
 }
 
+.changePassword-section .row .main {
+  height: 100vh;
+}
 .changePassword-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
@@ -1181,6 +1229,9 @@ input {
   top: 0px;
 }
 
+.login-section .row .main {
+  height: 100vh;
+}
 .login-section .row .main .form {
   padding: 120px;
   width: 50%;
@@ -1214,6 +1265,9 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+}
+.login-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .login-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -1274,6 +1328,9 @@ input {
 .login-section .row .main .form .content .form-box form .condition .remember-forgot .remember p {
   padding-left: 15px;
 }
+.login-section .row .main .form .content .form-box form .condition .remember-forgot .forgot span {
+  color: #5678E9;
+}
 .login-section .row .main .form .content .form-box form .condition .login-btn {
   padding: 15px 0px;
 }
@@ -1296,6 +1353,10 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.login-section .row .main .form .content .form-box form .condition .registration-btn p span {
+  color: #5678E9;
 }
 .login-section .row .main .img-box {
   width: 50%;

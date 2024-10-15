@@ -30,8 +30,12 @@ input {
   align-items: center;
 }
 
-// section start
-.insurance-section {
+//   section start
+.bg-gray {
+  background-color: #f6f8fb;
+}
+.patient-section {
+  padding: 10px;
   .row {
     .main {
       border-radius: 15px;
@@ -39,15 +43,40 @@ input {
       background-color: #fff;
       padding: 10px;
       height: 100%;
+
+      .top-menu {
+        border-bottom: 1px solid rgb(219, 219, 219);
+        padding: 20px 10px 0;
+
+        button {
+          background: none;
+          border: none;
+          margin-right: 25px;
+          font-size: 20px;
+          color: #667080;
+          font-weight: 400;
+          cursor: pointer;
+          padding-bottom: 20px;
+        }
+
+        button:focus {
+          border-bottom: 5px solid #0eabeb;
+          color: #0eabeb;
+        }
+      }
+
       .top {
         justify-content: space-between;
         padding: 10px 10px 20px;
+
         .heading {
           font-weight: 700;
           font-size: 25px;
         }
+
         .search-btn {
           justify-content: space-between;
+
           .input {
             padding: 12px 15px;
             background-color: #f6f8fb;
@@ -55,56 +84,15 @@ input {
             border-radius: 30px;
             width: 350px;
             font-size: 20px;
+
             .search {
               font-size: 25px;
               color: #000;
             }
+
             input {
               background-color: transparent;
               padding-left: 10px;
-            }
-          }
-          .edit-btn {
-            background-color: transparent;
-            border-radius: 10px;
-            padding: 12px 12px;
-            margin-left: 10px;
-            border: 1px solid #0eabeb;
-
-            .icon {
-              background-color: white;
-              color: #0eabeb;
-              border-radius: 5px;
-              padding: 2px;
-              font-size: 20px;
-              margin-right: 10px;
-            }
-
-            .text {
-              font-size: 20px;
-              color: #0eabeb;
-              font-weight: 600;
-            }
-          }
-          .btn {
-            background-color: #0eabeb;
-            border-radius: 10px;
-            padding: 12px 14px;
-            margin-left: 10px;
-
-            .icon {
-              background-color: white;
-              color: #0eabeb;
-              border-radius: 5px;
-              padding: 2px;
-              font-size: 20px;
-              margin-right: 10px;
-            }
-
-            .text {
-              font-size: 20px;
-              color: white;
-              font-weight: 600;
             }
           }
         }
@@ -116,6 +104,15 @@ input {
         img {
           margin-right: 10px;
           width: 50px;
+        }
+        .gender {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: #f6f8fb;
+          color: #718ebf;
+          padding: 10px;
+          margin: auto;
         }
       }
       .time {

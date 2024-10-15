@@ -105,10 +105,10 @@ export default function ReportingAndAnalytics() {
             </div>
 
             <div className="top flex">
-              <div className="w-1/2 p-4">
+              <div className="w-1/2 p-3">
                 <AppointmentGraph />
               </div>
-              <div className="w-1/2 p-4">
+              <div className="w-1/2 p-3">
                 <PatientSummary />
               </div>
             </div>

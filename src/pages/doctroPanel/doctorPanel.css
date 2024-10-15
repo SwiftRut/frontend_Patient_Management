@@ -331,4 +331,70 @@ ol {
 .manage-p table tbody tr .type span {
   padding: 0px 15px;
   display: inline-block;
+}
+
+.teli-module .teli-btn button {
+  font-size: 17px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.teli-module .head h2 {
+  color: #030229;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 17px;
+}
+.teli-module .head button {
+  border: 2px solid #D3D3D3;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #141414;
+}
+.teli-module .head button svg {
+  font-size: 24px;
+  color: #4F4F4F;
+}
+.teli-module .box {
+  padding: 0px !important;
+}
+.teli-module .box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #030229;
+  background-color: #F6F8FB;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 15px;
+}
+.teli-module .box p {
+  color: #4F4F4F;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+.teli-module .box p strong {
+  color: #818194;
+}
+.teli-module .box .join {
+  width: 48%;
+  color: #FFFFFF;
+  background-color: #39973D;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.teli-module .box .join svg {
+  font-size: 24px;
+}
+.teli-module .box .reschedule {
+  width: 48%;
+  color: #FFFFFF;
+  background-color: #0EABEB;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.teli-module .box .reschedule svg {
+  font-size: 24px;
 }/*# sourceMappingURL=doctorPanel.css.map */

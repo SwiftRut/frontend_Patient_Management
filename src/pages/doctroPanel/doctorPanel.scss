@@ -474,3 +474,93 @@ ol {
 
 
 // managePrescription tools end 
+
+
+
+// teleconsultation module start 
+
+.teli-module {
+  .teli-btn {
+    button {
+      font-size: 17px;
+      font-weight: 400;
+      text-transform: capitalize;
+      // color: #0EABEB;
+    }
+  }
+
+  .head {
+    h2 {
+      color: #030229;
+      font-size: 26px;
+      font-weight: 700;
+      padding: 17px;
+    }
+
+    button {
+      border: 2px solid #D3D3D3;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #141414;
+
+      svg {
+        font-size: 24px;
+        color: #4F4F4F;
+      }
+    }
+  }
+
+  .box {
+    padding: 0px !important;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #030229;
+      background-color: #F6F8FB;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      padding: 15px;
+    }
+
+    p {
+      color: #4F4F4F;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 15px;
+
+      strong {
+        color: #818194;
+      }
+    }
+
+    .join {
+      width: 48%;
+      color: #FFFFFF;
+      background-color: #39973D;
+      padding: 12px 14px;
+      border-radius: 10px;
+
+      svg {
+        font-size: 24px;
+      }
+    }
+
+    .reschedule {
+      width: 48%;
+      color: #FFFFFF;
+      background-color: #0EABEB;
+      padding: 12px 14px;
+      border-radius: 10px;
+
+      svg {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+// teleconsultation module end

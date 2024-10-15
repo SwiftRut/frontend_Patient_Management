@@ -7,27 +7,27 @@ import '../profile/doctorProfile.css'
 
 const DoctorProfileData = () => {
   const { user } = useAuth();
-  const {getDoctorProfile, userData } = useGlobal();
+  const { getDoctorProfile, userData } = useGlobal();
   useEffect(() => {
     const fetchData = async () => {
       try {
-          await getDoctorProfile(user.id);
+        await getDoctorProfile(user.id);
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
-  },[])
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
-          await getDoctorProfile(user.id);
+        await getDoctorProfile(user.id);
       } catch (error) {
         console.error(error);
       }
     }
     fetchData();
-  },[])
+  }, [])
   return (
     <div className="content">
       <div className="head flex">
@@ -49,14 +49,14 @@ const DoctorProfileData = () => {
             <div className="label">
               First Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName}/>
+            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName} />
           </div>
 
           <div className="input-box">
             <div className="label">
               Last Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter Last Name" value={userData?.lastName}/>
+            <input disabled type="text" placeholder="Enter Last Name" value={userData?.lastName} />
           </div>
 
           <div className="input-box">
@@ -76,7 +76,7 @@ const DoctorProfileData = () => {
             <div className="label">
               Hospital Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Hospital Name" value={userData?.hospitalName}/>
+            <input disabled type="text" placeholder=" Hospital Name" value={userData?.hospitalName} />
           </div>
 
           <div className="input-box">
@@ -90,21 +90,21 @@ const DoctorProfileData = () => {
             <div className="label">
               City <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" City" value={userData?.city}/>
+            <input disabled type="text" placeholder=" City" value={userData?.city} />
           </div>
 
           <div className="input-box">
             <div className="label">
               State <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" State" value={userData?.state}/>
+            <input disabled type="text" placeholder=" State" value={userData?.state} />
           </div>
 
           <div className="input-box">
             <div className="label">
               Country <span>*</span>
             </div>
-            <input disabled type="text" placeholder=" Country" value={userData?.country}/>
+            <input disabled type="text" placeholder=" Country" value={userData?.country} />
           </div>
         </form>
       </div>
