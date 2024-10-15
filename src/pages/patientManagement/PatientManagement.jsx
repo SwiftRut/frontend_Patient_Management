@@ -220,7 +220,7 @@ export default function PatientManagement() {
         gender: "Male",
         address: "Avengers Compound.",
         date: "15 Oct, 2024",
-      }
+      },
     ],
 
     upcoming: [
@@ -284,10 +284,11 @@ export default function PatientManagement() {
   const currentPatients = patientsData[activeTab];
 
   // Filter patients based on search query
-  const filteredPatients = currentPatients.filter(patient =>
-    patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    patient.issue.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    patient.doctor.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredPatients = currentPatients.filter(
+    (patient) =>
+      patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      patient.issue.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      patient.doctor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -371,7 +372,9 @@ export default function PatientManagement() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="7" className="p-3 text-center">No patients found.</td>
+                      <td colSpan="7" className="p-3 text-center">
+                        No patients found.
+                      </td>
                     </tr>
                   )}
                 </tbody>

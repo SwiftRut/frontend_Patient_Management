@@ -1,11 +1,12 @@
+import PropTypes from "prop-types";
 import "../billPayment/cashPayment.css";
-export default function CashPayment() {
+
+export default function CashPayment({ setIsPayment, billData }) {
   return (
     <>
       <div className="cashpayment-section">
         <div className="row">
-            {/* unfill */}
-          {/* <div className="popup">
+          <div className="popup">
             <div className="title">
               <h2>Cash Payment</h2>
             </div>
@@ -14,25 +15,10 @@ export default function CashPayment() {
               <input type="text" placeholder="₹000000" />
             </div>
             <div className="btns flex">
-              <button className="cancel">Cancel</button>
+              <button onClick={() => setIsPayment(false)} className="cancel">
+                Cancel
+              </button>
               <button className="pay">Pay</button>
-            </div>
-          </div> */}
-
-          {/* fill */}
-          <div className="popup">
-            <div className="title">
-              <h2>Cash Payment</h2>
-            </div>
-            <div className="input-box">
-              <div className="label">Enter Amount</div>
-                <div className="input">
-                    <input type="text" placeholder="₹ 24,668"/>
-                </div>
-            </div>
-            <div className="btns flex">
-              <button className="cancel">Cancel</button>
-              <button className="pay-fill">Pay</button>
             </div>
           </div>
         </div>
@@ -40,3 +26,9 @@ export default function CashPayment() {
     </>
   );
 }
+
+// Add PropTypes validation
+CashPayment.propTypes = {
+  setIsPayment: PropTypes.func.isRequired,
+  billData: PropTypes.object,
+};

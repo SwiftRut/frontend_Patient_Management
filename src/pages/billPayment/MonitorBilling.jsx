@@ -204,10 +204,11 @@ export default function MonitorBilling() {
   }, [getBills]);
 
   // Filter records based on the search query
-  const filteredRecords = billingRecords.filter((record) =>
-    record.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    record.diseaseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    record.billNumber.includes(searchQuery)
+  const filteredRecords = billingRecords.filter(
+    (record) =>
+      record.patientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      record.diseaseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      record.billNumber.includes(searchQuery)
   );
 
   return (
@@ -234,7 +235,7 @@ export default function MonitorBilling() {
                 <div className="icon">
                   <RiEditBoxFill />
                 </div>
-                <div className="text" onClick={() => navigate("/invoice")}>
+                <div className="text" onClick={() => navigate("/editinvoice")}>
                   <h3>Edit Design Invoice</h3>
                 </div>
               </button>
@@ -284,7 +285,10 @@ export default function MonitorBilling() {
                         <h3>{record.time}</h3>
                       </td>
                       <td className="action p-3">
-                        <div className="view" onClick={() => navigate(`/bill/${record.billNumber}`)}>
+                        <div
+                          className="view"
+                          onClick={() => navigate(`/bill/${record.billNumber}`)}
+                        >
                           <FaEye />
                         </div>
                       </td>

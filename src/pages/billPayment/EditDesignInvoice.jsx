@@ -1,7 +1,7 @@
 import Bill2 from "../invoice/Bill2";
 import Bill3 from "../invoice/Bill3";
 import "../billPayment/editDesignInvoice.css";
-import Bill from "../../component/Bill";
+import Bill from "../invoice/Bill";
 
 export default function EditDesignInvoice() {
   return (

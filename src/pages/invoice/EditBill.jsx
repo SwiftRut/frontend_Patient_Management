@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { FaEdit } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import "./invoice.css";
-import { FaCircleMinus } from "react-icons/fa6";
-import { FaImage } from "react-icons/fa";
-import InputField from './InputField';
-import { formDataObject, HospitalBillFields, PatientBillFields } from './Contants';
-import { useAuth } from '../../hooks/useAuth';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useGlobal } from '../../hooks/useGlobal';
+import InputField from "./InputField";
+import { formDataObject, HospitalBillFields, PatientBillFields } from "./Contants";
+import { useAuth } from "../../hooks/useAuth";
+import { useParams } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const EditBill = () => {
-  const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
   const { user } = useAuth();
-  const { createBill, updateBill, bill, getBillById } = useGlobal();
+  const { updateBill, bill, getBillById } = useGlobal();
   const [formData, setFormData] = useState(formDataObject);
 
   const handleChange = (e) => {
@@ -33,13 +29,14 @@ const EditBill = () => {
       console.error("Error submitting form:", error);
     }
   };
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getBillById(id);
-        console.log(data, "data")
+        console.log(data, "data");
         setFormData({
-          ...data,});
+          ...data,
+        });
       } catch (error) {
         console.error("Error fetching admin profile:", error);
       }
@@ -98,13 +95,15 @@ const EditBill = () => {
             </div>
 
             <div className="save-btn flex">
-              <button type="submit" form="create-bill-form" onClick={handleSubmit}>Save</button>
+              <button type="submit" form="create-bill-form" onClick={handleSubmit}>
+                Save
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default EditBill
+export default EditBill;
