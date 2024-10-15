@@ -1,35 +1,17 @@
 import { useEffect, useState } from "react";
 import "./dashboard.css";
-import { FaUsers } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
-import { FaFileAlt } from "react-icons/fa";
-import { FaAddressCard } from "react-icons/fa";
-import { FaBox } from "react-icons/fa";
-
-import { FaEye } from "react-icons/fa";
-import { Line, Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { FaUsers, FaUser, FaFileAlt, FaAddressCard, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics.jsx";
 import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown.jsx";
 import apiService from "../../services/api.js";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const Dashboard = () => {
   const navigate = useNavigate();
   const { getBills, allBills } = useGlobal();
   const [totalAppointments, setTotalAppointments] = useState(0);
-  const [todaysAppointments, setTodaysAppointments] = useState(0);
+  const [todaysAppointments, setTodaysAppointments] = useState([]);
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalDoctors, setTotalDoctors] = useState(0);
 
@@ -42,8 +24,8 @@ const Dashboard = () => {
       try {
         const response = await apiService.GetAllAppointments();
         const data = response.data;
-        console.log("appointments>>>", data);
         setTotalAppointments(data.length);
+
         const today = new Date().toISOString().split("T")[0];
         const filteredAppointments = data.filter(
           (appointment) => appointment.appointmentDate === today
@@ -53,6 +35,7 @@ const Dashboard = () => {
         console.error("Error fetching appointments:", error);
       }
     };
+
     const fetchPatients = async () => {
       try {
         const response = await apiService.GetAllPatients();
@@ -103,7 +86,7 @@ const Dashboard = () => {
                         <FaUser />
                       </div>
                       <div className="details">
-                        <p>Total Docters</p>
+                        <p>Total Doctors</p>
                         <span>{totalDoctors}</span>
                       </div>
                     </div>
@@ -122,6 +105,7 @@ const Dashboard = () => {
                 </div>
                 <PatientsStatistics />
               </div>
+
               <div className="Billing-data">
                 <div className="head flex">
                   <div className="title">
@@ -136,61 +120,44 @@ const Dashboard = () => {
                 </div>
                 <div className="pending-bill">
                   <div className="bill-status">
-                    <p>
-                      Pending Bills : <span>00</span>
-                    </p>
+                    <p>Pending Bills : <span>{allBills.length}</span></p>
                   </div>
 
                   <div className="pending-bill-data">
-                    {/* When there is no data */}
-
-                    {/* <div className="img">
-                      <img src="../img/FrameBill.png" alt="" />
-                    </div> */}
-
-                    {/* When there is data */}
-
-                    <div className="bill-table">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Bill No</th>
-                            <th>Patient Name</th>
-                            <th>Disease Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          {allBills.map((bill) => (
-                            <tr key={bill.id}>
-                              <td className="bill-num">
-                                <p>{bill.billNumber}</p>
-                              </td>
-
-                              <td className="patient-name">
-                                <p>{bill.patientId ? bill.patientId.name : "Unknown"}</p>
-                              </td>
-
-                              <td className="disease-name">
-                                <p>{bill.description}</p>
-                              </td>
-
-                              <td className="status">
-                                <p>{bill.status}</p>
-                              </td>
-
-                              <td className="action flex">
-                                <div className="box flex">
-                                  <FaEye />
-                                </div>
-                              </td>
+                    {allBills.length === 0 ? (
+                      <div className="img">
+                        <img src="../img/FrameBill.png" alt="No Billing Data" />
+                      </div>
+                    ) : (
+                      <div className="bill-table">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Bill No</th>
+                              <th>Patient Name</th>
+                              <th>Disease Name</th>
+                              <th>Status</th>
+                              <th>Action</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                          </thead>
+                          <tbody>
+                            {allBills.map((bill) => (
+                              <tr key={bill.id}>
+                                <td className="bill-num"><p>{bill.billNumber}</p></td>
+                                <td className="patient-name"><p>{bill.patientId ? bill.patientId.name : "Unknown"}</p></td>
+                                <td className="disease-name"><p>{bill.description}</p></td>
+                                <td className="status"><p>{bill.status}</p></td>
+                                <td className="action flex">
+                                  <div className="box flex">
+                                    <FaEye />
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -206,115 +173,41 @@ const Dashboard = () => {
                         <span>View All</span>
                       </div>
                     </div>
-                    {/* When there is no data */}
 
-                    {/* <div className="img">
-                      <img src="../img/Frame1.png" alt="" />
-                    </div> */}
-
-                    {/* When there is data */}
-
-                    <div className="appointments-list flex">
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                    {todaysAppointments.length === 0 ? (
+                      <div className="img">
+                        <img src="../img/Frame1.png" alt="No Appointments Data" />
                       </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
+                    ) : (
+                      <div className="appointments-list flex">
+                        {todaysAppointments.map((appointment, index) => (
+                          <div className="box" key={index}>
+                            <div className="content">
+                              <div className="heading flex">
+                                <p>{appointment.patientName}</p>
+                                <span>{appointment.type}</span>
+                              </div>
+                              <div className="data">
+                                <ul>
+                                  <li>
+                                    <p>Doctor Name</p>
+                                    <span>{appointment.doctorName}</span>
+                                  </li>
+                                  <li>
+                                    <p>Disease Name</p>
+                                    <span>{appointment.disease}</span>
+                                  </li>
+                                  <li>
+                                    <p>Appointment Time</p>
+                                    <span>{appointment.time}</span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
                           </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                        ))}
                       </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="box">
-                        <div className="content">
-                          <div className="heading flex">
-                            <p>Roger Lubin</p>
-                            <span>Onsite</span>
-                          </div>
-                          <div className="data">
-                            <ul>
-                              <li>
-                                <p>Doctor Name</p>
-                                <span>Leo Geidt</span>
-                              </li>
-                              <li>
-                                <p>Disease Name</p>
-                                <span>Meningococcal Disease</span>
-                              </li>
-                              <li>
-                                <p>Appointment Time</p>
-                                <span>10:00 AM</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
