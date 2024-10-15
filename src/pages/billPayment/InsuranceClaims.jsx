@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function InsuranceClaims() {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("");
 
   const claimsData = [
     {
