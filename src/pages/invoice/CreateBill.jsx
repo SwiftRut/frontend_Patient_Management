@@ -24,13 +24,10 @@ const CreateBill = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData, "<<<<<<<<<<<<<< formdata");
-    console.log(bill, "<<<<<<<<<<<<<< bill");
     const data = new FormData();
     for (const key in formData) {
       data.append(key, formData[key]);
     }
-    console.log(data, "<<<<<<<<<<<<<< data");
     try {
       await createBill(data);
       // navigate("/");
@@ -38,18 +35,38 @@ const CreateBill = () => {
       console.error("Error submitting form:", error);
     }
   };
+
   useEffect(() => {
     getAllDoctors();
   }, []);
-const HospitalBillFields = [  
+
+  const HospitalBillFields = [  
     { label: "Patient Name", name: "patientName", type: "text" },
     { label: "Phone Number", name: "phoneNumber", type: "text" },
-    { label: "Gender", name: "gender", type: "select", options: ["Select Gender", "Male", "Female", "Other"] },
+    { label: "Gender", name: "gender", type: "select", options: [
+      { label: "Select Gender", value: "" },
+      { label: "Male", value: "Male" },
+      { label: "Female", value: "Female" },
+      { label: "Other", value: "Other" }
+    ]},
     { label: "Age", name: "age", type: "text" },
-    { label: "Doctor Name", name: "doctorName", type: "select", options: ["Select Doctor Name", ...allDoctors.map((doctor) => doctor.name)] , values: allDoctors.map((doctor) => doctor._id)},
+    {
+      label: "Doctor Name",
+      name: "doctorId",
+      type: "select",
+      options: [
+        { label: "Select Doctor Name", value: "" },
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+      ],
+    },
     { label: "Disease Name", name: "diseaseName", type: "text"},
     { label: "Description", name: "description", type: "text" },
-    { label: "Payment Type", name: "paymentType", type: "select", options: ["Select Payment Type", "Cash", "Insurance", "Credit Card"] },
+    { label: "Payment Type", name: "paymentType", type: "select", options: [
+      { label: "Select Payment Type", value: "" },
+      { label: "Cash", value: "Cash" },
+      { label: "Insurance", value: "Insurance" },
+      { label: "Credit Card", value: "Credit Card" }
+    ]},
     { label: "Bill Date", name: "billDate", type: "date" },
     { label: "Bill Time", name: "billTime", type: "text" },
     { label: "Bill Number", name: "billNumber", type: "text" },
@@ -58,7 +75,8 @@ const HospitalBillFields = [
     { label: "Amount", name: "amount", type: "text" },
     { label: "Total Amount", name: "totalAmount", type: "text" },
     { label: "Address", name: "address", type: "text" },
-  ]
+  ];
+
   return (
     <div>
       <div className="bill-insurance-section">
@@ -87,28 +105,30 @@ const HospitalBillFields = [
               </div>
             </div>
 
-        {formData.paymentType === "Insurance" && <div className="insurance-details">
-              <div className="content">
-                <div className="head">
-                  <p>Insurance Details</p>
-                </div>
+            {formData.paymentType === "Insurance" && (
+              <div className="insurance-details">
+                <div className="content">
+                  <div className="head">
+                    <p>Insurance Details</p>
+                  </div>
 
-                <div className="details flex">
-                  <div className="form-box">
-                    <form className="flex">
-                      {PatientBillFields.map((field, index) => (
-                        <InputField
-                          key={index}
-                          {...field}
-                          value={formData[field.name]}
-                          onChange={handleChange}
-                        />
-                      ))}
-                    </form>
+                  <div className="details flex">
+                    <div className="form-box">
+                      <form className="flex">
+                        {PatientBillFields.map((field, index) => (
+                          <InputField
+                            key={index}
+                            {...field}
+                            value={formData[field.name]}
+                            onChange={handleChange}
+                          />
+                        ))}
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>}
+            )}
             <div className="save-btn flex">
               <button type="submit" form="create-bill-form" onClick={handleSubmit}>Save</button>
             </div>
