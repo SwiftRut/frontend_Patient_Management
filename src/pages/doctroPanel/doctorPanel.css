@@ -249,6 +249,47 @@ ol {
   padding: 20px;
 }
 
+.allFile-section .pre-bill {
+  position: relative;
+  content: "";
+  box-sizing: border-box;
+}
+.allFile-section .pre-bill .viewFullPrescription-btn {
+  visibility: hidden;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 22;
+  background-color: #0EABEB;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.allFile-section .pre-bill::after {
+  position: absolute;
+  content: "";
+  box-sizing: border-box;
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+}
+.allFile-section .pre-bill:hover::after {
+  position: absolute;
+  background-color: rgba(66, 62, 62, 0.596);
+  top: 0px;
+  left: 0px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+}
+.allFile-section .pre-bill:hover .viewFullPrescription-btn {
+  visibility: visible;
+}
+
 .cp-tool {
   border-radius: 10px;
 }
