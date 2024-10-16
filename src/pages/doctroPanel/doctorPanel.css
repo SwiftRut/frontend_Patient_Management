@@ -31,12 +31,16 @@ ol {
   color: #030229;
 }
 
-
 .search {
   padding: 12px 15px;
   background-color: #F6F8FB;
   border: 0px;
   border-radius: 50px;
+}
+.search::-moz-placeholder {
+  color: #A7A7A7;
+  font-size: 16px;
+  font-weight: 400px;
 }
 .search::placeholder {
   color: #A7A7A7;
@@ -165,13 +169,7 @@ ol {
   box-sizing: border-box;
   position: relative;
   cursor: text;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: relative;
   border: 1px solid #D3D3D3;
@@ -322,6 +320,9 @@ form .input-box input {
 }
 form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 form .input-box input::placeholder {
   color: #a7a7a7;
@@ -531,8 +532,61 @@ form .condition .login-btn p {
 }
 
 .manage-prescription {
-  width: 650px;
+  width: 700px;
   margin: 0px auto;
+}
+.manage-prescription .tital {
+  color: #030229;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .close-btn {
+  background-color: rgb(243, 130, 130);
+  color: white;
+}
+.manage-prescription .close-btn svg {
+  font-size: 15px;
+}
+.manage-prescription .close-btn:hover {
+  background-color: red;
+}
+.manage-prescription .head .name p {
+  color: #0EABEB;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .details p {
+  width: 50%;
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+}
+.manage-prescription .details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.manage-prescription .details .add {
+  width: 100%;
+}
+.manage-prescription .table-data thead tr th {
+  background-color: #f3f4f6;
+}
+.manage-prescription .table-data tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  color: #39973D;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+.manage-prescription .table-data tbody tr .take span {
+  color: #718EBF;
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .teli-module .teli-btn button {
