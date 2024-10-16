@@ -532,8 +532,61 @@ form .condition .login-btn p {
 }
 
 .manage-prescription {
-  width: 650px;
+  width: 700px;
   margin: 0px auto;
+}
+.manage-prescription .tital {
+  color: #030229;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .close-btn {
+  background-color: rgb(243, 130, 130);
+  color: white;
+}
+.manage-prescription .close-btn svg {
+  font-size: 15px;
+}
+.manage-prescription .close-btn:hover {
+  background-color: red;
+}
+.manage-prescription .head .name p {
+  color: #0EABEB;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .details p {
+  width: 50%;
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+}
+.manage-prescription .details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.manage-prescription .details .add {
+  width: 100%;
+}
+.manage-prescription .table-data thead tr th {
+  background-color: #f3f4f6;
+}
+.manage-prescription .table-data tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  color: #39973D;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+.manage-prescription .table-data tbody tr .take span {
+  color: #718EBF;
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .teli-module .teli-btn button {

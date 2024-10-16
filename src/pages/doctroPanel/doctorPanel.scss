@@ -738,8 +738,96 @@ form {
 }
 
 .manage-prescription {
-  width: 650px;
+  width: 700px;
   margin: 0px auto;
+
+  .tital {
+    color: #030229;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .close-btn{
+    background-color: rgb(243, 130, 130);
+    color: white;
+    svg {
+      font-size: 15px;
+    }
+
+    &:hover {
+      background-color: red;
+    }
+  }
+
+  .head {
+    .logo {}
+
+    .name {
+      p {
+        color: #0EABEB;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      span {}
+    }
+  }
+
+  .details {
+    p {
+      width: 50%;
+      color: #141414;
+      font-size: 16px;
+      font-weight: 600;
+
+      span {
+        color: #818194;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .add {
+      width: 100%;
+    }
+  }
+
+  .table-data {
+    thead {
+      tr {
+        th {
+          background-color: #f3f4f6;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+
+        }
+        .duration {
+          span {
+            background-color: #39973D1A;
+            color: #39973D;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
+        .take {
+          span {
+            color: #718EBF;
+            background-color: #5678E91A;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+  }
 }
 
 // managePrescription tools end
