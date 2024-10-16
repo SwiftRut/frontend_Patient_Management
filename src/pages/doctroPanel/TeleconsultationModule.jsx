@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tabs, Tab, Button } from "@mui/material";
 import { DateRange } from "@mui/icons-material";
 import TeleConsultationCard from "../../component/PrescriptionTools/TeleConsultationCard";
+import CustomDateModal from "../../component/modals/CustomDateModal";
 
 // Patient data for different tabs
 const todayAppointments = [
@@ -522,7 +523,8 @@ const canceledAppointments = [
 
 export default function TeleconsultationModule() {
   const [activeTab, setActiveTab] = useState(0);
-  const [dateRange, setDateRange] = useState("2 March, 2022 - 13 March, 2022");
+  const [dateRange, setDateRange] = useState("Any Date");
+  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
 
   // console.log(activeTabelem);
 
@@ -561,33 +563,46 @@ export default function TeleconsultationModule() {
   const currentAppointments = getCurrentAppointments();
 
   return (
-    <div className="teli-module p-8 bg-gray-100 min-h-screen">
-      {/* Tabs for different types of appointments */}
-      <Tabs
-        className="teli-btn"
-        value={activeTab}
-        onChange={(elem, newValue) => setActiveTab(newValue)}
-      >
-        <Tab label="Today Appointment" />
-        <Tab label="Upcoming Appointment" />
-        <Tab label="Previous Appointment" />
-        <Tab label="Cancel Appointment" />
-      </Tabs>
+    <>
+      <div className="teli-module p-8 bg-gray-100 min-h-screen">
+        {/* Tabs for different types of appointments */}
+        <Tabs
+          className="teli-btn"
+          value={activeTab}
+          onChange={(elem, newValue) => setActiveTab(newValue)}
+        >
+          <Tab label="Today Appointment" />
+          <Tab label="Upcoming Appointment" />
+          <Tab label="Previous Appointment" />
+          <Tab label="Cancel Appointment" />
+        </Tabs>
 
-      {/* Date range display */}
-      <div className="head mt-4 mb-6 flex justify-between items-center">
-        <h2 className="text-xl font-semibold">{tabName}</h2>
-        <Button variant="outlined" startIcon={<DateRange />} color="secondary">
-          {dateRange}
-        </Button>
+        {/* Date range display */}
+        <div className="head mt-4 mb-6 flex justify-between items-center">
+          <h2 className="text-xl font-semibold">{tabName}</h2>
+          <Button
+            variant="outlined"
+            startIcon={<DateRange />}
+            color="gray"
+            onClick={() => setOpenCustomDateModal(true)}
+          >
+            {dateRange}
+          </Button>
+        </div>
+
+        {/* Grid of Patient Cards */}
+        <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {currentAppointments.map((patient, index) => (
+            <TeleConsultationCard key={index} patient={patient} />
+          ))}
+        </div>
       </div>
 
-      {/* Grid of Patient Cards */}
-      <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {currentAppointments.map((patient, index) => (
-          <TeleConsultationCard key={index} patient={patient} />
-        ))}
-      </div>
-    </div>
+      <CustomDateModal
+        open={openCustomDateModal}
+        onClose={() => setOpenCustomDateModal(false)}
+        setDateRange={setDateRange} // Pass setDateRange here
+      />
+    </>
   );
 }

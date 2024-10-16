@@ -388,7 +388,12 @@ export default function AppointmentManagement() {
                 }}
               />
 
-              <Button variant="outlined" startIcon={<DateRange />} color="secondary">
+              <Button
+                variant="outlined"
+                startIcon={<DateRange />}
+                color="gray"
+                onClick={() => setOpenCustomDateModal(true)}
+              >
                 {dateRange}
               </Button>
 
@@ -461,7 +466,12 @@ export default function AppointmentManagement() {
             </table>
           </div>
         </div>
-        <CustomDateModal open={openCustomDateModal} onClose={() => setOpenCustomDateModal(false)} />
+
+        <CustomDateModal
+          open={openCustomDateModal}
+          setDateRange={setDateRange}
+          onClose={() => setOpenCustomDateModal(false)}
+        />
         <CancelAppointmentModal
           open={openCancelAppointmentModal}
           onClose={() => setOpenCancelAppointmentModal(false)}
