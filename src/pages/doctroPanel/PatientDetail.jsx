@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Button, IconButton } from '@mui/material';
+import { MdAdd } from "react-icons/md";
 import { Visibility } from '@mui/icons-material';
 
 const PatientDetail = () => {
@@ -14,7 +15,7 @@ const PatientDetail = () => {
     issue: 'Feeling Tired',
     gender: 'Male',
     appointmentType: 'Online',
-    address: 'B-408 Swastik society, mota varacha rajkot.',
+    address: 'B-408 Swastik society, rajkot.',
     lastAppointmentDate: '2 Jan, 2022',
     lastAppointmentTime: '4:30 PM',
     imageUrl: 'https://via.placeholder.com/150', // Dummy image URL for patient
@@ -27,55 +28,102 @@ const PatientDetail = () => {
   ];
 
   return (
-    <div className="p-details p-6 bg-white rounded-lg shadow-md m-6">
-      <h2 className="text-lg font-semibold mb-4">Patient Details</h2>
+    <div className="p-details p-6 bg-[#f6f8fb]">
+      
 
       {/* Patient Details Section */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-4">
-          <img src={patientData.imageUrl} alt="Patient" className="w-24 h-24 rounded-full" />
-          <div className='p-record'>
-            <p className="text-xl font-semibold">{patientData.name}</p>
-            <p>Patient Number :<span>{patientData.number}</span> </p>
-            <p> Doctor Name :  <span> {patientData.doctorName} </span></p>
-            <p> Patient Age :  <span> {patientData.age} </span></p>
-            <p> Patient Gender :  <span> {patientData.gender} </span></p>
-          </div>
-        </div >
-        <div className="p-btn text-right">
-          <Button variant="contained" color="primary">
-            + Add Record
-          </Button>
+      <div class="bg-white rounded-lg shadow-md p-5">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Patient Details</h1>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center">
+                <div className="bg-white text-blue-500 me-2 rounded">
+                    <MdAdd />
+                  </div>
+                  <div>
+                  Add Record
+                  </div>
+                </button>
+            </div>
+            <div class="flex items-center">
+                <div className='w-1/12 '>
+                <img src={patientData.imageUrl} alt="Patient" class="w-28 h-28 rounded-full mr-6 border-4"/>
+                </div>
+                <div class="flex w-5/6">
+                    <div className='grid grid-cols-4 gap-0 border-r pe-16'>
+                    <div>
+                        <p class="text-gray-500">Patient Name</p>
+                        <p class="font-medium">{patientData.name}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Patient Number</p>
+                        <p class="font-medium">{patientData.number}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Patient Issue</p>
+                        <p class="font-medium">{patientData.issue}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Patient Gender</p>
+                        <p class="font-medium">{patientData.gender}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Doctor Name</p>
+                        <p class="font-medium">{patientData.doctorName}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Doctor Name</p>
+                        <p class="font-medium">{patientData.doctorName}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Patient Age</p>
+                        <p class="font-medium">{patientData.age}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Patient Address</p>
+                        <p class="font-medium">{patientData.address}</p>
+                    </div>
+                    </div>
+                    <div className='ps-5'>
+                    <div className='pb-5'>
+                        <p class="text-gray-500 pb-1">Last Appointment Time</p>
+                        <p class="font-medium">{patientData.lastAppointmentTime}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500">Last Appointment Time</p>
+                        <p class="font-medium">{patientData.lastAppointmentTime}</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div >
 
       {/* Appointment Details */}
-      < div className="p-table bg-gray-50 p-4 rounded-lg" >
-        <h3 className="text-lg font-semibold mb-4">All Appointments</h3>
+      < div className="p-table bg-white p-4 rounded-lg mt-3" >
+        <h3 className="text-2xl font-bold mb-4 text-[#030229]">All Appointments</h3>
         <table className="min-w-full table-auto">
           <thead className="bg-gray-100">
             <tr>
-              <th className="p-3 text-left text-sm font-semibold">Disease Name</th>
-              <th className="p-3 text-left text-sm font-semibold">Patient Issue</th>
-              <th className="p-3 text-left text-sm font-semibold">Appointment Date</th>
-              <th className="p-3 text-left text-sm font-semibold">Appointment Time</th>
-              <th className="p-3 text-left text-sm font-semibold">Appointment Type</th>
-              <th className="p-3 text-left text-sm font-semibold">Action</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Patient Issue</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Date</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Time</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Type</th>
+              <th className="p-3 text-left text-lg font-bold text-[#030229]">Action</th>
             </tr>
           </thead>
           <tbody>
             {appointments.map((appointment, index) => (
               <tr key={index} className="border-t">
-                <td className="p-3">{appointment.diseaseName}</td>
-                <td className="p-3">{appointment.issue}</td>
-                <td className="p-3">{appointment.date}</td>
-                <td className="p-3 text-blue-600">{appointment.time}</td>
+                <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.diseaseName}</td>
+                <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.issue}</td>
+                <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.date}</td>
+                <td className="p-3"><span className='text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]'>{appointment.time}</span></td>
                 <td className="p-3">
-                  <span className={`px-3 py-1 text-sm font-medium rounded-full ${appointment.type === 'Online' ? 'bg-yellow-100 text-yellow-600' : 'bg-blue-100 text-blue-600'}`}>
+                  <span className={`px-3 py-1 text-lg font-semibold rounded-full ${appointment.type === 'Online' ? 'bg-yellow-100 text-yellow-600' : 'bg-blue-100 text-blue-600'}`}>
                     {appointment.type}
                   </span>
                 </td>
-                <td className="p-3">
+                <td className="p-3 text-lg font-semibold">
                   <IconButton color="primary">
                     <Visibility />
                   </IconButton>

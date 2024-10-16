@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TimeSlot from "./TimeSlot";
 import AppointmentModal from "./AppointmentModal";
 import "./Schedular.css";

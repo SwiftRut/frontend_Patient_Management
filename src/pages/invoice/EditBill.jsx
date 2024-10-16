@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import "./invoice.css";
-import InputField from "./InputField";
-import { formDataObject, HospitalBillFields, PatientBillFields } from "./Contants";
-import { useAuth } from "../../hooks/useAuth";
-import { useParams } from "react-router-dom";
-import { useGlobal } from "../../hooks/useGlobal";
+import { FaCircleMinus } from "react-icons/fa6";
+import { FaImage } from "react-icons/fa";
+import InputField from './InputField';
+import { formDataObject, PatientBillFields } from './Contants';
+import { useAuth } from '../../hooks/useAuth';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useGlobal } from '../../hooks/useGlobal';
+import { useDoctor } from '../../hooks/useDoctor';
 
 const EditBill = () => {
   const { id } = useParams();
   const { user } = useAuth();
-  const { updateBill, bill, getBillById } = useGlobal();
+  const { createBill, updateBill, bill, getBillById } = useGlobal();
+  const { getAllDoctors, allDoctors } = useDoctor();
   const [formData, setFormData] = useState(formDataObject);
 
   const handleChange = (e) => {
@@ -24,7 +28,7 @@ const EditBill = () => {
     console.log(formData, "<<<<<<<<<<<<<< formdata");
     try {
       await updateBill(formData, bill.id);
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -36,13 +40,58 @@ const EditBill = () => {
         console.log(data, "data");
         setFormData({
           ...data,
+          phoneNumber:data.phone,
+          doctorName: data.doctorId.name,
+          insuranceCompany : data.insuranceId.insuranceCompany,
+          insurancePlan: data.insuranceId.insurancePlan,
+          claimAmount : data.insuranceId.claimAmount,
+          claimedAmount: data.insuranceId.claimedAmount,
+          doctorId: data.doctorId?._id,
         });
+        await getAllDoctors();
       } catch (error) {
         console.error("Error fetching admin profile:", error);
       }
     };
     fetchData();
   }, []);
+
+  const HospitalBillFields = [  
+    { label: "Patient Name", name: "patientName", type: "text" },
+    { label: "Phone Number", name: "phoneNumber", type: "text" },
+    { label: "Gender", name: "gender", type: "select", options: [
+      { label: "Select Gender", value: "" },
+      { label: "Male", value: "Male" },
+      { label: "Female", value: "Female" },
+      { label: "Other", value: "Other" }
+    ]},
+    { label: "Age", name: "age", type: "text" },
+    {
+      label: "Doctor Name",
+      name: "doctorId",
+      type: "select",
+      options: [
+        { label: "Select Doctor", value: "doctor" },
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+      ],
+    },
+    { label: "Disease Name", name: "diseaseName", type: "text"},
+    { label: "Description", name: "description", type: "text" },
+    { label: "Payment Type", name: "paymentType", type: "select", options: [
+      { label: "Select Payment Type", value: "" },
+      { label: "Cash", value: "Cash" },
+      { label: "Insurance", value: "Insurance" },
+      { label: "Credit Card", value: "Credit Card" }
+    ]},
+    { label: "Bill Date", name: "billDate", type: "date" },
+    { label: "Bill Time", name: "billTime", type: "text" },
+    { label: "Bill Number", name: "billNumber", type: "text" },
+    { label: "Discount (%)", name: "discount", type: "text" },
+    { label: "Tax", name: "tax", type: "text" },
+    { label: "Amount", name: "amount", type: "text" },
+    { label: "Total Amount", name: "totalAmount", type: "text" },
+    { label: "Address", name: "address", type: "text" },
+  ];
   return (
     <div>
       <div className="bill-insurance-section">
@@ -71,29 +120,30 @@ const EditBill = () => {
               </div>
             </div>
 
-            <div className="insurance-details">
-              <div className="content">
-                <div className="head">
-                  <p>Insurance Details</p>
-                </div>
+            {formData.paymentType === "Insurance" && (
+              <div className="insurance-details">
+                <div className="content">
+                  <div className="head">
+                    <p>Insurance Details</p>
+                  </div>
 
-                <div className="details flex">
-                  <div className="form-box">
-                    <form className="flex">
-                      {PatientBillFields.map((field, index) => (
-                        <InputField
-                          key={index}
-                          {...field}
-                          value={formData[field.name]}
-                          onChange={handleChange}
-                        />
-                      ))}
-                    </form>
+                  <div className="details flex">
+                    <div className="form-box">
+                      <form className="flex">
+                        {PatientBillFields.map((field, index) => (
+                          <InputField
+                            key={index}
+                            {...field}
+                            value={formData[field.name]}
+                            onChange={handleChange}
+                          />
+                        ))}
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
+            )}
             <div className="save-btn flex">
               <button type="submit" form="create-bill-form" onClick={handleSubmit}>
                 Save
