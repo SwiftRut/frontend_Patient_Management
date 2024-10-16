@@ -26,6 +26,7 @@
     "country-state-city": "^3.2.1",
     "datepicker": "^0.0.0",
     "formik": "^2.4.6",
+    "frontend-patient-management": "file:",
     "jquery-ui-dist": "^1.13.3",
     "lucide-react": "^0.447.0",
     "moment": "^2.30.1",

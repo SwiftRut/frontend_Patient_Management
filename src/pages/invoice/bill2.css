@@ -55,27 +55,24 @@ input {
   margin-bottom: 20px;
 }
 .invoice .content .billing-info h3 {
-  font-size: 19px;
+  font-size: 14px;
   font-weight: 700;
   color: #141414;
-  padding: 5px 0;
+  padding: 0px 0;
 }
 .invoice .content .billing-info span {
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
   color: #818194;
   padding: 10px 0;
 }
-.invoice .content .billing-info p {
-  padding-bottom: 5px;
-}
 .invoice .content .billing-info p strong {
-  font-size: 16px;
+  font-size: 13px;
   padding-right: 10px;
 }
 .invoice .content .billing-info p span {
   color: #818194;
-  font-size: 16px;
+  font-size: 12px;
 }
 .invoice table {
   width: 100%;
@@ -86,17 +83,18 @@ input {
 }
 .invoice table th,
 .invoice table td {
-  padding: 10px;
+  padding: 5px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
 }
 .invoice table th {
   background-color: #3498db;
   color: white;
+  font-size: 12px;
 }
 .invoice table td {
+  padding: 6px;
   color: #4f4f4f;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
 }
 .invoice .totals {
@@ -104,12 +102,12 @@ input {
   text-align: right;
 }
 .invoice .totals strong {
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 600;
   color: #141414;
 }
 .invoice .totals span {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: #818194;
   padding-left: 10px;
@@ -122,14 +120,15 @@ input {
 }
 .invoice .payment-method {
   margin-top: 20px;
+  padding-bottom: 15px;
 }
 .invoice .payment-method strong {
-  font-size: 16px;
+  font-size: 13px;
   color: #141414;
 }
 .invoice .payment-method p {
-  padding-top: 10px;
-  font-size: 14px;
+  padding-top: 5px;
+  font-size: 12px;
   font-weight: 400;
   color: #818194;
 }
@@ -137,16 +136,17 @@ input {
   margin-left: 10px;
 }
 .invoice .terms {
-  margin-top: 20px;
+  margin-top: 10px;
+  padding-bottom: 15px;
 }
 .invoice .terms strong {
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 600;
   color: #141414;
 }
 .invoice .terms p {
   padding-top: 10px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
   color: #818194;
 }
@@ -155,5 +155,5 @@ input {
   color: white;
   padding: 10px 20px;
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
 }/*# sourceMappingURL=bill2.css.map */
