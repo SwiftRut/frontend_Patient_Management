@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AppointmentTimeSlot from "./AppointmentTimeSlot1";
-import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
+// import AppointmentTimeSlot from "./AppointmentTimeSlot1";
+// import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
 import Calendar from "./Calendar";
 
 const AppointmentBooking = () => {
