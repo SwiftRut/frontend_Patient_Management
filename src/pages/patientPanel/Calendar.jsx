@@ -30,8 +30,9 @@ const Calendar = () => {
   const handleSlotSelected = (slotInfo) => {
     setTitle("");
     setDesc("");
-    setStart(moment(slotInfo.start));
-    setEnd(moment(slotInfo.end));
+    const startTime = moment(slotInfo.start);
+    setStart(startTime);
+    setEnd(startTime.clone().add(1, "hours")); // Set end time to one hour after start time
     setOpenSlot(true);
   };
 
@@ -45,11 +46,11 @@ const Calendar = () => {
   };
 
   const setNewAppointment = () => {
-    const appointment = { 
-      title, 
+    const appointment = {
+      title,
       start: start.toDate(),
       end: end.toDate(),
-      desc 
+      desc
     };
     setEvents([...events, appointment]);
     handleClose();
