@@ -16,6 +16,7 @@ import DoctorAsidePanel from "../../component/doctorComponents/DoctorAsidePanel.
 import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
 import AddRecord from "./AddRecord.jsx";
 
+
 export default function DoctorPanel() {
   return (
     <>
@@ -36,7 +37,7 @@ export default function DoctorPanel() {
           <Route path="prescriptionView/:id" element={<PrescriptionView />} />
           <Route path="createPrescriptionForm/:id" element={<CreatePrescriptionForm />} />
 
-          <Route path="addrecord" element={<AddRecord/>}/>
+          <Route path="addRecord" element={<AddRecord/>}/>
         </Routes>
       </div>
     </>

@@ -1,8 +1,10 @@
+import { AddRounded } from "@mui/icons-material";
 import {
   Login, AdminRegistration, AdminMobile, AdminOtp, AdminChangePassword, AdminPanel, Invoice, CreateBill, EditBill, DoctorPanel, DoctorProfile, PatientRegistration, PatientPanel, PatientDetails, Scheduler, Bill, Onsite, CashPayment, Delete, Bill2, EditDesignInvoice, Bill3, Chart, Chat, VideoCall,
 } from "./imports";
 import PatientRecordAccesst from "./pages/doctroPanel/PatientRecordAccesst";
 import ProtectedRoute from "./routes/PrivateRoute";
+import AddRecord from "./pages/doctroPanel/AddRecord";
 
 //without protection
 // const routesConfig = [
@@ -129,6 +131,7 @@ const routesConfig = [
       { path: "", element: null, allowedRoles: ['doctor'] },
       { path: "profile/*", element: <ProtectedRoute element={<DoctorProfile />} allowedRoles={['doctor']} userRole={userRole} /> },
       { path: "edit", element: <ProtectedRoute element={null} allowedRoles={['doctor']} userRole={userRole} /> },
+      // { path: "addRecord", element: <ProtectedRoute element={<AddRecord/>} allowedRoles={['doctor']} userRole={userRole} /> },
       { path: "patientRecordAccesst", element: <ProtectedRoute element={<PatientRecordAccesst/>} allowedRoles={['doctor']} userRole={userRole} /> },
       { path: "createPrescriptionTools", element: <ProtectedRoute element={null} allowedRoles={['doctor']} userRole={userRole} /> },
       { path: "managePrescriptionTools", element: <ProtectedRoute element={null} allowedRoles={['doctor']} userRole={userRole} /> },
