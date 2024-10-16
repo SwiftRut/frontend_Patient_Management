@@ -1,8 +1,8 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { Button, IconButton } from '@mui/material';
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Button, IconButton } from "@mui/material";
 import { MdAdd } from "react-icons/md";
-import { Visibility } from '@mui/icons-material';
+import { Visibility } from "@mui/icons-material";
 import AddRecord from "../../pages/doctroPanel/AddRecord.jsx";
 
 const PatientDetail = () => {
@@ -10,34 +10,45 @@ const PatientDetail = () => {
   const navigate = useNavigate(); // Step 1: Add useNavigate hook
 
   const patientData = {
-    name: 'Marcus Philips',
-    number: '99130 44537',
-    doctorName: 'Dr. Marcus Philips',
-    age: '20 Years',
-    issue: 'Feeling Tired',
-    gender: 'Male',
-    appointmentType: 'Online',
-    address: 'B-408 Swastik society, rajkot.',
-    lastAppointmentDate: '2 Jan, 2022',
-    lastAppointmentTime: '4:30 PM',
-    imageUrl: 'https://via.placeholder.com/150',
+    name: "Marcus Philips",
+    number: "99130 44537",
+    doctorName: "Dr. Marcus Philips",
+    age: "20 Years",
+    issue: "Feeling Tired",
+    gender: "Male",
+    appointmentType: "Online",
+    address: "B-408 Swastik society, rajkot.",
+    lastAppointmentDate: "2 Jan, 2022",
+    lastAppointmentTime: "4:30 PM",
+    imageUrl: "https://via.placeholder.com/150",
   };
 
   const appointments = [
-    { diseaseName: 'Viral Infection', issue: 'Feeling Tired', date: '2 Jan, 2022', time: '4:30 PM', type: 'Online' },
-    { diseaseName: 'Diabetes', issue: 'Stomach Ache', date: '5 Jan, 2022', time: '5:00 PM', type: 'Onsite' },
+    {
+      diseaseName: "Viral Infection",
+      issue: "Feeling Tired",
+      date: "2 Jan, 2022",
+      time: "4:30 PM",
+      type: "Online",
+    },
+    {
+      diseaseName: "Diabetes",
+      issue: "Stomach Ache",
+      date: "5 Jan, 2022",
+      time: "5:00 PM",
+      type: "Onsite",
+    },
     // Add more appointment data
   ];
 
   // Step 2: Add handleViewFiles function to navigate to the desired route
   const handleViewFiles = () => {
-    navigate(`/doctor/patientDetail/allFiles`);
+    navigate(`/doctor/allFiles`);
   };
 
   return (
     <>
       <div className="p-details p-6 bg-[#f6f8fb]">
-
         {/* Patient Details Section */}
         <div className="bg-white rounded-lg shadow-md p-5">
           <div className="flex justify-between items-center mb-6">
@@ -46,17 +57,19 @@ const PatientDetail = () => {
               <div className="bg-white text-blue-500 me-2 rounded">
                 <MdAdd />
               </div>
-              <div>
-                Add Record
-              </div>
+              <div>Add Record</div>
             </button>
           </div>
           <div className="flex items-center">
-            <div className='w-1/12 '>
-              <img src={patientData.imageUrl} alt="Patient" className="w-28 h-28 rounded-full mr-6 border-4" />
+            <div className="w-1/12 ">
+              <img
+                src={patientData.imageUrl}
+                alt="Patient"
+                className="w-28 h-28 rounded-full mr-6 border-4"
+              />
             </div>
             <div className="flex w-5/6">
-              <div className='grid grid-cols-4 gap-0 border-r pe-16'>
+              <div className="grid grid-cols-4 gap-0 border-r pe-16">
                 <div>
                   <p className="text-gray-500">Patient Name</p>
                   <p className="font-medium">{patientData.name}</p>
@@ -90,8 +103,8 @@ const PatientDetail = () => {
                   <p className="font-medium">{patientData.address}</p>
                 </div>
               </div>
-              <div className='ps-5'>
-                <div className='pb-5'>
+              <div className="ps-5">
+                <div className="pb-5">
                   <p className="text-gray-500 pb-1">Last Appointment Time</p>
                   <p className="font-medium">{patientData.lastAppointmentTime}</p>
                 </div>
@@ -121,17 +134,31 @@ const PatientDetail = () => {
             <tbody>
               {appointments.map((appointment, index) => (
                 <tr key={index} className="border-t">
-                  <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.diseaseName}</td>
+                  <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                    {appointment.diseaseName}
+                  </td>
                   <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.issue}</td>
                   <td className="p-3 text-lg font-semibold text-[#4F4F4F]">{appointment.date}</td>
-                  <td className="p-3"><span className='text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]'>{appointment.time}</span></td>
                   <td className="p-3">
-                    <span className={`px-3 py-1 text-lg font-semibold rounded-full ${appointment.type === 'Online' ? 'bg-yellow-100 text-yellow-600' : 'bg-blue-100 text-blue-600'}`}>
+                    <span className="text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]">
+                      {appointment.time}
+                    </span>
+                  </td>
+                  <td className="p-3">
+                    <span
+                      className={`px-3 py-1 text-lg font-semibold rounded-full ${
+                        appointment.type === "Online"
+                          ? "bg-yellow-100 text-yellow-600"
+                          : "bg-blue-100 text-blue-600"
+                      }`}
+                    >
                       {appointment.type}
                     </span>
                   </td>
                   <td className="p-3 text-lg font-semibold">
-                    <IconButton color="primary" onClick={handleViewFiles}> {/* Step 3: Add onClick event */}
+                    <IconButton color="primary" onClick={handleViewFiles}>
+                      {" "}
+                      {/* Step 3: Add onClick event */}
                       <Visibility />
                     </IconButton>
                   </td>
