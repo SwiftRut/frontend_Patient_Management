@@ -15,6 +15,8 @@ import DoctorHeader from "../../component/doctorComponents/DoctorHeader.jsx";
 import DoctorAsidePanel from "../../component/doctorComponents/DoctorAsidePanel.jsx";
 import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
 import Calendar from "../patientPanel/Calendar.jsx";
+import AllFiles from "./AllFiles.jsx";
+import AddRecord from "./AddRecord.jsx";
 
 
 export default function DoctorPanel() {
