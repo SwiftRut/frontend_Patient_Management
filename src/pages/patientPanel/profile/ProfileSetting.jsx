@@ -1,5 +1,6 @@
 import React from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
+import { NavLink } from "react-router-dom";
 
 const ProfileSetting = () => {
   return (
@@ -209,9 +210,11 @@ const ProfileSetting = () => {
           </div>
 
           <div className="flex justify-end gap-4">
+            <NavLink to={'/patient'}>
             <button className="w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
               Cancel
             </button>
+            </NavLink>
             <button className=" bg-blue-600 w-[160px] h-[48px] text-white text-[20px] rounded-md bg-[#0EABEB] w-[160px] h-[48px]">
               Save
             </button>
