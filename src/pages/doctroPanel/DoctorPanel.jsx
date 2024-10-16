@@ -16,6 +16,7 @@ import DoctorAsidePanel from "../../component/doctorComponents/DoctorAsidePanel.
 import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
 import Calendar from "../patientPanel/Calendar.jsx";
 
+
 export default function DoctorPanel() {
   return (
     <>
@@ -26,6 +27,7 @@ export default function DoctorPanel() {
           <Route path="profile/*" element={<DoctorProfile />} />
           <Route path="edit" element={<DoctorProfileEdit />} />
           <Route path="" element={<AppointmentManagement />} />
+
           <Route path="patientRecordAccesst" element={<PatientRecordAccesst />} />
           <Route path="createPrescriptionTools" element={<CreatePrescriptionTools />} />
           <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
@@ -33,8 +35,12 @@ export default function DoctorPanel() {
           <Route path="chatScreen" element={<ChatScreen />} />
           <Route path="appointmentTimeSlot" element={<Calendar />} />
           <Route path="patientDetail/:id" element={<PatientDetail />} />
+          <Route path="allFiles" element={<AllFiles />} />
+
           <Route path="prescriptionView/:id" element={<PrescriptionView />} />
           <Route path="createPrescriptionForm/:id" element={<CreatePrescriptionForm />} />
+
+          <Route path="addRecord" element={<AddRecord />} />
         </Routes>
       </div>
     </>

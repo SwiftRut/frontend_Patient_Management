@@ -121,6 +121,7 @@ export default function PatientRecordAccesst() {
             </tbody>
           </table>
         </div>
+
       </div>
     </div>
   )
