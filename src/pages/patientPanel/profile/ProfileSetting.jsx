@@ -209,10 +209,10 @@ const ProfileSetting = () => {
           </div>
 
           <div className="flex justify-end gap-4">
-            <button className="px-4 py-2 text-black rounded-md hover:bg-gray-400 font-semibold border-2">
+            <button className="w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
               Cancel
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            <button className=" bg-blue-600 w-[160px] h-[48px] text-white text-[20px] rounded-md bg-[#0EABEB] w-[160px] h-[48px]">
               Save
             </button>
           </div>
