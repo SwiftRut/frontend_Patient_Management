@@ -14,6 +14,8 @@ import PrescriptionView from "./PrescriptionView.jsx";
 import DoctorHeader from "../../component/doctorComponents/DoctorHeader.jsx";
 import DoctorAsidePanel from "../../component/doctorComponents/DoctorAsidePanel.jsx";
 import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
+import AddRecord from "./AddRecord.jsx";
+
 
 export default function DoctorPanel() {
   return (
@@ -34,6 +36,8 @@ export default function DoctorPanel() {
           <Route path="patientDetail/:id" element={<PatientDetail />} />
           <Route path="prescriptionView/:id" element={<PrescriptionView />} />
           <Route path="createPrescriptionForm/:id" element={<CreatePrescriptionForm />} />
+
+          <Route path="addRecord" element={<AddRecord/>}/>
         </Routes>
       </div>
     </>
