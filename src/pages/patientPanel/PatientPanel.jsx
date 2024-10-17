@@ -15,9 +15,9 @@ import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePan
 export default function PatientPanel() {
   return (
     <>
-      <PatientHeader />
       <PatientAsidePanel />
       <div className="main-content">
+        <PatientHeader />
         <Routes>
           <Route path="" element={<PersonalHealthRecord />} />
           <Route path="profile/*" element={<PatientProfile />} />
