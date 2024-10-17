@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-// import AppointmentTimeSlot from "./AppointmentTimeSlot1";
-// import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
+import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
+import { useDoctor } from "../../hooks/useDoctor";
+import { useAuth } from "../../hooks/useAuth";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const AppointmentBooking = () => {
+  const { getAllDoctors, allDoctors } = useDoctor();
+  const { createAppointment } = useGlobal();
+  const { user } = useAuth();
+
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -12,7 +17,27 @@ const AppointmentBooking = () => {
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
 
-  // Function to check if all selects are filled
+  useEffect(() => {
+    getAllDoctors();
+  
+  }, []);
+
+  // Get unique values for each filter based on allDoctors data
+  const getUniqueValues = (key, filterKey, filterValue) => {
+    return [...new Set(allDoctors
+      .filter(doctor => !filterKey || doctor[filterKey] === filterValue)
+      .map(doctor => doctor[key])
+    )];
+  };
+
+  const handleSubmit = async () => {
+    try {
+      createAppointment(user.id, formData);
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
   const isAllSelected = () => {
     return (
       specialty &&
@@ -24,7 +49,6 @@ const AppointmentBooking = () => {
       appointmentType
     );
   };
-
   return (
     <div className="container">
       <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
@@ -37,69 +61,57 @@ const AppointmentBooking = () => {
                 label="Specialty"
                 value={specialty}
                 onChange={(e) => setSpecialty(e.target.value)}
-                options={[
-                  { value: "cardiology", label: "Cardiology" },
-                  { value: "neurology", label: "Neurology" },
-                  { value: "pediatrics", label: "Pediatrics" },
-                  { value: "orthopedics", label: "Orthopedics" },
-                  { value: "dermatology", label: "Dermatology" },
-                ]}
+                options={[...new Set(allDoctors.map(doc => doc.speciality))]}
               />
 
               {/* Country Select */}
               <SelectInput
                 label="Country"
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                options={[
-                  { value: "usa", label: "United States" },
-                  { value: "uk", label: "United Kingdom" },
-                  { value: "india", label: "India" },
-                  { value: "canada", label: "Canada" },
-                  { value: "australia", label: "Australia" },
-                ]}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                  setState("");
+                  setCity("");
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("country")}
               />
 
               {/* State Select */}
               <SelectInput
                 label="State"
                 value={state}
-                onChange={(e) => setState(e.target.value)}
-                options={[
-                  { value: "california", label: "California" },
-                  { value: "texas", label: "Texas" },
-                  { value: "florida", label: "Florida" },
-                  { value: "new_york", label: "New York" },
-                  { value: "illinois", label: "Illinois" },
-                ]}
+                onChange={(e) => {
+                  setState(e.target.value);
+                  setCity("");
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("state", "country", country)}
               />
 
               {/* City Select */}
               <SelectInput
                 label="City"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
-                options={[
-                  { value: "los_angeles", label: "Los Angeles" },
-                  { value: "new_york_city", label: "New York City" },
-                  { value: "chicago", label: "Chicago" },
-                  { value: "houston", label: "Houston" },
-                  { value: "phoenix", label: "Phoenix" },
-                ]}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("city", "state", state)}
               />
 
               {/* Hospital Select */}
               <SelectInput
                 label="Hospital"
                 value={hospital}
-                onChange={(e) => setHospital(e.target.value)}
-                options={[
-                  { value: "general_hospital", label: "General Hospital" },
-                  { value: "city_hospital", label: "City Hospital" },
-                  { value: "county_hospital", label: "County Hospital" },
-                  { value: "private_hospital", label: "Private Hospital" },
-                  { value: "children_hospital", label: "Children's Hospital" },
-                ]}
+                onChange={(e) => {
+                  setHospital(e.target.value);
+                  setDoctor("");
+                }}
+                options={getUniqueValues("hospitalName", "city", city)}
               />
 
               {/* Doctor Select */}
@@ -107,13 +119,9 @@ const AppointmentBooking = () => {
                 label="Doctor"
                 value={doctor}
                 onChange={(e) => setDoctor(e.target.value)}
-                options={[
-                  { value: "dr_smith", label: "Dr. Smith" },
-                  { value: "dr_jones", label: "Dr. Jones" },
-                  { value: "dr_brown", label: "Dr. Brown" },
-                  { value: "dr_johnson", label: "Dr. Johnson" },
-                  { value: "dr_davis", label: "Dr. Davis" },
-                ]}
+                options={allDoctors
+                  .filter(doc => doc.hospitalName === hospital)
+                  .map(doc => ({ value: doc._id, label: `Dr. ${doc.name}` }))}
               />
 
               {/* Appointment Type Select */}
@@ -140,10 +148,10 @@ const AppointmentBooking = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <Calendar />
+                    <Calendar/>
                   </div>
 
-                  <DoctorDetails />
+                  <DoctorDetails doctorId={doctor, allDoctors} />
                 </div>
               )}
             </div>
@@ -167,9 +175,9 @@ const SelectInput = ({ label, value, onChange, options }) => (
       <option value="" disabled>
         Select {label}
       </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+      {options?.map(option => (
+        <option key={option?.value || option} value={option?.value || option}>
+          {option?.label || option}
         </option>
       ))}
     </select>
@@ -179,37 +187,40 @@ const SelectInput = ({ label, value, onChange, options }) => (
   </div>
 );
 
-const DoctorDetails = () => (
-  <div className="col-span-3 px-2 py-3">
-    <div className="bg-white w-full border-1 py-3 rounded-md">
-      <h5 className="px-3">Doctor Details</h5>
-      <hr />
-      <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
-        <img
-          src="./image/Patterns.png"
-          alt=""
-          className="w-28 absolute right-0 z-0"
-        />
-        <div className="flex py-2 z-0">
-          <img src="./image/Avatar.png" alt="" className="ps-2 w-16" />
+const DoctorDetails = ({ doctorId, allDoctors}) => {
+  const doctor = allDoctors?.find(doc => doc._id === doctorId);
+  console.log(doctor,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
+  if (!doctor) return null;
+
+  return (
+    <div className="col-span-3 px-2 py-3">
+      <div className="bg-white w-full border-1 py-3 rounded-md">
+        <h5 className="px-3">Doctor Details</h5>
+        <hr />
+        <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
+          <img
+            src={doctor.avatar || "./image/Avatar.png"}
+            alt="Doctor Avatar"
+            className="w-16"
+          />
           <div>
-            <span className="text-white ms-1">Dr. Cristofor Pasquinades</span>
+            <span className="text-white ms-1">{doctor.firstName} {doctor.lastName}</span>
             <button className="px-3 py-1 bg-btn-light rounded-full flex text-white">
-              <img src="./image/vuesax.png" alt="" className="pe-1" /> Male
+              <img src="./image/vuesax.png" alt="" className="pe-1" /> {doctor.gender}
             </button>
           </div>
         </div>
-      </div>
-      <div className="rounded-md bg-gray-100 p-3 mx-2">
-        <DoctorDetailItem title="Qualification" value="MBBS" />
-        <DoctorDetailItem title="Specialty Type" value="Cardiology" />
-        <DoctorDetailItem title="Years of Experience" value="6+ Years" />
-        <DoctorDetailItem title="Working Time" value="6 Hours" />
-        <DoctorDetailItem title="Emergency Contact Number" value="123-456-7890" />
+        <div className="rounded-md bg-gray-100 p-3 mx-2">
+          <DoctorDetailItem title="Qualification" value={doctor.qualification} />
+          <DoctorDetailItem title="Specialty Type" value={doctor.specialty} />
+          <DoctorDetailItem title="Years of Experience" value={`${doctor.experience} Years`} />
+          <DoctorDetailItem title="Working Time" value="6 Hours" />
+          <DoctorDetailItem title="Emergency Contact Number" value={doctor.contactNumber} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const DoctorDetailItem = ({ title, value }) => (
   <div>
