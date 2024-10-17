@@ -146,7 +146,8 @@ export const GlobalProvider = ({ children }) => {
   const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
-      console.log(response, "response");
+      console.log(response.data.data, "response");
+      setAllAppointements(response.data.data)
     } catch (error) {
       console.log(error);
       throw error;
@@ -204,8 +205,8 @@ export const GlobalProvider = ({ children }) => {
   }
   const createAppointment = async (patientId, userData) => {
     try {
-      console.log("creating appointment......")
-    const response = await apiService.createAppointment(patientId);
+      console.log("creating appointment......" , userData);
+    const response = await apiService.createAppointment(patientId ,userData);
     console.log(response.data);
     } catch (error) { 
       console.log(error);
@@ -216,6 +217,8 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         allHospitals,
+        getAllAppointments,
+        allAppointements,
         userData,
         createAppointment,
         setUserData,

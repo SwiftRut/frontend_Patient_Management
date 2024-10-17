@@ -3,12 +3,13 @@ import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
+import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
-
+  const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -19,16 +20,33 @@ const AppointmentBooking = () => {
 
   useEffect(() => {
     getAllDoctors();
-  
+    getAllHospitals();
+    getAllAppointments();
   }, []);
 
   // Get unique values for each filter based on allDoctors data
   const getUniqueValues = (key, filterKey, filterValue) => {
-    return [...new Set(allDoctors
-      .filter(doctor => !filterKey || doctor[filterKey] === filterValue)
-      .map(doctor => doctor[key])
-    )];
+    const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
+    return [...new Set(data.map(doctor => doctor[key]))];
   };
+
+  const filteredHospitals = allHospitals.filter(hospital => {
+    return (
+      (!country || hospital.country === country) &&
+      (!state || hospital.state === state) &&
+      (!city || hospital.city === city)
+    );
+  });
+
+  const filteredDoctors = allDoctors.filter(doctor => {
+    return (
+      (!specialty || doctor.speciality === specialty) &&
+      (!country || doctor.country === country) &&
+      (!state || doctor.state === state) &&
+      (!city || doctor.city === city) &&
+      (!hospital || doctor.hospitalName === hospital)
+    );
+  });
 
   const handleSubmit = async () => {
     try {
@@ -38,17 +56,19 @@ const AppointmentBooking = () => {
       throw err;
     }
   };
+
   const isAllSelected = () => {
     return (
-      specialty &&
-      country &&
-      state &&
-      city &&
-      hospital &&
+      // specialty &&
+      // country &&
+      // state &&
+      // city &&
+      // hospital &&
       doctor &&
       appointmentType
     );
   };
+
   return (
     <div className="container">
       <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
@@ -111,7 +131,7 @@ const AppointmentBooking = () => {
                   setHospital(e.target.value);
                   setDoctor("");
                 }}
-                options={getUniqueValues("hospitalName", "city", city)}
+                options={filteredHospitals.map(hospital => hospital.name)}
               />
 
               {/* Doctor Select */}
@@ -119,9 +139,10 @@ const AppointmentBooking = () => {
                 label="Doctor"
                 value={doctor}
                 onChange={(e) => setDoctor(e.target.value)}
-                options={allDoctors
-                  .filter(doc => doc.hospitalName === hospital)
-                  .map(doc => ({ value: doc._id, label: `Dr. ${doc.name}` }))}
+                options={filteredDoctors.map(doc => ({
+                  value: doc._id,
+                  label: `Dr. ${doc.name}`,
+                }))}
               />
 
               {/* Appointment Type Select */}
@@ -134,6 +155,7 @@ const AppointmentBooking = () => {
                   { value: "follow_up", label: "Follow-Up" },
                   { value: "emergency", label: "Emergency" },
                   { value: "routine_checkup", label: "Routine Checkup" },
+                  { value: "Online", label:"Online"}
                 ]}
               />
             </div>
@@ -148,10 +170,11 @@ const AppointmentBooking = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <Calendar/>
+                    <Calendar filterData={
+                      {hospital, doctor, state, city, country,appointmentType}
+                    }/>
                   </div>
-
-                  <DoctorDetails doctorId={doctor, allDoctors} />
+                  <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                 </div>
               )}
             </div>
@@ -184,48 +207,6 @@ const SelectInput = ({ label, value, onChange, options }) => (
     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
       <i className="fa-solid fa-chevron-down text-gray-400"></i>
     </span>
-  </div>
-);
-
-const DoctorDetails = ({ doctorId, allDoctors}) => {
-  const doctor = allDoctors?.find(doc => doc._id === doctorId);
-  console.log(doctor,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
-  if (!doctor) return null;
-
-  return (
-    <div className="col-span-3 px-2 py-3">
-      <div className="bg-white w-full border-1 py-3 rounded-md">
-        <h5 className="px-3">Doctor Details</h5>
-        <hr />
-        <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
-          <img
-            src={doctor.avatar || "./image/Avatar.png"}
-            alt="Doctor Avatar"
-            className="w-16"
-          />
-          <div>
-            <span className="text-white ms-1">{doctor.firstName} {doctor.lastName}</span>
-            <button className="px-3 py-1 bg-btn-light rounded-full flex text-white">
-              <img src="./image/vuesax.png" alt="" className="pe-1" /> {doctor.gender}
-            </button>
-          </div>
-        </div>
-        <div className="rounded-md bg-gray-100 p-3 mx-2">
-          <DoctorDetailItem title="Qualification" value={doctor.qualification} />
-          <DoctorDetailItem title="Specialty Type" value={doctor.specialty} />
-          <DoctorDetailItem title="Years of Experience" value={`${doctor.experience} Years`} />
-          <DoctorDetailItem title="Working Time" value="6 Hours" />
-          <DoctorDetailItem title="Emergency Contact Number" value={doctor.contactNumber} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const DoctorDetailItem = ({ title, value }) => (
-  <div>
-    <h6 className="text-gray-500 font-medium">{title}</h6>
-    <p className="text-black font-medium">{value}</p>
   </div>
 );
 
