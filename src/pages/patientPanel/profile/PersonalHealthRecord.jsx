@@ -30,38 +30,40 @@ const PersonalHealthRecord = () => {
               {/* Patient Details Section */}
               <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Name:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">Name:</span>
                   <p className="text-[#141414] text-[15px] font-normal">Marcus Philips</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-17px] font-medium">Number:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">Number:</span>
                   <p className="text-[#141414] text-[15px] font-normal">99130 44537</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Email:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">Email:</span>
                   <p className="text-[#141414] text-[15px] font-normal">John@gmail.com</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Gender:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">Gender:</span>
                   <p className="text-[#141414] text-[15px] font-normal">Male</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">DOB:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">DOB:</span>
                   <p className="text-[#141414] text-[15px] font-normal">2 Jan, 2022</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Age:</span>
+                  <span className="font-medium text-gray-400 text-[17px]">Age:</span>
                   <p className="text-[#141414] text-[15px] font-normal">20 Years</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[15px] font-medium">Blood Group:</span>
+                  <span className="font-medium text-gray-400 text-[15px]">Blood Group:</span>
                   <p className="text-[#141414] text-[15px] font-normal">B+</p>
                 </div>
               </div>
               {/* Address Section */}
               <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Address:</span>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Address:
+                  </span>
                   <p className="text-[#141414] text-[15px] font-normal">123 Main St</p>
                 </div>
                 <div>
@@ -73,19 +75,27 @@ const PersonalHealthRecord = () => {
                   <p className="text-[#141414] text-[15px] font-normal">California</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Zip Code:</span>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Zip Code:
+                  </span>
                   <p className="text-[#141414] text-[15px] font-normal">90001</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Country:</span>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Country:
+                  </span>
                   <p className="text-[#141414] text-[15px] font-normal">USA</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Emergency Contact:</span>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Emergency Contact:
+                  </span>
                   <p className="text-[#141414] text-[15px] font-normal">99130 44538</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400 text-[17px] font-medium">Relationship:</span>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Relationship:
+                  </span>
                   <p className="text-[#141414] text-[15px] font-normal">Brother</p>
                 </div>
               </div>
@@ -112,15 +122,19 @@ const PersonalHealthRecord = () => {
                     <div className="bg-white rounded-lg shadow-md h-42">
                       <div className="flex justify-between items-center bg-[#F6F8FB] p-3 rounded-lg">
                         <h2 className="text-[18px] font-semibold text-gray-800">{name}</h2>
-                        <span className="text-[13px] text-[#4F4F4F] font-semibold">2 Jan, 2022</span>
+                        <span className="text-[13px] text-[#4F4F4F] font-semibold">
+                          2 Jan, 2022
+                        </span>
                       </div>
 
                       <div className="pt-3">
-                      <span className="p-2 text-[#4F4F4F] text-[15px] font-bold">Patient Issue</span>
-                      <p className="text-[#4F4F4F] p-2 text-[15px] font-normal">
-                        The printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took.
-                      </p>
+                        <span className="p-2 text-[#4F4F4F] text-[15px] font-bold">
+                          Patient Issue
+                        </span>
+                        <p className="text-[#4F4F4F] p-2 text-[15px] font-normal">
+                          The printing and typesetting industry. Lorem Ipsum has been the industry's
+                          standard dummy text ever since the 1500s, when an unknown printer took.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -162,12 +176,18 @@ const PersonalHealthRecord = () => {
                     // Add more rows if necessary
                   ].map((prescription, index) => (
                     <tr key={index}>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">{prescription.name}</td>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">{prescription.date}</td>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">{prescription.disease}</td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.name}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.date}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.disease}
+                      </td>
                       <td className="py-2 px-4">
                         <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
-                        <FaEye />
+                          <FaEye />
                         </span>
                       </td>
                     </tr>
