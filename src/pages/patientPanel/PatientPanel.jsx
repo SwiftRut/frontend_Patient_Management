@@ -11,6 +11,7 @@ import AppointmentBooking from "./AppointmentBooking";
 import ChatScreen1 from "./ChatScreen1";
 import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePanel";
 import PatientHeader from "../../component/PatientComponents/PatientHeader";
+import PriscriptionAccess from "./PriscriptionAccess";
 
 export default function PatientPanel() {
   return (
@@ -27,6 +28,8 @@ export default function PatientPanel() {
           <Route path="/allAppointment" element={<AllAppointment />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/appointmentBooking" element={<AppointmentBooking />} />
+
+          <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
           <Route path="/chatScreen" element={<ChatScreen1 />} />
         </Routes>
       </div>

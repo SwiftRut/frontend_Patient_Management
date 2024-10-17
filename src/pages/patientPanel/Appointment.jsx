@@ -6,9 +6,19 @@ import { IoEyeSharp } from "react-icons/io5";
 import { TbCalendarClock } from "react-icons/tb";
 import { TbCalendarX } from "react-icons/tb";
 import { BiSolidCalendar } from "react-icons/bi";
+import Onsite from "../doctorManagement/Onsite";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
+  const [openModel, setOpenModel] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+
+  const handleViewDoctorDetails = (doctor) => {
+    setSelectedDoctor(doctor);
+    setOpenModel(true);
+  };
+
+
   const allAppointment = [
     {
       doctorName: "Dr. Smith",
@@ -171,7 +181,7 @@ const Appointment = () => {
                             <h2 class="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
-                            <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
+                            <div onClick={()=>{handleViewDoctorDetails(val)}} className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
                               <IoEyeSharp />
                             </div>
                           </div>
@@ -543,11 +553,11 @@ const Appointment = () => {
                               </p>
                             </div>
                             <div class="flex justify-between mt-4">
-                              <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
+                              <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center hover:bg-red-500 hover:text-white transition duration-100">
                                 <TbCalendarX className="me-2" />
                                 Cancel
                               </button>
-                              <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
+                              <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-100 p-2 rounded-md w-[47%] flex items-center justify-center">
                                 <TbCalendarClock className="me-2" />
                                 Reschedule
                               </button>
@@ -563,6 +573,21 @@ const Appointment = () => {
           </div>
         </div>
       </div>
+
+      {openModel&&(
+          <div className="onsite-modal">
+          <div className="onsite-modal-content">
+            <div className="onsite-modal-header">
+              <h3>Doctor Details</h3>
+              <button className="close-button" onClick={() => setOpenModel(false)}>
+                &times;
+              </button>
+            </div>
+            <Onsite selectedDoctor={selectedDoctor} setOpenModel={setOpenModel}  />
+          </div>
+          <div className="onsite-modal-overlay" onClick={() => setOpenModel(false)}></div>
+        </div>
+      )}
     </div>
   );
 };

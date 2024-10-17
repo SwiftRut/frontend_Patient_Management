@@ -8,7 +8,7 @@ import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 
-const Onsite = ({ selectedDoctor, setShowOnsite }) => {
+const Onsite = ({ selectedDoctor, setShowOnsite,setOpenModel }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite }) => {
 
   const handleBack = () => {
     // navigate("/doctorManagement");
+    setOpenModel(false)
     setShowOnsite(false);
   };
 
