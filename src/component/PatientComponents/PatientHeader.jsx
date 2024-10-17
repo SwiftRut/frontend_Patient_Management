@@ -122,7 +122,7 @@ const PatientHeader = () => {
         </IconButton> */}
         <Breadcrumbs
           aria-label="breadcrumb"
-          className="bg-[#f8fcfe] p-2 rounded-full text-xs sm:text-sm"
+          className="bg-[#f8fcfe] p-2 rounded-full  text-xs sm:text-sm"
         >
           <Link
             underline="hover"

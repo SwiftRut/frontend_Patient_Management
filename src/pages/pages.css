@@ -173,7 +173,7 @@ input {
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
-  box-shadow: 0 0 0 1px #2684FF;
+  box-shadow: 0 0 0 1px #2684ff;
   box-sizing: border-box;
 }
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-1nmdiq5-menu {
@@ -229,7 +229,7 @@ input {
   color: #030229;
 }
 .registration-section .row .main .form .content .form-box form .condition .login-btn p span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .registration-section .row .main .img-box {
   width: 50%;
@@ -1329,7 +1329,7 @@ input {
   padding-left: 15px;
 }
 .login-section .row .main .form .content .form-box form .condition .remember-forgot .forgot span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .login-section .row .main .form .content .form-box form .condition .login-btn {
   padding: 15px 0px;
@@ -1356,7 +1356,7 @@ input {
   color: #030229;
 }
 .login-section .row .main .form .content .form-box form .condition .registration-btn p span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .login-section .row .main .img-box {
   width: 50%;
