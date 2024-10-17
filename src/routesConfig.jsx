@@ -317,6 +317,10 @@ const routesConfig = [
         element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
       },
       {
+        path: "priscriptionAccess",
+        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+      },
+      {
         path: "chatScreen",
         element: (
           <ProtectedRoute
