@@ -147,9 +147,9 @@ const PersonalHealthRecord = () => {
           <div className="col-span-3 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center pb-5">
               <h1 className="text-2xl font-bold">Prescriptions</h1>
-              <a href="#" className="text-blue-500">
+              <NavLink to={"/patient/prescriptions"} className="text-blue-500">
                 View All Prescriptions
-              </a>
+              </NavLink>
             </div>
             <hr />
 
