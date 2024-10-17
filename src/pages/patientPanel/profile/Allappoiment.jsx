@@ -98,7 +98,7 @@ const AllAppointment = () => {
             <li className="mr-4">
               <button
                 onClick={() => setActiveTab("appointments")}
-                className={`py-2 px-4 font-semibold ${activeTab === "appointments" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                className={`py-2 px-4 font-semibold ${activeTab === "appointments" ? "text-[#4C7DE7] text-[14px] font-normal	 border-b-2 border-blue-600" : "text-gray-500"}`}
               >
                 All Appointment
               </button>
@@ -106,7 +106,7 @@ const AllAppointment = () => {
             <li className="mr-4">
               <button
                 onClick={() => setActiveTab("documents")}
-                className={`py-2 px-4 font-semibold ${activeTab === "documents" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                className={`py-2 px-4 font-semibold ${activeTab === "documents" ? "text-[#4C7DE7] text-[14px] font-normal border-b-2 border-blue-600" : "text-gray-500"}`}
               >
                 All Document
               </button>
@@ -114,7 +114,7 @@ const AllAppointment = () => {
             <li className="mr-4">
               <button
                 onClick={() => setActiveTab("prescriptions")}
-                className={`py-2 px-4 font-semibold ${activeTab === "prescriptions" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                className={`py-2 px-4 font-semibold ${activeTab === "prescriptions" ? "text-[#4C7DE7] text-[14px] font-normal border-b-2 border-blue-600" : "text-gray-500"}`}
               >
                 All Prescription
               </button>
@@ -122,7 +122,7 @@ const AllAppointment = () => {
             <li className="mr-4">
               <button
                 onClick={() => setActiveTab("descriptions")}
-                className={`py-2 px-4 font-semibold ${activeTab === "descriptions" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                className={`py-2 px-4 font-semibold ${activeTab === "descriptions" ? "text-[#4C7DE7] text-[14px] font-normal border-b-2 border-blue-600" : "text-gray-500"}`}
               >
                 All Description
               </button>
@@ -137,34 +137,34 @@ const AllAppointment = () => {
                   {allAppointment.map((val, index) => (
                     <div
                       key={index}
-                      className="w-full rounded-lg bg-white border border-gray-200 shadow-md h-70"
+                      className="w-full rounded-lg bg-white border border-gray-200 shadow-md h-70 pb-3"
                     >
-                      <div className="flex justify-between items-center py-2 bg-gray-100 px-3">
-                        <h6 className="text-md font-semibold">{val.doctorName}</h6>
+                      <div className="flex justify-between items-center bg-gray-100 p-3">
+                        <h6 className="text-[16px] text-[#030229] font-semibold font-semibold">{val.doctorName}</h6>
                       </div>
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">Hospital Name</p>
-                        <span className="text-sm">{val.hospitalName}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal	">Hospital Name</p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.hospitalName}</span>
                       </div>
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">Appointment type</p>
-                        <span className="text-sm text-orange-300">{val.appointmentType}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment type</p>
+                        <span className="text-[16] text-[#FFC313] font-bold">{val.appointmentType}</span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">Appointment Date</p>
-                        <span className="text-sm">{val.appointmentDate}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment Date</p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.appointmentDate}</span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">Appointment time</p>
-                        <span className="text-sm">{val.appointmentTime}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment time</p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.appointmentTime}</span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">patient issue</p>
-                        <span className="text-sm">{val.patientIssue}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">patient issue</p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.patientIssue}</span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-gray-600">Disease Name</p>
-                        <span className="text-sm">{val.diseaseName}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">Disease Name</p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.diseaseName}</span>
                       </div>
                     </div>
                   ))}
