@@ -31,15 +31,19 @@ ol {
   color: #030229;
 }
 
-
 .search {
   padding: 12px 15px;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border: 0px;
   border-radius: 50px;
 }
+.search::-moz-placeholder {
+  color: #a7a7a7;
+  font-size: 16px;
+  font-weight: 400px;
+}
 .search::placeholder {
-  color: #A7A7A7;
+  color: #a7a7a7;
   font-size: 16px;
   font-weight: 400px;
 }
@@ -53,7 +57,7 @@ ol {
 }
 
 .time-slot button {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   padding: 12px 14px;
   color: white;
   font-size: 20px;
@@ -64,7 +68,7 @@ ol {
   padding-top: 30px;
 }
 .t-data table thead tr {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
 }
 .t-data table thead tr th {
   font-size: 18px;
@@ -74,23 +78,23 @@ ol {
   text-align: start;
 }
 .t-data table tbody tr td {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 18px;
   font-weight: 600;
   text-align: start;
   padding: 20px;
 }
 .t-data table tbody tr h3 {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   width: 111px;
   padding: 10px 0px;
   display: inline-block;
   text-align: center;
   border-radius: 33px;
-  color: #718EBF;
+  color: #718ebf;
 }
 .t-data table tbody tr .btn button {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   padding: 7px;
   margin: 0px 5px;
 }
@@ -112,16 +116,16 @@ ol {
 .condition .reset {
   width: 48%;
   color: #141414;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
 }
 .condition .delete {
   width: 48%;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
@@ -139,7 +143,7 @@ ol {
   font-weight: 700;
 }
 .patioentRecord .pr-search {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border-radius: 50px;
   width: 335px;
   margin-right: 20px;
@@ -165,16 +169,10 @@ ol {
   box-sizing: border-box;
   position: relative;
   cursor: text;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: relative;
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   padding-left: 15px;
   width: 154px;
 }
@@ -183,19 +181,19 @@ ol {
   font-size: 18px;
   font-weight: 700;
   color: #030229;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   padding: 20px;
   text-align: center;
 }
 .pr-data table tbody tr td {
   font-size: 18px;
   font-weight: 600;
-  color: #4F4F4F;
+  color: #4f4f4f;
   padding: 20px;
   text-align: center;
 }
 .pr-data table tbody tr .gender span {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   width: 40px;
   height: 40px;
   display: inline-block;
@@ -210,7 +208,7 @@ ol {
   color: #030229;
 }
 .p-details .p-record p {
-  color: #A7A7A7;
+  color: #a7a7a7;
   font-size: 20px;
   font-weight: 500;
 }
@@ -222,7 +220,7 @@ ol {
 }
 
 .p-btn button {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
   padding: 12px 14px;
   font-size: 20px;
@@ -244,18 +242,59 @@ ol {
   padding: 20px;
 }
 .p-table table tbody tr td {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 18px;
   font-weight: 600;
   text-align: center;
   padding: 20px;
 }
 
+.allFile-section .pre-bill {
+  position: relative;
+  content: "";
+  box-sizing: border-box;
+}
+.allFile-section .pre-bill .viewFullPrescription-btn {
+  visibility: hidden;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 22;
+  background-color: #0EABEB;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.allFile-section .pre-bill::after {
+  position: absolute;
+  content: "";
+  box-sizing: border-box;
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+}
+.allFile-section .pre-bill:hover::after {
+  position: absolute;
+  background-color: rgba(66, 62, 62, 0.596);
+  top: 0px;
+  left: 0px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+}
+.allFile-section .pre-bill:hover .viewFullPrescription-btn {
+  visibility: visible;
+}
+
 .cp-tool {
   border-radius: 10px;
 }
 .cp-tool .head {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   padding: 15px 15px;
   border-radius: 10px 10px 0px 0px;
 }
@@ -267,7 +306,7 @@ ol {
 }
 .cp-tool .cp-add button {
   padding: 10px 14px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   border-radius: 10px;
   font-size: 17px;
   font-weight: 600;
@@ -295,10 +334,10 @@ ol {
 .cp-tool p span {
   font-size: 16px;
   font-weight: 700;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .cp-tool p .onside {
-  color: #5678E9;
+  color: #5678e9;
 }
 
 form {
@@ -322,6 +361,9 @@ form .input-box input {
 }
 form .input-box input:focus {
   border: 1px solid #718ebf;
+}
+form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
 }
 form .input-box input::placeholder {
   color: #a7a7a7;
@@ -387,7 +429,7 @@ form .condition .login-btn p {
 }
 .drug input,
 .drug .select {
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   border-radius: 10px;
 }
 .drug .icon svg {
@@ -398,7 +440,7 @@ form .condition .login-btn p {
   padding-top: 25px;
 }
 .add-medicine button {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 
@@ -409,18 +451,18 @@ form .condition .login-btn p {
   padding: 10px;
 }
 .addition-note textarea {
-  border: 1px solid #D3D3D3;
+  border: 1px solid #d3d3d3;
   border-radius: 10px;
   padding: 10px;
 }
 
 .save-btn button {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 
 .Prescription-bill .head .name p {
-  color: #0EABEB;
+  color: #0eabeb;
   font-size: 24px;
   font-weight: 700;
 }
@@ -456,7 +498,7 @@ form .condition .login-btn p {
 .Prescription-bill table tbody tr .take span {
   background-color: rgba(86, 120, 233, 0.1019607843);
   display: inline-block;
-  color: Light #718EBF;
+  color: Light #718ebf;
   padding: 3px 10px;
   border-radius: 20px;
 }
@@ -469,7 +511,7 @@ form .condition .login-btn p {
   font-weight: 500;
 }
 .Prescription-bill .note p {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 14px;
   font-weight: 500;
 }
@@ -477,20 +519,20 @@ form .condition .login-btn p {
   padding-top: 15px;
 }
 .Prescription-bill .condition .sign span {
-  color: #A7A7A7;
+  color: #a7a7a7;
   font-size: 14px;
   font-weight: 600;
 }
 .Prescription-bill .condition .btn button {
   color: white;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   padding: 8px 25px;
   border-radius: 10px;
 }
 
 .manage-p .today,
 .manage-p .older {
-  color: #0EABEB;
+  color: #0eabeb;
   font-size: 14px;
   font-weight: 400;
   text-transform: capitalize;
@@ -504,11 +546,11 @@ form .condition .login-btn p {
   color: #030229;
 }
 .manage-p .head .mp-tool {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border-radius: 15px;
 }
 .manage-p table thead tr th {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   font-size: 18px;
   font-weight: 700;
   color: #030229;
@@ -518,7 +560,7 @@ form .condition .login-btn p {
 .manage-p table tbody tr td {
   font-size: 18px;
   font-weight: 600;
-  color: #4F4F4F;
+  color: #4f4f4f;
   text-align: center;
 }
 .manage-p table tbody tr .type span {
@@ -531,8 +573,61 @@ form .condition .login-btn p {
 }
 
 .manage-prescription {
-  width: 650px;
+  width: 700px;
   margin: 0px auto;
+}
+.manage-prescription .tital {
+  color: #030229;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .close-btn {
+  background-color: rgb(243, 130, 130);
+  color: white;
+}
+.manage-prescription .close-btn svg {
+  font-size: 15px;
+}
+.manage-prescription .close-btn:hover {
+  background-color: red;
+}
+.manage-prescription .head .name p {
+  color: #0EABEB;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .details p {
+  width: 50%;
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+}
+.manage-prescription .details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.manage-prescription .details .add {
+  width: 100%;
+}
+.manage-prescription .table-data thead tr th {
+  background-color: #f3f4f6;
+}
+.manage-prescription .table-data tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  color: #39973D;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+.manage-prescription .table-data tbody tr .take span {
+  color: #718EBF;
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
 }
 
 .teli-module .teli-btn button {
@@ -547,7 +642,7 @@ form .condition .login-btn p {
   padding: 17px;
 }
 .teli-module .head button {
-  border: 2px solid #D3D3D3;
+  border: 2px solid #d3d3d3;
   border-radius: 10px;
   font-size: 20px;
   font-weight: 600;
@@ -555,7 +650,7 @@ form .condition .login-btn p {
 }
 .teli-module .head button svg {
   font-size: 24px;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .teli-module .box {
   padding: 0px !important;
@@ -564,13 +659,13 @@ form .condition .login-btn p {
   font-size: 18px;
   font-weight: 600;
   color: #030229;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   padding: 15px;
 }
 .teli-module .box p {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 16px;
   font-weight: 700;
   display: flex;
@@ -582,8 +677,8 @@ form .condition .login-btn p {
 }
 .teli-module .box .join {
   width: 47%;
-  color: #FFFFFF;
-  background-color: #39973D;
+  color: #ffffff;
+  background-color: #39973d;
   padding: 12px 14px;
   border-radius: 10px;
 }
@@ -592,8 +687,8 @@ form .condition .login-btn p {
 }
 .teli-module .box .reschedule {
   width: 47%;
-  color: #FFFFFF;
-  background-color: #0EABEB;
+  color: #ffffff;
+  background-color: #0eabeb;
   padding: 12px 14px;
   border-radius: 10px;
 }

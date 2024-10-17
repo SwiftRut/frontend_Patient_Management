@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoCloseSharp } from "react-icons/io5";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -58,14 +60,14 @@ const Appointment = () => {
 
   return (
     <div>
-      <div>
+      <div className="p-4 bg-[#f6f8fb]">
         <div className="container mt-5">
           <div className="bg-white shadow-lg  h-auto p-4 rounded-xl">
             <ul className="overflow-x-auto flex border-b border-gray-300">
               <li className="mr-4">
                 <button
                   onClick={() => setActiveTab("scheduled")}
-                  className={`py-2 px-4 font-semibold ${activeTab === "scheduled" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                  className={`py-2 px-4 font-semibold text-sm ${activeTab === "scheduled" ? "text-[#0EABEB] border-b-2 border-[#0EABEB]" : "text-gray-500"}`}
                 >
                   Scheduled Appointment
                 </button>
@@ -73,7 +75,7 @@ const Appointment = () => {
               <li className="mr-4">
                 <button
                   onClick={() => setActiveTab("previous")}
-                  className={`py-2 px-4 font-semibold ${activeTab === "previous" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                  className={`py-2 px-4 font-semibold text-sm ${activeTab === "previous" ? "text-[#0EABEB] border-b-2 border-[#0EABEB]" : "text-gray-500"}`}
                 >
                   Previous Appointment
                 </button>
@@ -81,7 +83,7 @@ const Appointment = () => {
               <li className="mr-4">
                 <button
                   onClick={() => setActiveTab("cancel")}
-                  className={`py-2 px-4 font-semibold ${activeTab === "cancel" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                  className={`py-2 px-4 font-semibold text-sm ${activeTab === "cancel" ? "text-[#0EABEB] border-b-2 border-[#0EABEB]" : "text-gray-500"}`}
                 >
                   Cancel Appointment
                 </button>
@@ -89,7 +91,7 @@ const Appointment = () => {
               <li className="mr-4">
                 <button
                   onClick={() => setActiveTab("pending")}
-                  className={`py-2 px-4 font-semibold ${activeTab === "pending" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"}`}
+                  className={`py-2 px-4 font-semibold text-sm ${activeTab === "pending" ? "text-[#0EABEB] border-b-2 border-[#0EABEB]" : "text-gray-500"}`}
                 >
                   Pending Appointment
                 </button>
@@ -103,30 +105,30 @@ const Appointment = () => {
                   <div className="flex flex-col md:flex-row justify-between items-center mb-3">
                     <h1 className="text-xl font-semibold mb-2 md:mb-0">My Appointment</h1>
 
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 ">
                       {/* Input group for date picker */}
-                      <div className="relative w-72">
+                      <div className="border rounded-md flex p-2 items-center">
                         {/* Calendar icon positioned to the left */}
                         <span
-                          className="absolute inset-y-0  pl-3 flex items-center text-gray-500"
-                          style={{ left: "-5px" }}
+                          className=" pl-3 text-gray-500 me-1"
+                    
                         >
-                          <i className="fa-solid fa-calendar-days"></i>
+                          <FaCalendarAlt />
                         </span>
 
                         {/* Input field with proper padding for icons */}
                         <input
                           type="text"
-                          className="form-control "
+                          className="form-control"
                           style={{ width: "270px" }} // pl-10 for left icon, pr-10 for right icon
                           value="2 Jan, 2022 - 13 Jan, 2022"
                           readOnly
                         />
 
                         {/* Close icon with rounded background */}
-                        <span className="absolute inset-y-0 right-5  flex items-center w-6 h-6 bg-red-700 rounded-full my-auto justify-center">
-                          <i className="fa-solid fa-xmark text-white"></i>
-                        </span>
+                        <div className="h-5 w-5 rounded-full text-white bg-[#E11D29]">
+                        <IoCloseSharp />
+                        </div>
                       </div>
 
                       {/* Book Appointment button */}

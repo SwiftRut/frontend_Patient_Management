@@ -26,6 +26,10 @@ input {
   align-items: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .sidebar {
   display: flex;
   flex-direction: row;
@@ -41,14 +45,13 @@ input {
 }
 .sidebar .asite .logo {
   font-weight: bold;
-  margin-bottom: 20px;
   text-align: center;
 }
 .sidebar .asite .logo img {
   width: 250px;
 }
 .sidebar .asite .menu {
-  height: 80%;
+  height: 85%;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -73,8 +76,7 @@ input {
   transition: max-height 0.3s ease-out;
 }
 .sidebar .asite .menu ul li .dropdown.open {
-  max-height: 200px;
-  /* Maximum height when open */
+  max-height: 200px; /* Maximum height when open */
 }
 .sidebar .asite .menu ul li .dropdown ul {
   padding: 0;
@@ -101,7 +103,7 @@ input {
   align-items: center;
   padding: 10px 10px;
   width: 100%;
-  color: #0eabeb;
+  font-size: 20px;
 }
 .sidebar .asite .menu ul li a .icon {
   color: #818194 !important;
@@ -110,7 +112,7 @@ input {
 }
 .sidebar .asite .menu ul li a span {
   color: #818194;
-  font-size: 16px;
+  font-size: 20px;
 }
 .sidebar .asite .menu ul li:hover {
   background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
@@ -121,8 +123,52 @@ input {
 .sidebar .asite .menu ul li:hover .icon {
   color: #0eabeb !important;
 }
+.sidebar .asite .menu .aside-img {
+  width: 80%;
+  margin: auto;
+  background-color: #f4f4f4;
+  text-align: center;
+  position: relative;
+  padding: 90px 10px 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.sidebar .asite .menu .aside-img img {
+  position: absolute;
+  top: -70px;
+  left: 60px;
+}
+.sidebar .asite .menu .aside-img .text h3 {
+  color: #141414;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sidebar .asite .menu .aside-img .text p {
+  color: #4f4f4f;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 0;
+}
+.sidebar .asite .menu .aside-img .text .btn {
+  display: flex;
+  justify-content: center;
+}
+.sidebar .asite .menu .aside-img .text .btn button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 10px 15px;
+  background-color: #0eabeb;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.sidebar .asite .menu .aside-img .text .btn button h3 {
+  color: #fff;
+  padding-left: 10px;
+  font-size: 20px;
+}
 .sidebar .asite .menu .logout-btn button {
-  gap: 15px;
   justify-content: center;
   align-items: center;
   color: #e11d29;
@@ -136,9 +182,4 @@ input {
   width: 83%;
   margin-left: 17%;
   padding: 20px;
-}
-
-.header {
-  width: 83%;
-  margin-left: 17%;
-}/*# sourceMappingURL=doctorAsidePanel.css.map */
+}/*# sourceMappingURL=patientAsidePanel.css.map */

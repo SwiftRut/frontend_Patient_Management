@@ -35,22 +35,20 @@ ol {
   }
 }
 
-
 // appointmanagement component start
 
 .search {
   padding: 12px 15px;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border: 0px;
   border-radius: 50px;
 
   &::placeholder {
-    color: #A7A7A7;
+    color: #a7a7a7;
     font-size: 16px;
     font-weight: 400px;
   }
 }
-
 
 .css-1ll44ll-MuiOutlinedInput-notchedOutline {
   border: 0px !important;
@@ -62,7 +60,7 @@ ol {
 
 .time-slot {
   button {
-    background-color: #0EABEB;
+    background-color: #0eabeb;
     padding: 12px 14px;
     color: white;
     font-size: 20px;
@@ -76,7 +74,7 @@ ol {
   table {
     thead {
       tr {
-        background-color: #F6F8FB;
+        background-color: #f6f8fb;
 
         th {
           font-size: 18px;
@@ -91,7 +89,7 @@ ol {
     tbody {
       tr {
         td {
-          color: #4F4F4F;
+          color: #4f4f4f;
           font-size: 18px;
           font-weight: 600;
           text-align: start;
@@ -99,19 +97,18 @@ ol {
         }
 
         h3 {
-          background-color: #F6F8FB;
+          background-color: #f6f8fb;
           width: 111px;
           padding: 10px 0px;
           display: inline-block;
           text-align: center;
           border-radius: 33px;
-          color: #718EBF;
+          color: #718ebf;
         }
-
 
         .btn {
           button {
-            background-color: #F6F8FB;
+            background-color: #f6f8fb;
             padding: 7px;
             margin: 0px 5px;
           }
@@ -147,7 +144,7 @@ ol {
   .reset {
     width: 48%;
     color: #141414;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #d3d3d3;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -155,9 +152,9 @@ ol {
 
   .delete {
     width: 48%;
-    background-color: #0EABEB;
+    background-color: #0eabeb;
     color: white;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #d3d3d3;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -172,11 +169,9 @@ ol {
   }
 }
 
-
 // appointmanagement component end
 
-
-// Patient Record Accesst component start 
+// Patient Record Accesst component start
 
 .patioentRecord {
   h2 {
@@ -186,7 +181,7 @@ ol {
   }
 
   .pr-search {
-    background-color: #F6F8FB;
+    background-color: #f6f8fb;
     border-radius: 50px;
     width: 335px;
     margin-right: 20px;
@@ -226,11 +221,10 @@ ol {
     -ms-flex-align: center;
     align-items: center;
     position: relative;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #d3d3d3;
     padding-left: 15px;
     width: 154px;
   }
-
 }
 
 .pr-data {
@@ -241,7 +235,7 @@ ol {
           font-size: 18px;
           font-weight: 700;
           color: #030229;
-          background-color: #F6F8FB;
+          background-color: #f6f8fb;
           padding: 20px;
           text-align: center;
         }
@@ -253,14 +247,14 @@ ol {
         td {
           font-size: 18px;
           font-weight: 600;
-          color: #4F4F4F;
+          color: #4f4f4f;
           padding: 20px;
           text-align: center;
         }
 
         .gender {
           span {
-            background-color: #F6F8FB;
+            background-color: #f6f8fb;
             width: 40px;
             height: 40px;
             display: inline-block;
@@ -283,7 +277,7 @@ ol {
 
   .p-record {
     p {
-      color: #A7A7A7;
+      color: #a7a7a7;
       font-size: 20px;
       font-weight: 500;
 
@@ -299,7 +293,7 @@ ol {
 
 .p-btn {
   button {
-    background-color: #0EABEB;
+    background-color: #0eabeb;
     color: white;
     padding: 12px 14px;
     font-size: 20px;
@@ -332,7 +326,7 @@ ol {
     tbody {
       tr {
         td {
-          color: #4F4F4F;
+          color: #4f4f4f;
           font-size: 18px;
           font-weight: 600;
           text-align: center;
@@ -341,19 +335,68 @@ ol {
       }
     }
   }
-
 }
+
+
+.allFile-section {
+  .pre-bill {
+    position: relative;
+    content: '';
+    box-sizing: border-box;
+
+    .viewFullPrescription-btn {
+      visibility: hidden;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translateX(calc(0% - 50%));
+      z-index: 22;
+      background-color: #0EABEB;
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      box-sizing: border-box;
+      width: 0%;
+      height: 0%;
+      visibility: hidden;
+    }
+
+    &:hover {
+      &::after {
+        position: absolute;
+        background-color: rgba(66, 62, 62, 0.596);
+        top: 0px;
+        left: 0px;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        visibility: visible;
+      }
+
+      .viewFullPrescription-btn {
+        visibility: visible;
+      }
+    }
+  }
+}
+
 
 // Patient Record Accesst component end
 
-
-// createPrescription tools start 
+// createPrescription tools start
 
 .cp-tool {
   border-radius: 10px;
 
   .head {
-    background-color: #F6F8FB;
+    background-color: #f6f8fb;
     padding: 15px 15px;
     border-radius: 10px 10px 0px 0px;
   }
@@ -367,7 +410,7 @@ ol {
 
     button {
       padding: 10px 14px;
-      background-color: #0EABEB;
+      background-color: #0eabeb;
       border-radius: 10px;
       font-size: 17px;
       font-weight: 600;
@@ -399,16 +442,14 @@ ol {
     span {
       font-size: 16px;
       font-weight: 700;
-      color: #4F4F4F;
+      color: #4f4f4f;
     }
 
     .onside {
-      color: #5678E9;
+      color: #5678e9;
     }
   }
-
 }
-
 
 form {
   justify-content: space-between;
@@ -521,10 +562,9 @@ form {
 
   input,
   .select {
-    border: 1px solid #D3D3D3;
+    border: 1px solid #d3d3d3;
     border-radius: 10px;
   }
-
 
   .icon {
     svg {
@@ -537,7 +577,7 @@ form {
   padding-top: 25px;
 
   button {
-    background-color: #0EABEB;
+    background-color: #0eabeb;
     color: white;
   }
 }
@@ -550,7 +590,7 @@ form {
   }
 
   textarea {
-    border: 1px solid #D3D3D3;
+    border: 1px solid #d3d3d3;
     border-radius: 10px;
     padding: 10px;
   }
@@ -558,7 +598,7 @@ form {
 
 .save-btn {
   button {
-    background-color: #0EABEB;
+    background-color: #0eabeb;
     color: white;
   }
 }
@@ -571,7 +611,7 @@ form {
 
     .name {
       p {
-        color: #0EABEB;
+        color: #0eabeb;
         font-size: 24px;
         font-weight: 700;
       }
@@ -618,7 +658,7 @@ form {
 
         .duration {
           span {
-            background-color: #39973D1A;
+            background-color: #39973d1a;
             display: inline-block;
             color: Green;
             padding: 3px 10px;
@@ -628,9 +668,9 @@ form {
 
         .take {
           span {
-            background-color: #5678E91A;
+            background-color: #5678e91a;
             display: inline-block;
-            color: Light #718EBF;
+            color: Light #718ebf;
             padding: 3px 10px;
             border-radius: 20px;
           }
@@ -649,7 +689,7 @@ form {
     }
 
     p {
-      color: #4F4F4F;
+      color: #4f4f4f;
       font-size: 14px;
       font-weight: 500;
     }
@@ -660,7 +700,7 @@ form {
 
     .sign {
       span {
-        color: #A7A7A7;
+        color: #a7a7a7;
         font-size: 14px;
         font-weight: 600;
       }
@@ -669,24 +709,23 @@ form {
     .btn {
       button {
         color: white;
-        background-color: #0EABEB;
+        background-color: #0eabeb;
         padding: 8px 25px;
         border-radius: 10px;
       }
     }
   }
-
 }
 
 // createPrescription tools end
 
-// managePrescription tools start 
+// managePrescription tools start
 
 .manage-p {
 
   .today,
   .older {
-    color: #0EABEB;
+    color: #0eabeb;
     font-size: 14px;
     font-weight: 400;
     text-transform: capitalize;
@@ -696,7 +735,6 @@ form {
     align-items: center;
 
     .tital {
-
       p {
         font-size: 26px;
         font-weight: 700;
@@ -705,7 +743,7 @@ form {
     }
 
     .mp-tool {
-      background-color: #F6F8FB;
+      background-color: #f6f8fb;
       border-radius: 15px;
     }
   }
@@ -714,7 +752,7 @@ form {
     thead {
       tr {
         th {
-          background-color: #F6F8FB;
+          background-color: #f6f8fb;
           font-size: 18px;
           font-weight: 700;
           color: #030229;
@@ -729,7 +767,7 @@ form {
         td {
           font-size: 18px;
           font-weight: 600;
-          color: #4F4F4F;
+          color: #4f4f4f;
           text-align: center;
         }
 
@@ -742,7 +780,6 @@ form {
       }
     }
   }
-
 }
 
 .css-1peo4km-MuiPaper-root-MuiDialog-paper {
@@ -750,13 +787,103 @@ form {
 }
 
 .manage-prescription {
-  width: 650px;
+  width: 700px;
   margin: 0px auto;
+
+  .tital {
+    color: #030229;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .close-btn {
+    background-color: rgb(243, 130, 130);
+    color: white;
+
+    svg {
+      font-size: 15px;
+    }
+
+    &:hover {
+      background-color: red;
+    }
+  }
+
+  .head {
+    .logo {}
+
+    .name {
+      p {
+        color: #0EABEB;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      span {}
+    }
+  }
+
+  .details {
+    p {
+      width: 50%;
+      color: #141414;
+      font-size: 16px;
+      font-weight: 600;
+
+      span {
+        color: #818194;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+
+    .add {
+      width: 100%;
+    }
+  }
+
+  .table-data {
+    thead {
+      tr {
+        th {
+          background-color: #f3f4f6;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {}
+
+        .duration {
+          span {
+            background-color: #39973D1A;
+            color: #39973D;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
+
+        .take {
+          span {
+            color: #718EBF;
+            background-color: #5678E91A;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+  }
 }
 
-// managePrescription tools end 
+// managePrescription tools end
 
-// teleconsultation module start 
+// teleconsultation module start
 
 .teli-module {
   .teli-btn {
@@ -777,7 +904,7 @@ form {
     }
 
     button {
-      border: 2px solid #D3D3D3;
+      border: 2px solid #d3d3d3;
       border-radius: 10px;
       font-size: 20px;
       font-weight: 600;
@@ -785,7 +912,7 @@ form {
 
       svg {
         font-size: 24px;
-        color: #4F4F4F;
+        color: #4f4f4f;
       }
     }
   }
@@ -797,14 +924,14 @@ form {
       font-size: 18px;
       font-weight: 600;
       color: #030229;
-      background-color: #F6F8FB;
+      background-color: #f6f8fb;
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
       padding: 15px;
     }
 
     p {
-      color: #4F4F4F;
+      color: #4f4f4f;
       font-size: 16px;
       font-weight: 700;
       display: flex;
@@ -818,8 +945,8 @@ form {
 
     .join {
       width: 47%;
-      color: #FFFFFF;
-      background-color: #39973D;
+      color: #ffffff;
+      background-color: #39973d;
       padding: 12px 14px;
       border-radius: 10px;
 
@@ -830,8 +957,8 @@ form {
 
     .reschedule {
       width: 47%;
-      color: #FFFFFF;
-      background-color: #0EABEB;
+      color: #ffffff;
+      background-color: #0eabeb;
       padding: 12px 14px;
       border-radius: 10px;
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, IconButton, TextField, InputAdornment } from "@mui/material";
-import { CalendarToday, Search } from "@mui/icons-material";
+import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
@@ -9,18 +9,18 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 import apiService from "../../services/api.js";
 import "./doctorPanel.css";
 
-
 export default function AppointmentManagement() {
   // const { user } = useAuth();
   // const { getAllAppointments, allAppointements } = useGlobal();
+  const [dateRange, setDateRange] = useState("Any Date");
 
   useEffect(() => {
     getAppointments();
   }, []);
 
   // const [searchResults, setSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('Today Appointment');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeTab, setActiveTab] = useState("Today Appointment");
 
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
@@ -293,8 +293,6 @@ export default function AppointmentManagement() {
     ],
   });
 
-
-
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -390,6 +388,15 @@ export default function AppointmentManagement() {
                 }}
               />
 
+              <Button
+                variant="outlined"
+                startIcon={<DateRange />}
+                color="gray"
+                onClick={() => setOpenCustomDateModal(true)}
+              >
+                {dateRange}
+              </Button>
+
               {/* Appointment Time Slot Button */}
               <div className="time-slot">
                 <Button
@@ -432,18 +439,28 @@ export default function AppointmentManagement() {
                     </td>
                     <td className="p-3">
                       <h3
-                        className={`px-3 py-1 text-sm font-medium rounded-full w-[4rem] ${appointment.appointmentType === "Online" ? "bg-yellow-100 text-yellow-600" : "bg-blue-100 text-blue-600"}`}
+                        className={`px-3 py-1 text-sm font-medium rounded-full w-[4rem] ${
+                          appointment.appointmentType === "Online"
+                            ? "bg-yellow-100 text-yellow-600"
+                            : "bg-blue-100 text-blue-600"
+                        }`}
                       >
                         {appointment.appointmentType}
                       </h3>
                     </td>
                     <td className="p-3 btn">
-                      <IconButton color="primary" onClick={() => setOpenCustomDateModal(true)}>
-                        <CalendarToday style={{ color: "#5678E9" }} />
+                      <IconButton
+                        color="primary"
+                        onClick={() => setOpenCancelAppointmentModal(true)}
+                      >
+                        <CalendarToday style={{ color: "#E11D29" }} />
                       </IconButton>
 
-                      <IconButton color="secondary" onClick={() => setOpenCancelAppointmentModal(true)}>
-                        <CalendarToday style={{ color: "#E11D29" }} />
+                      <IconButton
+                        color="secondary"
+                        onClick={() => navigate("/doctor/appointmentTimeSlot")}
+                      >
+                        <CalendarToday style={{ color: "#5678E9" }} />
                       </IconButton>
                     </td>
                   </tr>
@@ -452,7 +469,12 @@ export default function AppointmentManagement() {
             </table>
           </div>
         </div>
-        <CustomDateModal open={openCustomDateModal} onClose={() => setOpenCustomDateModal(false)} />
+
+        <CustomDateModal
+          open={openCustomDateModal}
+          setDateRange={setDateRange}
+          onClose={() => setOpenCustomDateModal(false)}
+        />
         <CancelAppointmentModal
           open={openCancelAppointmentModal}
           onClose={() => setOpenCancelAppointmentModal(false)}
