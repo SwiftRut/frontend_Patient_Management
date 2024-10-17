@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -14,6 +14,18 @@ const Calendar = ({ filterData }) => {
   const [selectedSlot, setSelectedSlot] = useState(null);
   const { createAppointment, allAppointements } = useGlobal();
   const { user } = useAuth();
+
+  useEffect(() => {
+    // Map appointments to the required format for react-big-calendar
+    const mappedEvents = allAppointements.map((appointment) => ({
+      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+      start: new Date(appointment.date),
+      end: new Date(appointment.appointmentTime),
+      allDay: false, // Customize as needed
+      id: appointment._id
+    }));
+    setEvents(mappedEvents);
+  }, [allAppointements]);
 
   const handleSlotSelected = (slotInfo) => {
     setSelectedSlot(slotInfo);
@@ -32,10 +44,9 @@ const Calendar = ({ filterData }) => {
       handleCloseModal();
     } catch (error) {
       console.error("Error booking appointment:", error);
-      // Handle error (e.g., show error message to user)
     }
   };
-console.log(events);
+
   return (
     <div id="Calendar" className="container mx-auto p-6">
       <BigCalendar
@@ -62,3 +73,4 @@ console.log(events);
 };
 
 export default Calendar;
+  
