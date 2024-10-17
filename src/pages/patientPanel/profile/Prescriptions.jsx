@@ -275,21 +275,6 @@ const Prescriptions = () => {
       address: "789 Oak St, Springfield",
       age: 42,
     },
-    {
-      hospitalName: "Community Hospital",
-      doctorName: "Dr. Brown",
-      diseaseName: "Headache",
-      createdDate: "2024-09-20",
-      medicineName: "Ibuprofen",
-      strength: "400mg",
-      dose: "1 tablet",
-      duration: "3 days",
-      whenToTake: "After meals",
-      gender: "Female",
-      patientName: "Emily Davis",
-      address: "101 Pine St, Springfield",
-      age: 30,
-    },
   ];
 
   const [isSearchVisible, setSearchVisible] = useState(false);
