@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../style.css";
+import medical from "../../../assets/medical-certificate.png";
+import prescription from "../../../assets/prescription.png";
 
 const AllAppointment = () => {
   const [activeTab, setActiveTab] = useState("appointments");
@@ -141,6 +143,24 @@ const AllAppointment = () => {
       diseaseName: "Spondylitis",
     },
   ];
+
+  const documents = [
+    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
+    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
+    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
+    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
+    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
+    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
+  ]
+
+  const AllPrescription = [
+    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
+    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
+    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
+    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
+    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
+    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
+  ]
 
   const description = [
     {
@@ -298,12 +318,40 @@ const AllAppointment = () => {
             )}
             {activeTab === "documents" && (
               <div className="p-4">
-                <p>No documents available.</p>
+                <div className="overflow-y-auto" style={{ height: "700px" }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {documents.map((document, index) => (
+                      <div key={index} className="border rounded-lg shadow">
+                        <div className="head flex align-center justify-between p-4 bg-gray-100">
+                          <h3 className="text-[18px] text-[#030229] font-semibold	">Created Date</h3>
+                          <p className="text-[18px] text-[#030229] font-semibold">{document.createdDate}</p>
+                        </div>
+                        <div className="img p-4">
+                          <img src={document.imageUrl} alt={document.title} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
             {activeTab === "prescriptions" && (
               <div className="p-4">
-                <p>No prescriptions available.</p>
+                <div className="overflow-y-auto" style={{ height: "700px" }}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {AllPrescription.map((document, index) => (
+                      <div key={index} className="border rounded-lg shadow">
+                      <div className="head flex align-center justify-between p-4 bg-gray-100">
+                        <h3 className="text-[18px] text-[#030229] font-semibold	">Created Date</h3>
+                        <p className="text-[18px] text-[#030229] font-semibold">{document.createdDate}</p>
+                      </div>
+                      <div className="img p-4">
+                        <img src={document.imageUrl} alt={document.title} />
+                      </div>
+                    </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
             {activeTab === "descriptions" && (
