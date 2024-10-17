@@ -16,7 +16,7 @@ export default function PatientPanel() {
   return (
     <>
       <PatientAsidePanel />
-      <div className="main-content">
+      <div className="main-content h-screen overflow-y-hidden">
         <PatientHeader />
         <Routes>
           <Route path="" element={<PersonalHealthRecord />} />

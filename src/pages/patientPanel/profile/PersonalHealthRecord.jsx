@@ -2,13 +2,14 @@ import React from "react";
 import "../style.css";
 import { NavLink } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
+import { FaHospital } from "react-icons/fa6";
 
 const PersonalHealthRecord = () => {
   return (
     <div className="p-4 bg-[#f6f8fb]">
       <div className="container mx-auto">
-        <div className="bg-white p-3 rounded-lg shadow-lg mt-3">
-          <div className="flex justify-between items-center mb-3">
+        <div className="bg-white p-3 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center">
             <h2 className="text-[26px] text-[#030229] font-bold">Patient Details</h2>
             <NavLink
               to={"/patient/profile/profileEdit"}
@@ -18,7 +19,7 @@ const PersonalHealthRecord = () => {
             </NavLink>
           </div>
 
-          <div className="flex justify-between align-center p-2">
+          <div className="flex justify-between align-center">
             <div className="w-[10%] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
@@ -104,23 +105,23 @@ const PersonalHealthRecord = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mt-3">
-          <div className="col-span-5 bg-white rounded-lg p-4">
-            <div className="flex justify-between items-center px-2 py-2">
+          <div className="col-span-5 bg-white rounded-lg p-3">
+            <div className="flex justify-between items-center px-2 pb-2">
               <h1 className="text-2xl font-bold text-gray-800">Medical History</h1>
-              <a href="#" className="text-blue-500 hover:text-blue-700 font-medium">
+              <NavLink to={"/patient/medicalHistory"} className="text-blue-500 hover:text-blue-700 font-medium">
                 View All History
-              </a>
+              </NavLink>
             </div>
 
             <hr />
 
-            <div className="overflow-x-auto pt-4 pb-4">
+            <div className="overflow-x-auto pt-3 pb-3">
               <div className="flex flex-col md:flex-row md:-mx-4">
                 {/* Medical History Items */}
                 {["Dulce Schleifer", "Dulce Schleifer", "Dulce Schleifer"].map((name, index) => (
                   <div className="w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
                     <div className="bg-white rounded-lg shadow-md h-42">
-                      <div className="flex justify-between items-center bg-[#F6F8FB] p-3 rounded-lg">
+                      <div className="flex justify-between items-center bg-[#F6F8FB] p-2 rounded-lg">
                         <h2 className="text-[18px] font-semibold text-gray-800">{name}</h2>
                         <span className="text-[13px] text-[#4F4F4F] font-semibold">
                           2 Jan, 2022
@@ -207,17 +208,17 @@ const PersonalHealthRecord = () => {
               </div>
             </div>
 
-            <div className="flex justify-between align-center p-3">
-              <div className="w-[50%] p-2">
-                <div className="box rounded-lg  border p-3">
+            <div className="flex justify-between align-center p-3 overflow-y-scroll h-[220px]">
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
                       <div className="img ">
                         <img src="/img/Avatar.png" alt="" />
                       </div>
                       <div className="details">
-                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
-                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
                       </div>
                     </div>
                     <div className="right">
@@ -231,7 +232,7 @@ const PersonalHealthRecord = () => {
                   </div>
                   <div className="bottom flex justify-between align-center">
                     <div className="left">
-                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
                     </div>
                     <div className="right">
                       <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
@@ -240,21 +241,21 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-2">
-                <div className="box rounded-lg  border p-3">
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
                       <div className="img ">
                         <img src="/img/Avatar.png" alt="" />
                       </div>
                       <div className="details">
-                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
-                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
                       </div>
                     </div>
                     <div className="right">
                       <div className="icon">
-                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
                           <FaEye />
                         </span>
                       </div>
@@ -263,7 +264,7 @@ const PersonalHealthRecord = () => {
                   </div>
                   <div className="bottom flex justify-between align-center">
                     <div className="left">
-                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
                     </div>
                     <div className="right">
                       <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
@@ -272,21 +273,21 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-2">
-                <div className="box rounded-lg  border p-3">
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
                       <div className="img ">
                         <img src="/img/Avatar.png" alt="" />
                       </div>
                       <div className="details">
-                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
-                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
                       </div>
                     </div>
                     <div className="right">
                       <div className="icon">
-                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
                           <FaEye />
                         </span>
                       </div>
@@ -295,7 +296,7 @@ const PersonalHealthRecord = () => {
                   </div>
                   <div className="bottom flex justify-between align-center">
                     <div className="left">
-                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
                     </div>
                     <div className="right">
                       <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
@@ -304,21 +305,21 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-2">
-                <div className="box rounded-lg  border p-3">
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
                       <div className="img ">
                         <img src="/img/Avatar.png" alt="" />
                       </div>
                       <div className="details">
-                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
-                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
                       </div>
                     </div>
                     <div className="right">
                       <div className="icon">
-                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
                           <FaEye />
                         </span>
                       </div>
@@ -327,7 +328,71 @@ const PersonalHealthRecord = () => {
                   </div>
                   <div className="bottom flex justify-between align-center">
                     <div className="left">
-                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
                     </div>
                     <div className="right">
                       <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
@@ -339,7 +404,56 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="col-span-3 bg-white rounded-lg p-3">
-              
+            <h2 className="text-[26px] text-[#030229] font-bold border-b">Patient Status</h2>
+
+            <div className="all-box flex align-center">
+              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+                <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
+                  <FaHospital />
+                </div>
+                <div className="details">
+                  <span className="text-[17px] text-[#141414] font-normal	">Shamuba Hospital</span>
+                </div>
+              </div>
+
+              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+                <div className="icon bg-[#c9fff6] text-[#3AB49B] text-[24px] p-3 rounded-full">
+                  <FaHospital />
+                </div>
+                <div className="details">
+                  <span className="text-[17px] text-[#141414] font-normal	">Dr. Mathew Best</span>
+                </div>
+              </div>
+
+              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+                <div className="icon bg-[#deffad] text-[#8BD024] text-[24px] p-3 rounded-full">
+                  <FaHospital />
+                </div>
+                <div className="details">
+                  <span className="text-[17px] text-[#141414] font-normal	">2 Jan, 2022</span>
+                </div>
+              </div>
+
+              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+                <div className="icon bg-[#e3c4ff] text-[#B269F5] text-[24px] p-3 rounded-full">
+                  <FaHospital />
+                </div>
+                <div className="details">
+                  <span className="text-[17px] text-[#141414] font-normal	">Chance Carder</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="box flex align-center justify-between p-2">
+              <div className="w-[9%]">
+                <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
+                  <FaHospital />
+                </div>
+              </div>
+              <div className="details w-[88%]">
+                <p className="text-[17px] text-[#141414] font-normal	">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
