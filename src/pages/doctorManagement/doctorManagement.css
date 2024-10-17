@@ -1,0 +1,161 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.bg-gray {
+  background-color: #f6f8fb;
+}
+
+.dr-managment-section {
+  padding: 10px;
+}
+.dr-managment-section .row .main {
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #fff;
+  padding: 10px;
+  max-height: 100%;
+}
+.dr-managment-section .row .main .top {
+  justify-content: space-between;
+  padding: 10px 10px 20px;
+}
+.dr-managment-section .row .main .top .heading {
+  font-weight: 700;
+  font-size: 25px;
+}
+.dr-managment-section .row .main .top .search-btn {
+  justify-content: space-between;
+}
+.dr-managment-section .row .main .top .search-btn .input {
+  padding: 12px 15px;
+  background-color: #f6f8fb;
+  border: 1px solid #ced4da;
+  border-radius: 30px;
+  width: 350px;
+  font-size: 20px;
+}
+.dr-managment-section .row .main .top .search-btn .input .search {
+  font-size: 25px;
+  color: #000;
+}
+.dr-managment-section .row .main .top .search-btn .input input {
+  background-color: transparent;
+  padding-left: 10px;
+}
+.dr-managment-section .row .main .top .search-btn .btn {
+  background-color: #0eabeb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-left: 10px;
+}
+.dr-managment-section .row .main .top .search-btn .btn .icon {
+  background-color: white;
+  color: #0eabeb;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.dr-managment-section .row .main .top .search-btn .btn .text {
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+}
+.dr-managment-section .row .main td {
+  text-align: left !important;
+  font-weight: 600;
+  color: rgb(110, 110, 110);
+}
+.dr-managment-section .row .main td img {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.dr-managment-section .row .main td .gender {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f6f8fb;
+  color: #718ebf;
+  padding: 10px;
+  margin: auto;
+}
+.dr-managment-section .row .main .time h3 {
+  background-color: #f6f8fb;
+  color: #718ebf;
+  border-radius: 50px;
+  margin: 0px 10px;
+  padding: 5px;
+  text-align: center;
+  width: 120px;
+}
+.dr-managment-section .row .main .action {
+  font-size: 18px;
+}
+.dr-managment-section .row .main .action .edit {
+  background-color: #f6f8fb;
+  color: #39973d;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+}
+.dr-managment-section .row .main .action .view {
+  color: #0eabeb;
+  margin: 0px 10px;
+  background-color: #f6f8fb;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+.dr-managment-section .row .main .action .delete {
+  color: #e11d29;
+  background-color: #f6f8fb;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+}
+.dr-managment-section .row .main .image {
+  padding: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dr-managment-section .row .main .image h1 {
+  text-align: center;
+  color: #4f4f4f;
+  font-size: 26px;
+  font-weight: 500;
+  padding-top: 15px;
+}/*# sourceMappingURL=doctorManagement.css.map */

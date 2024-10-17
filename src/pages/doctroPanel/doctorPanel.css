@@ -1,0 +1,697 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.thead button {
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 600;
+  color: #667080;
+}
+
+.menu h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+
+.search {
+  padding: 12px 15px;
+  background-color: #f6f8fb;
+  border: 0px;
+  border-radius: 50px;
+}
+.search::-moz-placeholder {
+  color: #a7a7a7;
+  font-size: 16px;
+  font-weight: 400px;
+}
+.search::placeholder {
+  color: #a7a7a7;
+  font-size: 16px;
+  font-weight: 400px;
+}
+
+.css-1ll44ll-MuiOutlinedInput-notchedOutline {
+  border: 0px !important;
+}
+
+.css-lzk69h-MuiButtonBase-root-MuiIconButton-root:hover {
+  border-radius: 10px;
+}
+
+.time-slot button {
+  background-color: #0eabeb;
+  padding: 12px 14px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.t-data {
+  padding-top: 30px;
+}
+.t-data table thead tr {
+  background-color: #f6f8fb;
+}
+.t-data table thead tr th {
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  padding: 20px;
+  text-align: start;
+}
+.t-data table tbody tr td {
+  color: #4f4f4f;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: start;
+  padding: 20px;
+}
+.t-data table tbody tr h3 {
+  background-color: #f6f8fb;
+  width: 111px;
+  padding: 10px 0px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 33px;
+  color: #718ebf;
+}
+.t-data table tbody tr .btn button {
+  background-color: #f6f8fb;
+  padding: 7px;
+  margin: 0px 5px;
+}
+
+.custom-date h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #030229;
+}
+.custom-date .close-btn button:hover {
+  background-color: rgba(239, 91, 91, 0.337);
+}
+.custom-date .close-btn button svg {
+  color: white;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.condition .reset {
+  width: 48%;
+  color: #141414;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.condition .delete {
+  width: 48%;
+  background-color: #0eabeb;
+  color: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.AppointmentTimeSlot h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+
+.patioentRecord h2 {
+  color: #030229;
+  font-size: 26px;
+  font-weight: 700;
+}
+.patioentRecord .pr-search {
+  background-color: #f6f8fb;
+  border-radius: 50px;
+  width: 335px;
+  margin-right: 20px;
+}
+.patioentRecord .pr-select select {
+  font-size: 20px;
+  font-family: 600;
+  color: #141414;
+}
+.patioentRecord .pr-select select option {
+  font-size: 20px;
+  font-family: 600;
+  color: #141414;
+}
+.patioentRecord .css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  line-height: 1.5em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  border: 1px solid #d3d3d3;
+  padding-left: 15px;
+  width: 154px;
+}
+
+.pr-data table thead tr th {
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  background-color: #f6f8fb;
+  padding: 20px;
+  text-align: center;
+}
+.pr-data table tbody tr td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4f4f4f;
+  padding: 20px;
+  text-align: center;
+}
+.pr-data table tbody tr .gender span {
+  background-color: #f6f8fb;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 50%;
+  line-height: 2;
+}
+
+.p-details h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.p-details .p-record p {
+  color: #a7a7a7;
+  font-size: 20px;
+  font-weight: 500;
+}
+.p-details .p-record p span {
+  display: inline-block;
+  color: #141414;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.p-btn button {
+  background-color: #0eabeb;
+  color: white;
+  padding: 12px 14px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.p-table h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+  padding-bottom: 15px;
+}
+.p-table table thead tr th {
+  color: #030229;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 20px;
+}
+.p-table table tbody tr td {
+  color: #4f4f4f;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+}
+
+.allFile-section .pre-bill {
+  position: relative;
+  content: "";
+  box-sizing: border-box;
+}
+.allFile-section .pre-bill .viewFullPrescription-btn {
+  visibility: hidden;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 22;
+  background-color: #0EABEB;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.allFile-section .pre-bill::after {
+  position: absolute;
+  content: "";
+  box-sizing: border-box;
+  width: 0%;
+  height: 0%;
+  visibility: hidden;
+}
+.allFile-section .pre-bill:hover::after {
+  position: absolute;
+  background-color: rgba(66, 62, 62, 0.596);
+  top: 0px;
+  left: 0px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+}
+.allFile-section .pre-bill:hover .viewFullPrescription-btn {
+  visibility: visible;
+}
+
+.cp-tool {
+  border-radius: 10px;
+}
+.cp-tool .head {
+  background-color: #f6f8fb;
+  padding: 15px 15px;
+  border-radius: 10px 10px 0px 0px;
+}
+.cp-tool .box-data {
+  padding: 15px 15px;
+}
+.cp-tool .cp-add {
+  padding-top: 30px;
+}
+.cp-tool .cp-add button {
+  padding: 10px 14px;
+  background-color: #0eabeb;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  text-transform: capitalize;
+}
+.cp-tool h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.cp-tool h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #030229;
+}
+.cp-tool p {
+  color: #818194;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+.cp-tool p span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4f4f4f;
+}
+.cp-tool p .onside {
+  color: #5678e9;
+}
+
+form {
+  justify-content: space-between;
+}
+form .input-box {
+  position: relative;
+  padding: 15px 0px;
+}
+form .input-box .label {
+  position: absolute;
+  top: 4px;
+  left: 14px;
+  background-color: white;
+}
+form .input-box input {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  background-color: white;
+}
+form .input-box input:focus {
+  border: 1px solid #718ebf;
+}
+form .input-box input::-moz-placeholder {
+  color: #a7a7a7;
+}
+form .input-box input::placeholder {
+  color: #a7a7a7;
+}
+form .input-box:nth-child(1) {
+  width: 32%;
+}
+form .input-box:nth-child(1) input {
+  width: 100%;
+}
+form .input-box:nth-child(2) {
+  width: 32%;
+}
+form .input-box:nth-child(2) input {
+  width: 100%;
+}
+form .input-box:nth-child(3) {
+  width: 32%;
+}
+form .input-box:nth-child(3) input {
+  width: 100%;
+}
+form .condition {
+  width: 100%;
+  padding-top: 20px;
+}
+form .condition .policies input {
+  width: 20px;
+}
+form .condition .policies p {
+  display: inline-block;
+  padding-left: 10px;
+}
+form .condition .policies span {
+  color: #5678e9;
+}
+form .condition .register-btn {
+  padding: 15px 0px;
+}
+form .condition .register-btn button {
+  width: 100%;
+  background-color: #f6f8fb;
+  color: #4f4f4f;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+form .condition .register-btn button:hover {
+  background-color: #0eabeb;
+  color: white;
+}
+form .condition .login-btn p {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: center;
+}
+
+.drug label {
+  background-color: white;
+  z-index: 2;
+}
+.drug input,
+.drug .select {
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+}
+.drug .icon svg {
+  color: red;
+}
+
+.add-medicine {
+  padding-top: 25px;
+}
+.add-medicine button {
+  background-color: #0eabeb;
+  color: white;
+}
+
+.addition-note {
+  padding-top: 20px;
+}
+.addition-note label {
+  padding: 10px;
+}
+.addition-note textarea {
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.save-btn button {
+  background-color: #0eabeb;
+  color: white;
+}
+
+.Prescription-bill .head .name p {
+  color: #0eabeb;
+  font-size: 24px;
+  font-weight: 700;
+}
+.Prescription-bill .head .name span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .dr-details {
+  padding-top: 15px;
+}
+.Prescription-bill .dr-details p {
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+  width: 50%;
+}
+.Prescription-bill .dr-details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .dr-details .add {
+  width: 100%;
+}
+.Prescription-bill table tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  display: inline-block;
+  color: Green;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.Prescription-bill table tbody tr .take span {
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  display: inline-block;
+  color: Light #718ebf;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.Prescription-bill .note {
+  padding-top: 15px;
+}
+.Prescription-bill .note h3 {
+  color: #030229;
+  font-size: 16px;
+  font-weight: 500;
+}
+.Prescription-bill .note p {
+  color: #4f4f4f;
+  font-size: 14px;
+  font-weight: 500;
+}
+.Prescription-bill .condition {
+  padding-top: 15px;
+}
+.Prescription-bill .condition .sign span {
+  color: #a7a7a7;
+  font-size: 14px;
+  font-weight: 600;
+}
+.Prescription-bill .condition .btn button {
+  color: white;
+  background-color: #0eabeb;
+  padding: 8px 25px;
+  border-radius: 10px;
+}
+
+.manage-p .today,
+.manage-p .older {
+  color: #0eabeb;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.manage-p .head {
+  align-items: center;
+}
+.manage-p .head .tital p {
+  font-size: 26px;
+  font-weight: 700;
+  color: #030229;
+}
+.manage-p .head .mp-tool {
+  background-color: #f6f8fb;
+  border-radius: 15px;
+}
+.manage-p table thead tr th {
+  background-color: #f6f8fb;
+  font-size: 18px;
+  font-weight: 700;
+  color: #030229;
+  text-align: center;
+  padding: 20px;
+}
+.manage-p table tbody tr td {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4f4f4f;
+  text-align: center;
+}
+.manage-p table tbody tr .type span {
+  padding: 0px 15px;
+  display: inline-block;
+}
+
+.css-1peo4km-MuiPaper-root-MuiDialog-paper {
+  max-width: 602px;
+}
+
+.manage-prescription {
+  width: 700px;
+  margin: 0px auto;
+}
+.manage-prescription .tital {
+  color: #030229;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .close-btn {
+  background-color: rgb(243, 130, 130);
+  color: white;
+}
+.manage-prescription .close-btn svg {
+  font-size: 15px;
+}
+.manage-prescription .close-btn:hover {
+  background-color: red;
+}
+.manage-prescription .head .name p {
+  color: #0EABEB;
+  font-size: 24px;
+  font-weight: 700;
+}
+.manage-prescription .details p {
+  width: 50%;
+  color: #141414;
+  font-size: 16px;
+  font-weight: 600;
+}
+.manage-prescription .details p span {
+  color: #818194;
+  font-size: 14px;
+  font-weight: 600;
+}
+.manage-prescription .details .add {
+  width: 100%;
+}
+.manage-prescription .table-data thead tr th {
+  background-color: #f3f4f6;
+}
+.manage-prescription .table-data tbody tr .duration span {
+  background-color: rgba(57, 151, 61, 0.1019607843);
+  color: #39973D;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+.manage-prescription .table-data tbody tr .take span {
+  color: #718EBF;
+  background-color: rgba(86, 120, 233, 0.1019607843);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.teli-module .teli-btn button {
+  font-size: 17px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.teli-module .head h2 {
+  color: #030229;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 17px;
+}
+.teli-module .head button {
+  border: 2px solid #d3d3d3;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #141414;
+}
+.teli-module .head button svg {
+  font-size: 24px;
+  color: #4f4f4f;
+}
+.teli-module .box {
+  padding: 0px !important;
+}
+.teli-module .box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #030229;
+  background-color: #f6f8fb;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 15px;
+}
+.teli-module .box p {
+  color: #4f4f4f;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+.teli-module .box p strong {
+  color: #818194;
+}
+.teli-module .box .join {
+  width: 47%;
+  color: #ffffff;
+  background-color: #39973d;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.teli-module .box .join svg {
+  font-size: 24px;
+}
+.teli-module .box .reschedule {
+  width: 47%;
+  color: #ffffff;
+  background-color: #0eabeb;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.teli-module .box .reschedule svg {
+  font-size: 24px;
+}/*# sourceMappingURL=doctorPanel.css.map */

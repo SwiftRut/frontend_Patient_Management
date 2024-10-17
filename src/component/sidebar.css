@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: row;
+}
+.sidebar .asite {
+  background-color: white;
+  color: #d4d4d4;
+  width: 17%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.sidebar .asite .logo {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.sidebar .asite .logo img {
+  width: 250px;
+}
+.sidebar .asite .menu {
+  height: 80%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.sidebar .asite .menu ul {
+  background-color: #fff;
+}
+.sidebar .asite .menu ul li {
+  position: relative;
+  margin: 10px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #818194;
+  padding: 10px 15px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+.sidebar .asite .menu ul li a {
+  display: flex;
+  align-items: center;
+}
+.sidebar .asite .menu ul li a img {
+  margin-right: 10px;
+}
+.sidebar .asite .menu ul .dropdown {
+  list-style: disc;
+  padding: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.sidebar .asite .menu ul .dropdown::after {
+  content: none;
+}
+.sidebar .asite .menu ul .dropdown.open {
+  max-height: 200px;
+}
+.sidebar .asite .menu ul .dropdown ul {
+  padding: 0;
+  margin: 0;
+}
+.sidebar .asite .menu ul .dropdown ul .dropdown li {
+  list-style: disc;
+  padding: 10px 15px;
+  background-color: #fff !important;
+  color: #818194 !important;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.sidebar .asite .menu ul .dropdown ul .dropdown li:hover {
+  background-color: #fff;
+}
+.sidebar .asite .menu ul .dropdown ul .dropdown li:hover span {
+  color: #0eabeb;
+}
+.sidebar .asite .menu ul .dropdown ul a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 10px;
+  width: 100%;
+  font-size: 20px;
+}
+.sidebar .asite .menu ul .dropdown ul a img {
+  color: #818194;
+  padding-right: 15px;
+  width: 40px;
+}
+.sidebar .asite .menu ul .dropdown ul a p {
+  color: #818194;
+  font-size: 16px;
+}
+.sidebar .asite .menu ul li:focus-within {
+  background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
+}
+.sidebar .asite .menu ul li:focus-within a p {
+  color: #0eabeb;
+}
+.sidebar .asite .menu ul li:focus-within a img {
+  color: #0eabeb;
+}
+.sidebar .asite .menu .logout-btn button {
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: #e11d29;
+  padding: 10px 20px;
+  background-color: rgba(225, 29, 42, 0.1647058824);
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sidebar .asite .content {
+  width: 83%;
+  margin-left: 17%;
+  padding: 20px;
+}/*# sourceMappingURL=sidebar.css.map */

@@ -1,0 +1,73 @@
+body {
+  background-color: #f6f8fb;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+input {
+  outline: none;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.patientdetails-section .row .details {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+.patientdetails-section .row .details .top {
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  padding: 10px;
+}
+.patientdetails-section .row .details .top h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #030229;
+}
+.patientdetails-section .row .details .top .icon {
+  color: Red;
+  font-size: 30px;
+}
+.patientdetails-section .row .details .data ul li {
+  justify-content: space-between;
+  padding: 10px;
+}
+.patientdetails-section .row .details .data ul li h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4f4f4f;
+}
+.patientdetails-section .row .details .data ul li p {
+  font-size: 20px;
+  font-weight: 500;
+  color: #030229;
+}
+.patientdetails-section .row .details .data ul li .online {
+  background-color: #fff9e7;
+  border-radius: 30px;
+  padding: 10px 20px;
+  color: #ffc313;
+}/*# sourceMappingURL=patientDetails.css.map */
