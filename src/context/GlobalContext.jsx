@@ -214,11 +214,34 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   }
+  const updateAppointment = async (id ,userData) => {
+    try {
+      console.log("updating appointment......" , userData);
+      const response = await apiService.EditAppointment(id ,userData);
+      console.log(response.data);
+    getAllAppointments();
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+  const deleteAppointment = async(id)=>{
+    try{
+      console.log("delteing appointment......");
+      const response = await apiService.DeleteAppointment(id);
+      console.log(response.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
         allHospitals,
-        getAllAppointments,
+        updateAppointment,
+        deleteAppointment,
         allAppointements,
         userData,
         createAppointment,
@@ -246,7 +269,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements, getChatHistory
+        getChatHistory
       }}
     >
       {children}
