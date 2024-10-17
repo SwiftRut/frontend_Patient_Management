@@ -220,21 +220,40 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   }
+<<<<<<< HEAD
+=======
+  const updateAppointment = async (id ,userData) => {
+    try {
+      console.log("updating appointment......" , userData);
+      const response = await apiService.EditAppointment(id ,userData);
+      console.log(response.data);
+    getAllAppointments();
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+>>>>>>> 10b3a45 (edit and delete added to patient appointments)
   const deleteAppointment = async(id)=>{
     try{
       console.log("delteing appointment......");
       const response = await apiService.DeleteAppointment(id);
+<<<<<<< HEAD
       if(user.role === "patient"){
         getAppointmetnsForPatient(user.id);
       }else if(user.role === "doctor"){
         getAppointmetnsForDoctor(user.id);
       }
+=======
+>>>>>>> 10b3a45 (edit and delete added to patient appointments)
       console.log(response.data);
     }catch (error) {
       console.log(error);
       throw error;
     }
   }
+<<<<<<< HEAD
   const getAppointmetnsForDoctor = async(doctorId)=>{
     console.log(doctorId,"<<<<<<<<<<<<<<<<<<<<< this doctorId")
     try{
@@ -257,12 +276,15 @@ export const GlobalProvider = ({ children }) => {
         console.log(error);
       }
   };
+=======
+>>>>>>> 10b3a45 (edit and delete added to patient appointments)
   return (
     <GlobalContext.Provider
       value={{
         // Hospital
         allHospitals,
-        getAllAppointments,
+        updateAppointment,
+        deleteAppointment,
         allAppointements,
         userData,
         createAppointment,
@@ -303,6 +325,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
+<<<<<<< HEAD
         getAllTodayAppointments,
 
         getAppointmetnsForPatient,
@@ -312,6 +335,9 @@ export const GlobalProvider = ({ children }) => {
         getChatHistory,
         getDoctorContacts,
         getPatientContacts,
+=======
+        getChatHistory
+>>>>>>> 10b3a45 (edit and delete added to patient appointments)
       }}
     >
       {children}

@@ -5,14 +5,17 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import AppointmentModal from "./AppointmentModal";
+import RescheduleModal from "./RescheduleModal";
 
 const localizer = momentLocalizer(moment);
 
 const Calendar = ({ filterData }) => {
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const { createAppointment, allAppointements } = useGlobal();
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -21,8 +24,9 @@ const Calendar = ({ filterData }) => {
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
       start: new Date(appointment.date),
       end: new Date(appointment.appointmentTime),
-      allDay: false, // Customize as needed
-      id: appointment._id
+      allDay: false,
+      id: appointment._id,
+      appointment: appointment // Store the full appointment data
     }));
     setEvents(mappedEvents);
   }, [allAppointements]);
@@ -32,9 +36,19 @@ const Calendar = ({ filterData }) => {
     setIsModalOpen(true);
   };
 
+  const handleEventSelected = (event) => {
+    setSelectedEvent(event);
+    setIsRescheduleModalOpen(true);
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedSlot(null);
+  };
+
+  const handleCloseRescheduleModal = () => {
+    setIsRescheduleModalOpen(false);
+    setSelectedEvent(null);
   };
 
   const handleBookAppointment = async (appointmentData) => {
@@ -44,6 +58,31 @@ const Calendar = ({ filterData }) => {
       handleCloseModal();
     } catch (error) {
       console.error("Error booking appointment:", error);
+    }
+  };
+
+  const handleRescheduleAppointment = async (updatedAppointment) => {
+    console.log(updatedAppointment,"<<<<<<<<<<<<<<<<<<<<<<<<<")
+    try {
+      await updateAppointment(updatedAppointment._id, updatedAppointment);
+      const updatedEvents = events.map(event => 
+        event.id === updatedAppointment.id ? { ...event, ...updatedAppointment } : event
+      );
+      setEvents(updatedEvents);
+      handleCloseRescheduleModal();
+    } catch (error) {
+      console.error("Error rescheduling appointment:", error);
+    }
+  };
+
+  const handleDeleteAppointment = async (appointmentId) => {
+    try {
+      await deleteAppointment(appointmentId);
+      const updatedEvents = events.filter(event => event.id !== appointmentId);
+      setEvents(updatedEvents);
+      handleCloseRescheduleModal();
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
     }
   };
 
@@ -60,17 +99,22 @@ const Calendar = ({ filterData }) => {
         onSelectEvent={handleEventSelected}
         className="h-[75vh] bg-white shadow-md rounded-lg p-4"
       />
-
-      <AppointmentModal 
+      <AppointmentModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onBookAppointment={handleBookAppointment}
         selectedSlot={selectedSlot}
         filterData={filterData}
       />
+      <RescheduleModal
+        isOpen={isRescheduleModalOpen}
+        onClose={handleCloseRescheduleModal}
+        onReschedule={handleRescheduleAppointment}
+        onDelete={handleDeleteAppointment}
+        selectedEvent={selectedEvent}
+      />
     </div>
   );
 };
 
 export default Calendar;
-  
