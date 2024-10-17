@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 // import AppointmentTimeSlot from "./AppointmentTimeSlot1";
 // import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
-import Calendar from "./Calendar";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { IoIosArrowBack } from "react-icons/io";
+import { TbBuildingHospital } from "react-icons/tb";
+import { IoLinkSharp } from "react-icons/io5";
+import { BiSolidPhoneCall } from "react-icons/bi";
+import { IoLocation } from "react-icons/io5";
+import Onsite from "../doctorManagement/Onsite";
+
+const localizer = momentLocalizer(moment);
 
 const AppointmentBooking = () => {
   const [specialty, setSpecialty] = useState("");
@@ -11,6 +22,32 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState({});
+
+  const [events, setEvents] = useState([
+    {
+      title: "Skin Treatment",
+      start: new Date(2022, 5, 18, 15, 0), // 3:00 PM on June 18th, 2022
+      end: new Date(2022, 5, 18, 16, 0), // 4:00 PM
+      resource: "Dr. Andrew",
+    },
+    {
+      title: "Hair Treatment",
+      start: new Date(2022, 5, 18, 19, 0), // 7:00 PM
+      end: new Date(2022, 5, 18, 20, 0), // 8:00 PM
+      resource: "Dr. Andrew",
+    },
+    {
+      title: "Brain Tumor",
+      start: new Date(2022, 5, 23, 18, 0), // 6:00 PM on June 23rd, 2022
+      end: new Date(2022, 5, 23, 19, 0), // 7:00 PM
+      resource: "Dr. Andrew",
+    },
+  ]);
+
+  const handleSelectEvent = (event) => {
+    console.log(`Selected event: ${event.title} at ${event.start}`);
+  };
 
   // Function to check if all selects are filled
   const isAllSelected = () => {
@@ -45,7 +82,7 @@ const AppointmentBooking = () => {
         ))}
       </select>
       <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-        <i className="fa-solid fa-chevron-down text-gray-400"></i>
+        <MdKeyboardArrowDown />
       </span>
     </div>
   );
@@ -76,7 +113,10 @@ const AppointmentBooking = () => {
           <DoctorDetailItem title="Specialty Type" value="Cardiology" />
           <DoctorDetailItem title="Years of Experience" value="6+ Years" />
           <DoctorDetailItem title="Working Time" value="6 Hours" />
-          <DoctorDetailItem title="Emergency Contact Number" value="123-456-7890" />
+          <DoctorDetailItem
+            title="Emergency Contact Number"
+            value="123-456-7890"
+          />
         </div>
       </div>
     </div>
@@ -90,15 +130,20 @@ const AppointmentBooking = () => {
   );
 
   return (
-    <div className="p-4 bg-[#f6f8fb]">
+    <div className="p-2 bg-[#f6f8fb]">
       <div className="container ">
-        <div className="p-4 m-3 rounded-lg" style={{ height: "auto" }}>
+        <div
+          className="p-2 m-2 border rounded-lg rounded-md bg-white"
+          style={{ height: "auto" }}
+        >
           <div className="mb-3">
-            <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
-            <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
+            <div className="w-full px-3 py-2">
+              <h1 className="text-xl font-semibold mb-5 md:mb-0">
+                Appointment Booking
+              </h1>
               <div className="flex flex-col m-2">
                 {/* Label and Select Input Container */}
-                <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4 border p-4 rounded-md">
                   <div className="relative border border-gray-300 rounded-md">
                     <label className="absolute left-3 -top-2.5 bg-white px-1 text-sm font-semibold text-gray-800">
                       Specialty
@@ -106,7 +151,7 @@ const AppointmentBooking = () => {
                     <select
                       value={specialty}
                       onChange={(e) => setSpecialty(e.target.value)}
-                      className="block w-full px-3 py-3 text-gray-500 bg-white border-0 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                      className="block w-full px-3 py-3 text-gray-500 bg-white border-0 rounded-md  appearance-none"
                     >
                       <option value="" disabled>
                         Select Specialty
@@ -118,7 +163,7 @@ const AppointmentBooking = () => {
                       <option value="dermatology">Dermatology</option>
                     </select>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <i className="fa-solid fa-chevron-down text-gray-400"></i>
+                      <MdKeyboardArrowDown />
                     </span>
                   </div>
 
@@ -174,7 +219,10 @@ const AppointmentBooking = () => {
                       { value: "city_hospital", label: "City Hospital" },
                       { value: "county_hospital", label: "County Hospital" },
                       { value: "private_hospital", label: "Private Hospital" },
-                      { value: "children_hospital", label: "Children's Hospital" },
+                      {
+                        value: "children_hospital",
+                        label: "Children's Hospital",
+                      },
                     ]}
                   />
 
@@ -207,21 +255,128 @@ const AppointmentBooking = () => {
                 </div>
 
                 {/* Conditionally Render Image and Paragraph */}
-                <div className="w-full h-auto border my-2 py-5 rounded-md flex flex-col items-center justify-center">
-                  {!isAllSelected() ? (
+                <div className="w-full border py-1 rounded-md flex flex-col items-center justify-center">
+                  {/* {!isAllSelected() ? (
                     <>
-                      <img src="./image/Invoice.png" alt="" className="w-60" />
-                      <p className="mt-2 text-center">No Appointment Found Yet</p>
-                    </>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                      <div className="col-span-7 p-3">
-                        <Calendar />
+                      <div className="image">
+                        <img src="/image/Invoice.png" alt="No data" />
+                        <h1 className="text-center text-[#4f4f4f] font-medium pt-5">
+                          No Doctor Found
+                        </h1>
                       </div>
-
-                      <DoctorDetails />
+                    </>
+                  ) : ( */}
+                  <div className="grid grid-cols-10 gap-4">
+                    <div className="col-span-7 p-3">
+                      <Calendar
+                        localizer={localizer}
+                        events={events}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: 470 }}
+                        views={["week", "day"]}
+                        defaultView="week"
+                        popup
+                        eventPropGetter={(event) => {
+                          const backgroundColor =
+                            event.resource === "Dr. Andrew"
+                              ? "#3174ad"
+                              : "#3a87ad";
+                          return { style: { backgroundColor } };
+                        }}
+                        onSelectEvent={handleSelectEvent}
+                      />
                     </div>
-                  )}
+
+                    <div className="col-span-3 p-1">
+                      <div className="bg-white rounded-lg shadow-md overflow-hidden border">
+                        <div className="p-3 border-b ">
+                          <h2 className="text-[#030229] text-lg font-bold">
+                            Doctor Details
+                          </h2>
+                        </div>
+                        <div className="bg-[#2522a6] p-2 flex items-center rounded-md m-3">
+                          <img
+                            src="https://placehold.co/100x100"
+                            alt="Doctor's photo"
+                            className="rounded-full border-2 border-white mr-4 w-[20%]"
+                          />
+                          <div className="text-white">
+                            <h2 className="text-lg font-semibold">
+                              Dr. Cristofer Pasquinades
+                            </h2>
+                            <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
+                              <img src="/image/vuesax.png" />
+                              <h3 className="ms-2">Male</h3>
+                            </span>
+                          </div>
+                        </div>
+                        <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Qualification
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                MBBS
+                              </p>
+                            </div>
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Years Of Experience
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                6+ Year
+                              </p>
+                            </div>
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Specialty Type
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                Obstetrics
+                              </p>
+                            </div>
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Working Time
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                6 Hour
+                              </p>
+                            </div>
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Break Time
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                1 Hour
+                              </p>
+                            </div>
+                            <div>
+                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                                Emergency Contact Number
+                              </h3>
+                              <p className="text[#141414] font-medium text-sm">
+                                48555-20103
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mt-4">
+                            <h3 className="text-[#A7A7A7] font-normal text-md">
+                              Description
+                            </h3>
+                            <p className="text[#141414] font-medium text-sm">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit. Lorem ipsum dolor sit amet, consectetur
+                              adipiscing elit.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* )} */}
                 </div>
               </div>
             </div>
@@ -229,8 +384,7 @@ const AppointmentBooking = () => {
         </div>
       </div>
     </div>
-  )
+  );
+};
 
-}
-
-  export default AppointmentBooking;
+export default AppointmentBooking;
