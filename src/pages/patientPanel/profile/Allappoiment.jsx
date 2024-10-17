@@ -91,8 +91,8 @@ const AllAppointment = () => {
   ];
 
   return (
-    <div>
-      <div className="container mt-5">
+    <div className="bg-gray-100 p-5 h-[100vh]">
+      <div className="container mt-5 ">
         <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
           <ul className="w-full flex border-b border-gray-300">
             <li className="mr-4">
@@ -132,7 +132,7 @@ const AllAppointment = () => {
           {/* Tab content */}
           <div className="tab-content mt-3">
             {activeTab === "appointments" && (
-              <div className="overflow-y-auto" style={{ height: "550px" }}>
+              <div className="overflow-y-auto" style={{ height: "720px" }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {allAppointment.map((val, index) => (
                     <div
