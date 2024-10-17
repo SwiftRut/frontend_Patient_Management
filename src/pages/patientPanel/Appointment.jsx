@@ -13,11 +13,9 @@ const Appointment = () => {
   const [openModel, setOpenModel] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  const handleViewDoctorDetails = (doctor) => {
-    setSelectedDoctor(doctor);
+  const handleViewDoctorDetails = () => {
     setOpenModel(true);
   };
-
 
   const allAppointment = [
     {
@@ -181,7 +179,12 @@ const Appointment = () => {
                             <h2 class="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
-                            <div onClick={()=>{handleViewDoctorDetails(val)}} className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
+                            <div
+                              onClick={() => {
+                                handleViewDoctorDetails(val);
+                              }}
+                              className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                            >
                               <IoEyeSharp />
                             </div>
                           </div>
@@ -574,18 +577,27 @@ const Appointment = () => {
         </div>
       </div>
 
-      {openModel&&(
-          <div className="onsite-modal">
+      {openModel && (
+        <div className="onsite-modal">
           <div className="onsite-modal-content">
             <div className="onsite-modal-header">
               <h3>Doctor Details</h3>
-              <button className="close-button" onClick={() => setOpenModel(false)}>
+              <button
+                className="close-button"
+                onClick={() => setOpenModel(false)}
+              >
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} setOpenModel={setOpenModel}  />
+            <Onsite
+              selectedDoctor={selectedDoctor}
+              setOpenModel={setOpenModel}
+            />
           </div>
-          <div className="onsite-modal-overlay" onClick={() => setOpenModel(false)}></div>
+          <div
+            className="onsite-modal-overlay"
+            onClick={() => setOpenModel(false)}
+          ></div>
         </div>
       )}
     </div>
