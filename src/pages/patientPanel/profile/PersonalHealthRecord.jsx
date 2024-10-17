@@ -198,8 +198,8 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="col-span-5 bg-white rounded-lg">
-            <div className="bg-white rounded-lg shadow-md p-4">
-              <div className="flex justify-between items-center mb-4">
+            <div className="bg-white rounded-lg border-b p-3">
+              <div className="flex justify-between items-center">
                 <h2 className="text-lg font-bold text-gray-800">Test Reports</h2>
                 <a href="#" className="text-blue-500 font-medium hover:underline">
                   View All Reports
@@ -207,11 +207,139 @@ const PersonalHealthRecord = () => {
               </div>
             </div>
 
-            <div className="grid">
-              <div className="col-span-6">
-                <div className="box h-28 w-full rounded-lg bottom-1"></div>
+            <div className="flex justify-between align-center p-3">
+              <div className="w-[50%] p-2">
+                <div className="box rounded-lg  border p-3">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[50%] p-2">
+                <div className="box rounded-lg  border p-3">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[50%] p-2">
+                <div className="box rounded-lg  border p-3">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[50%] p-2">
+                <div className="box rounded-lg  border p-3">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[16px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[16px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[18px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div className="col-span-3 bg-white rounded-lg p-3">
+              
           </div>
         </div>
       </div>
