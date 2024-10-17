@@ -1,6 +1,7 @@
 import React from "react";
 import "../style.css";
 import { NavLink } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
 
 const PersonalHealthRecord = () => {
   return (
@@ -11,81 +12,91 @@ const PersonalHealthRecord = () => {
             <h2 className="text-lg font-semibold">Patient Details</h2>
             <NavLink
               to={"/patient/profile/profileEdit"}
-              className="flex items-center bg-blue-500 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+              className=" text-white text-center text-[20px] font-semibold rounded-md bg-[#0EABEB] p-2 w-[160px] "
             >
-              <i className="fas fa-edit mr-1"></i> {/* Icon */}
               Edit Profile
             </NavLink>
           </div>
-          <div className="flex items-start space-x-4">
-            <div className="w-24 h-full flex items-center">
+
+          <div className="flex justify-between align-center p-2">
+            <div className="w-[10%] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
                 alt="Patient"
                 className="rounded-full object-cover h-full"
               />
             </div>
-            <div className="w-full space-y-3">
+            <div className="w-[90%] space-y-5 ps-5">
               {/* Patient Details Section */}
-              <div className="grid grid-cols-7 gap-2 text-xs">
+              <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
-                  <span className="font-medium text-gray-400">Name:</span>
-                  <p>Marcus Philips</p>
+                  <span className="font-medium text-gray-400 text-[17px]">Name:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">Marcus Philips</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Number:</span>
-                  <p>99130 44537</p>
+                  <span className="font-medium text-gray-400 text-[17px]">Number:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">99130 44537</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Email:</span>
-                  <p>John@gmail.com</p>
+                  <span className="font-medium text-gray-400 text-[17px]">Email:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">John@gmail.com</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Gender:</span>
-                  <p>Male</p>
+                  <span className="font-medium text-gray-400 text-[17px]">Gender:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">Male</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">DOB:</span>
-                  <p>2 Jan, 2022</p>
+                  <span className="font-medium text-gray-400 text-[17px]">DOB:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">2 Jan, 2022</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Age:</span>
-                  <p>20 Years</p>
+                  <span className="font-medium text-gray-400 text-[17px]">Age:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">20 Years</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Blood Group:</span>
-                  <p>B+</p>
+                  <span className="font-medium text-gray-400 text-[15px]">Blood Group:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">B+</p>
                 </div>
               </div>
               {/* Address Section */}
-              <div className="grid grid-cols-7 gap-2 text-xs">
+              <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
-                  <span className="font-medium text-gray-400">Address:</span>
-                  <p>123 Main St</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Address:
+                  </span>
+                  <p className="text-[#141414] text-[15px] font-normal">123 Main St</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">City:</span>
-                  <p>Los Angeles</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">City:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">Los Angeles</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">State:</span>
-                  <p>California</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">State:</span>
+                  <p className="text-[#141414] text-[15px] font-normal">California</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Zip Code:</span>
-                  <p>90001</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Zip Code:
+                  </span>
+                  <p className="text-[#141414] text-[15px] font-normal">90001</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Country:</span>
-                  <p>USA</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Country:
+                  </span>
+                  <p className="text-[#141414] text-[15px] font-normal">USA</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Emergency Contact:</span>
-                  <p>99130 44538</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Emergency Contact:
+                  </span>
+                  <p className="text-[#141414] text-[15px] font-normal">99130 44538</p>
                 </div>
                 <div>
-                  <span className="font-medium text-gray-400">Relationship:</span>
-                  <p>Brother</p>
+                  <span className="font-medium text-gray-400 text-[17px] font-medium">
+                    Relationship:
+                  </span>
+                  <p className="text-[#141414] text-[15px] font-normal">Brother</p>
                 </div>
               </div>
             </div>
@@ -93,30 +104,38 @@ const PersonalHealthRecord = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mt-3">
-          <div className="col-span-5 bg-white rounded-lg">
+          <div className="col-span-5 bg-white rounded-lg p-4">
             <div className="flex justify-between items-center px-2 py-2">
               <h1 className="text-2xl font-bold text-gray-800">Medical History</h1>
               <a href="#" className="text-blue-500 hover:text-blue-700 font-medium">
                 View All History
               </a>
             </div>
+
             <hr />
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto pt-4 pb-4">
               <div className="flex flex-col md:flex-row md:-mx-4">
                 {/* Medical History Items */}
                 {["Dulce Schleifer", "Dulce Schleifer", "Dulce Schleifer"].map((name, index) => (
-                  <div className="md:w-96 px-4 mb-6 md:mb-0 rounded-lg" key={index}>
+                  <div className="w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
                     <div className="bg-white rounded-lg shadow-md h-42">
-                      <div className="flex justify-between items-center mb-4 h-10 bg-gray-200 p-3 rounded-lg">
-                        <h2 className="text-lg font-semibold text-gray-800">{name}</h2>
-                        <span className="text-sm text-gray-500">2 Jan, 2022</span>
+                      <div className="flex justify-between items-center bg-[#F6F8FB] p-3 rounded-lg">
+                        <h2 className="text-[18px] font-semibold text-gray-800">{name}</h2>
+                        <span className="text-[13px] text-[#4F4F4F] font-semibold">
+                          2 Jan, 2022
+                        </span>
                       </div>
-                      <span className="p-2">Patient Issue</span>
-                      <p className="text-gray-700 p-2 text-sm">
-                        The printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took.
-                      </p>
+
+                      <div className="pt-3">
+                        <span className="p-2 text-[#4F4F4F] text-[15px] font-bold">
+                          Patient Issue
+                        </span>
+                        <p className="text-[#4F4F4F] p-2 text-[15px] font-normal">
+                          The printing and typesetting industry. Lorem Ipsum has been the industry's
+                          standard dummy text ever since the 1500s, when an unknown printer took.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -124,8 +143,8 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-3 bg-white rounded-lg">
-            <div className="flex justify-between items-center px-2 py-2">
+          <div className="col-span-3 bg-white rounded-lg p-3">
+            <div className="flex justify-between items-center pb-5">
               <h1 className="text-2xl font-bold">Prescriptions</h1>
               <a href="#" className="text-blue-500">
                 View All Prescriptions
@@ -138,10 +157,10 @@ const PersonalHealthRecord = () => {
               <table className="w-full">
                 <thead>
                   <tr className="bg-gray-100">
-                    <th className="py-2 px-4 text-left">Hospital Name</th>
-                    <th className="py-2 px-4 text-left">Date</th>
-                    <th className="py-2 px-4 text-left">Disease Name</th>
-                    <th className="py-2 px-4 text-left">Action</th>
+                    <th className="py-2 px-4 text-left text-[13px] font-semibold">Hospital Name</th>
+                    <th className="py-2 px-4 text-left text-[13px] font-semibold">Date</th>
+                    <th className="py-2 px-4 text-left text-[13px] font-semibold">Disease Name</th>
+                    <th className="py-2 px-4 text-left text-[13px] font-semibold">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -151,34 +170,24 @@ const PersonalHealthRecord = () => {
                     { name: "Medanta The Medicity", date: "2 Jan, 2022", disease: "Allergies" },
                     { name: "Manipal Hospitals", date: "2 Jan, 2022", disease: "Diarrhea" },
                     { name: "Naravana Health", date: "2 Jan, 2022", disease: "Colds and Flu" },
+                    { name: "Naravana Health", date: "2 Jan, 2022", disease: "Colds and Flu" },
+                    { name: "Naravana Health", date: "2 Jan, 2022", disease: "Colds and Flu" },
+                    { name: "Naravana Health", date: "2 Jan, 2022", disease: "Colds and Flu" },
                     // Add more rows if necessary
                   ].map((prescription, index) => (
                     <tr key={index}>
-                      <td className="py-2 px-4">{prescription.name}</td>
-                      <td className="py-2 px-4">{prescription.date}</td>
-                      <td className="py-2 px-4">{prescription.disease}</td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.name}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.date}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.disease}
+                      </td>
                       <td className="py-2 px-4">
-                        <span className="bg-blue-500 rounded-full w-6 h-6 flex items-center justify-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M12 12a9 9 0 100 18 9 9 0 000-18z"
-                            />
-                          </svg>
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
                         </span>
                       </td>
                     </tr>
