@@ -21,7 +21,9 @@ export default function PatientAsidePanel() {
       <div className="sidebar">
         <div className="asite">
           <div className="logo">
+            <NavLink to={"/patient"}>
             <img src="/img/logo.png" alt="Logo" />
+            </NavLink>
           </div>
           <nav class="mb-40">
             <ul class="space-y-2">
