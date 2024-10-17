@@ -17,8 +17,9 @@ const AppointmentBooking = () => {
   };
 
   return (
-    <div className="container">
-      <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
+    <div className="p-4 bg-[#f6f8fb]">
+      <div className="container ">
+      <div className="p-4 m-3 rounded-lg" style={{ height: "auto" }}>
         <div className="mb-3">
           <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
           <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
@@ -279,6 +280,7 @@ const AppointmentBooking = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -10,6 +10,8 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
+import { GoHomeFill } from "react-icons/go";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 
@@ -78,15 +80,16 @@ const PatientHeader = () => {
   };
   console.log(location.pathname.split("/")[2]);
   return (
-    <div className="w-full bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
+   
+      <div className="bg-whitesticky top-0 flex items-center justify-between p-2 w-full">
       <div>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" to="/patient">
-            Home
+        <Breadcrumbs aria-label="breadcrumb" className="bg-[#f8fcfe] p-2 rounded-full">
+        <Link underline="hover" color="inherit" to="/patient" className="flex items-center">
+        <GoHomeFill className="me-1 text-[#A7A7A7]"/> <MdOutlineKeyboardArrowRight className="text-lg text-[#A7A7A7] me-1"/><p className="text-sm">Home</p>
           </Link>
-          {location.pathname !== "/" && <Link to={"/patient"}>patient</Link>}
+          {location.pathname !== "/" && <Link to={"/patient"} className="text-[#0EABEB]">patient</Link>}
           {location.pathname !== "/" && (
-            <Link to={location.pathname.split("/")[2]}>
+            <Link to={location.pathname.split("/")[2]} className="text-[#0EABEB]">
               <Typography variant="body2" color="textPrimary">
                 {breadcrumbNames[location.pathname.split("/")[2]]}
               </Typography>
@@ -101,13 +104,13 @@ const PatientHeader = () => {
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
-            className="flex-grow"
+            className="flex-grow text-sm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
           />
           <IconButton aria-label="dropdown" onClick={handleClick}>
-            <span>{selectedOption}</span>
+            <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
           <Menu
@@ -142,6 +145,7 @@ const PatientHeader = () => {
         </div>
       </div>
     </div>
+   
   );
 };
 

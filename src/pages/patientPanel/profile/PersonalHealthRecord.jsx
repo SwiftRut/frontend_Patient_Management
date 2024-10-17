@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const PersonalHealthRecord = () => {
   return (
-    <div className="p-4">
+    <div className="p-4 bg-[#f6f8fb]">
       <div className="container mx-auto">
         <div className="h-48 bg-white p-3 rounded-lg shadow-lg mt-3">
           <div className="flex justify-between items-center mb-3">
