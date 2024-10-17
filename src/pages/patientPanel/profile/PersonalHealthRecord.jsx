@@ -7,9 +7,9 @@ const PersonalHealthRecord = () => {
   return (
     <div className="p-4 bg-[#f6f8fb]">
       <div className="container mx-auto">
-        <div className="h-48 bg-white p-3 rounded-lg shadow-lg mt-3">
+        <div className="bg-white p-3 rounded-lg shadow-lg mt-3">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-semibold">Patient Details</h2>
+            <h2 className="text-[26px] text-[#030229] font-bold">Patient Details</h2>
             <NavLink
               to={"/patient/profile/profileEdit"}
               className=" text-white text-center text-[20px] font-semibold rounded-md bg-[#0EABEB] p-2 w-[160px] "
