@@ -1,8 +1,9 @@
 import "./patientManage.css";
 import { CiSearch } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PatientDetails from "./PatientDetails.jsx"; // Import the PatientDetails component
+import { usePatient } from "../../hooks/usePatient.jsx";
 
 export default function PatientManagement() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function PatientManagement() {
   const [activeTab, setActiveTab] = useState("today"); // State for managing the active tab
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
+  const {getAllPatients, allPatients} = usePatient();
   // Sample patient data for different tabs
   const patientsData = {
     today: [
@@ -291,6 +293,9 @@ export default function PatientManagement() {
       patient.doctor.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  useEffect(() => {
+    getAllPatients();
+  },[])
   return (
     <>
       <div className="patient-section bg-gray">

@@ -111,8 +111,6 @@ input {
             align-items: center;
             padding: 10px 10px;
             width: 100%;
-
-            font-size: 20px;
             color: #0eabeb;
 
             .icon {
@@ -123,15 +121,17 @@ input {
 
             span {
               color: #818194;
-              font-size: 20px;
+              font-size: 16px;
             }
           }
         }
 
         li:hover {
-          background: linear-gradient(90deg,
-              rgba(213, 241, 250, 1) 0%,
-              rgba(255, 255, 255, 1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(213, 241, 250, 1) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
 
           span {
             color: #0eabeb !important;

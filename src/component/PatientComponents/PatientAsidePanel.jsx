@@ -12,9 +12,9 @@ import { FaCalendarAlt } from "react-icons/fa";
 
 export default function PatientAsidePanel() {
   const { logout } = useAuth();
-  const toggleAccordion = () => {
-    setAccordionOpen((prevState) => !prevState);
-  };
+  // const toggleAccordion = () => {
+  //   setAccordionOpen((prevState) => !prevState);
+  // };
 
   return (
     <>
