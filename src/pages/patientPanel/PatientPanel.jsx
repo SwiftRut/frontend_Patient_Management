@@ -9,8 +9,8 @@ import AllAppointment from "./profile/Allappoiment";
 import Appointment from "./Appointment";
 import AppointmentBooking from "./AppointmentBooking";
 import ChatScreen1 from "./ChatScreen1";
-import PatientHeader from "../../component/PatientComponents/patientHeader";
 import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePanel";
+import PatientHeader from "../../component/PatientComponents/PatientHeader";
 
 export default function PatientPanel() {
   return (
