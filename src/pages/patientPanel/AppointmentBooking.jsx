@@ -26,25 +26,37 @@ const AppointmentBooking = () => {
   };
 
   return (
-    <div className="container">
-      <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
-        <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
-        <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
-          <div className="flex flex-col m-2">
-            <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
-              {/* Specialty Select */}
-              <SelectInput
-                label="Specialty"
-                value={specialty}
-                onChange={(e) => setSpecialty(e.target.value)}
-                options={[
-                  { value: "cardiology", label: "Cardiology" },
-                  { value: "neurology", label: "Neurology" },
-                  { value: "pediatrics", label: "Pediatrics" },
-                  { value: "orthopedics", label: "Orthopedics" },
-                  { value: "dermatology", label: "Dermatology" },
-                ]}
-              />
+    <div className="p-4 bg-[#f6f8fb]">
+      <div className="container ">
+      <div className="p-4 m-3 rounded-lg" style={{ height: "auto" }}>
+        <div className="mb-3">
+          <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
+          <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
+            <div className="flex flex-col m-2">
+              {/* Label and Select Input Container */}
+              <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
+                <div className="relative border border-gray-300 rounded-md">
+                  <label className="absolute left-3 -top-2.5 bg-white px-1 text-sm font-semibold text-gray-800">
+                    Specialty
+                  </label>
+                  <select
+                    value={specialty}
+                    onChange={(e) => setSpecialty(e.target.value)}
+                    className="block w-full px-3 py-3 text-gray-500 bg-white border-0 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                  >
+                    <option value="" disabled>
+                      Select Specialty
+                    </option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="dermatology">Dermatology</option>
+                  </select>
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <i className="fa-solid fa-chevron-down text-gray-400"></i>
+                  </span>
+                </div>
 
               {/* Country Select */}
               <SelectInput
@@ -150,6 +162,7 @@ const AppointmentBooking = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

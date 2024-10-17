@@ -70,7 +70,7 @@ input {
           overflow: hidden;
           transition: max-height 0.3s ease-out;
         }
-        .dropdown::after{
+        .dropdown::after {
           content: none;
         }
         .dropdown.open {
@@ -80,92 +80,92 @@ input {
         .dropdown ul {
           padding: 0;
           margin: 0;
-        
 
-        .dropdown li {
-          list-style: disc;
-          padding: 10px 15px;
-          background-color: #fff !important;
-          color: #818194 !important;
-          text-decoration: none;
-          transition: all 0.5s;
-        }
+          .dropdown li {
+            list-style: disc;
+            padding: 10px 15px;
+            background-color: #fff !important;
+            color: #818194 !important;
+            text-decoration: none;
+            transition: all 0.5s;
+          }
 
-        .dropdown li:hover {
-          background-color: #fff;
-          span {
-            color: #0eabeb;
+          .dropdown li:hover {
+            background-color: #fff;
+            span {
+              color: #0eabeb;
+            }
+          }
+
+          a {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 10px;
+            width: 100%;
+            font-size: 20px;
+
+            img {
+              color: #818194;
+              padding-right: 15px;
+              width: 40px;
+            }
+
+            p {
+              color: #818194;
+              font-size: 16px;
+            }
           }
         }
 
-        a {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          padding: 10px 10px;
-          width: 100%;
-          font-size: 20px;
-
-          img {
-            color: #818194;
-            padding-right: 15px;
-            width: 40px;
+        li:focus-within {
+          background: linear-gradient(
+            90deg,
+            rgba(213, 241, 250, 1) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
+          a {
+            p {
+              color: #0eabeb;
+            }
+            img {
+              color: #0eabeb;
+            }
           }
-
-          p {
-            color: #818194;
-            font-size: 16px;
-          }
+          // &::after {
+          //   content: "";
+          //   position: absolute;
+          //   top: 0;
+          //   right: 0;
+          //   height: calc(100% - 20px);
+          //   width: 6px;
+          //   background-color: #0eabeb;
+          //   border-top-left-radius: 15px;
+          //   border-bottom-left-radius: 15px;
+          //   margin: 10px 0;
+          // }
         }
-      }
 
-      li:focus-within {
-        background: linear-gradient(
-          90deg,
-          rgba(213, 241, 250, 1) 0%,
-          rgba(255, 255, 255, 1) 100%
-        );
-        a {
-          p {
-            color: #0eabeb;
+        .logout-btn {
+          button {
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            color: #e11d29;
+            padding: 20px;
+            background-color: #e11d2a2a;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
           }
-          img {
-            color: #0eabeb;
-          }
-        }
-        // &::after {
-        //   content: "";
-        //   position: absolute;
-        //   top: 0;
-        //   right: 0;
-        //   height: calc(100% - 20px);
-        //   width: 6px;
-        //   background-color: #0eabeb;
-        //   border-top-left-radius: 15px;
-        //   border-bottom-left-radius: 15px;
-        //   margin: 10px 0;
-        // }
-      }
-
-      .logout-btn {
-        button {
-          gap: 15px;
-          justify-content: center;
-          align-items: center;
-          color: #e11d29;
-          padding: 20px;
-          background-color: #e11d2a2a;
-          width: 100%;
-          font-size: 18px;
-          font-weight: 600;
         }
       }
     }
-  }
 
-  .content {
-    width: 83%;
-    margin-left: 17%;
-    padding: 20px;
+    .content {
+      width: 83%;
+      margin-left: 17%;
+      padding: 20px;
+    }
   }
 }
