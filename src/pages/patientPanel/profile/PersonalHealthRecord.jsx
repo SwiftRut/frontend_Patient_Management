@@ -547,21 +547,19 @@ const PersonalHealthRecord = () => {
                           <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
                           <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
-
                         <tr className="text-center">
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
-                          <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
-
                         <tr className="text-center">
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
-                          <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -593,7 +591,7 @@ const PersonalHealthRecord = () => {
           </div>
         </>
       )}
-      
+
 
       {/* test report model  */}
 
@@ -665,19 +663,19 @@ const PersonalHealthRecord = () => {
                         </tr>
 
                         <tr className="text-center">
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
-                          <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
 
                         <tr className="text-center">
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
-                          <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
-                          <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
+                          <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
                       </tbody>
                     </table>
