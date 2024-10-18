@@ -17,7 +17,7 @@ import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 
-const socket = io("http://192.168.0.105:8001");
+const socket = io("http://localhost:8001");
 
 const ChatScreen = () => {
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
@@ -31,7 +31,7 @@ const ChatScreen = () => {
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
   const { getChatHistory, getPatientContacts } = useGlobal();
-  
+
   console.log(patientContacts, "patientId");
   console.log(doctorContacts, "doctorId");
 
@@ -41,17 +41,16 @@ const ChatScreen = () => {
   const handleChatClick = async (chat) => {
     setSelectedChat(chat);
     const { id: selectedPatientId } = chat;
-    console.log(chat,  doctorId, "------------------------------------")
+    console.log(chat, doctorId, "------------------------------------");
     try {
       const history = await getChatHistory(doctorId, chat._id);
       setMessages(history);
-      console.log("Thisis the history", history); 
+      console.log("Thisis the history", history);
       socket.emit("joinRoom", { doctorId, patientId: selectedPatientId });
     } catch (error) {
       console.error("Failed to fetch chat history:", error);
     }
   };
-  
 
   const scrollToBottom = () => {
     if (msgContainerRef.current) {
@@ -166,15 +165,13 @@ const ChatScreen = () => {
           </div>
         </div>
 
-        <div
-          ref={msgContainerRef}
-          id="msg_container"
-          className="flex-1 overflow-y-scroll mb-4"
-        >
+        <div ref={msgContainerRef} id="msg_container" className="flex-1 overflow-y-scroll mb-4">
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`mb-2 ${msg?.receiverId === "67042956a717e34ec74d0477" ? "text-right" : "text-left"}`}
+              className={`mb-2 ${
+                msg?.receiverId === "67042956a717e34ec74d0477" ? "text-right" : "text-left"
+              }`}
             >
               <div className="inline-block">
                 <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
