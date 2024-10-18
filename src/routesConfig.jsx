@@ -301,6 +301,10 @@ const routesConfig = [
         element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
       },
       {
+        path:"teleconsultation",
+        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+      },
+      {
         path: "medicalHistory",
         element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
       },
