@@ -32,7 +32,6 @@ export default function PatientPanel() {
 
           <Route path="/teleconsultation" element={<Teleconsultation/>}/>
           <Route path="/appointmentBooking" element={<AppointmentBooking />} />
-
           <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
           <Route path="/chatScreen" element={<ChatScreen1 />} />
         </Routes>

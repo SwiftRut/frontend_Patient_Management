@@ -447,6 +447,10 @@ const routesConfig = [
         ),
       },
       {
+        path:"teleconsultation",
+        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+      },
+      {
         path: "medicalHistory",
         element: (
           <ProtectedRoute
