@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const localizer = momentLocalizer(moment);
 
@@ -26,14 +27,30 @@ const AppointmentTimeSlot = () => {
       resource: "Dr. Andrew",
     },
   ]);
-
+  const { allAppointements, getAllAppointments, getAppointmetnsForDoctor } = useGlobal();
+  useEffect(() => {
+    // getAllAppointments();
+    getAppointmetnsForDoctor('6707ec1893d5090ffcdb86c6');
+  },[]);
+  useEffect(() => {
+    // Map appointments to the required format for react-big-calendar
+    const mappedEvents = allAppointements?.map((appointment) => ({
+      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+      start: new Date(appointment.date),
+      end: new Date(appointment.appointmentTime),
+      allDay: false,
+      id: appointment._id,
+      appointment: appointment // Store the full appointment data
+    }));
+    setEvents(mappedEvents);
+  }, [allAppointements]);
   const handleSelectEvent = (event) => {
     console.log(`Selected event: ${event.title} at ${event.start}`);
   };
 
   return (
     <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
-      <h3 className="text-lg font-semibold mb-4">Appointment Time Slot</h3>
+      <h3 className="text-lg font-semibold mb-4">Appointment Time Slot doctor</h3>
       <Calendar
         localizer={localizer}
         events={events}
