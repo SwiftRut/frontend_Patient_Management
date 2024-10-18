@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
 export const GlobalContext = createContext();
-
+import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
   const [allHospitals, setAllHospitals] = useState([]);
   const [userData, setUserData] = useState({});
@@ -248,7 +248,17 @@ export const GlobalProvider = ({ children }) => {
       console.log(error);
       throw error;
     }
-  }
+  }    
+  const getAppointmetnsForPatient = async(patientId) =>{
+      try {
+        const response = await apiService.GetAppointsForPatient(patientId);
+        setAllAppointements(response.data.data);
+        console.log(response.data.data);
+        return response.data.data;
+      }catch(error){
+        console.log(error);
+      }
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -283,7 +293,8 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        getChatHistory
+        getChatHistory,
+        getAppointmetnsForPatient,
       }}
     >
       {children}

@@ -15,12 +15,14 @@ const Calendar = ({ filterData }) => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
+  const { createAppointment, updateAppointment, deleteAppointment, allAppointements, useAppointmentsForPatient } = useGlobal();
   const { user } = useAuth();
+  const { data: appointments, isLoading, error } = useAppointmentsForPatient(user.id);
 
+  console.log(appointments, "<<<<<<<<<<<<<<<<< use appointments"); 
   useEffect(() => {
     // Map appointments to the required format for react-big-calendar
-    const mappedEvents = allAppointements.map((appointment) => ({
+    const mappedEvents = allAppointements?.map((appointment) => ({
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
       start: new Date(appointment.date),
       end: new Date(appointment.appointmentTime),
