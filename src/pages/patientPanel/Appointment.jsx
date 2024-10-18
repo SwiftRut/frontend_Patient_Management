@@ -6,7 +6,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { TbCalendarClock } from "react-icons/tb";
 import { TbCalendarX } from "react-icons/tb";
 import { BiSolidCalendar } from "react-icons/bi";
-import Onsite from "../doctorManagement/Onsite";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -578,26 +578,114 @@ const Appointment = () => {
       </div>
 
       {openModel && (
-        <div className="onsite-modal">
-          <div className="onsite-modal-content">
-            <div className="onsite-modal-header">
-              <h3>Doctor Details</h3>
-              <button
-                className="close-button"
-                onClick={() => setOpenModel(false)}
-              >
-                &times;
-              </button>
-            </div>
-            <Onsite
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="onsite-modal">
+              <div className="onsite-modal-content">
+                <div className="onsite-modal-header">
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden border max-w-lg pb-52 p-3">
+                    <div className="top flex items-center border-b pb-3">
+                      <div
+                        className="w-9 h-9 flex items-center justify-center rounded-full border me-2"
+                        onClick={() => setOpenModel(false)}
+                      >
+                        <IoIosArrowBack />
+                      </div>
+                      <h3 className="text-lg text-[#030229] font-bold">
+                        Doctor Management
+                      </h3>
+                    </div>
+                    <div className="bg-[#2522a6] p-2 flex items-center rounded-md m-3">
+                      <img
+                        src="https://placehold.co/100x100"
+                        alt="Doctor's photo"
+                        className="rounded-full border-2 border-white mr-4 w-[20%]"
+                      />
+                      <div className="text-white">
+                        <h2 className="text-lg font-semibold">
+                          Dr. Cristofer Pasquinades
+                        </h2>
+                        <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
+                          <img src="/image/vuesax.png" />
+                          <h3 className="ms-2">Male</h3>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Qualification
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            MBBS
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Years Of Experience
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            6+ Year
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Specialty Type
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            Obstetrics
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Working Time
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            6 Hour
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Break Time
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            1 Hour
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="text-[#A7A7A7] font-normal text-md">
+                            Emergency Contact Number
+                          </h3>
+                          <p className="text[#141414] font-medium text-sm">
+                            48555-20103
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4">
+                        <h3 className="text-[#A7A7A7] font-normal text-md">
+                          Description
+                        </h3>
+                        <p className="text[#141414] font-medium text-sm">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* <Onsite
               selectedDoctor={selectedDoctor}
               setOpenModel={setOpenModel}
-            />
+            /> */}
+              </div>
+              <div
+                className="onsite-modal-overlay"
+                onClick={() => setOpenModel(false)}
+              ></div>
+            </div>
           </div>
-          <div
-            className="onsite-modal-overlay"
-            onClick={() => setOpenModel(false)}
-          ></div>
         </div>
       )}
     </div>

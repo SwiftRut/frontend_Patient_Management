@@ -511,6 +511,16 @@ const routesConfig = [
         ),
       },
       {
+        path: "bills",
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
+      },
+      {
         path: "chatScreen",
         element: (
           <ProtectedRoute

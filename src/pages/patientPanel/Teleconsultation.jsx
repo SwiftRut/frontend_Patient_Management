@@ -10,17 +10,28 @@ import { GoSearch } from "react-icons/go";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 import { FaCalendarDays } from "react-icons/fa6";
 import { InputBase } from "@mui/material";
-import Onsite from "../doctorManagement/Onsite";
-import PatientDetails from "../patientManagement/PatientDetails";
+
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
   const [openModel, setOpenModel] = useState(false);
+  const [openModelPrevious, setOpenModelPrevious] = useState(false);
+  const [openModelCancel, setOpenModelCancel] = useState(false);
+  const [openModelPending, setOpenModelPending] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
   const handleViewDoctorDetails = () => {
     setOpenModel(true);
+  };
+  const handlePreviousDetails = () => {
+    setOpenModelPrevious(true);
+  };
+  const handleCancelDetails = () => {
+    setOpenModelCancel(true);
+  };
+  const handlePendingDetails = () => {
+    setOpenModelPending(true);
   };
 
   const allAppointment = [
@@ -306,7 +317,12 @@ const Teleconsultation = () => {
                               <h2 class="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
-                              <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
+                              <div
+                                className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                                onClick={() => {
+                                  handlePreviousDetails(val);
+                                }}
+                              >
                                 <IoEyeSharp />
                               </div>
                             </div>
@@ -400,7 +416,12 @@ const Teleconsultation = () => {
                               <h2 class="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
-                              <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
+                              <div
+                                className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                                onClick={() => {
+                                  handleCancelDetails(val);
+                                }}
+                              >
                                 <IoEyeSharp />
                               </div>
                             </div>
@@ -494,7 +515,12 @@ const Teleconsultation = () => {
                               <h2 class="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
-                              <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2">
+                              <div
+                                className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2"
+                                onClick={() => {
+                                  handlePendingDetails(val);
+                                }}
+                              >
                                 <IoEyeSharp />
                               </div>
                             </div>
@@ -561,27 +587,221 @@ const Teleconsultation = () => {
           </div>
         </div>
 
+        {/* scheduled */}
         {openModel && (
-          <div className="onsite-modal">
-            <div className="onsite-modal-content">
-              <div className="onsite-modal-header">
-                <h3>Doctor Details</h3>
-                <button
-                  className="close-button"
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="onsite-modal">
+                <div className="onsite-modal-content">
+                  <div className="onsite-modal-header">
+                    <div class="max-w-sm mx-auto bg-white rounded-lg shadow-lg p-5">
+                      <div class="flex justify-between items-center border-b pb-2">
+                        <h2 class="text-lg font-bold text-[#030229] me-20">
+                          Scheduled Appointment
+                        </h2>
+                        <button
+                          class="w-6 h-6 bg-red-600 text-white rounded-full flex  justify-center items-center"
+                          onClick={() => setOpenModel(false)}
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="mt-4">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                          Appointment Type:{" "}
+                          <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                            Online
+                          </span>
+                        </p>
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                          Appointment Date:{" "}
+                          <span class="text-[#030229]">2 Jan, 2022</span>
+                        </p>
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                          Appointment Time:{" "}
+                          <span class="text-[#030229]">4:30 PM</span>
+                        </p>
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                          Hospital Name:{" "}
+                          <span class="text-[#030229]">Marcus Phillips</span>
+                        </p>
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                          Patient Issue:{" "}
+                          <span class="text-[#030229]">Stomach ache</span>
+                        </p>
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                          Doctor Name:{" "}
+                          <span class="text-[#030229]">Dr. Mathew Best</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="onsite-modal-overlay"
                   onClick={() => setOpenModel(false)}
-                >
-                  &times;
-                </button>
+                ></div>
               </div>
-              {/* <PatientDetails
-                selectedDoctor={selectedDoctor}
-                setOpenModel={setOpenModel}
-              /> */}
             </div>
-            <div
-              className="onsite-modal-overlay"
-              onClick={() => setOpenModel(false)}
-            ></div>
+          </div>
+        )}
+
+        {/* previous */}
+        {openModelPrevious && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div class="max-w-xl bg-white rounded-lg shadow-lg p-5">
+                <div class="flex justify-between items-center border-b pb-2">
+                  <h2 class="text-lg font-bold text-[#030229] me-20">
+                    Previous Appointment
+                  </h2>
+                  <button
+                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    onClick={() => setOpenModelPrevious(false)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="mt-4">
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Type:{" "}
+                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                      Online
+                    </span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Appointment Date:{" "}
+                    <span class="text-[#030229]">2 Jan, 2022</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Time:{" "}
+                    <span class="text-[#030229]">4:30 PM</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Hospital Name:{" "}
+                    <span class="text-[#030229]">Marcus Phillips</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Patient Issue:{" "}
+                    <span class="text-[#030229]">Stomach ache</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Doctor Name:{" "}
+                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="onsite-modal-overlay"
+                onClick={() => setOpenModelPrevious(false)}
+              ></div>
+            </div>
+          </div>
+        )}
+
+        {/* cancel */}
+        {openModelCancel && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div class="max-w-xl bg-white rounded-lg p-5">
+                <div class="flex justify-between items-center border-b pb-2">
+                  <h2 class="text-lg font-bold text-[#030229] me-20">
+                    Cancel Appointment
+                  </h2>
+                  <button
+                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    onClick={() => setOpenModelCancel(false)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="mt-4">
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Type:{" "}
+                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                      Online
+                    </span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Appointment Date:{" "}
+                    <span class="text-[#030229]">2 Jan, 2022</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Time:{" "}
+                    <span class="text-[#030229]">4:30 PM</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Hospital Name:{" "}
+                    <span class="text-[#030229]">Marcus Phillips</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Patient Issue:{" "}
+                    <span class="text-[#030229]">Stomach ache</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Doctor Name:{" "}
+                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="onsite-modal-overlay"
+                onClick={() => setOpenModelCancel(false)}
+              ></div>
+            </div>
+          </div>
+        )}
+
+        {/* pending */}
+        {openModelPending && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div class="max-w-xl bg-white rounded-lg p-5">
+                <div class="flex justify-between items-center border-b pb-2">
+                  <h2 class="text-lg font-bold text-[#030229] me-20">
+                    Pending Appointment
+                  </h2>
+                  <button
+                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    onClick={() => setOpenModelPending(false)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="mt-4">
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Type:{" "}
+                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                      Online
+                    </span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Appointment Date:{" "}
+                    <span class="text-[#030229]">2 Jan, 2022</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Appointment Time:{" "}
+                    <span class="text-[#030229]">4:30 PM</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Hospital Name:{" "}
+                    <span class="text-[#030229]">Marcus Phillips</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                    Patient Issue:{" "}
+                    <span class="text-[#030229]">Stomach ache</span>
+                  </p>
+                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                    Doctor Name:{" "}
+                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="onsite-modal-overlay"
+                onClick={() => setOpenModelPending(false)}
+              ></div>
+            </div>
           </div>
         )}
       </div>
