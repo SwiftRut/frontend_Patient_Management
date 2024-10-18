@@ -176,115 +176,115 @@ const Prescriptions = () => {
       {showModal && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
-
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md md:max-w-xl relative">
-              {" "}
-              {/* Responsive width */}
-              <div className="modal-header p-4 border-b">
-                <h5 className="modal-title text-lg font-bold">Prescription</h5>
-                <button
-                  type="button"
-                  className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
-                  onClick={handleCloseModal}
-                >
-                  &times;
-                </button>
-              </div>
-              <div className="modal-body p-3 mx-3 mb-3">
-                <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-3 border border-gray-200">
-                  <div className="flex justify-between items-center border-b border-dashed">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <img src="./image/Group 1000005871.png" alt="" className="w-32 md:w-40" />{" "}
-                        {/* Responsive image size */}
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md md:max-w-xl relative">
+                {" "}
+                {/* Responsive width */}
+                <div className="modal-header p-4 border-b">
+                  <h5 className="modal-title text-lg font-bold">Prescription</h5>
+                  <button
+                    type="button"
+                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
+                    onClick={handleCloseModal}
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div className="modal-body p-3 mx-3 mb-3">
+                  <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-3 border border-gray-200">
+                    <div className="flex justify-between items-center border-b border-dashed">
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <img src="./image/Group 1000005871.png" alt="" className="w-32 md:w-40" />{" "}
+                          {/* Responsive image size */}
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <h2 className="text-xl font-bold text-text-color">Dr. Bharat Patel</h2>
+                        <p className="text-gray-600 text-sm">Obstetrics and Gynecology</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <h2 className="text-xl font-bold text-text-color">Dr. Bharat Patel</h2>
-                      <p className="text-gray-600 text-sm">Obstetrics and Gynecology</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                      {" "}
+                      {/* Responsive grid layout */}
+                      <div>
+                        <p>
+                          <span className="font-semibold">Hospital Name</span> : Medical Center
+                        </p>
+                        <p>
+                          <span className="font-semibold">Patient Name</span> : Alabtrao Bhajirao
+                        </p>
+                        <p>
+                          <span className="font-semibold">Gender</span> : Male
+                        </p>
+                      </div>
+                      <div className="border-l border-dashed pl-4">
+                        <p>
+                          <span className="font-semibold">Prescription Date</span> : 2 Jan, 2022
+                        </p>
+                        <p>
+                          <span className="font-semibold">Age</span> : 36 Years
+                        </p>
+                      </div>
                     </div>
+                    <p className="font-semibold">
+                      Address:{" "}
+                      <span className="text-sm font-normal">
+                        B-105 Virat Bungalows, Punagam Motavarocha Jamnagar.
+                      </span>
+                    </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                  <table className="table mt-3 rounded-lg w-full">
                     {" "}
-                    {/* Responsive grid layout */}
-                    <div>
-                      <p>
-                        <span className="font-semibold">Hospital Name</span> : Medical Center
-                      </p>
-                      <p>
-                        <span className="font-semibold">Patient Name</span> : Alabtrao Bhajirao
-                      </p>
-                      <p>
-                        <span className="font-semibold">Gender</span> : Male
-                      </p>
-                    </div>
-                    <div className="border-l border-dashed pl-4">
-                      <p>
-                        <span className="font-semibold">Prescription Date</span> : 2 Jan, 2022
-                      </p>
-                      <p>
-                        <span className="font-semibold">Age</span> : 36 Years
-                      </p>
-                    </div>
-                  </div>
-                  <p className="font-semibold">
-                    Address:{" "}
-                    <span className="text-sm font-normal">
-                      B-105 Virat Bungalows, Punagam Motavarocha Jamnagar.
-                    </span>
-                  </p>
-                </div>
-                <table className="table mt-3 rounded-lg w-full">
-                  {" "}
-                  {/* Full-width table */}
-                  <thead className="table-light bg-gray-100">
-                    <tr>
-                      <th>Medicine Name</th>
-                      <th>Strength</th>
-                      <th>Dose</th>
-                      <th>Duration</th>
-                      <th>When to Take</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {prescriptionData.map((val, index) => (
-                      <tr key={index}>
-                        <td>{val.medicineName}</td>
-                        <td>{val.strength}</td>
-                        <td>{val.dose}</td>
-                        <td>
-                          <button className="px-2 py-1 bg-button-bg rounded-full text-green-700">
-                            {val.duration}
-                          </button>
-                        </td>
-                        <td>
-                          <button className="px-2 py-1 bg-btn-color rounded-full text-blue-950">
-                            {val.whenToTake}
-                          </button>
-                        </td>
+                    {/* Full-width table */}
+                    <thead className="table-light bg-gray-100">
+                      <tr>
+                        <th>Medicine Name</th>
+                        <th>Strength</th>
+                        <th>Dose</th>
+                        <th>Duration</th>
+                        <th>When to Take</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div>
-                  <h6>Additional Note</h6>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the
-                  </p>
-                </div>
-                <div className="flex justify-between items-center">
+                    </thead>
+                    <tbody>
+                      {prescriptionData.map((val, index) => (
+                        <tr key={index}>
+                          <td>{val.medicineName}</td>
+                          <td>{val.strength}</td>
+                          <td>{val.dose}</td>
+                          <td>
+                            <button className="px-2 py-1 bg-button-bg rounded-full text-green-700">
+                              {val.duration}
+                            </button>
+                          </td>
+                          <td>
+                            <button className="px-2 py-1 bg-btn-color rounded-full text-blue-950">
+                              {val.whenToTake}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                   <div>
-                    <img src="./image/Rectangle 20611.png" alt="" className="w-16" />{" "}
-                    {/* Responsive image size */}
-                    <h6 className="text-gray-400 font-medium">Doctor Signature</h6>
-                    <hr />
+                    <h6>Additional Note</h6>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the
+                    </p>
                   </div>
-                  <button className="px-4 py-2 bg-btn-bg rounded-md text-white">
-                    <i className="fa-solid fa-file-arrow-down pe-1"></i> Download
-                  </button>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <img src="./image/Rectangle 20611.png" alt="" className="w-16" />{" "}
+                      {/* Responsive image size */}
+                      <h6 className="text-gray-400 font-medium">Doctor Signature</h6>
+                      <hr />
+                    </div>
+                    <button className="px-4 py-2 bg-btn-bg rounded-md text-white">
+                      <i className="fa-solid fa-file-arrow-down pe-1"></i> Download
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
