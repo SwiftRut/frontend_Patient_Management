@@ -71,6 +71,7 @@ const apiService = {
   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
   createAppointment: (id, userData) => api.post(`/appoinment/appoinmentcreate`, userData),
   GetAppointsForDoctor: (doctorId) => api.get(`/appoinment//Doctor_Appointment_History/${doctorId}`,doctorId),   GetAppointsFor: (patientId) => api.get(`/appointment/Patient_Appointment_History/${patientId}`,patientId), 
+  
 
   //Chats
   GetChatHistory: (doctorId, patientId) =>

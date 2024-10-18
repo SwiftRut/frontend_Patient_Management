@@ -28,7 +28,7 @@ const AppointmentTimeSlot = () => {
     },
   ]);
   const {user} = useAuth();
-  const { allAppointements, getAppointmetnsForDoctor } = useGlobal();
+  const { getAppointmetnsForDoctor } = useGlobal();
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
   },[]);

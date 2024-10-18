@@ -17,7 +17,7 @@ const Calendar = ({ filterData }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
   const { user } = useAuth();
-
+  console.log("allAppointeme from patient", allAppointements);
   useEffect(() => {
     // Map appointments to the required format for react-big-calendar
     const mappedEvents = allAppointements?.map((appointment) => ({

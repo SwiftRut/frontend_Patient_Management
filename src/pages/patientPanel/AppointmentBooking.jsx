@@ -6,7 +6,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
-  const { getAllHospitals, allHospitals } = useGlobal();
+  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
@@ -21,6 +21,8 @@ const AppointmentBooking = () => {
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
+    console.log("getting all hospitals......")
+    getAppointmetnsForPatient(user.id);
   }, []);
 
   // Get unique values for each filter based on allDoctors data
