@@ -146,7 +146,8 @@ export const GlobalProvider = ({ children }) => {
   const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
-      console.log(response, "response");
+      console.log(response.data, "response");
+      setAllAppointements(response.data)
     } catch (error) {
       console.log(error);
       throw error;
@@ -202,11 +203,48 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   }
+  const createAppointment = async (patientId, userData) => {
+    try {
+      console.log("creating appointment......" , userData);
+    const response = await apiService.createAppointment(patientId ,userData);
+    getAllAppointments();
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+  const updateAppointment = async (id ,userData) => {
+    try {
+      console.log("updating appointment......" , userData);
+      const response = await apiService.EditAppointment(id ,userData);
+      console.log(response.data);
+    getAllAppointments();
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+  const deleteAppointment = async(id)=>{
+    try{
+      console.log("delteing appointment......");
+      const response = await apiService.DeleteAppointment(id);
+      console.log(response.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
     <GlobalContext.Provider
       value={{
         allHospitals,
+        updateAppointment,
+        deleteAppointment,
+        allAppointements,
         userData,
+        createAppointment,
         setUserData,
         setAllHospitals,
         getAllHospitals,
@@ -231,7 +269,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements, getChatHistory
+        getChatHistory
       }}
     >
       {children}
