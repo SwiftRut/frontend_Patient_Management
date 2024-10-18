@@ -6,6 +6,8 @@ import { Visibility } from "@mui/icons-material";
 import AddRecord from "../../pages/doctroPanel/AddRecord.jsx";
 
 const PatientDetail = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate(); // Step 1: Add useNavigate hook
 
@@ -46,6 +48,13 @@ const PatientDetail = () => {
     navigate(`/doctor/allFiles`);
   };
 
+  const openModal = () => {
+    // setSelectedPatient(patient);
+    setIsModalOpen(true);
+  };
+
+
+
   return (
     <>
       <div className="p-details p-6 bg-[#f6f8fb]">
@@ -57,7 +66,7 @@ const PatientDetail = () => {
               <div className="bg-white text-blue-500 me-2 rounded">
                 <MdAdd />
               </div>
-              <div>Add Record</div>
+              <div onClick={() => openModal()}>Add Record</div>
             </button>
           </div>
           <div className="flex items-center">
@@ -146,11 +155,10 @@ const PatientDetail = () => {
                   </td>
                   <td className="p-3">
                     <span
-                      className={`px-3 py-1 text-lg font-semibold rounded-full ${
-                        appointment.type === "Online"
-                          ? "bg-yellow-100 text-yellow-600"
-                          : "bg-blue-100 text-blue-600"
-                      }`}
+                      className={`px-3 py-1 text-lg font-semibold rounded-full ${appointment.type === "Online"
+                        ? "bg-yellow-100 text-yellow-600"
+                        : "bg-blue-100 text-blue-600"
+                        }`}
                     >
                       {appointment.type}
                     </span>
@@ -168,6 +176,16 @@ const PatientDetail = () => {
           </table>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="modal">
+            <div className="modal-content">
+              <AddRecord patient={selectedPatient} setIsModalOpen={setIsModalOpen} />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

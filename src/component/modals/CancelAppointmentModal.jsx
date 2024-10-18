@@ -13,16 +13,16 @@ const CancelAppointmentModal = ({ open, onClose }) => {
     <Modal open={open} onClose={onClose}>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white  rounded-lg shadow-lg">
 
-      <div class="bg-card rounded-lg shadow-lg px-6 py-3 max-w-sm mx-auto w-full border-t-[6px] border-red-600">
-        <div class="flex items-center justify-center mb-4">
-          <div class="bg-red-500 rounded-full p-3 text-white text-lg">
+      <div className="bg-card rounded-lg shadow-lg px-6 py-3 max-w-sm mx-auto w-full border-t-[6px] border-red-600">
+        <div className="flex items-center justify-center mb-4">
+          <div className="bg-red-500 rounded-full p-3 text-white text-lg">
             <LuCalendarX2 />
           </div>
         </div>
-        <h2 class="text-[24px] text-[#030229] font-bold text-center">
+        <h2 className="text-[24px] text-[#030229] font-bold text-center">
           Cancel Online Appointment ?
         </h2>
-        <p class="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-3">
+        <p className="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-3">
           If you cancel appointment you have to return payment.
         </p>
         <div className="flex justify-between space-x-3">

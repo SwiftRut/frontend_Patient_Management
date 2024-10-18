@@ -3,6 +3,7 @@ import { Tabs, Tab, Button } from "@mui/material";
 import { DateRange } from "@mui/icons-material";
 import TeleConsultationCard from "../../component/PrescriptionTools/TeleConsultationCard";
 import CustomDateModal from "../../component/modals/CustomDateModal";
+import TeleConsultationTable from "../../component/PrescriptionTools/TeleConsultationTable";
 
 // Patient data for different tabs
 const todayAppointments = [
@@ -591,11 +592,36 @@ export default function TeleconsultationModule() {
         </div>
 
         {/* Grid of Patient Cards */}
-        <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentAppointments.map((patient, index) => (
-            <TeleConsultationCard key={index} patient={patient} />
-          ))}
-        </div>
+        {tabName === "Today Appointment" ? (
+          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {currentAppointments.map((patient, index) => (
+              <TeleConsultationCard key={index} patient={patient} />
+            ))}
+          </div>
+        ) : (
+
+          <div className="pr-data max-h-[600px] overflow-y-auto">
+            <table className="min-w-full table-auto">
+              <thead className="sticky top-0 bg-gray-100 z-10">
+                <tr>
+                  <th className="p-3 text-left text-sm font-semibold">Patient Name</th>
+                  <th className="p-3 text-left text-sm font-semibold">Disease Name</th>
+                  <th className="p-3 text-left text-sm font-semibold">Patient Issue</th>
+                  <th className="p-3 text-left text-sm font-semibold">Last Appointment Date</th>
+                  <th className="p-3 text-left text-sm font-semibold">Last Appointment Time</th>
+                  <th className="p-3 text-left text-sm font-semibold">Age</th>
+                  <th className="p-3 text-left text-sm font-semibold">Gender</th>
+                  <th className="p-3 text-left text-sm font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentAppointments.map((patient, index) => (
+                  <TeleConsultationTable key={index} patient={patient} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       <CustomDateModal
