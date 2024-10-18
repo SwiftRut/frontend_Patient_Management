@@ -121,7 +121,11 @@ const routesConfig = [
   { path: "/login", element: <Login />, allowedRoles: [] },
   { path: "/AdminMobile", element: <AdminMobile />, allowedRoles: [] },
   { path: "/verifyOtp", element: <AdminOtp />, allowedRoles: [] },
-  { path: "/resetPassword", element: <AdminChangePassword />, allowedRoles: [] },
+  {
+    path: "/resetPassword",
+    element: <AdminChangePassword />,
+    allowedRoles: [],
+  },
 
   // Admin routes
   {
@@ -148,43 +152,103 @@ const routesConfig = [
       { path: "", element: null, allowedRoles: ["admin"] },
       {
         path: "profile/*",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "edit",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "doctorManagement/*",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "doctorAdd",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "doctorEdit/:doctorId",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "patientManagement",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "monitorBilling",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "insuranceClaims",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "paymentMethod",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "reportingAndAnalytics",
-        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
       },
     ],
   },
@@ -213,7 +277,13 @@ const routesConfig = [
       },
       {
         path: "edit",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       // { path: "addRecord", element: <ProtectedRoute element={<AddRecord/>} allowedRoles={['doctor']} userRole={userRole} /> },
       {
@@ -228,43 +298,95 @@ const routesConfig = [
       },
       {
         path: "createPrescriptionTools",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "managePrescriptionTools",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "teleconsultationModule",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "chatScreen",
         element: (
-          <ProtectedRoute element={null} allowedRoles={["doctor", "patient"]} userRole={userRole} />
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor", "patient"]}
+            userRole={userRole}
+          />
         ),
       },
       {
         path: "appointmentTimeSlot",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
 
       {
         path: "patientDetail/:id",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "allFiles",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
 
       {
         path: "prescriptionView/:id",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "createPrescriptionForm/:id",
-        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["doctor"]}
+            userRole={userRole}
+          />
+        ),
       },
     ],
   },
@@ -286,39 +408,103 @@ const routesConfig = [
     children: [
       {
         path: "profile/*",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "profileEdit",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "prescriptions",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "testReport",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "medicalHistory",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "allAppointment",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "appointment",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "appointmentBooking",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "priscriptionAccess",
-        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
+      },
+      {
+        path: "teleconsultation",
+        element: (
+          <ProtectedRoute
+            element={null}
+            allowedRoles={["patient"]}
+            userRole={userRole}
+          />
+        ),
       },
       {
         path: "chatScreen",
@@ -348,59 +534,111 @@ const routesConfig = [
   {
     path: "/createBill",
     element: (
-      <ProtectedRoute element={<CreateBill />} allowedRoles={["admin"]} userRole={userRole} />
+      <ProtectedRoute
+        element={<CreateBill />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
     ),
     allowedRoles: ["admin"],
   },
   {
     path: "/editBill/:id",
-    element: <ProtectedRoute element={<EditBill />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<EditBill />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
     path: "/schedular",
     element: (
-      <ProtectedRoute element={<Scheduler />} allowedRoles={["admin"]} userRole={userRole} />
+      <ProtectedRoute
+        element={<Scheduler />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
     ),
     allowedRoles: ["admin"],
   },
   {
     path: "/onsite",
-    element: <ProtectedRoute element={<Onsite />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Onsite />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
     path: "/details",
     element: (
-      <ProtectedRoute element={<PatientDetails />} allowedRoles={["patient"]} userRole={userRole} />
+      <ProtectedRoute
+        element={<PatientDetails />}
+        allowedRoles={["patient"]}
+        userRole={userRole}
+      />
     ),
     allowedRoles: ["patient"],
   },
   {
     path: "/bill/:id",
-    element: <ProtectedRoute element={<Bill />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Bill />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
     path: "/bill2",
-    element: <ProtectedRoute element={<Bill2 />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Bill2 />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
     path: "/bill3",
-    element: <ProtectedRoute element={<Bill3 />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Bill3 />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
     path: "/cash",
     element: (
-      <ProtectedRoute element={<CashPayment />} allowedRoles={["admin"]} userRole={userRole} />
+      <ProtectedRoute
+        element={<CashPayment />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
     ),
     allowedRoles: ["admin"],
   },
   {
     path: "/delete",
-    element: <ProtectedRoute element={<Delete />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Delete />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {
@@ -416,7 +654,13 @@ const routesConfig = [
   },
   {
     path: "/chart",
-    element: <ProtectedRoute element={<Chart />} allowedRoles={["admin"]} userRole={userRole} />,
+    element: (
+      <ProtectedRoute
+        element={<Chart />}
+        allowedRoles={["admin"]}
+        userRole={userRole}
+      />
+    ),
     allowedRoles: ["admin"],
   },
   {

@@ -12,6 +12,7 @@ import ChatScreen1 from "./ChatScreen1";
 import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePanel";
 import PatientHeader from "../../component/PatientComponents/PatientHeader";
 import PriscriptionAccess from "./PriscriptionAccess";
+import Teleconsultation from "./Teleconsultation";
 
 export default function PatientPanel() {
   return (
@@ -27,6 +28,9 @@ export default function PatientPanel() {
           <Route path="/medicalHistory" element={<MedicalHistory />} />
           <Route path="/allAppointment" element={<AllAppointment />} />
           <Route path="/appointment" element={<Appointment />} />
+          {/* <Route path="/appointment" element={<Teleconsultation/>} /> */}
+
+          <Route path="/teleconsultation" element={<Teleconsultation/>}/>
           <Route path="/appointmentBooking" element={<AppointmentBooking />} />
 
           <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />

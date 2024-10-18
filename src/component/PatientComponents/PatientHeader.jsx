@@ -73,23 +73,39 @@ const PatientHeader = () => {
     managePrescriptionTools: "Manage Presciption Tools",
     teleconsultationModule: "Teleconsultation Module",
     appointment: "Appointment Booking",
-    PrescriptionAccess : "Prescription Access",
-    TeleconsultationAccess : "Teleconsultation Access",
-    chatScreen : "Chat Screen",
-    Bill : "Bill",
+    PrescriptionAccess: "Prescription Access",
+    TeleconsultationAccess: "Teleconsultation Access",
+    chatScreen: "Chat Screen",
+    Bill: "Bill",
   };
   console.log(location.pathname.split("/")[2]);
   return (
-   
-      <div className="bg-whitesticky top-0 flex items-center justify-between p-2 w-full">
+    <div className="bg-white sticky top-0 flex items-center justify-between p-2 w-full">
       <div>
-        <Breadcrumbs aria-label="breadcrumb" className="bg-[#f8fcfe] p-2 rounded-full">
-        <Link underline="hover" color="inherit" to="/patient" className="flex items-center">
-        <GoHomeFill className="me-1 text-[#A7A7A7]"/> <MdOutlineKeyboardArrowRight className="text-lg text-[#A7A7A7] me-1"/><p className="text-sm">Home</p>
+        <Breadcrumbs
+          aria-label="breadcrumb"
+          className="bg-[#f8fcfe] p-2 rounded-full"
+        >
+          <Link
+            underline="hover"
+            color="inherit"
+            to="/patient"
+            className="flex items-center"
+          >
+            <GoHomeFill className="me-1 text-[#A7A7A7]" />{" "}
+            <MdOutlineKeyboardArrowRight className="text-lg text-[#A7A7A7] me-1" />
+            <p className="text-sm">Home</p>
           </Link>
-          {location.pathname !== "/" && <Link to={"/patient"} className="text-[#0EABEB]">patient</Link>}
           {location.pathname !== "/" && (
-            <Link to={location.pathname.split("/")[2]} className="text-[#0EABEB]">
+            <Link to={"/patient"} className="text-[#0EABEB]">
+              patient
+            </Link>
+          )}
+          {location.pathname !== "/" && (
+            <Link
+              to={location.pathname.split("/")[2]}
+              className="text-[#0EABEB]"
+            >
               <Typography variant="body2" color="textPrimary">
                 {breadcrumbNames[location.pathname.split("/")[2]]}
               </Typography>
@@ -145,7 +161,6 @@ const PatientHeader = () => {
         </div>
       </div>
     </div>
-   
   );
 };
 
