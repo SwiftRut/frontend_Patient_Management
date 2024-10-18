@@ -17,7 +17,7 @@ import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 
-const socket = io("http://192.168.0.105:8001");
+const socket = io("http://localhost:8001");
 
 const ChatScreen = () => {
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
