@@ -133,11 +133,11 @@ const routesConfig = [
     element: (
       <ProtectedRoute
         element={<AdminRegistration />}
-        allowedRoles={["admin"]}
+        allowedRoles={[]}
         userRole={userRole}
       />
     ),
-    allowedRoles: ["admin"],
+    allowedRoles: [],
   },
   {
     path: "/",
