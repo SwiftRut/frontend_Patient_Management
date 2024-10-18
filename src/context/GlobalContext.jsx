@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || "");
   const [allHospitals, setAllHospitals] = useState([]);
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
@@ -207,7 +208,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       console.log("creating appointment......" , userData);
     const response = await apiService.createAppointment(patientId ,userData);
-    getAllAppointments();
+    if(user.role === "patient"){
+      getAppointmetnsForPatient(user.id);
+    }else if(user.role === "doctor"){
+      getAppointmetnsForDoctor(user.id);
+    }
     console.log(response.data);
     } catch (error) { 
       console.log(error);
@@ -219,7 +224,11 @@ export const GlobalProvider = ({ children }) => {
       console.log("updating appointment......" , userData);
       const response = await apiService.EditAppointment(id ,userData);
       console.log(response.data);
-    getAllAppointments();
+      if(user.role === "patient"){
+        getAppointmetnsForPatient(user.id);
+      }else if(user.role === "doctor"){
+        getAppointmetnsForDoctor(user.id);
+      }
     console.log(response.data);
     } catch (error) { 
       console.log(error);
@@ -230,7 +239,11 @@ export const GlobalProvider = ({ children }) => {
     try{
       console.log("delteing appointment......");
       const response = await apiService.DeleteAppointment(id);
-      getAllAppointments();
+      if(user.role === "patient"){
+        getAppointmetnsForPatient(user.id);
+      }else if(user.role === "doctor"){
+        getAppointmetnsForDoctor(user.id);
+      }
       console.log(response.data);
     }catch (error) {
       console.log(error);

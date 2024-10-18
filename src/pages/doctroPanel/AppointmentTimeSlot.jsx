@@ -5,7 +5,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import Calendar from "./Calendar";
 const localizer = momentLocalizer(moment);
-
+  import { useAuth } from "../../hooks/useAuth";
 const AppointmentTimeSlot = () => {
   const [events, setEvents] = useState([
     {
@@ -27,24 +27,13 @@ const AppointmentTimeSlot = () => {
       resource: "Dr. Andrew",
     },
   ]);
-  const { allAppointements, getAllAppointments, getAppointmetnsForDoctor } = useGlobal();
+  const {user} = useAuth();
+  const { allAppointements, getAppointmetnsForDoctor } = useGlobal();
   useEffect(() => {
-    // getAllAppointments();
-    //swaped with getAppointmetnsForPatient
-    getAppointmetnsForDoctor('6707ec1893d5090ffcdb86c6');
+    getAppointmetnsForDoctor(user.id);
   },[]);
-  useEffect(() => {
-    // Map appointments to the required format for react-big-calendar
-    const mappedEvents = allAppointements?.map((appointment) => ({
-      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
-      start: new Date(appointment.date),
-      end: new Date(appointment.appointmentTime),
-      allDay: false,
-      id: appointment._id,
-      appointment: appointment // Store the full appointment data
-    }));
-    setEvents(mappedEvents);
-  }, [allAppointements]);
+
+  
   const handleSelectEvent = (event) => {
     console.log(`Selected event: ${event.title} at ${event.start}`);
   };
