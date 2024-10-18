@@ -6,7 +6,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
-  const { getAllHospitals, allHospitals, useAppointmentsForPatient } = useGlobal();
+  const { getAllHospitals, allHospitals } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
@@ -17,7 +17,6 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
-  const { data: appointments, isLoading, error } = useAppointmentsForPatient(user.id);
 
   useEffect(() => {
     getAllDoctors();
