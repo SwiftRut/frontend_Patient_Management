@@ -55,12 +55,17 @@ input {
   margin: 10px 0px;
   font-size: 16px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
   color: #818194;
   padding: 10px 15px;
   background-color: #fff;
   transition: background-color 0.3s ease;
+}
+.sidebar .asite .menu ul li a {
+  display: flex;
+  align-items: center;
+}
+.sidebar .asite .menu ul li a img {
+  margin-right: 10px;
 }
 .sidebar .asite .menu ul .dropdown {
   list-style: disc;
@@ -119,12 +124,12 @@ input {
 .sidebar .asite .menu ul li:focus-within a img {
   color: #0eabeb;
 }
-.sidebar .asite .menu ul .logout-btn button {
+.sidebar .asite .menu .logout-btn button {
   gap: 15px;
   justify-content: center;
   align-items: center;
   color: #e11d29;
-  padding: 20px;
+  padding: 10px 20px;
   background-color: rgba(225, 29, 42, 0.1647058824);
   width: 100%;
   font-size: 18px;

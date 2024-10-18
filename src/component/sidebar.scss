@@ -51,18 +51,27 @@ input {
 
       ul {
         background-color: #fff;
+
         li {
           position: relative;
           margin: 10px 0px;
           font-size: 16px;
           font-weight: 600;
-          display: flex;
-          align-items: center;
           color: #818194;
           padding: 10px 15px;
           background-color: #fff;
           transition: background-color 0.3s ease;
+
+          a {
+            display: flex;
+            align-items: center;
+
+            img {
+              margin-right: 10px;
+            }
+          }
         }
+
         .dropdown {
           list-style: disc;
           padding: 0;
@@ -70,9 +79,11 @@ input {
           overflow: hidden;
           transition: max-height 0.3s ease-out;
         }
+
         .dropdown::after {
           content: none;
         }
+
         .dropdown.open {
           max-height: 200px;
         }
@@ -92,6 +103,7 @@ input {
 
           .dropdown li:hover {
             background-color: #fff;
+
             span {
               color: #0eabeb;
             }
@@ -124,14 +136,17 @@ input {
             rgba(213, 241, 250, 1) 0%,
             rgba(255, 255, 255, 1) 100%
           );
+
           a {
             p {
               color: #0eabeb;
             }
+
             img {
               color: #0eabeb;
             }
           }
+
           // &::after {
           //   content: "";
           //   position: absolute;
@@ -145,19 +160,19 @@ input {
           //   margin: 10px 0;
           // }
         }
+      }
 
-        .logout-btn {
-          button {
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-            color: #e11d29;
-            padding: 20px;
-            background-color: #e11d2a2a;
-            width: 100%;
-            font-size: 18px;
-            font-weight: 600;
-          }
+      .logout-btn {
+        button {
+          gap: 15px;
+          justify-content: center;
+          align-items: center;
+          color: #e11d29;
+          padding: 10px 20px;
+          background-color: #e11d2a2a;
+          width: 100%;
+          font-size: 18px;
+          font-weight: 600;
         }
       }
     }
