@@ -9,15 +9,17 @@ import AllAppointment from "./profile/Allappoiment";
 import Appointment from "./Appointment";
 import AppointmentBooking from "./AppointmentBooking";
 import ChatScreen1 from "./ChatScreen1";
-import PatientHeader from "../../component/PatientComponents/patientHeader";
 import PatientAsidePanel from "../../component/PatientComponents/PatientAsidePanel";
+import PatientHeader from "../../component/PatientComponents/PatientHeader";
+import PriscriptionAccess from "./PriscriptionAccess";
+import Teleconsultation from "./Teleconsultation";
 
 export default function PatientPanel() {
   return (
     <>
-      <PatientHeader />
       <PatientAsidePanel />
-      <div className="main-content">
+      <div className="main-content h-screen overflow-y-hidden">
+        <PatientHeader />
         <Routes>
           <Route path="" element={<PersonalHealthRecord />} />
           <Route path="profile/*" element={<PatientProfile />} />
@@ -26,7 +28,11 @@ export default function PatientPanel() {
           <Route path="/medicalHistory" element={<MedicalHistory />} />
           <Route path="/allAppointment" element={<AllAppointment />} />
           <Route path="/appointment" element={<Appointment />} />
+          {/* <Route path="/appointment" element={<Teleconsultation/>} /> */}
+
+          <Route path="/teleconsultation" element={<Teleconsultation/>}/>
           <Route path="/appointmentBooking" element={<AppointmentBooking />} />
+          <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
           <Route path="/chatScreen" element={<ChatScreen1 />} />
         </Routes>
       </div>

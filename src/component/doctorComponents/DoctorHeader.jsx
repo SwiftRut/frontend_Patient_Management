@@ -88,50 +88,47 @@ const DoctorHeader = () => {
           )}
         </Breadcrumbs>
       </div>
-      <div className="flex items-center bg-gray-200 rounded-full px-4">
-        <InputBase
-          placeholder="Quick Search"
-          inputProps={{ "aria-label": "search" }}
-          className="flex-grow"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <IconButton aria-label="dropdown" onClick={handleClick}>
-          <span>{selectedOption}</span>
-          <ArrowDropDown />
-        </IconButton>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => handleClose(null)}
-        >
-          <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
-          <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
-          <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
-        </Menu>
-      </div>
 
-      {/* Right Section: Notifications and Profile */}
-      <div className="flex items-center space-x-4">
-        <IconButton aria-label="notifications">
-          <Badge badgeContent={4} color="secondary">
-            <Notifications />
-          </Badge>
-        </IconButton>
-        <NavLink to={"/doctor/profile"}>
-          <div className="flex items-center">
-            <Avatar src={admin} alt="User Image" />
-            <div className="ml-2">
-              <Typography variant="body2" fontWeight="bold">
-                {user.firstName} {user.lastName}
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                {user.role}
-              </Typography>
+      <div className="flex">
+        <div className="flex items-right bg-gray-200 rounded-full px-4">
+          <InputBase
+            placeholder="Quick Search"
+            inputProps={{ "aria-label": "search" }}
+            className="flex-grow"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <IconButton aria-label="dropdown" onClick={handleClick}>
+            <span className="text-sm">{selectedOption}</span>
+            <ArrowDropDown />
+          </IconButton>
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+            <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
+            <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
+            <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
+          </Menu>
+        </div>
+        <div className="flex items-center space-x-4">
+          <IconButton aria-label="notifications">
+            <Badge badgeContent={4} color="secondary">
+              <Notifications />
+            </Badge>
+          </IconButton>
+          <NavLink to={"/doctor/profile"}>
+            <div className="flex items-center">
+              <Avatar src={admin} alt="User Image" />
+              <div className="ml-2">
+                <Typography variant="body2" fontWeight="bold">
+                  {user.firstName} {user.lastName}
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  {user.role}
+                </Typography>
+              </div>
             </div>
-          </div>
-        </NavLink>
+          </NavLink>
+        </div>
       </div>
     </div>
   );

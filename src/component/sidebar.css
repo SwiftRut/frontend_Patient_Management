@@ -55,12 +55,17 @@ input {
   margin: 10px 0px;
   font-size: 16px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
   color: #818194;
   padding: 10px 15px;
   background-color: #fff;
   transition: background-color 0.3s ease;
+}
+.sidebar .asite .menu ul li a {
+  display: flex;
+  align-items: center;
+}
+.sidebar .asite .menu ul li a img {
+  margin-right: 10px;
 }
 .sidebar .asite .menu ul .dropdown {
   list-style: disc;
@@ -69,6 +74,9 @@ input {
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 }
+.sidebar .asite .menu ul .dropdown::after {
+  content: none;
+}
 .sidebar .asite .menu ul .dropdown.open {
   max-height: 200px;
 }
@@ -76,7 +84,7 @@ input {
   padding: 0;
   margin: 0;
 }
-.sidebar .asite .menu ul .dropdown li {
+.sidebar .asite .menu ul .dropdown ul .dropdown li {
   list-style: disc;
   padding: 10px 15px;
   background-color: #fff !important;
@@ -84,13 +92,13 @@ input {
   text-decoration: none;
   transition: all 0.5s;
 }
-.sidebar .asite .menu ul .dropdown li:hover {
+.sidebar .asite .menu ul .dropdown ul .dropdown li:hover {
   background-color: #fff;
 }
-.sidebar .asite .menu ul .dropdown li:hover span {
+.sidebar .asite .menu ul .dropdown ul .dropdown li:hover span {
   color: #0eabeb;
 }
-.sidebar .asite .menu ul a {
+.sidebar .asite .menu ul .dropdown ul a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -98,51 +106,36 @@ input {
   width: 100%;
   font-size: 20px;
 }
-.sidebar .asite .menu ul a img {
+.sidebar .asite .menu ul .dropdown ul a img {
   color: #818194;
   padding-right: 15px;
   width: 40px;
 }
-.sidebar .asite .menu ul a .dropdown::after {
-  content: none;
-}
-.sidebar .asite .menu ul a p {
+.sidebar .asite .menu ul .dropdown ul a p {
   color: #818194;
   font-size: 16px;
 }
-.sidebar .asite .menu li:focus-within {
+.sidebar .asite .menu ul li:focus-within {
   background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
 }
-.sidebar .asite .menu li:focus-within a p {
+.sidebar .asite .menu ul li:focus-within a p {
   color: #0eabeb;
 }
-.sidebar .asite .menu li:focus-within a img {
+.sidebar .asite .menu ul li:focus-within a img {
   color: #0eabeb;
-}
-.sidebar .asite .menu li:focus-within::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: calc(100% - 20px);
-  width: 6px;
-  background-color: #0eabeb;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  margin: 10px 0;
 }
 .sidebar .asite .menu .logout-btn button {
   gap: 15px;
   justify-content: center;
   align-items: center;
   color: #e11d29;
-  padding: 20px;
+  padding: 10px 20px;
   background-color: rgba(225, 29, 42, 0.1647058824);
   width: 100%;
   font-size: 18px;
   font-weight: 600;
 }
-.sidebar .content {
+.sidebar .asite .content {
   width: 83%;
   margin-left: 17%;
   padding: 20px;

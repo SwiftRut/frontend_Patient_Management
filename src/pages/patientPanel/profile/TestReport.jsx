@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style.css";
+import { FaEye } from "react-icons/fa";
 
 const TestReport = () => {
   const prescriptionData = [
@@ -88,6 +89,312 @@ const TestReport = () => {
       testReportName: "Back Pain Test",
       reportDate: "2024-09-18",
     },
+    {
+      hospitalName: "City Hospital",
+      doctorName: "Dr. Smith",
+      diseaseName: "Flu",
+      createdDate: "2024-10-01",
+      medicineName: "Paracetamol",
+      strength: "500mg",
+      dose: "2 tablets",
+      duration: "5 days",
+      whenToTake: "After meals",
+      gender: "Male",
+      patientName: "John Doe",
+      address: "123 Main St, Springfield",
+      age: 35,
+      testReportName: "Flu Test",
+      reportDate: "2024-10-01",
+    },
+    {
+      hospitalName: "General Hospital",
+      doctorName: "Dr. Johnson",
+      diseaseName: "Cold",
+      createdDate: "2024-09-28",
+      medicineName: "Cough Syrup",
+      strength: "100ml",
+      dose: "10ml",
+      duration: "7 days",
+      whenToTake: "bedtime",
+      gender: "Female",
+      patientName: "Jane Smith",
+      address: "456 Elm St, Springfield",
+      age: 28,
+      testReportName: "Cold Test",
+      reportDate: "2024-09-28",
+    },
+    {
+      hospitalName: "Health Center",
+      doctorName: "Dr. Lee",
+      diseaseName: "Allergy",
+      createdDate: "2024-09-25",
+      medicineName: "Cetirizine",
+      strength: "10mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Once daily",
+      gender: "Male",
+      patientName: "Michael Brown",
+      address: "789 Oak St, Springfield",
+      age: 42,
+      testReportName: "Allergy Test",
+      reportDate: "2024-09-25",
+    },
+    {
+      hospitalName: "Community Hospital",
+      doctorName: "Dr. Brown",
+      diseaseName: "Headache",
+      createdDate: "2024-09-20",
+      medicineName: "Ibuprofen",
+      strength: "400mg",
+      dose: "1 tablet",
+      duration: "3 days",
+      whenToTake: "After meals",
+      gender: "Female",
+      patientName: "Emily Davis",
+      address: "101 Pine St, Springfield",
+      age: 30,
+      testReportName: "Headache Test",
+      reportDate: "2024-09-20",
+    },
+    {
+      hospitalName: "Regional Hospital",
+      doctorName: "Dr. White",
+      diseaseName: "Back Pain",
+      createdDate: "2024-09-18",
+      medicineName: "Diclofenac",
+      strength: "50mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Twice daily",
+      gender: "Male",
+      patientName: "David Wilson",
+      address: "202 Cedar St, Springfield",
+      age: 50,
+      testReportName: "Back Pain Test",
+      reportDate: "2024-09-18",
+    },
+    {
+      hospitalName: "City Hospital",
+      doctorName: "Dr. Smith",
+      diseaseName: "Flu",
+      createdDate: "2024-10-01",
+      medicineName: "Paracetamol",
+      strength: "500mg",
+      dose: "2 tablets",
+      duration: "5 days",
+      whenToTake: "After meals",
+      gender: "Male",
+      patientName: "John Doe",
+      address: "123 Main St, Springfield",
+      age: 35,
+      testReportName: "Flu Test",
+      reportDate: "2024-10-01",
+    },
+    {
+      hospitalName: "General Hospital",
+      doctorName: "Dr. Johnson",
+      diseaseName: "Cold",
+      createdDate: "2024-09-28",
+      medicineName: "Cough Syrup",
+      strength: "100ml",
+      dose: "10ml",
+      duration: "7 days",
+      whenToTake: "bedtime",
+      gender: "Female",
+      patientName: "Jane Smith",
+      address: "456 Elm St, Springfield",
+      age: 28,
+      testReportName: "Cold Test",
+      reportDate: "2024-09-28",
+    },
+    {
+      hospitalName: "Health Center",
+      doctorName: "Dr. Lee",
+      diseaseName: "Allergy",
+      createdDate: "2024-09-25",
+      medicineName: "Cetirizine",
+      strength: "10mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Once daily",
+      gender: "Male",
+      patientName: "Michael Brown",
+      address: "789 Oak St, Springfield",
+      age: 42,
+      testReportName: "Allergy Test",
+      reportDate: "2024-09-25",
+    },
+    {
+      hospitalName: "Community Hospital",
+      doctorName: "Dr. Brown",
+      diseaseName: "Headache",
+      createdDate: "2024-09-20",
+      medicineName: "Ibuprofen",
+      strength: "400mg",
+      dose: "1 tablet",
+      duration: "3 days",
+      whenToTake: "After meals",
+      gender: "Female",
+      patientName: "Emily Davis",
+      address: "101 Pine St, Springfield",
+      age: 30,
+      testReportName: "Headache Test",
+      reportDate: "2024-09-20",
+    },
+    {
+      hospitalName: "Regional Hospital",
+      doctorName: "Dr. White",
+      diseaseName: "Back Pain",
+      createdDate: "2024-09-18",
+      medicineName: "Diclofenac",
+      strength: "50mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Twice daily",
+      gender: "Male",
+      patientName: "David Wilson",
+      address: "202 Cedar St, Springfield",
+      age: 50,
+      testReportName: "Back Pain Test",
+      reportDate: "2024-09-18",
+    },
+    {
+      hospitalName: "City Hospital",
+      doctorName: "Dr. Smith",
+      diseaseName: "Flu",
+      createdDate: "2024-10-01",
+      medicineName: "Paracetamol",
+      strength: "500mg",
+      dose: "2 tablets",
+      duration: "5 days",
+      whenToTake: "After meals",
+      gender: "Male",
+      patientName: "John Doe",
+      address: "123 Main St, Springfield",
+      age: 35,
+      testReportName: "Flu Test",
+      reportDate: "2024-10-01",
+    },
+    {
+      hospitalName: "General Hospital",
+      doctorName: "Dr. Johnson",
+      diseaseName: "Cold",
+      createdDate: "2024-09-28",
+      medicineName: "Cough Syrup",
+      strength: "100ml",
+      dose: "10ml",
+      duration: "7 days",
+      whenToTake: "bedtime",
+      gender: "Female",
+      patientName: "Jane Smith",
+      address: "456 Elm St, Springfield",
+      age: 28,
+      testReportName: "Cold Test",
+      reportDate: "2024-09-28",
+    },
+    {
+      hospitalName: "Health Center",
+      doctorName: "Dr. Lee",
+      diseaseName: "Allergy",
+      createdDate: "2024-09-25",
+      medicineName: "Cetirizine",
+      strength: "10mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Once daily",
+      gender: "Male",
+      patientName: "Michael Brown",
+      address: "789 Oak St, Springfield",
+      age: 42,
+      testReportName: "Allergy Test",
+      reportDate: "2024-09-25",
+    },
+    {
+      hospitalName: "Community Hospital",
+      doctorName: "Dr. Brown",
+      diseaseName: "Headache",
+      createdDate: "2024-09-20",
+      medicineName: "Ibuprofen",
+      strength: "400mg",
+      dose: "1 tablet",
+      duration: "3 days",
+      whenToTake: "After meals",
+      gender: "Female",
+      patientName: "Emily Davis",
+      address: "101 Pine St, Springfield",
+      age: 30,
+      testReportName: "Headache Test",
+      reportDate: "2024-09-20",
+    },
+    {
+      hospitalName: "Regional Hospital",
+      doctorName: "Dr. White",
+      diseaseName: "Back Pain",
+      createdDate: "2024-09-18",
+      medicineName: "Diclofenac",
+      strength: "50mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Twice daily",
+      gender: "Male",
+      patientName: "David Wilson",
+      address: "202 Cedar St, Springfield",
+      age: 50,
+      testReportName: "Back Pain Test",
+      reportDate: "2024-09-18",
+    },
+    {
+      hospitalName: "City Hospital",
+      doctorName: "Dr. Smith",
+      diseaseName: "Flu",
+      createdDate: "2024-10-01",
+      medicineName: "Paracetamol",
+      strength: "500mg",
+      dose: "2 tablets",
+      duration: "5 days",
+      whenToTake: "After meals",
+      gender: "Male",
+      patientName: "John Doe",
+      address: "123 Main St, Springfield",
+      age: 35,
+      testReportName: "Flu Test",
+      reportDate: "2024-10-01",
+    },
+    {
+      hospitalName: "General Hospital",
+      doctorName: "Dr. Johnson",
+      diseaseName: "Cold",
+      createdDate: "2024-09-28",
+      medicineName: "Cough Syrup",
+      strength: "100ml",
+      dose: "10ml",
+      duration: "7 days",
+      whenToTake: "bedtime",
+      gender: "Female",
+      patientName: "Jane Smith",
+      address: "456 Elm St, Springfield",
+      age: 28,
+      testReportName: "Cold Test",
+      reportDate: "2024-09-28",
+    },
+    {
+      hospitalName: "Health Center",
+      doctorName: "Dr. Lee",
+      diseaseName: "Allergy",
+      createdDate: "2024-09-25",
+      medicineName: "Cetirizine",
+      strength: "10mg",
+      dose: "1 tablet",
+      duration: "5 days",
+      whenToTake: "Once daily",
+      gender: "Male",
+      patientName: "Michael Brown",
+      address: "789 Oak St, Springfield",
+      age: 42,
+      testReportName: "Allergy Test",
+      reportDate: "2024-09-25",
+    },
   ];
 
   const [isSearchVisible, setSearchVisible] = useState(false);
@@ -113,38 +420,42 @@ const TestReport = () => {
     <div className="container mx-auto p-4">
       <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
         <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-          <h1 className="text-xl font-semibold mb-2 md:mb-0">Test Report</h1>
+          <h1 className="text-[#030229] text-[26px] font-bold font-semibold mb-2 md:mb-0">Test Report</h1>
         </div>
 
-        <div className="overflow-y-auto" style={{ height: "550px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="overflow-y-auto pt-4" style={{ height: "720px" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {prescriptionData.map((val, index) => (
               <div
                 key={index}
                 className="w-full rounded-lg bg-white border border-gray-200 shadow-md"
               >
                 <div className="flex justify-between items-center py-2 bg-gray-100 px-3">
-                  <h6 className="text-md font-semibold">{val.doctorName}</h6>
+                  <h6 className="text-[#030229] text-[18px] font-semibold">{val.doctorName}</h6>
                   <button
                     onClick={() => handleShowModal(val)}
-                    className="w-7 h-7 bg-white rounded-lg"
+                    className="w-7 h-7 text-[#0EABEB] flex align-center justify-center bg-white rounded-lg"
                   >
-                    <i className="fa-solid fa-eye text-gray-500 hover:text-blue-500" />
+                   <FaEye />
                   </button>
                 </div>
-                <div className="flex justify-between items-center px-3">
-                  <p className="font-semibold">Disease Name</p>
-                  <span className="text-sm">{val.diseaseName}</span>
-                </div>
-                <div className="flex justify-between items-center px-3">
-                  <p className="font-semibold">Test Report Name</p>
-                  <span className="text-sm">{val.testReportName}</span>
+
+                <div className="p-3">
+                  <div className="flex justify-between items-center">
+                    <p className="text-[16px] text-[#818194] font-normal">Disease Name</p>
+                    <span className="text-[#4F4F4F] text-[16] font-bold	">{val.diseaseName}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[16px] text-[#818194] font-normal">Test Report Name</p>
+                    <span className="text-[#4F4F4F] text-[16] font-bold	">{val.testReportName}</span>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <p className="text-[16px] text-[#818194] font-normal">Report Date</p>
+                    <span className="text-[#4F4F4F] text-[16] font-bold	">{val.reportDate}</span>
+                  </div>
                 </div>
 
-                <div className="flex justify-between items-center px-3">
-                  <p className="font-semibold">Report Date</p>
-                  <span className="text-sm">{val.reportDate}</span>
-                </div>
               </div>
             ))}
           </div>
