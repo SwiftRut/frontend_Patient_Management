@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../style.css";
 import { FaEye } from "react-icons/fa";
+import signature from "../../../assets/signature.svg"
+import { MdCancel } from "react-icons/md";
 
 const Prescriptions = () => {
   // Sample data for prescriptions
@@ -380,110 +382,101 @@ const Prescriptions = () => {
             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md md:max-w-xl relative">
               {" "}
               {/* Responsive width */}
-              <div className="modal-header p-4 border-b">
-                <h5 className="modal-title text-lg font-bold">Prescription</h5>
+              <div className="modal-header p-4">
+                <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Prescription</h5>
                 <button
                   type="button"
-                  className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
+                  className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex align-center justify-center"
                   onClick={handleCloseModal}
                 >
-                  &times;
+                  <MdCancel />
                 </button>
               </div>
 
-              <div className="modal-body p-3 mx-3 mb-3">
-                <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-3 border border-gray-200">
-                  <div className="flex justify-between items-center border-b border-dashed">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <img src="./image/Group 1000005871.png" alt="" className="w-32 md:w-40" />{" "}
-                        {/* Responsive image size */}
+              <div className="modal-body p-4 pt-0">
+                <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200">
+                  <div className="top bg-gray-100 rounded p-4">
+                    <div className="head flex justify-between align-center ">
+                      <div className="logo">
+                        <img src="/image/bill-logo.png" alt="" />
+                      </div>
+                      <div className="name">
+                        <p className="text-[24px] text-[#0EABEB] font-bold">Dr. Bharat Patel</p>
+                        <span className="text-[14px] text-[#818194] font-semibold	">Obstetrics and Gynecology</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <h2 className="text-xl font-bold text-text-color">Dr. Bharat Patel</h2>
-                      <p className="text-gray-600 text-sm">Obstetrics and Gynecology</p>
+
+                    <div className="mt-4">
+                      <div className="details text-sm">
+                        <div className="flex align-center justify-between pb-2">
+                          <p className="text-[16px] text-[#141414] font-semibold">Patient Name: <span className="text-[14px] text-[#818194] font-semibold">patientName</span></p>
+                          <p className="text-[16px] text-[#141414] font-semibold">Prescription Date: <span className="text-[14px] text-[#818194] font-semibold">prescriptionDate</span></p>
+                        </div>
+                        <div className="flex align-center justify-between pb-2">
+                          <p className="text-[16px] text-[#141414] font-semibold">Gender: <span className="text-[14px] text-[#818194] font-semibold">gender</span></p>
+                          <p className="w-[50%] text-[16px] text-[#141414] font-semibold">Age: <span className="text-[14px] text-[#818194] font-semibold">age</span></p>
+                        </div>
+                        <p className="text-[16px] text-[#141414] font-semibold">Address: <span className="text-[14px] text-[#818194] font-semibold">addresssdkjdj Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, laudantium?</span></p>
+                      </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
-                    {" "}
-                    {/* Responsive grid layout */}
-                    <div>
-                      <p>
-                        <span className="font-semibold">Hospital Name</span> : Medical Center
-                      </p>
-                      <p>
-                        <span className="font-semibold">Patient Name</span> : Alabtrao Bhajirao
-                      </p>
-                      <p>
-                        <span className="font-semibold">Gender</span> : Male
-                      </p>
-                    </div>
-                    <div className="border-l border-dashed pl-4">
-                      <p>
-                        <span className="font-semibold">Prescription Date</span> : 2 Jan, 2022
-                      </p>
-                      <p>
-                        <span className="font-semibold">Age</span> : 36 Years
-                      </p>
-                    </div>
-                  </div>
-                  <p className="font-semibold">
-                    Address:{" "}
-                    <span className="text-sm font-normal">
-                      B-105 Virat Bungalows, Punagam Motavarocha Jamnagar.
-                    </span>
-                  </p>
-                </div>
-                <table className="table mt-3 rounded-lg w-full">
-                  {" "}
-                  {/* Full-width table */}
-                  <thead className="table-light bg-gray-100">
-                    <tr>
-                      <th>Medicine Name</th>
-                      <th>Strength</th>
-                      <th>Dose</th>
-                      <th>Duration</th>
-                      <th>When to Take</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {prescriptionData.map((val, index) => (
-                      <tr key={index}>
-                        <td>{val.medicineName}</td>
-                        <td>{val.strength}</td>
-                        <td>{val.dose}</td>
-                        <td>
-                          <button className="px-2 py-1 bg-button-bg rounded-full text-green-700">
-                            {val.duration}
-                          </button>
-                        </td>
-                        <td>
-                          <button className="px-2 py-1 bg-btn-color rounded-full text-blue-950">
-                            {val.whenToTake}
-                          </button>
-                        </td>
+
+                  <table className="w-[100%] mt-4 table-data">
+                    <thead className="bg-gray-100">
+                      <tr>
+                        <th className="text-[#030229] text-[14px] font-semibold	p-3">Medicine Name</th>
+                        <th className="text-[#030229] text-[14px] font-semibold	p-3">Strength</th>
+                        <th className="text-[#030229] text-[14px] font-semibold	p-3">Dose</th>
+                        <th className="text-[#030229] text-[14px] font-semibold	p-3">Duration</th>
+                        <th className="text-[#030229] text-[14px] font-semibold	p-3">When to Take</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div>
-                  <h6>Additional Note</h6>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                    Ipsum has been the industry's standard dummy text ever since the
-                  </p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <img src="./image/Rectangle 20611.png" alt="" className="w-16" />{" "}
-                    {/* Responsive image size */}
-                    <h6 className="text-gray-400 font-medium">Doctor Signature</h6>
-                    <hr />
+                    </thead>
+                    <tbody>
+                      <tr className="text-center">
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
+                        <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                        <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
+                      </tr>
+
+                      <tr className="text-center">
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
+                        <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
+                        <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                      </tr>
+
+                      <tr className="text-center">
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Medicine Name</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Strength</td>
+                        <td className=" text-[#141414] text-[16px] font-semibold	py-2 border-b">Dose</td>
+                        <td className='duration text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>Duration</span></td>
+                        <td className='take text-[#141414] text-[16px] font-semibold	py-2 border-b'><span>When to Take</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div className="mt-4 pt-3">
+                    <h3 className="font-bold">Additional Note:</h3>
+                    <p>prescriptionData.additionalNote</p>
                   </div>
-                  <button className="px-4 py-2 bg-btn-bg rounded-md text-white">
-                    <i className="fa-solid fa-file-arrow-down pe-1"></i> Download
-                  </button>
+
+                  <div className="mt-4 flex justify-between align-center">
+
+                    <div className="sign border-b pb-2">
+                      <div className=" w-32 mt-4">
+                        <img src={signature} alt="Signature" />
+                      </div>
+                      <p>Doctor Signature</p>
+                    </div>
+
+                    <div className="download">
+                      <button className="text-[white] text-[18px] bg-[#0EABEB] font-semibold py-[8px] px-[20px] rounded-xl">Download</button>
+                    </div>
+
+                  </div>
                 </div>
               </div>
 
