@@ -230,6 +230,7 @@ export const GlobalProvider = ({ children }) => {
     try{
       console.log("delteing appointment......");
       const response = await apiService.DeleteAppointment(id);
+      getAllAppointments();
       console.log(response.data);
     }catch (error) {
       console.log(error);

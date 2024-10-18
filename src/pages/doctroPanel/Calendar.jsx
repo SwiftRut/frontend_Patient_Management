@@ -4,12 +4,12 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
-import AppointmentModal from "./AppointmentModal";
 import RescheduleModal from "./RescheduleModal";
+import AppointmentModal from "./AppointmentModal";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData }) => {
+const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
@@ -104,7 +104,6 @@ const Calendar = ({ filterData }) => {
         onClose={handleCloseModal}
         onBookAppointment={handleBookAppointment}
         selectedSlot={selectedSlot}
-        filterData={filterData}
       />
       <RescheduleModal
         isOpen={isRescheduleModalOpen}
