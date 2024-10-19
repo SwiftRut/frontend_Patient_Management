@@ -5,93 +5,18 @@ import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
+import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 
-const timeOptions = [
-  "08:00",
-  "08:30",
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "12:00",
-  "12:30",
-  "13:00",
-  "13:30",
-  "14:00",
-  "14:30",
-  "15:00",
-  "15:30",
-  "16:00",
-  "16:30",
-  "17:00",
-  "17:30",
-  "18:00",
-  "18:30",
-  "19:00",
-  "19:30",
-  "20:00",
-  "20:30",
-  "21:00",
-  "21:30",
-];
-
-const countryCodes = [
-  { code: "+1", country: "USA" },
-  { code: "+91", country: "India" },
-  { code: "+44", country: "UK" },
-  { code: "+61", country: "Australia" },
-  { code: "+49", country: "Germany" },
-];
 const DoctorAdd = () => {
   const navigate = useNavigate();
-  
-
-  const { getAllHospitals, allHospitals, createHospital } = useGlobal();
+  const { getAllHospitals, allHospitals } = useGlobal();
 
   const [signaturePreview, setSignaturePreview] = useState(null);
   const [profilePicturePreview, setProfilePicturePreview] = useState(null);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    qualification: "",
-    gender: "",
-    speciality: "",
-    workOnStart: "",
-    workingTimeStart: "",
-    checkUpTimeStart: "",
-    breakTimeStart: "",
-    experience: "",
-    phone: "",
-    countryCode: "+1",
-    age: "",
-    email: "",
-    country: "",
-    state: "",
-    city: "",
-    zipCode: "",
-    doctorAddress: "",
-    description: "",
-    onlineConsultationRate: "",
-    currentHospital: "",
-    hospitalName: "",
-    hospitalAddress: "",
-    worksiteLink: "",
-    emergencyContactNo: "",
-    signature: null,
-    profilePicture: null,
-    password: "",
-    confirmPassword: "",
-    hospital: "",
-  });
-  const fetchData = async () => {
-    await getAllHospitals();
-  };
-  console.log(allHospitals?.find((item) => item._id === formData.hospital)?.name);
+  const [formData, setFormData] = useState(DoctorFormData);
 
   useEffect(() => {
-    fetchData();
+    getAllHospitals();
   }, []);
 
   const handleChange = (e) => {
@@ -102,50 +27,18 @@ const DoctorAdd = () => {
     });
   };
 
-  const handleFileChange = (e, fileType) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.type !== "image/png" && file.type !== "image/jpeg") {
-        alert("Please upload a PNG or JPEG file.");
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size should not exceed 5MB.");
-        return;
-      }
-
-      setFormData((prevData) => ({
-        ...prevData,
-        [fileType]: file,
-      }));
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (fileType === "signature") {
-          setSignaturePreview(reader.result);
-        } else if (fileType === "profilePicture") {
-          setProfilePicturePreview(reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  ``;
-
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
 
-    // Validate the file
     if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
       setFormData((prevData) => ({
         ...prevData,
-        profilePicture: file, // store the file itself
+        profilePicture: file,
       }));
 
-      // Create a preview for the image
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfilePicturePreview(reader.result); // Set the preview image URL
+        setProfilePicturePreview(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
@@ -156,14 +49,12 @@ const DoctorAdd = () => {
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
 
-    // Validate the file
     if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
       setFormData((prevData) => ({
         ...prevData,
         signature: file,
       }));
 
-      // Create a preview for the signature image
       const reader = new FileReader();
       reader.onloadend = () => {
         setSignaturePreview(reader.result);
@@ -373,7 +264,7 @@ const DoctorAdd = () => {
                                 onChange={handleChange}
                               >
                                 <option value="">Start Time</option>
-                                {timeOptions.map((time, index) => (
+                                {timeOptions?.map((time, index) => (
                                   <option key={index} value={time}>
                                     {time}
                                   </option>
