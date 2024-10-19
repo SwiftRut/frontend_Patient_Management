@@ -4,50 +4,40 @@ import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { DoctorFormData } from "./constants.js";
+import { doctorEditFormFields, doctorEditFormHospitalFields, DoctorFormData } from "./constants.js";
+import { useDoctor } from "../../hooks/useDoctor.jsx";
+
+
+//TODO: Signutrue is not showing up while editing
+//TODO: Hospital Id with help of the select hospital field is not added here
 
 const DoctorEdit = () => {
-  const { doctorId } = useParams(); // Retrieve doctorId from URL parameters
+  const { doctorId } = useParams();
   const navigate = useNavigate();
-  const [doctorData, setDoctorData] = useState(DoctorFormData);
-  console.log(doctorData)
-  const [signatureFile, setSignatureFile] = useState(null); // State for signature file
-  const [photoFile, setPhotoFile] = useState(null); // State for photo file
+  const [signatureFile, setSignatureFile] = useState(null);
+  const [photoFile, setPhotoFile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { getDoctorById} = useDoctor();
+  const [doctorData, setDoctorData] = useState(DoctorFormData);
 
-  useEffect(() => {
-    const fetchDoctor = async () => {
-      try {
-        if (doctorId) {
-          const response = await apiService.GetDoctorById(doctorId);
-          if (response.data.data) {
-            setDoctorData(response.data.data);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching doctor data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDoctor();
-  }, [doctorId]);
+  useEffect(async () => {
+    setDoctorData(await getDoctorById(doctorId));
+    setLoading(false);
+ }, [doctorId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Upload files to the server and get URLs
       let updatedDoctorData = { ...doctorData };
 
       if (signatureFile) {
-        const signatureUrl = await uploadFile(signatureFile); // Function to upload file and get URL
-        updatedDoctorData.signature = signatureUrl; // Set the signature URL
+        const signatureUrl = await uploadFile(signatureFile);
+        updatedDoctorData.signature = signatureUrl; 
       }
 
       if (photoFile) {
-        const photoUrl = await uploadFile(photoFile); // Function to upload file and get URL
-        updatedDoctorData.avatar = photoUrl; // Set the photo URL
+        const photoUrl = await uploadFile(photoFile); 
+        updatedDoctorData.avatar = photoUrl;
       }
 
       const response = await apiService.EditDoctor(doctorId, updatedDoctorData);
@@ -61,19 +51,17 @@ const DoctorEdit = () => {
   };
 
   const uploadFile = async (file) => {
-    // Implement your file upload logic here
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await apiService.uploadFile(formData); // Assuming you have an API endpoint for file uploads
-    return response.data.url; // Return the URL of the uploaded file
+    const response = await apiService.uploadFile(formData); 
+    return response.data.url;
   };
 
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSignatureFile(file);
-      // Preview signature image
       setDoctorData({ ...doctorData, signature: URL.createObjectURL(file) });
     }
   };
@@ -82,7 +70,6 @@ const DoctorEdit = () => {
     const file = e.target.files[0];
     if (file) {
       setPhotoFile(file);
-      // Preview photo image
       setDoctorData({ ...doctorData, avatar: URL.createObjectURL(file) });
     }
   };
@@ -146,27 +133,7 @@ const DoctorEdit = () => {
                   <div className="right">
                     <div className="form-box">
                       <form className="flex">
-                        {[
-                          { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
-                          { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
-                          { label: "Gender", name: "gender", type: "select", options: ["", "male", "female", "other"], value: doctorData.gender },
-                          { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
-                          { label: "Work On", name: "workingTime", type: "text", placeholder: "Enter Work On", value: doctorData.workingTime },
-                          { label: "Check Up Time", name: "patientCheckupTime", type: "text", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime },
-                          { label: "Break Time", name: "breakTime", type: "text", placeholder: "Enter Break Time", value: doctorData.breakTime },
-                          { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
-                          { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "select", options: ["1", "2"], value: "" },
-                          { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
-                          { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { label: "Country", name: "country", type: "text", placeholder: "Enter Country", value: doctorData.country },
-                          { label: "State", name: "state", type: "text", placeholder: "Enter State", value: doctorData.state },
-                          { label: "City", name: "city", type: "text", placeholder: "Enter City", value: doctorData.city },
-                          { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
-                          { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
-                          { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
-                          { label: "Online Consultation Rate", name: "onlineConsultationRate", type: "text", placeholder: "Enter Consultation Rate", value: doctorData.onlineConsultationRate },
-                        ].map((field, index) => (
+                        {doctorEditFormFields?.map((field, index) => (
                           <div className="input-box" key={index}>
                             <div className="label">{field.label}</div>
                             {field.type === 'select' ? (
@@ -179,7 +146,7 @@ const DoctorEdit = () => {
                               <input
                                 type={field.type}
                                 name={field.name}
-                                value={field.value}
+                                value={doctorData[field.name]}
                                 onChange={handleInputChange}
                                 placeholder={field.placeholder}
                               />
@@ -201,19 +168,13 @@ const DoctorEdit = () => {
                 <div className="details flex">
                   <div className="form-box">
                     <form action="" className="flex">
-                      {[
-                        { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
-                        { label: "Hospital Name", name: "hospitalName", type: "text", placeholder: "Enter Hospital Name", value: doctorData.hospitalName },
-                        { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
-                        { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
-                        { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
-                      ].map((field, index) => (
+                      {doctorEditFormHospitalFields?.map((field, index) => (
                         <div className="input-box" key={index}>
                           <div className="label">{field.label}</div>
                           <input
                             type={field.type}
                             name={field.name}
-                            value={field.value}
+                            value={doctorData[field.name]}
                             onChange={handleInputChange}
                             placeholder={field.placeholder}
                           />

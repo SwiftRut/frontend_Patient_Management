@@ -5,6 +5,7 @@ export const DoctorContext = createContext();
 
 export const DoctorProvider = ({ children }) => {
   const [allDoctors, setAllDoctors] = useState([]);
+  const [doctorData, setDoctorData] = useState({});
   const getAllDoctors = async () => {
     try {
       const response = await apiService.GetAllDoctors();
@@ -16,8 +17,18 @@ export const DoctorProvider = ({ children }) => {
       throw error;
     }
   }
+  const getDoctorById = async (id) => {
+    try {
+      const response = await apiService.GetDoctorById(id);
+      setDoctorData(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
   return (
-    <DoctorContext.Provider value={{getAllDoctors, allDoctors}}>
+    <DoctorContext.Provider value={{getAllDoctors, allDoctors, getDoctorById, doctorData }}>
       {children}
     </DoctorContext.Provider>
   );

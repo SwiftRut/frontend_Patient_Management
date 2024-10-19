@@ -31,7 +31,6 @@ const Onsite = ({ selectedDoctor, setShowOnsite,setOpenModel }) => {
 
   const handleBack = () => {
     // navigate("/doctorManagement");
-    setOpenModel(false)
     setShowOnsite(false);
   };
 
