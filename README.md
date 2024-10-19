@@ -68,8 +68,8 @@ The Patient Management System is a comprehensive healthcare platform designed to
 
 ### Prerequisites
 
-- Node.js (version X.X.X or higher)
-- npm (version X.X.X or higher)
+- Node.js
+- npm
 
 ### Installation
 
