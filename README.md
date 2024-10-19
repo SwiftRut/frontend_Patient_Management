@@ -104,7 +104,7 @@ The Patient Management System is a comprehensive healthcare platform designed to
    cd backend
    npm run dev
    ```
-   This will start the backend server, typically at \`http://localhost:3000\` (or your specified port).
+   This will start the backend server, typically at \`http://localhost:8001\` (or your specified port).
 
 3. Open your browser and navigate to \`http://localhost:5173\` to access the application.
 
