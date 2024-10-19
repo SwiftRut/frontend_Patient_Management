@@ -1,21 +1,24 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
+  // State variables
   const [allHospitals, setAllHospitals] = useState([]);
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
-  const [allAppointements, setAllAppointements] = useState([]);
-  useEffect(() => { }, []);
+  const [allAppointments, setAllAppointments] = useState([]);
+
+  // Hospital Management
   const getAllHospitals = async () => {
     try {
       const response = await apiService.GetAllHospitals();
       setAllHospitals(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching hospitals:", error);
       throw error;
     }
   };
@@ -23,91 +26,94 @@ export const GlobalProvider = ({ children }) => {
   const createHospital = async (userData) => {
     try {
       const response = await apiService.CreateHospital(userData);
-      console.log(response);
+      console.log("Hospital created:", response);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error creating hospital:", error);
       throw error;
     }
   };
+
+  // Admin Profile Management
   const getAdminProfile = async (id) => {
     try {
       const response = await apiService.GetAdminProfile(id);
       setUserData(response.data);
-      return response.data;
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching admin profile:", error);
       throw error;
     }
   };
+
   const editAdminProfile = async (id, userData) => {
     try {
       const response = await apiService.EditAdminProfile(id, userData);
       setUserData(response.data.data);
     } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  };
-  const editPatientProfile = async (id, userData) => {
-    try {
-      const response = await apiService.EditPatientProfile(id, userData);
-      setUserData(response.data.data);
-    } catch (error) {
-      console.log(error);
+      console.log("Error editing admin profile:", error);
       throw error;
     }
   };
 
+  // Patient Profile Management
   const getPatientProfile = async (id) => {
     try {
       const response = await apiService.GetPatientProfile(id);
       setUserData(response.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching patient profile:", error);
+      throw error;
+    }
+  };
+
+  const editPatientProfile = async (id, userData) => {
+    try {
+      const response = await apiService.EditPatientProfile(id, userData);
+      setUserData(response.data.data);
+    } catch (error) {
+      console.log("Error editing patient profile:", error);
+      throw error;
+    }
+  };
+
+  // Doctor Profile Management
+  const getDoctorProfile = async (id) => {
+    try {
+      const response = await apiService.GetDoctorById(id);
+      setUserData(response.data.data);
+      console.log("Doctor profile fetched:", response.data.data);
+    } catch (error) {
+      console.log("Error fetching doctor profile:", error);
       throw error;
     }
   };
 
   const editDoctorProfile = async (id, userData) => {
-    console.log("inside eding doctor profile", userData);
     try {
       const response = await apiService.EditDoctor(id, userData);
       setUserData(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error editing doctor profile:", error);
       throw error;
     }
   };
 
-  const getDoctorProfile = async (id) => {
-    try {
-      const response = await apiService.GetDoctorById(id);
-      setUserData(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  };
+  // Bill Management
   const createBill = async (userData) => {
-    console.log(userData);
     try {
       const response = await apiService.CreateBill(userData);
-      console.log(response);
       setBill(response.data.data);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error creating bill:", error);
       throw error;
     }
   };
+
   const updateBill = async (userData, id) => {
-    console.log(userData);
     try {
       const response = await apiService.EditBill(id, userData);
-      console.log(response);
       setBill(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error updating bill:", error);
       throw error;
     }
   };
@@ -117,127 +123,144 @@ export const GlobalProvider = ({ children }) => {
       const response = await apiService.GetBills();
       setAllBills(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching bills:", error);
       throw error;
     }
   };
+
   const getBillById = async (id) => {
     try {
       const response = await apiService.GetBillById(id);
-      console.log(response);
       setBill(response.data.data);
-      return response.data.data;
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching bill by ID:", error);
       throw error;
     }
   };
 
   const deleteBill = async (id) => {
-    console.log(id);
     try {
-      const response = await apiService.DeleteBill(id);
-      console.log(response);
+      await apiService.DeleteBill(id);
     } catch (error) {
-      console.log(error);
+      console.log("Error deleting bill:", error);
       throw error;
     }
   };
+
+  // Appointment Management
   const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
-      console.log(response, "response");
+      setAllAppointments(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching appointments:", error);
       throw error;
     }
   };
+
   const getAppointmentById = async (id) => {
     try {
       const response = await apiService.GetAppointmentById(id);
-      console.log(response);
+      console.log("Fetched appointment:", response);
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching appointment by ID:", error);
       throw error;
     }
   };
 
   const editAppointment = async (id, userData) => {
     try {
-      const response = await apiService.EditAppointment(id, userData);
-      console.log(response);
+      await apiService.EditAppointment(id, userData);
     } catch (error) {
-      console.log(error);
+      console.log("Error editing appointment:", error);
+      throw error;
     }
-  }
+  };
+
+  // Chat Management
   const getChatHistory = async (doctorId, patientId) => {
     try {
       const response = await apiService.GetChatHistory(doctorId, patientId);
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching chat history:", error);
       throw error;
     }
-  }
+  };
+
   const getDoctorContacts = async (patientId) => {
     try {
-      const response = await apiService.GetDoctorContacts(
-        patientId);
-      console.log(response.data, "<< doctor contats");
+      const response = await apiService.GetDoctorContacts(patientId);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching doctor contacts:", error);
       throw error;
     }
-  }
+  };
+
   const getPatientContacts = async (doctorId) => {
     try {
-      const response = await apiService.GetPatientContacts(
-        doctorId);
-      console.log(response.data, "<< patient contats");
+      const response = await apiService.GetPatientContacts(doctorId);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log("Error fetching patient contacts:", error);
       throw error;
     }
-  }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
+        // Hospital
         allHospitals,
-        userData,
-        setUserData,
         setAllHospitals,
         getAllHospitals,
         createHospital,
+
+        // User Data
+        userData,
+        setUserData,
+
+        // Admin
         getAdminProfile,
         editAdminProfile,
+
+        // Patient
         getPatientProfile,
         editPatientProfile,
+
+        // Doctor
         getDoctorProfile,
         editDoctorProfile,
-        updateBill,
-        createBill,
-        getDoctorContacts,
-        getPatientContacts,
+
+        // Bill
         bill,
         setBill,
         allBills,
         getBills,
         getBillById,
+        createBill,
+        updateBill,
         deleteBill,
-        setAllAppointements,
+
+        // Appointment
+        allAppointments,
+        setAllAppointments,
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-        allAppointements, getChatHistory
+
+        // Chat
+        getChatHistory,
+        getDoctorContacts,
+        getPatientContacts,
       }}
     >
       {children}
     </GlobalContext.Provider>
   );
 };
+
 GlobalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
