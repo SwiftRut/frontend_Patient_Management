@@ -173,10 +173,10 @@ const Appointment = () => {
                       {allAppointment.map((val, index) => (
                         <div
                           key={index}
-                          class="w-full mx-auto bg-white rounded-lg shadow-md"
+                          className="w-full mx-auto bg-white rounded-lg shadow-md"
                         >
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
-                            <h2 class="text-lg font-semibold text-foreground">
+                            <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
                             <div
@@ -189,52 +189,52 @@ const Appointment = () => {
                             </div>
                           </div>
                           <div className="p-3 border">
-                            <div class="flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Type
                               </span>
-                              <span class="text-sm font-medium text-[#FFC313]">
+                              <span className="text-sm font-medium text-[#FFC313]">
                                 {val.appointmentType}
                               </span>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Hospital Name
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.hospitalName}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Date
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentDate}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Time
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentTime}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Patient Issue
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.patientIssue}
                               </p>
                             </div>
-                            <div class="flex justify-between mt-4">
-                              <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
+                            <div className="flex justify-between mt-4">
+                              <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
                                 <TbCalendarX className="me-2" />
                                 Cancel
                               </button>
-                              <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
+                              <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
                                 <TbCalendarClock className="me-2" />
                                 Reschedule
                               </button>
@@ -294,10 +294,10 @@ const Appointment = () => {
                       {allAppointment.map((val, index) => (
                         <div
                           key={index}
-                          class="w-full mx-auto bg-white rounded-lg shadow-md"
+                          className="w-full mx-auto bg-white rounded-lg shadow-md"
                         >
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
-                            <h2 class="text-lg font-semibold text-foreground">
+                            <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
                             <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
@@ -305,43 +305,43 @@ const Appointment = () => {
                             </div>
                           </div>
                           <div className="p-3 border">
-                            <div class="flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Type
                               </span>
-                              <span class="text-sm font-medium text-[#FFC313]">
+                              <span className="text-sm font-medium text-[#FFC313]">
                                 {val.appointmentType}
                               </span>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Hospital Name
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.hospitalName}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Date
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentDate}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Time
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentTime}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Patient Issue
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.patientIssue}
                               </p>
                             </div>
@@ -399,10 +399,10 @@ const Appointment = () => {
                       {allAppointment.map((val, index) => (
                         <div
                           key={index}
-                          class="w-full mx-auto bg-white rounded-lg shadow-md"
+                          className="w-full mx-auto bg-white rounded-lg shadow-md"
                         >
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
-                            <h2 class="text-lg font-semibold text-foreground">
+                            <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
                             <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
@@ -410,43 +410,43 @@ const Appointment = () => {
                             </div>
                           </div>
                           <div className="p-3 border">
-                            <div class="flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Type
                               </span>
-                              <span class="text-sm font-medium text-[#FFC313]">
+                              <span className="text-sm font-medium text-[#FFC313]">
                                 {val.appointmentType}
                               </span>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Hospital Name
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.hospitalName}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Date
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentDate}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Time
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentTime}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Patient Issue
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.patientIssue}
                               </p>
                             </div>
@@ -504,10 +504,10 @@ const Appointment = () => {
                       {allAppointment.map((val, index) => (
                         <div
                           key={index}
-                          class="w-full mx-auto bg-white rounded-lg shadow-md"
+                          className="w-full mx-auto bg-white rounded-lg shadow-md"
                         >
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
-                            <h2 class="text-lg font-semibold text-foreground">
+                            <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
                             </h2>
                             <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2">
@@ -515,52 +515,52 @@ const Appointment = () => {
                             </div>
                           </div>
                           <div className="p-3 border">
-                            <div class="flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Type
                               </span>
-                              <span class="text-sm font-medium text-[#FFC313]">
+                              <span className="text-sm font-medium text-[#FFC313]">
                                 {val.appointmentType}
                               </span>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Hospital Name
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.hospitalName}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Date
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentDate}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Appointment Time
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.appointmentTime}
                               </p>
                             </div>
-                            <div class="mt-1 flex items-center justify-between">
-                              <span class="text-base font-normal text-[#818194]">
+                            <div className="mt-1 flex items-center justify-between">
+                              <span className="text-base font-normal text-[#818194]">
                                 Patient Issue
                               </span>
-                              <p class="text-sm font-medium text-[#4F4F4F]">
+                              <p className="text-sm font-medium text-[#4F4F4F]">
                                 {val.patientIssue}
                               </p>
                             </div>
-                            <div class="flex justify-between mt-4">
-                              <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center hover:bg-red-500 hover:text-white transition duration-100">
+                            <div className="flex justify-between mt-4">
+                              <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center hover:bg-red-500 hover:text-white transition duration-100">
                                 <TbCalendarX className="me-2" />
                                 Cancel
                               </button>
-                              <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-100 p-2 rounded-md w-[47%] flex items-center justify-center">
+                              <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-100 p-2 rounded-md w-[47%] flex items-center justify-center">
                                 <TbCalendarClock className="me-2" />
                                 Reschedule
                               </button>
