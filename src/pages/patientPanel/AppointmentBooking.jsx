@@ -4,6 +4,7 @@ import { useDoctor } from "../../hooks/useDoctor";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
+import apiService from "../../services/api";
 
 const AppointmentBooking = () => {
   const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
@@ -17,15 +18,44 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
+  const [appointmentFee, setAppointmentFee] = useState(0);
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
-    console.log("getting all hospitals......")
     getAppointmetnsForPatient(user.id);
+
+    // Load Razorpay script
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
-  // Get unique values for each filter based on allDoctors data
+
+
+  useEffect(() => {
+    if (doctor && appointmentType) {
+      fetchAppointmentFee();
+    }
+  }, [doctor, appointmentType]);
+  console.log(doctor, appointmentType, appointmentFee);
+  const fetchAppointmentFee = async () => {
+    try {
+      const response = await apiService.AppointmentFee(doctor, appointmentType);
+      const data = response.data;
+      console.log(data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<< getting the fees here");
+      setAppointmentFee(data.fee);
+    } catch (error) {
+      console.error("Error fetching appointment fee:", error);
+    }
+  };
+
   const getUniqueValues = (key, filterKey, filterValue) => {
     const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
     return [...new Set(data.map(doctor => doctor[key]))];
@@ -49,25 +79,73 @@ const AppointmentBooking = () => {
     );
   });
 
-  const handleSubmit = async () => {
+  const handlePayment = async () => {
     try {
-      createAppointment(user.id, formData);
+      // Create Razorpay order
+      const orderResponse = await apiService.createRazorpayOrder({
+        amount: appointmentFee * 100, // Razorpay expects amount in paise
+      });
+      const { id: orderId, amount } = orderResponse.data;
+
+      const options = {
+        key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID, // Replace with your actual Razorpay key
+        amount: amount,
+        currency: "INR",
+        name: "Your Hospital Name",
+        description: "Appointment Booking",
+        order_id: orderId,
+        handler: function (response) {
+          handleSubmit(response);
+        },
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      alert("Failed to initiate payment. Please try again.");
+    }
+  };
+
+  const handleSubmit = async (paymentResponse) => {
+    try {
+      const appointmentData = {
+        doctorId: doctor,
+        date: selectedSlot.start,
+        appointmentTime: selectedSlot.start,
+        type: appointmentType,
+        country,
+        state,
+        city,
+        hospitalId: hospital,
+        razorpayPaymentId: paymentResponse.razorpay_payment_id,
+        razorpayOrderId: paymentResponse.razorpay_order_id,
+        razorpaySignature: paymentResponse.razorpay_signature
+      };
+
+      await createAppointment(user.id, appointmentData);
+      // Handle success (e.g., show a success message, redirect, etc.)
+      alert("Appointment booked successfully!");
     } catch (err) {
       console.error(err);
-      throw err;
+      alert("Error booking appointment. Please try again.");
     }
   };
 
   const isAllSelected = () => {
-    return (
-      // specialty &&
-      // country &&
-      // state &&
-      // city &&
-      // hospital &&
-      doctor &&
-      appointmentType
-    );
+    return doctor && appointmentType;
+  };
+
+  const handleSlotSelect = (slotInfo) => {
+    setSelectedSlot(slotInfo);
   };
 
   return (
@@ -77,15 +155,12 @@ const AppointmentBooking = () => {
         <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
           <div className="flex flex-col m-2">
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
-              {/* Specialty Select */}
               <SelectInput
                 label="Specialty"
                 value={specialty}
                 onChange={(e) => setSpecialty(e.target.value)}
                 options={[...new Set(allDoctors.map(doc => doc.speciality))]}
               />
-
-              {/* Country Select */}
               <SelectInput
                 label="Country"
                 value={country}
@@ -98,8 +173,6 @@ const AppointmentBooking = () => {
                 }}
                 options={getUniqueValues("country")}
               />
-
-              {/* State Select */}
               <SelectInput
                 label="State"
                 value={state}
@@ -111,8 +184,6 @@ const AppointmentBooking = () => {
                 }}
                 options={getUniqueValues("state", "country", country)}
               />
-
-              {/* City Select */}
               <SelectInput
                 label="City"
                 value={city}
@@ -123,8 +194,6 @@ const AppointmentBooking = () => {
                 }}
                 options={getUniqueValues("city", "state", state)}
               />
-
-              {/* Hospital Select */}
               <SelectInput
                 label="Hospital"
                 value={hospital}
@@ -134,8 +203,6 @@ const AppointmentBooking = () => {
                 }}
                 options={filteredHospitals.map(hospital => hospital.name)}
               />
-
-              {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
                 value={doctor}
@@ -145,8 +212,6 @@ const AppointmentBooking = () => {
                   label: `Dr. ${doc.name}`,
                 }))}
               />
-
-              {/* Appointment Type Select */}
               <SelectInput
                 label="Appointment Type"
                 value={appointmentType}
@@ -161,24 +226,36 @@ const AppointmentBooking = () => {
               />
             </div>
 
-            {/* Conditionally Render Image and Paragraph */}
             <div className="w-full h-auto border my-2 py-5 rounded-md flex flex-col items-center justify-center">
               {!isAllSelected() ? (
                 <>
                   <img src="./image/Invoice.png" alt="" className="w-60" />
-                  <p className="mt-2 text-center">No Appointment Found Yet</p>
+                  <p className="mt-2 text-center">No Appointment Selected Yet</p>
                 </>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <Calendar filterData={
-                      {hospital, doctor, state, city, country,appointmentType}
-                    }/>
+                    <Calendar 
+                      filterData={{hospital, doctor, state, city, country, appointmentType}}
+                      onSelectSlot={handleSlotSelect}
+                    />
                   </div>
                   <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                 </div>
               )}
             </div>
+
+            {isAllSelected() && (
+              <div className="mt-4">
+                <p className="mb-2">Appointment Fee: ₹{appointmentFee}</p>
+                <button
+                  onClick={handlePayment}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Proceed to Payment
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

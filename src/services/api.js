@@ -78,6 +78,9 @@ const apiService = {
     api.get(`/chat/${doctorId}/${patientId}`),
   GetDoctorContacts: (id) => api.get(`/chat/contacts/patient/${id}`),
   GetPatientContacts: (id) => api.get(`/chat/contacts/doctor/${id}`),
+
+  //Payment
+  AppointmentFee:(doctorId, appointmentType) => api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
 };
 
 export default apiService;
