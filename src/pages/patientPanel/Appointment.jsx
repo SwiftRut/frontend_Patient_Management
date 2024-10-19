@@ -21,16 +21,15 @@ const Appointment = () => {
 
   const filterAppointments = () => {
     let filtered = [];
-    const currentDate = moment();
-    console.log(allAppointements.filter(appointment =>
-      moment(appointment.appointmentDate).isAfter(currentDate)));
+    const currentDate = moment().startOf('day'); // Start of the current day for accurate comparisons
+
     if (activeTab === "scheduled") {
       filtered = allAppointements?.filter(appointment =>
-        moment(appointment.appointmentDate).isAfter(currentDate)
+        moment(appointment.appointmentTime).isAfter(currentDate)
       );
     } else if (activeTab === "previous") {
       filtered = allAppointements?.filter(appointment =>
-        moment(appointment.appointmentDate).isBefore(currentDate)
+        moment(appointment.appointmentTime).isBefore(currentDate)
       );
     } else if (activeTab === "cancel") {
       filtered = allAppointements?.filter(appointment => appointment.status === "canceled");
@@ -38,6 +37,7 @@ const Appointment = () => {
       filtered = allAppointements?.filter(appointment => appointment.status === "pending");
     }
     console.log(filtered);
+    // Set the filtered appointments
     setFilteredAppointments(filtered);
   };
 
@@ -115,7 +115,7 @@ const Appointment = () => {
                         </div>
                         <div className="flex justify-between items-center px-3">
                           <p className="font-light text-gray-600">Appointment Date</p>
-                          <span className="text-sm">{moment(appointment.appointmentDate).format('DD/MM/YYYY')}</span>
+                          <span className="text-sm">{moment(appointment.appointmentTime).format('DD/MM/YYYY')}</span>
                         </div>
                         <div className="flex justify-between items-center px-3">
                           <p className="font-light text-gray-600">Appointment time</p>
