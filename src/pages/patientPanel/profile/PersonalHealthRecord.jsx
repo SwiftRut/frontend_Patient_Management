@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style.css";
 import { NavLink } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaHospital } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
 import signature from "../../../assets/signature.svg"
+import { useAuth } from "../../../hooks/useAuth";
+import apiService from "../../../services/api";
 
 const PersonalHealthRecord = () => {
 
   const [selectedPrescription, setSelectedPrescription] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [patientData, setPatientData] = useState({});
+  const {user} = useAuth();
 
+  useEffect(() => {
+    const fetchPatient = async () => {
+      try {
+        if (user.id) {
+          const response = await apiService.GetPatientProfile(user.id);
+          if (response.data.data) {
+            setPatientData(response.data.data);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching doctor data:", error);
+      }
+    };
 
+    fetchPatient();
+  }, []);
   const handleShowModal = (prescription) => {
     setSelectedPrescription(prescription);
     setShowModal(true);
@@ -39,7 +58,7 @@ const PersonalHealthRecord = () => {
           <div className="flex justify-between align-center">
             <div className="w-[10%] h-full flex justify-center">
               <img
-                src="./image/Ellipse 1101.png"
+                src={patientData.avatar ? `${patientData.avatar}` : null}
                 alt="Patient"
                 className="rounded-full object-cover h-full"
               />
@@ -49,19 +68,19 @@ const PersonalHealthRecord = () => {
               <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
                   <span className="font-medium text-gray-400 text-[17px]">Name:</span>
-                  <p className="text-[#141414] text-[15px] font-normal">Marcus Philips</p>
+                  <p className="text-[#141414] text-[15px] font-normal">{patientData.firstName + " "  + patientData.lastName}</p>
                 </div>
                 <div>
                   <span className="font-medium text-gray-400 text-[17px]">Number:</span>
-                  <p className="text-[#141414] text-[15px] font-normal">99130 44537</p>
+                  <p className="text-[#141414] text-[15px] font-normal">{patientData.phone}</p>
                 </div>
                 <div>
                   <span className="font-medium text-gray-400 text-[17px]">Email:</span>
-                  <p className="text-[#141414] text-[15px] font-normal">John@gmail.com</p>
+                  <p className="text-[#141414] text-[15px] font-normal">{patientData.email}</p>
                 </div>
                 <div>
                   <span className="font-medium text-gray-400 text-[17px]">Gender:</span>
-                  <p className="text-[#141414] text-[15px] font-normal">Male</p>
+                  <p className="text-[#141414] text-[15px] font-normal">{patientData.gender}</p>
                 </div>
                 <div>
                   <span className="font-medium text-gray-400 text-[17px]">DOB:</span>
