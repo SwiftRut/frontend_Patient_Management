@@ -53,7 +53,7 @@ const Login = () => {
       const role = await UniversalLogin(formData);
       if (role) {
         if (role === "admin") {
-          navigate("/")
+          window.location.href = "/";
         }
         else if (role === "patient") {
           navigate("/patient");
