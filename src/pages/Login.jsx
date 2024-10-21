@@ -52,7 +52,10 @@ const Login = () => {
     try {
       const success = await UniversalLogin(formData);
       if (success) {
-        if (user.role === "patient") {
+        if (user.role === "admin") {
+          navigate("/")
+        }
+        else if (user.role === "patient") {
           navigate("/patient");
         } else if (user.role === "doctor") {
           toast.success("doctor login successfully")

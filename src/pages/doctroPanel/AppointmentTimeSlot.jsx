@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import React, { useState, useEffect } from "react";
+import { momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import { useGlobal } from "../../hooks/useGlobal";
+import Calendar from "./Calendar";
 const localizer = momentLocalizer(moment);
-
+  import { useAuth } from "../../hooks/useAuth";
 const AppointmentTimeSlot = () => {
   const [events, setEvents] = useState([
     {
@@ -26,29 +27,21 @@ const AppointmentTimeSlot = () => {
       resource: "Dr. Andrew",
     },
   ]);
+  const {user} = useAuth();
+  const { getAppointmetnsForDoctor } = useGlobal();
+  useEffect(() => {
+    getAppointmetnsForDoctor(user.id);
+  },[]);
 
+  
   const handleSelectEvent = (event) => {
     console.log(`Selected event: ${event.title} at ${event.start}`);
   };
 
   return (
     <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
-      <h3 className="text-lg font-semibold mb-4">Appointment Time Slot</h3>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 600 }}
-        views={["week", "day"]}
-        defaultView="week"
-        popup
-        eventPropGetter={(event) => {
-          const backgroundColor = event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
-          return { style: { backgroundColor } };
-        }}
-        onSelectEvent={handleSelectEvent}
-      />
+      <h3 className="text-lg font-semibold mb-4">Appointment Time Slot doctor</h3>
+      <Calendar/>
     </div>
   );
 };

@@ -14,7 +14,12 @@ import Onsite from "../doctorManagement/Onsite";
 
 const localizer = momentLocalizer(moment);
 
+
 const AppointmentBooking = () => {
+  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
+  const { getAllDoctors, allDoctors } = useDoctor();
+  const { createAppointment } = useGlobal();
+  const { user } = useAuth();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -49,17 +54,135 @@ const AppointmentBooking = () => {
     console.log(`Selected event: ${event.title} at ${event.start}`);
   };
 
-  // Function to check if all selects are filled
-  const isAllSelected = () => {
+  const [appointmentFee, setAppointmentFee] = useState(0);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+
+
+  useEffect(() => {
+    getAllDoctors();
+    getAllHospitals();
+    getAppointmetnsForPatient(user.id);
+
+    // Load Razorpay script
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+
+
+  useEffect(() => {
+    if (doctor && appointmentType) {
+      fetchAppointmentFee();
+    }
+  }, [doctor, appointmentType]);
+  console.log(doctor, appointmentType, appointmentFee);
+  const fetchAppointmentFee = async () => {
+    try {
+      const response = await apiService.AppointmentFee(doctor, appointmentType);
+      const data = response.data;
+      console.log(data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<< getting the fees here");
+      setAppointmentFee(data.fee);
+    } catch (error) {
+      console.error("Error fetching appointment fee:", error);
+    }
+  };
+
+  const getUniqueValues = (key, filterKey, filterValue) => {
+    const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
+    return [...new Set(data.map(doctor => doctor[key]))];
+  };
+
+  const filteredHospitals = allHospitals.filter(hospital => {
     return (
-      specialty &&
-      country &&
-      state &&
-      city &&
-      hospital &&
-      doctor &&
-      appointmentType
+      (!country || hospital.country === country) &&
+      (!state || hospital.state === state) &&
+      (!city || hospital.city === city)
     );
+  });
+
+  const filteredDoctors = allDoctors.filter(doctor => {
+    return (
+      (!specialty || doctor.speciality === specialty) &&
+      (!country || doctor.country === country) &&
+      (!state || doctor.state === state) &&
+      (!city || doctor.city === city) &&
+      (!hospital || doctor.hospitalName === hospital)
+    );
+  });
+
+  const handlePayment = async () => {
+    try {
+      // Create Razorpay order
+      const orderResponse = await apiService.createRazorpayOrder({
+        amount: appointmentFee * 100, // Razorpay expects amount in paise
+      });
+      const { id: orderId, amount } = orderResponse.data;
+
+      const options = {
+        key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID, // Replace with your actual Razorpay key
+        amount: amount,
+        currency: "INR",
+        name: "Your Hospital Name",
+        description: "Appointment Booking",
+        order_id: orderId,
+        handler: function (response) {
+          handleSubmit(response);
+        },
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      alert("Failed to initiate payment. Please try again.");
+    }
+  };
+
+  const handleSubmit = async (paymentResponse) => {
+    try {
+      const appointmentData = {
+        doctorId: doctor,
+        date: selectedSlot.start,
+        appointmentTime: selectedSlot.start,
+        type: appointmentType,
+        country,
+        state,
+        city,
+        hospitalId: hospital,
+        razorpayPaymentId: paymentResponse.razorpay_payment_id,
+        razorpayOrderId: paymentResponse.razorpay_order_id,
+        razorpaySignature: paymentResponse.razorpay_signature
+      };
+
+      await createAppointment(user.id, appointmentData);
+      // Handle success (e.g., show a success message, redirect, etc.)
+      alert("Appointment booked successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Error booking appointment. Please try again.");
+    }
+  };
+
+  const isAllSelected = () => {
+    return doctor && appointmentType;
+  };
+
+  const handleSlotSelect = (slotInfo) => {
+    setSelectedSlot(slotInfo);
   };
 
   const SelectInput = ({ label, value, onChange, options }) => (
@@ -380,6 +503,18 @@ const AppointmentBooking = () => {
                 </div>
               </div>
             </div>
+
+            {isAllSelected() && (
+              <div className="mt-4">
+                <p className="mb-2">Appointment Fee: ₹{appointmentFee}</p>
+                <button
+                  onClick={handlePayment}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Proceed to Payment
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -388,3 +523,4 @@ const AppointmentBooking = () => {
 };
 
 export default AppointmentBooking;
+

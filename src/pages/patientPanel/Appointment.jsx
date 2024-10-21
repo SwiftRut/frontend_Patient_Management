@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
+import moment from 'moment';
+
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
@@ -121,7 +125,7 @@ const Appointment = () => {
                       : "text-gray-500"
                   }`}
                 >
-                  Pending Appointment
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)} Appointment
                 </button>
               </li>
             </ul>
@@ -567,11 +571,33 @@ const Appointment = () => {
                             </div>
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <div className="flex justify-between items-center px-3">
+                          <p className="font-light text-gray-600">Appointment Date</p>
+                          <span className="text-sm">{moment(appointment.appointmentTime).format('DD/MM/YYYY')}</span>
+                        </div>
+                        <div className="flex justify-between items-center px-3">
+                          <p className="font-light text-gray-600">Appointment time</p>
+                          <span className="text-sm">{moment(appointment.appointmentTime).format('hh:mm A')}</span>
+                        </div>
+                        <div className="flex justify-between items-center px-3">
+                          <p className="font-light text-gray-600">Patient issue</p>
+                          <span className="text-sm">{appointment.patient_issue}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <button className="px-3 py-2 border-2 m-2">
+                            <i className="fa-solid fa-business-time text-gray-600"></i> Cancel
+                          </button>
+                          <button className="px-3 py-2 rounded-lg m-2 bg-btn-bg text-white">
+                            <i className="fa-solid fa-business-time"></i> Reschedule
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-span-4 text-center">No appointments found.</div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
