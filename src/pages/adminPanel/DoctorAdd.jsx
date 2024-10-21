@@ -48,23 +48,36 @@ const DoctorAdd = () => {
 
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
-
-    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
+    const input = e.target;
+  
+    if (file) {
+      if (file.type !== "image/png" && file.type !== "image/jpeg") {
+        toast.error("Please upload a valid PNG or JPEG file for the signature.");
+        input.value = ''; // Reset input
+        return;
+      }
+  
+      if (file.size > 5 * 1024 * 1024) { // 5MB
+        toast.error("File size must be less than 5MB.");
+        input.value = ''; // Reset input
+        return;
+      }
+  
       setFormData((prevData) => ({
         ...prevData,
         signature: file,
       }));
-
+  
       const reader = new FileReader();
       reader.onloadend = () => {
         setSignaturePreview(reader.result);
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a valid PNG or JPEG file for the signature.");
+      toast.warning("No file selected. Please upload a signature.");
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
