@@ -1,6 +1,6 @@
 import "./Header.css";
 import { IoIosArrowForward } from "react-icons/io";
-import { useGlobal } from "../hooks/useGlobal";
+// import { useGlobal } from "../hooks/useGlobal";
 import {
   Typography,
   IconButton,
@@ -20,8 +20,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  const { userData } = useGlobal();
-  console.log(userData);
+  // const { userData } = useGlobal();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -82,11 +81,7 @@ const Header = () => {
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={() => handleClose(null)}
-          >
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
             <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
             <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
