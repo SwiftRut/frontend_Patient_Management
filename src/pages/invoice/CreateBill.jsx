@@ -17,12 +17,13 @@ const CreateBill = () => {
 
   const [formData, setFormData] = useState({
     ...formDataObject,
-    billDate: new Date().toISOString().split("T")[0], // Current date
-    billTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Current time without seconds
-    billNumber: 100, // Starting bill number
-    totalAmount: 0, // Initial total amount
+    billDate: new Date().toISOString().split("T")[0],
+    billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    billNumber: 100,
+    totalAmount: 0,
   });
-  console.log("<<formdata",formData)
+
+  console.log("<<formdata", formData);
 
   const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [loadingPatients, setLoadingPatients] = useState(true);
@@ -33,8 +34,8 @@ const CreateBill = () => {
     const discountNumber = parseFloat(discount) || 0;
     const taxNumber = parseFloat(tax) || 0;
 
-    const discountedAmount = amountNumber - (amountNumber * discountNumber / 100);
-    const totalAmount = discountedAmount + (discountedAmount * taxNumber / 100);
+    const discountedAmount = amountNumber - (amountNumber * discountNumber) / 100;
+    const totalAmount = discountedAmount + (discountedAmount * taxNumber) / 100;
     return totalAmount.toFixed(2);
   };
 
@@ -69,10 +70,11 @@ const CreateBill = () => {
       const patientDetails = await getPatientById(patientId);
       setFormData((prev) => ({
         ...prev,
-        phone: patientDetails.phone || "",
+        phone: patientDetails.phone || "", // Use 'phone' consistently
         age: patientDetails.age || "",
-        gender: patientDetails.gender || "", // Set gender from patient details
+        gender: patientDetails.gender || "",
         address: patientDetails.address || "",
+        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`, // Set patientName correctly
       }));
     } catch (error) {
       console.error("Error fetching patient details:", error);
@@ -87,7 +89,7 @@ const CreateBill = () => {
       setFormData((prev) => ({
         ...prev,
         billNumber: prev.billNumber + 1, // Auto-increment bill number
-        totalAmount: 0 // Reset total amount
+        totalAmount: 0, // Reset total amount
       }));
       navigate("/"); // Redirect after submission
     } catch (error) {
@@ -120,7 +122,7 @@ const CreateBill = () => {
     const interval = setInterval(() => {
       setFormData((prev) => ({
         ...prev,
-        billTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Update to current time
+        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), // Update to current time
       }));
     }, 60000); // 60000 ms = 1 minute
 
@@ -188,9 +190,27 @@ const CreateBill = () => {
         { label: "Credit Card", value: "Credit Card" },
       ],
     },
-    { label: "Bill Date", name: "billDate", type: "date", value: formData.billDate, readOnly: true },
-    { label: "Bill Time", name: "billTime", type: "text", value: formData.billTime, readOnly: true },
-    { label: "Bill Number", name: "billNumber", type: "text", value: formData.billNumber, readOnly: true },
+    {
+      label: "Bill Date",
+      name: "billDate",
+      type: "date",
+      value: formData.billDate,
+      readOnly: true,
+    },
+    {
+      label: "Bill Time",
+      name: "billTime",
+      type: "text",
+      value: formData.billTime,
+      readOnly: true,
+    },
+    {
+      label: "Bill Number",
+      name: "billNumber",
+      type: "text",
+      value: formData.billNumber,
+      readOnly: true,
+    },
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
     { label: "Amount", name: "amount", type: "text" },
@@ -258,11 +278,7 @@ const CreateBill = () => {
             )}
 
             <div className="save-btn flex">
-              <button
-                type="submit"
-                form="create-bill-form"
-                onClick={handleSubmit}
-              >
+              <button type="submit" form="create-bill-form" onClick={handleSubmit}>
                 Save
               </button>
             </div>
