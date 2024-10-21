@@ -48,4 +48,4 @@ const AppointmentTimeSlot1 = () => {
   );
 };
 
-export default AppointmentTimeSlot1;
+export default AppointmentTimeSlot1;  
