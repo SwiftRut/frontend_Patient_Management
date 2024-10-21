@@ -109,7 +109,7 @@ export const AuthProvider = ({ children }) => {
         console.log("admin profile fetching");
         await getAdminProfile(response.data.user.id);
       }
-      return true;
+      return response.data.user.role;
     } catch (error) {
       console.error("Login error:", error);
       throw error;
