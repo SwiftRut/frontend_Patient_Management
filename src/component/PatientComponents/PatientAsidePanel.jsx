@@ -36,7 +36,7 @@ export default function PatientAsidePanel() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/patient/allAppointment"}>
+                <NavLink to={"/patient/appointment"}>
                   <span className="flex items-center p-3 text-[#818194] hover:text-[#0eabeb] transition duration:300 rounded-lg">
                     <FaCalendarCheck className="me-2" />
                     Appointment Booking
