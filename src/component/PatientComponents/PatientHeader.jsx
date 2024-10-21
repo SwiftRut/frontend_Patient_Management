@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Breadcrumbs,
   Typography,
@@ -9,16 +9,21 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import { GoHomeFill } from "react-icons/go";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { Notifications, ArrowDropDown } from "@mui/icons-material";
+import { MdOutlineKeyboardArrowRight, MdMenu } from "react-icons/md";
+import { Notifications, ArrowDropDown, Search } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 
 const PatientHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const user = {
     firstName: "Lincoln",
@@ -35,6 +40,7 @@ const PatientHeader = () => {
   };
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -49,7 +55,6 @@ const PatientHeader = () => {
 
   const handleSearch = () => {
     if (searchTerm) {
-      // Navigate to a search route with selectedOption and searchTerm as query parameters
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
     }
   };
@@ -59,6 +64,7 @@ const PatientHeader = () => {
       handleSearch();
     }
   };
+
   const breadcrumbNames = {
     doctorManagement: "Doctor Management",
     patient: "Patient Management",
@@ -78,13 +84,45 @@ const PatientHeader = () => {
     chatScreen: "Chat Screen",
     Bill: "Bill",
   };
-  console.log(location.pathname.split("/")[2]);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
+
+  const drawerContent = (
+    <div className="w-64 p-4">
+      <List>
+        <ListItem button onClick={handleSearch}>
+          <ListItemText primary="Search" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Notifications" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText
+            primary={`${user.firstName} ${user.lastName}`}
+            secondary={user.role}
+          />
+        </ListItem>
+      </List>
+    </div>
+  );
+
   return (
-    <div className="bg-white sticky top-0 flex items-center justify-between p-2 w-full">
-      <div>
+    <div className="bg-white sticky top-0 flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 w-full">
+      <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
+        <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
+          {/* <MdMenu /> */}
+        </IconButton>
         <Breadcrumbs
           aria-label="breadcrumb"
-          className="bg-[#f8fcfe] p-2 rounded-full"
+          className="bg-[#f8fcfe] p-2 mb-2 rounded-full text-xs sm:text-sm sm:mb-2"
         >
           <Link
             underline="hover"
@@ -92,9 +130,9 @@ const PatientHeader = () => {
             to="/patient"
             className="flex items-center"
           >
-            <GoHomeFill className="me-1 text-[#A7A7A7]" />{" "}
+            <GoHomeFill className="me-1 text-[#A7A7A7]" />
             <MdOutlineKeyboardArrowRight className="text-lg text-[#A7A7A7] me-1" />
-            <p className="text-sm">Home</p>
+            <p>Home</p>
           </Link>
           {location.pathname !== "/" && (
             <Link to={"/patient"} className="text-[#0EABEB]">
@@ -114,17 +152,19 @@ const PatientHeader = () => {
         </Breadcrumbs>
       </div>
 
-      {/* Search Bar */}
-      <div className="flex">
-        <div className="flex items-center bg-gray-200 rounded-full px-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto">
+        <div className="flex items-center bg-gray-200 rounded-full px-4 mb-2 sm:mb-0 w-full sm:w-full">
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
-            className="flex-grow text-sm"
+            className="flex-grow text-sm xs:text-[10px]"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
           />
+          <IconButton onClick={handleSearch}>
+            <Search />
+          </IconButton>
           <IconButton aria-label="dropdown" onClick={handleClick}>
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
@@ -140,14 +180,16 @@ const PatientHeader = () => {
           </Menu>
         </div>
 
-        {/* Right Section: Notifications and Profile */}
         <div className="flex items-center space-x-4">
-          <IconButton aria-label="notifications">
+          <IconButton
+            aria-label="notifications"
+            className="hidden sm:inline-flex"
+          >
             <Badge badgeContent={4} color="secondary">
               <Notifications />
             </Badge>
           </IconButton>
-          <div className="flex items-center">
+          <div className="hidden sm:flex items-center">
             <Avatar src={admin} alt="User Image" />
             <div className="ml-2">
               <Typography variant="body2" fontWeight="bold">
@@ -160,6 +202,10 @@ const PatientHeader = () => {
           </div>
         </div>
       </div>
+
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        {drawerContent}
+      </Drawer>
     </div>
   );
 };
