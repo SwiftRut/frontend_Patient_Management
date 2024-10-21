@@ -22,7 +22,7 @@ const Appointment = () => {
   const filterAppointments = () => {
     let filtered = [];
     const currentDate = moment();
-    console.log(allAppointements.filter(appointment =>
+    console.log(allAppointements?.filter(appointment =>
       moment(appointment.appointmentDate).isAfter(currentDate)));
     if (activeTab === "scheduled") {
       filtered = allAppointements?.filter(appointment =>
