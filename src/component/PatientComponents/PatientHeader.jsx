@@ -13,10 +13,17 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon,
 } from "@mui/material";
 import { GoHomeFill } from "react-icons/go";
 import { MdOutlineKeyboardArrowRight, MdMenu } from "react-icons/md";
-import { Notifications, ArrowDropDown, Search } from "@mui/icons-material";
+import {
+  Notifications,
+  ArrowDropDown,
+  Search,
+  Home,
+  Close,
+} from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 
 const PatientHeader = () => {
@@ -24,18 +31,11 @@ const PatientHeader = () => {
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const user = {
     firstName: "Lincoln",
     lastName: "Philips",
-    email: "lincon@gmail.com",
-    phoneNumber: "99130 53222",
-    hospitalName: "Silver Park Medical Center",
-    Password: "123456",
-    gender: "Male",
-    city: "Ahmedabad",
-    state: "Gujarat",
-    country: "India",
     role: "doctor",
   };
 
@@ -65,24 +65,15 @@ const PatientHeader = () => {
     }
   };
 
+  const toggleSearch = () => {
+    setSearchOpen(!searchOpen);
+  };
+
   const breadcrumbNames = {
     doctorManagement: "Doctor Management",
     patient: "Patient Management",
     profile: "Profile Setting",
-    monitorBilling: "Monitor Billing",
-    patientManagement: "Patient Management",
-    insuranceClaims: "Insurance Claims",
-    reportingAndAnalytics: "Reporting & Analytics",
-    paymentMethod: "Payment Method",
-    patientRecordAccesst: "Patient Record Accesst",
-    createPrescriptionTools: "Create Prescription Tools",
-    managePrescriptionTools: "Manage Presciption Tools",
-    teleconsultationModule: "Teleconsultation Module",
-    appointment: "Appointment Booking",
-    PrescriptionAccess: "Prescription Access",
-    TeleconsultationAccess: "Teleconsultation Access",
-    chatScreen: "Chat Screen",
-    Bill: "Bill",
+    // ... (other breadcrumb names)
   };
 
   const toggleDrawer = (open) => (event) => {
@@ -98,13 +89,22 @@ const PatientHeader = () => {
   const drawerContent = (
     <div className="w-64 p-4">
       <List>
-        <ListItem button onClick={handleSearch}>
-          <ListItemText primary="Search" />
+        <ListItem button component={Link} to="/patient">
+          <ListItemIcon>
+            <Home />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
         </ListItem>
         <ListItem button>
+          <ListItemIcon>
+            <Notifications />
+          </ListItemIcon>
           <ListItemText primary="Notifications" />
         </ListItem>
-        <ListItem button>
+        <ListItem>
+          <ListItemIcon>
+            <Avatar src={admin} alt="User Image" />
+          </ListItemIcon>
           <ListItemText
             primary={`${user.firstName} ${user.lastName}`}
             secondary={user.role}
@@ -115,14 +115,14 @@ const PatientHeader = () => {
   );
 
   return (
-    <div className="bg-white sticky top-0 flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 w-full">
+    <div className="bg-white sticky top-0 flex flex-wrap items-center justify-between p-2 w-full min-w-[230px]">
       <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
-        <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
-          {/* <MdMenu /> */}
-        </IconButton>
+        {/* <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
+          <MdMenu />
+        </IconButton> */}
         <Breadcrumbs
           aria-label="breadcrumb"
-          className="bg-[#f8fcfe] p-2 mb-2 rounded-full text-xs sm:text-sm sm:mb-2"
+          className="bg-[#f8fcfe] p-2 rounded-full text-xs sm:text-sm"
         >
           <Link
             underline="hover"
@@ -152,12 +152,13 @@ const PatientHeader = () => {
         </Breadcrumbs>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto">
-        <div className="flex items-center bg-gray-200 rounded-full px-4 mb-2 sm:mb-0 w-full sm:w-full">
+      <div className="flex items-center justify-center w-full sm:w-auto">
+        {/* Search bar for larger screens */}
+        <div className="hidden sm:flex items-center bg-gray-200 rounded-full px-4 mr-4">
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
-            className="flex-grow text-sm xs:text-[10px]"
+            className="flex-grow text-sm"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -169,39 +170,75 @@ const PatientHeader = () => {
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={() => handleClose(null)}
-          >
-            <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
-            <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
-            <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
-          </Menu>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <IconButton
-            aria-label="notifications"
-            className="hidden sm:inline-flex"
-          >
-            <Badge badgeContent={4} color="secondary">
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <div className="hidden sm:flex items-center">
-            <Avatar src={admin} alt="User Image" />
-            <div className="ml-2">
-              <Typography variant="body2" fontWeight="bold">
-                {user.firstName} {user.lastName}
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                {user.role}
-              </Typography>
-            </div>
+        {/* Search icon for small screens */}
+        <IconButton className="sm:hidden mr-2" onClick={toggleSearch}>
+          <Search />
+        </IconButton>
+
+        <IconButton
+          aria-label="notifications"
+          className="hidden sm:inline-flex"
+        >
+          <Badge badgeContent={4} color="secondary">
+            <Notifications />
+          </Badge>
+        </IconButton>
+        <div className="hidden sm:flex items-center ml-4">
+          <Avatar src={admin} alt="User Image" />
+          <div className="ml-2">
+            <Typography variant="body2" fontWeight="bold">
+              {user.firstName} {user.lastName}
+            </Typography>
+            <Typography variant="caption" color="textSecondary">
+              {user.role}
+            </Typography>
           </div>
         </div>
       </div>
+
+      {/* Collapsible search bar for small screens */}
+      {searchOpen && (
+        <div className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-md">
+            <div className="flex items-center bg-gray-200 rounded-full px-4">
+              <InputBase
+                placeholder="Quick Search"
+                inputProps={{ "aria-label": "search" }}
+                className="flex-grow text-sm"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyPress={handleKeyPress}
+                autoFocus
+              />
+              <IconButton onClick={handleSearch}>
+                <Search />
+              </IconButton>
+              <IconButton aria-label="dropdown" onClick={handleClick}>
+                <span className="text-sm">{selectedOption}</span>
+                <ArrowDropDown />
+              </IconButton>
+            </div>
+            <IconButton
+              className="absolute top-2 right-2"
+              onClick={toggleSearch}
+            >
+              <Close />
+            </IconButton>
+          </div>
+        </div>
+      )}
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => handleClose(null)}
+      >
+        <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
+        <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
+        <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
+      </Menu>
 
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         {drawerContent}
