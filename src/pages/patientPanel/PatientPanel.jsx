@@ -135,7 +135,7 @@ export default function PatientPanel() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <header className="bg-white shadow-sm z-10">
-          <div className="max-w-10xl mx-auto py-2 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <div className="max-w-10xl mx-auto py-1 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <button onClick={toggleSidebar} className="lg:hidden">
               {isSidebarOpen ? (
                 <X className="h-6 w-6" />
@@ -149,7 +149,7 @@ export default function PatientPanel() {
 
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-          <div className="max-w-10xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="max-w-10xl mx-auto py-2 sm:px-6 lg:px-8">
             <Routes>
               <Route path="" element={<PersonalHealthRecord />} />
               <Route path="profile/*" element={<PatientProfile />} />

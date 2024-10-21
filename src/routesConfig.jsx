@@ -51,7 +51,7 @@ const routesConfig = [
       <ProtectedRoute element={<AdminPanel />} allowedRoles={["admin"]} userRole={userRole} />
     ),
     children: [
-      { path: "", element: null, allowedRoles: ["admin"] },
+      { path: "/", element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />},
       {
         path: "profile/*",
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,

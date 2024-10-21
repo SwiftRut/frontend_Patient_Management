@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./pages.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,21 +50,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const success = await UniversalLogin(formData);
-      if (success) {
-        if (user.role === "admin") {
-          navigate("/")
+      const role = await UniversalLogin(formData);
+      if (role) {
+        if (role === "admin") {
+          window.location.href = "/";
         }
-        else if (user.role === "patient") {
+        else if (role === "patient") {
           navigate("/patient");
-        } else if (user.role === "doctor") {
+        } else if (role === "doctor") {
           toast.success("doctor login successfully")
           navigate("/doctor/profile/");
         }
       }
     } catch (err) {
       console.error(err);
-      toast.error("Login failed. Please check your credentials.")
+      toast.error("Login failed. Please check your credentials.");
       setError("Login failed. Please check your credentials.");
     }
   };
@@ -145,14 +145,16 @@ const Login = () => {
                       </div>
                       <div
                         className="registration-btn"
+                        onClick={() => navigate("/patientRegistration")}
+                      >
+                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
+                      </div>
+                      {/* <div
+                        className="registration-btn"
                         onClick={() => navigate("/adminRegistration")}
                       >
-                        <p
-                          style={{ cursor: "pointer" }}
-                        >
-                          Don’t have an account? Register
-                        </p>
-                      </div>
+                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
+                      </div> */}
                     </div>
                   </form>
                 </div>
