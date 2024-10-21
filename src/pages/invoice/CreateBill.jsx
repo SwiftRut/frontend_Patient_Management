@@ -18,13 +18,41 @@ const CreateBill = () => {
   const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [loadingPatients, setLoadingPatients] = useState(true);
 
+  // Function to calculate total amount
+  const calculateTotalAmount = (amount, discount, tax) => {
+    const amountNumber = parseFloat(amount) || 0;
+    const discountNumber = parseFloat(discount) || 0;
+    const taxNumber = parseFloat(tax) || 0;
+
+    // Apply discount
+    const discountedAmount = amountNumber - (amountNumber * discountNumber / 100);
+
+    // Apply tax
+    const totalAmount = discountedAmount + (discountedAmount * taxNumber / 100);
+
+    return totalAmount.toFixed(2); // Return total amount rounded to 2 decimal places
+  };
+
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
+
+    // Update form data
+    const updatedFormData = {
       ...formData,
       [name]: value,
-    });
+    };
+
+    // If amount, discount, or tax changes, recalculate total amount
+    if (["amount", "discount", "tax"].includes(name)) {
+      updatedFormData.totalAmount = calculateTotalAmount(
+        updatedFormData.amount,
+        updatedFormData.discount,
+        updatedFormData.tax
+      );
+    }
+
+    setFormData(updatedFormData);
   };
 
   // Handle form submission
@@ -52,7 +80,7 @@ const CreateBill = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       setLoadingPatients(true);
-      await getAllPatients(); // Corrected to fetch patients
+      await getAllPatients(); // Fetch all patients
       setLoadingPatients(false);
     };
     fetchPatients();
@@ -70,7 +98,7 @@ const CreateBill = () => {
             { label: "Select Patient Name", value: "" },
             ...(Array.isArray(allPatients) && allPatients.length > 0
               ? allPatients.map((patient) => ({
-                  label: `${patient.firstName} ${patient.lastName}`,
+                  label: `${patient.firstName} ${patient.lastName}`, // Concatenating first and last name
                   value: patient._id,  
                 }))
               : []),
@@ -124,7 +152,12 @@ const CreateBill = () => {
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
     { label: "Amount", name: "amount", type: "text" },
-    { label: "Total Amount", name: "totalAmount", type: "text" },
+    {
+      label: "Total Amount",
+      name: "totalAmount",
+      type: "text",
+      readOnly: true, // Read-only as it's calculated automatically
+    },
     { label: "Address", name: "address", type: "text" },
   ];
 
