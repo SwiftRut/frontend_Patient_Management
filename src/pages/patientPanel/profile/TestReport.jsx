@@ -436,7 +436,7 @@ const TestReport = () => {
                   <h6 className="text-[#030229] text-[18px] font-semibold">{val.doctorName}</h6>
                   <button
                     onClick={() => handleShowModal(val)}
-                    className="w-7 h-7 text-[#0EABEB] flex align-center justify-center bg-white rounded-lg"
+                    className="w-7 h-7 text-[#0EABEB] flex items-center justify-center bg-white rounded-lg"
                   >
                     <FaEye />
                   </button>
@@ -478,7 +478,7 @@ const TestReport = () => {
                   <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Prescription</h5>
                   <button
                     type="button"
-                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex align-center justify-center"
+                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
                     onClick={handleCloseModal}
                   >
                     <MdCancel />

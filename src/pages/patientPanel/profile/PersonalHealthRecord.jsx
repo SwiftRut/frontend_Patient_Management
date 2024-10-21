@@ -36,7 +36,7 @@ const PersonalHealthRecord = () => {
             </NavLink>
           </div>
 
-          <div className="flex justify-between align-center">
+          <div className="flex justify-between items-center">
             <div className="w-[10%] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
@@ -494,7 +494,7 @@ const PersonalHealthRecord = () => {
                   <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Prescription</h5>
                   <button
                     type="button"
-                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex align-center justify-center"
+                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
                     onClick={handleCloseModal}
                   >
                     <MdCancel />
@@ -608,7 +608,7 @@ const PersonalHealthRecord = () => {
                   <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Prescription</h5>
                   <button
                     type="button"
-                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex align-center justify-center"
+                    className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
                     onClick={handleCloseModal}
                   >
                     <MdCancel />
