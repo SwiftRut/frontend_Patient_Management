@@ -334,13 +334,19 @@ const AdminRegistration = () => {
                             hospital: selectedOption.value,
                           }))}
                         placeholder="Select Hospital"
-                      >
+                        >
+
                         {allHospitals.map((hospital) => (
                           <option key={hospital._id} value={hospital._id}>
                             {hospital.name}
                           </option>
                         ))}
-
+                        {/* //  add hospital */}
+                        <option>
+                          <button className="add-new-hospital " onClick={() => handelAddHospitalModel()}>
+                            Add New Hospital
+                          </button>
+                        </option>
 
                       </select>
                       <button className="add-new-hospital " onClick={() => handelAddHospitalModel()}>
