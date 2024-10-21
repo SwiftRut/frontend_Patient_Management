@@ -23,6 +23,7 @@ const apiService = {
   EditPatientProfile: (id, userData) =>
     api.put(`/patient/editPatient/${id}`, userData),
   GetAllPatients: () => api.get("/patient/getAllPatient"),
+  GetPatientById: (id) => api.get(`/patient/getPatient/${id}`), 
 
   // Admin
   AdminLogin: (userData) => api.post("/admin/login", userData),

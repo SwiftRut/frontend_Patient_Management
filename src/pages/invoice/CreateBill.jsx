@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import "./invoice.css";
-import { formDataObject, PatientBillFields } from "./Contants";
+import { formDataObject, PatientBillFields } from "./Contants"; // Assuming this contains some constants
 import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
@@ -13,8 +13,17 @@ const CreateBill = () => {
   const { user } = useAuth();
   const { createBill } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { getAllPatients, allPatients } = usePatient();
-  const [formData, setFormData] = useState(formDataObject);
+  const { getAllPatients, allPatients, getPatientById } = usePatient();
+
+  const [formData, setFormData] = useState({
+    ...formDataObject,
+    billDate: new Date().toISOString().split("T")[0], // Current date
+    billTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Current time without seconds
+    billNumber: 100, // Starting bill number
+    totalAmount: 0, // Initial total amount
+  });
+  console.log("<<formdata",formData)
+
   const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [loadingPatients, setLoadingPatients] = useState(true);
 
@@ -24,24 +33,23 @@ const CreateBill = () => {
     const discountNumber = parseFloat(discount) || 0;
     const taxNumber = parseFloat(tax) || 0;
 
-    // Apply discount
     const discountedAmount = amountNumber - (amountNumber * discountNumber / 100);
-
-    // Apply tax
     const totalAmount = discountedAmount + (discountedAmount * taxNumber / 100);
-
-    return totalAmount.toFixed(2); // Return total amount rounded to 2 decimal places
+    return totalAmount.toFixed(2);
   };
 
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Update form data
     const updatedFormData = {
       ...formData,
       [name]: value,
     };
+
+    // If patientId changes, fetch and populate patient details
+    if (name === "patientId" && value) {
+      fetchPatientDetails(value); // Fetch patient details
+    }
 
     // If amount, discount, or tax changes, recalculate total amount
     if (["amount", "discount", "tax"].includes(name)) {
@@ -55,12 +63,33 @@ const CreateBill = () => {
     setFormData(updatedFormData);
   };
 
+  // Fetch patient details based on selected patient ID
+  const fetchPatientDetails = async (patientId) => {
+    try {
+      const patientDetails = await getPatientById(patientId);
+      setFormData((prev) => ({
+        ...prev,
+        phone: patientDetails.phone || "",
+        age: patientDetails.age || "",
+        gender: patientDetails.gender || "", // Set gender from patient details
+        address: patientDetails.address || "",
+      }));
+    } catch (error) {
+      console.error("Error fetching patient details:", error);
+    }
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createBill(formData); // Submit as plain object
-      navigate("/");
+      await createBill(formData); // Submit form data
+      setFormData((prev) => ({
+        ...prev,
+        billNumber: prev.billNumber + 1, // Auto-increment bill number
+        totalAmount: 0 // Reset total amount
+      }));
+      navigate("/"); // Redirect after submission
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -70,7 +99,7 @@ const CreateBill = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       setLoadingDoctors(true);
-      await getAllDoctors(); // Fetch all doctors
+      await getAllDoctors();
       setLoadingDoctors(false);
     };
     fetchDoctors();
@@ -80,10 +109,22 @@ const CreateBill = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       setLoadingPatients(true);
-      await getAllPatients(); // Fetch all patients
+      await getAllPatients();
       setLoadingPatients(false);
     };
     fetchPatients();
+  }, []);
+
+  // Update the bill time every minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFormData((prev) => ({
+        ...prev,
+        billTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Update to current time
+      }));
+    }, 60000); // 60000 ms = 1 minute
+
+    return () => clearInterval(interval);
   }, []);
 
   // Hospital bill fields
@@ -98,13 +139,13 @@ const CreateBill = () => {
             { label: "Select Patient Name", value: "" },
             ...(Array.isArray(allPatients) && allPatients.length > 0
               ? allPatients.map((patient) => ({
-                  label: `${patient.firstName} ${patient.lastName}`, // Concatenating first and last name
-                  value: patient._id,  
+                  label: `${patient.firstName} ${patient.lastName}`,
+                  value: patient._id,
                 }))
               : []),
           ],
     },
-    { label: "Phone Number", name: "phoneNumber", type: "text" },
+    { label: "Phone Number", name: "phone", type: "text", readOnly: true },
     {
       label: "Gender",
       name: "gender",
@@ -115,8 +156,9 @@ const CreateBill = () => {
         { label: "Female", value: "Female" },
         { label: "Other", value: "Other" },
       ],
+      value: formData.gender, // Ensure this is set to the selected gender
     },
-    { label: "Age", name: "age", type: "text" },
+    { label: "Age", name: "age", type: "text", readOnly: true },
     {
       label: "Doctor Name",
       name: "doctorId",
@@ -146,9 +188,9 @@ const CreateBill = () => {
         { label: "Credit Card", value: "Credit Card" },
       ],
     },
-    { label: "Bill Date", name: "billDate", type: "date" },
-    { label: "Bill Time", name: "billTime", type: "time" },
-    { label: "Bill Number", name: "billNumber", type: "text" },
+    { label: "Bill Date", name: "billDate", type: "date", value: formData.billDate, readOnly: true },
+    { label: "Bill Time", name: "billTime", type: "text", value: formData.billTime, readOnly: true },
+    { label: "Bill Number", name: "billNumber", type: "text", value: formData.billNumber, readOnly: true },
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
     { label: "Amount", name: "amount", type: "text" },
@@ -156,7 +198,8 @@ const CreateBill = () => {
       label: "Total Amount",
       name: "totalAmount",
       type: "text",
-      readOnly: true, // Read-only as it's calculated automatically
+      value: formData.totalAmount,
+      readOnly: true,
     },
     { label: "Address", name: "address", type: "text" },
   ];
@@ -174,7 +217,6 @@ const CreateBill = () => {
               <div className="content">
                 <div className="details flex">
                   <div className="form-box">
-                    {/* Added missing form id */}
                     <form onSubmit={handleSubmit} className="flex" id="create-bill-form">
                       {HospitalBillFields.map((field, index) => (
                         <InputField
@@ -190,7 +232,6 @@ const CreateBill = () => {
               </div>
             </div>
 
-            {/* Render additional insurance details if the payment type is "Insurance" */}
             {formData.paymentType === "Insurance" && (
               <div className="insurance-details">
                 <div className="content">
@@ -219,7 +260,7 @@ const CreateBill = () => {
             <div className="save-btn flex">
               <button
                 type="submit"
-                form="create-bill-form" // Refers to the form id
+                form="create-bill-form"
                 onClick={handleSubmit}
               >
                 Save

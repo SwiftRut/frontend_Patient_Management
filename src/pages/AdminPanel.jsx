@@ -55,11 +55,7 @@ const AdminPanel = () => {
         <nav className="flex-grow p-4">
           <ul className="space-y-2">
             <NavItem to="/" icon={<Home size={20} />} text="Dashboard" />
-            <NavItem
-              to="/doctorManagement"
-              icon={<Users size={20} />}
-              text="Doctor Management"
-            />
+            <NavItem to="/doctorManagement" icon={<Users size={20} />} text="Doctor Management" />
             <NavItem
               to="/patientManagement"
               icon={<UserPlus size={20} />}
@@ -140,8 +136,8 @@ const AdminPanel = () => {
               </div>
             </div> */}
             <button onClick={toggleSidebar} className="md:hidden">
-                <Menu size={24} />
-              </button>
+              <Menu size={24} />
+            </button>
             <Header />
           </div>
         </header>
@@ -151,18 +147,13 @@ const AdminPanel = () => {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/doctorManagement" element={<DoctorManagement />} />
-              <Route
-                path="/patientManagement"
-                element={<PatientManagement />}
-              />
+              <Route path="/patientManagement" element={<PatientManagement />} />
               <Route path="/monitorBilling" element={<MonitorBilling />} />
               <Route path="/insuranceClaims" element={<InsuranceClaims />} />
               <Route path="/paymentMethod" element={<PaymentMethod />} />
-              <Route
-                path="/reportingAndAnalytics"
-                element={<ReportingAndAnalytics />}
-              />
+              <Route path="/reportingAndAnalytics" element={<ReportingAndAnalytics />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/createbill" element={<CreateBill />} />
             </Routes>
           </div>
         </main>
@@ -177,9 +168,7 @@ const NavItem = ({ to, icon, text }) => (
       to={to}
       className={({ isActive }) =>
         `flex items-center p-2 rounded transition-colors ${
-          isActive
-            ? "bg-blue-50 text-blue-600"
-            : "text-gray-700 hover:bg-gray-100"
+          isActive ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"
         }`
       }
     >
