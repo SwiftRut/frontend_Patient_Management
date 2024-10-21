@@ -4,6 +4,9 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import moment from 'moment';
 
+import { FaCalendarAlt } from "react-icons/fa";
+import { IoCloseSharp } from "react-icons/io5";
+
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
@@ -53,6 +56,7 @@ const Appointment = () => {
                   className={`py-2 px-4 font-semibold ${
                     activeTab === tab ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"
                   }`}
+
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)} Appointment
                 </button>

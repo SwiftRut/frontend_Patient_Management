@@ -28,14 +28,14 @@ export default function DoctorManagement() {
       } catch (error) {
         setError(
           "Error fetching doctors: " +
-          (error.response ? error.response.data.message : error.message)
+            (error.response ? error.response.data.message : error.message)
         );
       } finally {
         setLoading(false);
       }
     };
     fetchDoctors();
-  }, [navigate]);
+  }, []);
 
   const handleAddDoctor = () => {
     navigate("/doctorAdd");

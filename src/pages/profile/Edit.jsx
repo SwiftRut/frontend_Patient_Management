@@ -1,15 +1,103 @@
 import { FaCamera } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { useLocationData } from "../../hooks/useLocationData";
 import { useEdit } from "../../hooks/useEdit";
+import { useEffect, useState } from "react";
+
+import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
   const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
-  const { countries, states, cities, loadStates, loadCities } = useLocationData(
-    profile.country,
-    profile.state
-  );
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedState, setSelectedState] = useState(null);
+
+  // Load country data on component mount
+  useEffect(() => {
+    const allCountries = Country.getAllCountries().map((country) => ({
+      value: country.isoCode,
+      label: country.name,
+    }));
+    setCountries(allCountries);
+
+    // Set selected country if profile has a saved country
+    if (profile.country) {
+      const country = allCountries.find((c) => c.label === profile.country);
+      if (country) setSelectedCountry(country.value);
+    }
+  }, [profile.country]);
+
+  // Load state data when selectedCountry changes
+  useEffect(() => {
+    if (selectedCountry) {
+      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
+        value: state.isoCode,
+        label: state.name,
+      }));
+      setStates(statesList);
+      setCities([]); // Reset cities when country changes
+
+      // Set selected state if profile has a saved state
+      if (profile.state) {
+        const state = statesList.find((s) => s.label === profile.state);
+        if (state) setSelectedState(state.value);
+      }
+    } else {
+      setStates([]);
+    }
+  }, [selectedCountry, profile.state]);
+
+  // Load city data when selectedState changes
+  useEffect(() => {
+    if (selectedState) {
+      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
+        value: city.name,
+        label: city.name,
+      }));
+      setCities(citiesList);
+
+      // Set selected city if profile has a saved city
+      if (profile.city) {
+        const city = citiesList.find((c) => c.label === profile.city);
+        if (city) setProfile((prev) => ({ ...prev, city: city.value }));
+      }
+    } else {
+      setCities([]);
+    }
+  }, [selectedState, selectedCountry, profile.city]);
+
+  // Handle country change
+  const handleCountryChange = (e) => {
+    const countryIsoCode = e.target.value;
+    setSelectedCountry(countryIsoCode);
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      country: countries.find((c) => c.value === countryIsoCode)?.label || "",
+    }));
+  };
+
+  // Handle state change
+  const handleStateChange = (e) => {
+    const stateIsoCode = e.target.value;
+    setSelectedState(stateIsoCode);
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      state: states.find((s) => s.value === stateIsoCode)?.label || "",
+    }));
+  };
+
+  // Handle city change
+  const handleCityChange = (e) => {
+    const cityName = e.target.value;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      city: cityName,
+    }));
+  };
+
   return (
     <div>
       <div className="edit-section">
@@ -146,15 +234,9 @@ export const Edit = () => {
                           <select
                             name="country"
                             value={profile.country || ""}
-                            onChange={(e) =>
-                              handleInputChange({
-                                target: {
-                                  name: "country",
-                                  value: e.target.value,
-                                },
-                              })
-                            }
+                            onChange={handleCountryChange}
                           >
+                            <option value="">Select Country</option>
                             {countries.map((country) => (
                               <option key={country.value} value={country.value}>
                                 {country.label}
@@ -169,16 +251,11 @@ export const Edit = () => {
                           </div>
                           <select
                             name="state"
-                            value={profile.state || ""}
-                            onChange={(e) =>
-                              handleInputChange({
-                                target: {
-                                  name: "state",
-                                  value: e.target.value,
-                                },
-                              })
-                            }
+                            value={selectedState || ""}
+                            onChange={handleStateChange}
+                            disabled={!selectedCountry}
                           >
+                            <option value="">Select State</option>
                             {states.map((state) => (
                               <option key={state.value} value={state.value}>
                                 {state.label}
@@ -194,12 +271,10 @@ export const Edit = () => {
                           <select
                             name="city"
                             value={profile.city || ""}
-                            onChange={(e) =>
-                              handleInputChange({
-                                target: { name: "city", value: e.target.value },
-                              })
-                            }
+                            onChange={handleCityChange}
+                            disabled={!selectedState}
                           >
+                            <option value="">Select City</option>
                             {cities.map((city) => (
                               <option key={city.value} value={city.value}>
                                 {city.label}

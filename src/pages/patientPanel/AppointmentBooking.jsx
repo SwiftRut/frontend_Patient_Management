@@ -161,6 +161,7 @@ const AppointmentBooking = () => {
                 onChange={(e) => setSpecialty(e.target.value)}
                 options={[...new Set(allDoctors.map(doc => doc.speciality))]}
               />
+
               <SelectInput
                 label="Country"
                 value={country}
@@ -260,9 +261,10 @@ const AppointmentBooking = () => {
         </div>
       </div>
     </div>
+    </div>
+    </div>
   );
 };
-
 const SelectInput = ({ label, value, onChange, options }) => (
   <div className="relative border border-gray-300 rounded-md">
     <label className="absolute left-3 -top-2.5 bg-white px-1 text-sm font-semibold text-gray-800">
