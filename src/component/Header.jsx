@@ -1,21 +1,28 @@
 import "./Header.css";
 import { IoIosArrowForward } from "react-icons/io";
-// import { MdNotificationImportant } from "react-icons/md";
-// import { CiSearch } from "react-icons/ci";
-// import { FaAngleDown } from "react-icons/fa6";
-// import { NavLink } from "react-router-dom";
-import { Typography, IconButton, InputBase, Badge, Avatar, Menu, MenuItem } from "@mui/material";
-import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import { useGlobal } from "../hooks/useGlobal";
+import {
+  Typography,
+  IconButton,
+  InputBase,
+  Badge,
+  Avatar,
+  Menu,
+  MenuItem,
+  Breadcrumbs,
+} from "@mui/material";
+import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { breadcrumbNames } from "./constants";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-
   const { userData } = useGlobal();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,9 +34,9 @@ const Header = () => {
     }
     setAnchorEl(null);
   };
+
   const handleSearch = () => {
     if (searchTerm) {
-      // Navigate to a search route with selectedOption and searchTerm as query parameters
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
     }
   };
@@ -39,15 +46,32 @@ const Header = () => {
       handleSearch();
     }
   };
+
+  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
+  const userRole = userData?.role || "Role";
+  const userAvatar = userData?.avatar || "/img/avtar.png";
+
   return (
     <div className="header">
       <div className="breadcrumbs">
-        <img src="/img/home-2.png" />
+        <img src="/img/home-2.png" alt="Home Icon" />
         <IoIosArrowForward className="icon" />
-        Profile Setting
+        <Breadcrumbs aria-label="breadcrumb">
+          <NavLink to={"/"}>
+            <Typography variant="body2" color="inherit">
+              Home
+            </Typography>
+          </NavLink>
+          {location.pathname !== "/" && (
+            <Typography variant="body2" color="textPrimary">
+              {breadcrumbNames[location.pathname.split("/")[1]] || "Page"}
+            </Typography>
+          )}
+        </Breadcrumbs>
       </div>
+
       <div className="flex">
-        <div className="flex items-right bg-gray-200 rounded-full px-4">
+        <div className="flex items-center bg-gray-200 rounded-full px-4">
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
@@ -56,8 +80,8 @@ const Header = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
           />
-          <IconButton aria-label="dropdown" onClick={handleClick}>
-            <span>{selectedOption}</span>
+          <IconButton aria-label="filter options" onClick={handleClick}>
+            <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
@@ -66,21 +90,23 @@ const Header = () => {
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
           </Menu>
         </div>
+
         <div className="flex items-center space-x-4">
           <IconButton aria-label="notifications">
             <Badge badgeContent={4} color="secondary">
               <Notifications />
             </Badge>
           </IconButton>
+
           <NavLink to={"/profile"}>
             <div className="flex items-center">
-              <Avatar src="/img/avtar.png" alt="User Image" />
+              <Avatar src={userAvatar} alt="User Avatar" />
               <div className="ml-2">
                 <Typography variant="body2" fontWeight="bold">
-                  Lincoln Philips
+                  {userName}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  Admin
+                  {userRole}
                 </Typography>
               </div>
             </div>

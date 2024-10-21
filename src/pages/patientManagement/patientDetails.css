@@ -31,11 +31,10 @@ input {
 }
 
 .patientdetails-section .row .details {
-  width: 30%;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  margin: 50px;
 }
 .patientdetails-section .row .details .top {
   justify-content: space-between;
@@ -59,7 +58,7 @@ input {
 .patientdetails-section .row .details .data ul li h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .patientdetails-section .row .details .data ul li p {
   font-size: 20px;

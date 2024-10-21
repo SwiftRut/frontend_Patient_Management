@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import '../pages.css';
+import { useEffect, useState } from 'react'
 import apiService from '../../services/api.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from "react-toastify"
+import '../pages.css'
 
 export default function AdminChangePassword() {
   const location = useLocation();
@@ -16,6 +16,29 @@ export default function AdminChangePassword() {
   const [successMessage, setSuccessMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -23,11 +46,13 @@ export default function AdminChangePassword() {
 
     // Validation checks
     if (!newPassword || !confirmPassword) {
+      toast.error('Both password and confirm password are required')
       setError('Both fields are required.');
       return;
     }
 
     if (newPassword !== confirmPassword) {
+      toast.error('Passwords do not match')
       setError('Passwords do not match.');
       return;
     }
@@ -38,13 +63,16 @@ export default function AdminChangePassword() {
         password: newPassword,
         confirmPassword: confirmPassword
       });
+      toast.success('Password reset successfully');
       setSuccessMessage(response.data.message);
 
       navigate('/login');
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message);
         setError(error.response.data.message);
       } else {
+        toast.error('Something went wrong. Please try again.');
         setError('Something went wrong. Please try again.');
       }
     }
@@ -59,7 +87,7 @@ export default function AdminChangePassword() {
     <div>
       <div className="changePassword-section">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="changePassword-content">
                 <div className="head">
@@ -74,6 +102,7 @@ export default function AdminChangePassword() {
 
                 <div className="changePassword-form-box">
                   <form className="flex" onSubmit={handleSubmit}>
+
                     <div className="input-box">
                       <div className="label">
                         New Password <span>*</span>
@@ -105,18 +134,38 @@ export default function AdminChangePassword() {
                     </div>
 
                     <div className="condition">
+
                       <div className="otp">
                         <button type="submit">Reset Password</button>
                       </div>
                     </div>
+
                   </form>
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

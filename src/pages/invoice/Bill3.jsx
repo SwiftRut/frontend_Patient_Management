@@ -6,13 +6,13 @@ import { FaLocationDot } from "react-icons/fa6";
 export default function Bill3() {
   return (
     <>
-      <div class="invoice2">
+      <div className="invoice2">
         <div className="border">
           <header>
-            <div class="logo">
-              <img src="/img/logo-white.png" width="300px" />
+            <div className="logo">
+              <img src="/img/logo-white.png" width="200px" />
             </div>
-            <div class="invoice-title">
+            <div className="invoice-title">
               <h1>Invoice</h1>
               <p>Invoice No: 1234</p>
             </div>
@@ -20,14 +20,14 @@ export default function Bill3() {
         </div>
         <main>
           <div className="flex justify-between">
-            <section class="customer-info">
+            <section className="customer-info">
               <h2>Invoice To:</h2>
               <span>PLK Madhuvan Bank</span>
-              <p style={{ paddingTop: "10px" }}>
+              <p style={{ paddingTop: "5px" }}>
                 <BiSolidPhoneCall
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}
@@ -37,7 +37,7 @@ export default function Bill3() {
                 <IoMdMail
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}
@@ -47,7 +47,7 @@ export default function Bill3() {
                 <FaLocationDot
                   style={{
                     display: "inline",
-                    fontSize: "20px",
+                    fontSize: "12px",
                     marginRight: "10px",
                   }}
                 />{" "}

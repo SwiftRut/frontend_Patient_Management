@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Breadcrumbs,
   Typography,
@@ -17,7 +17,8 @@ const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const user = {
     firstName: "Lincoln",
     lastName: "Philips",
@@ -32,8 +33,6 @@ const DoctorHeader = () => {
     role: "doctor",
   };
 
-  const navigate = useNavigate();
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,10 +43,23 @@ const DoctorHeader = () => {
     }
     setAnchorEl(null);
   };
-
+  const breadcrumbNames = {
+    doctorManagement: "Doctor Management",
+    patient: "Patient Management",
+    profile: "Profile Setting",
+    monitorBilling: "Monitor Billing",
+    patientManagement: "Patient Management",
+    insuranceClaims: "Insurance Claims",
+    reportingAndAnalytics: "Reporting & Analytics",
+    paymentMethod: "Payment Method",
+    patientRecordAccesst: "Patient Record Accesst",
+    createPrescriptionTools: "Create Prescription Tools",
+    managePrescriptionTools: "Manage Presciption Tools",
+    teleconsultationModule: "Teleconsultation Module",
+    chatScreen: "Chat Screen",
+  };
   const handleSearch = () => {
     if (searchTerm) {
-      // Navigate to a search route with selectedOption and searchTerm as query parameters
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
     }
   };
@@ -57,60 +69,66 @@ const DoctorHeader = () => {
       handleSearch();
     }
   };
-
+  console.log(location.pathname.split("/")[2]);
   return (
-    <div className="w-full bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
+    <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
       {/* Breadcrumb */}
       <div>
         <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" to="/">
+          <Link underline="hover" color="inherit" to="/doctor">
             Home
           </Link>
-          <Typography color="textPrimary">{selectedOption} Management</Typography>
+          {location.pathname !== "/" && <Link to={"/doctor"}>doctor</Link>}
+          {location.pathname !== "/" && (
+            <NavLink to={location.pathname.split("/")[2]}>
+              <Typography variant="body2" color="textPrimary">
+                {breadcrumbNames[location.pathname.split("/")[2]]}
+              </Typography>
+            </NavLink>
+          )}
         </Breadcrumbs>
       </div>
 
-      {/* Search Bar */}
-      <div className="flex items-center bg-gray-200 rounded-full px-4">
-        <InputBase
-          placeholder="Quick Search"
-          inputProps={{ "aria-label": "search" }}
-          className="flex-grow"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <IconButton aria-label="dropdown" onClick={handleClick}>
-          <span>{selectedOption}</span>
-          <ArrowDropDown />
-        </IconButton>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
-          <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
-          <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
-          <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
-        </Menu>
-      </div>
-
-      {/* Right Section: Notifications and Profile */}
-      <div className="flex items-center space-x-4">
-        <IconButton aria-label="notifications">
-          <Badge badgeContent={4} color="secondary">
-            <Notifications />
-          </Badge>
-        </IconButton>
-        <NavLink to={"/doctor/profile"}>
-          <div className="flex items-center">
-            <Avatar src={admin} alt="User Image" />
-            <div className="ml-2">
-              <Typography variant="body2" fontWeight="bold">
-                {user.firstName} {user.lastName}
-              </Typography>
-              <Typography variant="caption" color="textSecondary">
-                {user.role}
-              </Typography>
+      <div className="flex">
+        <div className="flex items-right bg-gray-200 rounded-full px-4">
+          <InputBase
+            placeholder="Quick Search"
+            inputProps={{ "aria-label": "search" }}
+            className="flex-grow"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <IconButton aria-label="dropdown" onClick={handleClick}>
+            <span className="text-sm">{selectedOption}</span>
+            <ArrowDropDown />
+          </IconButton>
+          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+            <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
+            <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
+            <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
+          </Menu>
+        </div>
+        <div className="flex items-center space-x-4">
+          <IconButton aria-label="notifications">
+            <Badge badgeContent={4} color="secondary">
+              <Notifications />
+            </Badge>
+          </IconButton>
+          <NavLink to={"/doctor/profile"}>
+            <div className="flex items-center">
+              <Avatar src={admin} alt="User Image" />
+              <div className="ml-2">
+                <Typography variant="body2" fontWeight="bold">
+                  {user.firstName} {user.lastName}
+                </Typography>
+                <Typography variant="caption" color="textSecondary">
+                  {user.role}
+                </Typography>
+              </div>
             </div>
-          </div>
-        </NavLink>
+          </NavLink>
+        </div>
       </div>
     </div>
   );

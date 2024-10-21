@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../doctorManagement/delete.css";
 import { MdDeleteSweep } from "react-icons/md";
 import apiService from "../../services/api";
@@ -15,7 +15,9 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
         onDeleteSuccess(deleteId);
         onClose();
       } catch (error) {
-        setError("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
+        setError(
+          "Error deleting doctor: " + (error.response ? error.response.data.message : error.message)
+        );
       } finally {
         setLoading(false);
       }
@@ -24,7 +26,7 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
+      <div className="bg-white rounded-lg shadow-lg max-w-md">
         <div className="delete-section">
           <div className="row">
             <div className="box">

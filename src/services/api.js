@@ -22,6 +22,7 @@ const apiService = {
   GetPatientProfile: (id) => api.get(`/patient/getPatient/${id}`),
   EditPatientProfile: (id, userData) =>
     api.put(`/patient/editPatient/${id}`, userData),
+  GetAllPatients: () => api.get("/patient/getAllPatient"),
 
   // Admin
   AdminLogin: (userData) => api.post("/admin/login", userData),
@@ -39,21 +40,19 @@ const apiService = {
   GetAllDoctors: (userData) => api.get("/doctor/getAllDoctors", userData),
   GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
   EditDoctor: (id, userData) => api.put(`/doctor/editDoctor/${id}`, userData),
+  DeleteDoctor: (id) => api.delete(`/doctor/deleteDoctor/${id}`),
 
   // Universal Login /logout
   UniversalLogin: (userData) => api.post("/login", userData),
   UniversalLogout: (userData) => api.post("/logout", userData),
   ForgetPassword: (userData) => api.post("/forgetPassword", userData),
-  VerifyOtp: (userData) => api.post("/verifyOtp", userData),
+  VerifyOtp: (userData) => api.post("/verifyOtp", userData ),
   ResetPassword: (userData) => api.post("/resetPassword", userData),
 
   //Hospital
   CreateHospital: (userData) => api.post("/hospital/create-hospital", userData),
   GetAllHospitals: (userData) =>
     api.get("/hospital/get-all-hospitals", userData),
-  ForgetPassword: (userData) => api.post("/forgetPassword", userData),
-  VerifyOtp: (userData) => api.post("/verifyOtp", userData),
-  ResetPassword: (userData) => api.post("/resetPassword", userData),
 
   // Bill
   GetBills: () => api.get("/bill/getbill"),
@@ -64,27 +63,24 @@ const apiService = {
   GetAllHospital: (userData) =>
     api.post("/hospital/get-all-hospitals", userData),
 
-  //Doctor
-  CreateDoctor: (userData) => api.post("/doctor/addDoctor", userData),
-  GetAllDoctors: (userData) => api.get("/doctor/getAllDoctors", userData),
-  GetDoctorById: (id) => api.get(`/doctor/getDoctorById/${id}`),
-  DeleteDoctor: (id) => api.delete(`/doctor/deleteDoctor/${id}`),
+  //Appointments
+  GetAllAppointments: () => api.get(`/appoinment/allappoinment`, {id :'6707ec1893d5090ffcdb86c6'}),
+  GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
+  EditAppointment: (id, userData) =>
+    api.put(`/appoinment/updateappointment/${id}`, userData),
+  DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
+  createAppointment: (id, userData) => api.post(`/appoinment/appoinmentcreate`, userData),
+  GetAppointsForDoctor: (doctorId) => api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`,doctorId),   
+  GetAppointsForPatient: (patientId) => api.get(`/appoinment/Patient_Appointment_History/${patientId}`,patientId), 
 
-  //Admin
-  GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),
-  EditAdminProfile: (id, userData) =>
-    api.patch(`/admin/edit-profile/${id}`, userData),
-  ChangePassword: (id, userData) =>
-    api.patch(`/admin/change-password/${id}`, userData),
+  //Chats
+  GetChatHistory: (doctorId, patientId) =>
+    api.get(`/chat/${doctorId}/${patientId}`),
+  GetDoctorContacts: (id) => api.get(`/chat/contacts/patient/${id}`),
+  GetPatientContacts: (id) => api.get(`/chat/contacts/doctor/${id}`),
 
-    //Appointments
-    GetAllAppointments: () => 
-      api.get(`/appoinment/allappoinment`),
-   GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
-   EditAppointment: (id, userData) => api.put(`/appoinment/updateappointment/${id}`, userData),
-   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
-
-   
+  //Payment
+  AppointmentFee:(doctorId, appointmentType) => api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
 };
 
 export default apiService;

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./invoice.css";
-import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import { useGlobal } from "../../hooks/useGlobal";
-import { FaEdit } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
-import AddFieldModal from "../../component/modals/AddFieldsModal";
 import PatientDetailsForm from "../PatientDetailsForm";
-import DynamicField from "../DynamicField";
 import HospitalDetailsForm from "../HospitalDetailsForm";
+import AddFieldModal from "../../component/AddFieldsModal";
+import AddNewField from "./AddNewField";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -189,7 +187,7 @@ const Invoice = () => {
           </div>
         </div>
       </div>
-      <AddFieldModal
+      <AddNewField
         isOpen={isModalOpen}
         onClose={closeModal}
         onAddField={(field) => handleNewField(field)}

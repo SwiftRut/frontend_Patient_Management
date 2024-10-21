@@ -15,39 +15,46 @@ import signature from "../../assets/signature.svg"
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md" className='manage-prescription'>
       <DialogTitle>
         <div className="flex justify-between items-center">
-          <span>Prescription</span>
-          <IconButton onClick={handleClose}>
+          <span className='tital'>Prescription</span>
+          <IconButton onClick={handleClose} className='close-btn'>
             <CloseIcon />
           </IconButton>
         </div>
       </DialogTitle>
+
       <DialogContent>
-        <div className="p-4">
-          <div className="flex justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-blue-600">Hospital</h2>
-              <p>Medical Center</p>
+
+        <div className="border rounded p-3">
+          <div className="top bg-gray-100 rounded p-4">
+            <div className="head flex justify-between align-center ">
+              <div className="logo">
+                <img src="/image/bill-logo.png" alt="" />
+              </div>
+              <div className="name">
+                <p>Dr. Bharat Patel</p>
+                <span>Obstetrics and Gynecology</span>
+              </div>
             </div>
-            <div>
-              <h3 className="font-bold text-blue-600">Dr. Bharat Patel</h3>
-              <p>Obstetrics and Gynecology</p>
+
+            <div className="mt-4">
+              <div className="details text-sm">
+                <div className="flex align-center justify-between pb-2">
+                  <p>Patient Name: <span>{prescriptionData.patientName}</span></p>
+                  <p>Prescription Date: <span>{prescriptionData.prescriptionDate}</span></p>
+                </div>
+                <div className="flex align-center justify-between pb-2">
+                  <p>Gender: <span>{prescriptionData.gender}</span></p>
+                  <p>Age: <span>{prescriptionData.age}</span></p>
+                </div>
+                <p className='add'>Address: <span>{prescriptionData.address}</span></p>
+              </div>
             </div>
           </div>
 
-          <div className="mt-4">
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>Patient Name: {prescriptionData.patientName}</div>
-              <div>Prescription Date: {prescriptionData.prescriptionDate}</div>
-              <div>Gender: {prescriptionData.gender}</div>
-              <div>Age: {prescriptionData.age}</div>
-              <div>Address: {prescriptionData.address}</div>
-            </div>
-          </div>
-
-          <Table className="mt-4">
+          <Table className="mt-4 table-data">
             <TableHead>
               <TableRow>
                 <TableCell>Medicine Name</TableCell>
@@ -63,8 +70,8 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                   <TableCell>{medicine.name}</TableCell>
                   <TableCell>{medicine.strength}</TableCell>
                   <TableCell>{medicine.dose}</TableCell>
-                  <TableCell>{medicine.duration}</TableCell>
-                  <TableCell>{medicine.whenToTake}</TableCell>
+                  <TableCell className='duration'><span>{medicine.duration}</span></TableCell>
+                  <TableCell className='take'><span>{medicine.whenToTake}</span></TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -5,7 +5,7 @@
 .doctor-profile-section .row .main .profile-setting {
   width: 80%;
   margin: 0px auto;
-  margin-top: -15%;
+  margin-top: -12%;
 }
 .doctor-profile-section .row .main .profile-setting .head {
   padding-bottom: 15px;
@@ -287,18 +287,14 @@
   background-color: #F6F8FB;
   border-radius: 10px;
 }
-.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label {
-  align-items: center;
-}
-.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label svg {
+.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li svg {
   color: #4F4F4F;
 }
-.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li label span {
+.doctor-edit-section .row .main .profile-setting .content .left .img-box .change-profile ul li span {
   color: #4F4F4F;
   padding-left: 15px;
   font-size: 20px;
   font-weight: 600;
-  display: inline-block;
 }
 .doctor-edit-section .row .main .profile-setting .content .right {
   width: 77%;

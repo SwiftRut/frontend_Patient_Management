@@ -27,13 +27,18 @@ input {
   margin-left: 17%;
 }
 
+.registration-section .row .main {
+  height: 100vh;
+}
 .registration-section .row .main .form {
   padding: 120px;
   width: 50%;
+  background-color: #fff;
 }
 .registration-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
+  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .registration-section .row .main .form .content .head {
@@ -55,6 +60,10 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+  z-index: 2;
+}
+.registration-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -140,6 +149,36 @@ input {
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(8) select {
   width: 100%;
 }
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-13cymwt-control {
+  padding: 12px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  color: #a7a7a7;
+}
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-t3ipsp-control {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 50px;
+  outline: 0 !important;
+  position: relative;
+  transition: all 100ms;
+  background-color: hsl(0, 0%, 100%);
+  border: 1px solid #718ebf !important;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 0 0 1px #2684FF;
+  box-sizing: border-box;
+}
+.registration-section .row .main .form .content .form-box form .input-box:nth-child(8) .css-1nmdiq5-menu {
+  z-index: 3;
+}
 .registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
   width: 100%;
 }
@@ -187,9 +226,67 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.registration-section .row .main .form .content .form-box form .condition .login-btn p span {
+  color: #5678E9;
 }
 .registration-section .row .main .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.registration-section .row .main .img-box .slider {
+  position: relative;
+  width: 700px;
+  height: 700px;
+}
+.registration-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.registration-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.registration-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.registration-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.registration-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 1px;
+  bottom: 0px;
+}
+.registration-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.registration-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 .patient-registration-section .row .main .form {
@@ -397,10 +494,63 @@ input {
 }
 .patient-registration-section .row .main .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.patient-registration-section .row .main .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.patient-registration-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.patient-registration-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.patient-registration-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.patient-registration-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.patient-registration-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.patient-registration-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.patient-registration-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 .hospital-section .row .main .form .content {
-  padding: 20px;
   background-color: white;
   border-radius: 15px;
 }
@@ -423,6 +573,9 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+}
+.hospital-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .hospital-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -526,15 +679,77 @@ input {
 }
 .hospital-section .row .main .form .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.hospital-section .row .main .form .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.hospital-section .row .main .form .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.hospital-section .row .main .form .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.hospital-section .row .main .form .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.hospital-section .row .main .form .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.hospital-section .row .main .form .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.hospital-section .row .main .form .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.hospital-section .row .main .form .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
+.admin-mobile-section .row .main {
+  height: 100vh;
+}
 .admin-mobile-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
+  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .head {
@@ -599,6 +814,7 @@ input {
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
+  transition: all 0.5s;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .admin-mobile-form-box form .condition .otp button:hover {
   background-color: #0eabeb;
@@ -614,15 +830,77 @@ input {
 }
 .admin-mobile-section .row .main .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.admin-mobile-section .row .main .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.admin-mobile-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.admin-mobile-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.admin-mobile-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.admin-mobile-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.admin-mobile-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.admin-mobile-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
+.admin-otp-section .row .main {
+  height: 100vh;
+}
 .admin-otp-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .admin-otp-section .row .main .form .admin-otp-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
+  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-otp-section .row .main .form .admin-otp-content .head {
@@ -730,6 +1008,7 @@ input {
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
+  transition: all 0.5s;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .condition .verify button:hover {
   background-color: #0eabeb;
@@ -737,15 +1016,77 @@ input {
 }
 .admin-otp-section .row .main .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.admin-otp-section .row .main .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.admin-otp-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.admin-otp-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.admin-otp-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.admin-otp-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.admin-otp-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.admin-otp-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.admin-otp-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
+.changePassword-section .row .main {
+  height: 100vh;
+}
 .changePassword-section .row .main .form {
   padding: 120px 100px;
   width: 50%;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .changePassword-section .row .main .form .changePassword-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
+  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .changePassword-section .row .main .form .changePassword-content .head {
@@ -816,6 +1157,7 @@ input {
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
+  transition: all 0.5s;
 }
 .changePassword-section .row .main .form .changePassword-content .changePassword-form-box form .condition .otp button:hover {
   background-color: #0eabeb;
@@ -831,15 +1173,77 @@ input {
 }
 .changePassword-section .row .main .img-box {
   width: 50%;
+  padding: 120px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.changePassword-section .row .main .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.changePassword-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.changePassword-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.changePassword-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.changePassword-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.changePassword-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.changePassword-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.changePassword-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
+.login-section .row .main {
+  height: 100vh;
+}
 .login-section .row .main .form {
   padding: 120px;
   width: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .login-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
+  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .login-section .row .main .form .content .head {
@@ -861,6 +1265,9 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+}
+.login-section .row .main .form .content .form-box form .input-box .label span {
+  color: red;
 }
 .login-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -921,6 +1328,9 @@ input {
 .login-section .row .main .form .content .form-box form .condition .remember-forgot .remember p {
   padding-left: 15px;
 }
+.login-section .row .main .form .content .form-box form .condition .remember-forgot .forgot span {
+  color: #5678E9;
+}
 .login-section .row .main .form .content .form-box form .condition .login-btn {
   padding: 15px 0px;
 }
@@ -931,6 +1341,7 @@ input {
   padding: 12px 14px;
   border-radius: 10px;
   font-size: 20px;
+  transition: all 0.5s;
 }
 .login-section .row .main .form .content .form-box form .condition .login-btn button:hover {
   background-color: #0eabeb;
@@ -942,7 +1353,65 @@ input {
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+  color: #030229;
+}
+.login-section .row .main .form .content .form-box form .condition .registration-btn p span {
+  color: #5678E9;
 }
 .login-section .row .main .img-box {
   width: 50%;
+  padding: 150px;
+  position: relative;
+  background-color: #f6f8fb;
+}
+.login-section .row .main .img-box .slider {
+  position: relative;
+  width: 650px;
+  height: 650px;
+}
+.login-section .row .main .img-box .slider img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.login-section .row .main .img-box .slider .dots {
+  position: absolute;
+  bottom: -20px;
+  left: 55%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.login-section .row .main .img-box .slider .dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  cursor: pointer;
+  margin: 0 5px;
+}
+.login-section .row .main .img-box .slider .dots .dot.active {
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+  width: 30px;
+  border-radius: 10px;
+}
+.login-section .row .main .img-box .vector-1 {
+  width: 30%;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.login-section .row .main .img-box .vector-2 {
+  width: 30%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.login-section .row .main .img-box .vector-dot {
+  width: 10%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }/*# sourceMappingURL=pages.css.map */

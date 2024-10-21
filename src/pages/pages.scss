@@ -32,13 +32,17 @@ input {
 .registration-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px;
         width: 50%;
+        background-color: #fff;
 
         .content {
           padding: 60px 60px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -63,6 +67,11 @@ input {
                   top: 4px;
                   left: 14px;
                   background-color: white;
+                  z-index: 2;
+
+                  span {
+                    color: red;
+                  }
                 }
 
                 input {
@@ -83,9 +92,6 @@ input {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
 
                 select {
@@ -168,9 +174,63 @@ input {
 
                 &:nth-child(8) {
                   width: 100%;
+                  // padding: 0px;
 
                   select {
                     width: 100%;
+                  }
+
+                  .css-13cymwt-control {
+                    padding: 12px 14px;
+                    border: 1px solid #d9d9d9;
+                    border-radius: 10px;
+                    outline: none;
+                    background-color: white;
+                    color: #a7a7a7;
+                  }
+
+                  // .css-1jqq78o-placeholder {
+                  //   grid-area: 1 / 1 / 2 / 3;
+                  //   color: hsl(0, 0%, 50%);
+                  //   margin-left: 2px;
+                  //   margin-right: 2px;
+                  //   box-sizing: border-box;
+                  //   padding: 33px 14px 0px;
+                  // }
+
+                  .css-t3ipsp-control {
+                    -webkit-align-items: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    cursor: default;
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-flex-wrap: wrap;
+                    -webkit-flex-wrap: wrap;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                    -webkit-box-pack: justify;
+                    -webkit-justify-content: space-between;
+                    justify-content: space-between;
+                    min-height: 50px;
+                    outline: 0 !important;
+                    position: relative;
+                    -webkit-transition: all 100ms;
+                    transition: all 100ms;
+                    background-color: hsl(0, 0%, 100%);
+                    border: 1px solid #718ebf !important;
+                    border-radius: 4px;
+                    border-style: solid;
+                    border-width: 1px;
+                    box-shadow: 0 0 0 1px #2684FF;
+                    box-sizing: border-box;
+                  }
+
+                  .css-1nmdiq5-menu {
+                    z-index: 3;
                   }
                 }
 
@@ -235,6 +295,11 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
+                    color: #030229;
+
+                    span {
+                      color: #5678E9;
+                    }
                   }
                 }
               }
@@ -245,6 +310,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 700px;
+          height: 700px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 1px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -309,8 +440,7 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {
-                  }
+                  img {}
                 }
 
                 select {
@@ -526,6 +656,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -539,9 +735,7 @@ input {
   .row {
     .main {
       .form {
-
         .content {
-          padding: 20px;
           background-color: white;
           border-radius: 15px;
 
@@ -567,6 +761,10 @@ input {
                   top: 4px;
                   left: 14px;
                   background-color: white;
+
+                  span {
+                    color: red;
+                  }
                 }
 
                 input {
@@ -698,6 +896,72 @@ input {
 
         .img-box {
           width: 50%;
+          padding: 150px;
+          position: relative;
+          background-color: #f6f8fb;
+
+          .slider {
+            position: relative;
+            width: 650px;
+            height: 650px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              display: none;
+            }
+
+            .dots {
+              position: absolute;
+              bottom: -20px;
+              left: 55%;
+              transform: translateX(-50%);
+              text-align: center;
+
+              .dot {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
+                cursor: pointer;
+                margin: 0 5px;
+              }
+
+              .dot.active {
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
+                width: 30px;
+                border-radius: 10px;
+              }
+            }
+          }
+
+          .vector-1 {
+            width: 30%;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+          }
+
+          .vector-2 {
+            width: 30%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+          }
+
+          .vector-dot {
+            width: 10%;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+          }
         }
       }
     }
@@ -711,13 +975,20 @@ input {
 .admin-mobile-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .admin-mobile-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -791,6 +1062,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
+                    transition: all 0.5s;
 
                     &:hover {
                       background-color: #0eabeb;
@@ -817,6 +1089,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -829,13 +1167,20 @@ input {
 .admin-otp-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .admin-otp-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -970,6 +1315,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
+                    transition: all 0.5s;
 
                     &:hover {
                       background-color: #0eabeb;
@@ -985,6 +1331,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -997,13 +1409,20 @@ input {
 .changePassword-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px 100px;
         width: 50%;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        display: flex;
 
         .changePassword-content {
           padding: 40px 40px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1050,9 +1469,6 @@ input {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
 
                 &:nth-child(1) {
@@ -1086,6 +1502,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
+                    transition: all 0.5s;
 
                     &:hover {
                       background-color: #0eabeb;
@@ -1112,6 +1529,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 120px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }
@@ -1124,13 +1607,20 @@ input {
 .login-section {
   .row {
     .main {
+      height: 100vh;
+
       .form {
         padding: 120px;
         width: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .content {
           padding: 60px 60px;
           border: 1px solid #f4f4f4;
+          box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
           border-radius: 15px;
 
           .head {
@@ -1155,6 +1645,10 @@ input {
                   top: 4px;
                   left: 14px;
                   background-color: white;
+
+                  span {
+                    color: red;
+                  }
                 }
 
                 input {
@@ -1175,9 +1669,6 @@ input {
                   position: absolute;
                   top: 27px;
                   right: 15px;
-
-                  img {
-                  }
                 }
 
                 select {
@@ -1228,9 +1719,6 @@ input {
                   align-items: center;
 
                   .remember {
-                    input {
-                    }
-
                     p {
                       padding-left: 15px;
                     }
@@ -1238,9 +1726,12 @@ input {
 
                   .forgot {
                     span {
+                      color: #5678E9;
                     }
                   }
                 }
+
+
 
                 .login-btn {
                   padding: 15px 0px;
@@ -1252,6 +1743,7 @@ input {
                     padding: 12px 14px;
                     border-radius: 10px;
                     font-size: 20px;
+                    transition: all 0.5s;
 
                     &:hover {
                       background-color: #0eabeb;
@@ -1267,6 +1759,11 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
+                    color: #030229;
+
+                    span {
+                      color: #5678E9;
+                    }
                   }
                 }
               }
@@ -1277,6 +1774,72 @@ input {
 
       .img-box {
         width: 50%;
+        padding: 150px;
+        position: relative;
+        background-color: #f6f8fb;
+
+        .slider {
+          position: relative;
+          width: 650px;
+          height: 650px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            display: none;
+          }
+
+          .dots {
+            position: absolute;
+            bottom: -20px;
+            left: 55%;
+            transform: translateX(-50%);
+            text-align: center;
+
+            .dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              cursor: pointer;
+              margin: 0 5px;
+            }
+
+            .dot.active {
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
+              width: 30px;
+              border-radius: 10px;
+            }
+          }
+        }
+
+        .vector-1 {
+          width: 30%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+        }
+
+        .vector-2 {
+          width: 30%;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+        }
+
+        .vector-dot {
+          width: 10%;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+        }
       }
     }
   }

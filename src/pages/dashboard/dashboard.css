@@ -3,7 +3,7 @@
 }
 .deshbord-section .row .main .top .Patients-data {
   padding: 0px 15px;
-  width: 60%;
+  width: 58%;
 }
 .deshbord-section .row .main .top .Patients-data .total-data {
   justify-content: space-between;
@@ -15,7 +15,7 @@
   width: 32%;
   background-color: white;
   border-radius: 15px;
-  padding: 20px;
+  padding: 15px;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content,
@@ -39,7 +39,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .logo svg {
   width: 30px;
-  color: #2E7793;
+  color: #2e7793;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .dr-logo,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .dr-logo,
@@ -49,7 +49,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .dr-logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .dr-logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .dr-logo svg {
-  color: #5E5E9E;
+  color: #5e5e9e;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .appo-logo,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .appo-logo,
@@ -59,7 +59,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .appo-logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .appo-logo svg,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .appo-logo svg {
-  color: #41B161;
+  color: #41b161;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details,
@@ -69,8 +69,8 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details p,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Docters .content .details p,
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details p {
-  color: #A7A7A7;
-  font-size: 18px;
+  color: #a7a7a7;
+  font-size: 16px;
   font-weight: 400;
 }
 .deshbord-section .row .main .top .Patients-data .total-data .total-Patients .content .details span,
@@ -78,7 +78,7 @@
 .deshbord-section .row .main .top .Patients-data .total-data .total-Appointments .content .details span {
   display: block;
   color: #030229;
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 800;
 }
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics {
@@ -101,25 +101,25 @@
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head .menu ul li {
   padding: 8px 0px;
   font-weight: 400;
-  color: #A7A7A7;
+  color: #a7a7a7;
   display: inline-block;
   border-radius: 10px;
   width: 78px;
   text-align: center;
 }
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .head .menu ul li:hover {
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   color: white;
 }
 .deshbord-section .row .main .top .Patients-data .Patients-Statistics .patients-content .graph {
   height: 85%;
 }
 .deshbord-section .row .main .top .Billing-data {
-  width: 40%;
-  padding: 20px;
+  width: 42%;
+  padding: 15px;
   background-color: white;
   border-radius: 15px;
-  height: auto;
+  height: 460px;
 }
 .deshbord-section .row .main .top .Billing-data .head {
   justify-content: space-between;
@@ -135,14 +135,14 @@
   justify-content: center;
   font-size: 20px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px 14px;
   border-radius: 10px;
-  background-color: #0EABEB;
+  background-color: #0eabeb;
   gap: 10px;
 }
 .deshbord-section .row .main .top .Billing-data .head .btn button svg {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill {
   height: 85%;
@@ -169,7 +169,7 @@
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table {
   height: 100%;
   overflow-y: scroll;
-  scrollbar-color: #030229 #F4F4F4;
+  scrollbar-color: #030229 #f4f4f4;
   scrollbar-width: thin;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table {
@@ -191,30 +191,29 @@
   height: 100%;
   width: 100%;
 }
-.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr {
-  padding: 5px 0px;
-}
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr td {
   text-align: center;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .bill-num {
-  background: #F6F8FB;
-  border-radius: 33px;
+  padding: 5px 0px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .bill-num p {
-  color: #718EBF;
+  color: #718ebf;
+  background: #f6f8fb;
+  border-radius: 33px;
   text-align: center;
   padding: 5px 18px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .patient-name p,
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .disease-name p {
-  color: #4F4F4F;
+  color: #4f4f4f;
   font-size: 12px;
   font-weight: 500;
+  padding: 5px 0px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .status p {
   background-color: rgba(57, 151, 61, 0.1019607843);
-  color: #39973D;
+  color: #39973d;
   font-size: 13px;
   font-weight: 600;
   padding: 6px 20px;
@@ -227,13 +226,13 @@
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .action .box {
   width: 28px;
   height: 28px;
-  background-color: #F6F8FB;
-  justify-content: center;
+  background-color: #f6f8fb;
   align-items: center;
+  margin-top: 10px;
 }
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .action .box svg {
   margin: 0px auto;
-  color: #0EABEB;
+  color: #0eabeb;
 }
 .deshbord-section .row .main .bottom {
   padding: 10px 20px;
@@ -241,13 +240,13 @@
 }
 .deshbord-section .row .main .bottom .appointments-data {
   padding: 0px 15px;
-  width: 60%;
+  width: 58%;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content {
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  height: 340px;
+  height: 310px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head {
   justify-content: space-between;
@@ -262,7 +261,7 @@
   font-weight: 700;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head .title span {
-  color: #5678E9;
+  color: #5678e9;
   cursor: pointer;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .img {
@@ -278,7 +277,7 @@
   justify-content: space-between;
   align-items: center;
   overflow-y: scroll;
-  scrollbar-color: #030229 #F4F4F4;
+  scrollbar-color: #030229 #f4f4f4;
   scrollbar-width: thin;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box {
@@ -288,7 +287,7 @@
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .heading {
   justify-content: space-between;
   align-items: center;
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   padding: 10px 14px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -301,16 +300,13 @@
   padding: 6px 20px;
   background-color: rgba(86, 120, 233, 0.1019607843);
   border-radius: 30px;
-  color: #5678E9;
+  color: #5678e9;
   font-size: 13px;
   font-weight: 600;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data {
-  border: 1px solid #F4F4F4;
+  border: 1px solid #f4f4f4;
   padding: 10px 14px;
-}
-.deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data ul li {
-  padding-bottom: 10px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data ul li p {
   font-size: 16px;
@@ -320,10 +316,10 @@
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data ul li span {
   font-size: 16px;
   font-weight: 700;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .deshbord-section .row .main .bottom .Summary-data {
-  width: 40%;
+  width: 42%;
   padding: 20px;
   background-color: white;
   border-radius: 15px;
@@ -332,14 +328,14 @@
   font-size: 26px;
   font-weight: 700;
   color: #030229;
-  border-bottom: 1px solid #F4F4F4;
+  border-bottom: 1px solid #f4f4f4;
   padding-bottom: 10px;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status {
   padding-top: 20px;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data {
-  background-color: #F6F8FB;
+  background-color: #f6f8fb;
   border-radius: 15px;
   align-items: center;
   padding: 25px;
@@ -367,25 +363,25 @@
   padding: 10px;
   font-size: 18px;
   font-weight: 600;
-  color: #4F4F4F;
+  color: #4f4f4f;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .new svg {
-  color: #E78B00;
+  color: #e78b00;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .new span {
   display: inline-block;
-  color: #E78B00;
+  color: #e78b00;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .old svg {
-  color: #00AA33;
+  color: #00aa33;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .old span {
   display: inline-block;
-  color: #00AA33;
+  color: #00aa33;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .total svg {
-  color: #0314C9;
+  color: #0314c9;
 }
 .deshbord-section .row .main .bottom .Summary-data .Summary-status .Patients-data .details .content ul .total span {
-  color: #0314C9;
+  color: #0314c9;
 }/*# sourceMappingURL=dashboard.css.map */

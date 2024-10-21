@@ -1,28 +1,61 @@
-/* eslint-disable no-unused-vars */
 import "../pages.css";
 import { IoTimeOutline } from "react-icons/io5";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import apiService from '../../services/api.js'; // Import your API service
+import apiService from '../../services/api.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const AdminOtp = () => {
+export default function AdminOtp() {
   const location = useLocation();
   const navigate = useNavigate();
   const { identifier } = location.state || {};
   const inputRefs = useRef([]);
   const [otp, setOtp] = useState(new Array(6).fill(""));
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [isResendDisabled, setIsResendDisabled] = useState(true);
-  const [timer, setTimer] = useState(300); // 5 minutes = 300 seconds
+  const [timer, setTimer] = useState(60); // 1 minute = 60 seconds
+
+  // Check if identifier is valid
+  useEffect(() => {
+    if (!identifier) {
+      toast.error("Invalid request. Please try again.");
+      navigate('/someFallbackRoute'); // Navigate to a fallback route
+    }
+  }, [identifier, navigate]);
 
   useEffect(() => {
-    // Timer logic for disabling the resend button for 5 minutes
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
+  // Countdown Timer for Resend OTP
+  useEffect(() => {
     const interval = setInterval(() => {
       if (timer > 0) {
         setTimer((prevTimer) => prevTimer - 1);
       } else {
         setIsResendDisabled(false);
+        clearInterval(interval);
       }
     }, 1000);
 
@@ -37,6 +70,7 @@ const AdminOtp = () => {
 
   const handleInputChange = (index, event) => {
     const { value } = event.target;
+
     if (!/^\d*$/.test(value)) {
       event.target.value = "";
       return;
@@ -47,25 +81,28 @@ const AdminOtp = () => {
     setOtp(newOtp);
 
     if (value.length === 1 && index < inputRefs.current.length - 1) {
-      inputRefs.current[index + 1].focus();
+      const nextInput = inputRefs.current[index + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
   const handleKeyDown = (index, event) => {
-    if (event.key === "Backspace" && index > 0 && otp[index] === "") {
-      inputRefs.current[index - 1].focus();
+    if (event.key === "Backspace" && index > 0 && event.target.value === "") {
+      const prevInput = inputRefs.current[index - 1];
+      if (prevInput) {
+        prevInput.focus();
+      }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccessMessage('');
-
     const enteredOtp = otp.join('');
 
     if (enteredOtp.length !== 6) {
-      setError("Please enter a valid 6-digit OTP.");
+      toast.error("Please enter a valid 6-digit OTP.");
       return;
     }
 
@@ -75,42 +112,39 @@ const AdminOtp = () => {
         otp: enteredOtp,
       });
 
-      setSuccessMessage(response.data.message);
+      toast.success(response.data.message);
       navigate('/resetPassword', { state: { identifier } });
     } catch (error) {
       if (error.response && error.response.data) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again.');
       }
     }
   };
 
   const handleResendOtp = async () => {
-    setError('');
-    setSuccessMessage('');
     setIsResendDisabled(true);
-    setTimer(300);
+    setTimer(60);
 
     try {
-      console.log(identifier)
       const response = await apiService.ForgetPassword({ identifier });
-
-      setSuccessMessage(response.data.message);
+      toast.success(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again.');
       }
     }
   };
 
   return (
     <div>
+      <ToastContainer />
       <div className="admin-otp-section">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="admin-otp-content">
                 <div className="head">
@@ -118,14 +152,8 @@ const AdminOtp = () => {
                 </div>
 
                 <div className="note">
-                  <p>Please enter the 6 digit code that was sent to your phone number.</p>
+                  <p>Please enter the 6-digit code that was sent to your phone number.</p>
                 </div>
-
-                {/* Display success message */}
-                {successMessage && <div className="success-message" style={{ "color": "green" }}>{successMessage}</div>}
-
-                {/* Display error message */}
-                {error && <div className="error-message" style={{ "color": "red" }}>{error}</div>}
 
                 <div className="admin-otp-form-box">
                   <form className="flex" onSubmit={handleSubmit}>
@@ -156,6 +184,7 @@ const AdminOtp = () => {
                           <button
                             type="button"
                             onClick={handleResendOtp}
+                            disabled={isResendDisabled}
                           >
                             Resend OTP
                           </button>
@@ -170,12 +199,28 @@ const AdminOtp = () => {
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" alt="Vector 1" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" alt="Vector 2" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" alt="Vector Dot" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default AdminOtp;
+}

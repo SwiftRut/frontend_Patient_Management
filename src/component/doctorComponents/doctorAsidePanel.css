@@ -73,7 +73,8 @@ input {
   transition: max-height 0.3s ease-out;
 }
 .sidebar .asite .menu ul li .dropdown.open {
-  max-height: 200px; /* Maximum height when open */
+  max-height: 200px;
+  /* Maximum height when open */
 }
 .sidebar .asite .menu ul li .dropdown ul {
   padding: 0;
@@ -100,7 +101,6 @@ input {
   align-items: center;
   padding: 10px 10px;
   width: 100%;
-  font-size: 20px;
   color: #0eabeb;
 }
 .sidebar .asite .menu ul li a .icon {
@@ -110,7 +110,7 @@ input {
 }
 .sidebar .asite .menu ul li a span {
   color: #818194;
-  font-size: 20px;
+  font-size: 16px;
 }
 .sidebar .asite .menu ul li:hover {
   background: linear-gradient(90deg, rgb(213, 241, 250) 0%, rgb(255, 255, 255) 100%);
@@ -136,4 +136,9 @@ input {
   width: 83%;
   margin-left: 17%;
   padding: 20px;
+}
+
+.header {
+  width: 83%;
+  margin-left: 17%;
 }/*# sourceMappingURL=doctorAsidePanel.css.map */

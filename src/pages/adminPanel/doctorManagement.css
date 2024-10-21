@@ -44,13 +44,24 @@
   border: 3px solid #D9D9D9;
   border-radius: 100%;
 }
-.doctorAdd-section .row .main .top .content .details .left .choose-photo p,
-.doctorEdit-section .row .main .top .content .details .left .choose-photo p {
+.doctorAdd-section .row .main .top .content .details .left .choose-photo .image img,
+.doctorEdit-section .row .main .top .content .details .left .choose-photo .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+.doctorAdd-section .row .main .top .content .details .left .choose-photo .choose-img,
+.doctorEdit-section .row .main .top .content .details .left .choose-photo .choose-img {
+  text-align: center;
+  padding-top: 10px;
+}
+.doctorAdd-section .row .main .top .content .details .left .choose-photo .choose-img label,
+.doctorEdit-section .row .main .top .content .details .left .choose-photo .choose-img label {
   padding-top: 15px;
   color: #5678E9;
   font-size: 18px;
   font-weight: 600;
-  text-align: center;
+  cursor: pointer;
 }
 .doctorAdd-section .row .main .top .content .details .left .upload-sign,
 .doctorEdit-section .row .main .top .content .details .left .upload-sign {
@@ -72,21 +83,17 @@
   border: 2px dotted #D3D3D3;
   border-radius: 6px;
   padding: 20px;
+  text-align: center;
 }
-.doctorAdd-section .row .main .top .content .details .left .upload-sign .sign svg,
-.doctorEdit-section .row .main .top .content .details .left .upload-sign .sign svg {
-  width: 36px;
-  height: 36px;
-  color: #A7A7A7;
-  margin: 0px auto;
-}
-.doctorAdd-section .row .main .top .content .details .left .upload-sign .sign p,
-.doctorEdit-section .row .main .top .content .details .left .upload-sign .sign p {
+.doctorAdd-section .row .main .top .content .details .left .upload-sign .sign label,
+.doctorEdit-section .row .main .top .content .details .left .upload-sign .sign label {
   color: #5678E9;
   font-size: 14px;
   font-weight: 700;
   text-align: center;
   padding: 10px 0px;
+  cursor: pointer;
+  display: inline-block;
 }
 .doctorAdd-section .row .main .top .content .details .left .upload-sign .sign h5,
 .doctorEdit-section .row .main .top .content .details .left .upload-sign .sign h5 {
@@ -99,10 +106,6 @@
 .doctorEdit-section .row .main .top .content .details .right {
   width: 79%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box,
-.doctorEdit-section .row .main .top .content .details .right .form-box {
-  padding-top: 20px;
-}
 .doctorAdd-section .row .main .top .content .details .right .form-box form,
 .doctorEdit-section .row .main .top .content .details .right .form-box form {
   justify-content: start;
@@ -113,7 +116,7 @@
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box {
   position: relative;
-  padding: 15px 0px;
+  padding: 15px 0px 0px;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box .label,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box .label {
@@ -239,16 +242,16 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(10) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(10) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(10) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(10) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(10) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(12),
@@ -386,7 +389,7 @@
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box {
   position: relative;
-  padding: 15px 0px;
+  padding: 15px 0px 0px;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box .label,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box .label {

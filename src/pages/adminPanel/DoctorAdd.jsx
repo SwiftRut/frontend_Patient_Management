@@ -1,90 +1,36 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
-import apiService from '../../services/api.js';
-import './doctorManagement.css';
+import apiService from "../../services/api.js";
+import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
-
-const timeOptions = [
-  "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-  "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
-  "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
-  "20:00", "20:30", "21:00", "21:30"
-];
-
-const countryCodes = [
-  { code: "+1", country: "USA" },
-  { code: "+91", country: "India" },
-  { code: "+44", country: "UK" },
-  { code: "+61", country: "Australia" },
-  { code: "+49", country: "Germany" },
-];
+import { toast } from "react-toastify";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
+import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 
 const DoctorAdd = () => {
   const navigate = useNavigate();
+  const { getAllHospitals, allHospitals } = useGlobal();
 
   const [signaturePreview, setSignaturePreview] = useState(null);
   const [profilePicturePreview, setProfilePicturePreview] = useState(null);
+  const [formData, setFormData] = useState(DoctorFormData);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    qualification: '',
-    gender: '',
-    speciality: '',
-    workOnStart: '',
-    workingTimeStart: '',
-    checkUpTimeStart: '',
-    breakTimeStart: '',
-    experience: '',
-    phone: '',
-    countryCode: '+1',
-    age: '',
-    email: '',
-    country: '',
-    state: '',
-    city: '',
-    zipCode: '',
-    doctorAddress: '',
-    description: '',
-    onlineConsultationRate: '',
-    currentHospital: '',
-    hospitalName: '',
-    hospitalAddress: '',
-    worksiteLink: '',
-    emergencyContactNo: '',
-    signature: null,
-    profilePicture: null
-  });
+  useEffect(() => {
+    getAllHospitals();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
-      setFormData((prevData) => ({
-        ...prevData,
-        signature: file, // Store the file in the state
-      }));
-
-      // Create a preview of the uploaded image
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSignaturePreview(reader.result); // Set the preview URL
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert("Please upload a PNG or JPEG file up to 5MB.");
-    }
   };
 
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
-    if (file && (file.type === "image/png" || file.type === "image/jpeg") && file.size <= 5 * 1024 * 1024) {
+
+    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
       setFormData((prevData) => ({
         ...prevData,
         profilePicture: file,
@@ -96,25 +42,62 @@ const DoctorAdd = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a PNG or JPEG file up to 5MB for the profile picture.");
+      alert("Please upload a valid PNG or JPEG file for the profile picture.");
+    }
+  };
+
+  const handleSignatureChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file && (file.type === "image/png" || file.type === "image/jpeg")) {
+      setFormData((prevData) => ({
+        ...prevData,
+        signature: file,
+      }));
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSignaturePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please upload a valid PNG or JPEG file for the signature.");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Password and Confirm Password do not match.");
+      return;
+    }
     const fullPhoneNumber = formData.countryCode + formData.phone;
-    const dataToSubmit = { ...formData, phone: fullPhoneNumber };
+    const dataToSubmit = new FormData();
+
+    Object.keys(formData).forEach((key) => {
+      if (key === "signature" || key === "profilePicture") {
+        if (formData[key]) {
+          dataToSubmit.append(key, formData[key]);
+        }
+      } else {
+        dataToSubmit.append(key, formData[key]);
+      }
+    });
+
+    dataToSubmit.set("phone", fullPhoneNumber);
 
     try {
       const response = await apiService.CreateDoctor(dataToSubmit);
       console.log(response.data);
       if (response) {
         navigate("/doctorManagement");
+        toast.success("Doctor added successfully.");
       }
     } catch (error) {
-      console.error('Error adding doctor:', error);
+      console.error("Error adding doctor:", error);
+      toast.error("Failed to add doctor. Please try again later.");
     }
-
   };
 
   return (
@@ -122,7 +105,6 @@ const DoctorAdd = () => {
       <div className="doctorAdd-section">
         <div className="row">
           <div className="main">
-
             <form action="" onSubmit={handleSubmit}>
               <div className="top">
                 <div className="content">
@@ -132,15 +114,30 @@ const DoctorAdd = () => {
                   <div className="details flex">
                     <div className="left flex">
                       <div className="choose-photo">
-                        <div className="image" onClick={() => document.getElementById("profilePictureUpload").click()}>
+                        <div
+                          className="image"
+                          onClick={() =>
+                            document
+                              .getElementById("profilePictureUpload")
+                              .click()
+                          }
+                        >
                           {profilePicturePreview ? (
                             <img
                               src={profilePicturePreview}
                               alt="Profile Preview"
-                              style={{ width: "100%", height: "auto", cursor: 'pointer' }}
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                                cursor: "pointer",
+                              }}
                             />
                           ) : (
-                            <img src="../img/doctorAdd.png" alt="" style={{ cursor: 'pointer' }} />
+                            <img
+                              src="../img/doctorAdd.png"
+                              alt=""
+                              style={{ cursor: "pointer" }}
+                            />
                           )}
                         </div>
                         <input
@@ -149,8 +146,16 @@ const DoctorAdd = () => {
                           onChange={handleProfilePictureChange}
                           style={{ display: "none" }}
                           id="profilePictureUpload"
+                          name="profilePicture"
                         />
-                        <p style={{ cursor: 'pointer' }} onClick={() => document.getElementById("profilePictureUpload").click()}>
+                        <p
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            document
+                              .getElementById("profilePictureUpload")
+                              .click()
+                          }
+                        >
                           Choose Photo
                         </p>
                       </div>
@@ -163,15 +168,25 @@ const DoctorAdd = () => {
                           <input
                             type="file"
                             accept="image/png, image/jpeg"
-                            onChange={handleFileChange}
-                            style={{ display: 'none' }}
+                            onChange={handleSignatureChange}
+                            style={{ display: "none" }}
                             id="signatureUpload"
+                            name="signature"
                           />
-                          <label htmlFor="signatureUpload" style={{ cursor: 'pointer' }}>
+                          <label
+                            htmlFor="signatureUpload"
+                            style={{ cursor: "pointer" }}
+                          >
                             Upload a file
                           </label>
                           <h5>PNG or JPEG Up To 5MB</h5>
-                          {signaturePreview && <img src={signaturePreview} alt="Signature Preview" style={{ width: '100%', marginTop: '10px' }} />}
+                          {signaturePreview && (
+                            <img
+                              src={signaturePreview}
+                              alt="Signature Preview"
+                              style={{ width: "100%", marginTop: "10px" }}
+                            />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -210,7 +225,11 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Gender</div>
-                            <select name="gender" value={formData.gender} onChange={handleChange}>
+                            <select
+                              name="gender"
+                              value={formData.gender}
+                              onChange={handleChange}
+                            >
                               <option>Select Gender</option>
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>
@@ -239,13 +258,18 @@ const DoctorAdd = () => {
                           <div className="input-box">
                             <div className="label">Working Time</div>
                             <div className="time-range">
-                              <select name="workingTime" value={formData.workingTime} onChange={handleChange}>
+                              <select
+                                name="workingTime"
+                                value={formData.workingTime}
+                                onChange={handleChange}
+                              >
                                 <option value="">Start Time</option>
-                                {timeOptions.map((time, index) => (
-                                  <option key={index} value={time}>{time}</option>
+                                {timeOptions?.map((time, index) => (
+                                  <option key={index} value={time}>
+                                    {time}
+                                  </option>
                                 ))}
                               </select>
-
                             </div>
                             <div className="minus-circle">
                               <FaCircleMinus />
@@ -279,10 +303,11 @@ const DoctorAdd = () => {
                               >
                                 <option value="">Start Time</option>
                                 {timeOptions.map((time, index) => (
-                                  <option key={index} value={time}>{time}</option>
+                                  <option key={index} value={time}>
+                                    {time}
+                                  </option>
                                 ))}
                               </select>
-
                             </div>
                             <div className="minus-circle">
                               <FaCircleMinus />
@@ -299,10 +324,11 @@ const DoctorAdd = () => {
                               >
                                 <option value="">Start Time</option>
                                 {timeOptions.map((time, index) => (
-                                  <option key={index} value={time}>{time}</option>
+                                  <option key={index} value={time}>
+                                    {time}
+                                  </option>
                                 ))}
                               </select>
-
                             </div>
                             <div className="minus-circle">
                               <FaCircleMinus />
@@ -341,9 +367,15 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Country Code</div>
-                            <select name="countryCode" value={formData.countryCode} onChange={handleChange}>
+                            <select
+                              name="countryCode"
+                              value={formData.countryCode}
+                              onChange={handleChange}
+                            >
                               {countryCodes.map((country, index) => (
-                                <option key={index} value={country.code}>{country.code} ({country.country})</option>
+                                <option key={index} value={country.code}>
+                                  {country.code} ({country.country})
+                                </option>
                               ))}
                             </select>
                             <div className="minus-circle">
@@ -471,13 +503,44 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="input-box">
-                            <div className="label">Online Consultation Rate</div>
+                            <div className="label">
+                              Online Consultation Rate
+                            </div>
                             <input
                               type="number"
                               name="onlineConsultationRate"
                               placeholder="Enter Rate"
                               maxLength={10}
                               value={formData.onlineConsultationRate}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">Password</div>
+                            <input
+                              type="Password"
+                              name="password"
+                              placeholder="Enter Rate"
+                              maxLength={10}
+                              value={formData.password}
+                              onChange={handleChange}
+                            />
+                            <div className="minus-circle">
+                              <FaCircleMinus />
+                            </div>
+                          </div>
+                          <div className="input-box">
+                            <div className="label">Confirm Password</div>
+                            <input
+                              type="Password"
+                              name="confirmPassword"
+                              placeholder="Enter Password"
+                              maxLength={10}
+                              value={formData.confirmPassword}
                               onChange={handleChange}
                             />
                             <div className="minus-circle">
@@ -503,7 +566,7 @@ const DoctorAdd = () => {
                             name="currentHospital"
                             placeholder="Enter Current Hospital"
                             maxLength={100}
-                            value={formData.currentHospital}
+                            value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name)  || formData.currentHospital}
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
@@ -518,9 +581,27 @@ const DoctorAdd = () => {
                             name="hospitalName"
                             placeholder="Enter Hospital Name"
                             maxLength={100}
-                            value={formData.hospitalName}
+                            value={allHospitals?.find((item) => item._id === formData.hospital)?.name || formData.hospitalName}
                             onChange={handleChange}
                           />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="label">Hospital</div>
+                          <select
+                            name="hospital"
+                            value={formData.hospital}
+                            onChange={handleChange}
+                          >
+                            <option value="">Select Hospital</option>
+                            {allHospitals.map((hospital) => (
+                              <option key={hospital._id} value={hospital._id}>
+                                {hospital.name}
+                              </option>
+                            ))}
+                          </select>
                           <div className="minus-circle">
                             <FaCircleMinus />
                           </div>
@@ -533,7 +614,7 @@ const DoctorAdd = () => {
                             name="hospitalAddress"
                             placeholder="Enter Hospital Address"
                             maxLength={200}
-                            value={formData.hospitalAddress}
+                            value={allHospitals?.find((item) => item._id === formData.hospital)?.address || formData.hospitalAddress}
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
@@ -580,7 +661,6 @@ const DoctorAdd = () => {
                 <button type="submit">Add </button>
               </div>
             </form>
-
           </div>
         </div>
       </div>

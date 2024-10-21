@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -16,18 +16,18 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-        return (
-            <div>
-              <h1>Something went wrong.</h1>
-              <button onClick={this.handleReload}>Reload</button>
-            </div>
-          );    
+      return (
+        <div>
+          <h1>Something went wrong.</h1>
+          <button onClick={this.handleReload}>Reload</button>
+        </div>
+      );
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ErrorBoundary.propTypes = {
-    children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 export default ErrorBoundary;

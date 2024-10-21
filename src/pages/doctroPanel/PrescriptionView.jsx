@@ -17,7 +17,7 @@ const PrescriptionView = () => {
     issue: 'Feeling tired',
     gender: 'Male',
     appointmentType: 'Online',
-    address: 'B-408 Swastik society, Mota Varacha, Rajkot',
+    address: 'B-408 Swastik society, Rajkot',
     lastAppointmentDate: '2 Jan, 2022',
     lastAppointmentTime: '4:30 PM',
   };
@@ -60,31 +60,70 @@ const PrescriptionView = () => {
   ];
 
   return (
-    <div className="p-8 bg-white min-h-screen shadow-lg rounded-lg">
-      <div className="flex items-center mb-6">
-        <img
-          src={patientImage}
-          alt={patient.name}
-          className="w-24 h-24 rounded-full mr-4"
-        />
-        <div>
-          <h2 className="text-2xl font-bold mb-2">Patient Details</h2>
-          <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-            <div>Patient Name: {patient.name}</div>
-            <div>Patient Number: {patient.number}</div>
-            <div>Doctor Name: {patient.doctorName}</div>
-            <div>Patient Age: {patient.age}</div>
-            <div>Patient Issue: {patient.issue}</div>
-            <div>Patient Gender: {patient.gender}</div>
-            <div>Appointment Type: {patient.appointmentType}</div>
-            <div>Patient Address: {patient.address}</div>
-            <div>Last Appointment Date: {patient.lastAppointmentDate}</div>
-            <div>Last Appointment Time: {patient.lastAppointmentTime}</div>
+    <div className="p-8 bg-[#f6f8fb] min-h-screen shadow-lg rounded-lg">
+      <div className="bg-white rounded-lg p-5 mb-3">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold">Patient Details</h1>
+          </div>
+          <div className="flex items-center">
+            <div className="w-1/12 ">
+              <img
+                src={patientImage}
+                alt={patient.name}
+                className="w-28 h-28 rounded-full mr-6 border-4"
+              />
+            </div>
+            <div className="flex w-5/6">
+              <div className="grid grid-cols-4 gap-0 border-r pe-16">
+                <div>
+                  <p className="text-gray-500">Patient Name</p>
+                  <p className="font-medium">{patient.name}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Patient Number</p>
+                  <p className="font-medium">{patient.number}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Patient Issue</p>
+                  <p className="font-medium">{patient.issue}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Patient Gender</p>
+                  <p className="font-medium">{patient.gender}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Doctor Name</p>
+                  <p className="font-medium">{patient.doctorName}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Doctor Name</p>
+                  <p className="font-medium">{patient.doctorName}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Patient Age</p>
+                  <p className="font-medium">{patient.age}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Patient Address</p>
+                  <p className="font-medium">{patient.address}</p>
+                </div>
+              </div>
+              <div className="ps-5">
+                <div className="pb-5">
+                  <p className="text-gray-500 pb-1">Last Appointment Time</p>
+                  <p className="font-medium">{patient.lastAppointmentTime}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500">Last Appointment Time</p>
+                  <p className="font-medium">{patient.lastAppointmentTime}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* Tabs */}
+      <div className="bg-white rounded-lg p-5">
       <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}>
         <TabList className="flex border-b-2 mb-4">
           <Tab
@@ -148,6 +187,7 @@ const PrescriptionView = () => {
           </div>
         </TabPanel>
       </Tabs>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ProfileSetting from "./ProfileSetting";
 
@@ -11,7 +10,6 @@ export default function PatientProfile() {
             <div className="top"></div>
             <div className="profile-setting">
               <div className="head">
-                <p>Profile Setting</p>
               </div>
               <div className="content">
                 <div className="w-full">

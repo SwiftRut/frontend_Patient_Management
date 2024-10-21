@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import apiService from '../../services/api.js';
-import "../pages.css";
+import { toast } from "react-toastify"
+import '../pages.css';
 
 const AdminMobile = () => {
   const [identifier, setIdentifier] = useState('');
@@ -20,17 +21,20 @@ const AdminMobile = () => {
     setSuccessMessage('');
 
     if (!identifier) {
+      toast.error('Please enter an email or phone number');
       setError('Please enter an email or phone number');
       return;
     }
 
     try {
       const response = await apiService.ForgetPassword({ identifier });
+      toast.success(response.data.message)
       setSuccessMessage(response.data.message);
 
       navigate('/verifyOtp', { state: { identifier } });
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       } else {
         setError('Something went wrong. Please try again.');
@@ -44,28 +48,69 @@ const AdminMobile = () => {
     setSuccessMessage('');
 
     if (!identifier || !password) {
+      toast.error('Please enter email/phone and password')
       setError('Please enter email/phone and password');
       return;
     }
 
     try {
       const response = await apiService.UniversalLogin({ identifier, password });
+      toast.success(response.data.message)
       setSuccessMessage(response.data.message);
       navigate('/dashboard'); // After successful login
     } catch (error) {
       if (error.response && error.response.data) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       } else {
         setError('Something went wrong. Please try again.');
+        toast.error('Something went wrong. Please try again');
       }
     }
   };
+
+  // Slider functionality
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage, { position: toast.POSITION.TOP_RIGHT });
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { position: toast.POSITION.TOP_RIGHT });
+    }
+  }, [error]);
 
   return (
     <>
       <div className="admin-mobile-section">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="admin-mobile-content">
                 <div className="head">
@@ -75,12 +120,6 @@ const AdminMobile = () => {
                 <div className="note">
                   <p>{isLoginMode ? 'Enter your credentials to log in.' : 'Enter your email or phone and we’ll send you an OTP to reset your password.'}</p>
                 </div>
-
-                {/* Display success message */}
-                {successMessage && <div className="success-message" style={{ "color": "green" }}>{successMessage}</div>}
-
-                {/* Display error message */}
-                {error && <div className="error-message" style={{ "color": "red" }}>{error}</div>}
 
                 <div className="admin-mobile-form-box">
                   <form className="flex" onSubmit={isLoginMode ? handleLogin : handleSubmit}>
@@ -93,6 +132,7 @@ const AdminMobile = () => {
                         placeholder="Enter Email or Phone"
                         value={identifier}
                         onChange={(e) => setIdentifier(e.target.value)}
+                        required
                       />
                     </div>
 
@@ -107,6 +147,7 @@ const AdminMobile = () => {
                           placeholder="Enter Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
+                          required
                         />
                       </div>
                     )}
@@ -132,7 +173,25 @@ const AdminMobile = () => {
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

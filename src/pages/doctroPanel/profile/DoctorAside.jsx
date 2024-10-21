@@ -14,7 +14,7 @@ export const DoctorAside = () => {
     <div className="left">
       <div className="img-box">
         <div className="img">
-          <img src={userData?.avatar || "../../img/dr-profile.png"} className='rounded-full' />
+          <img src={userData?.avatar || "../img/dr-profile.png"} className='rounded-full' />
         </div>
         <p>{userData ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
       </div>

@@ -34,12 +34,10 @@ input {
     position: fixed;
     top: 0;
     left: 0;
-    // padding: 30px;
 
     .logo {
       font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
+      margin-bottom: 10px;
 
       img {
         width: 250px;
@@ -53,50 +51,62 @@ input {
 
       ul {
         background-color: #fff;
+
         li {
+          position: relative;
           margin: 10px 0px;
-
-          display: flex;
-          align-items: center;
+          font-size: 16px;
+          font-weight: 600;
           color: #818194;
-          padding: 5px 15px;
+          padding: 10px 15px;
           background-color: #fff;
+          transition: background-color 0.3s ease;
 
-          .dropdown {
-            list-style: none;
-            padding: 0;
+          a {
+            display: flex;
+            align-items: center;
 
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            // max-height: 100px;
-            transition: max-height 0.3s ease-out;
+            img {
+              margin-right: 10px;
+            }
           }
+        }
 
-          .dropdown.open {
-            max-height: 200px; /* Maximum height when open */
-          }
+        .dropdown {
+          list-style: disc;
+          padding: 0;
+          border-radius: 4px;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+        }
 
-          .dropdown ul {
-            padding: 0;
-            margin: 0;
-          }
-          .dropdown li:hover {
-            background-color: #fff;
-          }
+        .dropdown::after {
+          content: none;
+        }
+
+        .dropdown.open {
+          max-height: 200px;
+        }
+
+        .dropdown ul {
+          padding: 0;
+          margin: 0;
 
           .dropdown li {
+            list-style: disc;
             padding: 10px 15px;
             background-color: #fff !important;
-          }
-
-          .dropdown li a {
-            color: #0eabeb;
+            color: #818194 !important;
             text-decoration: none;
+            transition: all 0.5s;
           }
 
-          .dropdown li a:hover span {
-            color: #0eabeb;
+          .dropdown li:hover {
+            background-color: #fff;
+
+            span {
+              color: #0eabeb;
+            }
           }
 
           a {
@@ -105,31 +115,49 @@ input {
             align-items: center;
             padding: 10px 10px;
             width: 100%;
-
             font-size: 20px;
-            color: #0eabeb;
-
 
             img {
-              color: #818194 !important;
+              color: #818194;
               padding-right: 15px;
-              width: 50px;
+              width: 40px;
             }
 
-            span {
+            p {
               color: #818194;
-              font-size: 20px;
+              font-size: 16px;
             }
           }
         }
 
-        li:hover {
-          background: linear-gradient(
-            90deg,
-            rgba(213, 241, 250, 1) 0%,
-            rgba(255, 255, 255, 1) 100%
-          );
-          color: #0eabeb;
+        li:focus-within {
+          background: linear-gradient(90deg,
+              rgba(213, 241, 250, 1) 0%,
+              rgba(255, 255, 255, 1) 100%);
+
+
+          a {
+            p {
+              color: #0eabeb;
+            }
+
+            img {
+              color: #0eabeb;
+            }
+          }
+
+          // &::after {
+          //   content: "";
+          //   position: absolute;
+          //   top: 0;
+          //   right: 0;
+          //   height: calc(100% - 20px);
+          //   width: 6px;
+          //   background-color: #0eabeb;
+          //   border-top-left-radius: 15px;
+          //   border-bottom-left-radius: 15px;
+          //   margin: 10px 0;
+          // }
         }
       }
 
@@ -139,7 +167,7 @@ input {
           justify-content: center;
           align-items: center;
           color: #e11d29;
-          padding: 20px;
+          padding: 10px 20px;
           background-color: #e11d2a2a;
           width: 100%;
           font-size: 18px;
@@ -147,11 +175,11 @@ input {
         }
       }
     }
-  }
 
-  .content {
-    width: 83%;
-    margin-left: 17%;
-    padding: 20px;
+    .content {
+      width: 83%;
+      margin-left: 17%;
+      padding: 20px;
+    }
   }
 }

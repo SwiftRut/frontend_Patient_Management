@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./pages.css";
+import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
-import { useAuth } from "../hooks/useAuth";
+import { PatientFormData } from "./constant.js";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -11,30 +12,41 @@ const PatientRegistration = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const [formData, setFormData] = useState({
-    firstName: "a",
-    lastName: "a",
-    email: "a@gmail.com",
-    password: "abc@123",
-    confirmPassword: "abc@123",
-    phone: "9913239031",
-    country: "india",
-    state: "California",
-    city: "Los Angeles",
-    role: "patient",
-  });
+  
+  const genders = ["Male", "Female", "Other"];
+  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  
+  const [formData, setFormData] = useState(PatientFormData);
 
   useEffect(() => {
     setCountries(Country.getAllCountries());
   }, []);
 
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => (image.style.display = "none"));
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) =>
+        dot.classList.toggle("active", index === currentIndex)
+      );
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    
     if (name === "country") {
       const selectedCountry = countries.find((country) => country.isoCode === value);
       setStates(State.getStatesOfCountry(selectedCountry.isoCode));
@@ -67,102 +79,57 @@ const PatientRegistration = () => {
   return (
     <div className="patient-registration-section">
       <div className="row">
-        <div className="main">
+        <div className="main flex">
           <div className="form">
             <div className="content">
               <div className="head">
-                <p>Registration </p>
+                <p>Registration</p>
               </div>
               <div className="form-box">
                 {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-                  <div className="input-box">
-                    <div className="label">
-                      First Name <span>*</span>
+                  {[
+                    { label: "First Name", name: "firstName", type: "text" },
+                    { label: "Last Name", name: "lastName", type: "text" },
+                    { label: "Email Address", name: "email", type: "email" },
+                    { label: "Phone Number", name: "phone", type: "tel" },
+                    { label: "Age", name: "age", type: "number" },
+                    { label: "Height(cm)", name: "height", type: "number" },
+                    { label: "Weight(kg)", name: "weight", type: "number" },
+                    { label: "Address", name: "address", type: "text" },
+                    { label: "Date of Birth", name: "dob", type: "date" },
+                  ].map((input) => (
+                    <div className="input-box" key={input.name}>
+                      <div className="label">
+                        {input.label} <span>*</span>
+                      </div>
+                      <input
+                        type={input.type}
+                        name={input.name}
+                        value={formData[input.name]}
+                        onChange={handleChange}
+                        placeholder={`Enter ${input.label}`}
+                        required
+                      />
                     </div>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="Enter First Name"
-                      required
-                    />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Last Name <span>*</span>
-                    </div>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Enter Last Name"
-                      required
-                    />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Email Address <span>*</span>
-                    </div>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Enter Email Address"
-                      required
-                    />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Phone Number <span>*</span>
-                    </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Enter Phone Number"
-                      required
-                    />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Age <span>*</span>
-                    </div>
-                    <input type="tel" name="phone" placeholder="Enter Age" required />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Height(cm) <span>*</span>
-                    </div>
-                    <input type="tel" name="phone" placeholder="Enter Height" required />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Weight(kg) <span>*</span>
-                    </div>
-                    <input type="tel" name="phone" placeholder="Enter Weight" required />
-                  </div>
+                  ))}
 
                   <div className="input-box">
                     <div className="label">
                       Gender <span>*</span>
                     </div>
-
-                    <select name="" id="">
-                      <option>Select Gender</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">Select Gender</option>
+                      {genders.map((gender) => (
+                        <option key={gender} value={gender}>
+                          {gender}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -170,87 +137,49 @@ const PatientRegistration = () => {
                     <div className="label">
                       Blood Group <span>*</span>
                     </div>
-
-                    <select name="" id="">
-                      <option>Select Blood Group</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Date of Birth <span>*</span>
-                    </div>
-                    <input type="tel" name="phone" placeholder="Select Date" required />
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Country <span>*</span>
-                    </div>
                     <select
-                      name="country"
-                      value={formData.country}
+                      name="bloodGroup"
+                      value={formData.bloodGroup}
                       onChange={handleChange}
                       required
                     >
-                      <option value="">Select Country</option>
-                      {countries.map((country) => (
-                        <option key={country.isoCode} value={country.isoCode}>
-                          {country.name}
+                      <option value="">Select Blood Group</option>
+                      {bloodGroups.map((group) => (
+                        <option key={group} value={group}>
+                          {group}
                         </option>
                       ))}
                     </select>
                   </div>
 
-                  <div className="input-box">
-                    <div className="label">
-                      State <span>*</span>
+                  {[
+                    { label: "Country", name: "country", options: countries, isDisabled: false },
+                    { label: "State", name: "state", options: states, isDisabled: !formData.country },
+                    { label: "City", name: "city", options: cities, isDisabled: !formData.state },
+                  ].map((select) => (
+                    <div className="input-box" key={select.name}>
+                      <div className="label">
+                        {select.label} <span>*</span>
+                      </div>
+                      <select
+                        name={select.name}
+                        value={formData[select.name]}
+                        onChange={handleChange}
+                        required
+                        disabled={select.isDisabled}
+                      >
+                        <option value="">{`Select ${select.label}`}</option>
+                        {select.options.map((option) => (
+                          <option
+                            key={option.isoCode || option.name}
+                            value={option.isoCode || option.name}
+                          >
+                            {option.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                    <select
-                      name="state"
-                      value={formData.state}
-                      onChange={handleChange}
-                      required
-                      disabled={!formData.country}
-                    >
-                      <option value="">Select State</option>
-                      {states.map((state) => (
-                        <option key={state.isoCode} value={state.isoCode}>
-                          {state.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      City <span>*</span>
-                    </div>
-                    <select
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      required
-                      disabled={!formData.state}
-                    >
-                      <option value="">Select City</option>
-                      {cities.map((city) => (
-                        <option key={city.name} value={city.name}>
-                          {city.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="input-box">
-                    <div className="label">
-                      Address <span>*</span>
-                    </div>
-                    <input type="text" name="password" placeholder="Enter Address" required />
-                  </div>
+                  ))}
 
                   <div className="input-box">
                     <div className="label">
@@ -303,7 +232,22 @@ const PatientRegistration = () => {
               </div>
             </div>
           </div>
-          <div className="img-box"></div>
+          <div className="img-box">
+            <div className="slider">
+              <img src="/img/register.png" alt="Image 1" />
+              <img src="/img/register2.png" alt="Image 2" />
+              <div className="dots">
+                <span className="dot active"></span>
+                <span className="dot"></span>
+              </div>
+            </div>
+            <div className="vector-1">
+              <img src="/img/Vector-1.png" width="100%" />
+            </div>
+            <div className="vector-2">
+              <img src="/img/Vector-2.png" width="100%" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

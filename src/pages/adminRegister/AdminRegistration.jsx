@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
-
 import { Country, City, State } from "country-state-city";
 import Select, { components } from "react-select";
 import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify"
+
 const AdminRegistration = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "123@abc",
-    confirmPassword: "123@abc",
-    phone: "4123456780",
+    password: "",
+    confirmPassword: "",
+    phone: "",
     country: "",
     state: "",
     city: "",
@@ -42,6 +45,30 @@ const AdminRegistration = () => {
     setCountries(Country.getAllCountries());
     await getAllHospitals();
   };
+
+  useEffect(() => {
+    const slider = document.querySelector(".slider");
+    const images = slider.querySelectorAll("img");
+    const dots = slider.querySelectorAll(".dot");
+    let currentIndex = 0;
+    images[currentIndex].style.display = "block";
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    function updateSlider() {
+      images.forEach((image) => {
+        image.style.display = "none";
+      });
+      images[currentIndex].style.display = "block";
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -54,9 +81,7 @@ const AdminRegistration = () => {
     }));
 
     if (name === "country") {
-      const selectedCountry = countries.find(
-        (country) => country.isoCode === value
-      );
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       if (selectedCountry) {
         setStates(State.getStatesOfCountry(selectedCountry.isoCode));
         setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
@@ -65,9 +90,7 @@ const AdminRegistration = () => {
     } else if (name === "state") {
       const selectedState = states.find((state) => state.isoCode === value);
       if (selectedState) {
-        setCities(
-          City.getCitiesOfState(formData.country, selectedState.isoCode)
-        );
+        setCities(City.getCitiesOfState(formData.country, selectedState.isoCode));
         setFormData((prevState) => ({ ...prevState, city: "" }));
       }
     }
@@ -84,18 +107,17 @@ const AdminRegistration = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match")
       setError("Passwords do not match");
       return;
     }
 
     try {
-      console.log(
-        formData,
-        "<<<<<<<<<<<<<<<<<<<<<<<<<< Registration form data"
-      );
       await AdminRegister(formData);
+      toast.success("register successfully")
       navigate("/login");
     } catch (error) {
+      toast.error(error.response.data.message);
       setError(error.response?.data?.message || "Registration failed");
     }
   };
@@ -114,28 +136,30 @@ const AdminRegistration = () => {
       });
       setIsModalOpen(false);
     } catch (error) {
+      toast.error("Error creating hospital")
       console.error("Error creating hospital:", error);
     }
   };
-  const SelectMenuButton = (props) => (
-    <components.MenuList {...props}>
-      {props.children}
-      <button
-        className="add-new-hospital "
-        onClick={() => setIsModalOpen(true)}
-      >
-        Add New Hospital
-      </button>
-    </components.MenuList>
-  );
-  SelectMenuButton.propTypes = {
-    children: PropTypes.node,
-  };
+  const handelAddHospitalModel = () => {
+    console.log("hi")
+    setIsModalOpen(true)
+  }
+  // const SelectMenuButton = (props) => (
+  //   <components.MenuList {...props}>
+  //     {props.children}
+  //     <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
+  //       Add New Hospital
+  //     </button>
+  //   </components.MenuList>
+  // );
+  // SelectMenuButton.propTypes = {
+  //   children: PropTypes.node,
+  // };
   return (
     <>
-      <div className="registration-section">
+      <div className="registration-section ">
         <div className="row">
-          <div className="main">
+          <div className="main flex">
             <div className="form">
               <div className="content">
                 <div className="head">
@@ -262,19 +286,16 @@ const AdminRegistration = () => {
                       <div className="label">
                         Select Hospital <span>*</span>
                       </div>
-                      <Select
+                      {/* <Select
                         name="hospital"
                         value={
-                          allHospitals.find(
-                            (hospital) => hospital._id === formData.hospital
-                          )
+                          allHospitals.find((hospital) => hospital._id === formData.hospital)
                             ? {
-                                label: allHospitals.find(
-                                  (hospital) =>
-                                    hospital._id === formData.hospital
-                                ).name,
-                                value: formData.hospital,
-                              }
+                              label: allHospitals.find(
+                                (hospital) => hospital._id === formData.hospital
+                              ).name,
+                              value: formData.hospital,
+                            }
                             : null
                         }
                         onChange={(selectedOption) =>
@@ -287,23 +308,68 @@ const AdminRegistration = () => {
                           value: hospital._id,
                           label: hospital.name,
                         }))}
+                          {
+                          
+                          value: hospital._id,
+                          label: hospital.name,
+                        }
                         components={{ MenuList: SelectMenuButton }}
                         placeholder="Select Hospital"
                         isClearable
-                      />
+                      /> */}
+                      <select name="hospital" id=""
+                        value={
+                          allHospitals.find((hospital) => hospital._id === formData.hospital)
+                            ? {
+                              label: allHospitals.find(
+                                (hospital) => hospital._id === formData.hospital
+                              ).name,
+                              value: formData.hospital,
+                            }
+                            : null
+                        }
+                        onChange={(selectedOption) =>
+                          setFormData((prevState) => ({
+                            ...prevState,
+                            hospital: selectedOption.value,
+                          }))}
+                        placeholder="Select Hospital"
+                        >
+
+                        {allHospitals.map((hospital) => (
+                          <option key={hospital._id} value={hospital._id}>
+                            {hospital.name}
+                          </option>
+                        ))}
+                        {/* //  add hospital */}
+                        <option>
+                          <button className="add-new-hospital " onClick={() => handelAddHospitalModel()}>
+                            Add New Hospital
+                          </button>
+                        </option>
+
+                      </select>
+                      <button className="add-new-hospital " onClick={() => handelAddHospitalModel()}>
+                        Add New Hospital
+                      </button>
                     </div>
+
                     <div className="input-box">
                       <div className="label">
                         Password <span>*</span>
                       </div>
-                      <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter Password"
-                        required
-                      />
+                      <div className="password-input-container">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          placeholder="Enter Password"
+                        />
+                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                        </div>
+                      </div>
                     </div>
 
                     <div className="input-box">
@@ -311,21 +377,23 @@ const AdminRegistration = () => {
                         Confirm Password <span>*</span>
                       </div>
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         placeholder="Confirm Password"
                         required
                       />
+                      <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                      </div>
                     </div>
 
                     <div className="condition">
                       <div className="policies">
                         <input type="checkbox" required />
                         <p>
-                          I agree to all the <span>T&C</span> and{" "}
-                          <span>Privacy Policies.</span>
+                          I agree to all the <span>T&C</span> and <span>Privacy Policies.</span>
                         </p>
                       </div>
 
@@ -343,15 +411,33 @@ const AdminRegistration = () => {
                 </div>
               </div>
             </div>
-            <div className="img-box"></div>
+            <div className="img-box">
+              <div className="slider">
+                <img src="/img/register.png" alt="Image 1" />
+                <img src="/img/register2.png" alt="Image 2" />
+                <div className="dots">
+                  <span className="dot active"></span>
+                  <span className="dot"></span>
+                </div>
+              </div>
+              <div className="vector-1">
+                <img src="/img/Vector-1.png" width="100%" />
+              </div>
+              <div className="vector-2">
+                <img src="/img/Vector-2.png" width="100%" />
+              </div>
+              <div className="vector-dot">
+                <img src="/img/Vector-dot.png" width="100%" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Modal */}
       {isModalOpen && (
-        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div class="bg-white p-5 rounded-lg shadow-lg max-w-md">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-lg max-w-md">
             <div className="modal-overlay">
               <div className="modal-content">
                 <div className="hospital-section">
@@ -363,10 +449,7 @@ const AdminRegistration = () => {
                             <p>Add New Hospital</p>
                           </div>
                           <div className="form-box">
-                            <form
-                              onSubmit={handleHospitalSubmit}
-                              className="flex"
-                            >
+                            <form onSubmit={handleHospitalSubmit} className="flex">
                               <div className="input-box">
                                 <div className="label">
                                   Hospital Name <span>*</span>
@@ -407,10 +490,7 @@ const AdminRegistration = () => {
                                 >
                                   <option value="">Select Country</option>
                                   {countries.map((country) => (
-                                    <option
-                                      key={country.isoCode}
-                                      value={country.isoCode}
-                                    >
+                                    <option key={country.isoCode} value={country.isoCode}>
                                       {country.name}
                                     </option>
                                   ))}
@@ -428,16 +508,13 @@ const AdminRegistration = () => {
                                   required
                                 >
                                   <option value="">Select State</option>
-                                  {State.getStatesOfCountry(
-                                    hospitalFormData.country
-                                  ).map((state) => (
-                                    <option
-                                      key={state.isoCode}
-                                      value={state.isoCode}
-                                    >
-                                      {state.name}
-                                    </option>
-                                  ))}
+                                  {State.getStatesOfCountry(hospitalFormData.country).map(
+                                    (state) => (
+                                      <option key={state.isoCode} value={state.isoCode}>
+                                        {state.name}
+                                      </option>
+                                    )
+                                  )}
                                 </select>
                               </div>
 
@@ -479,10 +556,7 @@ const AdminRegistration = () => {
 
                               <div className="btn flex">
                                 <div className="cancel-btn">
-                                  <button
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                  >
+                                  <button type="button" onClick={() => setIsModalOpen(false)}>
                                     Cancel
                                   </button>
                                 </div>
