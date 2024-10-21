@@ -28,90 +28,7 @@ import {
 } from "./imports";
 import PatientRecordAccesst from "./pages/doctroPanel/PatientRecordAccesst";
 import ProtectedRoute from "./routes/PrivateRoute";
-import AddRecord from "./pages/doctroPanel/AddRecord";
 
-//without protection
-// const routesConfig = [
-//   { path: "/login", element: <Login /> },
-//   { path: "/AdminMobile", element: <AdminMobile /> },
-//   { path: "/verifyOtp", element: <AdminOtp /> },
-//   { path: "/resetPassword", element: <AdminChangePassword /> },
-
-//   // Admin routes
-//   { path: "/adminRegistration", element: <AdminRegistration /> },
-//   {
-//     path: "/",
-//     element: <AdminPanel />,
-//     children: [
-//       { path: "", element: null },
-//       { path: "profile/*", element: null },
-//       { path: "edit", element: null },
-//       { path: "doctorManagement/*", element: null },
-//       { path: "doctorAdd", element: null },
-//       { path: "doctorEdit/:doctorId", element: null },
-//       { path: "patientManagement", element: null },
-//       { path: "monitorBilling", element: null },
-//       { path: "insuranceClaims", element: null },
-//       { path: "paymentMethod", element: null },
-//       { path: "reportingAndAnalytics", element: null },
-//     ],
-//   },
-
-//   // Doctor routes
-//   {
-//     path: "/doctor",
-//     element: <DoctorPanel />,
-//     children: [
-//       { path: "", element: null },
-//       { path: "profile/*", element: <DoctorProfile /> },
-//       { path: "edit", element: null },
-//       { path: "patientRecordAccess", element: null },
-//       { path: "createPrescriptionTools", element: null },
-//       { path: "managePrescriptionTools", element: null },
-//       { path: "teleconsultationModule", element: null },
-//       { path: "chatScreen", element: null },
-//       { path: "appointmentTimeSlot", element: null },
-//       { path: "patientDetail/:id", element: null },
-//       { path: "prescriptionView/:id", element: null },
-//       { path: "createPrescriptionForm/:id", element: null },
-//     ],
-//   },
-
-//   // Patient routes
-//   { path: "/patientRegistration", element: <PatientRegistration /> },
-//   {
-//     path: "/patient",
-//     element: <PatientPanel />,
-//     children: [
-//       { path: "profile/*", element: null },
-//       { path: "profileEdit", element: null },
-//       { path: "prescriptions", element: null },
-//       { path: "testReport", element: null },
-//       { path: "medicalHistory", element: null },
-//       { path: "allAppointment", element: null },
-//       { path: "appointment", element: null },
-//       { path: "appointmentBooking", element: null },
-//       { path: "chatScreen", element: null },
-//     ],
-//   },
-
-//   // Extra routes
-//   { path: "/invoice", element: <Invoice /> },
-//   { path: "/createBill", element: <CreateBill /> },
-//   { path: "/editBill/:id", element: <EditBill /> },
-//   { path: "/schedular", element: <Scheduler /> },
-//   { path: "/onsite", element: <Onsite /> },
-//   { path: "/details", element: <PatientDetails /> },
-//   { path: "/bill/:id", element: <Bill /> },
-//   { path: "/bill2", element: <Bill2 /> },
-//   { path: "/bill3", element: <Bill3 /> },
-//   { path: "/cash", element: <CashPayment /> },
-//   { path: "/delete", element: <Delete /> },
-//   { path: "/editinvoice", element: <EditDesignInvoice /> },
-//   { path: "/videocall", element: <VideoCall /> },
-//   { path: "/charts", element: <Chart /> },
-//   { path: "/chat", element: <Chat /> },
-// ];
 const user = JSON.parse(localStorage.getItem("user"));
 const userRole = user?.role || "No Role";
 console.log(userRole, "<<<<<<<<<<<<<< userfrom router config");
@@ -119,6 +36,7 @@ console.log(userRole, "<<<<<<<<<<<<<< userfrom router config");
 //with protection
 const routesConfig = [
   { path: "/login", element: <Login />, allowedRoles: [] },
+  { path: "/adminRegistration", element: <AdminRegistration />, allowedRoles: [] },
   { path: "/AdminMobile", element: <AdminMobile />, allowedRoles: [] },
   { path: "/verifyOtp", element: <AdminOtp />, allowedRoles: [] },
   {
@@ -129,22 +47,11 @@ const routesConfig = [
 
   // Admin routes
   {
-    path: "/adminRegistration",
-    element: (
-      <ProtectedRoute
-        element={<AdminRegistration />}
-        allowedRoles={[]}
-        userRole={userRole}
-      />
-    ),
-    allowedRoles: [],
-  },
-  {
     path: "/",
     element: (
       <ProtectedRoute
         element={<AdminPanel />}
-        allowedRoles={["admin", "doctor", "patient"]}
+        allowedRoles={["admin"]}
         userRole={userRole}
       />
     ),
