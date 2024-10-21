@@ -22,7 +22,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await apiService.GetAllAppointments();
+        const response = await apiService.GetAllTodayAppointments();
         const data = response.data;
         setTotalAppointments(data.length);
 
