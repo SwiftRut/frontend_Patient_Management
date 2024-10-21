@@ -158,6 +158,15 @@ export const GlobalProvider = ({ children }) => {
       console.log("Error fetching appointments:", error);
       throw error;
     }
+  };  const getAllTodayAppointments = async () => {
+    try {
+      const response = await apiService.GetAllTodayAppointments();
+      setAllAppointments(response.data.data);
+
+    } catch (error) {
+      console.log("Error fetching appointments:", error);
+      throw error;
+    }
   };
 
   const getAppointmentById = async (id) => {
@@ -323,6 +332,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
+        getAllTodayAppointments,
 
         getAppointmetnsForPatient,
 
