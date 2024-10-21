@@ -32,6 +32,12 @@ input {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+}
 .header .breadcrumbs {
   font-size: 18px;
   font-weight: 400;
@@ -43,11 +49,36 @@ input {
   color: #2bb5ed;
   background-color: #f8fcfe;
 }
+@media (max-width: 576px) {
+  .header .breadcrumbs {
+    display: none;
+  }
+}
 .header .breadcrumbs img {
   padding-right: 10px;
+}
+@media (max-width: 576px) {
+  .header .breadcrumbs img {
+    padding-right: 5px;
+    max-width: 20px;
+    height: auto;
+  }
 }
 .header .breadcrumbs .icon {
   padding-right: 10px;
   font-size: 30px;
   color: #ababab;
+}
+@media (max-width: 576px) {
+  .header .breadcrumbs .icon {
+    font-size: 24px;
+    padding-right: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .header .note {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
 }/*# sourceMappingURL=Header.css.map */
