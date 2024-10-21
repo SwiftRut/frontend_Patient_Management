@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import PropTypes from 'prop-types';
+import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 import apiService from "../services/api";
 export const DoctorContext = createContext();
 
@@ -9,15 +9,14 @@ export const DoctorProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllDoctors();
       setAllDoctors(response.data.data);
-      console.log(response.data.data , "<<<<<<<<<<<<<<<<<<<< all doctors");
       return response.data.data[0]._id;
     } catch (error) {
       console.log(error);
       throw error;
     }
-  }
+  };
   return (
-    <DoctorContext.Provider value={{getAllDoctors, allDoctors}}>
+    <DoctorContext.Provider value={{ getAllDoctors, allDoctors }}>
       {children}
     </DoctorContext.Provider>
   );
