@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import AppointmentTimeSlot from "./AppointmentTimeSlot1";
 // import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { IoIosArrowBack } from "react-icons/io";
-import { TbBuildingHospital } from "react-icons/tb";
-import { IoLinkSharp } from "react-icons/io5";
-import { BiSolidPhoneCall } from "react-icons/bi";
-import { IoLocation } from "react-icons/io5";
-import Onsite from "../doctorManagement/Onsite";
+import { useDoctor } from "../../hooks/useDoctor";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
+import apiService from "../../services/api";
 
 const localizer = momentLocalizer(moment);
 
@@ -207,48 +205,6 @@ const AppointmentBooking = () => {
       <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
         <MdKeyboardArrowDown />
       </span>
-    </div>
-  );
-
-  const DoctorDetails = () => (
-    <div className="col-span-3 px-2 py-3">
-      <div className="bg-white w-full border-1 py-3 rounded-md">
-        <h5 className="px-3">Doctor Details</h5>
-        <hr />
-        <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
-          <img
-            src="./image/Patterns.png"
-            alt=""
-            className="w-28 absolute right-0 z-0"
-          />
-          <div className="flex py-2 z-0">
-            <img src="./image/Avatar.png" alt="" className="ps-2 w-16" />
-            <div>
-              <span className="text-white ms-1">Dr. Cristofor Pasquinades</span>
-              <button className="px-3 py-1 bg-btn-light rounded-full flex text-white">
-                <img src="./image/vuesax.png" alt="" className="pe-1" /> Male
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-md bg-gray-100 p-3 mx-2">
-          <DoctorDetailItem title="Qualification" value="MBBS" />
-          <DoctorDetailItem title="Specialty Type" value="Cardiology" />
-          <DoctorDetailItem title="Years of Experience" value="6+ Years" />
-          <DoctorDetailItem title="Working Time" value="6 Hours" />
-          <DoctorDetailItem
-            title="Emergency Contact Number"
-            value="123-456-7890"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
-  const DoctorDetailItem = ({ title, value }) => (
-    <div>
-      <h6 className="text-gray-500 font-medium">{title}</h6>
-      <p className="text-black font-medium">{value}</p>
     </div>
   );
 

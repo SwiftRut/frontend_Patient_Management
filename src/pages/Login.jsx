@@ -50,14 +50,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const success = await UniversalLogin(formData);
-      if (success) {
-        if (user.role === "admin") {
+      const role = await UniversalLogin(formData);
+      if (role) {
+        if (role === "admin") {
           navigate("/")
         }
-        else if (user.role === "patient") {
+        else if (role === "patient") {
           navigate("/patient");
-        } else if (user.role === "doctor") {
+        } else if (role === "doctor") {
           toast.success("doctor login successfully")
           navigate("/doctor/profile/");
         }
