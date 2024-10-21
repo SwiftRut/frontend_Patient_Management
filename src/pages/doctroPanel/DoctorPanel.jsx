@@ -35,7 +35,7 @@ export default function DoctorPanel() {
           <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
           <Route path="teleconsultationModule" element={<TeleconsultationModule />} />
           <Route path="chatScreen" element={<ChatScreen />} />
-          <Route path="appointmentTimeSlot" element={<Calendar />} />
+          <Route path="appointmentTimeSlot" element={<AppointmentTimeSlot />} />
           <Route path="patientDetail/:id" element={<PatientDetail />} />
           <Route path="allFiles" element={<AllFiles />} />
 

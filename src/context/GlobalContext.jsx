@@ -3,9 +3,10 @@ import apiService from "../services/api";
 import PropTypes from "prop-types";
 
 export const GlobalContext = createContext();
-
+import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
-  // State variables
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || "");
+
   const [allHospitals, setAllHospitals] = useState([]);
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
@@ -152,6 +153,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllAppointments();
       setAllAppointments(response.data.data);
+
     } catch (error) {
       console.log("Error fetching appointments:", error);
       throw error;
@@ -206,13 +208,88 @@ export const GlobalProvider = ({ children }) => {
       console.log("Error fetching patient contacts:", error);
       throw error;
     }
+  }
+  const createAppointment = async (patientId, userData) => {
+    try {
+      console.log("creating appointment......" , userData);
+    const response = await apiService.createAppointment(patientId ,userData);
+    if(user.role === "patient"){
+      getAppointmetnsForPatient(user.id);
+    }else if(user.role === "doctor"){
+      getAppointmetnsForDoctor(user.id);
+    }
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+  const updateAppointment = async (id ,userData) => {
+    try {
+      console.log("updating appointment......" , userData);
+      const response = await apiService.EditAppointment(id ,userData);
+      console.log(response.data);
+      if(user.role === "patient"){
+        getAppointmetnsForPatient(user.id);
+      }else if(user.role === "doctor"){
+        getAppointmetnsForDoctor(user.id);
+      }
+    console.log(response.data);
+    } catch (error) { 
+      console.log(error);
+      throw error;
+    }
+  }
+  const deleteAppointment = async(id)=>{
+    try{
+      console.log("delteing appointment......");
+      const response = await apiService.DeleteAppointment(id);
+      if(user.role === "patient"){
+        getAppointmetnsForPatient(user.id);
+      }else if(user.role === "doctor"){
+        getAppointmetnsForDoctor(user.id);
+      }
+      console.log(response.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getAppointmetnsForDoctor = async(doctorId)=>{
+    console.log(doctorId,"<<<<<<<<<<<<<<<<<<<<< this doctorId")
+    try{
+      console.log("getting for doctor appointment......");
+      const response = await apiService.GetAppointsForDoctor(doctorId);
+      console.log(response.data.data);
+      setAllAppointements(response.data.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }    
+  const getAppointmetnsForPatient = async(patientId) =>{
+      try {
+        const response = await apiService.GetAppointsForPatient(patientId);
+        setAllAppointements(response.data.data);
+        console.log(response.data.data);
+        return response.data.data;
+      }catch(error){
+        console.log(error);
+      }
   };
-
   return (
     <GlobalContext.Provider
       value={{
         // Hospital
         allHospitals,
+        updateAppointment,
+        getAppointmetnsForDoctor,
+        deleteAppointment,
+        allAppointements,
+        userData,
+        createAppointment,
+        setUserData,
+
         setAllHospitals,
         getAllHospitals,
         createHospital,
@@ -249,6 +326,9 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
+
+        getAppointmetnsForPatient,
+
 
         // Chat
         getChatHistory,

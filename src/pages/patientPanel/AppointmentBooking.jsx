@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-// import AppointmentTimeSlot from "./AppointmentTimeSlot1";
-// import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
+import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
+import { useDoctor } from "../../hooks/useDoctor";
+import { useAuth } from "../../hooks/useAuth";
+import { useGlobal } from "../../hooks/useGlobal";
+import DoctorDetails from "./DoctorDetails";
+import apiService from "../../services/api";
 
 const AppointmentBooking = () => {
+  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
+  const { getAllDoctors, allDoctors } = useDoctor();
+  const { createAppointment } = useGlobal();
+  const { user } = useAuth();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -11,124 +18,201 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
+  const [appointmentFee, setAppointmentFee] = useState(0);
+  const [selectedSlot, setSelectedSlot] = useState(null);
 
-  // Function to check if all selects are filled
-  const isAllSelected = () => {
+  useEffect(() => {
+    getAllDoctors();
+    getAllHospitals();
+    getAppointmetnsForPatient(user.id);
+
+    // Load Razorpay script
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+
+
+  useEffect(() => {
+    if (doctor && appointmentType) {
+      fetchAppointmentFee();
+    }
+  }, [doctor, appointmentType]);
+  console.log(doctor, appointmentType, appointmentFee);
+  const fetchAppointmentFee = async () => {
+    try {
+      const response = await apiService.AppointmentFee(doctor, appointmentType);
+      const data = response.data;
+      console.log(data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<< getting the fees here");
+      setAppointmentFee(data.fee);
+    } catch (error) {
+      console.error("Error fetching appointment fee:", error);
+    }
+  };
+
+  const getUniqueValues = (key, filterKey, filterValue) => {
+    const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
+    return [...new Set(data.map(doctor => doctor[key]))];
+  };
+
+  const filteredHospitals = allHospitals.filter(hospital => {
     return (
-      specialty &&
-      country &&
-      state &&
-      city &&
-      hospital &&
-      doctor &&
-      appointmentType
+      (!country || hospital.country === country) &&
+      (!state || hospital.state === state) &&
+      (!city || hospital.city === city)
     );
+  });
+
+  const filteredDoctors = allDoctors.filter(doctor => {
+    return (
+      (!specialty || doctor.speciality === specialty) &&
+      (!country || doctor.country === country) &&
+      (!state || doctor.state === state) &&
+      (!city || doctor.city === city) &&
+      (!hospital || doctor.hospitalName === hospital)
+    );
+  });
+
+  const handlePayment = async () => {
+    try {
+      // Create Razorpay order
+      const orderResponse = await apiService.createRazorpayOrder({
+        amount: appointmentFee * 100, // Razorpay expects amount in paise
+      });
+      const { id: orderId, amount } = orderResponse.data;
+
+      const options = {
+        key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID, // Replace with your actual Razorpay key
+        amount: amount,
+        currency: "INR",
+        name: "Your Hospital Name",
+        description: "Appointment Booking",
+        order_id: orderId,
+        handler: function (response) {
+          handleSubmit(response);
+        },
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      alert("Failed to initiate payment. Please try again.");
+    }
+  };
+
+  const handleSubmit = async (paymentResponse) => {
+    try {
+      const appointmentData = {
+        doctorId: doctor,
+        date: selectedSlot.start,
+        appointmentTime: selectedSlot.start,
+        type: appointmentType,
+        country,
+        state,
+        city,
+        hospitalId: hospital,
+        razorpayPaymentId: paymentResponse.razorpay_payment_id,
+        razorpayOrderId: paymentResponse.razorpay_order_id,
+        razorpaySignature: paymentResponse.razorpay_signature
+      };
+
+      await createAppointment(user.id, appointmentData);
+      // Handle success (e.g., show a success message, redirect, etc.)
+      alert("Appointment booked successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Error booking appointment. Please try again.");
+    }
+  };
+
+  const isAllSelected = () => {
+    return doctor && appointmentType;
+  };
+
+  const handleSlotSelect = (slotInfo) => {
+    setSelectedSlot(slotInfo);
   };
 
   return (
-    <div className="p-4 bg-[#f6f8fb]">
-      <div className="container ">
-      <div className="p-4 m-3 rounded-lg" style={{ height: "auto" }}>
-        <div className="mb-3">
-          <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
-          <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
-            <div className="flex flex-col m-2">
-              {/* Label and Select Input Container */}
-              <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
-                <div className="relative border border-gray-300 rounded-md">
-                  <label className="absolute left-3 -top-2.5 bg-white px-1 text-sm font-semibold text-gray-800">
-                    Specialty
-                  </label>
-                  <select
-                    value={specialty}
-                    onChange={(e) => setSpecialty(e.target.value)}
-                    className="block w-full px-3 py-3 text-gray-500 bg-white border-0 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
-                  >
-                    <option value="" disabled>
-                      Select Specialty
-                    </option>
-                    <option value="cardiology">Cardiology</option>
-                    <option value="neurology">Neurology</option>
-                    <option value="pediatrics">Pediatrics</option>
-                    <option value="orthopedics">Orthopedics</option>
-                    <option value="dermatology">Dermatology</option>
-                  </select>
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <i className="fa-solid fa-chevron-down text-gray-400"></i>
-                  </span>
-                </div>
+    <div className="container">
+      <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
+        <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
+        <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
+          <div className="flex flex-col m-2">
+            <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
+              <SelectInput
+                label="Specialty"
+                value={specialty}
+                onChange={(e) => setSpecialty(e.target.value)}
+                options={[...new Set(allDoctors.map(doc => doc.speciality))]}
+              />
 
-              {/* Country Select */}
               <SelectInput
                 label="Country"
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                options={[
-                  { value: "usa", label: "United States" },
-                  { value: "uk", label: "United Kingdom" },
-                  { value: "india", label: "India" },
-                  { value: "canada", label: "Canada" },
-                  { value: "australia", label: "Australia" },
-                ]}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                  setState("");
+                  setCity("");
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("country")}
               />
-
-              {/* State Select */}
               <SelectInput
                 label="State"
                 value={state}
-                onChange={(e) => setState(e.target.value)}
-                options={[
-                  { value: "california", label: "California" },
-                  { value: "texas", label: "Texas" },
-                  { value: "florida", label: "Florida" },
-                  { value: "new_york", label: "New York" },
-                  { value: "illinois", label: "Illinois" },
-                ]}
+                onChange={(e) => {
+                  setState(e.target.value);
+                  setCity("");
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("state", "country", country)}
               />
-
-              {/* City Select */}
               <SelectInput
                 label="City"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
-                options={[
-                  { value: "los_angeles", label: "Los Angeles" },
-                  { value: "new_york_city", label: "New York City" },
-                  { value: "chicago", label: "Chicago" },
-                  { value: "houston", label: "Houston" },
-                  { value: "phoenix", label: "Phoenix" },
-                ]}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("city", "state", state)}
               />
-
-              {/* Hospital Select */}
               <SelectInput
                 label="Hospital"
                 value={hospital}
-                onChange={(e) => setHospital(e.target.value)}
-                options={[
-                  { value: "general_hospital", label: "General Hospital" },
-                  { value: "city_hospital", label: "City Hospital" },
-                  { value: "county_hospital", label: "County Hospital" },
-                  { value: "private_hospital", label: "Private Hospital" },
-                  { value: "children_hospital", label: "Children's Hospital" },
-                ]}
+                onChange={(e) => {
+                  setHospital(e.target.value);
+                  setDoctor("");
+                }}
+                options={filteredHospitals.map(hospital => hospital.name)}
               />
-
-              {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
                 value={doctor}
                 onChange={(e) => setDoctor(e.target.value)}
-                options={[
-                  { value: "dr_smith", label: "Dr. Smith" },
-                  { value: "dr_jones", label: "Dr. Jones" },
-                  { value: "dr_brown", label: "Dr. Brown" },
-                  { value: "dr_johnson", label: "Dr. Johnson" },
-                  { value: "dr_davis", label: "Dr. Davis" },
-                ]}
+                options={filteredDoctors.map(doc => ({
+                  value: doc._id,
+                  label: `Dr. ${doc.name}`,
+                }))}
               />
-
-              {/* Appointment Type Select */}
               <SelectInput
                 label="Appointment Type"
                 value={appointmentType}
@@ -138,27 +222,41 @@ const AppointmentBooking = () => {
                   { value: "follow_up", label: "Follow-Up" },
                   { value: "emergency", label: "Emergency" },
                   { value: "routine_checkup", label: "Routine Checkup" },
+                  { value: "Online", label:"Online"}
                 ]}
               />
             </div>
 
-            {/* Conditionally Render Image and Paragraph */}
             <div className="w-full h-auto border my-2 py-5 rounded-md flex flex-col items-center justify-center">
               {!isAllSelected() ? (
                 <>
                   <img src="./image/Invoice.png" alt="" className="w-60" />
-                  <p className="mt-2 text-center">No Appointment Found Yet</p>
+                  <p className="mt-2 text-center">No Appointment Selected Yet</p>
                 </>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <Calendar />
+                    <Calendar 
+                      filterData={{hospital, doctor, state, city, country, appointmentType}}
+                      onSelectSlot={handleSlotSelect}
+                    />
                   </div>
-
-                  <DoctorDetails />
+                  <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                 </div>
               )}
             </div>
+
+            {isAllSelected() && (
+              <div className="mt-4">
+                <p className="mb-2">Appointment Fee: ₹{appointmentFee}</p>
+                <button
+                  onClick={handlePayment}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Proceed to Payment
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -180,54 +278,15 @@ const SelectInput = ({ label, value, onChange, options }) => (
       <option value="" disabled>
         Select {label}
       </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+      {options?.map(option => (
+        <option key={option?.value || option} value={option?.value || option}>
+          {option?.label || option}
         </option>
       ))}
     </select>
     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
       <i className="fa-solid fa-chevron-down text-gray-400"></i>
     </span>
-  </div>
-);
-
-const DoctorDetails = () => (
-  <div className="col-span-3 px-2 py-3">
-    <div className="bg-white w-full border-1 py-3 rounded-md">
-      <h5 className="px-3">Doctor Details</h5>
-      <hr />
-      <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
-        <img
-          src="./image/Patterns.png"
-          alt=""
-          className="w-28 absolute right-0 z-0"
-        />
-        <div className="flex py-2 z-0">
-          <img src="./image/Avatar.png" alt="" className="ps-2 w-16" />
-          <div>
-            <span className="text-white ms-1">Dr. Cristofor Pasquinades</span>
-            <button className="px-3 py-1 bg-btn-light rounded-full flex text-white">
-              <img src="./image/vuesax.png" alt="" className="pe-1" /> Male
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="rounded-md bg-gray-100 p-3 mx-2">
-        <DoctorDetailItem title="Qualification" value="MBBS" />
-        <DoctorDetailItem title="Specialty Type" value="Cardiology" />
-        <DoctorDetailItem title="Years of Experience" value="6+ Years" />
-        <DoctorDetailItem title="Working Time" value="6 Hours" />
-        <DoctorDetailItem title="Emergency Contact Number" value="123-456-7890" />
-      </div>
-    </div>
-  </div>
-);
-
-const DoctorDetailItem = ({ title, value }) => (
-  <div>
-    <h6 className="text-gray-500 font-medium">{title}</h6>
-    <p className="text-black font-medium">{value}</p>
   </div>
 );
 

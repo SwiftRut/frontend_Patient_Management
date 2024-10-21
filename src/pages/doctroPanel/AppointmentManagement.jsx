@@ -14,6 +14,7 @@ export default function AppointmentManagement() {
   // const { getAllAppointments, allAppointements } = useGlobal();
   const [dateRange, setDateRange] = useState("Any Date");
 
+
   useEffect(() => {
     getAppointments();
   }, []);
@@ -331,10 +332,17 @@ export default function AppointmentManagement() {
 
   const filteredAppointments = getAppointments().filter((appointment) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
+    const appointmentDate = new Date(appointment.appointmentDate);
+    const [startDate, endDate] = dateRange.split(" - ").map(date => new Date(date.trim()));
+
+    const isWithinDateRange = dateRange === "Any Date" ||
+      (appointmentDate >= startDate && appointmentDate <= endDate);
+
     return (
-      appointment.patientName.toLowerCase().includes(lowerSearchTerm) ||
-      appointment.diseaseName.toLowerCase().includes(lowerSearchTerm) ||
-      appointment.patientIssue.toLowerCase().includes(lowerSearchTerm)
+      isWithinDateRange &&
+      (appointment.patientName.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.diseaseName.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.patientIssue.toLowerCase().includes(lowerSearchTerm))
     );
   });
 
@@ -439,11 +447,10 @@ export default function AppointmentManagement() {
                     </td>
                     <td className="p-3">
                       <h3
-                        className={`px-3 py-1 text-sm font-medium rounded-full w-[4rem] ${
-                          appointment.appointmentType === "Online"
-                            ? "bg-yellow-100 text-yellow-600"
-                            : "bg-blue-100 text-blue-600"
-                        }`}
+                        className={`px-3 py-1 text-sm font-medium rounded-full w-[4rem] ${appointment.appointmentType === "Online"
+                          ? "bg-yellow-100 text-yellow-600"
+                          : "bg-blue-100 text-blue-600"
+                          }`}
                       >
                         {appointment.appointmentType}
                       </h3>
