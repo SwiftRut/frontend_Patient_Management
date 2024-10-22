@@ -37,14 +37,14 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="flex justify-between items-center">
-            <div className="w-[10%] h-full flex justify-center">
+            <div className="w-[100%] sm:w-[10%] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
                 alt="Patient"
                 className="rounded-full object-cover h-full"
               />
             </div>
-            <div className="w-[90%] space-y-5 ps-5">
+            <div className="w-[100%] sm:w-[90%] space-y-5 ps-5">
               {/* Patient Details Section */}
               <div className="grid grid-cols-7 gap-4 text-xs">
                 <div>
