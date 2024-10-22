@@ -11,10 +11,10 @@ import { useAuth } from "../../hooks/useAuth";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
+  const { getAllHospitals, allHospitals, useAppointmentsForPatient } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
-  const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -22,6 +22,7 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
+  const { data: appointments, isLoading, error } = useAppointmentsForPatient(user.id);
 
   const [events, setEvents] = useState([
     {
@@ -55,7 +56,6 @@ const AppointmentBooking = () => {
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
-    getAllAppointments();
   }, []);
 
   // Get unique values for each filter based on allDoctors data
