@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
 
-const AppointmentModal = ({
-  isOpen,
-  onClose,
-  onBookAppointment,
-  selectedSlot,
-  filterData,
-  isEditMode = false,
-  existingData = {},
-}) => {
+const AppointmentModal = ({ isOpen, onClose, onBookAppointment, selectedSlot, filterData }) => {
   const [patientName, setPatientName] = useState("");
   const [patientIssue, setPatientIssue] = useState("");
   const [diseaseName, setDiseaseName] = useState("");
-  const { user } = useAuth();
-
-  useEffect(() => {
-    // Populate fields if in edit mode
-    if (isEditMode && existingData) {
-      setPatientName(existingData.patientName || "");
-      setPatientIssue(existingData.patient_issue || "");
-      setDiseaseName(existingData.diseaseName || "");
-    }
-  }, [isEditMode, existingData]);
-
+  const {user} = useAuth();
+  console.log(filterData)
   if (!isOpen || !selectedSlot) return null;
 
   const appointmentDate = moment(selectedSlot.start).format("DD MMMM, YYYY");
@@ -36,11 +19,11 @@ const AppointmentModal = ({
       start: selectedSlot.start,
       end: selectedSlot.end,
       patient_issue: patientIssue,
-      disease_name: diseaseName,
-      date: new Date(selectedSlot.start),
-      doctorId: filterData.doctor,
-      hospitalId: filterData.hospital,
-      country: filterData.country,
+      dieseas_name: diseaseName,
+      date: new Date(selectedSlot.start), //only date
+      doctorId : filterData.doctor,
+      hospitalId : filterData.hospital,
+      country : filterData.country,
       city: filterData.city,
       state: filterData.state,
       type: filterData.appointmentType,
@@ -57,16 +40,16 @@ const AppointmentModal = ({
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
       <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4">{isEditMode ? "Edit Appointment" : "Book Appointment"}</h2>
+        <h2 className="text-xl font-semibold mb-4">Appointment</h2>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-medium">Appointment Type</span>
-              <span className="text-yellow-500">{filterData.appointmentType || "Online"}</span>
+              <span className="text-yellow-500">Online</span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Patient Name</span>
-              <span>{user.firstName + " " + user.lastName}</span>
+              <span>{user.firstName + ' ' + user.lastName}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Appointment Date</span>
@@ -109,7 +92,7 @@ const AppointmentModal = ({
               type="submit"
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              {isEditMode ? "Save Changes" : "Book Appointment"}
+              Book Appointment
             </button>
           </div>
         </form>

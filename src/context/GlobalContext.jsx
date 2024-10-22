@@ -152,17 +152,8 @@ export const GlobalProvider = ({ children }) => {
   const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
-      setAllAppointments(response.data.data);
-
-    } catch (error) {
-      console.log("Error fetching appointments:", error);
-      throw error;
-    }
-  };  const getAllTodayAppointments = async () => {
-    try {
-      const response = await apiService.GetAllTodayAppointments();
-      setAllAppointments(response.data.data);
-
+      console.log(response.data.data, "response");
+      setAllAppointements(response.data.data)
     } catch (error) {
       console.log("Error fetching appointments:", error);
       throw error;
@@ -222,27 +213,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       console.log("creating appointment......" , userData);
     const response = await apiService.createAppointment(patientId ,userData);
-    if(user.role === "patient"){
-      getAppointmetnsForPatient(user.id);
-    }else if(user.role === "doctor"){
-      getAppointmetnsForDoctor(user.id);
-    }
-    console.log(response.data);
-    } catch (error) { 
-      console.log(error);
-      throw error;
-    }
-  }
-  const updateAppointment = async (id ,userData) => {
-    try {
-      console.log("updating appointment......" , userData);
-      const response = await apiService.EditAppointment(id ,userData);
-      console.log(response.data);
-      if(user.role === "patient"){
-        getAppointmetnsForPatient(user.id);
-      }else if(user.role === "doctor"){
-        getAppointmetnsForDoctor(user.id);
-      }
     console.log(response.data);
     } catch (error) { 
       console.log(error);
@@ -291,9 +261,9 @@ export const GlobalProvider = ({ children }) => {
       value={{
         // Hospital
         allHospitals,
-        updateAppointment,
-        getAppointmetnsForDoctor,
-        deleteAppointment,
+        getAllAppointments,
+        allAppointements,
+        userData,
         createAppointment,
 
         setAllHospitals,
