@@ -15,12 +15,14 @@ import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { breadcrumbNames } from "./constants";
+import { useAuth } from "../hooks/useAuth";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  const { userData } = useGlobal();
+  // const { userData } = useGlobal();
+  const {user:userData}= useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
