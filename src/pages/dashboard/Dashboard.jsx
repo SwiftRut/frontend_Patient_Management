@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import "./dashboard.css";
-import { FaUsers, FaUser, FaFileAlt, FaAddressCard, FaEye } from "react-icons/fa";
+import {
+  FaUsers,
+  FaUser,
+  FaFileAlt,
+  FaAddressCard,
+  FaEye,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics.jsx";
@@ -112,7 +118,10 @@ const Dashboard = () => {
                     <p>Billing & Payments</p>
                   </div>
                   <div className="btn">
-                    <button className="flex" onClick={() => navigate("/createbill")}>
+                    <button
+                      className="flex"
+                      onClick={() => navigate("/createbill")}
+                    >
                       <FaAddressCard />
                       Create Bills
                     </button>
@@ -120,7 +129,9 @@ const Dashboard = () => {
                 </div>
                 <div className="pending-bill">
                   <div className="bill-status">
-                    <p>Pending Bills : <span>{allBills.length}</span></p>
+                    <p>
+                      Pending Bills : <span>{allBills.length}</span>
+                    </p>
                   </div>
 
                   <div className="pending-bill-data">
@@ -143,10 +154,18 @@ const Dashboard = () => {
                           <tbody>
                             {allBills.map((bill) => (
                               <tr key={bill.id}>
-                                <td className="bill-num"><p>{bill.billNumber}</p></td>
-                                <td className="patient-name"><p>{bill.patientId ? bill.patientId.name : "Unknown"}</p></td>
-                                <td className="disease-name"><p>{bill.description}</p></td>
-                                <td className="status"><p>{bill.status}</p></td>
+                                <td className="bill-num">
+                                  <p>{bill.billNumber}</p>
+                                </td>
+                                <td className="patient-name">
+                                  <p>{`${bill.patientId?.firstName} ${bill.patientId?.lastName}`}</p>
+                                </td>
+                                <td className="disease-name">
+                                  <p>{bill.diseaseName}</p>
+                                </td>
+                                <td className="status">
+                                  <p>{bill.status}</p>
+                                </td>
                                 <td className="action flex">
                                   <div className="box flex">
                                     <FaEye />
@@ -176,7 +195,10 @@ const Dashboard = () => {
 
                     {todaysAppointments.length === 0 ? (
                       <div className="img">
-                        <img src="../img/Frame1.png" alt="No Appointments Data" />
+                        <img
+                          src="../img/Frame1.png"
+                          alt="No Appointments Data"
+                        />
                       </div>
                     ) : (
                       <div className="appointments-list flex">

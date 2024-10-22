@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import "./invoice.css";
-import { formDataObject, PatientBillFields } from "./Contants"; // Assuming this contains some constants
+import { formDataObject, PatientBillFields } from "./Contants";
 import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
@@ -23,8 +23,6 @@ const CreateBill = () => {
     totalAmount: 0,
   });
 
-  console.log("<<formdata", formData);
-
   const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [loadingPatients, setLoadingPatients] = useState(true);
 
@@ -39,7 +37,6 @@ const CreateBill = () => {
     return totalAmount.toFixed(2);
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     const updatedFormData = {
@@ -49,10 +46,9 @@ const CreateBill = () => {
 
     // If patientId changes, fetch and populate patient details
     if (name === "patientId" && value) {
-      fetchPatientDetails(value); // Fetch patient details
+      fetchPatientDetails(value);
     }
 
-    // If amount, discount, or tax changes, recalculate total amount
     if (["amount", "discount", "tax"].includes(name)) {
       updatedFormData.totalAmount = calculateTotalAmount(
         updatedFormData.amount,
@@ -70,34 +66,32 @@ const CreateBill = () => {
       const patientDetails = await getPatientById(patientId);
       setFormData((prev) => ({
         ...prev,
-        phone: patientDetails.phone || "", // Use 'phone' consistently
+        phone: patientDetails.phone || "", 
         age: patientDetails.age || "",
         gender: patientDetails.gender || "",
         address: patientDetails.address || "",
-        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`, // Set patientName correctly
+        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`, 
       }));
     } catch (error) {
       console.error("Error fetching patient details:", error);
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createBill(formData); // Submit form data
+      await createBill(formData); 
       setFormData((prev) => ({
         ...prev,
-        billNumber: prev.billNumber + 1, // Auto-increment bill number
-        totalAmount: 0, // Reset total amount
+        billNumber: prev.billNumber + 1, 
+        totalAmount: 0, 
       }));
-      navigate("/"); // Redirect after submission
+      navigate("/"); 
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-  // Fetch doctors when the component mounts
   useEffect(() => {
     const fetchDoctors = async () => {
       setLoadingDoctors(true);
@@ -107,7 +101,6 @@ const CreateBill = () => {
     fetchDoctors();
   }, []);
 
-  // Fetch patients when the component mounts
   useEffect(() => {
     const fetchPatients = async () => {
       setLoadingPatients(true);
@@ -117,14 +110,14 @@ const CreateBill = () => {
     fetchPatients();
   }, []);
 
-  // Update the bill time every minute
+
   useEffect(() => {
     const interval = setInterval(() => {
       setFormData((prev) => ({
         ...prev,
-        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), // Update to current time
+        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), 
       }));
-    }, 60000); // 60000 ms = 1 minute
+    }, 60000); 
 
     return () => clearInterval(interval);
   }, []);
@@ -154,11 +147,11 @@ const CreateBill = () => {
       type: "select",
       options: [
         { label: "Select Gender", value: "" },
-        { label: "Male", value: "Male" },
-        { label: "Female", value: "Female" },
-        { label: "Other", value: "Other" },
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
       ],
-      value: formData.gender, // Ensure this is set to the selected gender
+      value: formData.gender, 
     },
     { label: "Age", name: "age", type: "text", readOnly: true },
     {
