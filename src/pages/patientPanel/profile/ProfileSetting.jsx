@@ -5,14 +5,14 @@ import { NavLink } from "react-router-dom";
 const ProfileSetting = () => {
   return (
     <div className="bg-gray-100 w-full h-[100vh]">
-      <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold">
-        <div className="container mx-auto">
+      <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold ">
+        <div className="container mx-auto w-[90%] 2xl:w-[100%]">
           <h1 className="text-white font-bold text-black mb-3 pt-5">Profile Setting</h1>
         </div>
 
       </div>
 
-      <div className="w-full mt-[-10%] container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row ">
+      <div className="mt-[-40%] sm:mt-[-10%] container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row w-[90%] 2xl:w-[100%] ">
         {/* Section 1 */}
         <div className="w-full md:w-[20%] p-10 border-b md:border-b-0 md:border-r border-gray-300 flex flex-col items-center">
           <img
@@ -209,13 +209,13 @@ const ProfileSetting = () => {
             />
           </div>
 
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-center sm:justify-end gap-4">
             <NavLink to={'/patient'}>
-            <button className="w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
+            <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
               Cancel
             </button>
             </NavLink>
-            <button className=" bg-blue-600 w-[160px] h-[48px] text-white text-[20px] rounded-md bg-[#0EABEB] w-[160px] h-[48px]">
+            <button className=" bg-blue-600 w-[130px] sm:w-[160px] h-[48px] text-white text-[20px] rounded-md bg-[#0EABEB] w-[160px] h-[48px]">
               Save
             </button>
           </div>
