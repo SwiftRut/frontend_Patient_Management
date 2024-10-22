@@ -535,6 +535,12 @@
   color: white;
 }
 
+.doctorEdit-section .input-box:nth-child(3) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(3) input {
+  width: 100%;
+}
 .doctorEdit-section .input-box:nth-child(5) {
   width: 32%;
 }
@@ -557,5 +563,11 @@
   width: 32%;
 }
 .doctorEdit-section .input-box:nth-child(8) input {
+  width: 100%;
+}
+.doctorEdit-section .input-box:nth-child(11) {
+  width: 32%;
+}
+.doctorEdit-section .input-box:nth-child(11) input {
   width: 100%;
 }/*# sourceMappingURL=doctorManagement.css.map */

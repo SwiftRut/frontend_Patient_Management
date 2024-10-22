@@ -549,6 +549,14 @@
 .doctorEdit-section {
     .input-box {
 
+        &:nth-child(3) {
+            width: 32%;
+
+            input {
+                width: 100%;
+            }
+        }
+
         &:nth-child(5) {
             width: 32%;
 
@@ -574,6 +582,14 @@
         }
 
         &:nth-child(8) {
+            width: 32%;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        &:nth-child(11) {
             width: 32%;
 
             input {
