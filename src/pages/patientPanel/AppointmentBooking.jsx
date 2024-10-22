@@ -8,7 +8,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useAuth } from "../../hooks/useAuth";
-import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
