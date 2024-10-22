@@ -4,12 +4,12 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
-import RescheduleModal from "./RescheduleModal";
 import AppointmentModal from "./AppointmentModal";
+import RescheduleModal from "./RescheduleModal";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = () => {
+const Calendar = ({ filterData }) => {
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
@@ -19,23 +19,15 @@ const Calendar = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!allAppointements) return;
-    const mappedEvents = allAppointements.map((appointment) => {
-      const appointmentTime = new Date(appointment.appointmentTime); 
-      const endTime = new Date(appointmentTime); 
-      endTime.setHours(appointmentTime.getHours() + 1); 
-      console.log(endTime); 
-  
-      return {
-        title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
-        start: new Date(appointment.date),
-        end: endTime,
-        allDay: false,
-        id: appointment._id,
-        appointment: appointment
-      };
-    });
-  
+    // Map appointments to the required format for react-big-calendar
+    const mappedEvents = allAppointements.map((appointment) => ({
+      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+      start: new Date(appointment.date),
+      end: new Date(appointment.appointmentTime),
+      allDay: false,
+      id: appointment._id,
+      appointment: appointment // Store the full appointment data
+    }));
     setEvents(mappedEvents);
   }, [allAppointements]);
 
@@ -112,6 +104,7 @@ const Calendar = () => {
         onClose={handleCloseModal}
         onBookAppointment={handleBookAppointment}
         selectedSlot={selectedSlot}
+        filterData={filterData}
       />
       <RescheduleModal
         isOpen={isRescheduleModalOpen}

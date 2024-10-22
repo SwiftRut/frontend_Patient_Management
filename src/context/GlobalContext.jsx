@@ -220,8 +220,6 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   }
-<<<<<<< HEAD
-=======
   const updateAppointment = async (id ,userData) => {
     try {
       console.log("updating appointment......" , userData);
@@ -234,56 +232,35 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   }
->>>>>>> 10b3a45 (edit and delete added to patient appointments)
   const deleteAppointment = async(id)=>{
     try{
       console.log("delteing appointment......");
       const response = await apiService.DeleteAppointment(id);
-<<<<<<< HEAD
-      if(user.role === "patient"){
-        getAppointmetnsForPatient(user.id);
-      }else if(user.role === "doctor"){
-        getAppointmetnsForDoctor(user.id);
-      }
-=======
->>>>>>> 10b3a45 (edit and delete added to patient appointments)
       console.log(response.data);
     }catch (error) {
       console.log(error);
       throw error;
     }
   }
-<<<<<<< HEAD
   const getAppointmetnsForDoctor = async(doctorId)=>{
     console.log(doctorId,"<<<<<<<<<<<<<<<<<<<<< this doctorId")
     try{
       console.log("getting for doctor appointment......");
       const response = await apiService.GetAppointsForDoctor(doctorId);
       console.log(response.data.data);
-      setAllAppointments(response.data.data);
+      setAllAppointements(response.data.data);
     }catch (error) {
       console.log(error);
       throw error;
     }
-  }    
-  const getAppointmetnsForPatient = async(patientId) =>{
-      try {
-        const response = await apiService.GetAppointsForPatient(patientId);
-        setAllAppointments(response.data.data);
-        console.log(response.data.data);
-        return response.data.data;
-      }catch(error){
-        console.log(error);
-      }
-  };
-=======
->>>>>>> 10b3a45 (edit and delete added to patient appointments)
+  }
   return (
     <GlobalContext.Provider
       value={{
         // Hospital
         allHospitals,
         updateAppointment,
+        getAppointmetnsForDoctor,
         deleteAppointment,
         allAppointements,
         userData,
@@ -325,19 +302,7 @@ export const GlobalProvider = ({ children }) => {
         getAllAppointments,
         getAppointmentById,
         editAppointment,
-<<<<<<< HEAD
-        getAllTodayAppointments,
-
-        getAppointmetnsForPatient,
-
-
-        // Chat
-        getChatHistory,
-        getDoctorContacts,
-        getPatientContacts,
-=======
         getChatHistory
->>>>>>> 10b3a45 (edit and delete added to patient appointments)
       }}
     >
       {children}

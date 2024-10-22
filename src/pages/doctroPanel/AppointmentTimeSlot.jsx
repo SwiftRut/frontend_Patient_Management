@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
-import Calendar from "./Calendar";
+
 const localizer = momentLocalizer(moment);
   import { useAuth } from "../../hooks/useAuth";
 const AppointmentTimeSlot = () => {
@@ -27,13 +27,23 @@ const AppointmentTimeSlot = () => {
       resource: "Dr. Andrew",
     },
   ]);
-  const {user} = useAuth();
-  const { getAppointmetnsForDoctor } = useGlobal();
+  const { allAppointements, getAllAppointments, getAppointmetnsForDoctor } = useGlobal();
   useEffect(() => {
-    getAppointmetnsForDoctor(user.id);
+    // getAllAppointments();
+    getAppointmetnsForDoctor('6707ec1893d5090ffcdb86c6');
   },[]);
-
-  
+  useEffect(() => {
+    // Map appointments to the required format for react-big-calendar
+    const mappedEvents = allAppointements?.map((appointment) => ({
+      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+      start: new Date(appointment.date),
+      end: new Date(appointment.appointmentTime),
+      allDay: false,
+      id: appointment._id,
+      appointment: appointment // Store the full appointment data
+    }));
+    setEvents(mappedEvents);
+  }, [allAppointements]);
   const handleSelectEvent = (event) => {
     console.log(`Selected event: ${event.title} at ${event.start}`);
   };
@@ -41,7 +51,21 @@ const AppointmentTimeSlot = () => {
   return (
     <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
       <h3 className="text-lg font-semibold mb-4">Appointment Time Slot doctor</h3>
-      <Calendar/>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 600 }}
+        views={["week", "day"]}
+        defaultView="week"
+        popup
+        eventPropGetter={(event) => {
+          const backgroundColor = event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
+          return { style: { backgroundColor } };
+        }}
+        onSelectEvent={handleSelectEvent}
+      />
     </div>
   );
 };
