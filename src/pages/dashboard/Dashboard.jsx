@@ -163,11 +163,11 @@ const Dashboard = () => {
                                 <td className="disease-name">
                                   <p>{bill.diseaseName}</p>
                                 </td>
-                                <td className="status">
+                                <td className={bill.status=="paid"?"status":"status1"}>
                                   <p>{bill.status}</p>
                                 </td>
                                 <td className="action flex">
-                                  <div className="box flex">
+                                  <div className="box flex" onClick={()=>navigate(`/bill/${bill.id}`)}>
                                     <FaEye />
                                   </div>
                                 </td>
@@ -181,7 +181,6 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
             <div className="bottom flex">
               <div className="appointments-data">
                 <div className="today-appointments">

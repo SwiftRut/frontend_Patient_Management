@@ -219,6 +219,14 @@
   padding: 6px 20px;
   border-radius: 30px;
 }
+.deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .status1 p {
+  background-color: rgba(250, 182, 182, 0.4235294118);
+  color: #eb4d4d;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 20px;
+  border-radius: 30px;
+}
 .deshbord-section .row .main .top .Billing-data .pending-bill .pending-bill-data .bill-table table tbody tr .action {
   justify-content: center;
   align-items: center;
