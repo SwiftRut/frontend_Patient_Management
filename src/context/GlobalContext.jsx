@@ -122,9 +122,7 @@ export const GlobalProvider = ({ children }) => {
   const getBills = async () => {
     try {
       const response = await apiService.GetBills();
-      setAllBills(response.data.data);
-      console.log(response.data.data);
-      
+      setAllBills(response.data.data);      
     } catch (error) {
       console.log("Error fetching bills:", error);
       throw error;

@@ -163,7 +163,7 @@ const Dashboard = () => {
                                 <td className="disease-name">
                                   <p>{bill.diseaseName}</p>
                                 </td>
-                                <td className="status">
+                                <td className={bill.status=="paid"?"status":"status1"}>
                                   <p>{bill.status}</p>
                                 </td>
                                 <td className="action flex">
