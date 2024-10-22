@@ -114,8 +114,73 @@ export default function PriscriptionAccess() {
                           </div>
                         </div>
                       </div>
+                      
                     </div>
-                    
+                    <div class="w-full mx-auto bg-white rounded-lg shadow-md">
+                      <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
+                        <h2 class="text-lg font-semibold text-foreground">
+                          Dr. Ryan Vetrovs
+                        </h2>
+                        <div className="flex">
+                          <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
+                            <FaDownload />
+                          </div>
+                          <div
+                            onClick={() => openModal()}
+                            className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                          >
+                            <IoEyeSharp />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3 border rounded-b-lg">
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="text-base font-normal text-[#818194]">
+                            Hospital Name
+                          </span>
+                          <p class="text-sm font-medium text-[#4F4F4F]">
+                            Artemis Hospital
+                          </p>
+                        </div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="text-base font-normal text-[#818194]">
+                            Disease Name
+                          </span>
+                          <p class="text-sm font-medium text-[#4F4F4F]">
+                            Viral Infection
+                          </p>
+                        </div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="text-base font-normal text-[#818194]">
+                            Date
+                          </span>
+                          <p class="text-sm font-medium text-[#4F4F4F]">
+                            2 Jan, 2022
+                          </p>
+                        </div>
+                        <div class="mt-1 flex items-center justify-between">
+                          <span class="text-base font-normal text-[#818194]">
+                            Time
+                          </span>
+                          <p class="text-sm font-medium text-[#4F4F4F]">
+                            10:10 AM
+                          </p>
+                        </div>
+                        <div class="mt-4 flex items-center border rounded-md p-1">
+                          <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
+                            <FaRegImage />
+                          </div>
+
+                          <div className="ml-2">
+                            <span class="text-[#030229] block">
+                              Prescription.JPG
+                            </span>
+                            <span class="text-[#A7A7A7] text-sm">5.09 MB</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
                   </div>
                 </div>
               </div>
