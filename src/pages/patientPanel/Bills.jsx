@@ -270,7 +270,7 @@ const Bills = () => {
       {openModel && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
           <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="onsite-modal-header">
+            <div className="onsite-modal-header overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 h-full mx-5 my-2">
               <MainBill />
               <button
                 className="close-button"
