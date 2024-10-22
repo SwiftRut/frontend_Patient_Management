@@ -66,12 +66,14 @@ const apiService = {
 
   //Appointments
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`, {id :'6707ec1893d5090ffcdb86c6'}),
+  GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
   EditAppointment: (id, userData) =>
     api.put(`/appoinment/updateappointment/${id}`, userData),
   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
   createAppointment: (id, userData) => api.post(`/appoinment/appoinmentcreate`, userData),
-  GetAppointsForDoctor: (doctorId) => api.get(`/appoinment//Doctor_Appointment_History/${doctorId}`,doctorId),   GetAppointsFor: (patientId) => api.get(`/appointment/Patient_Appointment_History/${patientId}`,patientId), 
+  GetAppointsForDoctor: (doctorId) => api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`,doctorId),   
+  GetAppointsForPatient: (patientId) => api.get(`/appoinment/Patient_Appointment_History/${patientId}`,patientId), 
 
   //Chats
   GetChatHistory: (doctorId, patientId) =>

@@ -19,15 +19,23 @@ const Calendar = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    // Map appointments to the required format for react-big-calendar
-    const mappedEvents = allAppointements.map((appointment) => ({
-      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
-      start: new Date(appointment.date),
-      end: new Date(appointment.appointmentTime),
-      allDay: false,
-      id: appointment._id,
-      appointment: appointment // Store the full appointment data
-    }));
+    if (!allAppointements) return;
+    const mappedEvents = allAppointements.map((appointment) => {
+      const appointmentTime = new Date(appointment.appointmentTime); 
+      const endTime = new Date(appointmentTime); 
+      endTime.setHours(appointmentTime.getHours() + 1); 
+      console.log(endTime); 
+  
+      return {
+        title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+        start: new Date(appointment.date),
+        end: endTime,
+        allDay: false,
+        id: appointment._id,
+        appointment: appointment
+      };
+    });
+  
     setEvents(mappedEvents);
   }, [allAppointements]);
 
