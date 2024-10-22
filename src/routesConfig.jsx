@@ -57,11 +57,15 @@ const routesConfig = [
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
       },
       {
-        path: "/createBill",
+        path: "createBill",
         element: (
           <ProtectedRoute element={<CreateBill />} allowedRoles={["admin"]} userRole={userRole} />
         ),
         allowedRoles: ["admin"],
+      },
+      {
+        path: "bill/:id",
+        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
       },
       {
         path: "edit",

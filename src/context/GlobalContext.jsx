@@ -12,7 +12,7 @@ export const GlobalProvider = ({ children }) => {
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
   const [allAppointments, setAllAppointments] = useState([]);
-
+  
   // Hospital Management
   const getAllHospitals = async () => {
     try {
