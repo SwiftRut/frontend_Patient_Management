@@ -12,6 +12,9 @@ import apiService from "../../services/api.js";
 export default function ReportingAndAnalytics() {
   const [totalPatients, setTotalPatients] = useState(0);
   const [insuranceBills, setInsuranceBills] = useState(0);
+  const [totalDoctors, setTotalDoctors] = useState(0);
+  const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
+
 
   useEffect(() => {
 
@@ -34,9 +37,42 @@ export default function ReportingAndAnalytics() {
       }
     };
 
+    const fetchDoctors = async () => {
+      try {
+        const response = await apiService.GetAllDoctors();
+        const doctors = response.data.data;
+
+        const specialtyCountMap = {};
+
+        // Assuming each doctor has a specialty and patient count for their specialty
+        doctors.forEach((doctor) => {
+          const specialty = doctor.speciality;
+          if (specialty) {
+            if (!specialtyCountMap[specialty]) {
+              specialtyCountMap[specialty] = { doctorCount: 0, patientCount: 0 };
+            }
+            specialtyCountMap[specialty].doctorCount += 1;
+            specialtyCountMap[specialty].patientCount += doctor.patientsCount || 0;
+          }
+        });
+
+        const specialtyDataArray = Object.keys(specialtyCountMap).map((specialty) => ({
+          specialty,
+          doctorCount: specialtyCountMap[specialty].doctorCount,
+          patientCount: specialtyCountMap[specialty].patientCount,
+        }));
+
+        setDoctorSpecialtyData(specialtyDataArray);
+        setTotalDoctors(doctors.length);
+      } catch (error) {
+        console.error("Error fetching doctors:", error);
+      }
+    };
+
     
+    fetchDoctors()
     fetchInsuranceBills()
-    fetchPatients();
+    fetchPatients()
   }, []);
 
   const patientsCountData = [
@@ -180,19 +216,19 @@ export default function ReportingAndAnalytics() {
                           <thead>
                             <tr className="flex">
                               <th>Department Name</th>
-                              <th>Patient Count</th>
+                              <th>Doctor Count</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {patientsCountData.map((doctor) => (
-                              <tr key={doctor.id} className="flex">
+                          {doctorSpecialtyData.map((specialty) => (
+                              <tr key={specialty.specialty} className="flex">
                                 <td className="d-name">
-                                  <p>{doctor.department}</p>
+                                  <p>{specialty.specialty}</p>
                                 </td>
                                 <td className="status">
                                   <p>
                                     <FaUsers />
-                                    <span>{doctor.count}</span>
+                                    <span>{specialty.doctorCount}</span>
                                   </p>
                                 </td>
                               </tr>
