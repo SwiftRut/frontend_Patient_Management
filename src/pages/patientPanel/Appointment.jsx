@@ -8,7 +8,7 @@ const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
-  const { allAppointements, getAppointmetnsForPatient } = useGlobal();
+  const { allAppointments, getAppointmetnsForPatient } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -17,29 +17,32 @@ const Appointment = () => {
 
   useEffect(() => {
     filterAppointments();
-  }, [activeTab, allAppointements]);
+  }, [activeTab, allAppointments]);
 
   const filterAppointments = () => {
     let filtered = [];
     const currentDate = moment();
-    console.log(allAppointements?.filter(appointment =>
-      moment(appointment.appointmentDate).isAfter(currentDate)));
+  
+    console.log(allAppointments); // Log all appointments for debugging
+  
     if (activeTab === "scheduled") {
-      filtered = allAppointements?.filter(appointment =>
-        moment(appointment.appointmentDate).isAfter(currentDate)
+      filtered = allAppointments?.filter(appointment => 
+        moment(appointment.date).isAfter(currentDate) // Use the correct field
       );
     } else if (activeTab === "previous") {
-      filtered = allAppointements?.filter(appointment =>
-        moment(appointment.appointmentDate).isBefore(currentDate)
+      filtered = allAppointments?.filter(appointment => 
+        moment(appointment.date).isBefore(currentDate) // Use the correct field
       );
     } else if (activeTab === "cancel") {
-      filtered = allAppointements?.filter(appointment => appointment.status === "canceled");
+      filtered = allAppointments?.filter(appointment => appointment.status === "canceled");
     } else if (activeTab === "pending") {
-      filtered = allAppointements?.filter(appointment => appointment.status === "pending");
+      filtered = allAppointments?.filter(appointment => appointment.status === "pending");
     }
-    console.log(filtered);
+  
+    console.log(filtered); // Log filtered appointments for debugging
     setFilteredAppointments(filtered);
   };
+  
 
   return (
     <div>
