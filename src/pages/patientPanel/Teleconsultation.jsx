@@ -10,7 +10,7 @@ import { GoSearch } from "react-icons/go";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 import { FaCalendarDays } from "react-icons/fa6";
 import { InputBase } from "@mui/material";
-
+import { FiPhoneCall } from "react-icons/fi";
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -147,44 +147,53 @@ const Teleconsultation = () => {
               <div className="tab-content mt-3">
                 {activeTab === "scheduled" && (
                   <div>
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-xl font-semibold mb-2 md:mb-0">
-                        My Appointment
-                      </h1>
-                      <div className="flex items-center space-x-3 ">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
-                        </div>
-                        <div className="border rounded-md flex p-2 items-center">
-                          <span className=" pl-3 text-gray-500 me-1">
-                            <FaCalendarAlt />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-control"
-                            style={{ width: "270px" }}
-                            value="2 Jan, 2022 - 13 Jan, 2022"
-                            readOnly
-                          />
-                          <div className="h-5 w-5 rounded-full text-white bg-[#E11D29] flex items-center justify-center">
-                            <IoCloseSharp />
-                          </div>
-                        </div>
+                    <div className="w-full p-4 ">
+                      <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                        {/* Title */}
+                        <h1 className="text-2xl font-semibold text-gray-900">
+                          My Appointment
+                        </h1>
 
-                        {/* Book Appointment button */}
-                        <Link to={"/patient/appointmentBooking"}>
-                          <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                            <BiSolidCalendar />
-                            <span>Book Appointment</span>
-                          </button>
-                        </Link>
+                        {/* Controls Container */}
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                          {/* Search Bar */}
+                          <div className="relative flex items-center">
+                            <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                              <GoSearch className="me-2 text-[#4F4F4F]" />
+                              <InputBase
+                                type="text"
+                                placeholder="Quick Search"
+                                className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Date Selector */}
+                          <div className="flex items-center border rounded-md p-2 bg-white">
+                            <span className=" pl-3 text-gray-500 me-1">
+                              <FaCalendarAlt />
+                            </span>
+                            <input
+                              type="text"
+                              className="flex-1 focus:outline-none text-sm min-w-[180px] max-w-[270px]"
+                              value="2 Jan, 2022 - 13 Jan, 2022"
+                              readOnly
+                            />
+                            <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
+                              <IoCloseSharp />
+                            </div>
+                          </div>
+
+                          {/* Book Appointment Button */}
+                          <Link to="/patient/appointmentBooking">
+                            <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                              <BiSolidCalendar />
+                              <span>Book Appointment</span>
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
@@ -262,9 +271,9 @@ const Teleconsultation = () => {
                                   <TbCalendarX className="me-2" />
                                   Cancel
                                 </button>
-                                <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
-                                  <TbCalendarClock className="me-2" />
-                                  Reschedule
+                                <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
+                                  <FiPhoneCall className="me-2" />
+                                  Join Call
                                 </button>
                               </div>
                             </div>
@@ -277,29 +286,36 @@ const Teleconsultation = () => {
 
                 {activeTab === "previous" && (
                   <div className="p-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
-                        My Appointment
-                      </h1>
+                    <div className="w-full p-4 ">
+                      <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                        {/* Title */}
+                        <h1 className="text-2xl font-semibold text-gray-900">
+                          My Appointment
+                        </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                        {/* Controls Container */}
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                          {/* Search Bar */}
+                          <div className="relative flex items-center">
+                            <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                              <GoSearch className="me-2 text-[#4F4F4F]" />
+                              <InputBase
+                                type="text"
+                                placeholder="Quick Search"
+                                className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                          {/* Book Appointment Button */}
+                          <Link to="/patient/appointmentBooking">
+                            <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                              <BiSolidCalendar />
+                              <span>Book Appointment</span>
+                            </button>
+                          </Link>
                         </div>
-
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
                       </div>
                     </div>
 
@@ -376,29 +392,34 @@ const Teleconsultation = () => {
                 )}
                 {activeTab === "cancel" && (
                   <div className="p-2">
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
+                    <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                      {/* Title */}
+                      <h1 className="text-2xl font-semibold text-gray-900">
                         My Appointment
                       </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                      {/* Controls Container */}
+                      <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                        {/* Search Bar */}
+                        <div className="relative flex items-center">
+                          <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                            <GoSearch className="me-2 text-[#4F4F4F]" />
+                            <InputBase
+                              type="text"
+                              placeholder="Quick Search"
+                              className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                              value={searchTerm}
+                              onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                          </div>
                         </div>
-
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
+                        {/* Book Appointment Button */}
+                        <Link to="/patient/appointmentBooking">
+                          <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                            <BiSolidCalendar />
+                            <span>Book Appointment</span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
 
@@ -475,29 +496,34 @@ const Teleconsultation = () => {
                 )}
                 {activeTab === "pending" && (
                   <div>
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
+                    <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                      {/* Title */}
+                      <h1 className="text-2xl font-semibold text-gray-900">
                         My Appointment
                       </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                      {/* Controls Container */}
+                      <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                        {/* Search Bar */}
+                        <div className="relative flex items-center">
+                          <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                            <GoSearch className="me-2 text-[#4F4F4F]" />
+                            <InputBase
+                              type="text"
+                              placeholder="Quick Search"
+                              className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                              value={searchTerm}
+                              onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                          </div>
                         </div>
-
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
+                        {/* Book Appointment Button */}
+                        <Link to="/patient/appointmentBooking">
+                          <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                            <BiSolidCalendar />
+                            <span>Book Appointment</span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
 
