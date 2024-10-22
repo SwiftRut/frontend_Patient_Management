@@ -38,8 +38,6 @@ input {
   }
 
   .breadcrumbs {
-    color: #2bb5ed;
-    background-color: #f8fcfe;
     font-size: 18px;
     font-weight: 400;
     border: 1px solid #d9d9d9;
@@ -47,6 +45,8 @@ input {
     border-radius: 35px;
     display: flex;
     align-items: center;
+    color: #2bb5ed;
+    background-color: #f8fcfe;
 
     @media (max-width: 576px) {
       display: none;
