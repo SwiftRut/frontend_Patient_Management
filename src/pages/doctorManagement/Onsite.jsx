@@ -8,7 +8,7 @@ import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 
-const Onsite = ({ selectedDoctor, setShowOnsite,setOpenModel }) => {
+const Onsite = ({ selectedDoctor, setOpenModel }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -30,9 +30,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite,setOpenModel }) => {
   }, [id]);
 
   const handleBack = () => {
-    // navigate("/doctorManagement");
     setOpenModel(false)
-    setShowOnsite(false);
   };
 
   return (
@@ -42,7 +40,7 @@ const Onsite = ({ selectedDoctor, setShowOnsite,setOpenModel }) => {
           <div className="row">
             <div className="main">
               <div className="top flex align-center">
-                <div className="icon" onClick={handleBack}>
+                <div className="icon" onClick={()=>handleBack()}>
                   <IoIosArrowBack />
                 </div>
                 <h3>Doctor Management</h3>
