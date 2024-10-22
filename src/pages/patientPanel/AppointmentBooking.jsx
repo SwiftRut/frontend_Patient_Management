@@ -12,7 +12,6 @@ import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
-  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
