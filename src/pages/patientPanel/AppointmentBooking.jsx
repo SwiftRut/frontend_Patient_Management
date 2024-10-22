@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import AppointmentTimeSlot from "./AppointmentTimeSlot1";
 // import AppointmentTimeSlot1 from "./AppointmentTimeSlot1";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { IoIosArrowBack } from "react-icons/io";
-import { TbBuildingHospital } from "react-icons/tb";
-import { IoLinkSharp } from "react-icons/io5";
-import { BiSolidPhoneCall } from "react-icons/bi";
-import { IoLocation } from "react-icons/io5";
-import Onsite from "../doctorManagement/Onsite";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useDoctor } from "../../hooks/useDoctor";
+import { useAuth } from "../../hooks/useAuth";
 
 const localizer = momentLocalizer(moment);
 
@@ -27,7 +24,6 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
-  const [selectedDoctor, setSelectedDoctor] = useState({});
 
   const [events, setEvents] = useState([
     {

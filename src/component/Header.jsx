@@ -1,6 +1,6 @@
 import "./Header.css";
 import { IoIosArrowForward } from "react-icons/io";
-import { useGlobal } from "../hooks/useGlobal";
+// import { useGlobal } from "../hooks/useGlobal";
 import {
   Typography,
   IconButton,
@@ -20,7 +20,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  const { userData } = useGlobal();
+  // const { userData } = useGlobal();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,7 +34,6 @@ const Header = () => {
     }
     setAnchorEl(null);
   };
-
   const handleSearch = () => {
     if (searchTerm) {
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
@@ -47,14 +46,10 @@ const Header = () => {
     }
   };
 
-  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
-  const userRole = userData?.role || "Role";
-  const userAvatar = userData?.avatar || "/img/avtar.png";
-
   return (
     <div className="header">
       <div className="breadcrumbs">
-        <img src="/img/home-2.png" alt="Home Icon" />
+        <img src="/img/home-2.png" />
         <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
           <NavLink to={"/"}>
@@ -62,16 +57,18 @@ const Header = () => {
               Home
             </Typography>
           </NavLink>
+
           {location.pathname !== "/" && (
-            <Typography variant="body2" color="textPrimary">
-              {breadcrumbNames[location.pathname.split("/")[1]] || "Page"}
-            </Typography>
+            <NavLink to={location.pathname}>
+              <Typography variant="body2" color="textPrimary">
+                {breadcrumbNames[location.pathname.split("/")[1]]}
+              </Typography>
+            </NavLink>
           )}
         </Breadcrumbs>
       </div>
-
       <div className="flex">
-        <div className="flex items-center bg-gray-200 rounded-full px-4">
+        <div className="flex items-right bg-gray-200 rounded-full px-4 search">
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
@@ -80,7 +77,7 @@ const Header = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
           />
-          <IconButton aria-label="filter options" onClick={handleClick}>
+          <IconButton aria-label="dropdown" onClick={handleClick}>
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
@@ -90,23 +87,21 @@ const Header = () => {
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
           </Menu>
         </div>
-
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3 note">
           <IconButton aria-label="notifications">
             <Badge badgeContent={4} color="secondary">
               <Notifications />
             </Badge>
           </IconButton>
-
           <NavLink to={"/profile"}>
             <div className="flex items-center">
-              <Avatar src={userAvatar} alt="User Avatar" />
+              <Avatar src="/img/avtar.png" alt="User Image" />
               <div className="ml-2">
                 <Typography variant="body2" fontWeight="bold">
-                  {userName}
+                  Lincoln Philips
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  {userRole}
+                  Admin
                 </Typography>
               </div>
             </div>

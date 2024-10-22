@@ -115,6 +115,7 @@ export default function PriscriptionAccess() {
                         </div>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -123,20 +124,10 @@ export default function PriscriptionAccess() {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="modal">
-                <div className="modal-content">
-                  <div className=" w-[200px] h-[200px] bg-white">
-                    <h1>hii</h1>
-                    <button
-                      class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
-                      onClick={() => setIsModalOpen(false)}
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                </div>
+          <div className="modal">
+            <div className="modal-content">
+              <div className=" w-[200px] h-[200px] bg-white">
+                <h1>hii</h1>
               </div>
             </div>
           </div>

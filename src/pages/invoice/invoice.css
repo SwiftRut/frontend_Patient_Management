@@ -425,6 +425,7 @@
   outline: none;
   background-color: white;
   color: #a7a7a7;
+  width: 100%;
 }
 .bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box select:focus,
 .editBill-section .row .main .patient-details .content .details .form-box form .input-box select:focus {

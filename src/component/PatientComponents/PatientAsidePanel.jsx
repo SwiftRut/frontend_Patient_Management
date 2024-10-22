@@ -99,37 +99,7 @@ export default function PatientAsidePanel() {
           </div>
         </div>
       </div>
-      {/* <div className="siderbar">
-      <div className="w-[17%]">
-      <div className="flex flex-col h-screen bg-background">
-  <div className="p-4">
-    <h1 className="text-2xl font-bold text-primary">Hospital</h1>
-    <p className="text-muted-foreground">Digital Care</p>
-  </div>
-  <nav className="flex-grow">
-    <ul className="space-y-2">
-      <li><a href="#" className="flex items-center p-2 text-muted hover:bg-muted/10 rounded-lg">Personal Health Record</a></li>
-      <li><a href="#" className="flex items-center p-2 text-primary hover:bg-primary/10 rounded-lg">Appointment Booking</a></li>
-      <li><a href="#" className="flex items-center p-2 text-muted hover:bg-muted/10 rounded-lg">Prescription Access</a></li>
-      <li><a href="#" className="flex items-center p-2 text-muted hover:bg-muted/10 rounded-lg">Teleconsultation Access</a></li>
-      <li><a href="#" className="flex items-center p-2 text-muted hover:bg-muted/10 rounded-lg">Chat</a></li>
-      <li><a href="#" className="flex items-center p-2 text-muted hover:bg-muted/10 rounded-lg">Bills</a></li>
-    </ul>
-  </nav>
-  <div className="p-4">
-    <div className="bg-card p-4 rounded-lg shadow-md">
-      <img aria-hidden="true" alt="hospital appointment" src="https://openui.fly.dev/openui/24x24.svg?text=🗓️" className="mb-2" />
-      <p className="text-muted-foreground">Hospital appointment</p>
-      <p className="text-muted-foreground">You have to fill up the form to be admitted to the hospital.</p>
-      <button className="mt-2 bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-lg">Appointment</button>
-    </div>
-  </div>
-  <div className="p-4">
-    <a href="#" className="text-muted hover:text-destructive">Logout</a>
-  </div>
-</div>
-      </div>
-      </div> */}
+      
     </>
   );
 }
