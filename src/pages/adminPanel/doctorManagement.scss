@@ -406,7 +406,7 @@
                             width: 100%;
 
                             form {
-                                column-gap: 31px;
+                                column-gap: 28px;
                                 row-gap: 15px;
 
                                 .input-box {
@@ -491,7 +491,7 @@
                                     &:nth-child(3) {
                                         width: 32%;
 
-                                        input {
+                                        select {
                                             width: 100%;
                                         }
                                     }
@@ -505,6 +505,14 @@
                                     }
 
                                     &:nth-child(5) {
+                                        width: 32%;
+
+                                        input {
+                                            width: 100%;
+                                        }
+                                    }
+
+                                    &:nth-child(6) {
                                         width: 32%;
 
                                         input {
