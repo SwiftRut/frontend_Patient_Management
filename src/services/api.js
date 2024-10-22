@@ -57,12 +57,14 @@ const apiService = {
 
   // Bill
   GetBills: () => api.get("/bill/getbill"),
+  GetInsuranceBills: () => api.get("/bill/getInsuranceBills"),
   CreateBill: (userData) => api.post("/bill/createbill", userData),
   GetBillById: (id) => api.get(`/bill/singlebill/${id}`),
   EditBill: (id, userData) => api.put(`/bill/billupdate/${id}`, userData),
   DeleteBill: (id) => api.delete(`/bill/deletebill/${id}`),
   GetAllHospital: (userData) =>
     api.post("/hospital/get-all-hospitals", userData),
+
 
   //Appointments
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`, {id :'6707ec1893d5090ffcdb86c6'}),

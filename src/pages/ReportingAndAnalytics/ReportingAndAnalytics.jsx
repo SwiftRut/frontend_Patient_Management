@@ -3,28 +3,41 @@ import "./reportingAnalytics.css";
 import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
-import { FaAddressCard } from "react-icons/fa";
-import { FaBox } from "react-icons/fa";
-import { FaRegStopCircle } from "react-icons/fa";
-
-import { CiSearch } from "react-icons/ci";
-import { MdAdd } from "react-icons/md";
-import { BsGenderFemale } from "react-icons/bs";
-import { FaEdit } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import { FaDotCircle } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
 import PatientSummary from "../Reporting-Analysis/PatientSummary";
 import PatientsAge from "../Reporting-Analysis/PatientsAge";
+import apiService from "../../services/api.js";
 
 export default function ReportingAndAnalytics() {
-  const statsData = [
-    { id: 1, label: "Total Patients", count: 1500, icon: <FaUsers /> },
-    { id: 2, label: "Repeat Patient", count: 500, icon: <FaUser /> },
-    { id: 3, label: "Admitted Patient", count: 1000, icon: <FaFileAlt /> },
-    { id: 4, label: "Total Claim", count: 250, icon: <FaFileAlt /> },
-  ];
+  const [totalPatients, setTotalPatients] = useState(0);
+  const [insuranceBills, setInsuranceBills] = useState(0);
+
+  useEffect(() => {
+
+    const fetchInsuranceBills = async () => {
+      try {
+        const response = await apiService.GetInsuranceBills();
+        const data = response.data.data;
+        setInsuranceBills(data.length);
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+      }
+    };
+    const fetchPatients = async () => {
+      try {
+        const response = await apiService.GetAllPatients();
+        const data = response.data.data;
+        setTotalPatients(data.length);
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+      }
+    };
+
+    
+    fetchInsuranceBills()
+    fetchPatients();
+  }, []);
 
   const patientsCountData = [
     { id: 1, department: "Colds and Flu", count: 1050 },
@@ -50,7 +63,7 @@ export default function ReportingAndAnalytics() {
                   </div>
 
                   <div className="count">
-                    <span>1500</span>
+                    <span>{totalPatients}</span>
                   </div>
                 </div>
               </div>
@@ -98,7 +111,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>250</span>
+                    <span>{insuranceBills}</span>
                   </div>
                 </div>
               </div>

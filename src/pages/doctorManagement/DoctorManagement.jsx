@@ -16,7 +16,7 @@ export default function DoctorManagement() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [showOnsite, setShowOnsite] = useState(false);
+  const [openModel, setOpenModel] = useState(false);
   const [selectedDoctorId, setSelectedDoctorId] = useState(null);
   const navigate = useNavigate();
   const { getAllDoctors, allDoctors } = useDoctor();
@@ -60,7 +60,7 @@ export default function DoctorManagement() {
 
   const handleViewDoctorDetails = (doctor) => {
     setSelectedDoctor(doctor);
-    setShowOnsite(true);
+    setOpenModel(true);
   };
 
   const filteredDoctors = allDoctors.filter((doctor) =>
@@ -184,18 +184,18 @@ export default function DoctorManagement() {
       </div>
 
       {/* Modal for Onsite component */}
-      {showOnsite && (
+      {openModel && (
         <div className="onsite-modal">
           <div className="onsite-modal-content">
             <div className="onsite-modal-header">
               <h3>Doctor Details</h3>
-              <button className="close-button" onClick={() => setShowOnsite(false)}>
+              <button className="close-button" onClick={() => setOpenModel(false)}>
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} setShowOnsite={setShowOnsite} />
+            <Onsite selectedDoctor={selectedDoctor} setOpenModel={setOpenModel}  />
           </div>
-          <div className="onsite-modal-overlay" onClick={() => setShowOnsite(false)}></div>
+          <div className="onsite-modal-overlay" onClick={() => setOpenModel(false)}></div>
         </div>
       )}
 
