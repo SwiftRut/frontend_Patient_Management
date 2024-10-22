@@ -225,7 +225,7 @@ input {
                     border-radius: 4px;
                     border-style: solid;
                     border-width: 1px;
-                    box-shadow: 0 0 0 1px #2684FF;
+                    box-shadow: 0 0 0 1px #2684ff;
                     box-sizing: border-box;
                   }
 
@@ -298,7 +298,7 @@ input {
                     color: #030229;
 
                     span {
-                      color: #5678E9;
+                      color: #5678e9;
                     }
                   }
                 }
@@ -339,17 +339,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -440,7 +444,8 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 select {
@@ -685,17 +690,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -925,17 +934,21 @@ input {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background: linear-gradient(107.38deg,
-                    #4c49ed 2.61%,
-                    #020067 101.2%);
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
                 cursor: pointer;
                 margin: 0 5px;
               }
 
               .dot.active {
-                background: linear-gradient(107.38deg,
-                    #4c49ed 2.61%,
-                    #020067 101.2%);
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
                 width: 30px;
                 border-radius: 10px;
               }
@@ -1118,17 +1131,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -1360,17 +1377,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -1558,17 +1579,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -1726,12 +1751,10 @@ input {
 
                   .forgot {
                     span {
-                      color: #5678E9;
+                      color: #5678e9;
                     }
                   }
                 }
-
-
 
                 .login-btn {
                   padding: 15px 0px;
@@ -1762,7 +1785,7 @@ input {
                     color: #030229;
 
                     span {
-                      color: #5678E9;
+                      color: #5678e9;
                     }
                   }
                 }
@@ -1803,17 +1826,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }

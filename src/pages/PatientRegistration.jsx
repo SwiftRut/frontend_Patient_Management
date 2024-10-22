@@ -5,7 +5,7 @@ import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
 import { PatientFormData } from "./constant.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ const PatientRegistration = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const genders = ["male", "female", "other"];
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  
+
   const [formData, setFormData] = useState(PatientFormData);
 
   useEffect(() => {
@@ -49,9 +49,11 @@ const PatientRegistration = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-    
+
     if (name === "country") {
-      const selectedCountry = countries.find((country) => country.isoCode === value);
+      const selectedCountry = countries.find(
+        (country) => country.isoCode === value
+      );
       setStates(State.getStatesOfCountry(selectedCountry.isoCode));
       setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
       setCities([]);
@@ -99,7 +101,6 @@ const PatientRegistration = () => {
                     { label: "Age", name: "age", type: "number" },
                     { label: "Height(cm)", name: "height", type: "number" },
                     { label: "Weight(kg)", name: "weight", type: "number" },
-                    { label: "Address", name: "address", type: "text" },
                     { label: "Date of Birth", name: "dob", type: "date" },
                   ].map((input) => (
                     <div className="input-box" key={input.name}>
@@ -156,9 +157,24 @@ const PatientRegistration = () => {
                   </div>
 
                   {[
-                    { label: "Country", name: "country", options: countries, isDisabled: false },
-                    { label: "State", name: "state", options: states, isDisabled: !formData.country },
-                    { label: "City", name: "city", options: cities, isDisabled: !formData.state },
+                    {
+                      label: "Country",
+                      name: "country",
+                      options: countries,
+                      isDisabled: false,
+                    },
+                    {
+                      label: "State",
+                      name: "state",
+                      options: states,
+                      isDisabled: !formData.country,
+                    },
+                    {
+                      label: "City",
+                      name: "city",
+                      options: cities,
+                      isDisabled: !formData.state,
+                    },
                   ].map((select) => (
                     <div className="input-box" key={select.name}>
                       <div className="label">
@@ -184,41 +200,68 @@ const PatientRegistration = () => {
                     </div>
                   ))}
 
-                 
-                    <div className="input-box">
-                      <div className="label">
-                        Password <span>*</span>
-                      </div>
-                      <div className="password-input-container">
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          placeholder="Enter Password"
-                        />
-                        <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                          {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
-                        </div>
-                      </div>
+                  <div className="input-box">
+                    <div className="label">
+                      Address <span>*</span>
                     </div>
+                    <div className="password-input-container">
+                      <input
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        placeholder="Enter address"
+                      />
+                    </div>
+                  </div>
 
-                    <div className="input-box">
-                      <div className="label">
-                        Confirm Password <span>*</span>
-                      </div>
+                  <div className="input-box">
+                    <div className="label">
+                      Password <span>*</span>
+                    </div>
+                    <div className="password-input-container">
                       <input
                         type={showPassword ? "text" : "password"}
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
+                        name="password"
+                        value={formData.password}
                         onChange={handleChange}
-                        placeholder="Confirm Password"
-                        required
+                        placeholder="Enter Password"
                       />
-                      <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                      <div
+                        className="eye"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <FaEye size={20} />
+                        ) : (
+                          <FaEyeSlash size={20} />
+                        )}
                       </div>
                     </div>
+                  </div>
+
+                  <div className="input-box">
+                    <div className="label">
+                      Confirm Password <span>*</span>
+                    </div>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      placeholder="Confirm Password"
+                      required
+                    />
+                    <div
+                      className="eye"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <FaEye size={20} />
+                      ) : (
+                        <FaEyeSlash size={20} />
+                      )}
+                    </div>
+                  </div>
 
                   <div className="condition">
                     <div className="policies">
