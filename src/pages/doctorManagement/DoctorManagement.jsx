@@ -55,7 +55,7 @@ export default function DoctorManagement() {
 
   const handleDeleteSuccess = (deletedId) => {
     setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== deletedId));
-    setSelectedDoctorId(null); // Close modal after delete
+    setSelectedDoctorId(null);
   };
 
   const handleViewDoctorDetails = (doctor) => {
