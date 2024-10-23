@@ -52,6 +52,7 @@ const Header = () => {
   const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
+  console.log("image",userData)
 
   return (
     <div className="header">

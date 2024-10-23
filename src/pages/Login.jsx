@@ -51,6 +51,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const role = await UniversalLogin(formData);
+      console.log(role);
       if (role) {
         if (role === "admin") {
           window.location.href = "/";
