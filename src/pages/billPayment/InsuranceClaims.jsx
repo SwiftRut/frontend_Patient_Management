@@ -111,7 +111,7 @@ export default function InsuranceClaims() {
                         </td>
                         <td className="p-3">{formatDate(claim.date)}</td>
                         <td className="action p-3">
-                          <div className="view" onClick={() => navigate(`/bill/${claim.billNumber}`)}>
+                          <div className="view" onClick={() => navigate(`/bill/${claim._id}`)}>
                             <FaEye />
                           </div>
                         </td>
