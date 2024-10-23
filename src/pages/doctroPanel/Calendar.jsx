@@ -17,10 +17,10 @@ const Calendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
   const { user } = useAuth();
-
+  console.log(events);
   useEffect(() => {
     if (!allAppointements) return;
-    const mappedEvents = allAppointements.map((appointment) => {
+    const mappedEvents = allAppointements?.map((appointment) => {
       const appointmentTime = new Date(appointment.appointmentTime); 
       const endTime = new Date(appointmentTime); 
       endTime.setHours(appointmentTime.getHours() + 1); 
