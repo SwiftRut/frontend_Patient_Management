@@ -1,69 +1,96 @@
 import { useEffect, useState } from "react";
 import "./invoice.css";
-import { FaCircleMinus } from "react-icons/fa6";
-import { FaImage } from "react-icons/fa";
 import InputField from './InputField';
 import { formDataObject, PatientBillFields } from './Contants';
-import { useAuth } from '../../hooks/useAuth';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useDoctor } from '../../hooks/useDoctor';
 
 const EditBill = () => {
   const { id } = useParams();
-  const { createBill, updateBill, bill, getBillById } = useGlobal();
+  const navigate = useNavigate();
+  const { updateBill, getBillById } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const [formData, setFormData] = useState(formDataObject);
-  console.log("id",id)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formData, "<<<<<<<<<<<<<< formdata");
-    try {
-      await updateBill(formData, bill.id);
-      navigate("/");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const data = await getBillById(id);
-        console.log(data, "data");
-        setFormData({
-          ...data,
-          phone:data.phone,
-          doctorName: data.doctorId.name,
-          insuranceCompany : data.insuranceId.insuranceCompany,
-          insurancePlan: data.insuranceId.insurancePlan,
-          claimAmount : data.insuranceId.claimAmount,
-          claimedAmount: data.insuranceId.claimedAmount,
-          doctorId: data.doctorId?._id,
-        });
+        console.log("Fetched data:", data);
+        if (data) {
+          setFormData({
+            billNumber: data.billNumber,
+            patientName: `${data.patientId.firstName} ${data.patientId.lastName}`,
+            phone: data.phone,
+            gender: data.gender,
+            age: data.age,
+            doctorId: data.doctorId._id,
+            doctorName: data.doctorId.name,
+            diseaseName: data.diseaseName,
+            description: data.description,
+            paymentType: data.paymentType,
+            billDate: data.date.split('T')[0], // Assuming the date is in ISO format
+            billTime: data.time,
+            discount: data.discount,
+            tax: data.tax,
+            amount: data.amount,
+            totalAmount: data.totalAmount,
+            address: data.address,
+            // Add insurance fields if needed
+          });
+        } else {
+          setError("No data returned from server");
+        }
         await getAllDoctors();
       } catch (error) {
-        console.error("Error fetching admin profile:", error);
+        console.error("Error fetching bill data:", error);
+        setError("Error fetching bill data. Please try again.");
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateBill(formData, id);
+      navigate("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError("Error updating bill. Please try again.");
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const HospitalBillFields = [  
     { label: "Patient Name", name: "patientName", type: "text" },
     { label: "Phone Number", name: "phone", type: "text" },
     { label: "Gender", name: "gender", type: "select", options: [
       { label: "Select Gender", value: "" },
-      { label: "Male", value: "Male" },
-      { label: "Female", value: "Female" },
-      { label: "Other", value: "Other" }
+      { label: "Male", value: "male" },
+      { label: "Female", value: "female" },
+      { label: "Other", value: "other" }
     ]},
     { label: "Age", name: "age", type: "text" },
     {
@@ -71,7 +98,7 @@ const EditBill = () => {
       name: "doctorId",
       type: "select",
       options: [
-        { label: "Select Doctor", value: "doctor" },
+        { label: "Select Doctor", value: "" },
         ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
       ],
     },
@@ -92,6 +119,7 @@ const EditBill = () => {
     { label: "Total Amount", name: "totalAmount", type: "text" },
     { label: "Address", name: "address", type: "text" },
   ];
+
   return (
     <div>
       <div className="bill-insurance-section">
@@ -105,12 +133,12 @@ const EditBill = () => {
               <div className="content">
                 <div className="details flex">
                   <div className="form-box">
-                    <form onSubmit={handleSubmit} className="flex">
+                    <form onSubmit={handleSubmit} className="flex" id="edit-bill-form">
                       {HospitalBillFields.map((field, index) => (
                         <InputField
                           key={index}
                           {...field}
-                          value={formData[field.name]}
+                          value={formData[field.name] || ''}
                           onChange={handleChange}
                         />
                       ))}
@@ -134,7 +162,7 @@ const EditBill = () => {
                           <InputField
                             key={index}
                             {...field}
-                            value={formData[field.name]}
+                            value={formData[field.name] || ''}
                             onChange={handleChange}
                           />
                         ))}
@@ -145,7 +173,7 @@ const EditBill = () => {
               </div>
             )}
             <div className="save-btn flex">
-              <button type="submit" form="create-bill-form" onClick={handleSubmit}>
+              <button type="submit" form="edit-bill-form">
                 Save
               </button>
             </div>

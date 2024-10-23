@@ -132,7 +132,9 @@ export const GlobalProvider = ({ children }) => {
   const getBillById = async (id) => {
     try {
       const response = await apiService.GetBillById(id);
+      console.log(response.data.data)
       setBill(response.data.data);
+      return response.data.data;
     } catch (error) {
       console.log("Error fetching bill by ID:", error);
       throw error;
