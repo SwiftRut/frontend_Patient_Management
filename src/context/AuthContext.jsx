@@ -108,6 +108,8 @@ export const AuthProvider = ({ children }) => {
       } else if (response.data.user.role === "admin") {
         console.log("admin profile fetching");
         await getAdminProfile(response.data.user.id);
+      } else {
+        await getPatientProfile(response.data.user.id);
       }
       return response.data.user.role;
     } catch (error) {

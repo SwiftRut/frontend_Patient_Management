@@ -475,7 +475,7 @@ const TestReport = () => {
                 {" "}
                 {/* Responsive width */}
                 <div className="modal-header p-4">
-                  <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Prescription</h5>
+                  <h5 className="modal-title text-[24px] text-[#030229] font-bold	">Test Report</h5>
                   <button
                     type="button"
                     className="absolute top-3 right-3 text-xl text-white rounded-full bg-red-600 w-6 h-6 flex items-center justify-center"
@@ -489,12 +489,12 @@ const TestReport = () => {
                   <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200">
                     <div className="top bg-gray-100 rounded p-4">
                       <div className="head flex justify-between align-center ">
-                        <div className="logo">
+                        <div className="logo w-[140px] sm:w-[238px]">
                           <img src="/image/bill-logo.png" alt="" />
                         </div>
-                        <div className="name">
-                          <p className="text-[24px] text-[#0EABEB] font-bold">Dr. Bharat Patel</p>
-                          <span className="text-[14px] text-[#818194] font-semibold	">Obstetrics and Gynecology</span>
+                        <div className="name ">
+                          <p className="text-[18px] sm:text-[24px] text-[#0EABEB] font-bold">Dr. Bharat Patel</p>
+                          <span className="text-[10px] sm:text-[14px] text-[#818194] font-semibold	">Obstetrics and Gynecology</span>
                         </div>
                       </div>
 
@@ -515,37 +515,35 @@ const TestReport = () => {
 
                     <table className="w-[100%] mt-4 table-data">
                       <thead className="bg-gray-100">
-                        <tr>
+                        <tr className="text-center">
                           <th className="text-[#030229] text-[14px] font-semibold	p-3">Medicine Name</th>
                           <th className="text-[#030229] text-[14px] font-semibold	p-3">Strength</th>
                           <th className="text-[#030229] text-[14px] font-semibold	p-3">Dose</th>
-                          <th className="text-[#030229] text-[14px] font-semibold	p-3">Duration</th>
-                          <th className="text-[#030229] text-[14px] font-semibold	p-3">When to Take</th>
+                          <th className="text-[#030229] text-[14px] hidden sm:inline-block font-semibold	p-3">Duration</th>
+                          <th className="text-[#030229] text-[14px] hidden sm:inline-block font-semibold	p-3">When to Take</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="overflow-scroll	">
                         <tr className="text-center">
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
-                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block me-3'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
-
                         <tr className="text-center">
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
-                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block me-3'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
-
                         <tr className="text-center">
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Medicine Name</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Strength</td>
                           <td className=" text-[#141414] text-[16px] font-semibold	py-3 border-b">Dose</td>
-                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
-                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
+                          <td className='duration text-[#141414] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block me-3'><span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">Duration</span></td>
+                          <td className='take text-[#718EBF] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block'><span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">When to Take</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -569,8 +567,10 @@ const TestReport = () => {
                       </div>
 
                     </div>
+
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

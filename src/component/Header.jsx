@@ -21,8 +21,9 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  // const { userData } = useGlobal();
-  const {user:userData}= useAuth();
+  const { userData } = useGlobal();
+  // const {user:userData}= useAuth();
+  console.log(userData)
   const navigate = useNavigate();
   const location = useLocation();
 
