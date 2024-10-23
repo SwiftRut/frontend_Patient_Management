@@ -18,8 +18,6 @@ export default function InsuranceClaims() {
       try {
         setLoading(true);
         await getBills();
-        const insuranceClaims = allBills.filter(bill => bill.paymentType === "Insurance");
-        setClaimsData(insuranceClaims);
       } catch (err) {
         setError("Failed to fetch claims data");
       } finally {
@@ -28,7 +26,13 @@ export default function InsuranceClaims() {
     };
 
     fetchBills();
-  }, []);
+  }, []); 
+
+  useEffect(() => {
+    
+    const insuranceClaims = allBills.filter(bill => bill.paymentType === "Insurance");
+    setClaimsData(insuranceClaims);
+  }, [allBills]); 
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
