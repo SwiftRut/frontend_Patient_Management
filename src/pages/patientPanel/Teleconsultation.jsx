@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
@@ -11,6 +11,8 @@ import { RiCalendarScheduleFill } from "react-icons/ri";
 import { FaCalendarDays } from "react-icons/fa6";
 import { InputBase } from "@mui/material";
 import { FiPhoneCall } from "react-icons/fi";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { Search } from "@mui/icons-material";
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -18,8 +20,24 @@ const Teleconsultation = () => {
   const [openModelPrevious, setOpenModelPrevious] = useState(false);
   const [openModelCancel, setOpenModelCancel] = useState(false);
   const [openModelPending, setOpenModelPending] = useState(false);
-
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
 
   const handleViewDoctorDetails = () => {
     setOpenModel(true);
@@ -148,36 +166,62 @@ const Teleconsultation = () => {
                 {activeTab === "scheduled" && (
                   <div>
                     <div className="w-full p-4 ">
-                      <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                      <div className="flex flex-col flex-row space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
                         {/* Title */}
-                        <h1 className="text-2xl font-semibold text-gray-900">
+                        <h1 className="sm:text-2xl text-md font-semibold text-gray-900">
                           My Appointment
                         </h1>
 
                         {/* Controls Container */}
                         <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
-                          {/* Search Bar */}
-                          <div className="relative flex items-center">
-                            <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
-                              <GoSearch className="me-2 text-[#4F4F4F]" />
-                              <InputBase
-                                type="text"
-                                placeholder="Quick Search"
-                                className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                              />
+                          <div ref={searchRef} className="relative">
+                            <button
+                              onClick={toggleSearch}
+                              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+                            >
+                              <Search className="h-5 w-5 text-gray-600" />
+                            </button>
+                            <div
+                              className={`
+                                ${
+                                  isSearchOpen
+                                    ? "absolute top-0 left-0 w-[calc(100vw-2rem)] z-50"
+                                    : "hidden"
+                                } 
+                                md:relative md:block md:w-auto
+                              `}
+                            >
+                              <div className="flex items-center bg-gray-50 rounded-full px-4 py-2 sm:w-full w-[80%]">
+                                <Search className="h-4 w-4 text-gray-500 mr-2 flex-shrink-0" />
+                                <input
+                                  type="text"
+                                  placeholder="Quick Search"
+                                  className="bg-transparent w-[130px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                                  value={searchTerm}
+                                  onChange={(e) =>
+                                    setSearchTerm(e.target.value)
+                                  }
+                                />
+                                {isSearchOpen && (
+                                  <button
+                                    onClick={toggleSearch}
+                                    className="md:hidden ml-2 p-1 rounded-full hover:bg-gray-200 transition-colors"
+                                  >
+                                    <IoCloseCircleOutline className="h-4 w-4 text-gray-500" />
+                                  </button>
+                                )}
+                              </div>
                             </div>
                           </div>
 
                           {/* Date Selector */}
-                          <div className="flex items-center border rounded-md p-2 bg-white">
+                          <div className="flex items-center justify-between border rounded-md p-2 bg-white">
                             <span className=" pl-3 text-gray-500 me-1">
                               <FaCalendarAlt />
                             </span>
                             <input
                               type="text"
-                              className="flex-1 focus:outline-none text-sm min-w-[180px] max-w-[270px]"
+                              className="flex-1 focus:outline-none text-sm min-w-[152px] max-w-[300px] sm:min-w-[180px] sm:text-sm text-xs"
                               value="2 Jan, 2022 - 13 Jan, 2022"
                               readOnly
                             />
@@ -188,9 +232,11 @@ const Teleconsultation = () => {
 
                           {/* Book Appointment Button */}
                           <Link to="/patient/appointmentBooking">
-                            <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
-                              <BiSolidCalendar />
-                              <span>Book Appointment</span>
+                            <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
+                              <BiSolidCalendar className="h-5 w-5" />
+                              <span className="hidden sm:inline-block sm:ml-2">
+                                Book Appointment
+                              </span>
                             </button>
                           </Link>
                         </div>
@@ -505,7 +551,7 @@ const Teleconsultation = () => {
                       {/* Controls Container */}
                       <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
                         {/* Search Bar */}
-                        <div className="relative flex items-center">
+                        <div className="relative flex items-center mb-3">
                           <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
                             <GoSearch className="me-2 text-[#4F4F4F]" />
                             <InputBase
@@ -517,6 +563,8 @@ const Teleconsultation = () => {
                             />
                           </div>
                         </div>
+                        {/* Search bar for larger screens
+
                         {/* Book Appointment Button */}
                         <Link to="/patient/appointmentBooking">
                           <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">

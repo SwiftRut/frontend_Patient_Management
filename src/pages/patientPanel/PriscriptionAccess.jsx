@@ -4,6 +4,7 @@ import { FaDownload } from "react-icons/fa6";
 import { FaRegImage } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
+import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
 
 export default function PriscriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,36 +15,30 @@ export default function PriscriptionAccess() {
 
   return (
     <>
-      <div className="bg-[#f6f8fb] p-3">
+      <div className="">
         <div className="container mt-5">
-          <div className="bg-white shadow-lg  h-auto p-4 rounded-xl">
+          <div className="bg-white shadow-lg h-auto p-4 rounded-xl m-3">
             {/* Tab content */}
             <div className="tab-content mt-3">
               <div>
-                <div className="flex flex-col md:flex-row justify-between items-center mb-3">
+                <div className="flex flex-col md:flex-row justify-between  sm:items-center mb-3 justify-start">
                   <h1 className="text-xl font-semibold mb-2 md:mb-0">
                     Prescription Access
                   </h1>
 
                   <div className="flex items-center space-x-3 ">
                     {/* Input group for date picker */}
-                    <div className="border rounded-md flex p-2 items-center">
-                      {/* Calendar icon positioned to the left */}
+                    <div className="flex items-center justify-between border rounded-md p-2 bg-white">
                       <span className=" pl-3 text-gray-500 me-1">
                         <FaCalendarAlt />
                       </span>
-
-                      {/* Input field with proper padding for icons */}
                       <input
                         type="text"
-                        className="form-control"
-                        style={{ width: "270px" }} // pl-10 for left icon, pr-10 for right icon
+                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
                         value="2 Jan, 2022 - 13 Jan, 2022"
                         readOnly
                       />
-
-                      {/* Close icon with rounded background */}
-                      <div className="h-5 w-5 rounded-full text-white bg-[#E11D29] flex items-center justify-center text-xs">
+                      <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
                         <IoCloseSharp />
                       </div>
                     </div>
@@ -114,7 +109,6 @@ export default function PriscriptionAccess() {
                           </div>
                         </div>
                       </div>
-                      
                     </div>
                     <div class="w-full mx-auto bg-white rounded-lg shadow-md">
                       <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
@@ -179,7 +173,6 @@ export default function PriscriptionAccess() {
                           </div>
                         </div>
                       </div>
-                      
                     </div>
                   </div>
                 </div>
@@ -189,11 +182,9 @@ export default function PriscriptionAccess() {
         </div>
 
         {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              <div className=" w-[200px] h-[200px] bg-white">
-                <h1>hii</h1>
-              </div>
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <PrescriptionModal />
             </div>
           </div>
         )}

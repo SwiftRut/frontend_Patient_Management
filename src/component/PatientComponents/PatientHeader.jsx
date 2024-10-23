@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Breadcrumbs,
@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import { GoHomeFill } from "react-icons/go";
 import { MdOutlineKeyboardArrowRight, MdMenu } from "react-icons/md";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import {
   Notifications,
   ArrowDropDown,
@@ -31,7 +32,20 @@ const PatientHeader = () => {
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchOpen, setserchOpen] = useState(false);
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const user = {
     firstName: "Lincoln",
@@ -53,20 +67,8 @@ const PatientHeader = () => {
     setAnchorEl(null);
   };
 
-  const handleSearch = () => {
-    if (searchTerm) {
-      navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
-
   const toggleSearch = () => {
-    setSearchOpen(!searchOpen);
+    setIsSearchOpen(!isSearchOpen);
   };
 
   const breadcrumbNames = {
@@ -115,14 +117,14 @@ const PatientHeader = () => {
   );
 
   return (
-    <div className="bg-white sticky top-0 flex flex-wrap items-center justify-between p-2 w-full min-w-[230px]">
+    <div className="bg-white sticky top-0 flex flex-wrap items-center justify-between sm:w-full min-w-[230px]">
       <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
         {/* <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
           <MdMenu />
         </IconButton> */}
         <Breadcrumbs
           aria-label="breadcrumb"
-          className="bg-[#f8fcfe] p-2 rounded-full  text-xs sm:text-sm"
+          className="bg-[#f8fcfe] p-2 rounded-full text-xs sm:text-sm hidden sm:block md:hidden lg:block"
         >
           <Link
             underline="hover"
@@ -153,29 +155,51 @@ const PatientHeader = () => {
       </div>
 
       <div className="flex items-center justify-center w-full sm:w-auto">
-        {/* Search bar for larger screens */}
-        <div className="hidden sm:flex items-center bg-gray-200 rounded-full px-4 mr-4">
-          <InputBase
-            placeholder="Quick Search"
-            inputProps={{ "aria-label": "search" }}
-            className="flex-grow text-sm"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
-          <IconButton onClick={handleSearch}>
-            <Search />
-          </IconButton>
-          <IconButton aria-label="dropdown" onClick={handleClick}>
-            <span className="text-sm">{selectedOption}</span>
-            <ArrowDropDown />
-          </IconButton>
-        </div>
+        <div ref={searchRef} className="relative">
+          {/* Mobile Search Icon */}
+          <button
+            onClick={toggleSearch}
+            className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+          >
+            <Search className="h-5 w-5 text-gray-600" />
+          </button>
 
-        {/* Search icon for small screens */}
-        <IconButton className="sm:hidden mr-2" onClick={toggleSearch}>
-          <Search />
-        </IconButton>
+          {/* Search Bar - Hidden on mobile unless clicked */}
+          <div
+            className={`
+          ${
+            isSearchOpen
+              ? "absolute top-0 left-0 w-[calc(100vw-2rem)] z-50"
+              : "hidden"
+          } 
+          md:relative md:block md:w-auto
+        `}
+          >
+            <div className="flex items-center bg-gray-50 rounded-full px-4 py-1 sm:w-full w-3/5">
+              <Search className="sm:text-lg text-gray-500 mr-2 flex-shrink-0 text-sm" />
+              <input
+                type="text"
+                placeholder="Quick Search"
+                className="bg-transparent w-[60px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <IconButton aria-label="dropdown" onClick={handleClick}>
+                <span className="text-sm">{selectedOption}</span>
+                <ArrowDropDown />
+              </IconButton>
+              {/* Close button - only shown on mobile when search is open */}
+              {isSearchOpen && (
+                <button
+                  onClick={toggleSearch}
+                  className="md:hidden p-1 rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  <IoCloseCircleOutline className="h-4 w-4 text-gray-500" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
 
         <IconButton
           aria-label="notifications"
@@ -185,9 +209,9 @@ const PatientHeader = () => {
             <Notifications />
           </Badge>
         </IconButton>
-        <div className="hidden sm:flex items-center ml-4">
+        <div className=" flex items-center ml-4">
           <Avatar src={admin} alt="User Image" />
-          <div className="ml-2">
+          <div className="hidden sm:inline-block sm:ml-2">
             <Typography variant="body2" fontWeight="bold">
               {user.firstName} {user.lastName}
             </Typography>

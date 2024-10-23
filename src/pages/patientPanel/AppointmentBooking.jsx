@@ -11,9 +11,9 @@ import { useAuth } from "../../hooks/useAuth";
 
 const localizer = momentLocalizer(moment);
 
-
 const AppointmentBooking = () => {
-  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } = useGlobal();
+  const { getAllHospitals, allHospitals, getAppointmetnsForPatient } =
+    useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const { createAppointment } = useGlobal();
   const { user } = useAuth();
@@ -53,15 +53,14 @@ const AppointmentBooking = () => {
   const [appointmentFee, setAppointmentFee] = useState(0);
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
     getAppointmetnsForPatient(user.id);
 
     // Load Razorpay script
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -69,8 +68,6 @@ const AppointmentBooking = () => {
       document.body.removeChild(script);
     };
   }, []);
-
-
 
   useEffect(() => {
     if (doctor && appointmentType) {
@@ -82,7 +79,7 @@ const AppointmentBooking = () => {
     try {
       const response = await apiService.AppointmentFee(doctor, appointmentType);
       const data = response.data;
-      console.log(data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<< getting the fees here");
+      console.log(data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<< getting the fees here");
       setAppointmentFee(data.fee);
     } catch (error) {
       console.error("Error fetching appointment fee:", error);
@@ -90,11 +87,13 @@ const AppointmentBooking = () => {
   };
 
   const getUniqueValues = (key, filterKey, filterValue) => {
-    const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
-    return [...new Set(data.map(doctor => doctor[key]))];
+    const data = filterKey
+      ? allDoctors.filter((doctor) => doctor[filterKey] === filterValue)
+      : allDoctors;
+    return [...new Set(data.map((doctor) => doctor[key]))];
   };
 
-  const filteredHospitals = allHospitals.filter(hospital => {
+  const filteredHospitals = allHospitals.filter((hospital) => {
     return (
       (!country || hospital.country === country) &&
       (!state || hospital.state === state) &&
@@ -102,7 +101,7 @@ const AppointmentBooking = () => {
     );
   });
 
-  const filteredDoctors = allDoctors.filter(doctor => {
+  const filteredDoctors = allDoctors.filter((doctor) => {
     return (
       (!specialty || doctor.speciality === specialty) &&
       (!country || doctor.country === country) &&
@@ -161,7 +160,7 @@ const AppointmentBooking = () => {
         hospitalId: hospital,
         razorpayPaymentId: paymentResponse.razorpay_payment_id,
         razorpayOrderId: paymentResponse.razorpay_order_id,
-        razorpaySignature: paymentResponse.razorpay_signature
+        razorpaySignature: paymentResponse.razorpay_signature,
       };
 
       await createAppointment(user.id, appointmentData);
@@ -385,107 +384,117 @@ const AppointmentBooking = () => {
                       </div>
                     </>
                   ) : ( */}
-                  <div className="grid grid-cols-10 gap-4">
-                    <div className="col-span-7 p-3">
-                      <Calendar
-                        localizer={localizer}
-                        events={events}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{ height: 470 }}
-                        views={["week", "day"]}
-                        defaultView="week"
-                        popup
-                        eventPropGetter={(event) => {
-                          const backgroundColor =
-                            event.resource === "Dr. Andrew"
-                              ? "#3174ad"
-                              : "#3a87ad";
-                          return { style: { backgroundColor } };
-                        }}
-                        onSelectEvent={handleSelectEvent}
-                      />
+                  <div className="w-full grid grid-cols-1 lg:grid-cols-10 gap-4 p-2">
+                    {/* Calendar Section */}
+                    <div className="w-full col-span-1 lg:col-span-7 p-2 min-w-[230px]">
+                      <div className="overflow-x-auto">
+                        <Calendar
+                          localizer={localizer}
+                          events={events}
+                          startAccessor="start"
+                          endAccessor="end"
+                          style={{ minHeight: 400, maxHeight: 600 }}
+                          views={["week", "day"]}
+                          defaultView="week"
+                          popup
+                          eventPropGetter={(event) => ({
+                            style: {
+                              backgroundColor:
+                                event.resource === "Dr. Andrew"
+                                  ? "#3174ad"
+                                  : "#3a87ad",
+                            },
+                          })}
+                          onSelectEvent={handleSelectEvent}
+                          className="min-w-[500px]" 
+                        />
+                      </div>
                     </div>
 
-                    <div className="col-span-3 p-1">
+                    {/* Doctor Details Section */}
+                    <div className="w-full col-span-1 lg:col-span-3 p-2 min-w-[230px]">
                       <div className="bg-white rounded-lg shadow-md overflow-hidden border">
-                        <div className="p-3 border-b ">
-                          <h2 className="text-[#030229] text-lg font-bold">
+                        <div className="p-3 border-b">
+                          <h2 className="text-[#030229] text-base sm:text-lg font-bold">
                             Doctor Details
                           </h2>
                         </div>
-                        <div className="bg-[#2522a6] p-2 flex items-center rounded-md m-3">
+                        <div className="bg-[#2522a6] p-2 sm:p-3 flex flex-col sm:flex-row items-center rounded-md m-2 sm:m-3">
                           <img
                             src="https://placehold.co/100x100"
                             alt="Doctor's photo"
-                            className="rounded-full border-2 border-white mr-4 w-[20%]"
+                            className="rounded-full border-2 border-white mb-2 sm:mb-0 sm:mr-4 w-20 sm:w-[20%]"
                           />
-                          <div className="text-white">
-                            <h2 className="text-lg font-semibold">
+                          <div className="text-white text-center sm:text-left">
+                            <h2 className="text-base sm:text-lg font-semibold break-words">
                               Dr. Cristofer Pasquinades
                             </h2>
-                            <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
-                              <img src="/image/vuesax.png" />
+                            <span className="bg-[#718ebf] inline-flex items-center justify-center w-20 p-1 rounded-full text-sm mt-2">
+                              <img
+                                src="/image/vuesax.png"
+                                alt="Gender icon"
+                                className="w-4 h-4"
+                              />
                               <h3 className="ms-2">Male</h3>
                             </span>
                           </div>
                         </div>
-                        <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                        <div className="p-2 bg-[#f6f8fb] m-2 sm:m-3 rounded-md">
+                          <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Qualification
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 MBBS
                               </p>
                             </div>
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Years Of Experience
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 6+ Year
                               </p>
                             </div>
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Specialty Type
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 Obstetrics
                               </p>
                             </div>
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Working Time
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 6 Hour
                               </p>
                             </div>
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Break Time
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 1 Hour
                               </p>
                             </div>
-                            <div>
-                              <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <div className="min-w-[100px]">
+                              <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                                 Emergency Contact Number
                               </h3>
-                              <p className="text[#141414] font-medium text-sm">
+                              <p className="text-[#141414] font-medium text-xs sm:text-sm">
                                 48555-20103
                               </p>
                             </div>
                           </div>
                           <div className="mt-4">
-                            <h3 className="text-[#A7A7A7] font-normal text-md">
+                            <h3 className="text-[#A7A7A7] font-normal text-sm sm:text-md">
                               Description
                             </h3>
-                            <p className="text[#141414] font-medium text-sm">
+                            <p className="text-[#141414] font-medium text-xs sm:text-sm">
                               Lorem ipsum dolor sit amet, consectetur adipiscing
                               elit. Lorem ipsum dolor sit amet, consectetur
                               adipiscing elit.
@@ -519,4 +528,3 @@ const AppointmentBooking = () => {
 };
 
 export default AppointmentBooking;
-
