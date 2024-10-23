@@ -223,7 +223,7 @@ const PersonalHealthRecord = () => {
             </div>
 
             <div className="flex justify-between align-center p-3 overflow-y-scroll h-[220px]">
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -255,7 +255,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -287,7 +287,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -319,7 +319,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -351,7 +351,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -383,7 +383,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -420,8 +420,8 @@ const PersonalHealthRecord = () => {
           <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <h2 className="text-[26px] text-[#030229] font-bold border-b">Patient Status</h2>
 
-            <div className="all-box flex align-center">
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+            <div className="all-box flex items-center">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -430,7 +430,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#c9fff6] text-[#3AB49B] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -439,7 +439,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#deffad] text-[#8BD024] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -448,7 +448,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#e3c4ff] text-[#B269F5] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -458,13 +458,13 @@ const PersonalHealthRecord = () => {
               </div>
             </div>
 
-            <div className="box flex align-center justify-between p-2">
-              <div className="w-[9%]">
+            <div className="box flex items-center justify-between p-2">
+              <div className="w-[13%] sm:w-[9%]">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
               </div>
-              <div className="details w-[88%]">
+              <div className="details w-[86%] sm:w-[88%]">
                 <p className="text-[17px] text-[#141414] font-normal	">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
               </div>
             </div>
