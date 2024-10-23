@@ -37,14 +37,14 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="flex justify-between items-center">
-            <div className="w-[100%] sm:w-[10%] h-full flex justify-center">
+            <div className="w-[100%] sm:w-[10%] pt-[30px] sm:pt-[0px] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
                 alt="Patient"
                 className="rounded-full object-cover h-full"
               />
             </div>
-            <div className="w-[100%] sm:w-[90%] space-y-5 ps-5">
+            <div className="w-[100%] sm:w-[90%] pt-[30px] sm:pt-[0px] space-y-5 ps-5">
               {/* Patient Details Section */}
               <div className="grid grid-cols-2 sm:grid-cols-7 gap-4 text-xs">
                 <div>
@@ -75,9 +75,6 @@ const PersonalHealthRecord = () => {
                   <span className="font-medium text-gray-400 text-[15px]">Blood Group:</span>
                   <p className="text-[#141414] text-[15px] font-normal">B+</p>
                 </div>
-              </div>
-              {/* Address Section */}
-              <div className="grid grid-cols-2 sm:grid-cols-7 gap-4 text-xs">
                 <div>
                   <span className="font-medium text-gray-400 text-[17px] font-medium">
                     Address:
@@ -122,7 +119,7 @@ const PersonalHealthRecord = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mt-3">
-          <div className="col-span-5 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center px-2 pb-2">
               <h1 className="text-2xl font-bold text-gray-800">Medical History</h1>
               <NavLink to={"/patient/medicalHistory"} className="text-blue-500 hover:text-blue-700 font-medium">
@@ -136,7 +133,7 @@ const PersonalHealthRecord = () => {
               <div className="flex flex-col md:flex-row md:-mx-4">
                 {/* Medical History Items */}
                 {["Dulce Schleifer", "Dulce Schleifer", "Dulce Schleifer"].map((name, index) => (
-                  <div className="w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
+                  <div className="w-[100%] sm:w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
                     <div className="bg-white rounded-lg shadow-md h-42">
                       <div className="flex justify-between items-center bg-[#F6F8FB] p-2 rounded-lg">
                         <h2 className="text-[18px] font-semibold text-gray-800">{name}</h2>
@@ -161,7 +158,7 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-3 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center pb-5">
               <h1 className="text-2xl font-bold">Prescriptions</h1>
               <NavLink to={"/patient/prescriptions"} className="text-blue-500">
@@ -215,7 +212,7 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-5 bg-white rounded-lg">
+          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg">
             <div className="bg-white rounded-lg border-b p-3">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-bold text-gray-800">Test Reports</h2>
@@ -226,7 +223,7 @@ const PersonalHealthRecord = () => {
             </div>
 
             <div className="flex justify-between align-center p-3 overflow-y-scroll h-[220px]">
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -240,7 +237,7 @@ const PersonalHealthRecord = () => {
                     </div>
                     <div className="right">
                       <div className="icon">
-                        <span  onClick={() => handleShowModal(prescription)} className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                        <span onClick={() => handleShowModal(prescription)} className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
                           <FaEye />
                         </span>
                       </div>
@@ -258,39 +255,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
-                <div className="box rounded-lg  border p-2">
-                  <div className="top flex justify-between align-center">
-                    <div className="left flex align-center gap-3">
-                      <div className="img ">
-                        <img src="/img/Avatar.png" alt="" />
-                      </div>
-                      <div className="details">
-                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
-                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
-                      </div>
-                    </div>
-                    <div className="right">
-                      <div className="icon">
-                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
-                          <FaEye />
-                        </span>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div className="bottom flex justify-between align-center">
-                    <div className="left">
-                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
-                    </div>
-                    <div className="right">
-                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -322,7 +287,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -354,7 +319,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -386,7 +351,39 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="w-[50%] p-1">
+              <div className="w-[100%] sm:w-[50%] p-1">
+                <div className="box rounded-lg  border p-2">
+                  <div className="top flex justify-between align-center">
+                    <div className="left flex align-center gap-3">
+                      <div className="img ">
+                        <img src="/img/Avatar.png" alt="" />
+                      </div>
+                      <div className="details">
+                        <p className="text-[15px] text-[#141414] font-semibold">Dr. Marcus Philips</p>
+                        <span className="text-[15px] text-[#A7A7A7] font-medium	">2 Jan, 2022</span>
+                      </div>
+                    </div>
+                    <div className="right">
+                      <div className="icon">
+                        <span className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                          <FaEye />
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="bottom flex justify-between align-center">
+                    <div className="left">
+                      <p className="text[#141414] text-[17px] font-semibold	">Dieses : <span className="text-[#818194] font-medium	">Viral Infection</span></p>
+                    </div>
+                    <div className="right">
+                      <p className="text-[#39973D] text-[14px] font-medium">Pathology Test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-[100%] sm:w-[50%] p-1">
                 <div className="box rounded-lg  border p-2">
                   <div className="top flex justify-between align-center">
                     <div className="left flex align-center gap-3">
@@ -420,11 +417,11 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-3 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <h2 className="text-[26px] text-[#030229] font-bold border-b">Patient Status</h2>
 
-            <div className="all-box flex align-center">
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+            <div className="all-box flex items-center">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -433,7 +430,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#c9fff6] text-[#3AB49B] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -442,7 +439,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#deffad] text-[#8BD024] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -451,7 +448,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[50%] flex align-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#e3c4ff] text-[#B269F5] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -461,13 +458,13 @@ const PersonalHealthRecord = () => {
               </div>
             </div>
 
-            <div className="box flex align-center justify-between p-2">
-              <div className="w-[9%]">
+            <div className="box flex items-center justify-between p-2">
+              <div className="w-[13%] sm:w-[9%]">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
               </div>
-              <div className="details w-[88%]">
+              <div className="details w-[86%] sm:w-[88%]">
                 <p className="text-[17px] text-[#141414] font-normal	">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
               </div>
             </div>
