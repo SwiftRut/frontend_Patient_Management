@@ -46,9 +46,9 @@ export default function PriscriptionAccess() {
                 </div>
                 <div className="overflow-y-auto" style={{ height: "550px" }}>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="w-full mx-auto bg-white rounded-lg shadow-md">
+                    <div className="w-full mx-auto bg-white rounded-lg shadow-md">
                       <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
-                        <h2 class="text-lg font-semibold text-foreground">
+                        <h2 className="text-lg font-semibold text-foreground">
                           Dr. Ryan Vetrovs
                         </h2>
                         <div className="flex">
@@ -64,55 +64,57 @@ export default function PriscriptionAccess() {
                         </div>
                       </div>
                       <div className="p-3 border rounded-b-lg">
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Hospital Name
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             Artemis Hospital
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Disease Name
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             Viral Infection
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Date
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             2 Jan, 2022
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Time
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             10:10 AM
                           </p>
                         </div>
-                        <div class="mt-4 flex items-center border rounded-md p-1">
+                        <div className="mt-4 flex items-center border rounded-md p-1">
                           <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
                             <FaRegImage />
                           </div>
 
                           <div className="ml-2">
-                            <span class="text-[#030229] block">
+                            <span className="text-[#030229] block">
                               Prescription.JPG
                             </span>
-                            <span class="text-[#A7A7A7] text-sm">5.09 MB</span>
+                            <span className="text-[#A7A7A7] text-sm">
+                              5.09 MB
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="w-full mx-auto bg-white rounded-lg shadow-md">
+                    <div className="w-full mx-auto bg-white rounded-lg shadow-md">
                       <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
-                        <h2 class="text-lg font-semibold text-foreground">
+                        <h2 className="text-lg font-semibold text-foreground">
                           Dr. Ryan Vetrovs
                         </h2>
                         <div className="flex">
@@ -128,48 +130,50 @@ export default function PriscriptionAccess() {
                         </div>
                       </div>
                       <div className="p-3 border rounded-b-lg">
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Hospital Name
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             Artemis Hospital
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Disease Name
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             Viral Infection
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Date
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             2 Jan, 2022
                           </p>
                         </div>
-                        <div class="mt-1 flex items-center justify-between">
-                          <span class="text-base font-normal text-[#818194]">
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
                             Time
                           </span>
-                          <p class="text-sm font-medium text-[#4F4F4F]">
+                          <p className="text-sm font-medium text-[#4F4F4F]">
                             10:10 AM
                           </p>
                         </div>
-                        <div class="mt-4 flex items-center border rounded-md p-1">
+                        <div className="mt-4 flex items-center border rounded-md p-1">
                           <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
                             <FaRegImage />
                           </div>
 
                           <div className="ml-2">
-                            <span class="text-[#030229] block">
+                            <span className="text-[#030229] block">
                               Prescription.JPG
                             </span>
-                            <span class="text-[#A7A7A7] text-sm">5.09 MB</span>
+                            <span className="text-[#A7A7A7] text-sm">
+                              5.09 MB
+                            </span>
                           </div>
                         </div>
                       </div>
