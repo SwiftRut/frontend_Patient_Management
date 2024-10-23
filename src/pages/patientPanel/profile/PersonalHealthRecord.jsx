@@ -37,14 +37,14 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="flex justify-between items-center">
-            <div className="w-[100%] sm:w-[10%] h-full flex justify-center">
+            <div className="w-[100%] sm:w-[10%] pt-[30px] sm:pt-[0px] h-full flex justify-center">
               <img
                 src="./image/Ellipse 1101.png"
                 alt="Patient"
                 className="rounded-full object-cover h-full"
               />
             </div>
-            <div className="w-[100%] sm:w-[90%] space-y-5 ps-5">
+            <div className="w-[100%] sm:w-[90%] pt-[30px] sm:pt-[0px] space-y-5 ps-5">
               {/* Patient Details Section */}
               <div className="grid grid-cols-2 sm:grid-cols-7 gap-4 text-xs">
                 <div>
@@ -75,9 +75,6 @@ const PersonalHealthRecord = () => {
                   <span className="font-medium text-gray-400 text-[15px]">Blood Group:</span>
                   <p className="text-[#141414] text-[15px] font-normal">B+</p>
                 </div>
-              </div>
-              {/* Address Section */}
-              <div className="grid grid-cols-2 sm:grid-cols-7 gap-4 text-xs">
                 <div>
                   <span className="font-medium text-gray-400 text-[17px] font-medium">
                     Address:
@@ -122,7 +119,7 @@ const PersonalHealthRecord = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mt-3">
-          <div className="col-span-5 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center px-2 pb-2">
               <h1 className="text-2xl font-bold text-gray-800">Medical History</h1>
               <NavLink to={"/patient/medicalHistory"} className="text-blue-500 hover:text-blue-700 font-medium">
@@ -136,7 +133,7 @@ const PersonalHealthRecord = () => {
               <div className="flex flex-col md:flex-row md:-mx-4">
                 {/* Medical History Items */}
                 {["Dulce Schleifer", "Dulce Schleifer", "Dulce Schleifer"].map((name, index) => (
-                  <div className="w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
+                  <div className="w-[100%] sm:w-[33%] px-4 mb-6 md:mb-0 rounded-lg" key={index}>
                     <div className="bg-white rounded-lg shadow-md h-42">
                       <div className="flex justify-between items-center bg-[#F6F8FB] p-2 rounded-lg">
                         <h2 className="text-[18px] font-semibold text-gray-800">{name}</h2>
@@ -161,7 +158,7 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-3 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center pb-5">
               <h1 className="text-2xl font-bold">Prescriptions</h1>
               <NavLink to={"/patient/prescriptions"} className="text-blue-500">
@@ -215,7 +212,7 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-5 bg-white rounded-lg">
+          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg">
             <div className="bg-white rounded-lg border-b p-3">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-bold text-gray-800">Test Reports</h2>
@@ -240,7 +237,7 @@ const PersonalHealthRecord = () => {
                     </div>
                     <div className="right">
                       <div className="icon">
-                        <span  onClick={() => handleShowModal(prescription)} className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
+                        <span onClick={() => handleShowModal(prescription)} className="bg-[#F6F8FB] text-[#0EABEB] text-[15px] rounded-[5px] w-6 h-6 flex items-center justify-center">
                           <FaEye />
                         </span>
                       </div>
@@ -420,7 +417,7 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-3 bg-white rounded-lg p-3">
+          <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <h2 className="text-[26px] text-[#030229] font-bold border-b">Patient Status</h2>
 
             <div className="all-box flex align-center">
