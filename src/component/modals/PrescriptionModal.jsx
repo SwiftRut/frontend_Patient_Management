@@ -14,6 +14,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import signature from "../../assets/signature.svg";
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
+  console.log(prescriptionData);
+  
   return (
     <Dialog
       open={open}
