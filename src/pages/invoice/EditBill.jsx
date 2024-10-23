@@ -11,10 +11,10 @@ import { useDoctor } from '../../hooks/useDoctor';
 
 const EditBill = () => {
   const { id } = useParams();
-  const { user } = useAuth();
   const { createBill, updateBill, bill, getBillById } = useGlobal();
   const { getAllDoctors, allDoctors } = useDoctor();
   const [formData, setFormData] = useState(formDataObject);
+  console.log("id",id)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,7 @@ const EditBill = () => {
         console.log(data, "data");
         setFormData({
           ...data,
-          phoneNumber:data.phone,
+          phone:data.phone,
           doctorName: data.doctorId.name,
           insuranceCompany : data.insuranceId.insuranceCompany,
           insurancePlan: data.insuranceId.insurancePlan,
@@ -58,7 +58,7 @@ const EditBill = () => {
 
   const HospitalBillFields = [  
     { label: "Patient Name", name: "patientName", type: "text" },
-    { label: "Phone Number", name: "phoneNumber", type: "text" },
+    { label: "Phone Number", name: "phone", type: "text" },
     { label: "Gender", name: "gender", type: "select", options: [
       { label: "Select Gender", value: "" },
       { label: "Male", value: "Male" },
@@ -98,7 +98,7 @@ const EditBill = () => {
         <div className="row">
           <div className="main">
             <div className="title">
-              <p>Create Bill</p>
+              <p>Edit Bill</p>
             </div>
 
             <div className="patient-details">
