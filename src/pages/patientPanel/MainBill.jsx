@@ -124,8 +124,8 @@ const MainBill = () => {
     //       </tbody>
     //     </table>
 
-    //     <div class="flex justify-between my-3">
-    //       <div class="mt-4">
+    //     <div className="flex justify-between my-3">
+    //       <div className="mt-4">
     //         <p className="text-[#818194] text-sm font-semibold">
     //           <strong className="text-[#141414] text-base font-semibold">
     //             Insurance Company:
@@ -181,7 +181,7 @@ const MainBill = () => {
     //     <p>Call: +90854 22354</p>
     //     <p>
     //       Email:{" "}
-    //       <a href="mailto:Hello@gmail.com" class="text-white">
+    //       <a href="mailto:Hello@gmail.com" className="text-white">
     //         Hello@gmail.com
     //       </a>
     //     </p>
@@ -191,17 +191,17 @@ const MainBill = () => {
       {/* Header - Adjusted image sizes and spacing */}
       <div className="flex flex-row justify-between items-center mb-2 p-4 sm:ps-6 gap-4">
         <div className="w-1/2 sm:w-[250px]">
-          <img 
-            src="/img/logo.png" 
-            className="w-full h-auto object-contain" 
-            alt="Logo" 
+          <img
+            src="/img/logo.png"
+            className="w-full h-auto object-contain"
+            alt="Logo"
           />
         </div>
         <div className="w-1/2 sm:w-[200px]">
-          <img 
-            src="/img/invoice.png" 
-            className="w-full h-auto object-contain" 
-            alt="Invoice" 
+          <img
+            src="/img/invoice.png"
+            className="w-full h-auto object-contain"
+            alt="Invoice"
           />
         </div>
       </div>
