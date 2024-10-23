@@ -376,7 +376,7 @@ const Prescriptions = () => {
       {showModal && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
+         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
 
             <div className="fixed inset-0 flex items-center justify-center z-50">
               <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md md:max-w-xl relative">
