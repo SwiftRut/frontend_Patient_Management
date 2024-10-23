@@ -33,7 +33,7 @@ const ProfileSetting = () => {
 
           {/* Grid for inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="firstName" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Name
               </label>
@@ -41,10 +41,11 @@ const ProfileSetting = () => {
                 type="text"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 id="firstName"
+                placeholder="Enter Name"
               />
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="lastName" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Number
               </label>
@@ -55,7 +56,7 @@ const ProfileSetting = () => {
               />
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="email" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Email
               </label>
@@ -65,10 +66,8 @@ const ProfileSetting = () => {
                 id="email"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="gender" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Gender
               </label>
@@ -83,7 +82,7 @@ const ProfileSetting = () => {
               </select>
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="dob" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 DOB
               </label>
@@ -94,7 +93,7 @@ const ProfileSetting = () => {
               />
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="age" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Age
               </label>
@@ -105,10 +104,8 @@ const ProfileSetting = () => {
                 placeholder="Enter Age"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="bloodGroup" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Blood Group
               </label>
@@ -128,7 +125,7 @@ const ProfileSetting = () => {
               </select>
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="height" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Height (cm)
               </label>
@@ -140,7 +137,7 @@ const ProfileSetting = () => {
               />
             </div>
 
-            <div className="col-span-1 relative">
+            <div className="col-span-3 sm:col-span-1 relative">
               <label htmlFor="weight" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Weight (kg)
               </label>
@@ -151,11 +148,8 @@ const ProfileSetting = () => {
                 placeholder="Enter Weight"
               />
             </div>
-          </div>
 
-          {/* Rest of the inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
-            <div className="w-full col-span-2 sm:col-span-1 relative">
+            <div className=" col-span-3 sm:col-span-1 relative">
               <label htmlFor="country" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 Country
               </label>
@@ -170,7 +164,7 @@ const ProfileSetting = () => {
               </select>
             </div>
 
-            <div className="w-full col-span-2 sm:col-span-1 relative">
+            <div className=" col-span-3 sm:col-span-1 relative">
               <label htmlFor="state" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 State
               </label>
@@ -185,7 +179,7 @@ const ProfileSetting = () => {
               </select>
             </div>
 
-            <div className="w-full col-span-2 sm:col-span-1 relative">
+            <div className=" col-span-3 sm:col-span-1 relative">
               <label htmlFor="city" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
                 City
               </label>
@@ -196,24 +190,24 @@ const ProfileSetting = () => {
                 placeholder="Enter City"
               />
             </div>
-          </div>
 
-          <div className="mb-6 relative">
-            <label htmlFor="address" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
-              Address
-            </label>
-            <input
-              type="text"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-              id="address"
-            />
+            <div className="mb-6 relative col-span-3">
+              <label htmlFor="address" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                Address
+              </label>
+              <input
+                type="text"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                id="address"
+              />
+            </div>
           </div>
 
           <div className="flex justify-center sm:justify-end gap-4">
             <NavLink to={'/patient'}>
-            <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
-              Cancel
-            </button>
+              <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2 w-[160px] h-[48px]">
+                Cancel
+              </button>
             </NavLink>
             <button className=" bg-blue-600 w-[130px] sm:w-[160px] h-[48px] text-white text-[20px] rounded-md bg-[#0EABEB] w-[160px] h-[48px]">
               Save
