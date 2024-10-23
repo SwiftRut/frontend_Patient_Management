@@ -15,7 +15,7 @@ const Calendar = ({ filterData }) => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
+  const { createAppointment, updateAppointment, deleteAppointment, allAppointments:allAppointements } = useGlobal();
   const { user } = useAuth();
   console.log(events);
 
