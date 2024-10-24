@@ -82,7 +82,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data.data);
-      console.log("Doctor profile fetched:", response.data.data);
     } catch (error) {
       console.log("Error fetching doctor profile:", error);
       throw error;

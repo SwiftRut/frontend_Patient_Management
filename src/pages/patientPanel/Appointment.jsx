@@ -11,7 +11,7 @@ const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
-  const { allAppointments, getAppointmetnsForPatient } = useGlobal();
+  const { allAppointments, getAppointmetnsForPatient, deleteAppointment } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -169,7 +169,7 @@ const Appointment = () => {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <button className="px-3 py-2 border-2 m-2">
+                          <button className="px-3 py-2 border-2 m-2" onClick={()=>deleteAppointment(appointment._id)}>
                             <i className="fa-solid fa-business-time text-gray-600"></i>{" "}
                             Cancel
                           </button>

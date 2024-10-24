@@ -30,10 +30,8 @@ const DoctorHeader = () => {
   const userName = `${userData?.name|| "User"}`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
-  console.log("image",userData)
 
   useEffect(()=>{
-    console.log(user);
     getDoctorProfile(user.id);
   },[])
   const handleClick = (event) => {
@@ -72,7 +70,7 @@ const DoctorHeader = () => {
       handleSearch();
     }
   };
-  console.log(location.pathname.split("/")[2]);
+  
   return (
     <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
       {/* Breadcrumb */}

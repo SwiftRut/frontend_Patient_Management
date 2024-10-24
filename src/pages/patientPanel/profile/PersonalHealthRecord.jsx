@@ -41,7 +41,7 @@ const PersonalHealthRecord = () => {
           <div className="flex justify-between items-center">
             <div className="w-[100%] sm:w-[10%] pt-[30px] sm:pt-[0px] h-full flex justify-center">
               <img
-                src={userData.avatar || "./image/Ellipse 1101.png"}
+                src={userData.avatar || "https://vectorified.com/images/default-user-icon-33.jpg"} 
                 alt="Patient"
                 className="rounded-full object-cover"
               />
