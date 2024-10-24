@@ -67,7 +67,7 @@ const apiService = {
 
 
   //Appointments
-  GetAllAppointments: () => api.get(`/appoinment/allappoinment`, {id :'6707ec1893d5090ffcdb86c6'}),
+  GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
   EditAppointment: (id, userData) =>
