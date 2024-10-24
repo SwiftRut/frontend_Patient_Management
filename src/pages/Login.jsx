@@ -57,10 +57,12 @@ const Login = () => {
           window.location.href = "/";
         }
         else if (role === "patient") {
-          navigate("/patient");
+          window.location.href = "/patient";
+
         } else if (role === "doctor") {
           toast.success("doctor login successfully")
-          navigate("/doctor/profile/");
+          console.log("navigating in doctor")
+          window.location.href = "/doctor";
         }
       }
     } catch (err) {

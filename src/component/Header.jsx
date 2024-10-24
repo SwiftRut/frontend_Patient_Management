@@ -12,7 +12,7 @@ import {
   Breadcrumbs,
 } from "@mui/material";
 import { Notifications, ArrowDropDown } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { breadcrumbNames } from "./constants";
 import { useAuth } from "../hooks/useAuth";
@@ -21,9 +21,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  const { userData } = useGlobal();
-  // const {user:userData}= useAuth();
-  console.log(userData)
+  const { userData, getAdminProfile} = useGlobal();
+  const {user} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -49,7 +48,11 @@ const Header = () => {
       handleSearch();
     }
   };
-
+  useEffect(()=>{
+    console.log(user);
+    getAdminProfile(user.id);
+  },[])
+  console.log(userData,"<<<<<<<<<<<<<<<<<<<<<<<<<<< header")
   const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";

@@ -59,7 +59,8 @@ export const GlobalProvider = ({ children }) => {
   const getPatientProfile = async (id) => {
     try {
       const response = await apiService.GetPatientProfile(id);
-      setUserData(response.data);
+      console.log(response.data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+      setUserData(response.data.data);
     } catch (error) {
       console.log("Error fetching patient profile:", error);
       throw error;

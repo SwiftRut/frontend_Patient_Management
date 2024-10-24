@@ -9,7 +9,7 @@ const PatientDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const { id } = useParams();
-  const navigate = useNavigate(); // Step 1: Add useNavigate hook
+  const navigate = useNavigate(); 
 
   const patientData = {
     name: "Marcus Philips",

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
+
 import {
   Breadcrumbs,
   Typography,
@@ -26,6 +28,8 @@ import {
   Close,
 } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const PatientHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,6 +37,10 @@ const PatientHeader = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setserchOpen] = useState(false);
+  const { userData, getPatientProfile} = useGlobal();
+  const {user} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -46,15 +54,16 @@ const PatientHeader = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  useEffect(()=>{
+    console.log(user);
+    getPatientProfile(user.id);
+  },[])
+  // const user = {
+  //   firstName: "Lincoln",
+  //   lastName: "Philips",
+  //   role: "doctor",
+  // };
 
-  const user = {
-    firstName: "Lincoln",
-    lastName: "Philips",
-    role: "doctor",
-  };
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -87,8 +96,13 @@ const PatientHeader = () => {
     }
     setDrawerOpen(open);
   };
+  console.log(userData,"<<<<<<<<<<<<<<<<<<<<patient heder")
+  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
+  const userRole = userData?.role || "Role";
+  const userAvatar = userData?.avatar || "/img/avtar.png";
+  console.log("image",userData)
 
-  const drawerContent = (
+  const drawerContent =(
     <div className="w-64 p-4">
       <List>
         <ListItem button component={Link} to="/patient">
@@ -210,13 +224,13 @@ const PatientHeader = () => {
           </Badge>
         </IconButton>
         <div className=" flex items-center ml-4">
-          <Avatar src={admin} alt="User Image" />
+          <Avatar src={userAvatar} alt="User Image" />
           <div className="hidden sm:inline-block sm:ml-2">
             <Typography variant="body2" fontWeight="bold">
-              {user.firstName} {user.lastName}
+              {userName}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {user.role}
+              {userRole}
             </Typography>
           </div>
         </div>
