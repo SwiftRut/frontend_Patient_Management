@@ -262,28 +262,35 @@ const PersonalHealthRecord = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Prescription Rows */}
-                  {patientPrescription?.map((prescription, index) => (
-                    <tr key={index}>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                        {prescription?.appointmentId.doctorId.hospitalName}
-                      </td>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                        {prescription.date}
-                      </td>
-                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                        {prescription?.appointmentId.doctorId.name}
-                      </td>
-                      <td className="py-2 px-4">
-                        <span
-                          onClick={() => handleShowModal(prescription)}
-                          className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center"
-                        >
-                          <FaEye />
-                        </span>
+                  {Array.isArray(patientPrescription) && patientPrescription.length > 0 ? (
+                    patientPrescription.map((prescription, index) => (
+                      <tr key={index}>
+                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                          {prescription?.doctorId?.hospitalName || 'N/A'}
+                        </td>
+                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                          {prescription.date ? moment(prescription.date).format('D MMM, YYYY') : 'N/A'}
+                        </td>
+                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                          {prescription?.doctorId?.name || 'N/A'}
+                        </td>
+                        <td className="py-2 px-4">
+                          <span
+                            onClick={() => handleShowModal(prescription)}
+                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center cursor-pointer"
+                          >
+                            <FaEye />
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" className="py-2 px-4 text-center">
+                        No prescriptions available
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>

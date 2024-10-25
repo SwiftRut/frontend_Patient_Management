@@ -14,15 +14,17 @@ const Appointment = () => {
   const [dateRange, setDateRange] = useState("Any Date");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
-  const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
+  const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
+    useState(false);
 
   const {
     allAppointments,
     getAppointmetnsForPatient,
     cancelAppointment,
     setAllAppointments,
+    deleteAppointment,
   } = useGlobal();
   const { user } = useAuth();
 
@@ -40,10 +42,14 @@ const Appointment = () => {
     const filtered = allAppointments?.filter((appointment) => {
       const appointmentDate = moment(appointment.date);
       const lowerSearchTerm = searchTerm.toLowerCase();
-      const [startDate, endDate] = dateRange.split(" - ").map(date => moment(date.trim()));
+      const [startDate, endDate] = dateRange
+        .split(" - ")
+        .map((date) => moment(date.trim()));
 
-      const isWithinDateRange = dateRange === "Any Date" ||
-        (appointmentDate.isSameOrAfter(startDate) && appointmentDate.isSameOrBefore(endDate));
+      const isWithinDateRange =
+        dateRange === "Any Date" ||
+        (appointmentDate.isSameOrAfter(startDate) &&
+          appointmentDate.isSameOrBefore(endDate));
 
       const matchesSearch = 
         appointment.doctorId?.name.toLowerCase().includes(lowerSearchTerm) ||
@@ -225,20 +231,41 @@ const Appointment = () => {
                             {appointment.patient_issue}
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <button
-                            className="px-3 py-2 border-2 m-2"
-                            onClick={() =>
-                              handleCancelAppointment(appointment._id)
-                            }
-                          >
-                            <i className="fa-solid fa-business-time text-gray-600"></i>{" "}
-                            Cancel
-                          </button>
-                          <button className="px-3 py-2 rounded-lg m-2 bg-btn-bg text-white">
-                            <i className="fa-solid fa-business-time"></i>{" "}
-                            Reschedule
-                          </button>
+                        <div>
+                          {activeTab == "scheduled" ? (
+                            <div className="flex justify-between items-center">
+                              <button
+                                className="px-3 py-2 border-2 m-2"
+                                onClick={() =>
+                                  handleCancelAppointment(appointment._id)
+                                }
+                              >
+                                <i className="fa-solid fa-business-time text-gray-600"></i>{" "}
+                                Cancel
+                              </button>
+                              <button className="px-3 py-2 rounded-lg m-2 bg-blue-400 text-white">
+                                <i className="fa-solid fa-business-time"></i>{" "}
+                                Reschedule
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+
+                          {activeTab == "cancel" ? (
+                            <div className="flex justify-end  items-center">
+                              <button
+                                className="px-3 py-2 border-2 m-2 bg-red-600 text-white rounded-md"
+                                onClick={() =>
+                                  deleteAppointment(appointment._id)
+                                }
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     ))
