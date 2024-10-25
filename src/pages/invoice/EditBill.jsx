@@ -33,14 +33,13 @@ const EditBill = () => {
             diseaseName: data.diseaseName,
             description: data.description,
             paymentType: data.paymentType,
-            billDate: data.date.split('T')[0], // Assuming the date is in ISO format
+            billDate: data.date.split('T')[0],
             billTime: data.time,
             discount: data.discount,
             tax: data.tax,
             amount: data.amount,
             totalAmount: data.totalAmount,
             address: data.address,
-            // Add insurance fields if needed
           });
         } else {
           setError("No data returned from server");
@@ -84,15 +83,15 @@ const EditBill = () => {
   }
 
   const HospitalBillFields = [  
-    { label: "Patient Name", name: "patientName", type: "text" },
-    { label: "Phone Number", name: "phone", type: "text" },
-    { label: "Gender", name: "gender", type: "select", options: [
+    { label: "Patient Name", name: "patientName", type: "text" ,disabled: true},
+    { label: "Phone Number", name: "phone", type: "text",disabled: true },
+    { label: "Gender", name: "gender", type: "select",disabled: true, options: [
       { label: "Select Gender", value: "" },
       { label: "Male", value: "male" },
       { label: "Female", value: "female" },
       { label: "Other", value: "other" }
     ]},
-    { label: "Age", name: "age", type: "text" },
+    { label: "Age", name: "age", type: "text",disabled: true },
     {
       label: "Doctor Name",
       name: "doctorId",
@@ -112,7 +111,7 @@ const EditBill = () => {
     ]},
     { label: "Bill Date", name: "billDate", type: "date" },
     { label: "Bill Time", name: "billTime", type: "text" },
-    { label: "Bill Number", name: "billNumber", type: "text" },
+    { label: "Bill Number", name: "billNumber", type: "text",disabled: true },
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
     { label: "Amount", name: "amount", type: "text" },
