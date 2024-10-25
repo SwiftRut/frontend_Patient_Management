@@ -1,38 +1,89 @@
 import DoctorDetailItem from "./DoctorDetailItem";
 
-const DoctorDetails = ({ doctorId, allDoctors}) => {
-    const doctor = allDoctors?.find(doc => doc._id === doctorId);
-    console.log(doctor,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
-    if (!doctor) return null;
-  
-    return (
-      <div className="col-span-3 px-2 py-3">
-        <div className="bg-white w-full border-1 py-3 rounded-md">
-          <h5 className="px-3">Doctor Details</h5>
-          <hr />
-          <div className="h-20 bg-custom-gradient m-2 rounded-md relative">
-            <img
-              src={doctor.avatar || "./image/Avatar.png"}
-              alt="Doctor Avatar"
-              className="w-16"
-            />
+const DoctorDetails = ({ doctorId, allDoctors }) => {
+  const doctor = allDoctors?.find((doc) => doc._id === doctorId);
+  console.log(
+    doctor,
+    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details"
+  );
+  if (!doctor) return null;
+
+  return (
+    <div className="col-span-3 px-2 py-3">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden border">
+        <div className="p-3 border-b ">
+          <h2 className="text-[#030229] text-lg font-bold">Doctor Details</h2>
+        </div>
+        <div className="bg-[#2522a6] p-2 flex items-center rounded-md m-3">
+          <img
+            src={doctor.avatar || "./image/Avatar.png"}
+            alt="Doctor's photo"
+            className="rounded-full border-2 border-white mr-4 w-[20%]"
+          />
+          <div className="text-white">
+            <h2 className="text-lg font-semibold">
+              {doctor.firstName} {doctor.lastName}
+            </h2>
+            <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
+              <img src="/image/vuesax.png" />
+              <h3 className="ms-2">{doctor.gender}</h3>
+            </span>
+          </div>
+        </div>
+        <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <span className="text-white ms-1">{doctor.firstName} {doctor.lastName}</span>
-              <button className="px-3 py-1 bg-btn-light rounded-full flex text-white">
-                <img src="./image/vuesax.png" alt="" className="pe-1" /> {doctor.gender}
-              </button>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Qualification
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.qualification}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Years Of Experience
+              </h3>
+              <p className="text[#141414] font-medium text-sm">{`${doctor.experience} Years`}</p>
+            </div>
+            <div>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Specialty Type
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.speciality}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Working Time
+              </h3>
+              <p className="text[#141414] font-medium text-sm">6 Hour</p>
+            </div>
+            <div>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Break Time</h3>
+              <p className="text[#141414] font-medium text-sm">1 Hour</p>
+            </div>
+            <div>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Emergency Contact Number
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.contactNumber}
+              </p>
             </div>
           </div>
-          <div className="rounded-md bg-gray-100 p-3 mx-2">
-            <DoctorDetailItem title="Qualification" value={doctor.qualification} />
-            <DoctorDetailItem title="Specialty Type" value={doctor.speciality} />
-            <DoctorDetailItem title="Years of Experience" value={`${doctor.experience} Years`} />
-            <DoctorDetailItem title="Working Time" value="6 Hours" />
-            <DoctorDetailItem title="Emergency Contact Number" value={doctor.contactNumber} />
+          <div className="mt-4">
+            <h3 className="text-[#A7A7A7] font-normal text-md">Description</h3>
+            <p className="text[#141414] font-medium text-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
           </div>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default DoctorDetails;
+export default DoctorDetails;

@@ -8,7 +8,6 @@ import { TbCalendarX } from "react-icons/tb";
 import { BiSolidCalendar } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
 import { RiCalendarScheduleFill } from "react-icons/ri";
-import { FaCalendarDays } from "react-icons/fa6";
 import { InputBase } from "@mui/material";
 import { FiPhoneCall } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
@@ -111,7 +110,7 @@ const Teleconsultation = () => {
       <div>
         <div className="p-4 bg-[#f6f8fb]">
           <div className="container mt-5">
-            <div className="bg-white shadow-lg  h-auto p-4 rounded-xl">
+            <div className="bg-white shadow-lg h-auto p-4 rounded-xl">
               <ul className="overflow-x-auto flex border-b border-gray-300">
                 <li className="mr-4">
                   <button
@@ -670,48 +669,44 @@ const Teleconsultation = () => {
               <div className="onsite-modal">
                 <div className="onsite-modal-content">
                   <div className="onsite-modal-header">
-                    <div className="max-w-sm mx-auto bg-white rounded-lg shadow-lg p-5">
-                      <div className="flex justify-between items-center border-b pb-2">
-                        <h2 className="text-lg font-bold text-[#030229] me-20">
+                    <div class="max-w-sm mx-auto bg-white rounded-lg shadow-lg p-5">
+                      <div class="flex justify-between items-center border-b pb-2">
+                        <h2 class="text-lg font-bold text-[#030229] me-20">
                           Scheduled Appointment
                         </h2>
                         <button
-                          className="w-6 h-6 bg-red-600 text-white rounded-full flex  justify-center items-center"
+                          class="w-6 h-6 bg-red-600 text-white rounded-full flex  justify-center items-center"
                           onClick={() => setOpenModel(false)}
                         >
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div className="mt-4">
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
+                      <div class="mt-4">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
                           Appointment Type:{" "}
-                          <span className="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                          <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
                             Online
                           </span>
                         </p>
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                           Appointment Date:{" "}
-                          <span className="text-[#030229]">2 Jan, 2022</span>
+                          <span class="text-[#030229]">2 Jan, 2022</span>
                         </p>
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
                           Appointment Time:{" "}
-                          <span className="text-[#030229]">4:30 PM</span>
+                          <span class="text-[#030229]">4:30 PM</span>
                         </p>
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                           Hospital Name:{" "}
-                          <span className="text-[#030229]">
-                            Marcus Phillips
-                          </span>
+                          <span class="text-[#030229]">Marcus Phillips</span>
                         </p>
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
                           Patient Issue:{" "}
-                          <span className="text-[#030229]">Stomach ache</span>
+                          <span class="text-[#030229]">Stomach ache</span>
                         </p>
-                        <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                        <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                           Doctor Name:{" "}
-                          <span className="text-[#030229]">
-                            Dr. Mathew Best
-                          </span>
+                          <span class="text-[#030229]">Dr. Mathew Best</span>
                         </p>
                       </div>
                     </div>
