@@ -85,6 +85,15 @@ const apiService = {
 
   //Payment
   AppointmentFee:(doctorId, appointmentType) => api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
+
+
+  //Prescription
+  CreatePrescription: (userData) => api.post("/prescription/createprescription", userData),
+  GetAllPrescriptions: () => api.get("/prescription/getallprescription"),
+  GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
+  EditPrescription: (id, userData) =>
+    api.put(`/prescription/editprescription/${id}`, userData),
+  DeletePrescription: (id) => api.delete(`/prescription/deleteprescription/${id}`),
 };
 
 export default apiService;
