@@ -11,19 +11,23 @@ const CreatePrescriptionForm = () => {
   const { getPatientById, patientDetails } = usePatient();
   const {createPrescription , prescription, getAppointmentById} = useGlobal();
   const [prescriptionData, setPrescriptionData] = useState([]);
+  const [ 
+    appointmentData,setAppointmentData 
+  ] = useState({});
 const {id} = useParams();
-  useEffect(() => {
-    getAppointmentById(id);
+  useEffect(async () => {
+    setAppointmentData(await getAppointmentById(id));
   }, []);
+  console.log(appointmentData)
 
   const doseOptions = ['1-1-1', '1-1-0', '1-0-1', '1-0-0', '0-1-1', '0-0-1'];
   const whenToTakeOptions = ['Before Food', 'After Food', 'With Food'];
 
   // Initial values now use patientDetails from context
   const initialValues = {
-    patientName: patientDetails?.firstName || '',
-    age: patientDetails?.age || '',
-    gender: patientDetails?.gender || '',
+    patientName: appointmentData?.patientId?.firstName + ' ' +  appointmentData?.patientId?.lastName || '',
+    age: appointmentData?.patientId?.age || '',
+    gender: appointmentData?.patientId?.gender || '',
     medicines: [
       {
         medicineName: '',
@@ -56,13 +60,13 @@ const {id} = useParams();
   const handleSubmit = async (values) => {
     try {
       const prescriptionPayload = {
-        patientId: '6717ee8e8e6a0a615c635928',
+        patientId: appointmentData.patientId._id,
         medicines: values.medicines,
         additionalNote: values.additionalNote,
         date: new Date().toISOString()
       };
       
-      createPrescription(prescriptionPayload, patientId);
+      createPrescription(prescriptionPayload, id);
       setPrescriptionData(values);
     } catch (error) {
       console.error('Error creating prescription:', error);

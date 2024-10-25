@@ -176,6 +176,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointmentById(id);
       console.log("Fetched appointment:", response);
+      return response.data;
     } catch (error) {
       console.log("Error fetching appointment by ID:", error);
       throw error;
