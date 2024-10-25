@@ -27,7 +27,7 @@ export default function PatientManagement() {
       (patient.appointmentId || []).map(apt => ({
         name: `${patient.firstName} ${patient.lastName}`,
         issue: apt.patient_issue,
-        doctor: "Dr. " + (apt.doctorId.name || "Unknown"), 
+        doctor: "Dr. " + (apt.doctorId?.name || "Unknown"), 
         disease: apt.type,
         time: new Date(apt.appointmentTime).toLocaleTimeString('en-US', {
           hour: 'numeric',
