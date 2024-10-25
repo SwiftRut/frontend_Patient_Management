@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
-import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { createAppointment } = useGlobal();
-  const { user } = useAuth();
   const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
@@ -49,15 +46,6 @@ const AppointmentBooking = () => {
       (!hospital || doctor.hospitalName === hospital)
     );
   });
-
-  const handleSubmit = async () => {
-    try {
-      createAppointment(user.id, formData);
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
-  };
 
   const isAllSelected = () => {
     return (

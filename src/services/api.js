@@ -67,12 +67,13 @@ const apiService = {
 
 
   //Appointments
-  GetAllAppointments: () => api.get(`/appoinment/allappoinment`, {id :'6707ec1893d5090ffcdb86c6'}),
+  GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
-  GetAppointmentById: (id) => api.get(`/appoinment/getAppointmentById/${id}`),
+  GetAppointmentById: (id) => api.get(`/appoinment/singleappointment/${id}`),
   EditAppointment: (id, userData) =>
     api.put(`/appoinment/updateappointment/${id}`, userData),
   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
+  CancelAppointment:(appointmentId)=>api.put(`/appoinment/cancelappointment/${appointmentId}`),
   createAppointment: (id, userData) => api.post(`/appoinment/appoinmentcreate`, userData),
   GetAppointsForDoctor: (doctorId) => api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`,doctorId),   
   GetAppointsForPatient: (patientId) => api.get(`/appoinment/Patient_Appointment_History/${patientId}`,patientId), 
@@ -85,6 +86,15 @@ const apiService = {
 
   //Payment
   AppointmentFee:(doctorId, appointmentType) => api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
+
+
+  //Prescription
+  CreatePrescription: (userData,id) => api.post(`/prescription/createprescription/${id}`, userData),
+  GetAllPrescriptions: () => api.get("/prescription/getallprescription"),
+  GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
+  EditPrescription: (id, userData) =>
+    api.put(`/prescription/editprescription/${id}`, userData),
+  DeletePrescription: (id) => api.delete(`/prescription/deleteprescription/${id}`),
 };
 
 export default apiService;

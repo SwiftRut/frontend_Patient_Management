@@ -160,11 +160,12 @@ export const GlobalProvider = ({ children }) => {
       console.log("Error fetching appointments:", error);
       throw error;
     }
-  };  const getAllTodayAppointments = async () => {
+  };  
+  const getAllTodayAppointments = async (id) => {
     try {
-      const response = await apiService.GetAllTodayAppointments();
-      setAllAppointments(response.data.data);
-
+      const response = await apiService.GetAllTodayAppointments(id);
+      setAllAppointments(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log("Error fetching appointments:", error);
       throw error;
@@ -175,6 +176,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointmentById(id);
       console.log("Fetched appointment:", response);
+      return response.data;
     } catch (error) {
       console.log("Error fetching appointment by ID:", error);
       throw error;
@@ -189,6 +191,22 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
+
+  //canceled appointment
+  const cancelAppointment =async (appointmentId)=>{
+    try{
+      const response = await apiService.CancelAppointment(appointmentId);
+
+      console.log(response.data);
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+      return result;
+    }catch(error){
+      console.log("Error canceled appointment:", error);
+      throw error;
+    }
+  }
 
   // Chat Management
   const getChatHistory = async (doctorId, patientId) => {
@@ -288,9 +306,25 @@ export const GlobalProvider = ({ children }) => {
         console.log(error);
       }
   };
+
+  const [prescription, setPrescription] = useState({});
+  const createPrescription = async (prescriptionData, id) => {
+    try {
+      const response = await apiService.CreatePrescription(prescriptionData, id);
+      console.log("Prescription created:", response);
+      setPrescription(response.data.data);
+    } catch (error) {
+      console.error("Error creating prescription:", error);
+      throw error;
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
+        createPrescription,
+        prescription,
+        setPrescription,
+
         // Hospital
         allHospitals,
         updateAppointment,
@@ -335,7 +369,7 @@ export const GlobalProvider = ({ children }) => {
         getAppointmentById,
         editAppointment,
         getAllTodayAppointments,
-
+        cancelAppointment,
         getAppointmetnsForPatient,
 
 

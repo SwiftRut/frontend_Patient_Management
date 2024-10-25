@@ -70,7 +70,7 @@ const Invoice = () => {
       }
     };
     fetchData();
-  }, [user.id, getAdminProfile]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
