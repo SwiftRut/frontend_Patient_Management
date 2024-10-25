@@ -33,7 +33,6 @@ const PersonalHealthRecord = () => {
     console.log(patientPrescription);
     console.log(user);
   useEffect(() => {
-    
     findPatientPrescriptions(user?.id);
   }, []);
 
@@ -280,13 +279,13 @@ const PersonalHealthRecord = () => {
                     patientPrescription.map((prescription, index) => (
                       <tr key={index}>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.appointmentId?.doctorId?.hospitalName || 'N/A'}
+                          {prescription?.doctorId?.hospitalName || 'N/A'}
                         </td>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
                           {prescription.date ? moment(prescription.date).format('D MMM, YYYY') : 'N/A'}
                         </td>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.appointmentId?.doctorId?.name || 'N/A'}
+                          {prescription?.doctorId?.name || 'N/A'}
                         </td>
                         <td className="py-2 px-4">
                           <span
