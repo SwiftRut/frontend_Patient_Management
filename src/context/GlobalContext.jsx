@@ -161,11 +161,11 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };  
-  const getAllTodayAppointments = async () => {
+  const getAllTodayAppointments = async (id) => {
     try {
-      const response = await apiService.GetAllTodayAppointments();
-      setAllAppointments(response.data.data);
-
+      const response = await apiService.GetAllTodayAppointments(id);
+      setAllAppointments(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log("Error fetching appointments:", error);
       throw error;
@@ -305,9 +305,25 @@ export const GlobalProvider = ({ children }) => {
         console.log(error);
       }
   };
+
+  const [prescription, setPrescription] = useState({});
+  const createPrescription = async (prescriptionData, id) => {
+    try {
+      const response = await apiService.CreatePrescription(prescriptionData, id);
+      console.log("Prescription created:", response);
+      setPrescription(response.data.data);
+    } catch (error) {
+      console.error("Error creating prescription:", error);
+      throw error;
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
+        createPrescription,
+        prescription,
+        setPrescription,
+
         // Hospital
         allHospitals,
         updateAppointment,

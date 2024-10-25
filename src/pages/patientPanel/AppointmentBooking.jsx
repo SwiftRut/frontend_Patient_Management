@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
-import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { createAppointment } = useGlobal();
-  const { user } = useAuth();
   const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
@@ -26,19 +23,15 @@ const AppointmentBooking = () => {
 
   // Get unique values for each filter based on allDoctors data
   const getUniqueValues = (key, filterKey, filterValue) => {
-    const data = filterKey ? allDoctors.filter(doctor => doctor[filterKey] === filterValue) : allDoctors;
-    return [...new Set(data.map(doctor => doctor[key]))];
+    const data = filterKey
+      ? allDoctors.filter((doctor) => doctor[filterKey] === filterValue)
+      : allDoctors;
+    return [...new Set(data.map((doctor) => doctor[key]))];
   };
 
-  const filteredHospitals = allHospitals.filter(hospital => {
-    return (
-      (!country || hospital.country === country) &&
-      (!state || hospital.state === state) &&
-      (!city || hospital.city === city)
-    );
-  });
-
-  const filteredDoctors = allDoctors.filter(doctor => {
+  const filteredHospitals = allHospitals;
+  console.log(filteredHospitals);
+  const filteredDoctors = allDoctors.filter((doctor) => {
     return (
       (!specialty || doctor.speciality === specialty) &&
       (!country || doctor.country === country) &&
@@ -48,15 +41,6 @@ const AppointmentBooking = () => {
     );
   });
 
-  const handleSubmit = async () => {
-    try {
-      createAppointment(user.id, formData);
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
-  };
-
   const isAllSelected = () => {
     return (
       // specialty &&
@@ -64,15 +48,16 @@ const AppointmentBooking = () => {
       // state &&
       // city &&
       // hospital &&
-      doctor &&
-      appointmentType
+      doctor && appointmentType
     );
   };
 
   return (
     <div className="container">
       <div className="p-4 shadow-lg m-3 rounded-lg" style={{ height: "auto" }}>
-        <h1 className="text-xl font-semibold mb-2 md:mb-0">Appointment Booking</h1>
+        <h1 className="text-xl font-semibold mb-2 md:mb-0">
+          Appointment Booking
+        </h1>
         <div className="w-full border-2 h-auto rounded-md px-3 py-2 bg-white">
           <div className="flex flex-col m-2">
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 mb-4">
@@ -81,7 +66,7 @@ const AppointmentBooking = () => {
                 label="Specialty"
                 value={specialty}
                 onChange={(e) => setSpecialty(e.target.value)}
-                options={[...new Set(allDoctors.map(doc => doc.speciality))]}
+                options={[...new Set(allDoctors.map((doc) => doc.speciality))]}
               />
 
               {/* Country Select */}
@@ -131,7 +116,7 @@ const AppointmentBooking = () => {
                   setHospital(e.target.value);
                   setDoctor("");
                 }}
-                options={filteredHospitals.map(hospital => hospital.name)}
+                options={filteredHospitals.map((hospital) => hospital.name)}
               />
 
               {/* Doctor Select */}
@@ -139,7 +124,7 @@ const AppointmentBooking = () => {
                 label="Doctor"
                 value={doctor}
                 onChange={(e) => setDoctor(e.target.value)}
-                options={filteredDoctors.map(doc => ({
+                options={filteredDoctors.map((doc) => ({
                   value: doc._id,
                   label: `Dr. ${doc.name}`,
                 }))}
@@ -155,7 +140,7 @@ const AppointmentBooking = () => {
                   { value: "follow_up", label: "Follow-Up" },
                   { value: "emergency", label: "Emergency" },
                   { value: "routine_checkup", label: "Routine Checkup" },
-                  { value: "Online", label:"Online"}
+                  { value: "Online", label: "Online" },
                 ]}
               />
             </div>
@@ -170,9 +155,16 @@ const AppointmentBooking = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
                   <div className="col-span-7 p-3">
-                    <Calendar filterData={
-                      {hospital, doctor, state, city, country,appointmentType}
-                    }/>
+                    <Calendar
+                      filterData={{
+                        hospital,
+                        doctor,
+                        state,
+                        city,
+                        country,
+                        appointmentType,
+                      }}
+                    />
                   </div>
                   <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                 </div>
@@ -198,7 +190,7 @@ const SelectInput = ({ label, value, onChange, options }) => (
       <option value="" disabled>
         Select {label}
       </option>
-      {options?.map(option => (
+      {options?.map((option) => (
         <option key={option?.value || option} value={option?.value || option}>
           {option?.label || option}
         </option>
