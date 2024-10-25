@@ -215,17 +215,17 @@ const MainBill = () => {
           <div className="space-y-2">
             <p className="text-[#818194] text-sm font-semibold">
               <strong className="text-[#141414] text-base">Amount:</strong>{" "}
-              ₹25,840.00
+              ₹{(formData.amount * 1 || 0).toFixed(2)}
             </p>
             <p className="text-[#818194] text-sm font-semibold">
-              <strong className="text-[#141414] text-base">Discount 5%:</strong>{" "}
-              ₹1,292.00
+              <strong className="text-[#141414] text-base">Discount {(formData?.discount || 0)} % : </strong>{" "}
+               ₹{((formData?.amount)*(formData?.discount)/100).toFixed(2)}
             </p>
             <p className="text-[#818194] text-sm font-semibold">
-              <strong className="text-[#141414] text-base">Tax:</strong> ₹120.00
+              <strong className="text-[#141414] text-base">Tax {(formData?.tax || 0)} % : </strong> ₹{((formData?.amount)*(formData?.tax)/100).toFixed(2)}
             </p>
             <p className="text-[#0EABEB] text-sm font-semibold">
-              <strong>Total Amount:</strong> ₹24,668.00
+              <strong>Total Amount:</strong> ₹{((formData?.amount)-((formData?.amount)*(formData?.discount)/100)+((formData?.amount)*(formData?.tax)/100)).toFixed(2)}
             </p>
           </div>
         </div>
