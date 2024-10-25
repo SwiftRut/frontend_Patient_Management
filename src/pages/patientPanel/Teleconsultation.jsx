@@ -13,8 +13,10 @@ import { InputBase } from "@mui/material";
 import { FiPhoneCall } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Search } from "@mui/icons-material";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const Teleconsultation = () => {
+
   const [activeTab, setActiveTab] = useState("scheduled");
   const [openModel, setOpenModel] = useState(false);
   const [openModelPrevious, setOpenModelPrevious] = useState(false);
