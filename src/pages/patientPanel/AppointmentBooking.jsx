@@ -29,8 +29,14 @@ const AppointmentBooking = () => {
     return [...new Set(data.map((doctor) => doctor[key]))];
   };
 
-  const filteredHospitals = allHospitals;
-  console.log(filteredHospitals);
+  const filteredHospitals = allHospitals.filter((hospital) => {
+    return (
+      (!country || hospital.country === country) &&
+      (!state || hospital.state === state) &&
+      (!city || hospital.city === city)
+    );
+  });
+
   const filteredDoctors = allDoctors.filter((doctor) => {
     return (
       (!specialty || doctor.speciality === specialty) &&
@@ -166,7 +172,9 @@ const AppointmentBooking = () => {
                       }}
                     />
                   </div>
-                  <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
+                  <div className="col-span-3 p-3">
+                    <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
+                  </div>
                 </div>
               )}
             </div>

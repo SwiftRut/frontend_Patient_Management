@@ -46,7 +46,10 @@ export default function AdminPanel() {
           <Route path="insuranceClaims" element={<InsuranceClaims />} />
           <Route path="paymentMethod" element={<PaymentMethod />} />
 
-          <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
+          <Route
+            path="reportingAndAnalytics"
+            element={<ReportingAndAnalytics />}
+          />
         </Routes>
       </div>
     </>

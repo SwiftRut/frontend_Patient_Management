@@ -13,6 +13,35 @@ export default function PriscriptionAccess() {
     setIsModalOpen(true);
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+  const prescriptionData = {
+    patientName: "Albatrao Bhajirao",
+    prescriptionDate: "2 Jan, 2022",
+    gender: "Male",
+    age: "36 Years",
+    address: "B-105 Virat Bungalows Punagam Motavaracha Jamnagar.",
+    medicines: [
+      {
+        name: "Calcium carbonate",
+        strength: "100 Mg",
+        dose: "1-0-1",
+        duration: "2 Day",
+        whenToTake: "Before Food",
+      },
+      {
+        name: "Cyclobenzaprine",
+        strength: "200 Mg",
+        dose: "1-1-1",
+        duration: "4 Day",
+        whenToTake: "With Food",
+      },
+    ],
+    additionalNote:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  };
+
   return (
     <>
       <div className="">
@@ -188,7 +217,11 @@ export default function PriscriptionAccess() {
         {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
             <div className="fixed inset-0 flex items-center justify-center z-50">
-              <PrescriptionModal />
+              <PrescriptionModal
+                open={isModalOpen}
+                handleClose={handleModalClose}
+                prescriptionData={prescriptionData}
+              />
             </div>
           </div>
         )}
