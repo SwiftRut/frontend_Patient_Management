@@ -60,38 +60,37 @@ const DoctorEdit = () => {
 
     fetchDoctor();
   }, [doctorId]);
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const formData = new FormData(); // Create a new FormData object
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      let updatedDoctorData = { ...doctorData };
-
-      if (signatureFile) {
-        const signatureUrl = await uploadFile(signatureFile);
-        updatedDoctorData.signature = signatureUrl; 
-      }
-
-      if (photoFile) {
-        const photoUrl = await uploadFile(photoFile); 
-        updatedDoctorData.avatar = photoUrl;
-      }
-
-      const response = await apiService.EditDoctor(doctorId, updatedDoctorData);
-      console.log("Doctor updated successfully:", response.data);
-      alert("Doctor updated successfully!");
-      navigate("/doctorManagement");
-    } catch (error) {
-      console.error("Error updating doctor:", error);
-      alert("An error occurred while updating the doctor.");
+    // Append JSON data to FormData
+    for (const [key, value] of Object.entries(doctorData)) {
+      formData.append(key, value); // Append each field of doctorData
     }
-  };
 
-  const uploadFile = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    const response = await apiService.uploadFile(formData); // Assuming you have an API endpoint for file uploads
-    return response.data.url; // Return the URL of the uploaded file
-  };
+    // Append signature file if it exists
+    if (signatureFile) {
+      formData.append('signature', signatureFile); // Append the signature file
+    }
+
+    // Append photo file if it exists
+    if (photoFile) {
+      formData.append('profilePicture', photoFile); // Append the photo file
+    }
+
+    // Post the combined FormData to your API
+    const response = await apiService.EditDoctor(doctorId, formData);
+    console.log("Doctor updated successfully:", response.data);
+    alert("Doctor updated successfully!");
+    navigate("/doctorManagement");
+  } catch (error) {
+    console.error("Error updating doctor:", error);
+    alert("An error occurred while updating the doctor.");
+  }
+};
+
 
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
@@ -175,7 +174,8 @@ const DoctorEdit = () => {
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
                           { label: "Gender", name: "gender", type: "select", options: ["", "Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
-                          { label: "Work On", name: "workingTime", type: "text", placeholder: "Enter Work On", value: doctorData.workingTime },
+                          { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
+                          { label: "Work On", name: "workingOn", type: "text", placeholder: "Enter Work On", value: doctorData.workingOn },
                           { label: "Check Up Time", name: "patientCheckupTime", type: "text", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime },
                           { label: "Break Time", name: "breakTime", type: "text", placeholder: "Enter Break Time", value: doctorData.breakTime },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },

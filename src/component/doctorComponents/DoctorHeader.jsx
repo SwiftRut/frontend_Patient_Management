@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Breadcrumbs,
@@ -12,6 +12,10 @@ import {
 } from "@mui/material";
 import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useAuth } from "../../hooks/useAuth";
+
+
 
 const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -19,20 +23,17 @@ const DoctorHeader = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const user = {
-    firstName: "Lincoln",
-    lastName: "Philips",
-    email: "lincon@gmail.com",
-    phoneNumber: "99130 53222",
-    hospitalName: "Silver Park Medical Center",
-    Password: "123456",
-    gender: "Male",
-    city: "Ahmedabad",
-    state: "Gujarat",
-    country: "India",
-    role: "doctor",
-  };
+  const { userData, getDoctorProfile} = useGlobal();
+  const {user} = useAuth();
 
+
+  const userName = `${userData?.name|| "User"}`;
+  const userRole = userData?.role || "Role";
+  const userAvatar = userData?.avatar || "/img/avtar.png";
+
+  useEffect(()=>{
+    getDoctorProfile(user.id);
+  },[])
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -69,7 +70,7 @@ const DoctorHeader = () => {
       handleSearch();
     }
   };
-  console.log(location.pathname.split("/")[2]);
+  
   return (
     <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
       {/* Breadcrumb */}
@@ -117,13 +118,13 @@ const DoctorHeader = () => {
           </IconButton>
           <NavLink to={"/doctor/profile"}>
             <div className="flex items-center">
-              <Avatar src={admin} alt="User Image" />
+              <Avatar src={userAvatar} alt="User Image" />
               <div className="ml-2">
                 <Typography variant="body2" fontWeight="bold">
-                  {user.firstName} {user.lastName}
+                  {userName}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  {user.role}
+                  {userRole}
                 </Typography>
               </div>
             </div>

@@ -5,8 +5,10 @@ import { MdOutlineSpeakerNotes } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { LuCalendarX2 } from "react-icons/lu";
 
-  {/* not Available model */}
-  <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+{
+  /* not Available model */
+}
+<div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
   <div className="p-6 space-y-4">
     <h2 className="text-xl font-semibold text-gray-800 border-b pb-2">
       Not Available
@@ -59,15 +61,15 @@ import { LuCalendarX2 } from "react-icons/lu";
       </button>
     </div>
   </div>
-</div>
+</div>;
 
-{/* not Available edit delete model */}
+{
+  /* not Available edit delete model */
+}
 <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
   <div className="p-4">
     <div className="flex justify-between items-center mb-4 border-b pb-2">
-      <h2 className="text-[24px] font-bold text-[#030229]">
-        Not Available
-      </h2>
+      <h2 className="text-[24px] font-bold text-[#030229]">Not Available</h2>
       <button className="text-white h-5 w-5 rounded-full bg-red-500 flex justify-center items-center">
         <IoClose />
       </button>
@@ -83,8 +85,7 @@ import { LuCalendarX2 } from "react-icons/lu";
       <p>
         <MdOutlineSpeakerNotes className="mr-2 h-5 w-5 inline text-[#4F4F4F]" />
         Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text
-        ever
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
       </p>
     </div>
 
@@ -97,11 +98,13 @@ import { LuCalendarX2 } from "react-icons/lu";
       </button>
     </div>
   </div>
-</div>
+</div>;
 
-{/* edit slot */}
-<div class="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-  <h2 class="text-lg font-bold mb-4 text-[#030229] border-b pb-3">
+{
+  /* edit slot */
+}
+<div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+  <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-3">
     Edit Slot
   </h2>
 
@@ -118,8 +121,8 @@ import { LuCalendarX2 } from "react-icons/lu";
     >
       Select Time
     </div>
-    <div class="">
-      <select class="block w-full p-3 border border-zinc-300 rounded-lg focus:outline-none focus:ring focus:ring-primary">
+    <div className="">
+      <select className="block w-full p-3 border border-zinc-300 rounded-lg focus:outline-none focus:ring focus:ring-primary">
         <option>11:00 AM - 12:00 PM</option>
         <option>12:00 PM - 1:00 PM</option>
         <option>1:00 PM - 2:00 PM</option>
@@ -170,19 +173,21 @@ import { LuCalendarX2 } from "react-icons/lu";
       Save
     </button>
   </div>
-</div>
+</div>;
 
-{/* delete slot */}
-<div class="bg-card rounded-lg shadow-lg p-3 max-w-xs mx-auto w-full border-t-[6px] border-red-600">
-  <div class="flex items-center justify-center mb-4">
-    <div class="bg-red-500 rounded-full p-3 text-white text-lg">
+{
+  /* delete slot */
+}
+<div className="bg-card rounded-lg shadow-lg p-3 max-w-xs mx-auto w-full border-t-[6px] border-red-600">
+  <div className="flex items-center justify-center mb-4">
+    <div className="bg-red-500 rounded-full p-3 text-white text-lg">
       <RiDeleteBin6Fill />
     </div>
   </div>
-  <h2 class="text-[24px] text-[#030229] font-bold text-center">
+  <h2 className="text-[24px] text-[#030229] font-bold text-center">
     Delete Time Slot ?
   </h2>
-  <p class="text-[#4F4F4F] text-sm font-normal text-center mb-6">
+  <p className="text-[#4F4F4F] text-sm font-normal text-center mb-6">
     This slot is to be deleted ?
   </p>
   <div className="flex justify-between space-x-3">
@@ -193,19 +198,21 @@ import { LuCalendarX2 } from "react-icons/lu";
       yes
     </button>
   </div>
-</div>
+</div>;
 
-{/* cancel online Appointment */}
-<div class="bg-card rounded-lg shadow-lg px-6 py-3 max-w-sm mx-auto w-full border-t-[6px] border-red-600">
-  <div class="flex items-center justify-center mb-4">
-    <div class="bg-red-500 rounded-full p-3 text-white text-lg">
+{
+  /* cancel online Appointment */
+}
+<div className="bg-card rounded-lg shadow-lg px-6 py-3 max-w-sm mx-auto w-full border-t-[6px] border-red-600">
+  <div className="flex items-center justify-center mb-4">
+    <div className="bg-red-500 rounded-full p-3 text-white text-lg">
       <LuCalendarX2 />
     </div>
   </div>
-  <h2 class="text-[24px] text-[#030229] font-bold text-center">
+  <h2 className="text-[24px] text-[#030229] font-bold text-center">
     Cancel Online Appointment ?
   </h2>
-  <p class="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-3">
+  <p className="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-3">
     If you cancel appointment you have to return payment.
   </p>
   <div className="flex justify-between space-x-3">
@@ -216,17 +223,19 @@ import { LuCalendarX2 } from "react-icons/lu";
       Payment Return
     </button>
   </div>
-</div>
+</div>;
 
-{/* custom date */}
-<div class="bg-card rounded-lg max-w-md shadow-lg p-6">
-  <div class="flex justify-between items-center mb-4 border-b pb-3">
-    <h2 class="text-lg font-bold mb-4 text-[#030229]">Custom Date</h2>
-    <button class="text-white h-5 w-5 rounded-full bg-red-500 flex justify-center items-center">
+{
+  /* custom date */
+}
+<div className="bg-card rounded-lg max-w-md shadow-lg p-6">
+  <div className="flex justify-between items-center mb-4 border-b pb-3">
+    <h2 className="text-lg font-bold mb-4 text-[#030229]">Custom Date</h2>
+    <button className="text-white h-5 w-5 rounded-full bg-red-500 flex justify-center items-center">
       <IoClose />
     </button>
   </div>
-  <div class="grid grid-cols-2 gap-4 mb-4">
+  <div className="grid grid-cols-2 gap-4 mb-4">
     <div
       style={{ position: "relative", padding: "15px 0px 0px" }}
       className="mt-4 mb-3"
@@ -284,32 +293,28 @@ import { LuCalendarX2 } from "react-icons/lu";
       Apply
     </button>
   </div>
-</div>
+</div>;
 
-{/* payment method */}
-<div class="max-w-sm mx-auto p-6 rounded-lg shadow-md bg-[#f4f4f4]">
-  <h2 class="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
+{
+  /* payment method */
+}
+<div className="max-w-sm mx-auto p-6 rounded-lg shadow-md bg-[#f4f4f4]">
+  <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
     Payment Method
   </h2>
-  <div class="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
-    <label for="mastercard" class="flex items-center">
-      <img
-        src="/img/master.png"
-        className="bg-[#F4F4F4] rounded-md p-2 me-2"
-      />
+  <div className="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
+    <label for="mastercard" className="flex items-center">
+      <img src="/img/master.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
       <p className="text-[#141414] text-lg font-bold ">Master Card</p>
     </label>
-    <input type="radio" id="mastercard" name="payment" class="mr-2" />
+    <input type="radio" id="mastercard" name="payment" className="mr-2" />
   </div>
-  <div class="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
-    <label for="visacard" class="flex items-center">
-      <img
-        src="/img/visa.png"
-        className="bg-[#F4F4F4] rounded-md p-2 me-2"
-      />
+  <div className="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
+    <label for="visacard" className="flex items-center">
+      <img src="/img/visa.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
       <p className="text-[#A7A7A7] text-lg font-bold">Visa Card</p>
     </label>
-    <input type="radio" id="visacard" name="payment" class="mr-2" />
+    <input type="radio" id="visacard" name="payment" className="mr-2" />
   </div>
   <div className="flex justify-between space-x-3">
     <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md w-[47%]">
@@ -319,16 +324,18 @@ import { LuCalendarX2 } from "react-icons/lu";
       Payment Return
     </button>
   </div>
-</div>
+</div>;
 
-{/* payment method master*/}
-<div class="max-w-md mx-auto p-6 bg-[#f4f4f4] rounded-lg shadow-md">
-  <h2 class="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
+{
+  /* payment method master*/
+}
+<div className="max-w-md mx-auto p-6 bg-[#f4f4f4] rounded-lg shadow-md">
+  <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
     Payment Method
   </h2>
-  <div class="bg-white rounded-lg p-4 mb-3">
-    <div class="flex items-center justify-between mb-4 border-b pb-2">
-      <label for="mastercard" class="flex items-center">
+  <div className="bg-white rounded-lg p-4 mb-3">
+    <div className="flex items-center justify-between mb-4 border-b pb-2">
+      <label for="mastercard" className="flex items-center">
         <img
           src="/img/master.png"
           className="bg-[#F4F4F4] rounded-md p-2 me-2"
@@ -339,14 +346,11 @@ import { LuCalendarX2 } from "react-icons/lu";
         type="radio"
         id="master-card"
         name="payment-method"
-        class="mr-2"
+        className="mr-2"
         checked
       />
     </div>
-    <div
-      style={{ position: "relative", padding: "15px 0px 0px" }}
-      className=""
-    >
+    <div style={{ position: "relative", padding: "15px 0px 0px" }} className="">
       <div
         style={{
           position: "absolute",
@@ -394,7 +398,7 @@ import { LuCalendarX2 } from "react-icons/lu";
       />
     </div>
 
-    <div class="flex mb-4">
+    <div className="flex mb-4">
       <div
         style={{ position: "relative", padding: "15px 0px 0px" }}
         className="pr-2 w-1/2"
@@ -447,15 +451,12 @@ import { LuCalendarX2 } from "react-icons/lu";
       </div>
     </div>
   </div>
-  <div class="flex items-center justify-between mb-4 bg-white p-4 rounded-lg">
-    <label for="visacard" class="flex items-center">
-      <img
-        src="/img/visa.png"
-        className="bg-[#F4F4F4] rounded-md p-2 me-2"
-      />
+  <div className="flex items-center justify-between mb-4 bg-white p-4 rounded-lg">
+    <label for="visacard" className="flex items-center">
+      <img src="/img/visa.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
       <p className="text-[#A7A7A7] text-lg font-bold">Visa Card</p>
     </label>
-    <input type="radio" id="visacard" name="payment" class="mr-2" />
+    <input type="radio" id="visacard" name="payment" className="mr-2" />
   </div>
   <div className="flex justify-between space-x-3">
     <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md w-[47%]">
@@ -465,44 +466,70 @@ import { LuCalendarX2 } from "react-icons/lu";
       Pay Now
     </button>
   </div>
-</div>
+</div>;
 
-{/* Appointment Cancel */}
-<div class="bg-card rounded-lg shadow-lg px-3 py-3 max-w-sm mx-auto w-full border-t-[6px] border-[#39973D]">
-  <div class="flex items-center justify-center mb-4">
-    <div class="bg-[#39973D] rounded-full p-3 text-white text-lg">
+{
+  /* Appointment Cancel */
+}
+<div className="bg-card rounded-lg shadow-lg px-3 py-3 max-w-sm mx-auto w-full border-t-[6px] border-[#39973D]">
+  <div className="flex items-center justify-center mb-4">
+    <div className="bg-[#39973D] rounded-full p-3 text-white text-lg">
       <LuCalendarX2 />
     </div>
   </div>
-  <h2 class="text-[22px] text-[#030229] font-bold text-center">
-  Appointment Cancel Successfully!
+  <h2 className="text-[22px] text-[#030229] font-bold text-center">
+    Appointment Cancel Successfully!
   </h2>
-  <p class="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-1">
-  The appointment is successfully cancelled.
+  <p className="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-1">
+    The appointment is successfully cancelled.
   </p>
   <div className="">
     <button className="px-4 py-2 text-sm font-medium text-white bg-[#39973D] rounded-md w-full">
       Okay
     </button>
   </div>
-</div>
+</div>;
 
-{/* reminder */}
-<div class="max-w-sm mx-auto p-4 bg-white rounded-lg shadow-md">
-<h2 class="text-lg font-bold mb-4 text-[#030229] border-b pb-2">Reminder</h2>
-<div class="bg-[#fffcf3] text-[#FFC313] font-bold text-sm p-2 mb-4" role="alert">
-<p className="flex items-center p-1"><span class="font-bold me-1"><MdWatchLater /></span> You have a meeting with him in 15 minutes</p>
-</div>
-<div class="mb-2 flex justify-between"><span class="font-medium text-[#4F4F4F]">Patient Name</span> <span class="text-[#030229]">Marcus Phillips</span></div>
-<div class="mb-2 flex justify-between"><span class="font-medium text-[#4F4F4F]">Patient Issue</span> <span class="text-[#030229]">Stomach ache</span></div>
-<div class="mb-2 flex justify-between"><span class="font-medium text-[#4F4F4F]">Disease Name</span> <span class="text-[#030229]">Viral Infection</span></div>
-<div class="mb-4 flex justify-between"><span class="font-medium text-[#4F4F4F]">Appointment Time</span> <span class="text-[#030229]">4:30 PM</span></div>
-<div className="flex justify-between space-x-3">
+{
+  /* reminder */
+}
+<div className="max-w-sm mx-auto p-4 bg-white rounded-lg shadow-md">
+  <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
+    Reminder
+  </h2>
+  <div
+    className="bg-[#fffcf3] text-[#FFC313] font-bold text-sm p-2 mb-4"
+    role="alert"
+  >
+    <p className="flex items-center p-1">
+      <span className="font-bold me-1">
+        <MdWatchLater />
+      </span>{" "}
+      You have a meeting with him in 15 minutes
+    </p>
+  </div>
+  <div className="mb-2 flex justify-between">
+    <span className="font-medium text-[#4F4F4F]">Patient Name</span>{" "}
+    <span className="text-[#030229]">Marcus Phillips</span>
+  </div>
+  <div className="mb-2 flex justify-between">
+    <span className="font-medium text-[#4F4F4F]">Patient Issue</span>{" "}
+    <span className="text-[#030229]">Stomach ache</span>
+  </div>
+  <div className="mb-2 flex justify-between">
+    <span className="font-medium text-[#4F4F4F]">Disease Name</span>{" "}
+    <span className="text-[#030229]">Viral Infection</span>
+  </div>
+  <div className="mb-4 flex justify-between">
+    <span className="font-medium text-[#4F4F4F]">Appointment Time</span>{" "}
+    <span className="text-[#030229]">4:30 PM</span>
+  </div>
+  <div className="flex justify-between space-x-3">
     <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md w-[47%]">
-    Cancel
+      Cancel
     </button>
     <button className="px-4 py-2 text-sm font-medium text-white bg-[#0EABEB] rounded-md px-4 py-2 rounded-md w-[47%]">
-    Reschedule
+      Reschedule
     </button>
   </div>
-</div>
+</div>;

@@ -4,12 +4,12 @@ import apiService from "../services/api";
 import PropTypes from "prop-types";
 import { useGlobal } from "../hooks/useGlobal";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(); //{}
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || "");
   const [loading, setLoading] = useState(true);
-  const { getAdminProfile, getDoctorProfile } = useGlobal();
+  const { getAdminProfile, getDoctorProfile, getPatientProfile } = useGlobal();
   const PatientLogin = async (userData) => {
     setLoading(true);
     try {
@@ -108,6 +108,8 @@ export const AuthProvider = ({ children }) => {
       } else if (response.data.user.role === "admin") {
         console.log("admin profile fetching");
         await getAdminProfile(response.data.user.id);
+      } else {
+        await getPatientProfile(response.data.user.id);
       }
       return response.data.user.role;
     } catch (error) {

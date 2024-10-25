@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Bill() {
   const { id } = useParams();
-  const { getBillById } = useGlobal();
+  const { getBillById , bill} = useGlobal();
 
   const [formData, setFormData] = useState({
     billNumber: "",
@@ -22,14 +22,13 @@ export default function Bill() {
     doctorId: "",
     insuranceId: "",
   });
+  console.log(formData)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getBillById(id);
-        setFormData({
-          ...data,
-        });
+        setFormData(bill)
       } catch (error) {
         console.error("Error fetching billing data:", error);
       }
@@ -50,10 +49,9 @@ export default function Bill() {
           <div className="wrapper">
             <div className="billing-info">
               <div className="info">
-                <h3> Dr. Bharat Patel</h3>
+                <h3> Dr.{bill.doctorId?.name}</h3>
                 <span>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis turpis
-                  nulla, finibus sodales erat porta eu.
+                 {bill.doctorId?.description}
                 </span>
               </div>
               <div>
@@ -72,7 +70,7 @@ export default function Bill() {
             <div className="invoice__patient flex">
               <div>
                 <p>
-                  Name : <span>{formData.patientId?.name || "N/A"}</span>
+                Name : <span>{`${formData.patientId?.firstName || "N/A"} ${formData.patientId?.lastName || ""}`}</span>
                 </p>
                 <p>
                   Gender : <span>{formData.patientId?.gender || "N/A"}</span>
@@ -86,7 +84,7 @@ export default function Bill() {
               </div>
               <div>
                 <p>
-                  Disease Name : <span>{formData.description}</span>
+                  Disease Name : <span>{formData.diseaseName}</span>
                 </p>
                 <p>
                   Phone Number : <span>{formData.patientId?.phone || "+1234567890"}</span>
@@ -108,9 +106,9 @@ export default function Bill() {
               <tbody>
                 <tr>
                   <td>{formData.description}</td>
-                  <td className="amount">₹{formData.amount.toFixed(2)}</td>
+                  <td className="amount">₹{(formData.amount || 0).toFixed(2)}</td>
                   <td>1</td>
-                  <td className="amount">₹{(formData.amount * 1).toFixed(2)}</td>
+                  <td className="amount">₹{(formData.amount * 1 || 0).toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
@@ -118,21 +116,21 @@ export default function Bill() {
               <table>
                 <tr>
                   <td className="label">Amount :</td>
-                  <td className="value">₹{formData.amount.toFixed(2)}</td>
+                  <td className="value">₹{(formData.amount || 0).toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td className="label">Discount {formData.discount}% :</td>
+                  <td className="label">Discount {formData.discount || 0}% :</td>
                   <td className="value">
-                    ₹{((formData.amount * formData.discount) / 100).toFixed(2)}
+                    ₹{(((formData.amount || 0) * (formData.discount || 0)) / 100).toFixed(2)}
                   </td>
                 </tr>
                 <tr>
                   <td className="label">Tax :</td>
-                  <td className="value">₹{formData.tax.toFixed(2)}</td>
+                  <td className="value">₹{(formData.tax || 0).toFixed(2)}</td>
                 </tr>
                 <tr>
                   <td className="label color">Total :</td>
-                  <td className="value color">₹{formData.totalAmount.toFixed(2)}</td>
+                  <td className="value color">₹{(formData.totalAmount || 0).toFixed(2)}</td>
                 </tr>
               </table>
             </div>

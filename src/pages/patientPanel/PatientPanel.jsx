@@ -149,7 +149,7 @@ export default function PatientPanel() {
 
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
-          <div className="max-w-10xl mx-auto py-2 sm:px-6 lg:px-8">
+          <div className="max-w-10xl mx-auto py-2">
             <Routes>
               <Route path="" element={<PersonalHealthRecord />} />
               <Route path="profile/*" element={<PatientProfile />} />

@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const DoctorAdd = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { getAllHospitals, allHospitals } = useGlobal();
 
@@ -49,25 +51,25 @@ const DoctorAdd = () => {
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
     const input = e.target;
-  
+
     if (file) {
       if (file.type !== "image/png" && file.type !== "image/jpeg") {
         toast.error("Please upload a valid PNG or JPEG file for the signature.");
         input.value = ''; // Reset input
         return;
       }
-  
+
       if (file.size > 5 * 1024 * 1024) { // 5MB
         toast.error("File size must be less than 5MB.");
         input.value = ''; // Reset input
         return;
       }
-  
+
       setFormData((prevData) => ({
         ...prevData,
         signature: file,
       }));
-  
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setSignaturePreview(reader.result);
@@ -77,7 +79,7 @@ const DoctorAdd = () => {
       toast.warning("No file selected. Please upload a signature.");
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -517,6 +519,41 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">
+                              Password <span>*</span>
+                            </div>
+                            <div className="password-input-container">
+                              <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Enter Password"
+                              />
+                              <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">
+                              Confirm Password <span>*</span>
+                            </div>
+                            <input
+                              type={showPassword ? "text" : "password"}
+                              name="confirmPassword"
+                              value={formData.confirmPassword}
+                              onChange={handleChange}
+                              placeholder="Confirm Password"
+                              required
+                            />
+                            <div className="eye" onClick={() => setShowPassword(!showPassword)}>
+                              {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                            </div>
+                          </div>
+
+                          <div className="input-box">
+                            <div className="label">
                               Online Consultation Rate
                             </div>
                             <input
@@ -525,35 +562,6 @@ const DoctorAdd = () => {
                               placeholder="Enter Rate"
                               maxLength={10}
                               value={formData.onlineConsultationRate}
-                              onChange={handleChange}
-                            />
-                            <div className="minus-circle">
-                              <FaCircleMinus />
-                            </div>
-                          </div>
-
-                          <div className="input-box">
-                            <div className="label">Password</div>
-                            <input
-                              type="Password"
-                              name="password"
-                              placeholder="Enter Rate"
-                              maxLength={10}
-                              value={formData.password}
-                              onChange={handleChange}
-                            />
-                            <div className="minus-circle">
-                              <FaCircleMinus />
-                            </div>
-                          </div>
-                          <div className="input-box">
-                            <div className="label">Confirm Password</div>
-                            <input
-                              type="Password"
-                              name="confirmPassword"
-                              placeholder="Enter Password"
-                              maxLength={10}
-                              value={formData.confirmPassword}
                               onChange={handleChange}
                             />
                             <div className="minus-circle">
@@ -579,7 +587,7 @@ const DoctorAdd = () => {
                             name="currentHospital"
                             placeholder="Enter Current Hospital"
                             maxLength={100}
-                            value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name)  || formData.currentHospital}
+                            value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name) || formData.currentHospital}
                             onChange={handleChange}
                           />
                           <div className="minus-circle">

@@ -16,37 +16,61 @@ import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
+import { useAuth } from "../../hooks/useAuth";
 
 const socket = io("http://localhost:8001");
 
 const ChatScreen = () => {
-  const [selectedChat, setSelectedChat] = useState(initialChats[0]);
+  const { user } = useAuth();
+  const [selectedChat, setSelectedChat] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
-  const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
+  const [doctorId] = useState(user.id);
   const [patientContacts, setPatientContacts] = useState([]);
-  const [doctorContacts, setDoctorContacts] = useState([]);
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const { getChatHistory, getPatientContacts } = useGlobal();
-
-  console.log(patientContacts, "patientId");
-  console.log(doctorContacts, "doctorId");
-
+  const { getChatHistory, getPatientContacts, getAppointmetnsForDoctor, allAppointments } = useGlobal();
+  
   // Ref for message container
   const msgContainerRef = useRef(null);
 
+  // Filter and format patient contacts from appointments
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      await getAppointmetnsForDoctor(user.id);
+    };
+    fetchAppointments();
+  }, []);
+
+  useEffect(() => {
+    if (allAppointments?.length > 0) {
+      // Create unique patient contacts from appointments
+      const uniquePatients = Array.from(new Set(allAppointments.map(apt => apt.patientId._id)))
+        .map(patientId => {
+          const appointment = allAppointments.find(apt => apt.patientId._id === patientId);
+          return {
+            _id: appointment.patientId._id,
+            firstName: appointment.patientId.firstName,
+            lastName: appointment.patientId.lastName,
+            profile: appointment.patientId.avatar,
+            lastAppointment: new Date(appointment.appointmentTime).toLocaleDateString(),
+            email: appointment.patientId.email
+          };
+        });
+      setPatientContacts(uniquePatients);
+      if (!selectedChat && uniquePatients.length > 0) {
+        setSelectedChat(uniquePatients[0]);
+      }
+    }
+  }, [allAppointments]);
+
   const handleChatClick = async (chat) => {
     setSelectedChat(chat);
-    const { id: selectedPatientId } = chat;
-    console.log(chat, doctorId, "------------------------------------");
     try {
       const history = await getChatHistory(doctorId, chat._id);
       setMessages(history);
-      console.log("Thisis the history", history);
-      socket.emit("joinRoom", { doctorId, patientId: selectedPatientId });
+      socket.emit("joinRoom", { doctorId, patientId: chat._id });
     } catch (error) {
       console.error("Failed to fetch chat history:", error);
     }
@@ -59,13 +83,13 @@ const ChatScreen = () => {
   };
 
   const sendMessage = async () => {
-    if (doctorId && patientId && messageInput.trim()) {
+    if (doctorId && selectedChat && messageInput.trim()) {
       const messageData = {
         doctorId,
-        patientId,
+        patientId: selectedChat._id,
         messageContent: messageInput,
         senderId: doctorId,
-        receiverId: patientId,
+        receiverId: selectedChat._id,
         timestamp: new Date().toISOString(),
       };
       socket.emit("message", messageData);
@@ -75,28 +99,6 @@ const ChatScreen = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const fetchedDoctorId = await getAllDoctors(); //return the single id for testing
-      const fetchedPatientId = await getAllPatients(); //return the single id for testing
-      setDoctorId(fetchedDoctorId);
-      setPatientId(fetchedPatientId);
-
-      if (fetchedDoctorId && fetchedPatientId) {
-        socket.emit("joinRoom", { doctorId: fetchedDoctorId, patientId: fetchedPatientId });
-        console.log("Joining room", fetchedDoctorId, fetchedPatientId);
-      }
-
-      const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
-      setMessages(messageHistory);
-      scrollToBottom();
-      const patientContacts = await getPatientContacts(doctorId);
-      setPatientContacts(patientContacts);
-      const doctorContacts = await getPatientContacts(patientId);
-      setDoctorContacts(doctorContacts);
-    };
-
-    fetchData();
-
     socket.on("message", (message) => {
       setMessages((prev) => [...prev, message]);
       scrollToBottom();
@@ -106,6 +108,12 @@ const ChatScreen = () => {
       socket.off("message");
     };
   }, []);
+
+  // Filter contacts based on search term
+  const filteredContacts = patientContacts.filter(contact => 
+    `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   // Auto scroll when messages array changes
   useEffect(() => {
@@ -133,23 +141,22 @@ const ChatScreen = () => {
           />
         </div>
         <List>
-          {patientContacts.map((chat) => (
+          {filteredContacts.map((contact) => (
             <ListItem
               button
-              key={chat.id}
-              onClick={() => handleChatClick(chat)}
-              selected={selectedChat.id === chat.id}
+              key={contact._id}
+              onClick={() => handleChatClick(contact)}
+              selected={selectedChat?._id === contact._id}
             >
               <ListItemAvatar>
-                <Avatar src={chat.profile} alt={chat.firstName + " " + chat.lastName} />
+                <Avatar src={contact.profile} alt={`${contact.firstName} ${contact.lastName}`} />
               </ListItemAvatar>
               <ListItemText
-                primary={chat.firstName + " " + chat.lastName}
-                secondary={chat.message}
+                primary={`${contact.firstName} ${contact.lastName}`}
+                secondary={`Last appointment: ${contact.lastAppointment}`}
                 primaryTypographyProps={{ fontWeight: "bold" }}
                 secondaryTypographyProps={{ color: "textSecondary" }}
               />
-              <span>{chat.timestamp}</span>
             </ListItem>
           ))}
         </List>
@@ -157,57 +164,70 @@ const ChatScreen = () => {
 
       {/* Chat window */}
       <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full">
-        <div className="flex items-center mb-4">
-          <Avatar src={selectedChat.profile} alt={selectedChat.name} />
-          <div className="ml-4">
-            <h2 className="text-lg font-bold">{selectedChat.name}</h2>
-            <p className="text-sm text-gray-500">{selectedChat.time}</p>
-          </div>
-        </div>
-
-        <div ref={msgContainerRef} id="msg_container" className="flex-1 overflow-y-scroll mb-4">
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`mb-2 ${
-                msg?.receiverId === "67042956a717e34ec74d0477" ? "text-right" : "text-left"
-              }`}
-            >
-              <div className="inline-block">
-                <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
-                  {msg.messageContent}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {new Date(msg.timestamp).toLocaleTimeString()}
-                </p>
+        {selectedChat ? (
+          <>
+            <div className="flex items-center mb-4">
+              <Avatar 
+                src={selectedChat.profile} 
+                alt={`${selectedChat.firstName} ${selectedChat.lastName}`} 
+              />
+              <div className="ml-4">
+                <h2 className="text-lg font-bold">
+                  {`${selectedChat.firstName} ${selectedChat.lastName}`}
+                </h2>
+                <p className="text-sm text-gray-500">{selectedChat.email}</p>
               </div>
             </div>
-          ))}
-        </div>
 
-        <div className="mt-4">
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Type a message..."
-            value={messageInput}
-            onChange={(e) => setMessageInput(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                sendMessage();
-              }
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={sendMessage}>
-                    <Send />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </div>
+            <div ref={msgContainerRef} id="msg_container" className="flex-1 overflow-y-scroll mb-4">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`mb-2 ${
+                    msg?.senderId === doctorId ? "text-right" : "text-left"
+                  }`}
+                >
+                  <div className="inline-block">
+                    <p className="bg-gray-200 rounded-lg p-2 max-w-xs inline-block text-sm">
+                      {msg.messageContent}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {new Date(msg.timestamp).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4">
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Type a message..."
+                value={messageInput}
+                onChange={(e) => setMessageInput(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    sendMessage();
+                  }
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={sendMessage}>
+                        <Send />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-gray-500">Select a patient to start chatting</p>
+          </div>
+        )}
       </div>
     </div>
   );

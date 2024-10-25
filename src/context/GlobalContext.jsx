@@ -12,7 +12,7 @@ export const GlobalProvider = ({ children }) => {
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
   const [allAppointments, setAllAppointments] = useState([]);
-
+  
   // Hospital Management
   const getAllHospitals = async () => {
     try {
@@ -59,7 +59,8 @@ export const GlobalProvider = ({ children }) => {
   const getPatientProfile = async (id) => {
     try {
       const response = await apiService.GetPatientProfile(id);
-      setUserData(response.data);
+      console.log(response.data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+      setUserData(response.data.data);
     } catch (error) {
       console.log("Error fetching patient profile:", error);
       throw error;
@@ -81,7 +82,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data.data);
-      console.log("Doctor profile fetched:", response.data.data);
     } catch (error) {
       console.log("Error fetching doctor profile:", error);
       throw error;
@@ -122,9 +122,7 @@ export const GlobalProvider = ({ children }) => {
   const getBills = async () => {
     try {
       const response = await apiService.GetBills();
-      setAllBills(response.data.data);
-      console.log(response.data.data);
-      
+      setAllBills(response.data.data);      
     } catch (error) {
       console.log("Error fetching bills:", error);
       throw error;
@@ -134,7 +132,9 @@ export const GlobalProvider = ({ children }) => {
   const getBillById = async (id) => {
     try {
       const response = await apiService.GetBillById(id);
+      console.log(response.data.data)
       setBill(response.data.data);
+      return response.data.data;
     } catch (error) {
       console.log("Error fetching bill by ID:", error);
       throw error;
@@ -160,11 +160,12 @@ export const GlobalProvider = ({ children }) => {
       console.log("Error fetching appointments:", error);
       throw error;
     }
-  };  const getAllTodayAppointments = async () => {
+  };  
+  const getAllTodayAppointments = async (id) => {
     try {
-      const response = await apiService.GetAllTodayAppointments();
-      setAllAppointments(response.data.data);
-
+      const response = await apiService.GetAllTodayAppointments(id);
+      setAllAppointments(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log("Error fetching appointments:", error);
       throw error;
@@ -175,6 +176,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointmentById(id);
       console.log("Fetched appointment:", response);
+      return response.data;
     } catch (error) {
       console.log("Error fetching appointment by ID:", error);
       throw error;
@@ -189,6 +191,22 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
+
+  //canceled appointment
+  const cancelAppointment =async (appointmentId)=>{
+    try{
+      const response = await apiService.CancelAppointment(appointmentId);
+
+      console.log(response.data);
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+      return result;
+    }catch(error){
+      console.log("Error canceled appointment:", error);
+      throw error;
+    }
+  }
 
   // Chat Management
   const getChatHistory = async (doctorId, patientId) => {
@@ -288,9 +306,25 @@ export const GlobalProvider = ({ children }) => {
         console.log(error);
       }
   };
+
+  const [prescription, setPrescription] = useState({});
+  const createPrescription = async (prescriptionData, id) => {
+    try {
+      const response = await apiService.CreatePrescription(prescriptionData, id);
+      console.log("Prescription created:", response);
+      setPrescription(response.data.data);
+    } catch (error) {
+      console.error("Error creating prescription:", error);
+      throw error;
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
+        createPrescription,
+        prescription,
+        setPrescription,
+
         // Hospital
         allHospitals,
         updateAppointment,
@@ -335,7 +369,7 @@ export const GlobalProvider = ({ children }) => {
         getAppointmentById,
         editAppointment,
         getAllTodayAppointments,
-
+        cancelAppointment,
         getAppointmetnsForPatient,
 
 

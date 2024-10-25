@@ -239,7 +239,7 @@ const AllAppointment = () => {
     <div className="bg-gray-100 p-5 h-[100vh]">
       <div className="container mt-5 ">
         <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
-          <ul className="w-full flex border-b border-gray-300">
+          <ul className="w-full flex border-b border-gray-300  justify-between sm:justify-start ">
             <li className="mr-4">
               <button
                 onClick={() => setActiveTab("appointments")}

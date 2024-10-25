@@ -16,6 +16,7 @@ import CreateBill from "./invoice/CreateBill";
 import EditBill from "./invoice/EditBill";``
 import Bill from "./invoice/Bill";
 import EditDesignInvoice from "./billPayment/EditDesignInvoice";
+import MainBill from "./patientPanel/MainBill";
 
 export default function AdminPanel() {
   return (
@@ -31,7 +32,7 @@ export default function AdminPanel() {
 
           <Route path="/createBill" element={<CreateBill />} />
           <Route path="/editBill/:id" element={<EditBill />} />
-          <Route path="/bill/:id" element={<Bill />} />
+          <Route path="/bill/:id" element={<MainBill />} />
 
           <Route path="/editinvoice" element={<EditDesignInvoice />} />
 
@@ -45,7 +46,10 @@ export default function AdminPanel() {
           <Route path="insuranceClaims" element={<InsuranceClaims />} />
           <Route path="paymentMethod" element={<PaymentMethod />} />
 
-          <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
+          <Route
+            path="reportingAndAnalytics"
+            element={<ReportingAndAnalytics />}
+          />
         </Routes>
       </div>
     </>

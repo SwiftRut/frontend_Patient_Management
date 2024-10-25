@@ -57,10 +57,19 @@ const routesConfig = [
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
       },
       {
-        path: "/createBill",
+        path: "createBill",
         element: (
           <ProtectedRoute element={<CreateBill />} allowedRoles={["admin"]} userRole={userRole} />
         ),
+        allowedRoles: ["admin"],
+      },
+      {
+        path: "bill/:id",
+        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+      },
+      {
+        path: "/editBill/:id",
+        element: <ProtectedRoute element={<EditBill />} allowedRoles={["admin"]} userRole={userRole} />,
         allowedRoles: ["admin"],
       },
       {
@@ -270,11 +279,7 @@ const routesConfig = [
     ),
     allowedRoles: ["admin", "doctor", "patient"],
   },
-  {
-    path: "/editBill/:id",
-    element: <ProtectedRoute element={<EditBill />} allowedRoles={["admin"]} userRole={userRole} />,
-    allowedRoles: ["admin"],
-  },
+ 
   {
     path: "/schedular",
     element: (

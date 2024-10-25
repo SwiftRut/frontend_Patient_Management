@@ -1,25 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TextField, Button, IconButton, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { useParams } from 'react-router-dom';
 import { FieldArray, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './DoctorPanel.css'
-
+import './DoctorPanel.css';
+import { usePatient } from '../../hooks/usePatient';
+import { useGlobal } from '../../hooks/useGlobal';
+import { useParams } from 'react-router-dom';
 const CreatePrescriptionForm = () => {
-  const { id } = useParams(); // Get the patient ID from route params
+  const { getPatientById, patientDetails } = usePatient();
+  const {createPrescription , prescription, getAppointmentById} = useGlobal();
   const [prescriptionData, setPrescriptionData] = useState([]);
+  const [ 
+    appointmentData,setAppointmentData 
+  ] = useState({});
+const {id} = useParams();
+  useEffect(async () => {
+    setAppointmentData(await getAppointmentById(id));
+  }, []);
+  console.log(appointmentData)
 
   const doseOptions = ['1-1-1', '1-1-0', '1-0-1', '1-0-0', '0-1-1', '0-0-1'];
-
-  // When to take options
   const whenToTakeOptions = ['Before Food', 'After Food', 'With Food'];
 
-  // Initial values for formik
+  // Initial values now use patientDetails from context
   const initialValues = {
-    patientName: 'Marcus Philips',
-    age: 22,
-    gender: 'Male',
+    patientName: appointmentData?.patientId?.firstName + ' ' +  appointmentData?.patientId?.lastName || '',
+    age: appointmentData?.patientId?.age || '',
+    gender: appointmentData?.patientId?.gender || '',
     medicines: [
       {
         medicineName: '',
@@ -32,7 +40,7 @@ const CreatePrescriptionForm = () => {
     additionalNote: '',
   };
 
-  // Validation schema for formik with Yup
+  // Validation schema remains the same
   const validationSchema = Yup.object().shape({
     patientName: Yup.string().required('Required'),
     age: Yup.number().required('Required').positive('Must be positive').integer('Must be an integer'),
@@ -49,24 +57,51 @@ const CreatePrescriptionForm = () => {
     additionalNote: Yup.string(),
   });
 
+  const handleSubmit = async (values) => {
+    try {
+      const prescriptionPayload = {
+        patientId: appointmentData.patientId._id,
+        medicines: values.medicines,
+        additionalNote: values.additionalNote,
+        date: new Date().toISOString()
+      };
+      
+      createPrescription(prescriptionPayload, id);
+      setPrescriptionData(values);
+    } catch (error) {
+      console.error('Error creating prescription:', error);
+    }
+  };
+
+  // Update form values when patientDetails changes
+  useEffect(() => {
+    if (patientDetails) {
+      setPrescriptionData({
+        ...prescriptionData,
+        patientName: patientDetails.name,
+        age: patientDetails.age,
+        gender: patientDetails.gender,
+      });
+    }
+  }, [patientDetails]);
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        setPrescriptionData(values);
-        console.log(values);
-      }}
+      onSubmit={handleSubmit}
+      enableReinitialize={true}
     >
       {({ values, handleChange, handleBlur, errors, touched }) => (
         <div>
-          <Form className='h-screen overflow-y-hiiden'> {/* Allow vertical scrolling only when necessary */}
+          <Form className='h-screen overflow-y-hidden'>
             <div className="flex justify-between p-8 bg-gray-100 shadow-lg rounded-lg">
+              {/* Rest of your JSX remains exactly the same */}
               {/* Left Side - Form */}
-              <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto"> {/* Enable overflow for this section */}
+              <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto">
                 <h2 className="text-2xl font-bold mb-4">Create Prescription</h2>
                 <div className="flex justify-between mb-6">
-                  <div className="input-box w-1/3"> {/* Use Tailwind width utilities */}
+                  <div className="input-box w-1/3">
                     <div className="label">Patient Name</div>
                     <input
                       type="text"
@@ -74,7 +109,7 @@ const CreatePrescriptionForm = () => {
                       value={values.patientName}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="border p-2 rounded w-full" // Tailwind classes for styling
+                      className="border p-2 rounded w-full"
                       disabled
                     />
                   </div>
@@ -118,7 +153,7 @@ const CreatePrescriptionForm = () => {
                             value={medicine.medicineName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className="border p-2 rounded w-full" // Tailwind classes for styling
+                            className="border p-2 rounded w-full"
                           />
                           <TextField
                             label="Strength"
@@ -214,7 +249,8 @@ const CreatePrescriptionForm = () => {
               </div>
 
               {/* Right Side - Prescription Preview */}
-              <div className="Prescription-bill w-[39%] bg-white p-4 rounded-lg overflow-auto"> {/* Added overflow-auto */}
+              <div className="Prescription-bill w-[39%] bg-white p-4 rounded-lg overflow-auto">
+                {/* Your existing preview JSX remains exactly the same */}
                 <div className="p-4 rounded-lg bg-[#F6F8FB]">
                   <div className="head flex justify-between align-center">
                     <div className="logo">
@@ -229,7 +265,7 @@ const CreatePrescriptionForm = () => {
                   <div className="dr-details">
                     <div className="flex justify-between align-center">
                       <p>Hospital Name: <span>Medical Center</span></p>
-                      <p>Prescription Date: <span>2 Jan, 2022</span></p>
+                      <p>Prescription Date: <span>{new Date().toLocaleDateString()}</span></p>
                     </div>
                     <div className="flex justify-between align-center">
                       <p>Patient Name: <span>{values.patientName}</span></p>
@@ -276,7 +312,9 @@ const CreatePrescriptionForm = () => {
                       <span>Doctor Signature</span>
                     </div>
                     <div className="btn">
-                      <button className="bg-blue-500 text-white py-2 px-4 rounded">Save</button>
+                      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                        Save
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -285,7 +323,6 @@ const CreatePrescriptionForm = () => {
           </Form>
         </div>
       )}
-
     </Formik>
   );
 };

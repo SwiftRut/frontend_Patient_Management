@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
@@ -8,9 +8,10 @@ import { TbCalendarX } from "react-icons/tb";
 import { BiSolidCalendar } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
 import { RiCalendarScheduleFill } from "react-icons/ri";
-import { FaCalendarDays } from "react-icons/fa6";
 import { InputBase } from "@mui/material";
-
+import { FiPhoneCall } from "react-icons/fi";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { Search } from "@mui/icons-material";
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -18,8 +19,24 @@ const Teleconsultation = () => {
   const [openModelPrevious, setOpenModelPrevious] = useState(false);
   const [openModelCancel, setOpenModelCancel] = useState(false);
   const [openModelPending, setOpenModelPending] = useState(false);
-
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
 
   const handleViewDoctorDetails = () => {
     setOpenModel(true);
@@ -91,7 +108,7 @@ const Teleconsultation = () => {
       <div>
         <div className="p-4 bg-[#f6f8fb]">
           <div className="container mt-5">
-            <div className="bg-white shadow-lg  h-auto p-4 rounded-xl">
+            <div className="bg-white shadow-lg h-auto p-4 rounded-xl">
               <ul className="overflow-x-auto flex border-b border-gray-300">
                 <li className="mr-4">
                   <button
@@ -147,44 +164,81 @@ const Teleconsultation = () => {
               <div className="tab-content mt-3">
                 {activeTab === "scheduled" && (
                   <div>
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-xl font-semibold mb-2 md:mb-0">
-                        My Appointment
-                      </h1>
-                      <div className="flex items-center space-x-3 ">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
-                        </div>
-                        <div className="border rounded-md flex p-2 items-center">
-                          <span className=" pl-3 text-gray-500 me-1">
-                            <FaCalendarAlt />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-control"
-                            style={{ width: "270px" }}
-                            value="2 Jan, 2022 - 13 Jan, 2022"
-                            readOnly
-                          />
-                          <div className="h-5 w-5 rounded-full text-white bg-[#E11D29] flex items-center justify-center">
-                            <IoCloseSharp />
-                          </div>
-                        </div>
+                    <div className="w-full p-4 ">
+                      <div className="flex flex-col flex-row space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                        {/* Title */}
+                        <h1 className="sm:text-2xl text-md font-semibold text-gray-900">
+                          My Appointment
+                        </h1>
 
-                        {/* Book Appointment button */}
-                        <Link to={"/patient/appointmentBooking"}>
-                          <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                            <BiSolidCalendar />
-                            <span>Book Appointment</span>
-                          </button>
-                        </Link>
+                        {/* Controls Container */}
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                          <div ref={searchRef} className="relative">
+                            <button
+                              onClick={toggleSearch}
+                              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+                            >
+                              <Search className="h-5 w-5 text-gray-600" />
+                            </button>
+                            <div
+                              className={`
+                                ${
+                                  isSearchOpen
+                                    ? "absolute top-0 left-0 w-[calc(100vw-2rem)] z-50"
+                                    : "hidden"
+                                } 
+                                md:relative md:block md:w-auto
+                              `}
+                            >
+                              <div className="flex items-center bg-gray-50 rounded-full px-4 py-2 sm:w-full w-[80%]">
+                                <Search className="h-4 w-4 text-gray-500 mr-2 flex-shrink-0" />
+                                <input
+                                  type="text"
+                                  placeholder="Quick Search"
+                                  className="bg-transparent w-[130px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                                  value={searchTerm}
+                                  onChange={(e) =>
+                                    setSearchTerm(e.target.value)
+                                  }
+                                />
+                                {isSearchOpen && (
+                                  <button
+                                    onClick={toggleSearch}
+                                    className="md:hidden ml-2 p-1 rounded-full hover:bg-gray-200 transition-colors"
+                                  >
+                                    <IoCloseCircleOutline className="h-4 w-4 text-gray-500" />
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Date Selector */}
+                          <div className="flex items-center justify-between border rounded-md p-2 bg-white">
+                            <span className=" pl-3 text-gray-500 me-1">
+                              <FaCalendarAlt />
+                            </span>
+                            <input
+                              type="text"
+                              className="flex-1 focus:outline-none text-sm min-w-[152px] max-w-[300px] sm:min-w-[180px] sm:text-sm text-xs"
+                              value="2 Jan, 2022 - 13 Jan, 2022"
+                              readOnly
+                            />
+                            <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
+                              <IoCloseSharp />
+                            </div>
+                          </div>
+
+                          {/* Book Appointment Button */}
+                          <Link to="/patient/appointmentBooking">
+                            <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
+                              <BiSolidCalendar className="h-5 w-5" />
+                              <span className="hidden sm:inline-block sm:ml-2">
+                                Book Appointment
+                              </span>
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
@@ -196,10 +250,10 @@ const Teleconsultation = () => {
                         {allAppointment.map((val, index) => (
                           <div
                             key={index}
-                            class="w-full mx-auto bg-white rounded-lg shadow-md"
+                            className="w-full mx-auto bg-white rounded-lg shadow-md"
                           >
                             <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
-                              <h2 class="text-lg font-semibold text-foreground">
+                              <h2 className="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
                               <div className="flex">
@@ -217,54 +271,54 @@ const Teleconsultation = () => {
                               </div>
                             </div>
                             <div className="p-3 border">
-                              <div class="flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Type
                                 </span>
-                                <span class="text-sm font-medium text-[#FFC313]">
+                                <span className="text-sm font-medium text-[#FFC313]">
                                   {val.appointmentType}
                                 </span>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Hospital Name
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.hospitalName}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Date
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentDate}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Time
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentTime}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Patient Issue
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.patientIssue}
                                 </p>
                               </div>
-                              <div class="flex justify-between mt-4">
-                                <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
+                              <div className="flex justify-between mt-4">
+                                <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
                                   <TbCalendarX className="me-2" />
                                   Cancel
                                 </button>
-                                <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
-                                  <TbCalendarClock className="me-2" />
-                                  Reschedule
+                                <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
+                                  <FiPhoneCall className="me-2" />
+                                  Join Call
                                 </button>
                               </div>
                             </div>
@@ -277,29 +331,36 @@ const Teleconsultation = () => {
 
                 {activeTab === "previous" && (
                   <div className="p-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
-                        My Appointment
-                      </h1>
+                    <div className="w-full p-4 ">
+                      <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                        {/* Title */}
+                        <h1 className="text-2xl font-semibold text-gray-900">
+                          My Appointment
+                        </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                        {/* Controls Container */}
+                        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                          {/* Search Bar */}
+                          <div className="relative flex items-center">
+                            <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                              <GoSearch className="me-2 text-[#4F4F4F]" />
+                              <InputBase
+                                type="text"
+                                placeholder="Quick Search"
+                                className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                              />
+                            </div>
+                          </div>
+                          {/* Book Appointment Button */}
+                          <Link to="/patient/appointmentBooking">
+                            <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                              <BiSolidCalendar />
+                              <span>Book Appointment</span>
+                            </button>
+                          </Link>
                         </div>
-
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
                       </div>
                     </div>
 
@@ -311,10 +372,10 @@ const Teleconsultation = () => {
                         {allAppointment.map((val, index) => (
                           <div
                             key={index}
-                            class="w-full mx-auto bg-white rounded-lg shadow-md"
+                            className="w-full mx-auto bg-white rounded-lg shadow-md"
                           >
                             <div className="bg-[#f6f8fb] p-2 flex items-center justify-between  rounded-t-lg">
-                              <h2 class="text-lg font-semibold text-foreground">
+                              <h2 className="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
                               <div
@@ -327,43 +388,43 @@ const Teleconsultation = () => {
                               </div>
                             </div>
                             <div className="p-3 border rounded-b-lg">
-                              <div class="flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Type
                                 </span>
-                                <span class="text-sm font-medium text-[#FFC313]">
+                                <span className="text-sm font-medium text-[#FFC313]">
                                   {val.appointmentType}
                                 </span>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Hospital Name
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.hospitalName}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Date
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentDate}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Time
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentTime}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Patient Issue
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.patientIssue}
                                 </p>
                               </div>
@@ -376,29 +437,34 @@ const Teleconsultation = () => {
                 )}
                 {activeTab === "cancel" && (
                   <div className="p-2">
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
+                    <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                      {/* Title */}
+                      <h1 className="text-2xl font-semibold text-gray-900">
                         My Appointment
                       </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                      {/* Controls Container */}
+                      <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                        {/* Search Bar */}
+                        <div className="relative flex items-center">
+                          <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                            <GoSearch className="me-2 text-[#4F4F4F]" />
+                            <InputBase
+                              type="text"
+                              placeholder="Quick Search"
+                              className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                              value={searchTerm}
+                              onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                          </div>
                         </div>
-
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
+                        {/* Book Appointment Button */}
+                        <Link to="/patient/appointmentBooking">
+                          <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                            <BiSolidCalendar />
+                            <span>Book Appointment</span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
 
@@ -410,10 +476,10 @@ const Teleconsultation = () => {
                         {allAppointment.map((val, index) => (
                           <div
                             key={index}
-                            class="w-full mx-auto bg-white rounded-lg shadow-md"
+                            className="w-full mx-auto bg-white rounded-lg shadow-md"
                           >
                             <div className="bg-[#f6f8fb] p-2 flex items-center justify-between  rounded-t-lg">
-                              <h2 class="text-lg font-semibold text-foreground">
+                              <h2 className="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
                               <div
@@ -426,43 +492,43 @@ const Teleconsultation = () => {
                               </div>
                             </div>
                             <div className="p-3 border rounded-b-lg">
-                              <div class="flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Type
                                 </span>
-                                <span class="text-sm font-medium text-[#FFC313]">
+                                <span className="text-sm font-medium text-[#FFC313]">
                                   {val.appointmentType}
                                 </span>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Hospital Name
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.hospitalName}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Date
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentDate}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Time
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentTime}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Patient Issue
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.patientIssue}
                                 </p>
                               </div>
@@ -475,29 +541,36 @@ const Teleconsultation = () => {
                 )}
                 {activeTab === "pending" && (
                   <div>
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                      <h1 className="text-[24px] font-bold mb-2 md:mb-0 text-[#030229]">
+                    <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
+                      {/* Title */}
+                      <h1 className="text-2xl font-semibold text-gray-900">
                         My Appointment
                       </h1>
 
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center bg-[#F6F8FB] rounded-full px-4 py-1">
-                          <GoSearch className="me-2 text-[#4F4F4F]" />
-                          <InputBase
-                            placeholder="Quick Search"
-                            inputProps={{ "aria-label": "search" }}
-                            className="flex-grow text-sm text-[#A7A7A7]"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                          />
+                      {/* Controls Container */}
+                      <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                        {/* Search Bar */}
+                        <div className="relative flex items-center mb-3">
+                          <div className="w-full flex items-center bg-gray-50 rounded-full px-4 py-2">
+                            <GoSearch className="me-2 text-[#4F4F4F]" />
+                            <InputBase
+                              type="text"
+                              placeholder="Quick Search"
+                              className="bg-transparent focus:outline-none text-sm text-gray-600 placeholder-gray-400"
+                              value={searchTerm}
+                              onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                          </div>
                         </div>
+                        {/* Search bar for larger screens
 
-                        {/* Book Appointment button */}
-                        <button className="px-4 py-2 bg-[#0EABEB] rounded-md text-white flex items-center space-x-2 ">
-                          <FaCalendarDays />
-                          {/* Calendar icon */}
-                          <span>Book Appointment</span>
-                        </button>
+                        {/* Book Appointment Button */}
+                        <Link to="/patient/appointmentBooking">
+                          <button className="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center space-x-2">
+                            <BiSolidCalendar />
+                            <span>Book Appointment</span>
+                          </button>
+                        </Link>
                       </div>
                     </div>
 
@@ -509,10 +582,10 @@ const Teleconsultation = () => {
                         {allAppointment.map((val, index) => (
                           <div
                             key={index}
-                            class="w-full mx-auto bg-white rounded-lg shadow-md"
+                            className="w-full mx-auto bg-white rounded-lg shadow-md"
                           >
                             <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
-                              <h2 class="text-lg font-semibold text-foreground">
+                              <h2 className="text-lg font-semibold text-foreground">
                                 {val.doctorName}
                               </h2>
                               <div
@@ -525,52 +598,52 @@ const Teleconsultation = () => {
                               </div>
                             </div>
                             <div className="p-3 border rounded-b-lg">
-                              <div class="flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Type
                                 </span>
-                                <span class="text-sm font-medium text-[#FFC313]">
+                                <span className="text-sm font-medium text-[#FFC313]">
                                   {val.appointmentType}
                                 </span>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Hospital Name
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.hospitalName}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Date
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentDate}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Appointment Time
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.appointmentTime}
                                 </p>
                               </div>
-                              <div class="mt-1 flex items-center justify-between">
-                                <span class="text-base font-normal text-[#818194]">
+                              <div className="mt-1 flex items-center justify-between">
+                                <span className="text-base font-normal text-[#818194]">
                                   Patient Issue
                                 </span>
-                                <p class="text-sm font-medium text-[#4F4F4F]">
+                                <p className="text-sm font-medium text-[#4F4F4F]">
                                   {val.patientIssue}
                                 </p>
                               </div>
-                              <div class="flex justify-between mt-4">
-                                <button class="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center hover:bg-red-500 hover:text-white transition duration-100">
+                              <div className="flex justify-between mt-4">
+                                <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center hover:bg-red-500 hover:text-white transition duration-100">
                                   <TbCalendarX className="me-2" />
                                   Cancel
                                 </button>
-                                <button class="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-100 p-2 rounded-md w-[47%] flex items-center justify-center">
+                                <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#0EABEB] text-lg font-semibold hover:text-white transition duration-100 p-2 rounded-md w-[47%] flex items-center justify-center">
                                   <TbCalendarClock className="me-2" />
                                   Reschedule
                                 </button>
@@ -650,44 +723,44 @@ const Teleconsultation = () => {
         {openModelPrevious && (
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
             <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div class="max-w-xl bg-white rounded-lg shadow-lg p-5">
-                <div class="flex justify-between items-center border-b pb-2">
-                  <h2 class="text-lg font-bold text-[#030229] me-20">
+              <div className="max-w-xl bg-white rounded-lg shadow-lg p-5">
+                <div className="flex justify-between items-center border-b pb-2">
+                  <h2 className="text-lg font-bold text-[#030229] me-20">
                     Previous Appointment
                   </h2>
                   <button
-                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    className="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
                     onClick={() => setOpenModelPrevious(false)}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="mt-4">
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                <div className="mt-4">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Type:{" "}
-                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                    <span className="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
                       Online
                     </span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Appointment Date:{" "}
-                    <span class="text-[#030229]">2 Jan, 2022</span>
+                    <span className="text-[#030229]">2 Jan, 2022</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Time:{" "}
-                    <span class="text-[#030229]">4:30 PM</span>
+                    <span className="text-[#030229]">4:30 PM</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Hospital Name:{" "}
-                    <span class="text-[#030229]">Marcus Phillips</span>
+                    <span className="text-[#030229]">Marcus Phillips</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Patient Issue:{" "}
-                    <span class="text-[#030229]">Stomach ache</span>
+                    <span className="text-[#030229]">Stomach ache</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Doctor Name:{" "}
-                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                    <span className="text-[#030229]">Dr. Mathew Best</span>
                   </p>
                 </div>
               </div>
@@ -703,44 +776,44 @@ const Teleconsultation = () => {
         {openModelCancel && (
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
             <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div class="max-w-xl bg-white rounded-lg p-5">
-                <div class="flex justify-between items-center border-b pb-2">
-                  <h2 class="text-lg font-bold text-[#030229] me-20">
+              <div className="max-w-xl bg-white rounded-lg p-5">
+                <div className="flex justify-between items-center border-b pb-2">
+                  <h2 className="text-lg font-bold text-[#030229] me-20">
                     Cancel Appointment
                   </h2>
                   <button
-                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    className="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
                     onClick={() => setOpenModelCancel(false)}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="mt-4">
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                <div className="mt-4">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Type:{" "}
-                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                    <span className="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
                       Online
                     </span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Appointment Date:{" "}
-                    <span class="text-[#030229]">2 Jan, 2022</span>
+                    <span className="text-[#030229]">2 Jan, 2022</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Time:{" "}
-                    <span class="text-[#030229]">4:30 PM</span>
+                    <span className="text-[#030229]">4:30 PM</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Hospital Name:{" "}
-                    <span class="text-[#030229]">Marcus Phillips</span>
+                    <span className="text-[#030229]">Marcus Phillips</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Patient Issue:{" "}
-                    <span class="text-[#030229]">Stomach ache</span>
+                    <span className="text-[#030229]">Stomach ache</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Doctor Name:{" "}
-                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                    <span className="text-[#030229]">Dr. Mathew Best</span>
                   </p>
                 </div>
               </div>
@@ -756,44 +829,44 @@ const Teleconsultation = () => {
         {openModelPending && (
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
             <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div class="max-w-xl bg-white rounded-lg p-5">
-                <div class="flex justify-between items-center border-b pb-2">
-                  <h2 class="text-lg font-bold text-[#030229] me-20">
+              <div className="max-w-xl bg-white rounded-lg p-5">
+                <div className="flex justify-between items-center border-b pb-2">
+                  <h2 className="text-lg font-bold text-[#030229] me-20">
                     Pending Appointment
                   </h2>
                   <button
-                    class="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
+                    className="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
                     onClick={() => setOpenModelPending(false)}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="mt-4">
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                <div className="mt-4">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Type:{" "}
-                    <span class="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
+                    <span className="text-[#FFC313] bg-[#fff9e7] px-3 py-1 rounded-full">
                       Online
                     </span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Appointment Date:{" "}
-                    <span class="text-[#030229]">2 Jan, 2022</span>
+                    <span className="text-[#030229]">2 Jan, 2022</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Appointment Time:{" "}
-                    <span class="text-[#030229]">4:30 PM</span>
+                    <span className="text-[#030229]">4:30 PM</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Hospital Name:{" "}
-                    <span class="text-[#030229]">Marcus Phillips</span>
+                    <span className="text-[#030229]">Marcus Phillips</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                     Patient Issue:{" "}
-                    <span class="text-[#030229]">Stomach ache</span>
+                    <span className="text-[#030229]">Stomach ache</span>
                   </p>
-                  <p class="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
+                  <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                     Doctor Name:{" "}
-                    <span class="text-[#030229]">Dr. Mathew Best</span>
+                    <span className="text-[#030229]">Dr. Mathew Best</span>
                   </p>
                 </div>
               </div>
