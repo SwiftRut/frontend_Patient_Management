@@ -85,7 +85,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
             <TableBody>
               {prescriptionData.medicines.map((medicine, index) => (
                 <TableRow key={index}>
-                  <TableCell>{medicine.name}</TableCell>
+                  <TableCell>{medicine.medicineName}</TableCell>
                   <TableCell>{medicine.strength}</TableCell>
                   <TableCell>{medicine.dose}</TableCell>
                   <TableCell className="duration">
