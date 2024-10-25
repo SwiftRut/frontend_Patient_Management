@@ -16,22 +16,28 @@ import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import { initialChats } from "./constant";
 import io from "socket.io-client";
+import { useAuth } from "../../hooks/useAuth";
 
 const socket = io("http://localhost:8001");
 
 const ChatScreen1 = () => {
+  const { user } = useAuth();
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
   const [searchTerm, setSearchTerm] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
-  const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
+  const [patientId, setPatientId] = useState(user.id);
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const {getChatHistory ,getDoctorContacts} = useGlobal();
+  const {getChatHistory ,getDoctorContacts, getAppointmetnsForPatient,allAppointments:allAppointements} = useGlobal();
+  console.log(allAppointements,"<<<<<<<<<< from patietn")
 
-  const messagesEndRef = useRef(null); // Ref for the bottom of the chat
-
+  const messagesEndRef = useRef(null); 
+  useEffect(() => {
+    getAppointmetnsForPatient(user.id);
+    console.log(allAppointements)
+  },[]);
   const handleChatClick = (chat) => {
     setSelectedChat(chat);
   };

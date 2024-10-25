@@ -16,28 +16,34 @@ import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
+import { useAuth } from "../../hooks/useAuth";
 
 const socket = io("http://localhost:8001");
 
 const ChatScreen = () => {
+  const { user } = useAuth();
   const [selectedChat, setSelectedChat] = useState(initialChats[0]);
   const [searchTerm, setSearchTerm] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const [doctorId, setDoctorId] = useState("670475d7639c7f96cadbd05c");
+  const [doctorId, setDoctorId] = useState(user.id);
   const [patientId, setPatientId] = useState("67042956a717e34ec74d0477");
   const [patientContacts, setPatientContacts] = useState([]);
   const [doctorContacts, setDoctorContacts] = useState([]);
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const { getChatHistory, getPatientContacts } = useGlobal();
+  const { getChatHistory, getPatientContacts, getAppointmetnsForDoctor,allAppointments:allAppointements } = useGlobal();
+  console.log(allAppointements, "from doctor")
 
   console.log(patientContacts, "patientId");
   console.log(doctorContacts, "doctorId");
 
   // Ref for message container
   const msgContainerRef = useRef(null);
-
+  useEffect(() => {
+    getAppointmetnsForDoctor(user.id);
+    console.log(allAppointements)
+  },[]);
   const handleChatClick = async (chat) => {
     setSelectedChat(chat);
     const { id: selectedPatientId } = chat;
@@ -76,17 +82,15 @@ const ChatScreen = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedDoctorId = await getAllDoctors(); //return the single id for testing
-      const fetchedPatientId = await getAllPatients(); //return the single id for testing
-      setDoctorId(fetchedDoctorId);
-      setPatientId(fetchedPatientId);
+      // const fetchedDoctorId = await getAllDoctors(); //return the single id for testing
+      // const fetchedPatientId = await getAllPatients(); //return the single id for testing
+      // setDoctorId(fetchedDoctorId);
+      // setPatientId(fetchedPatientId);
 
-      if (fetchedDoctorId && fetchedPatientId) {
-        socket.emit("joinRoom", { doctorId: fetchedDoctorId, patientId: fetchedPatientId });
-        console.log("Joining room", fetchedDoctorId, fetchedPatientId);
-      }
+        socket.emit("joinRoom", { doctorId, patientId });
+        console.log("Joining room", doctorId, patientId);
 
-      const messageHistory = await getChatHistory(fetchedDoctorId, fetchedPatientId);
+      const messageHistory = await getChatHistory(doctorId, patientId);
       setMessages(messageHistory);
       scrollToBottom();
       const patientContacts = await getPatientContacts(doctorId);
