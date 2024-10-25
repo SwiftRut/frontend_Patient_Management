@@ -28,8 +28,8 @@ const CreatePrescriptionTools = () => {
     time: formatTime(appointment.appointmentTime),
     isNew: !appointment.patientId.appointmentId || appointment.patientId.appointmentId.length <= 1,
     // Additional data that might be needed
-    patientId: appointment.patientId._id,
-    doctorId: appointment.doctorId._id,
+    patientId: appointment.patientId?._id,
+    doctorId: appointment.doctorId?._id,
     status: appointment.status
   })) || [];
 
