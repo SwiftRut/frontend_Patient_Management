@@ -13,19 +13,6 @@ const PersonalHealthRecord = () => {
   const [selectedPrescription, setSelectedPrescription] = useState(null);
   const { user } = useAuth();
 
-  const [prescription, setPrescription] = useState([
-    {
-      name: "Apollo Hospitals",
-      date: "2 Jan, 2022",
-      disease: "Colds and Flu",
-    },
-    {
-      name: "Medanta The Medicity",
-      date: "2 Jan, 2022",
-      disease: "Allergies",
-    },
-  ]);
-
   const [showModal, setShowModal] = useState(false);
   const { userData, patientPrescription, findPatientPrescriptions } =
     useGlobal();
@@ -33,7 +20,6 @@ const PersonalHealthRecord = () => {
     console.log(patientPrescription);
     console.log(user);
   useEffect(() => {
-    
     findPatientPrescriptions(user?.id);
   }, []);
 
@@ -276,35 +262,28 @@ const PersonalHealthRecord = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(patientPrescription) && patientPrescription.length > 0 ? (
-                    patientPrescription.map((prescription, index) => (
-                      <tr key={index}>
-                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.appointmentId?.doctorId?.hospitalName || 'N/A'}
-                        </td>
-                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.date ? moment(prescription.date).format('D MMM, YYYY') : 'N/A'}
-                        </td>
-                        <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.appointmentId?.doctorId?.name || 'N/A'}
-                        </td>
-                        <td className="py-2 px-4">
-                          <span
-                            onClick={() => handleShowModal(prescription)}
-                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center cursor-pointer"
-                          >
-                            <FaEye />
-                          </span>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="py-2 px-4 text-center">
-                        No prescriptions available
+                  {/* Prescription Rows */}
+                  {patientPrescription?.map((prescription, index) => (
+                    <tr key={index}>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription?.appointmentId.doctorId.hospitalName}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription.date}
+                      </td>
+                      <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
+                        {prescription?.appointmentId.doctorId.name}
+                      </td>
+                      <td className="py-2 px-4">
+                        <span
+                          onClick={() => handleShowModal(prescription)}
+                          className="bg-[#F6F8FB] text-[#0EABEB] rounded-[5px] w-6 h-6 flex items-center justify-center"
+                        >
+                          <FaEye />
+                        </span>
                       </td>
                     </tr>
-                  )}
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -643,7 +622,7 @@ const PersonalHealthRecord = () => {
               <div className="details w-[86%] sm:w-[88%]">
                 <p className="text-[17px] text-[#141414] font-normal	">
                   It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout. 
+                  by the readable content of a page when looking at its layout. 
                 </p>
               </div>
             </div>

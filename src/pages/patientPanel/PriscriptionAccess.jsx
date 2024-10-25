@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaDownload } from "react-icons/fa6";
 import { FaRegImage } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
+import { useAuth } from "../../hooks/useAuth.jsx";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
 
 export default function PriscriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { findPatientPrescriptions, patientPrescription } = useGlobal();
+  const {user} = useAuth();
+  useEffect(() => {
+    findPatientPrescriptions(user.id);
+  }, []);
+  console.log(patientPrescription)
   const openModal = () => {
     setIsModalOpen(true);
   };

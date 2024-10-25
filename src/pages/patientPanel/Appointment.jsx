@@ -46,7 +46,7 @@ const Appointment = () => {
         (appointmentDate.isSameOrAfter(startDate) && appointmentDate.isSameOrBefore(endDate));
 
       const matchesSearch = 
-        appointment.doctorId.name.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.doctorId?.name.toLowerCase().includes(lowerSearchTerm) ||
         appointment.type.toLowerCase().includes(lowerSearchTerm) ||
         appointment.patient_issue.toLowerCase().includes(lowerSearchTerm);
 
@@ -178,7 +178,7 @@ const Appointment = () => {
                       >
                         <div className="flex justify-between items-center py-2 bg-gray-100 px-3">
                           <h6 className="text-md font-semibold">
-                            Dr. {appointment.doctorId.name}
+                            Dr. {appointment.doctorId?.name}
                           </h6>
                         </div>
                         <div className="flex justify-between items-center px-3">
