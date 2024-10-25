@@ -6,13 +6,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import './DoctorPanel.css';
 import { usePatient } from '../../hooks/usePatient';
 import { useGlobal } from '../../hooks/useGlobal';
+import { useParams } from 'react-router-dom';
 const CreatePrescriptionForm = () => {
   const { getPatientById, patientDetails } = usePatient();
-  const {createPrescription , prescription} = useGlobal();
+  const {createPrescription , prescription, getAppointmentById} = useGlobal();
   const [prescriptionData, setPrescriptionData] = useState([]);
-
+const {id} = useParams();
   useEffect(() => {
-    getPatientById('6717ee8e8e6a0a615c635928');
+    getAppointmentById(id);
   }, []);
 
   const doseOptions = ['1-1-1', '1-1-0', '1-0-1', '1-0-0', '0-1-1', '0-0-1'];
@@ -61,7 +62,7 @@ const CreatePrescriptionForm = () => {
         date: new Date().toISOString()
       };
       
-      createPrescription(prescriptionPayload);
+      createPrescription(prescriptionPayload, patientId);
       setPrescriptionData(values);
     } catch (error) {
       console.error('Error creating prescription:', error);
