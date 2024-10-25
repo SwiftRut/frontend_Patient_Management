@@ -37,7 +37,7 @@ const Calendar = () => {
     });
   
     setEvents(mappedEvents);
-  }, [allAppointements]);
+  }, []);
 
   const handleSlotSelected = (slotInfo) => {
     setSelectedSlot(slotInfo);

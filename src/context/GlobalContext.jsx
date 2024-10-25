@@ -160,7 +160,8 @@ export const GlobalProvider = ({ children }) => {
       console.log("Error fetching appointments:", error);
       throw error;
     }
-  };  const getAllTodayAppointments = async () => {
+  };  
+  const getAllTodayAppointments = async () => {
     try {
       const response = await apiService.GetAllTodayAppointments();
       setAllAppointments(response.data.data);
@@ -189,6 +190,22 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
+
+  //canceled appointment
+  const cancelAppointment =async (appointmentId)=>{
+    try{
+      const response = await apiService.CancelAppointment(appointmentId);
+
+      console.log(response.data);
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+      return result;
+    }catch(error){
+      console.log("Error canceled appointment:", error);
+      throw error;
+    }
+  }
 
   // Chat Management
   const getChatHistory = async (doctorId, patientId) => {
@@ -335,7 +352,7 @@ export const GlobalProvider = ({ children }) => {
         getAppointmentById,
         editAppointment,
         getAllTodayAppointments,
-
+        cancelAppointment,
         getAppointmetnsForPatient,
 
 
