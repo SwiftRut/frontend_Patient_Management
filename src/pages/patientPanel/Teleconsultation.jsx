@@ -73,7 +73,7 @@ const Teleconsultation = () => {
           appointmentDate.isSameOrBefore(endDate));
 
       const matchesSearch =
-        appointment.doctorId.name.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.doctorId?.name?.toLowerCase().includes(lowerSearchTerm) ||
         appointment.type.toLowerCase().includes(lowerSearchTerm) ||
         appointment.patient_issue.toLowerCase().includes(lowerSearchTerm);
 
