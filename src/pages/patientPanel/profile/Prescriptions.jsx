@@ -3,7 +3,6 @@ import "../style.css";
 import { FaEye } from "react-icons/fa";
 import signature from "../../../assets/signature.svg"
 import { MdCancel } from "react-icons/md";
-
 const Prescriptions = () => {
   // Sample data for prescriptions
   const prescriptionData = [
@@ -278,11 +277,9 @@ const Prescriptions = () => {
       age: 42,
     },
   ];
-
   const [isSearchVisible, setSearchVisible] = useState(false);
   const [selectedPrescription, setSelectedPrescription] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
   // Function to toggle search input visibility
   const toggleSearch = () => {
     setSearchVisible(!isSearchVisible);

@@ -55,7 +55,6 @@ const PatientHeader = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   useEffect(()=>{
-    console.log(user);
     getPatientProfile(user.id);
   },[])
   // const user = {
@@ -96,11 +95,9 @@ const PatientHeader = () => {
     }
     setDrawerOpen(open);
   };
-  console.log(userData,"<<<<<<<<<<<<<<<<<<<<patient heder")
   const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
-  console.log("image",userData)
 
   const drawerContent =(
     <div className="w-64 p-4">

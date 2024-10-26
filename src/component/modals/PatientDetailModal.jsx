@@ -2,6 +2,7 @@ import { Dialog, DialogTitle, DialogContent, IconButton, Typography } from '@mui
 import CloseIcon from '@mui/icons-material/Close';
 
 const PatientDetailsModal = ({ open, handleClose, patient }) => {
+
   if (!patient) return null; // In case there's no patient selected
 
   return (

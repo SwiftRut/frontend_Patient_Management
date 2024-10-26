@@ -90,7 +90,7 @@ const apiService = {
 
   //Prescription
   CreatePrescription: (userData,id) => api.post(`/prescription/createprescription/${id}`, userData),
-  GetAllPrescriptions: () => api.get("/prescription/getallprescription"),
+  GetAllPrescriptions: () => api.get(`/prescription/getPrescription`), ///temp getall prescription
   GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
   EditPrescription: (id, userData) =>
     api.put(`/prescription/editprescription/${id}`, userData),

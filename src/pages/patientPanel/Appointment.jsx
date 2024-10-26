@@ -3,33 +3,86 @@ import { Link } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
-import { FaCalendarAlt } from "react-icons/fa";
-import { IoCloseSharp } from "react-icons/io5";
+import { Button, IconButton, TextField, InputAdornment } from "@mui/material";
+import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { BiSolidCalendar } from "react-icons/bi";
+import CustomDateModal from "../../component/modals/CustomDateModal";
+import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
+  const [dateRange, setDateRange] = useState("Any Date");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
-  const { allAppointments, getAppointmetnsForPatient, cancelAppointment, setAllAppointments } = useGlobal();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
+  const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
+    useState(false);
+
+  const {
+    allAppointments,
+    getAppointmetnsForPatient,
+    cancelAppointment,
+    setAllAppointments,
+    deleteAppointment,
+  } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
 
+  useEffect(() => {
+    filterAppointments();
+  }, [activeTab, allAppointments, dateRange, searchTerm]);
+
   const filterAppointments = () => {
     const currentDate = moment();
-    const filtered = allAppointments?.filter(appointment => {
+
+    const filtered = allAppointments?.filter((appointment) => {
       const appointmentDate = moment(appointment.date);
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      const [startDate, endDate] = dateRange
+        .split(" - ")
+        .map((date) => moment(date.trim()));
+
+      const isWithinDateRange =
+        dateRange === "Any Date" ||
+        (appointmentDate.isSameOrAfter(startDate) &&
+          appointmentDate.isSameOrBefore(endDate));
+
+      const matchesSearch = 
+        appointment.doctorId?.name.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.type.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.patient_issue.toLowerCase().includes(lowerSearchTerm);
+
       switch (activeTab) {
         case "scheduled":
-          return appointmentDate.isAfter(currentDate) && appointment.status !== "canceled";
+          return (
+            appointmentDate.isAfter(currentDate) &&
+            appointment.status !== "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "previous":
-          return appointmentDate.isBefore(currentDate) && appointment.status !== "canceled";
+          return (
+            appointmentDate.isBefore(currentDate) &&
+            appointment.status !== "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "cancel":
-          return appointment.status === "canceled";
+          return (
+            appointment.status === "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "pending":
-          return appointment.status === "pending";
+          return (
+            appointment.status === "pending" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         default:
           return false;
       }
@@ -37,17 +90,13 @@ const Appointment = () => {
     setFilteredAppointments(filtered || []);
   };
 
-  useEffect(() => {
-    filterAppointments();
-  }, [activeTab, allAppointments]);
-
   const handleCancelAppointment = async (appointmentId) => {
     try {
       const response = await cancelAppointment(appointmentId);
       await getAppointmetnsForPatient(user.id);
-    
+
       if (response.status === 200) {
-        const updatedAppointments = allAppointments.map(appointment =>
+        const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
             : appointment
@@ -89,20 +138,29 @@ const Appointment = () => {
                     My Appointment
                   </h1>
                   <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
-                    <div className="flex items-center justify-between border rounded-md p-2 bg-white">
-                      <span className="pl-3 text-gray-500 me-1">
-                        <FaCalendarAlt />
-                      </span>
-                      <input
-                        type="text"
-                        className="flex-1 focus:outline-none text-sm min-w-[152px] max-w-[300px] sm:min-w-[180px]"
-                        value="2 Jan, 2022 - 13 Jan, 2022"
-                        readOnly
-                      />
-                      <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
-                        <IoCloseSharp />
-                      </div>
-                    </div>
+                    <TextField
+                      className="search outline-none"
+                      variant="outlined"
+                      placeholder="Search Appointment"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Search />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+
+                    <Button
+                      variant="outlined"
+                      startIcon={<DateRange />}
+                      color="gray"
+                      onClick={() => setOpenCustomDateModal(true)}
+                    >
+                      {dateRange}
+                    </Button>
 
                     <Link to="/patient/appointmentBooking">
                       <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
@@ -126,43 +184,88 @@ const Appointment = () => {
                       >
                         <div className="flex justify-between items-center py-2 bg-gray-100 px-3">
                           <h6 className="text-md font-semibold">
-                            Dr. {appointment.doctorId.name}
+                            Dr. {appointment.doctorId?.name}
                           </h6>
                         </div>
                         <div className="flex justify-between items-center px-3">
-                          <p className="font-light text-gray-600">Appointment type</p>
-                          <span className="text-sm text-orange-300">{appointment.type}</span>
-                        </div>
-                        <div className="flex justify-between items-center px-3">
-                          <p className="font-light text-gray-600">Hospital Name</p>
-                          <span className="text-sm">{appointment.hospitalName}</span>
-                        </div>
-                        <div className="flex justify-between items-center px-3">
-                          <p className="font-light text-gray-600">Appointment Date</p>
-                          <span className="text-sm">
-                            {moment(appointment.appointmentDate).format("DD/MM/YYYY")}
+                          <p className="font-light text-gray-600">
+                            Appointment type
+                          </p>
+                          <span className="text-sm text-orange-300">
+                            {appointment.type}
                           </span>
                         </div>
                         <div className="flex justify-between items-center px-3">
-                          <p className="font-light text-gray-600">Appointment time</p>
+                          <p className="font-light text-gray-600">
+                            Hospital Name
+                          </p>
                           <span className="text-sm">
-                            {moment(appointment.appointmentTime).format("hh:mm A")}
+                            {appointment.hospitalName}
                           </span>
                         </div>
                         <div className="flex justify-between items-center px-3">
-                          <p className="font-light text-gray-600">Patient issue</p>
-                          <span className="text-sm">{appointment.patient_issue}</span>
+                          <p className="font-light text-gray-600">
+                            Appointment Date
+                          </p>
+                          <span className="text-sm">
+                            {moment(appointment.appointmentDate).format(
+                              "DD/MM/YYYY"
+                            )}
+                          </span>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <button
-                            className="px-3 py-2 border-2 m-2"
-                            onClick={() => handleCancelAppointment(appointment._id)}
-                          >
-                            <i className="fa-solid fa-business-time text-gray-600"></i> Cancel
-                          </button>
-                          <button className="px-3 py-2 rounded-lg m-2 bg-btn-bg text-white">
-                            <i className="fa-solid fa-business-time"></i> Reschedule
-                          </button>
+                        <div className="flex justify-between items-center px-3">
+                          <p className="font-light text-gray-600">
+                            Appointment time
+                          </p>
+                          <span className="text-sm">
+                            {moment(appointment.appointmentTime).format(
+                              "hh:mm A"
+                            )}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center px-3">
+                          <p className="font-light text-gray-600">
+                            Patient issue
+                          </p>
+                          <span className="text-sm">
+                            {appointment.patient_issue}
+                          </span>
+                        </div>
+                        <div>
+                          {activeTab == "scheduled" ? (
+                            <div className="flex justify-between items-center">
+                              <button
+                                className="px-3 py-2 border-2 m-2"
+                                onClick={() =>
+                                  handleCancelAppointment(appointment._id)
+                                }
+                              >
+                                <i className="fa-solid fa-business-time text-gray-600"></i>{" "}
+                                Cancel
+                              </button>
+                              <button className="px-3 py-2 rounded-lg m-2 bg-blue-400 text-white">
+                                <i className="fa-solid fa-business-time"></i>{" "}
+                                Reschedule
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+
+                          {activeTab == "cancel" ? (
+                            <div className="flex justify-end  items-center">
+                              <button
+                                className="px-3 py-2 border-2 m-2 bg-red-600 text-white rounded-md"
+                                onClick={() =>
+                                  deleteAppointment(appointment._id)
+                                }
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     ))
@@ -177,6 +280,16 @@ const Appointment = () => {
           </div>
         </div>
       </div>
+
+      <CustomDateModal
+        open={openCustomDateModal}
+        setDateRange={setDateRange}
+        onClose={() => setOpenCustomDateModal(false)}
+      />
+      <CancelAppointmentModal
+        open={openCancelAppointmentModal}
+        onClose={() => setOpenCancelAppointmentModal(false)}
+      />
     </div>
   );
 };

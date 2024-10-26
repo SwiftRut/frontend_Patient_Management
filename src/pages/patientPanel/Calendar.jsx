@@ -28,7 +28,7 @@ const Calendar = ({ filterData }) => {
 
     // Map appointments to the required format for react-big-calendar
     const mappedEvents = allAppointements?.map((appointment) => ({
-      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
+      title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId?.name}`,
       start: new Date(appointment.date),
       end: new Date(appointment.appointmentTime),
       allDay: false,
