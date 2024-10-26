@@ -79,7 +79,7 @@ const Bills = () => {
   return (
     <div>
       <div className="p-4 bg-[#f6f8fb]">
-        <div className="container mt-5">
+        <div className="mx-3 mt-5">
           <div className="bg-white shadow-lg  h-auto p-4 rounded-xl">
             <ul className="overflow-x-auto flex border-b border-gray-300">
               <li className="mr-4">

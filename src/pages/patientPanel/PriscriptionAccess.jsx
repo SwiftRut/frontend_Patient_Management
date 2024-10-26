@@ -62,7 +62,7 @@ export default function PrescriptionAccess() {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="mx-3 mt-5">
         <div className="bg-white shadow-lg h-auto p-4 rounded-xl m-3">
           <div className="flex flex-col md:flex-row justify-between sm:items-center mb-3">
             <h1 className="text-xl font-semibold mb-2 md:mb-0">Prescription Access</h1>

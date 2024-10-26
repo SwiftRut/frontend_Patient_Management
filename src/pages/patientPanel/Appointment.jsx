@@ -121,7 +121,7 @@ const Appointment = () => {
 
   return (
     <div>
-      <div className="container mt-3">
+      <div className="mt-3 mx-3">
         <div className="bg-white shadow-lg h-auto p-4 rounded-xl m-3">
           <ul className="overflow-x-auto flex border-b border-gray-300">
             {["scheduled", "previous", "cancel", "pending"].map((tab) => (
