@@ -11,7 +11,7 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-lg text-gray-800">{name}</h2>
         <div className="flex items-center">
-          {isNew ? (
+          {!isNew ? (
             <span className="bg-blue-100 text-blue-500 px-2 py-1 rounded-full text-sm font-medium mr-2">
               New
             </span>
