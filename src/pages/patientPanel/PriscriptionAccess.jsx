@@ -14,7 +14,7 @@ export default function PrescriptionAccess() {
   useEffect(() => {
     findPatientPrescriptions(user.id);
   }, []);
-
+  console.log(patientPrescription)
   const openModal = (prescription) => {
     setSelectedPrescription(prescription);
     setIsModalOpen(true);

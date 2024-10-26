@@ -34,29 +34,47 @@ const ChatScreen1 = () => {
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, []);
-
+  console.log(allAppointments)
   // Process appointments to get doctor contacts
   useEffect(() => {
     if (allAppointments?.length > 0) {
-      // Create unique doctor contacts from appointments
-      const uniqueDoctors = Array.from(new Set(allAppointments.map(apt => apt.doctorId._id)))
-        .map(doctorId => {
-          const appointment = allAppointments.find(apt => apt.doctorId._id === doctorId);
+      // Create unique doctor contacts from appointments, filtering out null or undefined doctorId
+      const uniqueDoctors = Array.from(
+        new Set(
+          allAppointments
+            ?.filter((apt) => apt?.doctorId) // Ensure doctorId exists
+            .map((apt) => apt.doctorId._id)
+        )
+      ).map((doctorId) => {
+        const appointment = allAppointments?.find(
+          (apt) => apt?.doctorId && apt.doctorId._id === doctorId
+        );
+  
+        // Ensure appointment and doctorId are defined
+        if (appointment && appointment.doctorId) {
           return {
             _id: appointment.doctorId._id,
             name: appointment.doctorId.name,
             profile: appointment.doctorId.avatar,
             speciality: appointment.doctorId.speciality,
             lastAppointment: new Date(appointment.appointmentTime).toLocaleDateString(),
-            email: appointment.doctorId.email
+            email: appointment.doctorId?.email,
           };
-        });
-      setDoctorContacts(uniqueDoctors);
-      if (!selectedChat && uniqueDoctors.length > 0) {
-        setSelectedChat(uniqueDoctors[0]);
+        }
+        return null; // Fallback if no valid data found
+      });
+  
+      // Remove any null values from the array
+      const filteredUniqueDoctors = uniqueDoctors.filter((doctor) => doctor !== null);
+      setDoctorContacts(filteredUniqueDoctors);
+  
+      // Automatically select the first chat if available
+      if (!selectedChat && filteredUniqueDoctors.length > 0) {
+        setSelectedChat(filteredUniqueDoctors[0]);
       }
     }
   }, [allAppointments]);
+  
 
   const handleChatClick = async (doctor) => {
     setSelectedChat(doctor);

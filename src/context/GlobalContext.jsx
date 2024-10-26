@@ -14,6 +14,7 @@ export const GlobalProvider = ({ children }) => {
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
   const [allAppointments, setAllAppointments] = useState([]);
+  const [allAppointmentsById, setAllAppointmentsById] = useState([]);
 
   // Hospital Management
   const getAllHospitals = async () => {
@@ -178,6 +179,17 @@ export const GlobalProvider = ({ children }) => {
       const response = await apiService.GetAppointmentById(id);
       console.log("Fetched appointment:", response);
       return response.data;
+    } catch (error) {
+      console.log("Error fetching appointment by ID:", error);
+      throw error;
+    }
+  };
+
+  const getAllAppointmentById = async (patientId) => {
+    try {
+      const response = await apiService.GetALLAppointmentById(patientId);
+      console.log("Fetched appointment:", response);
+      setAllAppointmentsById(response.data)
     } catch (error) {
       console.log("Error fetching appointment by ID:", error);
       throw error;
@@ -396,6 +408,8 @@ export const GlobalProvider = ({ children }) => {
 
         // Appointment
         allAppointments,
+        allAppointmentsById,
+        getAllAppointmentById,
         setAllAppointments,
         getAllAppointments,
         getAppointmentById,
