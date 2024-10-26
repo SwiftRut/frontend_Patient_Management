@@ -70,6 +70,7 @@ const apiService = {
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/singleappointment/${id}`),
+  GetALLAppointmentById: (patientId) => api.get(`/appoinment/getAllAppointmentById/${patientId}`),
   EditAppointment: (id, userData) =>
     api.put(`/appoinment/updateappointment/${id}`, userData),
   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),

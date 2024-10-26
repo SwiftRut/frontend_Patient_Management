@@ -13,25 +13,12 @@ const PersonalHealthRecord = () => {
   const [selectedPrescription, setSelectedPrescription] = useState(null);
   const { user } = useAuth();
 
-  const [prescription, setPrescription] = useState([
-    {
-      name: "Apollo Hospitals",
-      date: "2 Jan, 2022",
-      disease: "Colds and Flu",
-    },
-    {
-      name: "Medanta The Medicity",
-      date: "2 Jan, 2022",
-      disease: "Allergies",
-    },
-  ]);
+  const [prescription, setPrescription] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const { userData, patientPrescription, findPatientPrescriptions } =
     useGlobal();
 
-    console.log(patientPrescription);
-    console.log(user);
   useEffect(() => {
     findPatientPrescriptions(user?.id);
   }, []);

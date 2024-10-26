@@ -12,6 +12,10 @@ import { InputBase } from "@mui/material";
 import { FiPhoneCall } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Search } from "@mui/icons-material";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useDoctor } from "../../hooks/useDoctor";
+import { useAuth } from "../../hooks/useAuth";
+import moment from "moment";
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -22,6 +26,13 @@ const Teleconsultation = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
+  const { user } = useAuth();
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
+
+  const [dateRange, setDateRange] = useState("Any Date");
+  
+  const { getAllDoctors, allDoctors } = useDoctor();
+  const { getAllHospitals, allHospitals,getAppointmentById,allAppointmentsById,getAllAppointmentById } = useGlobal();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -103,6 +114,74 @@ const Teleconsultation = () => {
       diseaseName: "Spondylitis",
     },
   ];
+
+  useEffect(() => {
+    getAllDoctors();
+    getAllHospitals();
+    getAllAppointmentById(user?.id);
+    
+  }, []);
+  console.log("piyu <3",allAppointmentsById);
+
+  useEffect(() => {
+    filterAppointments();
+  }, [activeTab, allAppointmentsById, dateRange, searchTerm]);
+
+  const filterAppointments = () => {
+    const currentDate = moment();
+
+    const filtered = allAppointmentsById?.filter((appointment) => {
+      const appointmentDate = moment(appointment.date);
+      const lowerSearchTerm = searchTerm.toLowerCase();
+
+      const [startDate, endDate] = dateRange
+        .split(" - ")
+        .map((date) => moment(date.trim()));
+
+      const isWithinDateRange =
+        dateRange === "Any Date" ||
+        (appointmentDate.isSameOrAfter(startDate) &&
+          appointmentDate.isSameOrBefore(endDate));
+
+      const matchesSearch =
+        appointment.doctorId.name.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.type.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.patient_issue.toLowerCase().includes(lowerSearchTerm);
+
+      switch (activeTab) {
+        case "scheduled":
+          return (
+            appointmentDate.isAfter(currentDate) &&
+            appointment.status !== "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
+        case "previous":
+          return (
+            appointmentDate.isBefore(currentDate) &&
+            appointment.status !== "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
+        case "cancel":
+          return (
+            appointment.status === "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
+        case "pending":
+          return (
+            appointment.status === "pending" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
+        default:
+          return false;
+      }
+    });
+    setFilteredAppointments(filtered || []);
+  };
+
   return (
     <>
       <div>
@@ -435,6 +514,7 @@ const Teleconsultation = () => {
                     </div>
                   </div>
                 )}
+
                 {activeTab === "cancel" && (
                   <div className="p-2">
                     <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
@@ -539,6 +619,7 @@ const Teleconsultation = () => {
                     </div>
                   </div>
                 )}
+
                 {activeTab === "pending" && (
                   <div>
                     <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">

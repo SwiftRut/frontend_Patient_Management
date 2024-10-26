@@ -49,11 +49,6 @@ const AppointmentBooking = () => {
 
   const isAllSelected = () => {
     return (
-      // specialty &&
-      // country &&
-      // state &&
-      // city &&
-      // hospital &&
       doctor && appointmentType
     );
   };
