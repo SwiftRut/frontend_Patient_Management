@@ -48,6 +48,7 @@ const CreatePrescriptionTools = () => {
             time={appointment.time}
             isNew={appointment.isNew}
             status={appointment.status} // Additional prop if needed in the card
+            patientId={appointment.patientId}
           />
         ))}
       </div>

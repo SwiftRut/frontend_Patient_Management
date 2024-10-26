@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility'; // Material UI eye icon
 import { useNavigate } from 'react-router-dom';
 
-const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNew }) => {
+const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNew,patientId }) => {
   const navigate = useNavigate();
 
   return (
@@ -20,7 +20,7 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
               Old
             </span>
           )}
-          <VisibilityIcon className="text-gray-400" onClick={() => navigate(`/doctor/prescriptionView/${id}`)} />
+          <VisibilityIcon className="text-gray-400" onClick={() => navigate(`/doctor/prescriptionView/${patientId}`)} />
         </div>
       </div>
       <div className="text-sm text-gray-600 mb-4">
