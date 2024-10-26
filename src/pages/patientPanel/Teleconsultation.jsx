@@ -31,16 +31,16 @@ const Teleconsultation = () => {
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
   const [dateRange, setDateRange] = useState("Any Date");
-  
   const { getAllDoctors, allDoctors } = useDoctor();
   const { getAllHospitals, allHospitals,getAppointmentById,allAppointmentsById,getAllAppointmentById } = useGlobal();
 
   const { findPatientPrescriptions, patientPrescription } = useGlobal();
-  const {user} = useAuth();
+
   useEffect(() => {
     findPatientPrescriptions(user.id);
   }, []);
   console.log(patientPrescription)
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -159,14 +159,14 @@ const Teleconsultation = () => {
         case "scheduled":
           return (
             appointmentDate.isAfter(currentDate) &&
-            appointment.status !== "canceled" &&
+            appointment.status === "scheduled" &&
             isWithinDateRange &&
             matchesSearch
           );
         case "previous":
           return (
             appointmentDate.isBefore(currentDate) &&
-            appointment.status !== "canceled" &&
+            appointment.status === "completed" &&
             isWithinDateRange &&
             matchesSearch
           );
