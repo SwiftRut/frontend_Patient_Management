@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, IconButton, TextField, InputAdornment } from "@mui/material";
+import { Button, IconButton, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
 import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
@@ -17,6 +17,8 @@ export default function AppointmentManagement() {
   const [activeTab, setActiveTab] = useState("Today Appointment");
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
+  const [timeFilter, setTimeFilter] = useState("All");
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -72,22 +74,43 @@ export default function AppointmentManagement() {
     }
   };
 
+  const filterAppointmentsByTime = (appointments) => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Set to start of today
+
+    return appointments.filter((appointment) => {
+      const appointmentDate = new Date(appointment.date);
+      appointmentDate.setHours(0, 0, 0, 0); // Set to start of appointment day
+
+      switch (timeFilter) {
+        case "Day":
+          return appointmentDate.getTime() === now.getTime();
+        case "Week":
+          const weekStart = new Date(now);
+          weekStart.setDate(now.getDate() - now.getDay());
+          const weekEnd = new Date(weekStart);
+          weekEnd.setDate(weekStart.getDate() + 6);
+          return appointmentDate >= weekStart && appointmentDate <= weekEnd;
+        case "Month":
+          return (
+            appointmentDate.getMonth() === now.getMonth() &&
+            appointmentDate.getFullYear() === now.getFullYear()
+          );
+        default:
+          return true;
+      }
+    });
+  };
+
   const filteredAppointments = getAppointments().filter((appointment) => {
     const lowerSearchTerm = searchTerm.toLowerCase();
-    const appointmentDate = new Date(appointment.date);
-    const [startDate, endDate] = dateRange === "Any Date" 
-      ? [null, null] 
-      : dateRange.split(" - ").map(date => new Date(date.trim()));
-
-    const isWithinDateRange = dateRange === "Any Date" ||
-      (appointmentDate >= startDate && appointmentDate <= endDate);
-
     return (
-      isWithinDateRange &&
-      (appointment.patientId.firstName.toLowerCase().includes(lowerSearchTerm) ||
-        appointment.patient_issue.toLowerCase().includes(lowerSearchTerm))
+      appointment.patientId.firstName.toLowerCase().includes(lowerSearchTerm) ||
+      appointment.patient_issue.toLowerCase().includes(lowerSearchTerm)
     );
   });
+
+  const timeFilteredAppointments = filterAppointmentsByTime(filteredAppointments);
 
   return (
     <div className="bg-[#e4e3e3] p-6 h-full">
@@ -123,7 +146,7 @@ export default function AppointmentManagement() {
                 className="search outline-none"
                 variant="outlined"
                 placeholder="Search Patient"
-                value={searchTerm}
+                value={searchTerm || ""}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 InputProps={{
                   startAdornment: (
@@ -134,14 +157,16 @@ export default function AppointmentManagement() {
                 }}
               />
 
-              <Button
+              <Select
+                value={timeFilter}
+                onChange={(e) => setTimeFilter(e.target.value)}
                 variant="outlined"
-                startIcon={<DateRange />}
-                color="gray"
-                onClick={() => setOpenCustomDateModal(true)}
               >
-                {dateRange}
-              </Button>
+                <MenuItem value="All">All Time</MenuItem>
+                <MenuItem value="Day">Today</MenuItem>
+                <MenuItem value="Week">Week</MenuItem>
+                <MenuItem value="Month">Month</MenuItem>
+              </Select>
 
               <div className="time-slot">
                 <Button
@@ -171,7 +196,7 @@ export default function AppointmentManagement() {
                 </tr>
               </thead>
               <tbody>
-                {filteredAppointments.map((appointment) => (
+                {timeFilteredAppointments.map((appointment) => (
                   <tr key={appointment._id} className="border-t">
                     <td className="p-3">
                       {`${appointment.patientId.firstName} ${appointment.patientId.lastName}`}
@@ -213,8 +238,11 @@ export default function AppointmentManagement() {
 
         <CustomDateModal
           open={openCustomDateModal}
-          setDateRange={setDateRange}
           onClose={() => setOpenCustomDateModal(false)}
+          onApply={(dateRange) => {
+            setDateRange(`${dateRange[0]} - ${dateRange[1]}`);
+            setOpenCustomDateModal(false);
+          }}
         />
         <CancelAppointmentModal
           open={openCancelAppointmentModal}
