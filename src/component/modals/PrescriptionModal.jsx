@@ -52,61 +52,73 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                 <p>
                   Patient Name:{" "}
                   <span className="font-medium">
-                    {prescriptionData?.patientId.firstName + ' ' + prescriptionData?.patientId.lastName}
+                    {prescriptionData?.patientId.firstName +
+                      " " +
+                      prescriptionData?.patientId.lastName}
                   </span>
                 </p>
                 <p>
                   Prescription Date:{" "}
                   <span className="font-medium">
-                    {new Date(prescriptionData.date).toLocaleDateString('en-US', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric'
-                    })}
+                    {new Date(prescriptionData.date).toLocaleDateString(
+                      "en-US",
+                      {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      }
+                    )}
                   </span>
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
                 <p>
                   Gender:{" "}
-                  <span className="font-medium">{prescriptionData.patientId.gender}</span>
+                  <span className="font-medium">
+                    {prescriptionData.patientId.gender}
+                  </span>
                 </p>
                 <p>
                   Age:{" "}
-                  <span className="font-medium">{prescriptionData.patientId.age}</span>
+                  <span className="font-medium">
+                    {prescriptionData.patientId.age}
+                  </span>
                 </p>
               </div>
               <p className="break-words">
                 Address:{" "}
-                <span className="font-medium">{prescriptionData.patientId.address}</span>
+                <span className="font-medium">
+                  {prescriptionData.patientId.address}
+                </span>
               </p>
             </div>
           </div>
 
           {/* Medicines Table */}
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Medicine Name</TableCell>
-                <TableCell>Strength</TableCell>
-                <TableCell>Dose</TableCell>
-                <TableCell>Duration</TableCell>
-                <TableCell>When to Take</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {prescriptionData?.medications?.map((medicine, index) => (
-                <TableRow key={index}>
-                  <TableCell>{medicine.medicineName}</TableCell>
-                  <TableCell>{medicine.strength}</TableCell>
-                  <TableCell>{medicine.dose}</TableCell>
-                  <TableCell>{medicine.duration}</TableCell>
-                  <TableCell>{medicine.whenToTake}</TableCell>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Medicine Name</TableCell>
+                  <TableCell>Strength</TableCell>
+                  <TableCell>Dose</TableCell>
+                  <TableCell>Duration</TableCell>
+                  <TableCell>When to Take</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-
+              </TableHead>
+              <TableBody>
+                {prescriptionData?.medications?.map((medicine, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{medicine.medicineName}</TableCell>
+                    <TableCell>{medicine.strength}</TableCell>
+                    <TableCell>{medicine.dose}</TableCell>
+                    <TableCell>{medicine.duration}</TableCell>
+                    <TableCell>{medicine.whenToTake}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
           {/* Additional Note */}
           <div className="mt-4">
             <h3 className="font-bold">Additional Note:</h3>
