@@ -13,7 +13,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import signature from "../../assets/signature.svg";
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
-  console.log(prescriptionData)
   return (
     <Dialog
       open={open}
@@ -53,13 +52,13 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                 <p>
                   Patient Name:{" "}
                   <span className="font-medium">
-                    {prescriptionData?.patientName}
+                    {prescriptionData?.patientId.firstName + ' ' + prescriptionData?.patientId.lastName}
                   </span>
                 </p>
                 <p>
                   Prescription Date:{" "}
                   <span className="font-medium">
-                    {new Date(prescriptionData.prescriptionDate).toLocaleDateString('en-US', {
+                    {new Date(prescriptionData.date).toLocaleDateString('en-US', {
                       day: 'numeric',
                       month: 'short',
                       year: 'numeric'
@@ -70,16 +69,16 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
                 <p>
                   Gender:{" "}
-                  <span className="font-medium">{prescriptionData.gender}</span>
+                  <span className="font-medium">{prescriptionData.patientId.gender}</span>
                 </p>
                 <p>
                   Age:{" "}
-                  <span className="font-medium">{prescriptionData.age}</span>
+                  <span className="font-medium">{prescriptionData.patientId.age}</span>
                 </p>
               </div>
               <p className="break-words">
                 Address:{" "}
-                <span className="font-medium">{prescriptionData.address}</span>
+                <span className="font-medium">{prescriptionData.patientId.address}</span>
               </p>
             </div>
           </div>
@@ -96,7 +95,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {prescriptionData?.medicines?.map((medicine, index) => (
+              {prescriptionData?.medications?.map((medicine, index) => (
                 <TableRow key={index}>
                   <TableCell>{medicine.medicineName}</TableCell>
                   <TableCell>{medicine.strength}</TableCell>
@@ -111,7 +110,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
           {/* Additional Note */}
           <div className="mt-4">
             <h3 className="font-bold">Additional Note:</h3>
-            <p>{prescriptionData.additionalNote}</p>
+            <p>{prescriptionData.instructions}</p>
           </div>
 
           {/* Signature */}
