@@ -126,7 +126,7 @@ const Teleconsultation = () => {
         </div>
         <div className="mt-1 flex items-center justify-between">
           <span className="text-base font-normal text-[#818194]">Appointment Time</span>
-          <p className="text-sm font-medium text-[#4F4F4F]">{appointment.time || "N/A"}</p>
+          <p className="text-sm font-medium text-[#4F4F4F]">{appointment.date ? moment(appointment.date).format('HH:mm') : "N/A"}</p>
         </div>
         <div className="mt-1 flex items-center justify-between">
           <span className="text-base font-normal text-[#818194]">Patient Issue</span>
@@ -293,11 +293,13 @@ const Teleconsultation = () => {
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                   Appointment Time:{" "}
-                  <span className="text-[#030229]">{selectedAppointment.time || "N/A"}</span>
+                  <span className="text-[#030229]">
+                    {selectedAppointment.date ? moment(selectedAppointment.date).format('HH:mm') : "N/A"}
+                  </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                   Hospital Name:{" "}
-                  <span className="text-[#030229]">{selectedAppointment.hospitalId.name || "N/A"}</span>
+                  <span className="text-[#030229]">{selectedAppointment?.hospitalId?.name || "N/A"}</span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                   Patient Issue:{" "}
