@@ -182,7 +182,7 @@ export default function AppointmentManagement() {
                       <span className="a-time">{formatTime(appointment.appointmentTime)}</span>
                     </td>
                     <td className="p-3">
-                      <h3 className={`px-3 py-1 text-sm font-medium rounded-full w-[4rem] ${
+                      <h3 className={`px-3 py-1 text-sm font-medium rounded-full w-[6.5rem] text-center ${
                         appointment.type === "online" 
                           ? "bg-yellow-100 text-yellow-600" 
                           : "bg-blue-100 text-blue-600"
