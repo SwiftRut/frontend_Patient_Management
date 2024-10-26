@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 export default function TeleConsultationTable({ patient }) {
     const navigate = useNavigate();
-
+    console.log(patient);
     return (
         <tr className="border-t">
-            <td className="p-3">{patient.patientName}</td>
-            <td className="p-3">{patient.diseaseName}</td>
-            <td className="p-3">{patient.patientIssue}</td>
-            <td className="p-3">{patient.lastAppointmentDate}</td>
-            <td className="p-3 text-blue-600">{patient.lastAppointmentTime}</td>
+            <td className="p-3">{patient.name}</td>
+            <td className="p-3">{patient.disease}</td>
+            <td className="p-3">{patient.issue}</td>
+            <td className="p-3">{patient.time}</td>
+            <td className="p-3 text-blue-600">{patient.time}</td>
             <td className="p-3">{patient.age}</td>
             <td className="p-3 gender">
                 <span className={patient.gender === 'Male' ? 'text-blue-500' : 'text-pink-500'}>
@@ -22,7 +22,7 @@ export default function TeleConsultationTable({ patient }) {
             </td>
             <td className="p-3">
                 <IconButton color="primary">
-                    <Visibility onClick={() => navigate(`/doctor/patientDetail/${patient.id}`)} />
+                    <Visibility onClick={() => navigate(`/doctor/patientDetail/${patient.patientId}`)} />
                 </IconButton>
             </td>
         </tr>

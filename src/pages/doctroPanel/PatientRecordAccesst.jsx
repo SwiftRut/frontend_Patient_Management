@@ -1,20 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconButton, TextField, InputAdornment, MenuItem, Select } from '@mui/material';
 import { Search, Visibility } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useGlobal } from '../../hooks/useGlobal';
+import { useAuth } from '../../hooks/useAuth';
 
-export default function PatientRecordAccesst() {
+export default function PatientRecordAccess() {
   const [searchTerm, setSearchTerm] = useState('');
   const [timeFilter, setTimeFilter] = useState('Month');
   const navigate = useNavigate();
+  const { getAppointmetnsForDoctor, allAppointments } = useGlobal();
+  const { user } = useAuth();
+  
+  const [patients, setPatients] = useState([]);
 
-  const patients = [
-    { patientName: 'Marcus Philips', diseaseName: 'Viral Infection', patientIssue: 'Feeling Tired', lastAppointmentDate: '10 oct, 2024', lastAppointmentTime: '4:30 PM', age: '22 Years', gender: 'Male' },
-    { patientName: 'London Shaffer', diseaseName: 'Diabetes', patientIssue: 'Stomach Ache', lastAppointmentDate: '16 oct, 2024', lastAppointmentTime: '5:00 PM', age: '45 Years', gender: 'Female' },
-    // Add more data...
-  ];
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      await getAppointmetnsForDoctor(user.id);
+    };
+    fetchAppointments();
+  }, []);
 
-  // Function to filter patients based on time filter
+  useEffect(() => {
+    // Map appointments to patients format
+    const mappedPatients = allAppointments.map((appointment) => ({
+      id: appointment._id,
+      patientsId: appointment.patientId._id,
+      patientName: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
+      diseaseName: appointment.type || 'N/A', // or any relevant field for "diseaseName"
+      patientIssue: appointment.patient_issue || 'N/A',
+      lastAppointmentDate: new Date(appointment.date).toLocaleDateString(),
+      lastAppointmentTime: new Date(appointment.appointmentTime).toLocaleTimeString(),
+      age: `${appointment.patientId.age} Years`,
+      gender: appointment.patientId.gender,
+    }));
+    setPatients(mappedPatients);
+  }, [allAppointments]);
+
   const filterByTime = (patients, timeFilter) => {
     const now = new Date();
     return patients.filter((patient) => {
@@ -33,56 +55,43 @@ export default function PatientRecordAccesst() {
     });
   };
 
-  // Filter patients based on search term and time filter
   const filteredPatients = filterByTime(patients, timeFilter).filter((patient) =>
     patient.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     patient.diseaseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  console.log(allAppointments);
   return (
     <div className="bg-[#e4e3e3] p-6 h-full">
-
       <div className="patioentRecord p-6 bg-white rounded-lg shadow-md">
-
-        {/* Search and Filter Section */}
         <div className="flex justify-between items-center mb-4">
-          <div className="left">
-            <h2 className="text-lg font-semibold mb-4">Patient Record Access</h2>
+          <h2 className="text-lg font-semibold mb-4">Patient Record Access</h2>
+          <div className="flex space-x-4">
+            <TextField
+              variant="outlined"
+              placeholder="Search Patient"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Select
+              value={timeFilter}
+              onChange={(e) => setTimeFilter(e.target.value)}
+              variant="outlined"
+            >
+              <MenuItem value="Month">Month</MenuItem>
+              <MenuItem value="Week">Week</MenuItem>
+              <MenuItem value="Day">Day</MenuItem>
+            </Select>
           </div>
-
-          <div className="right flex justify-between items-center mb-4">
-            <div className="pr-search">
-              <TextField
-                variant="outlined"
-                placeholder="Search Patient"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-
-            <div className="pr-select">
-              <Select
-                value={timeFilter}
-                onChange={(e) => setTimeFilter(e.target.value)}
-                variant="outlined"
-              >
-                <MenuItem value="Month">Month</MenuItem>
-                <MenuItem value="Week">Week</MenuItem>
-                <MenuItem value="Day">Day</MenuItem>
-              </Select>
-            </div>
-          </div>
-
         </div>
 
-        {/* Table of Patient Records */}
         <div className="pr-data max-h-[600px] overflow-y-auto">
           <table className="min-w-full table-auto">
             <thead className="sticky top-0 bg-gray-100 z-10">
@@ -99,13 +108,13 @@ export default function PatientRecordAccesst() {
             </thead>
             <tbody>
               {filteredPatients.map((patient, index) => (
-                <tr key={index} className="border-t">
-                  <td className="p-3">{patient.patientName}</td>
-                  <td className="p-3">{patient.diseaseName}</td>
-                  <td className="p-3">{patient.patientIssue}</td>
-                  <td className="p-3">{patient.lastAppointmentDate}</td>
-                  <td className="p-3 text-blue-600">{patient.lastAppointmentTime}</td>
-                  <td className="p-3">{patient.age}</td>
+                <tr key={index}>
+                  <td className="p-3 text-sm">{patient.patientName}</td>
+                  <td className="p-3 text-sm">{patient.diseaseName}</td>
+                  <td className="p-3 text-sm">{patient.patientIssue}</td>
+                  <td className="p-3 text-sm">{patient.lastAppointmentDate}</td>
+                  <td className="p-3 text-sm">{patient.lastAppointmentTime}</td>
+                  <td className="p-3 text-sm">{patient.age}</td>
                   <td className="p-3 gender">
                     <span className={patient.gender === 'Male' ? 'text-blue-500' : 'text-pink-500'}>
                       {patient.gender === 'Male' ? '♂' : '♀'}
@@ -113,7 +122,7 @@ export default function PatientRecordAccesst() {
                   </td>
                   <td className="p-3">
                     <IconButton color="primary">
-                      <Visibility onClick={() => navigate(`/doctor/patientDetail/${patient.id}`)} />
+                      <Visibility onClick={() => navigate(`/doctor/patientDetail/${patient.patientsId}`)} />
                     </IconButton>
                   </td>
                 </tr>
@@ -121,8 +130,7 @@ export default function PatientRecordAccesst() {
             </tbody>
           </table>
         </div>
-
       </div>
     </div>
-  )
+  );
 }

@@ -292,14 +292,25 @@ export const GlobalProvider = ({ children }) => {
         getAppointmetnsForDoctor(user.id);
       }
       console.log(response.data);
-    } catch (error) {
+    }catch (error) {
       console.log(error);
       throw error;
     }
-  };
-  const getAppointmetnsForDoctor = async (doctorId) => {
-    console.log(doctorId, "<<<<<<<<<<<<<<<<<<<<< this doctorId");
-    try {
+  }
+  const [allPrescriptions, setAllPrescriptions] = useState([]);
+  const getAllPrescriptions = async()=>{
+    try{
+      const response = await apiService.GetAllPrescriptions();
+      console.log(response.data);
+      setAllPrescriptions(response.data);
+    }catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+  const getAppointmetnsForDoctor = async(doctorId)=>{
+    console.log(doctorId,"<<<<<<<<<<<<<<<<<<<<< this doctorId")
+    try{
       console.log("getting for doctor appointment......");
       const response = await apiService.GetAppointsForDoctor(doctorId);
       console.log(response.data.data);
@@ -350,7 +361,8 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        //prescription
+        getAllPrescriptions,
+        allPrescriptions,
         createPrescription,
         prescription,
         setPrescription,

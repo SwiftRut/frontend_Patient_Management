@@ -28,8 +28,8 @@ const CreatePrescriptionTools = () => {
     time: formatTime(appointment.appointmentTime),
     isNew: !appointment.patientId.appointmentId || appointment.patientId.appointmentId.length <= 1,
     // Additional data that might be needed
-    patientId: appointment.patientId?._id,
-    doctorId: appointment.doctorId?._id,
+    patientId: appointment.patientId._id,
+    doctorId: appointment?.doctorId?._id,
     status: appointment.status
   })) || [];
 
@@ -37,7 +37,7 @@ const CreatePrescriptionTools = () => {
     <div className="cp-tool p-8 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Today Appointment</h1>
       <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {transformedAppointments.map((appointment) => (
+        {transformedAppointments?.map((appointment) => (
           <CreatePrescription
             key={appointment.id}
             id={appointment.id}

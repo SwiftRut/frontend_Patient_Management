@@ -629,7 +629,7 @@ const PersonalHealthRecord = () => {
               <div className="details w-[86%] sm:w-[88%]">
                 <p className="text-[17px] text-[#141414] font-normal	">
                   It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout. 
+                  by the readable content of a page when looking at its layout. 
                 </p>
               </div>
             </div>

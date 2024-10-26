@@ -1,79 +1,86 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs, Tab, TextField, Table, TableBody, TableCell, TableHead, TableRow, IconButton, Badge } from '@mui/material';
 import { Visibility } from '@mui/icons-material';
 import MaleIcon from '@mui/icons-material/Male';
 import FemaleIcon from '@mui/icons-material/Female';
 import PrescriptionModal from '../../component/modals/PrescriptionModal.jsx';
-
-// Dummy Data for Patients
-const todayPatients = [
-  { name: 'Marcus Philips', number: '89564 25462', type: 'Online', time: '4:30 PM', age: '22 Years', gender: 'Male' },
-  { name: 'London Shaffer', number: '89564 25462', type: 'Onsite', time: '5:00 PM', age: '74 Years', gender: 'Female' },
-  { name: 'Julianna Warren', number: '89564 25462', type: 'Onsite', time: '4:30 PM', age: '44 Years', gender: 'Female' },
-  { name: 'Marcus Philips', number: '89564 25462', type: 'Online', time: '5:00 PM', age: '22 Years', gender: 'Male' },
-];
-
-const olderPatients = [
-  { name: 'Julianna Warren', number: '89564 25462', type: 'Onsite', time: '8:30 AM', age: '55 Years', gender: 'Female' },
-  { name: 'London Shaffer', number: '89564 25462', type: 'Online', time: '4:30 PM', age: '22 Years', gender: 'Female' },
-  { name: 'Marcus Philips', number: '89564 25462', type: 'Onsite', time: '8:30 AM', age: '22 Years', gender: 'Male' },
-  { name: 'Marcus Philips', number: '89564 25462', type: 'Online', time: '5:00 PM', age: '22 Years', gender: 'Male' },
-];
-
-const prescriptionData = {
-  patientName: 'Albatrao Bhajirao',
-  prescriptionDate: '2 Jan, 2022',
-  gender: 'Male',
-  age: '36 Years',
-  address: 'B-105 Virat Bungalows Punagam Motavaracha Jamnagar.',
-  medicines: [
-    { name: 'Calcium carbonate', strength: '100 Mg', dose: '1-0-1', duration: '2 Day', whenToTake: 'Before Food' },
-    { name: 'Cyclobenzaprine', strength: '200 Mg', dose: '1-1-1', duration: '4 Day', whenToTake: 'With Food' },
-  ],
-  additionalNote: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-};
-
+import { useGlobal } from '../../hooks/useGlobal.jsx';
 
 const ManagePrescriptionTools = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPrescription, setSelectedPrescription] = useState(null);
+  const { getAllPrescriptions, allPrescriptions } = useGlobal();
 
-  const handleModalOpen = () => {
+  useEffect(() => {
+    getAllPrescriptions();
+  }, []);
+
+  const handleModalOpen = (prescription) => {
+    setSelectedPrescription(prescription);
     setModalOpen(true);
   };
 
   const handleModalClose = () => {
     setModalOpen(false);
+    setSelectedPrescription(null);
   };
 
-  // Choose the appropriate data based on the active tab
-  const currentPatients = activeTab === 0 ? todayPatients : olderPatients;
-  const currentTabName = activeTab === 0 ? 'Today Patients' : "Older Patients";
+  // Separate prescriptions into today's and older ones
+  const today = new Date().toISOString().split('T')[0];
+  const todayPrescriptions = allPrescriptions?.filter(
+    prescription => prescription.date.split('T')[0] === today
+  ) || [];
+  const olderPrescriptions = allPrescriptions?.filter(
+    prescription => prescription.date.split('T')[0] !== today
+  ) || [];
 
-  // Filtering the patient data based on search input
-  const filteredPatients = currentPatients.filter(
-    (patient) =>
-      patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      patient.number.includes(searchTerm) ||
-      patient.age.includes(searchTerm)
+  // Choose the appropriate data based on the active tab
+  const currentPrescriptions = activeTab === 0 ? todayPrescriptions : olderPrescriptions;
+  const currentTabName = activeTab === 0 ? 'Today Prescriptions' : "Older Prescriptions";
+
+  // Filtering the prescriptions based on search input
+  const filteredPrescriptions = currentPrescriptions.filter(
+    (prescription) => {
+      const searchString = searchTerm.toLowerCase();
+      const patientName = `${prescription.patientId.firstName} ${prescription.patientId.lastName}`.toLowerCase();
+      const phone = prescription.patientId.phone;
+      const age = prescription.patientId.age?.toString() || '';
+
+      return patientName.includes(searchString) ||
+        phone.includes(searchString) ||
+        age.includes(searchString);
+    }
   );
+
+  // Format prescription data for the modal
+  const formatPrescriptionForModal = (prescription) => ({
+    patientName: `${prescription.patientId.firstName} ${prescription.patientId.lastName}`,
+    prescriptionDate: new Date(prescription.date).toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    }),
+    gender: prescription.patientId.gender,
+    age: `${prescription.patientId.age} Years`,
+    address: prescription.patientId.address,
+    medicines: prescription.medications || [],
+    additionalNote: prescription.instructions
+  });
 
   return (
     <div className="manage-p p-8 bg-white min-h-screen shadow-lg rounded-lg">
-      {/* Tabs */}
       <Tabs value={activeTab} onChange={(e, newValue) => setActiveTab(newValue)}>
-        <Tab label="Today Prescription" className='today' />
-        <Tab label="Older Prescription" className='older' />
+        <Tab label="Today Prescription" className="today" />
+        <Tab label="Older Prescription" className="older" />
       </Tabs>
 
       <div className="head flex justify-between">
-
         <div className="tital">
           <p>{currentTabName}</p>
         </div>
 
-        {/* Search Field */}
         <div className="mt-4 mb-6 mp-tool">
           <TextField
             label="Search Patient"
@@ -85,41 +92,48 @@ const ManagePrescriptionTools = () => {
         </div>
       </div>
 
-      {/* Table */}
       <Table>
         <TableHead>
           <TableRow>
             <TableCell>Patient Name</TableCell>
             <TableCell>Patient Number</TableCell>
-            <TableCell>Appointment Type</TableCell>
-            <TableCell>Appointment Time</TableCell>
+            <TableCell>Appointment Status</TableCell>
+            <TableCell>Prescription Date</TableCell>
             <TableCell>Age</TableCell>
             <TableCell>Gender</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredPatients.map((patient, index) => (
-            <TableRow key={index}>
-              <TableCell>{patient.name}</TableCell>
-              <TableCell>{patient.number}</TableCell>
-              <TableCell className='type'>
+          {filteredPrescriptions.map((prescription) => (
+            <TableRow key={prescription._id}>
+              <TableCell>
+                {`${prescription.patientId.firstName} ${prescription.patientId.lastName}`}
+              </TableCell>
+              <TableCell>{prescription.patientId.phone}</TableCell>
+              <TableCell className="type">
                 <Badge
-                  badgeContent={patient.type}
-                  color={patient.type === 'Online' ? 'warning' : 'primary'}
+                  badgeContent={prescription.status}
+                  color={prescription.status === 'Active' ? 'primary' : 'warning'}
                 />
               </TableCell>
-              <TableCell>{patient.time}</TableCell>
-              <TableCell>{patient.age}</TableCell>
               <TableCell>
-                {patient.gender === 'Male' ? (
+                {new Date(prescription.date).toLocaleTimeString('en-US', {
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true
+                })}
+              </TableCell>
+              <TableCell>{`${prescription.patientId.age} Years`}</TableCell>
+              <TableCell>
+                {prescription.patientId.gender === 'male' ? (
                   <MaleIcon style={{ color: 'blue' }} />
                 ) : (
                   <FemaleIcon style={{ color: 'red' }} />
                 )}
               </TableCell>
               <TableCell>
-                <IconButton onClick={handleModalOpen} >
+                <IconButton onClick={() => handleModalOpen(prescription)}>
                   <Visibility style={{ color: '#0EABEB' }} />
                 </IconButton>
               </TableCell>
@@ -127,7 +141,14 @@ const ManagePrescriptionTools = () => {
           ))}
         </TableBody>
       </Table>
-      <PrescriptionModal open={modalOpen} handleClose={handleModalClose} prescriptionData={prescriptionData} />
+
+      {selectedPrescription && (
+        <PrescriptionModal
+          open={modalOpen}
+          handleClose={handleModalClose}
+          prescriptionData={formatPrescriptionForModal(selectedPrescription)}
+        />
+      )}
     </div>
   );
 };
