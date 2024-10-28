@@ -4,21 +4,21 @@ import { Close } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 const CustomDateModal = ({ open, onClose, onApply }) => {
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   const handleReset = () => {
-    setFromDate(null);
-    setToDate(null);
+    setFromDate("");
+    setToDate("");
+    onApply([null, null]);
+    onClose();
   };
 
   const handleApply = () => {
     if (fromDate && toDate) {
-      const formatDate = (date) => {
-        const options = { year: "numeric", month: "long", day: "2-digit" };
-        return new Date(date).toLocaleDateString("en-US", options);
-      };
-      onApply([fromDate, toDate]); // Pass the range as an array of dates
+      onApply([fromDate, toDate]);
+    } else {
+      onApply([null, null]);
     }
     onClose();
   };
@@ -60,7 +60,7 @@ const CustomDateModal = ({ open, onClose, onApply }) => {
             variant="contained"
             color="primary"
             onClick={handleApply}
-            disabled={!fromDate || !toDate} // Disable if dates are not selected
+            disabled={!fromDate || !toDate}
           >
             Apply
           </Button>

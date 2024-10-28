@@ -8,7 +8,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function TeleconsultationModule() {
-  const { getAppointmetnsForDoctor, allAppointments } = useGlobal();
+  const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } = useGlobal();
   const [activeTab, setActiveTab] = useState(0);
   const [dateRange, setDateRange] = useState("Any Date");
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
@@ -16,9 +16,27 @@ export default function TeleconsultationModule() {
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
-  }, []);
-  console.log(allAppointments  , "appointments")
-  // Function to filter appointments based on status and date
+  }, [user.id]);
+
+  const handleCancelAppointment = async (appointmentId) => {
+    try {
+      await cancelAppointment(appointmentId); // API call to cancel
+      getAppointmetnsForDoctor(user.id); // Refresh the list
+    } catch (error) {
+      console.error("Failed to cancel appointment", error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+  };
+
+  const formatTime = (timeString) => {
+    const date = new Date(timeString);
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  };
+
   const filterAppointments = (appointments) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -43,7 +61,6 @@ export default function TeleconsultationModule() {
     };
   };
 
-  // Function to get data based on active tab
   const getCurrentAppointments = () => {
     const filteredAppointments = filterAppointments(allAppointments || []);
     
@@ -76,23 +93,15 @@ export default function TeleconsultationModule() {
     }
   };
 
-  // Format appointment data for display
   const formatAppointmentForDisplay = (appointment) => {
     return {
       id: appointment._id,
       patientId: appointment.patientId._id,
       name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
       issue: appointment.patient_issue,
-      disease: appointment.patient_issue, // You might want to add a disease field to your data model
-      date: new Date(appointment.date).toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
-      }),
-      time: new Date(appointment.appointmentTime).toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit'
-      }),
+      disease: appointment.patient_issue,
+      date: formatDate(appointment.date),
+      time: formatTime(appointment.appointmentTime),
       age: appointment.patientId.age,
       gender: appointment.patientId.gender,
       avatar: appointment.patientId.avatar,
@@ -102,7 +111,7 @@ export default function TeleconsultationModule() {
 
   const tabName = getCurrentName();
   const currentAppointments = getCurrentAppointments().map(formatAppointmentForDisplay);
-  console.log(currentAppointments, "currentAppointments")
+
   return (
     <>
       <div className="teli-module p-8 bg-gray-100 min-h-screen">
@@ -129,13 +138,7 @@ export default function TeleconsultationModule() {
           </Button>
         </div>
 
-        {tabName === "Today Appointment" ? (
-          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {currentAppointments.map((patient) => (
-              <TeleConsultationCard key={patient.id} patient={patient} />
-            ))}
-          </div>
-        ) : (
+        {tabName === "Today Appointment" || tabName === "Upcoming Appointment" || tabName === "Previous Appointment" ? (
           <div className="pr-data max-h-[600px] overflow-y-auto">
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
@@ -152,10 +155,35 @@ export default function TeleconsultationModule() {
               </thead>
               <tbody>
                 {currentAppointments.map((patient) => (
-                  <TeleConsultationTable key={patient.id} patient={patient} />
+                  <tr key={patient.id}>
+                    <td className="p-3">{patient.name}</td>
+                    <td className="p-3">{patient.disease}</td>
+                    <td className="p-3">{patient.issue}</td>
+                    <td className="p-3">{patient.date}</td>
+                    <td className="p-3">{patient.time}</td>
+                    <td className="p-3">{patient.age}</td>
+                    <td className="p-3">{patient.gender}</td>
+                    <td className="p-3">
+                      {patient.status !== "canceled" && (
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={() => handleCancelAppointment(patient.id)}
+                        >
+                          Cancel
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+        ) : (
+          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {currentAppointments.map((patient) => (
+              <TeleConsultationCard key={patient.id} patient={patient} />
+            ))}
           </div>
         )}
       </div>
