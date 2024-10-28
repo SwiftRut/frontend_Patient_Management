@@ -5,14 +5,13 @@ import PropTypes from "prop-types";
 export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
-  );
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || "");
 
   const [allHospitals, setAllHospitals] = useState([]);
   const [userData, setUserData] = useState({});
   const [bill, setBill] = useState({});
   const [allBills, setAllBills] = useState([]);
+  const [allBillsById, setAllBillsById] = useState([]);
   const [allAppointments, setAllAppointments] = useState([]);
   const [allAppointmentsById, setAllAppointmentsById] = useState([]);
 
@@ -62,7 +61,7 @@ export const GlobalProvider = ({ children }) => {
   const getPatientProfile = async (id) => {
     try {
       const response = await apiService.GetPatientProfile(id);
-      console.log(response.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+      // console.log(response.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
       setUserData(response.data.data);
     } catch (error) {
       console.log("Error fetching patient profile:", error);
@@ -132,6 +131,16 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  const getAllBillsById = async () => {
+    try {
+      const response = await apiService.GetBillsById();
+      setAllBillsById(response.data.data);
+    } catch (error) {
+      console.log("Error fetching bills:", error);
+      throw error;
+    }
+  };
+
   const getBillById = async (id) => {
     try {
       const response = await apiService.GetBillById(id);
@@ -189,7 +198,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetALLAppointmentById(patientId);
       console.log("Fetched appointment:", response);
-      setAllAppointmentsById(response.data)
+      setAllAppointmentsById(response.data);
     } catch (error) {
       console.log("Error fetching appointment by ID:", error);
       throw error;
@@ -292,25 +301,25 @@ export const GlobalProvider = ({ children }) => {
         getAppointmetnsForDoctor(user.id);
       }
       console.log(response.data);
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
-  }
+  };
   const [allPrescriptions, setAllPrescriptions] = useState([]);
-  const getAllPrescriptions = async()=>{
-    try{
+  const getAllPrescriptions = async () => {
+    try {
       const response = await apiService.GetAllPrescriptions();
       console.log(response.data);
       setAllPrescriptions(response.data);
-    }catch (error) {
+    } catch (error) {
       console.log(error);
       throw error;
     }
-  }
-  const getAppointmetnsForDoctor = async(doctorId)=>{
-    console.log(doctorId,"<<<<<<<<<<<<<<<<<<<<< this doctorId")
-    try{
+  };
+  const getAppointmetnsForDoctor = async (doctorId) => {
+    console.log(doctorId, "<<<<<<<<<<<<<<<<<<<<< this doctorId");
+    try {
       console.log("getting for doctor appointment......");
       const response = await apiService.GetAppointsForDoctor(doctorId);
       console.log(response.data.data);
@@ -334,10 +343,7 @@ export const GlobalProvider = ({ children }) => {
   const [prescription, setPrescription] = useState({});
   const createPrescription = async (prescriptionData, id) => {
     try {
-      const response = await apiService.CreatePrescription(
-        prescriptionData,
-        id
-      );
+      const response = await apiService.CreatePrescription(prescriptionData, id);
       console.log("Prescription created:", response);
       setPrescription(response.data.data);
     } catch (error) {
@@ -345,7 +351,7 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  
+
   const [patientPrescription, setPatientPrescription] = useState([]);
   const findPatientPrescriptions = async (patientId) => {
     try {
@@ -400,7 +406,9 @@ export const GlobalProvider = ({ children }) => {
         bill,
         setBill,
         allBills,
+        allBillsById,
         getBills,
+        getAllBillsById,
         getBillById,
         createBill,
         updateBill,

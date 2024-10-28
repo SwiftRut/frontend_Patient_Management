@@ -228,9 +228,7 @@ const Teleconsultation = () => {
                     <Link to="/patient/appointmentBooking">
                       <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
                         <BiSolidCalendar className="h-5 w-5" />
-                        <span className="hidden sm:inline-block sm:ml-2">
-                          Book Appointment
-                        </span>
+                        <span className="hidden sm:inline-block sm:ml-2">Book Appointment</span>
                       </button>
                     </Link>
                   </div>
