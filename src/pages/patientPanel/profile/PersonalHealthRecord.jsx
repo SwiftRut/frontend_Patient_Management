@@ -35,7 +35,7 @@ const PersonalHealthRecord = () => {
 
   return (
     <div className="p-4 bg-[#f6f8fb]">
-      <div className="container mx-auto">
+      <div className="mx-3 mx-auto">
         <div className="bg-white p-3 rounded-lg shadow-lg">
           <div className="flex justify-between items-center">
             <h2 className="text-[26px] text-[#030229] font-bold">

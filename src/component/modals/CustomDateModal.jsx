@@ -1,24 +1,25 @@
 import { Modal, TextField, Button, IconButton } from "@mui/material";
 import { useState } from "react";
 import { Close } from "@mui/icons-material";
-import PropTypes from "prop-types"; // Add this import
+import PropTypes from "prop-types";
 
-const CustomDateModal = ({ open, onClose, setDateRange }) => {
-  const [fromDate, setFromDate] = useState(null);
-  const [toDate, setToDate] = useState(null);
+const CustomDateModal = ({ open, onClose, onApply }) => {
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   const handleReset = () => {
-    setFromDate(null);
-    setToDate(null);
+    setFromDate("");
+    setToDate("");
+    onApply([null, null]);
+    onClose();
   };
 
   const handleApply = () => {
-    const formatDate = (date) => {
-      const options = { year: "numeric", month: "long", day: "2-digit" };
-      return new Date(date).toLocaleDateString("en-US", options);
-    };
-
-    setDateRange(`${formatDate(fromDate)} - ${formatDate(toDate)}`);
+    if (fromDate && toDate) {
+      onApply([fromDate, toDate]);
+    } else {
+      onApply([null, null]);
+    }
     onClose();
   };
 
@@ -55,7 +56,12 @@ const CustomDateModal = ({ open, onClose, setDateRange }) => {
           <Button variant="outlined" onClick={handleReset}>
             Reset
           </Button>
-          <Button variant="contained" color="primary" onClick={handleApply}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleApply}
+            disabled={!fromDate || !toDate}
+          >
             Apply
           </Button>
         </div>
@@ -68,7 +74,7 @@ const CustomDateModal = ({ open, onClose, setDateRange }) => {
 CustomDateModal.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired, // Validate onClose as a required function
-  setDateRange: PropTypes.func.isRequired, // Validate setDateRange as a required function
+  onApply: PropTypes.func.isRequired, // Use onApply instead of setDateRange
 };
 
 export default CustomDateModal;

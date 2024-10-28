@@ -152,7 +152,7 @@ const PatientDetail = () => {
           <table className="min-w-full table-auto">
           <thead className="bg-gray-100">
               <tr>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th>
+                {/* <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th> */}
                 <th className="p-3 text-left text-lg font-bold text-[#030229]">Patient Issue</th>
                 <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Date</th>
                 <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Time</th>
@@ -164,9 +164,9 @@ const PatientDetail = () => {
             <tbody>
               {appointments.map((appointment, index) => (
                 <tr key={index} className="border-t">
-                  <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                  {/* <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
                     {appointment.disease_name || 'Not Specified'}
-                  </td>
+                  </td> */}
                   <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
                     {appointment.patient_issue}
                   </td>

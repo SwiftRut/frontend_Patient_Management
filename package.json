@@ -28,6 +28,8 @@
     "datepicker": "^0.0.0",
     "formik": "^2.4.6",
     "frontend-patient-management": "file:",
+    "html-to-image": "^1.11.11",
+    "html2pdf.js": "^0.10.2",
     "jquery-ui-dist": "^1.13.3",
     "lucide-react": "^0.447.0",
     "moment": "^2.30.1",
