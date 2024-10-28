@@ -11,13 +11,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { BiSolidCalendar } from "react-icons/bi";
 import { IoSearchSharp } from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
 import CustomDateModal from "../../component/modals/CustomDateModal";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal";
 import DoctorDetails from "./DoctorDetails";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
-  const [dateRange, setDateRange] = useState("Any Date");
+  const [dateRange, setDateRange] = useState([null, null]);
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [openModal, setOpenModal] = useState(false);
@@ -42,20 +43,23 @@ const Appointment = () => {
     filterAppointments();
   }, [activeTab, allAppointments, dateRange, searchTerm]);
 
+  const clearDateRange = (e) => {
+    e.stopPropagation();
+    setDateRange([null, null]);
+  };
+
   const filterAppointments = () => {
     const currentDate = moment();
+    const [startDate, endDate] = dateRange;
 
     const filtered = allAppointments?.filter((appointment) => {
       const appointmentDate = moment(appointment.date);
       const lowerSearchTerm = searchTerm.toLowerCase();
-      const [startDate, endDate] = dateRange
-        .split(" - ")
-        .map((date) => moment(date.trim()));
 
-      const isWithinDateRange =
-        dateRange === "Any Date" ||
-        (appointmentDate.isSameOrAfter(startDate) &&
-          appointmentDate.isSameOrBefore(endDate));
+      const isWithinDateRange = !startDate || !endDate || (
+        appointmentDate.isSameOrAfter(moment(startDate)) &&
+        appointmentDate.isSameOrBefore(moment(endDate))
+      );
 
       const matchesSearch =
         appointment.doctorId?.name.toLowerCase().includes(lowerSearchTerm) ||
@@ -64,12 +68,10 @@ const Appointment = () => {
 
       switch (activeTab) {
         case "scheduled":
-          return (
-            appointmentDate.isAfter(currentDate) &&
-            appointment.status !== "canceled" &&
-            isWithinDateRange &&
-            matchesSearch
-          );
+          return appointmentDate.isAfter(currentDate) && 
+                 appointment.status !== "canceled" && 
+                 isWithinDateRange && 
+                 matchesSearch;
         case "previous":
           return (
             appointmentDate.isBefore(currentDate) &&
@@ -148,28 +150,44 @@ const Appointment = () => {
                     My Appointment
                   </h1>
                   <div className="flex flex-col sm:flex-row sm:space-y-0 sm:space-x-3">
-                    <div className=" border px-3 rounded-md flex items-center">
+                    {/* Search input */}
+                    <div className="border px-3 rounded-md flex items-center">
                       <IoSearchSharp className="me-2 text-gray-500" />
                       <input
                         className="search outline-none"
-                        variant="outlined"
                         placeholder="Search Appointment"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
                     </div>
 
+                    {/* Date Range Selector */}
                     <div
-                      // variant="outlined"
-                      // startIcon={}
-                      // color="gray"
-                      className="flex items-center border rounded-md px-3 text-gray-500"
+                      className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
                       onClick={() => setOpenCustomDateModal(true)}
                     >
-                      <FaCalendarAlt className="me-2" />
-                      {dateRange}
+                      <span className="pl-3 text-gray-500 me-1"><FaCalendarAlt /></span>
+                      <input
+                        type="text"
+                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
+                        value={
+                          dateRange[0] && dateRange[1]
+                            ? `${moment(dateRange[0]).format('MM/DD/YYYY')} - ${moment(dateRange[1]).format('MM/DD/YYYY')}`
+                            : "Select Date Range"
+                        }
+                        readOnly
+                      />
+                      {dateRange[0] && dateRange[1] && (
+                        <div
+                          className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white"
+                          onClick={(e) => clearDateRange(e)}
+                        >
+                          <IoCloseSharp />
+                        </div>
+                      )}
                     </div>
 
+                    {/* Book Appointment Button */}
                     <Link to="/patient/appointmentBooking">
                       <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
                         <BiSolidCalendar className="h-5 w-5" />
@@ -307,8 +325,11 @@ const Appointment = () => {
 
       <CustomDateModal
         open={openCustomDateModal}
-        setDateRange={setDateRange}
         onClose={() => setOpenCustomDateModal(false)}
+        onApply={(newRange) => {
+          setDateRange(newRange);
+          setOpenCustomDateModal(false);
+        }}
       />
       <CancelAppointmentModal
         open={openCancelAppointmentModal}
