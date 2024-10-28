@@ -15,14 +15,16 @@ import { IoCloseSharp } from "react-icons/io5";
 import CustomDateModal from "../../component/modals/CustomDateModal";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal";
 import DoctorDetails from "./DoctorDetails";
+import Onsite from "../doctorManagement/Onsite";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
   const [dateRange, setDateRange] = useState([null, null]);
   const [filteredAppointments, setFilteredAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [openModal, setOpenModal] = useState(false);
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [openModel, setOpenModel] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
     useState(false);
 
@@ -56,10 +58,11 @@ const Appointment = () => {
       const appointmentDate = moment(appointment.date);
       const lowerSearchTerm = searchTerm.toLowerCase();
 
-      const isWithinDateRange = !startDate || !endDate || (
-        appointmentDate.isSameOrAfter(moment(startDate)) &&
-        appointmentDate.isSameOrBefore(moment(endDate))
-      );
+      const isWithinDateRange =
+        !startDate ||
+        !endDate ||
+        (appointmentDate.isSameOrAfter(moment(startDate)) &&
+          appointmentDate.isSameOrBefore(moment(endDate)));
 
       const matchesSearch =
         appointment.doctorId?.name.toLowerCase().includes(lowerSearchTerm) ||
@@ -68,10 +71,12 @@ const Appointment = () => {
 
       switch (activeTab) {
         case "scheduled":
-          return appointmentDate.isAfter(currentDate) && 
-                 appointment.status !== "canceled" && 
-                 isWithinDateRange && 
-                 matchesSearch;
+          return (
+            appointmentDate.isAfter(currentDate) &&
+            appointment.status !== "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "previous":
           return (
             appointmentDate.isBefore(currentDate) &&
@@ -117,8 +122,9 @@ const Appointment = () => {
     }
   };
 
-  const handleViewDetails = () => {
-    setOpenModal(true);
+  const handleViewDetails = (doctor) => {
+    setSelectedDoctor(doctor);
+    setOpenModel(true);
   };
 
   return (
@@ -166,13 +172,17 @@ const Appointment = () => {
                       className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
                       onClick={() => setOpenCustomDateModal(true)}
                     >
-                      <span className="pl-3 text-gray-500 me-1"><FaCalendarAlt /></span>
+                      <span className="pl-3 text-gray-500 me-1">
+                        <FaCalendarAlt />
+                      </span>
                       <input
                         type="text"
                         className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
                         value={
                           dateRange[0] && dateRange[1]
-                            ? `${moment(dateRange[0]).format('MM/DD/YYYY')} - ${moment(dateRange[1]).format('MM/DD/YYYY')}`
+                            ? `${moment(dateRange[0]).format(
+                                "MM/DD/YYYY"
+                              )} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
                             : "Select Date Range"
                         }
                         readOnly
@@ -213,7 +223,9 @@ const Appointment = () => {
                             Dr. {appointment.doctorId?.name}
                           </h6>
                           <div
-                            onClick={() => handleViewDetails()}
+                            onClick={() =>
+                              handleViewDetails(appointment.doctorId)
+                            }
                             className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
                           >
                             <IoEyeSharp />
@@ -314,12 +326,28 @@ const Appointment = () => {
         </div>
       </div>
 
-      {openModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <DoctorDetails />
-            <button onClick={() => setOpenModal(false)}>close</button>
+      {/* Modal for Onsite component */}
+      {openModel && (
+        <div className="onsite-modal">
+          <div className="onsite-modal-content">
+            <div className="onsite-modal-header">
+              <h3>Doctor Details</h3>
+              <button
+                className="close-button"
+                onClick={() => setOpenModel(false)}
+              >
+                &times;
+              </button>
+            </div>
+            <Onsite
+              selectedDoctor={selectedDoctor}
+              setOpenModel={setOpenModel}
+            />
           </div>
+          <div
+            className="onsite-modal-overlay"
+            onClick={() => setOpenModel(false)}
+          ></div>
         </div>
       )}
 
@@ -331,6 +359,7 @@ const Appointment = () => {
           setOpenCustomDateModal(false);
         }}
       />
+
       <CancelAppointmentModal
         open={openCancelAppointmentModal}
         onClose={() => setOpenCancelAppointmentModal(false)}
