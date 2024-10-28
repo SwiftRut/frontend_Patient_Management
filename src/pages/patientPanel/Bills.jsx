@@ -1,58 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoEyeSharp } from "react-icons/io5";
 import { HiCash } from "react-icons/hi";
 import { FaRupeeSign } from "react-icons/fa";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import MainBill from "./MainBill";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const Bills = () => {
   const [activeTab, setActiveTab] = useState("Unpaid Bills");
   const [openModel, setOpenModel] = useState(false);
-  const [paymentModel, setpaymentModel] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState("");
   const [modelId, setModelId] = useState("");
   const [showCashSuccessModal, setShowCashSuccessModal] = useState(false);
   const [showFirstModal, setShowFirstModal] = useState(false);
   const [showCardModal, setShowCardModal] = useState(false);
   const [showCardDetailsModal, setShowCardDetailsModal] = useState(false);
+  const { getAllBillsById, allBillsById } = useGlobal();
 
-  const allAppointment = [
-    {
-      doctorName: "Dr. Smith",
-      hospitalName: "City Hospital",
-      billcreatedDate: "2024-10-01",
-      billcreatedTime: "10:00 AM",
-      totalamount: "₹ 24,668",
-    },
-    {
-      doctorName: "Dr. Johnson",
-      hospitalName: "Green Valley Clinic",
-      billcreatedDate: "2024-09-28",
-      billcreatedTime: "2:00 PM",
-      totalamount: "₹ 2,520",
-    },
-    {
-      doctorName: "Dr. Lee",
-      hospitalName: "Health Center",
-      billcreatedDate: "2024-10-03",
-      billcreatedTime: "1:00 PM",
-      totalamount: "₹ 2,500",
-    },
-    {
-      doctorName: "Dr. Brown",
-      hospitalName: "City Hospital",
-      appointmentCancelDate: "2024-09-29",
-      billcreatedTime: "9:00 AM",
-      totalamount: "₹ 3,000",
-    },
-    {
-      doctorName: "Dr. White",
-      hospitalName: "Health Plus Clinic",
-      billcreatedDate: "2024-10-02",
-      billcreatedTime: "3:00 PM",
-      totalamount: "₹ 2,540",
-    },
-  ];
+  // const allBillsById = [
+  //   {
+  //     doctorName: "Dr. Smith",
+  //     hospitalName: "City Hospital",
+  //     billcreatedDate: "2024-10-01",
+  //     billcreatedTime: "10:00 AM",
+  //     totalamount: "₹ 24,668",
+  //   },
+  //   {
+  //     doctorName: "Dr. Johnson",
+  //     hospitalName: "Green Valley Clinic",
+  //     billcreatedDate: "2024-09-28",
+  //     billcreatedTime: "2:00 PM",
+  //     totalamount: "₹ 2,520",
+  //   },
+  //   {
+  //     doctorName: "Dr. Lee",
+  //     hospitalName: "Health Center",
+  //     billcreatedDate: "2024-10-03",
+  //     billcreatedTime: "1:00 PM",
+  //     totalamount: "₹ 2,500",
+  //   },
+  //   {
+  //     doctorName: "Dr. Brown",
+  //     hospitalName: "City Hospital",
+  //     appointmentCancelDate: "2024-09-29",
+  //     billcreatedTime: "9:00 AM",
+  //     totalamount: "₹ 3,000",
+  //   },
+  //   {
+  //     doctorName: "Dr. White",
+  //     hospitalName: "Health Plus Clinic",
+  //     billcreatedDate: "2024-10-02",
+  //     billcreatedTime: "3:00 PM",
+  //     totalamount: "₹ 2,540",
+  //   },
+  // ];
+
+  useEffect(() => {
+    getAllBillsById();
+
+    console.log(allBillsById);
+  }, []);
 
   const handleViewDoctorDetails = () => {
     // setModelId()
@@ -120,11 +127,11 @@ const Bills = () => {
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {allAppointment.map((val, index) => (
+                      {allBillsById.map((val, index) => (
                         <div key={index} className="w-full mx-auto bg-white rounded-lg shadow-md">
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
                             <h2 className="text-lg font-semibold text-foreground">
-                              {val.doctorName}
+                              Dr. {val?.doctorId?.name}
                             </h2>
                             <div className="">
                               <div
@@ -143,31 +150,27 @@ const Bills = () => {
                                 Hospital Name
                               </span>
                               <p className="text-sm font-medium text-[#4F4F4F]">
-                                {val.hospitalName}
+                                {val?.doctorId?.hospitalName}
                               </p>
                             </div>
                             <div className="mt-1 flex items-center justify-between">
                               <span className="text-base font-normal text-[#818194]">
                                 Bill Created Date
                               </span>
-                              <p className="text-sm font-medium text-[#4F4F4F]">
-                                {val.billcreatedDate}
-                              </p>
+                              <p className="text-sm font-medium text-[#4F4F4F]">{val?.createdAt}</p>
                             </div>
                             <div className="mt-1 flex items-center justify-between">
                               <span className="text-base font-normal text-[#818194]">
                                 Bill Created Time
                               </span>
-                              <p className="text-sm font-medium text-[#4F4F4F]">
-                                {val.billcreatedTime}
-                              </p>
+                              <p className="text-sm font-medium text-[#4F4F4F]">{val?.time}</p>
                             </div>
                             <div className="mt-1 flex items-center justify-between">
                               <span className="text-base font-normal text-[#818194]">
                                 Total Bill Amount
                               </span>
                               <p className="text-sm font-medium text-[#E11D29]">
-                                {val.totalamount}
+                                Rs {val?.totalAmount}
                               </p>
                             </div>
                             <div className="flex justify-between mt-4">
@@ -196,7 +199,7 @@ const Bills = () => {
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {allAppointment.map((val, index) => (
+                      {allBillsById.map((val, index) => (
                         <div key={index} className="w-full mx-auto bg-white rounded-lg shadow-md">
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
                             <h2 className="text-lg font-semibold text-foreground">
