@@ -10,8 +10,9 @@ const Bills = () => {
   const [openModel, setOpenModel] = useState(false);
   const [paymentModel, setpaymentModel] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState("");
+  const [modelId, setModelId] = useState("");
   const [showCashSuccessModal, setShowCashSuccessModal] = useState(false);
-  const [showFirstModal, setShowFirstModal] = useState(true);
+  const [showFirstModal, setShowFirstModal] = useState(false);
   const [showCardModal, setShowCardModal] = useState(false);
   const [showCardDetailsModal, setShowCardDetailsModal] = useState(false);
 
@@ -54,6 +55,7 @@ const Bills = () => {
   ];
 
   const handleViewDoctorDetails = () => {
+    // setModelId()
     setOpenModel(true);
   };
   const handlePayment = () => {
@@ -113,18 +115,13 @@ const Bills = () => {
               {activeTab === "Unpaid Bills" && (
                 <div>
                   <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                    <h1 className="text-[24px] font-bold mb-2 text-[#030229]">
-                      Unpaid Bills
-                    </h1>
+                    <h1 className="text-[24px] font-bold mb-2 text-[#030229]">Unpaid Bills</h1>
                   </div>
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       {allAppointment.map((val, index) => (
-                        <div
-                          key={index}
-                          className="w-full mx-auto bg-white rounded-lg shadow-md"
-                        >
+                        <div key={index} className="w-full mx-auto bg-white rounded-lg shadow-md">
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
                             <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
@@ -194,18 +191,13 @@ const Bills = () => {
               {activeTab === "Paid Bills" && (
                 <div className="p-4">
                   <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-                    <h1 className="text-[24px] font-bold mb-2 text-[#030229]">
-                      Paid Bills
-                    </h1>
+                    <h1 className="text-[24px] font-bold mb-2 text-[#030229]">Paid Bills</h1>
                   </div>
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       {allAppointment.map((val, index) => (
-                        <div
-                          key={index}
-                          className="w-full mx-auto bg-white rounded-lg shadow-md"
-                        >
+                        <div key={index} className="w-full mx-auto bg-white rounded-lg shadow-md">
                           <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
                             <h2 className="text-lg font-semibold text-foreground">
                               {val.doctorName}
@@ -271,23 +263,17 @@ const Bills = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="onsite-modal-header overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 h-full mx-5 my-2">
-              <MainBill />
-              <button
-                className="close-button"
-                onClick={() => setOpenModel(false)}
-              >
+              <button className="close-button" onClick={() => setOpenModel(false)}>
                 &times;
               </button>
+              <MainBill modelId={modelId} />
             </div>
             {/* <Onsite
               selectedDoctor={selectedDoctor}
               setOpenModel={setOpenModel}
             /> */}
           </div>
-          <div
-            className="onsite-modal-overlay"
-            onClick={() => setOpenModel(false)}
-          ></div>
+          <div className="onsite-modal-overlay" onClick={() => setOpenModel(false)}></div>
         </div>
       )}
       {/* Payment Modal */}
@@ -305,9 +291,7 @@ const Bills = () => {
                   <div className="bg-[#F4F4F4] rounded-md p-2 me-2 text-[#4F4F4F] text-lg">
                     <HiCash />
                   </div>
-                  <p className="text-[#141414] text-lg font-bold me-36">
-                    Online
-                  </p>
+                  <p className="text-[#141414] text-lg font-bold me-36">Online</p>
                 </label>
                 <input
                   type="radio"
@@ -356,18 +340,11 @@ const Bills = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="p-6 rounded-lg shadow-md bg-[#f4f4f4] mt-6">
-              <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-2">
-                Choose Card
-              </h2>
+              <h2 className="text-lg font-bold mb-4 text-[#030229] border-b pb-2">Choose Card</h2>
               <div className="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
                 <label htmlFor="mastercard" className="flex items-center me-36">
-                  <img
-                    src="/img/master.png"
-                    className="bg-[#F4F4F4] rounded-md p-2 me-2"
-                  />
-                  <p className="text-[#141414] text-lg font-bold">
-                    Master Card
-                  </p>
+                  <img src="/img/master.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
+                  <p className="text-[#141414] text-lg font-bold">Master Card</p>
                 </label>
                 <input
                   type="radio"
@@ -379,18 +356,10 @@ const Bills = () => {
               </div>
               <div className="flex items-center justify-between mb-4 bg-white p-2 rounded-md">
                 <label htmlFor="visacard" className="flex items-center">
-                  <img
-                    src="/img/visa.png"
-                    className="bg-[#F4F4F4] rounded-md p-2 me-2"
-                  />
+                  <img src="/img/visa.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
                   <p className="text-[#A7A7A7] text-lg font-bold">Visa Card</p>
                 </label>
-                <input
-                  type="radio"
-                  id="visacard"
-                  name="cardPayment"
-                  className="mr-2"
-                />
+                <input type="radio" id="visacard" name="cardPayment" className="mr-2" />
               </div>
 
               <div className="flex justify-between space-x-3">
@@ -421,13 +390,8 @@ const Bills = () => {
               <div className="bg-white rounded-lg p-4 mb-3">
                 <div className="flex items-center justify-between mb-4 border-b pb-2">
                   <label htmlFor="master-card" className="flex items-center">
-                    <img
-                      src="/img/master.png"
-                      className="bg-[#F4F4F4] rounded-md p-2 me-2"
-                    />
-                    <p className="text-[#141414] text-lg font-bold ">
-                      Master Card
-                    </p>
+                    <img src="/img/master.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
+                    <p className="text-[#141414] text-lg font-bold ">Master Card</p>
                   </label>
                   <input
                     type="radio"
@@ -505,18 +469,10 @@ const Bills = () => {
 
               <div className="flex items-center justify-between mb-4 bg-white p-4 rounded-lg">
                 <label for="visacard" className="flex items-center">
-                  <img
-                    src="/img/visa.png"
-                    className="bg-[#F4F4F4] rounded-md p-2 me-2"
-                  />
+                  <img src="/img/visa.png" className="bg-[#F4F4F4] rounded-md p-2 me-2" />
                   <p className="text-[#A7A7A7] text-lg font-bold">Visa Card</p>
                 </label>
-                <input
-                  type="radio"
-                  id="visacard"
-                  name="payment"
-                  className="mr-2"
-                />
+                <input type="radio" id="visacard" name="payment" className="mr-2" />
               </div>
 
               <div className="flex justify-between space-x-3">
@@ -545,9 +501,7 @@ const Bills = () => {
                   <RiMoneyRupeeCircleFill />
                 </div>
               </div>
-              <h2 className="text-[22px] text-[#030229] font-bold text-center">
-                Payment
-              </h2>
+              <h2 className="text-[22px] text-[#030229] font-bold text-center">Payment</h2>
               <p className="text-[#4F4F4F] text-sm font-normal text-center mb-6 mt-1">
                 Pay your bill at cash counter for confirm your bill.
               </p>
