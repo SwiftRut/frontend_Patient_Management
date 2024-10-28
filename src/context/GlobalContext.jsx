@@ -214,7 +214,6 @@ export const GlobalProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error(response.message);
       }
-      return result;
     } catch (error) {
       console.log("Error canceled appointment:", error);
       throw error;

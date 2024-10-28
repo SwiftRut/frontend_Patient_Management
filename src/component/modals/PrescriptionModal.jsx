@@ -1,38 +1,52 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import React, { useRef } from "react";
+import { Dialog, DialogContent, DialogTitle, IconButton, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { toPng } from 'html-to-image';
 import signature from "../../assets/signature.svg";
+import { FaDownload } from "react-icons/fa";
 
-const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
+const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) => {
+  const modalRef = useRef(null);
+
+  const downloadPrescriptionImage = async () => {
+    if (modalRef.current) {
+      try {
+        const dataUrl = await toPng(modalRef.current, { quality: 0.95 });
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "prescription.jpg"; // Default download name
+        link.click();
+      } catch (error) {
+        console.error("Failed to download image:", error);
+        alert("Failed to download the prescription image. Please try again.");
+      }
+    }
+  };
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
       fullWidth
       maxWidth="md"
-      classes={{ paper: "max-h-[90vh] overflow-y-auto" }}
+      classes={{ paper: "max-h-[90vh] overflow-y-auto bg-white" }}
     >
       <DialogTitle>
         <div className="flex justify-between items-center">
           <span className="text-xl font-semibold">Prescription</span>
-          <IconButton onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
+          <div className="flex items-center">
+            <IconButton onClick={downloadPrescriptionImage} title="Download as Image">
+              <FaDownload />
+            </IconButton>
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </div>
         </div>
       </DialogTitle>
 
-      <DialogContent>
-        <div className="border rounded p-4">
-          {/* Header Section */}
+      <DialogContent ref={modalRef} style={{ backgroundColor: "white" }}>
+        <div className="border rounded p-4 bg-white">
           <div className="bg-gray-100 rounded p-4 mb-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="w-32 md:w-40">
@@ -40,50 +54,23 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
               </div>
               <div className="text-center sm:text-right">
                 <p className="font-semibold text-lg">Dr. Bharat Patel</p>
-                <span className="text-sm text-gray-600">
-                  Obstetrics and Gynecology
-                </span>
+                <span className="text-sm text-gray-600">Obstetrics and Gynecology</span>
               </div>
             </div>
 
-            {/* Patient Details */}
             <div className="mt-4 space-y-2 text-sm">
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>
-                  Patient Name:{" "}
-                  <span className="font-medium">
-                    {prescriptionData?.patientId.firstName + ' ' + prescriptionData?.patientId.lastName}
-                  </span>
-                </p>
-                <p>
-                  Prescription Date:{" "}
-                  <span className="font-medium">
-                    {new Date(prescriptionData.date).toLocaleDateString('en-US', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric'
-                    })}
-                  </span>
-                </p>
+                <p>Patient Name: <span className="font-medium">{`${prescriptionData?.patientId.firstName} ${prescriptionData?.patientId.lastName}`}</span></p>
+                <p>Prescription Date: <span className="font-medium">{new Date(prescriptionData.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</span></p>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>
-                  Gender:{" "}
-                  <span className="font-medium">{prescriptionData.patientId.gender}</span>
-                </p>
-                <p>
-                  Age:{" "}
-                  <span className="font-medium">{prescriptionData.patientId.age}</span>
-                </p>
+                <p>Gender: <span className="font-medium">{prescriptionData.patientId.gender}</span></p>
+                <p>Age: <span className="font-medium">{prescriptionData.patientId.age}</span></p>
               </div>
-              <p className="break-words">
-                Address:{" "}
-                <span className="font-medium">{prescriptionData.patientId.address}</span>
-              </p>
+              <p className="break-words">Address: <span className="font-medium">{prescriptionData.patientId.address}</span></p>
             </div>
           </div>
 
-          {/* Medicines Table */}
           <Table>
             <TableHead>
               <TableRow>
@@ -107,13 +94,11 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
             </TableBody>
           </Table>
 
-          {/* Additional Note */}
           <div className="mt-4">
             <h3 className="font-bold">Additional Note:</h3>
             <p>{prescriptionData.instructions}</p>
           </div>
 
-          {/* Signature */}
           {signature && (
             <div className="mt-6 flex justify-end">
               <div className="text-center">

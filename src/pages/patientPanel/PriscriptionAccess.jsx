@@ -4,6 +4,7 @@ import { FaDownload, FaRegImage, FaCalendarAlt } from "react-icons/fa";
 import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
+import { toPng } from 'html-to-image'; // Import for downloading modal
 
 export default function PrescriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function PrescriptionAccess() {
   useEffect(() => {
     findPatientPrescriptions(user.id);
   }, []);
-  console.log(patientPrescription)
+
   const openModal = (prescription) => {
     setSelectedPrescription(prescription);
     setIsModalOpen(true);
@@ -23,6 +24,17 @@ export default function PrescriptionAccess() {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedPrescription(null);
+  };
+
+  const downloadPrescriptionImage = async (prescription) => {
+    // Function to download modal content
+    if (selectedPrescription) {
+      const dataUrl = await toPng(document.getElementById(`prescription-modal`));
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `prescription-${prescription._id}.jpg`;
+      link.click();
+    }
   };
 
   return (
@@ -51,16 +63,19 @@ export default function PrescriptionAccess() {
           <div className="overflow-y-auto" style={{ height: "550px" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {patientPrescription?.map((prescription) => (
-                <div key={prescription._id} className="w-full mx-auto bg-white rounded-lg shadow-md">
+                <div key={prescription._id} id={`prescription-${prescription._id}`} className="w-full mx-auto bg-white rounded-lg shadow-md">
                   <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
                     <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
                     <div className="flex">
-                      <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
+                      <div
+                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2 cursor-pointer"
+                        onClick={() => downloadPrescriptionImage(prescription)} // Download button on card
+                      >
                         <FaDownload />
                       </div>
                       <div
                         onClick={() => openModal(prescription)}
-                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 cursor-pointer"
                       >
                         <IoEyeSharp />
                       </div>
@@ -106,6 +121,7 @@ export default function PrescriptionAccess() {
                 open={isModalOpen}
                 handleClose={handleModalClose}
                 prescriptionData={selectedPrescription}
+                onDownload={downloadPrescriptionImage} // Pass the download function to the modal
               />
             </div>
           </div>
