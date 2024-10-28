@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoEyeSharp } from "react-icons/io5";
 import { HiCash } from "react-icons/hi";
 import { FaRupeeSign } from "react-icons/fa";
@@ -21,12 +21,17 @@ const Bills = () => {
     getAllBillsById();
   }, []);
 
+  console.log("all bill", allBillsById);
+
   // Filter bills based on status
   const unpaidBills = allBillsById.filter((bill) => bill.status === "Unpaid");
   const paidBills = allBillsById.filter((bill) => bill.status === "Paid");
 
-  const handleViewDoctorDetails = () => {
+  const handleViewBillDetails = (Id) => {
+    console.log(Id);
+
     setOpenModel(true);
+    setModelId(Id);
   };
   const handlePayment = () => {
     setShowFirstModal(true);
@@ -101,7 +106,7 @@ const Bills = () => {
                               <div className="">
                                 <div
                                   onClick={() => {
-                                    handleViewDoctorDetails(val);
+                                    handleViewBillDetails(val._id);
                                   }}
                                   className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
                                 >
@@ -179,7 +184,7 @@ const Bills = () => {
                               <div className="">
                                 <div
                                   onClick={() => {
-                                    handleViewDoctorDetails(val);
+                                    handleViewBillDetails(val.id);
                                   }}
                                   className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
                                 >

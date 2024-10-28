@@ -1,35 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const MainBill = (modelId) => {
   const { id } = useParams();
   const { getBillById, bill } = useGlobal();
 
-  const [formData, setFormData] = useState({
-    billNumber: "",
-    description: "",
-    paymentType: "",
-    date: "",
-    time: "",
-    amount: 0,
-    discount: 0,
-    tax: 0,
-    totalAmount: 0,
-    status: "",
-    patientId: "",
-    doctorId: "",
-    insuranceId: "",
-  });
-  console.log(formData);
-
-  const dataId = id || modelId;
+  const dataId = id || modelId.modelId;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await getBillById(dataId);
-        setFormData(bill);
       } catch (error) {
         console.error("Error fetching billing data:", error);
       }
@@ -60,14 +42,14 @@ const MainBill = (modelId) => {
           </div>
           <div className="text-left sm:text-right mt-4 sm:mt-0">
             <p className="text-[#818194] mb-1">
-              <strong className="text-[#141414]">Bill No:</strong> {formData.billNumber}
+              <strong className="text-[#141414]">Bill No:</strong> {bill.billNumber}
             </p>
             <p className="text-[#818194] mb-1">
               <strong className="text-[#141414]">Bill Date:</strong>{" "}
-              {new Date(formData.date).toLocaleDateString()}
+              {new Date(bill.date).toLocaleDateString()}
             </p>
             <p className="text-[#818194]">
-              <strong className="text-[#141414]">Bill Time:</strong> {formData.time}
+              <strong className="text-[#141414]">Bill Time:</strong> {bill.time}
             </p>
           </div>
         </div>
@@ -78,33 +60,33 @@ const MainBill = (modelId) => {
             <div className="space-y-2">
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Name:</strong>
-                {`${formData.patientId?.firstName || "N/A"} ${formData.patientId?.lastName || ""}`}
+                {`${bill.patientId?.firstName || "N/A"} ${bill.patientId?.lastName || ""}`}
               </p>
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Gender:</strong>
-                {formData.patientId?.gender || "N/A"}
+                {bill.patientId?.gender || "N/A"}
               </p>
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Age:</strong>
-                {formData.patientId?.age || "N/A"}Years
+                {bill.patientId?.age || "N/A"}Years
               </p>
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Address:</strong>
-                {formData.patientId?.address || "N/A"}
+                {bill.patientId?.address || "N/A"}
               </p>
             </div>
             <div className="space-y-2">
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Disease:</strong>
-                {formData?.diseaseName}
+                {bill?.diseaseName}
               </p>
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Phone:</strong>
-                {formData.patientId?.phone || "+1234567890"}
+                {bill.patientId?.phone || "+1234567890"}
               </p>
               <p className="text-[#818194] text-sm">
                 <strong className="text-[#141414] text-base me-2">Payment:</strong>
-                {formData.paymentType}
+                {bill.paymentType}
               </p>
             </div>
           </div>
@@ -125,13 +107,13 @@ const MainBill = (modelId) => {
             </thead>
             <tbody>
               <tr>
-                <td className="px-2 sm:px-4 py-2 text-[#4F4F4F] text-sm">{formData.description}</td>
+                <td className="px-2 sm:px-4 py-2 text-[#4F4F4F] text-sm">{bill.description}</td>
                 <td className="px-2 sm:px-4 py-2 text-[#4F4F4F] text-sm">
-                  ₹{(formData.amount || 0).toFixed(2)}
+                  ₹{(bill.amount || 0).toFixed(2)}
                 </td>
                 <td className="px-2 sm:px-4 py-2 text-[#4F4F4F] text-sm">2</td>
                 <td className="px-2 sm:px-4 py-2 text-[#141414] text-sm">
-                  ₹{(formData.amount * 1 || 0).toFixed(2)}
+                  ₹{(bill.amount * 1 || 0).toFixed(2)}
                 </td>
               </tr>
               {/* Additional rows similar to above */}
@@ -142,34 +124,34 @@ const MainBill = (modelId) => {
         {/* Summary Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-6">
           <div className="space-y-2">
-            {formData.paymentType == "Insurance" ? (
+            {bill.paymentType == "Insurance" ? (
               <p className="text-[#818194] text-sm font-semibold">
                 <strong className="text-[#141414] text-base">Insurance Company:</strong>{" "}
-                {formData.insuranceId?.insuranceCompany}
+                {bill.insuranceId?.insuranceCompany}
               </p>
             ) : (
               ""
             )}
-            {formData.paymentType == "Insurance" ? (
+            {bill.paymentType == "Insurance" ? (
               <p className="text-[#818194] text-sm font-semibold">
                 <strong className="text-[#141414] text-base">Insurance Plan:</strong>{" "}
-                {formData.insuranceId?.insurancePlan}
+                {bill.insuranceId?.insurancePlan}
               </p>
             ) : (
               ""
             )}
-            {formData.paymentType == "Insurance" ? (
+            {bill.paymentType == "Insurance" ? (
               <p className="text-[#0EABEB] text-sm font-semibold">
                 <strong className="text-[#141414] text-base">Claim Amount:</strong>{" "}
-                {formData.insuranceId?.claimAmount}
+                {bill.insuranceId?.claimAmount}
               </p>
             ) : (
               ""
             )}
-            {formData.paymentType == "Insurance" ? (
+            {bill.paymentType == "Insurance" ? (
               <p className="text-[#0EABEB] text-sm font-semibold">
                 <strong className="text-[#141414] text-base">
-                  {formData.insuranceId?.claimedAmount}
+                  {bill.insuranceId?.claimedAmount}
                 </strong>{" "}
                 ₹2,500.00
               </p>
@@ -181,24 +163,24 @@ const MainBill = (modelId) => {
           <div className="space-y-2">
             <p className="text-[#818194] text-sm font-semibold">
               <strong className="text-[#141414] text-base">Amount:</strong> ₹
-              {(formData.amount * 1 || 0).toFixed(2)}
+              {(bill.amount * 1 || 0).toFixed(2)}
             </p>
             <p className="text-[#818194] text-sm font-semibold">
               <strong className="text-[#141414] text-base">
-                Discount {formData?.discount || 0} % :{" "}
+                Discount {bill?.discount || 0} % :{" "}
               </strong>{" "}
-              ₹{((formData?.amount * formData?.discount) / 100).toFixed(2)}
+              ₹{((bill?.amount * bill?.discount) / 100).toFixed(2)}
             </p>
             <p className="text-[#818194] text-sm font-semibold">
-              <strong className="text-[#141414] text-base">Tax {formData?.tax || 0} % : </strong> ₹
-              {((formData?.amount * formData?.tax) / 100).toFixed(2)}
+              <strong className="text-[#141414] text-base">Tax {bill?.tax || 0} % : </strong> ₹
+              {((bill?.amount * bill?.tax) / 100).toFixed(2)}
             </p>
             <p className="text-[#0EABEB] text-sm font-semibold">
               <strong>Total Amount:</strong> ₹
               {(
-                formData?.amount -
-                (formData?.amount * formData?.discount) / 100 +
-                (formData?.amount * formData?.tax) / 100
+                bill?.amount -
+                (bill?.amount * bill?.discount) / 100 +
+                (bill?.amount * bill?.tax) / 100
               ).toFixed(2)}
             </p>
           </div>
