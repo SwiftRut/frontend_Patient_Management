@@ -8,13 +8,19 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 export default function PrescriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPrescription, setSelectedPrescription] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dateRange, setDateRange] = useState({
+    start: "2022-01-02",
+    end: "2022-01-13"
+  });
+
   const { findPatientPrescriptions, patientPrescription } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
-    findPatientPrescriptions(user.id);
+    findPatientPrescriptions(user.id).finally(() => setIsLoading(false));
   }, []);
-  console.log(patientPrescription)
+
   const openModal = (prescription) => {
     setSelectedPrescription(prescription);
     setIsModalOpen(true);
@@ -23,6 +29,10 @@ export default function PrescriptionAccess() {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedPrescription(null);
+  };
+
+  const handleDateRangeClear = () => {
+    setDateRange({ start: "", end: "" });
   };
 
   return (
@@ -38,65 +48,78 @@ export default function PrescriptionAccess() {
                 <input
                   type="text"
                   className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
-                  value="2 Jan, 2022 - 13 Jan, 2022"
+                  value={`${new Date(dateRange.start).toLocaleDateString()} - ${new Date(dateRange.end).toLocaleDateString()}`}
                   readOnly
                 />
-                <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
+                <div
+                  onClick={handleDateRangeClear}
+                  className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white"
+                >
                   <IoCloseSharp />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="overflow-y-auto" style={{ height: "550px" }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {patientPrescription?.map((prescription) => (
-                <div key={prescription._id} className="w-full mx-auto bg-white rounded-lg shadow-md">
-                  <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
-                    <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
-                    <div className="flex">
-                      <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
-                        <FaDownload />
-                      </div>
-                      <div
-                        onClick={() => openModal(prescription)}
-                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
-                      >
-                        <IoEyeSharp />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3 border rounded-b-lg">
-                    <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Hospital Name</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{prescription.doctorId.hospitalName || 'N/A'}</p>
-                    </div>
-                    <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Disease Name</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{prescription.diseaseName || 'N/A'}</p>
-                    </div>
-                    <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Date</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{new Date(prescription.date).toLocaleDateString('en-US') || 'N/A'}</p>
-                    </div>
-                    <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Time</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{new Date(prescription.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) || 'N/A'}</p>
-                    </div>
-                    <div className="mt-4 flex items-center border rounded-md p-1">
-                      <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
-                        <FaRegImage />
-                      </div>
-                      <div className="ml-2">
-                        <span className="text-[#030229] block">{prescription.fileName || 'Prescription.JPG'}</span>
-                        <span className="text-[#A7A7A7] text-sm">{prescription.fileSize || '5.09 MB'}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          {isLoading ? (
+            <div className="flex justify-center items-center h-full">
+              <p>Loading...</p>
             </div>
-          </div>
+          ) : (
+            <div className="overflow-y-auto" style={{ height: "550px" }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {patientPrescription?.map((prescription) => (
+                  <div key={prescription._id} className="w-full mx-auto bg-white rounded-lg shadow-md">
+                    <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
+                      <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
+                      <div className="flex">
+                        <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
+                          <FaDownload />
+                        </div>
+                        <div
+                          onClick={() => openModal(prescription)}
+                          className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 cursor-pointer"
+                        >
+                          <IoEyeSharp />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-3 border rounded-b-lg">
+                      <div className="mt-1 flex items-center justify-between">
+                        <span className="text-base font-normal text-[#818194]">Hospital Name</span>
+                        <p className="text-sm font-medium text-[#4F4F4F]">{prescription.doctorId.hospitalName || 'N/A'}</p>
+                      </div>
+                      <div className="mt-1 flex items-center justify-between">
+                        <span className="text-base font-normal text-[#818194]">Disease Name</span>
+                        <p className="text-sm font-medium text-[#4F4F4F]">{prescription.diseaseName || 'N/A'}</p>
+                      </div>
+                      <div className="mt-1 flex items-center justify-between">
+                        <span className="text-base font-normal text-[#818194]">Date</span>
+                        <p className="text-sm font-medium text-[#4F4F4F]">
+                          {new Date(prescription.date).toLocaleDateString('en-US') || 'N/A'}
+                        </p>
+                      </div>
+                      <div className="mt-1 flex items-center justify-between">
+                        <span className="text-base font-normal text-[#818194]">Time</span>
+                        <p className="text-sm font-medium text-[#4F4F4F]">
+                          {new Date(prescription.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) || 'N/A'}
+                        </p>
+                      </div>
+                      <div className="mt-4 flex items-center border rounded-md p-1">
+                        <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
+                          <FaRegImage />
+                        </div>
+                        <div className="ml-2">
+                          <span className="text-[#030229] block">{prescription.fileName || 'Prescription.JPG'}</span>
+                          <span className="text-[#A7A7A7] text-sm">{prescription.fileSize || '5.09 MB'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {isModalOpen && (

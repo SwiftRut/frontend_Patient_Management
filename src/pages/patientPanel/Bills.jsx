@@ -11,7 +11,7 @@ const Bills = () => {
   const [paymentModel, setpaymentModel] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState("");
   const [showCashSuccessModal, setShowCashSuccessModal] = useState(false);
-  const [showFirstModal, setShowFirstModal] = useState(true);
+  const [showFirstModal, setShowFirstModal] = useState(false );
   const [showCardModal, setShowCardModal] = useState(false);
   const [showCardDetailsModal, setShowCardDetailsModal] = useState(false);
 
