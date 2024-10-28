@@ -15,7 +15,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-const apiService = {
+const   apiService = {
   // Patient
   PatientLogin: (userData) => api.post("/patient/login", userData),
   PatientRegister: (userData) => api.post("/patient/register", userData),
