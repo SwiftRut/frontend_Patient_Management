@@ -24,6 +24,7 @@ import {
 import { IoMdChatbubbles } from "react-icons/io";
 import { RiBillLine } from "react-icons/ri";
 import { useAuth } from "../../hooks/useAuth";
+import PatientMeetingConference from "../PatientMeetingConference/PatientMeetingConference";
 
 export default function PatientPanel() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -47,13 +48,9 @@ export default function PatientPanel() {
               <X size={24} />
             </button>
           </div>
-          <div className="logo p-4 text-center flex items-center justify-between p-4 border-b">
+          <div className="logo p-4 text-center flex items-center justify-between border-b">
             {/* <NavLink to="/patient"> */}
-            <img
-              src="/img/logo.png"
-              alt="Logo"
-              className="w-full max-w-[200px] mx-auto"
-            />
+            <img src="/img/logo.png" alt="Logo" className="w-full max-w-[200px] mx-auto" />
             {/* </NavLink> */}
           </div>
           <nav className="mb-32">
@@ -105,9 +102,7 @@ export default function PatientPanel() {
               className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-1/2"
             />
             <div className="text mt-12">
-              <h3 className="text-[#141414] text-lg font-semibold">
-                Hospital appointment
-              </h3>
+              <h3 className="text-[#141414] text-lg font-semibold">Hospital appointment</h3>
               <p className="text-[#4f4f4f] text-sm py-2">
                 You have to fill up the form to be admitted to the hospital.
               </p>
@@ -124,8 +119,7 @@ export default function PatientPanel() {
               onClick={logout}
               className="flex items-center justify-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
             >
-              <img src="../img/logout.png" alt="Logout" className="mr-2" />{" "}
-              Logout
+              <img src="../img/logout.png" alt="Logout" className="mr-2" /> Logout
             </button>
           </div>
         </div>
@@ -137,11 +131,7 @@ export default function PatientPanel() {
         <header className="bg-white shadow-sm z-10">
           <div className="max-w-10xl mx-auto py-1 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <button onClick={toggleSidebar} className="lg:hidden">
-              {isSidebarOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
             <PatientHeader />
           </div>
@@ -160,15 +150,10 @@ export default function PatientPanel() {
               <Route path="/appointment" element={<Appointment />} />
               <Route path="/bills" element={<Bills />} />
               <Route path="/teleconsultation" element={<Teleconsultation />} />
-              <Route
-                path="/appointmentBooking"
-                element={<AppointmentBooking />}
-              />
-              <Route
-                path="/priscriptionAccess"
-                element={<PriscriptionAccess />}
-              />
+              <Route path="/appointmentBooking" element={<AppointmentBooking />} />
+              <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
               <Route path="/chatScreen" element={<ChatScreen1 />} />
+              <Route path="/vid" element={<PatientMeetingConference />} />
             </Routes>
           </div>
         </main>

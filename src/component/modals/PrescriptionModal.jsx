@@ -4,17 +4,36 @@ import CloseIcon from "@mui/icons-material/Close";
 import { toPng } from 'html-to-image';
 import signature from "../../assets/signature.svg";
 import { FaDownload } from "react-icons/fa";
+import moment from 'moment';
 
-const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
+const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) => {
   const modalRef = useRef(null);
 
   const downloadPrescriptionImage = async () => {
     if (modalRef.current) {
-      const dataUrl = await toPng(modalRef.current);
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "prescription.jpg";
-      link.click();
+      try {
+        // Hide download and close buttons before capture
+        const buttons = modalRef.current.querySelectorAll('.hide-for-download');
+        buttons.forEach(button => button.style.display = 'none');
+
+        const dataUrl = await toPng(modalRef.current, { 
+          quality: 1.0,
+          backgroundColor: 'white',
+          pixelRatio: 2
+        });
+
+        // Restore buttons after capture
+        buttons.forEach(button => button.style.display = '');
+
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        const fileName = `prescription-${prescriptionData?.patientId?.firstName || prescriptionData?.patientName}-${moment().format('YYYY-MM-DD-HH-mm-ss')}.png`;
+        link.download = fileName;
+        link.click();
+      } catch (error) {
+        console.error("Failed to download image:", error);
+        alert("Failed to download the prescription image. Please try again.");
+      }
     }
   };
 
@@ -29,7 +48,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
       <DialogTitle>
         <div className="flex justify-between items-center">
           <span className="text-xl font-semibold">Prescription</span>
-          <div className="flex items-center">
+          <div className="flex items-center hide-for-download">
             <IconButton onClick={downloadPrescriptionImage} title="Download as Image">
               <FaDownload />
             </IconButton>
@@ -45,65 +64,114 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
           <div className="bg-gray-100 rounded p-4 mb-4">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="w-32 md:w-40">
-                <img src="/image/bill-logo.png" alt="Logo" className="w-full" />
+                <img 
+                  src="/image/bill-logo.png" 
+                  alt="Logo" 
+                  className="w-full"
+                  crossOrigin="anonymous"
+                />
               </div>
               <div className="text-center sm:text-right">
-                <p className="font-semibold text-lg">Dr. Bharat Patel</p>
-                <span className="text-sm text-gray-600">Obstetrics and Gynecology</span>
+                <p className="text-[24px] text-[#0EABEB] font-bold">
+                  Dr. {prescriptionData?.doctorId?.name || "Bharat Patel"}
+                </p>
+                <span className="text-[14px] text-[#818194] font-semibold">
+                  {prescriptionData?.doctorId?.speciality || "Obstetrics and Gynecology"}
+                </span>
               </div>
             </div>
 
-            <div className="mt-4 space-y-2 text-sm">
+            <div className="mt-4 space-y-2">
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>Patient Name: <span className="font-medium">{`${prescriptionData?.patientId.firstName} ${prescriptionData?.patientId.lastName}`}</span></p>
-                <p>Prescription Date: <span className="font-medium">{new Date(prescriptionData.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</span></p>
+                <p className="text-[16px] text-[#141414] font-semibold">
+                  Patient Name:{" "}
+                  <span className="text-[14px] text-[#818194] font-semibold">
+                    {prescriptionData?.patientId?.firstName 
+                      ? `${prescriptionData.patientId.firstName} ${prescriptionData.patientId.lastName}`
+                      : prescriptionData?.patientName}
+                  </span>
+                </p>
+                <p className="text-[16px] text-[#141414] font-semibold">
+                  Prescription Date:{" "}
+                  <span className="text-[14px] text-[#818194] font-semibold">
+                    {moment(prescriptionData?.date || prescriptionData?.prescriptionDate).format('D MMM, YYYY')}
+                  </span>
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>Gender: <span className="font-medium">{prescriptionData.patientId.gender}</span></p>
-                <p>Age: <span className="font-medium">{prescriptionData.patientId.age}</span></p>
+                <p className="text-[16px] text-[#141414] font-semibold">
+                  Gender:{" "}
+                  <span className="text-[14px] text-[#818194] font-semibold">
+                    {prescriptionData?.patientId?.gender || prescriptionData?.gender}
+                  </span>
+                </p>
+                <p className="text-[16px] text-[#141414] font-semibold">
+                  Age:{" "}
+                  <span className="text-[14px] text-[#818194] font-semibold">
+                    {prescriptionData?.patientId?.age || prescriptionData?.age}
+                  </span>
+                </p>
               </div>
-              <p className="break-words">Address: <span className="font-medium">{prescriptionData.patientId.address}</span></p>
+              <p className="text-[16px] text-[#141414] font-semibold break-words">
+                Address:{" "}
+                <span className="text-[14px] text-[#818194] font-semibold">
+                  {prescriptionData?.patientId?.address || prescriptionData?.address}
+                </span>
+              </p>
             </div>
           </div>
 
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Medicine Name</TableCell>
-                <TableCell>Strength</TableCell>
-                <TableCell>Dose</TableCell>
-                <TableCell>Duration</TableCell>
-                <TableCell>When to Take</TableCell>
+                <TableCell className="text-[#030229] text-[14px] font-semibold">Medicine Name</TableCell>
+                <TableCell className="text-[#030229] text-[14px] font-semibold">Strength</TableCell>
+                <TableCell className="text-[#030229] text-[14px] font-semibold">Dose</TableCell>
+                <TableCell className="text-[#030229] text-[14px] font-semibold">Duration</TableCell>
+                <TableCell className="text-[#030229] text-[14px] font-semibold">When to Take</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {prescriptionData?.medications?.map((medicine, index) => (
+              {(prescriptionData?.medications || prescriptionData?.medicines)?.map((medicine, index) => (
                 <TableRow key={index}>
                   <TableCell>{medicine.medicineName}</TableCell>
                   <TableCell>{medicine.strength}</TableCell>
                   <TableCell>{medicine.dose}</TableCell>
-                  <TableCell>{medicine.duration}</TableCell>
-                  <TableCell>{medicine.whenToTake}</TableCell>
+                  <TableCell>
+                    <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">
+                      {medicine.duration}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">
+                      {medicine.whenToTake}
+                    </span>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
 
           <div className="mt-4">
-            <h3 className="font-bold">Additional Note:</h3>
-            <p>{prescriptionData.instructions}</p>
+            <h3 className="font-bold">Instructions:</h3>
+            <p className="text-[14px] text-[#818194] font-semibold">
+              {prescriptionData?.instructions || prescriptionData?.additionalNote}
+            </p>
           </div>
 
-          {signature && (
-            <div className="mt-6 flex justify-end">
-              <div className="text-center">
-                <div className="border-t w-32 pt-2">
-                  <img src={signature} alt="Signature" className="max-w-full" />
-                </div>
-                <p className="text-sm mt-1">Doctor Signature</p>
+          <div className="mt-4 flex justify-between align-center">
+            <div className="sign border-b pb-2">
+              <div className="w-32 mt-4">
+                <img 
+                  src={prescriptionData?.doctorId?.signature || signature} 
+                  alt="Signature"
+                  crossOrigin="anonymous"
+                  className="max-w-full"
+                />
               </div>
+              <p>Doctor Signature</p>
             </div>
-          )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

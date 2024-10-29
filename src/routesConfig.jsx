@@ -51,7 +51,10 @@ const routesConfig = [
       <ProtectedRoute element={<AdminPanel />} allowedRoles={["admin"]} userRole={userRole} />
     ),
     children: [
-      { path: "/", element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />},
+      {
+        path: "/",
+        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+      },
       {
         path: "profile/*",
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
@@ -69,7 +72,9 @@ const routesConfig = [
       },
       {
         path: "/editBill/:id",
-        element: <ProtectedRoute element={<EditBill />} allowedRoles={["admin"]} userRole={userRole} />,
+        element: (
+          <ProtectedRoute element={<EditBill />} allowedRoles={["admin"]} userRole={userRole} />
+        ),
         allowedRoles: ["admin"],
       },
       {
@@ -137,6 +142,10 @@ const routesConfig = [
         path: "edit",
         element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
       },
+      {
+        path: "vid",
+        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+      },
       // { path: "addRecord", element: <ProtectedRoute element={<AddRecord/>} allowedRoles={['doctor']} userRole={userRole} /> },
       {
         path: "patientRecordAccesst",
@@ -197,7 +206,7 @@ const routesConfig = [
     element: <PatientRegistration />,
   },
   {
-    path: "/patient",
+    path: "/patient/*",
     element: (
       <ProtectedRoute
         element={<PatientPanel />}
@@ -208,6 +217,9 @@ const routesConfig = [
     children: [
       {
         path: "profile/*",
+        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+      }, {
+        path: "vid",
         element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
       },
       {
@@ -279,7 +291,7 @@ const routesConfig = [
     ),
     allowedRoles: ["admin", "doctor", "patient"],
   },
- 
+
   {
     path: "/schedular",
     element: (

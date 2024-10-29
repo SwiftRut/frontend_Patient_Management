@@ -1,12 +1,30 @@
-import DoctorDetailItem from "./DoctorDetailItem";
+import React, { useEffect, useState } from "react";
+import apiService from "../../services/api";
 
-const DoctorDetails = ({ doctorId, allDoctors }) => {
-  const doctor = allDoctors?.find((doc) => doc._id === doctorId);
-  console.log(
-    doctor,
-    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details"
-  );
-  if (!doctor) return null;
+const DoctorDetails = ({ doctorID }) => {
+  const [doctor, setDoctor] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchDoctorData = async () => {
+    try {
+      const response = await apiService.GetDoctorById(doctorID);
+      setDoctor(response.data.data);
+      console.log(response.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
+    } catch (err) {
+      console.error("Error fetching doctor data:", err);
+      setError("Failed to fetch doctor data.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctorData();
+  }, [doctorID]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="col-span-3 px-2 py-3">

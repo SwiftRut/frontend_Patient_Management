@@ -7,7 +7,7 @@ import PropTypes from "prop-types"; // Add this import
 // PatientCard component
 const TeleConsultationCard = ({ patient }) => {
   const navigate = useNavigate();
-
+  console.log(patient)
   return (
     <div className="p-0 bg-white rounded-lg shadow-md transition transform hover:-translate-y-1 hover:shadow-xl">
       <div className="mb-4">
@@ -35,6 +35,7 @@ const TeleConsultationCard = ({ patient }) => {
           color="success"
           startIcon={<CallIcon />}
           className="join hover:bg-green-700"
+          onClick={() => navigate("/doctor/vid?room=" + patient?.id)}
         >
           Join Call
         </Button>

@@ -20,6 +20,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^5.59.0",
     "@tanstack/react-router": "^1.62.1",
+    "@zegocloud/zego-uikit-prebuilt": "^2.12.0",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
@@ -29,11 +30,14 @@
     "formik": "^2.4.6",
     "frontend-patient-management": "file:",
     "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.2",
     "jquery-ui-dist": "^1.13.3",
     "lucide-react": "^0.447.0",
     "moment": "^2.30.1",
     "react": "^18.3.1",
     "react-big-calendar": "^1.15.0",
+    "react-bootstrap": "^2.10.5",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
@@ -48,7 +52,8 @@
     "run": "^1.5.0",
     "socket.io-client": "^4.8.0",
     "tailwind-scrollbar": "^3.1.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zego-express-engine-miniprogram": "^3.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

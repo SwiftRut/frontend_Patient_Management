@@ -63,6 +63,7 @@ const {id} = useParams();
         patientId: appointmentData.patientId._id,
         medicines: values.medicines,
         additionalNote: values.additionalNote,
+        appointmentId: id,
         date: new Date().toISOString()
       };
       

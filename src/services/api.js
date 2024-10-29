@@ -15,24 +15,21 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-const apiService = {
+const   apiService = {
   // Patient
   PatientLogin: (userData) => api.post("/patient/login", userData),
   PatientRegister: (userData) => api.post("/patient/register", userData),
   GetPatientProfile: (id) => api.get(`/patient/getPatient/${id}`),
-  EditPatientProfile: (id, userData) =>
-    api.put(`/patient/editPatient/${id}`, userData),
+  EditPatientProfile: (id, userData) => api.put(`/patient/editPatient/${id}`, userData),
   GetAllPatients: () => api.get("/patient/getAllPatient"),
-  GetPatientById: (id) => api.get(`/patient/getPatient/${id}`), 
+  GetPatientById: (id) => api.get(`/patient/getPatient/${id}`),
 
   // Admin
   AdminLogin: (userData) => api.post("/admin/login", userData),
   AdminRegister: (userData) => api.post("/admin/register", userData),
   GetAdminProfile: (id) => api.get(`/admin/profile/${id}`),
-  EditAdminProfile: (id, userData) =>
-    api.patch(`/admin/edit-profile/${id}`, userData),
-  ChangePassword: (id, userData) =>
-    api.patch(`/admin/change-password/${id}`, userData),
+  EditAdminProfile: (id, userData) => api.patch(`/admin/edit-profile/${id}`, userData),
+  ChangePassword: (id, userData) => api.patch(`/admin/change-password/${id}`, userData),
 
   // Doctor
   DoctorLogin: (userData) => api.post("/doctor/login", userData),
@@ -47,54 +44,52 @@ const apiService = {
   UniversalLogin: (userData) => api.post("/login", userData),
   UniversalLogout: (userData) => api.post("/logout", userData),
   ForgetPassword: (userData) => api.post("/forgetPassword", userData),
-  VerifyOtp: (userData) => api.post("/verifyOtp", userData ),
+  VerifyOtp: (userData) => api.post("/verifyOtp", userData),
   ResetPassword: (userData) => api.post("/resetPassword", userData),
 
   //Hospital
   CreateHospital: (userData) => api.post("/hospital/create-hospital", userData),
-  GetAllHospitals: (userData) =>
-    api.get("/hospital/get-all-hospitals", userData),
+  GetAllHospitals: (userData) => api.get("/hospital/get-all-hospitals", userData),
 
   // Bill
   GetBills: () => api.get("/bill/getbill"),
+  GetBillsById: () => api.get("/bill/getbillsById"),
   GetInsuranceBills: () => api.get("/bill/getInsuranceBills"),
   CreateBill: (userData) => api.post("/bill/createbill", userData),
   GetBillById: (id) => api.get(`/bill/singlebill/${id}`),
   EditBill: (id, userData) => api.put(`/bill/billupdate/${id}`, userData),
   DeleteBill: (id) => api.delete(`/bill/deletebill/${id}`),
-  GetAllHospital: (userData) =>
-    api.post("/hospital/get-all-hospitals", userData),
-
+  GetAllHospital: (userData) => api.post("/hospital/get-all-hospitals", userData),
 
   //Appointments
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/singleappointment/${id}`),
   GetALLAppointmentById: (patientId) => api.get(`/appoinment/getAllAppointmentById/${patientId}`),
-  EditAppointment: (id, userData) =>
-    api.put(`/appoinment/updateappointment/${id}`, userData),
+  EditAppointment: (id, userData) => api.put(`/appoinment/updateappointment/${id}`, userData),
   DeleteAppointment: (id) => api.delete(`/appoinment/deleteappointment/${id}`),
-  CancelAppointment:(appointmentId)=>api.put(`/appoinment/cancelappointment/${appointmentId}`),
+  CancelAppointment: (appointmentId) => api.put(`/appoinment/cancelappointment/${appointmentId}`),
   createAppointment: (id, userData) => api.post(`/appoinment/appoinmentcreate`, userData),
-  GetAppointsForDoctor: (doctorId) => api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`,doctorId),   
-  GetAppointsForPatient: (patientId) => api.get(`/appoinment/Patient_Appointment_History/${patientId}`,patientId), 
+  GetAppointsForDoctor: (doctorId) =>
+    api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`, doctorId),
+  GetAppointsForPatient: (patientId) =>
+    api.get(`/appoinment/Patient_Appointment_History/${patientId}`, patientId),
 
   //Chats
-  GetChatHistory: (doctorId, patientId) =>
-    api.get(`/chat/${doctorId}/${patientId}`),
+  GetChatHistory: (doctorId, patientId) => api.get(`/chat/${doctorId}/${patientId}`),
   GetDoctorContacts: (id) => api.get(`/chat/contacts/patient/${id}`),
   GetPatientContacts: (id) => api.get(`/chat/contacts/doctor/${id}`),
 
   //Payment
-  AppointmentFee:(doctorId, appointmentType) => api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
-
+  AppointmentFee: (doctorId, appointmentType) =>
+    api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
 
   //Prescription
-  CreatePrescription: (userData,id) => api.post(`/prescription/createprescription/${id}`, userData),
+  CreatePrescription: (userData, id) =>
+    api.post(`/prescription/createprescription/${id}`, userData),
   GetAllPrescriptions: () => api.get(`/prescription/getPrescription`), ///temp getall prescription
   GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
-  EditPrescription: (id, userData) =>
-    api.put(`/prescription/editprescription/${id}`, userData),
+  EditPrescription: (id, userData) => api.put(`/prescription/editprescription/${id}`, userData),
   DeletePrescription: (id) => api.delete(`/prescription/deleteprescription/${id}`),
 };
 

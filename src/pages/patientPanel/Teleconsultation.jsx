@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
@@ -16,6 +16,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useEffect, useRef, useState } from "react";
 import moment from "moment";
+import CustomDateModal from "../../component/modals/CustomDateModal";
 
 const Teleconsultation = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -26,10 +27,19 @@ const Teleconsultation = () => {
   const searchRef = useRef(null);
   const { user } = useAuth();
   const [filteredAppointments, setFilteredAppointments] = useState([]);
-  const [dateRange, setDateRange] = useState("Any Date");
+  const [dateRange, setDateRange] = useState([null, null]);
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { getAllHospitals, allHospitals, getAllAppointmentById, allAppointmentsById, findPatientPrescriptions, patientPrescription } = useGlobal();
-
+  const {
+    getAllHospitals,
+    allHospitals,
+    getAllAppointmentById,
+    allAppointmentsById,
+    findPatientPrescriptions,
+    patientPrescription,
+  } = useGlobal();
+  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
+  
+  const navigate = useNavigate();
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
@@ -51,107 +61,81 @@ const Teleconsultation = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
+  const handleJoinCall = (appointmentId) => {
+    console.log("handle join call", appointmentId);
+    navigate(`/patient/vid?room=${appointmentId}`);
+  };
+  
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
   const filterAppointments = () => {
     const currentDate = moment();
+    const [startDate, endDate] = dateRange;
 
     const filtered = allAppointmentsById?.filter((appointment) => {
       const appointmentDate = moment(appointment.date);
       const lowerSearchTerm = searchTerm.toLowerCase();
 
-      const [startDate, endDate] = dateRange
-        .split(" - ")
-        .map((date) => moment(date.trim()));
-
-      const isWithinDateRange =
-        dateRange === "Any Date" ||
-        (appointmentDate.isSameOrAfter(startDate) &&
-          appointmentDate.isSameOrBefore(endDate));
+      const isWithinDateRange = !startDate || !endDate || (
+        appointmentDate.isSameOrAfter(moment(startDate)) &&
+        appointmentDate.isSameOrBefore(moment(endDate))
+      );
 
       const matchesSearch =
-        appointment.doctorId.name.toLowerCase().includes(lowerSearchTerm) ||
+        appointment.doctorId?.name?.toLowerCase().includes(lowerSearchTerm) ||
         appointment.type.toLowerCase().includes(lowerSearchTerm) ||
         appointment.patient_issue.toLowerCase().includes(lowerSearchTerm);
 
       switch (activeTab) {
         case "scheduled":
-          return appointmentDate.isAfter(currentDate) && appointment.status === "scheduled" && isWithinDateRange && matchesSearch;
+          return (
+            appointmentDate.isAfter(currentDate) &&
+            appointment.status === "scheduled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "previous":
-          return appointmentDate.isBefore(currentDate) && appointment.status === "completed" && isWithinDateRange && matchesSearch;
+          return (
+            appointmentDate.isBefore(currentDate) &&
+            appointment.status === "completed" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "cancel":
-          return appointment.status === "canceled" && isWithinDateRange && matchesSearch;
+          return (
+            appointment.status === "canceled" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         case "pending":
-          return appointment.status === "pending" && isWithinDateRange && matchesSearch;
+          return (
+            appointment.status === "pending" &&
+            isWithinDateRange &&
+            matchesSearch
+          );
         default:
           return false;
       }
     });
     setFilteredAppointments(filtered || []);
   };
-
+  console.log(filteredAppointments);
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
     setOpenModal(true);
   };
 
-  const renderAppointmentCard = (appointment) => (
-    <div key={appointment.id} className="w-full mx-auto bg-white rounded-lg shadow-md">
-      <div className="bg-[#f6f8fb] p-3 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-foreground">{appointment.doctorId?.name || "N/A"}</h2>
-        <div className="flex">
-          <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2 me-2">
-            <RiCalendarScheduleFill />
-          </div>
-          <div onClick={() => handleViewDetails(appointment)} className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2">
-            <IoEyeSharp />
-          </div>
-        </div>
-      </div>
-      <div className="p-3 border">
-        <div className="flex items-center justify-between">
-          <span className="text-base font-normal text-[#818194]">Appointment Type</span>
-          <span className="text-sm font-medium text-[#FFC313]">{appointment.type || "N/A"}</span>
-        </div>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-base font-normal text-[#818194]">Hospital Name</span>
-          <p className="text-sm font-medium text-[#4F4F4F]">{appointment?.hospitalId?.name || "N/A"}</p>
-        </div>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-base font-normal text-[#818194]">Appointment Date</span>
-          <p className="text-sm font-medium text-[#4F4F4F]">{appointment.date ? moment(appointment.date).format('YYYY-MM-DD') : "N/A"}</p>
-        </div>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-base font-normal text-[#818194]">Appointment Time</span>
-          <p className="text-sm font-medium text-[#4F4F4F]">{appointment.date ? moment(appointment.date).format('HH:mm') : "N/A"}</p>
-        </div>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-base font-normal text-[#818194]">Patient Issue</span>
-          <p className="text-sm font-medium text-[#4F4F4F]">{appointment.patient_issue || "N/A"}</p>
-        </div>
-        {activeTab === "scheduled" && (
-          <div className="flex justify-between mt-4">
-            <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
-              <TbCalendarX className="me-2" />
-              Cancel
-            </button>
-            <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
-              <FiPhoneCall className="me-2" />
-              Join Call
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  const clearDateRange = (e) => {
+    e.stopPropagation();
+    setDateRange([null, null]);
+  };
 
   return (
     <>
       <div className="p-4 bg-[#f6f8fb]">
-        <div className="container mt-5">
+        <div className="mx-3 mt-5">
           <div className="bg-white shadow-lg h-auto p-4 rounded-xl">
             {/* Tab navigation */}
             <ul className="overflow-x-auto flex border-b border-gray-300">
@@ -206,9 +190,7 @@ const Teleconsultation = () => {
                             placeholder="Quick Search"
                             className="bg-transparent w-[130px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
                             value={searchTerm}
-                            onChange={(e) =>
-                              setSearchTerm(e.target.value)
-                            }
+                            onChange={(e) => setSearchTerm(e.target.value)}
                           />
                           {isSearchOpen && (
                             <button
@@ -223,17 +205,25 @@ const Teleconsultation = () => {
                     </div>
 
                     {/* Date Selector */}
-                    <div className="flex items-center justify-between border rounded-md p-2 bg-white">
-                      <span className=" pl-3 text-gray-500 me-1">
-                        <FaCalendarAlt />
-                      </span>
+                    <div
+                      className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
+                      onClick={() => setOpenCustomDateModal(true)}
+                    >
+                      <span className="pl-3 text-gray-500 me-1"><FaCalendarAlt /></span>
                       <input
                         type="text"
-                        className="flex-1 focus:outline-none text-sm min-w-[152px] max-w-[300px] sm:min-w-[180px] sm:text-sm text-xs"
-                        value="2 Jan, 2022 - 13 Jan, 2022"
+                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
+                        value={
+                          dateRange[0] && dateRange[1]
+                            ? `${moment(dateRange[0]).format('MM/DD/YYYY')} - ${moment(dateRange[1]).format('MM/DD/YYYY')}`
+                            : "Select Date Range"
+                        }
                         readOnly
                       />
-                      <div className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white">
+                      <div
+                        className="h-5 w-5 rounded-full bg-red-500 flex items-center justify-center cursor-pointer text-white"
+                        onClick={clearDateRange}
+                      >
                         <IoCloseSharp />
                       </div>
                     </div>
@@ -242,9 +232,7 @@ const Teleconsultation = () => {
                     <Link to="/patient/appointmentBooking">
                       <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
                         <BiSolidCalendar className="h-5 w-5" />
-                        <span className="hidden sm:inline-block sm:ml-2">
-                          Book Appointment
-                        </span>
+                        <span className="hidden sm:inline-block sm:ml-2">Book Appointment</span>
                       </button>
                     </Link>
                   </div>
@@ -253,7 +241,87 @@ const Teleconsultation = () => {
 
               <div className="overflow-y-auto" style={{ height: "550px" }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {filteredAppointments.map(renderAppointmentCard)}
+                  {filteredAppointments.map((appointment) => (
+                    <div
+                      key={appointment.id}
+                      className="w-full mx-auto bg-white rounded-lg shadow-md"
+                    >
+                      <div className="bg-[#f6f8fb] p-3 flex items-center justify-between">
+                        <h2 className="text-lg font-semibold text-foreground">
+                          {appointment.doctorId?.name || "N/A"}
+                        </h2>
+                        <div className="flex">
+                          <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2 me-2">
+                            <RiCalendarScheduleFill />
+                          </div>
+                          <div
+                            onClick={() => handleViewDetails(appointment)}
+                            className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                          >
+                            <IoEyeSharp />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3 border">
+                        <div className="flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
+                            Appointment Type
+                          </span>
+                          <span className="text-sm font-medium text-[#FFC313]">
+                            {appointment.type || "N/A"}
+                          </span>
+                        </div>
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
+                            Hospital Name
+                          </span>
+                          <p className="text-sm font-medium text-[#4F4F4F]">
+                            {appointment?.doctorId?.hospitalName || "N/A"}
+                          </p>
+                        </div>
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
+                            Appointment Date
+                          </span>
+                          <p className="text-sm font-medium text-[#4F4F4F]">
+                            {appointment.date
+                              ? moment(appointment.date).format("YYYY-MM-DD")
+                              : "N/A"}
+                          </p>
+                        </div>
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
+                            Appointment Time
+                          </span>
+                          <p className="text-sm font-medium text-[#4F4F4F]">
+                            {appointment.date
+                              ? moment(appointment.date).format("HH:mm")
+                              : "N/A"}
+                          </p>
+                        </div>
+                        <div className="mt-1 flex items-center justify-between">
+                          <span className="text-base font-normal text-[#818194]">
+                            Patient Issue
+                          </span>
+                          <p className="text-sm font-medium text-[#4F4F4F]">
+                            {appointment.patient_issue || "N/A"}
+                          </p>
+                        </div>
+                        {activeTab === "scheduled" && (
+                          <div className="flex justify-between mt-4">
+                            <button className="border p-2 rounded-md w-[47%] text-lg font-semibold text-[#4F4F4F] flex items-center justify-center">
+                              <TbCalendarX className="me-2" />
+                              Cancel
+                            </button>
+                            <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center" onClick={() => handleJoinCall(appointment._id)}>
+                              <FiPhoneCall className="me-2" />
+                              Join Call
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -268,7 +336,8 @@ const Teleconsultation = () => {
             <div className="max-w-xl bg-white rounded-lg shadow-lg p-5">
               <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-lg font-bold text-[#030229] me-20">
-                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Appointment
+                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
+                  Appointment
                 </h2>
                 <button
                   className="w-6 h-6 bg-red-600 text-white rounded-full flex justify-center items-center"
@@ -288,32 +357,51 @@ const Teleconsultation = () => {
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                   Appointment Date:{" "}
                   <span className="text-[#030229]">
-                    {selectedAppointment.date ? moment(selectedAppointment.date).format('YYYY-MM-DD') : "N/A"}
+                    {selectedAppointment.date
+                      ? moment(selectedAppointment.date).format("YYYY-MM-DD")
+                      : "N/A"}
                   </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                   Appointment Time:{" "}
                   <span className="text-[#030229]">
-                    {selectedAppointment.date ? moment(selectedAppointment.date).format('HH:mm') : "N/A"}
+                    {selectedAppointment.date
+                      ? moment(selectedAppointment.date).format("HH:mm")
+                      : "N/A"}
                   </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                   Hospital Name:{" "}
-                  <span className="text-[#030229]">{selectedAppointment?.hospitalId?.name || "N/A"}</span>
+                  <span className="text-[#030229]">
+                    {selectedAppointment?.hospitalId?.name || "N/A"}
+                  </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between">
                   Patient Issue:{" "}
-                  <span className="text-[#030229]">{selectedAppointment.patient_issue || "N/A"}</span>
+                  <span className="text-[#030229]">
+                    {selectedAppointment.patient_issue || "N/A"}
+                  </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                   Doctor Name:{" "}
-                  <span className="text-[#030229]">{selectedAppointment.doctorId.name || "N/A"}</span>
+                  <span className="text-[#030229]">
+                    {selectedAppointment.doctorId.name || "N/A"}
+                  </span>
                 </p>
               </div>
             </div>
           </div>
         </div>
       )}
+
+      <CustomDateModal
+        open={openCustomDateModal}
+        onClose={() => setOpenCustomDateModal(false)}
+        onApply={(newRange) => {
+          setDateRange(newRange);
+          setOpenCustomDateModal(false);
+        }}
+      />
     </>
   );
 };
