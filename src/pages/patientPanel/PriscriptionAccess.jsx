@@ -15,7 +15,7 @@ export default function PrescriptionAccess() {
   const { user } = useAuth();
 
   useEffect(() => {
-    findPatientPrescriptions(user.id).finally(() => setIsLoading(false));
+    findPatientPrescriptions(user.id);
   }, []);
 
   // Function to handle the date range change
