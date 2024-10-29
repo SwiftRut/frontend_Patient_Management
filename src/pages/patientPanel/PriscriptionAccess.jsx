@@ -101,12 +101,9 @@ export default function PrescriptionAccess() {
                   <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
                     <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
                     <div className="flex">
-                      <div
-                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2 cursor-pointer"
-                        onClick={() => downloadPrescriptionImage(prescription)} // Download button on card
-                      >
+                      {/* <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
                         <FaDownload />
-                      </div>
+                      </div> */}
                       <div
                         onClick={() => openModal(prescription)}
                         className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 cursor-pointer"
