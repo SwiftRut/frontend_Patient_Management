@@ -30,6 +30,7 @@
     "formik": "^2.4.6",
     "frontend-patient-management": "file:",
     "html-to-image": "^1.11.11",
+    "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.2",
     "jquery-ui-dist": "^1.13.3",
     "lucide-react": "^0.447.0",
