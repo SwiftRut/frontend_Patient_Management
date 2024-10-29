@@ -5,6 +5,7 @@ import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
+import { toPng } from 'html-to-image'; // Import for downloading modal
 
 export default function PrescriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function PrescriptionAccess() {
 
   // Function to handle the date range change
   const handleDateRangeChange = (newRange) => {
-    setDateRange(newRange); // Update the date range with the new values
+    setDateRange(newRange);
     setIsDateRangeModalOpen(false);
   };
 
@@ -105,7 +106,7 @@ export default function PrescriptionAccess() {
                       </div> */}
                       <div
                         onClick={() => openModal(prescription)}
-                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
+                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 cursor-pointer"
                       >
                         <IoEyeSharp />
                       </div>
@@ -151,6 +152,7 @@ export default function PrescriptionAccess() {
                 open={isModalOpen}
                 handleClose={handleModalClose}
                 prescriptionData={selectedPrescription}
+                onDownload={downloadPrescriptionImage} // Pass the download function to the modal
               />
             </div>
           </div>

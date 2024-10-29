@@ -24,6 +24,7 @@ import {
 import { IoMdChatbubbles } from "react-icons/io";
 import { RiBillLine } from "react-icons/ri";
 import { useAuth } from "../../hooks/useAuth";
+import PatientMeetingConference from "../PatientMeetingConference/PatientMeetingConference";
 
 export default function PatientPanel() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -152,6 +153,7 @@ export default function PatientPanel() {
               <Route path="/appointmentBooking" element={<AppointmentBooking />} />
               <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
               <Route path="/chatScreen" element={<ChatScreen1 />} />
+              <Route path="/vid" element={<PatientMeetingConference />} />
             </Routes>
           </div>
         </main>
