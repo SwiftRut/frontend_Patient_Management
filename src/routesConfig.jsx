@@ -142,6 +142,10 @@ const routesConfig = [
         path: "edit",
         element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
       },
+      {
+        path: "vid",
+        element: <ProtectedRoute element={null} allowedRoles={["doctor"]} userRole={userRole} />,
+      },
       // { path: "addRecord", element: <ProtectedRoute element={<AddRecord/>} allowedRoles={['doctor']} userRole={userRole} /> },
       {
         path: "patientRecordAccesst",
@@ -213,6 +217,9 @@ const routesConfig = [
     children: [
       {
         path: "profile/*",
+        element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
+      }, {
+        path: "vid",
         element: <ProtectedRoute element={null} allowedRoles={["patient"]} userRole={userRole} />,
       },
       {

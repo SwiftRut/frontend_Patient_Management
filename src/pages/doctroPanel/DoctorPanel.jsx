@@ -17,6 +17,7 @@ import CreatePrescriptionForm from "./CreatePrescriptionForm.jsx";
 import Calendar from "../patientPanel/Calendar.jsx";
 import AllFiles from "./AllFiles.jsx";
 import AddRecord from "./AddRecord.jsx";
+import DoctorMeetingConference from "../DoctorMeetingConference/DoctorMeetingConference.jsx";
 
 
 export default function DoctorPanel() {
@@ -44,6 +45,7 @@ export default function DoctorPanel() {
           <Route path="createPrescriptionForm/:id" element={<CreatePrescriptionForm />} />
 
           <Route path="addRecord" element={<AddRecord />} />
+          <Route path="vid" element={<DoctorMeetingConference />} />
         </Routes>
       </div>
     </>
