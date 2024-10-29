@@ -5,14 +5,15 @@ import TeleConsultationCard from "../../component/PrescriptionTools/TeleConsulta
 import CustomDateModal from "../../component/modals/CustomDateModal";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
-import moment from "moment"; // Import moment for date handling
+import moment from "moment";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } = useGlobal();
-  const [activeTab, setActiveTab] = useState(0);
-  const [dateRange, setDateRange] = useState([null, null]); // State for date range
-  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const { user } = useAuth();
+
+  const [activeTab, setActiveTab] = useState(0);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -20,49 +21,110 @@ export default function TeleconsultationModule() {
 
   const handleCancelAppointment = async (appointmentId) => {
     try {
-      await cancelAppointment(appointmentId); // API call to cancel
-      getAppointmetnsForDoctor(user.id); // Refresh the list
+      await cancelAppointment(appointmentId);
+      getAppointmetnsForDoctor(user.id);
     } catch (error) {
       console.error("Failed to cancel appointment", error);
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
+  };
+
+  const formatTime = (timeString) => {
+    const date = new Date(timeString);
+    return date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+  };
+
   const filterAppointments = (appointments) => {
     const [startDate, endDate] = dateRange;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    return appointments.filter((apt) => {
-      const aptDate = moment(apt.date);
-      const isWithinDateRange =
-        (!startDate || !endDate) ||
-        (aptDate.isSameOrAfter(moment(startDate)) && aptDate.isSameOrBefore(moment(endDate)));
-
-      return isWithinDateRange && apt.status !== "canceled"; // Filter out canceled appointments
-    });
+    return {
+      today: appointments.filter((apt) => {
+        const aptDate = new Date(apt.date);
+        aptDate.setHours(0, 0, 0, 0);
+        return (
+          aptDate.getTime() === today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
+      }),
+      upcoming: appointments.filter((apt) => {
+        const aptDate = new Date(apt.date);
+        return (
+          aptDate.getTime() > today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
+      }),
+      previous: appointments.filter((apt) => {
+        const aptDate = new Date(apt.date);
+        return (
+          aptDate.getTime() < today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
+      }),
+      canceled: appointments.filter((apt) => apt.status === "canceled"),
+    };
   };
 
   const getCurrentAppointments = () => {
     const filteredAppointments = filterAppointments(allAppointments || []);
-
     switch (activeTab) {
       case 0:
-        return filteredAppointments.filter((apt) => moment(apt.date).isSame(new Date(), 'day')); // Today's appointments
+        return filteredAppointments.today;
       case 1:
-        return filteredAppointments.filter((apt) => moment(apt.date).isAfter(new Date())); // Upcoming appointments
+        return filteredAppointments.upcoming;
       case 2:
-        return filteredAppointments.filter((apt) => moment(apt.date).isBefore(new Date())); // Previous appointments
+        return filteredAppointments.previous;
       case 3:
-        return filteredAppointments.filter((apt) => apt.status === "canceled"); // Canceled appointments
+        return filteredAppointments.canceled;
       default:
-        return filteredAppointments;
+        return filteredAppointments.today;
     }
   };
 
-  const handleDateSelection = (newRange) => {
-    setDateRange(newRange); // Update the date range
-    setOpenCustomDateModal(false); // Close the modal
+  const getCurrentName = () => {
+    switch (activeTab) {
+      case 0:
+        return "Today Appointment";
+      case 1:
+        return "Upcoming Appointment";
+      case 2:
+        return "Previous Appointment";
+      case 3:
+        return "Cancel Appointment";
+      default:
+        return "Today Appointment";
+    }
   };
 
-  const currentAppointments = getCurrentAppointments();
+  const formatAppointmentForDisplay = (appointment) => ({
+    id: appointment._id,
+    patientId: appointment.patientId._id,
+    name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
+    issue: appointment.patient_issue,
+    disease: appointment.patient_issue,
+    date: formatDate(appointment.date),
+    time: formatTime(appointment.appointmentTime),
+    age: appointment.patientId.age,
+    gender: appointment.patientId.gender,
+    avatar: appointment.patientId.avatar,
+    status: appointment.status,
+  });
+
+  const handleDateSelection = (newRange) => {
+    setDateRange(newRange);
+    setOpenCustomDateModal(false);
+  };
+
+  const tabName = getCurrentName();
+  const currentAppointments = getCurrentAppointments().map(formatAppointmentForDisplay);
 
   return (
     <>
@@ -79,7 +141,7 @@ export default function TeleconsultationModule() {
         </Tabs>
 
         <div className="head mt-4 mb-6 flex justify-between items-center">
-          <h2 className="text-xl font-semibold">Appointments</h2>
+          <h2 className="text-xl font-semibold">{tabName}</h2>
           <Button
             variant="outlined"
             startIcon={<DateRange />}
@@ -102,7 +164,7 @@ export default function TeleconsultationModule() {
       <CustomDateModal
         open={openCustomDateModal}
         onClose={() => setOpenCustomDateModal(false)}
-        onApply={handleDateSelection} // Pass the date selection handler
+        onApply={handleDateSelection}
       />
     </>
   );
