@@ -3,7 +3,6 @@ import { Tabs, Tab, Button } from "@mui/material";
 import { DateRange } from "@mui/icons-material";
 import TeleConsultationCard from "../../component/PrescriptionTools/TeleConsultationCard";
 import CustomDateModal from "../../component/modals/CustomDateModal";
-import TeleConsultationTable from "../../component/PrescriptionTools/TeleConsultationTable";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -29,12 +28,12 @@ export default function TeleconsultationModule() {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+    return date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
   };
 
   const formatTime = (timeString) => {
     const date = new Date(timeString);
-    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    return date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
   };
 
   const filterAppointments = (appointments) => {
@@ -42,28 +41,28 @@ export default function TeleconsultationModule() {
     today.setHours(0, 0, 0, 0);
 
     return {
-      today: appointments.filter(apt => {
+      today: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate.getTime() === today.getTime() && apt.status !== "canceled";
       }),
-      upcoming: appointments.filter(apt => {
+      upcoming: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate.getTime() > today.getTime() && apt.status !== "canceled";
       }),
-      previous: appointments.filter(apt => {
+      previous: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate.getTime() < today.getTime() && apt.status !== "canceled";
       }),
-      canceled: appointments.filter(apt => apt.status === "canceled")
+      canceled: appointments.filter((apt) => apt.status === "canceled"),
     };
   };
 
   const getCurrentAppointments = () => {
     const filteredAppointments = filterAppointments(allAppointments || []);
-    
+
     switch (activeTab) {
       case 0:
         return filteredAppointments.today;
@@ -105,7 +104,7 @@ export default function TeleconsultationModule() {
       age: appointment.patientId.age,
       gender: appointment.patientId.gender,
       avatar: appointment.patientId.avatar,
-      status: appointment.status
+      status: appointment.status,
     };
   };
 
@@ -138,54 +137,11 @@ export default function TeleconsultationModule() {
           </Button>
         </div>
 
-        {tabName === "Today Appointment" || tabName === "Upcoming Appointment" || tabName === "Previous Appointment" ? (
-          <div className="pr-data max-h-[600px] overflow-y-auto">
-            <table className="min-w-full table-auto">
-              <thead className="sticky top-0 bg-gray-100 z-10">
-                <tr>
-                  <th className="p-3 text-left text-sm font-semibold">Patient Name</th>
-                  <th className="p-3 text-left text-sm font-semibold">Disease Name</th>
-                  <th className="p-3 text-left text-sm font-semibold">Patient Issue</th>
-                  <th className="p-3 text-left text-sm font-semibold">Last Appointment Date</th>
-                  <th className="p-3 text-left text-sm font-semibold">Last Appointment Time</th>
-                  <th className="p-3 text-left text-sm font-semibold">Age</th>
-                  <th className="p-3 text-left text-sm font-semibold">Gender</th>
-                  <th className="p-3 text-left text-sm font-semibold">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentAppointments.map((patient) => (
-                  <tr key={patient.id}>
-                    <td className="p-3">{patient.name}</td>
-                    <td className="p-3">{patient.disease}</td>
-                    <td className="p-3">{patient.issue}</td>
-                    <td className="p-3">{patient.date}</td>
-                    <td className="p-3">{patient.time}</td>
-                    <td className="p-3">{patient.age}</td>
-                    <td className="p-3">{patient.gender}</td>
-                    <td className="p-3">
-                      {patient.status !== "canceled" && (
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={() => handleCancelAppointment(patient.id)}
-                        >
-                          Cancel
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {currentAppointments.map((patient) => (
-              <TeleConsultationCard key={patient.id} patient={patient} />
-            ))}
-          </div>
-        )}
+        <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {currentAppointments.map((patient) => (
+            <TeleConsultationCard key={patient.id} patient={patient} />
+          ))}
+        </div>
       </div>
 
       <CustomDateModal

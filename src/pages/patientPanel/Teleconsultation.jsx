@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
@@ -39,7 +39,7 @@ const Teleconsultation = () => {
   } = useGlobal();
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   
-
+  const navigate = useNavigate();
   useEffect(() => {
     getAllDoctors();
     getAllHospitals();
@@ -61,7 +61,11 @@ const Teleconsultation = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
+  const handleJoinCall = (appointmentId) => {
+    console.log("handle join call", appointmentId);
+    navigate(`/patient/vid?room=${appointmentId}`);
+  };
+  
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
@@ -117,7 +121,7 @@ const Teleconsultation = () => {
     });
     setFilteredAppointments(filtered || []);
   };
-
+  console.log(filteredAppointments);
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
     setOpenModal(true);
@@ -309,7 +313,7 @@ const Teleconsultation = () => {
                               <TbCalendarX className="me-2" />
                               Cancel
                             </button>
-                            <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center">
+                            <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center" onClick={() => handleJoinCall(appointment._id)}>
                               <FiPhoneCall className="me-2" />
                               Join Call
                             </button>
