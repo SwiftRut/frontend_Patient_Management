@@ -21,6 +21,8 @@ const Dashboard = () => {
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalDoctors, setTotalDoctors] = useState(0);
 
+  console.log("todaysAppointments", todaysAppointments);
+
   useEffect(() => {
     getBills();
   }, []);
@@ -33,8 +35,10 @@ const Dashboard = () => {
         setTotalAppointments(data.length);
 
         const today = new Date().toISOString().split("T")[0];
+
         const filteredAppointments = data.filter(
-          (appointment) => appointment.appointmentDate === today
+          (appointment) =>
+            new Date(appointment.date).toISOString().split("T")[0] === today
         );
         setTodaysAppointments(filteredAppointments);
       } catch (error) {
@@ -163,11 +167,18 @@ const Dashboard = () => {
                                 <td className="disease-name">
                                   <p>{bill.diseaseName}</p>
                                 </td>
-                                <td className={bill.status=="paid"?"status":"status1"}>
+                                <td
+                                  className={
+                                    bill.status == "paid" ? "status" : "status1"
+                                  }
+                                >
                                   <p>{bill.status}</p>
                                 </td>
                                 <td className="action flex">
-                                  <div className="box flex" onClick={()=>navigate(`/bill/${bill.id}`)}>
+                                  <div
+                                    className="box flex"
+                                    onClick={() => navigate(`/bill/${bill.id}`)}
+                                  >
                                     <FaEye />
                                   </div>
                                 </td>
@@ -205,22 +216,30 @@ const Dashboard = () => {
                           <div className="box" key={index}>
                             <div className="content">
                               <div className="heading flex">
-                                <p>{appointment.patientName}</p>
+                                <p>{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
                                 <span>{appointment.type}</span>
                               </div>
                               <div className="data">
                                 <ul>
                                   <li>
                                     <p>Doctor Name</p>
-                                    <span>{appointment.doctorName}</span>
+                                    <span>Dr. {appointment?.doctorId?.name}</span>
                                   </li>
                                   <li>
                                     <p>Disease Name</p>
-                                    <span>{appointment.disease}</span>
+                                    <span>{appointment?.patient_issue}</span>
                                   </li>
                                   <li>
                                     <p>Appointment Time</p>
-                                    <span>{appointment.time}</span>
+                                    <span>
+                                      {appointment?.appointmentTime && 
+                                        new Date(appointment.appointmentTime).toLocaleTimeString([], { 
+                                          hour: '2-digit', 
+                                          minute: '2-digit', 
+                                          hour12: true 
+                                        })
+                                      }
+                                    </span>
                                   </li>
                                 </ul>
                               </div>
