@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./dashboard.css";
 import {
   FaUsers,
   FaUser,
@@ -12,6 +11,7 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 import PatientsStatistics from "../../component/PatientComponents/PatientsStatistics.jsx";
 import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown.jsx";
 import apiService from "../../services/api.js";
+import "./dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -216,8 +216,8 @@ const Dashboard = () => {
                           <div className="box" key={index}>
                             <div className="content">
                               <div className="heading flex">
-                                <p>{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
-                                <span>{appointment.type}</span>
+                                <p className="text-[15px]">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
+                                <span className="">{appointment.type}</span>
                               </div>
                               <div className="data">
                                 <ul>
