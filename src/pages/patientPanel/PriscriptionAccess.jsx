@@ -5,7 +5,6 @@ import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-import { toPng } from 'html-to-image'; // Import for downloading modal
 
 export default function PrescriptionAccess() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +20,7 @@ export default function PrescriptionAccess() {
 
   // Function to handle the date range change
   const handleDateRangeChange = (newRange) => {
-    setDateRange(newRange);
+    setDateRange(newRange); // Update the date range with the new values
     setIsDateRangeModalOpen(false);
   };
 
@@ -101,12 +100,12 @@ export default function PrescriptionAccess() {
                   <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
                     <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
                     <div className="flex">
-                      {/* <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
+                      <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
                         <FaDownload />
-                      </div> */}
+                      </div>
                       <div
                         onClick={() => openModal(prescription)}
-                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 cursor-pointer"
+                        className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
                       >
                         <IoEyeSharp />
                       </div>
@@ -152,7 +151,6 @@ export default function PrescriptionAccess() {
                 open={isModalOpen}
                 handleClose={handleModalClose}
                 prescriptionData={selectedPrescription}
-                onDownload={downloadPrescriptionImage} // Pass the download function to the modal
               />
             </div>
           </div>

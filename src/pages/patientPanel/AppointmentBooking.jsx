@@ -19,6 +19,8 @@ const AppointmentBooking = () => {
     getAllDoctors();
     getAllHospitals();
     getAllAppointments();
+    loadRazorpayScript(); // Call the loadRazorpayScript function first
+
   }, []);
 
   // Get unique values for each filter based on allDoctors data
@@ -46,7 +48,39 @@ const AppointmentBooking = () => {
       (!hospital || doctor.hospitalName === hospital)
     );
   });
+// Load Razorpay script
+const loadRazorpayScript = () => {
+  const script = document.createElement("script");
+  script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  script.async = true;
+  document.body.appendChild(script);
+};
 
+// Handle Razorpay Payment
+const handlePayment = () => {
+
+  const options = {
+    key: "rzp_test_bLAqvl1z0C0XkX", // Replace with your Razorpay Key ID
+    amount: 1000 * 100, // Amount in paisa (e.g., 1000 = 10 INR)
+    currency: "INR",
+    name: "Doctor Appointment",
+    description: "Consultation fee",
+    handler: function (response) {
+      alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+    },
+    prefill: {
+      name: "John Doe",
+      email: "john.doe@example.com",
+      contact: "9999999999",
+    },
+    theme: {
+      color: "#3399cc",
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
   const isAllSelected = () => {
     return (
       doctor && appointmentType
@@ -174,6 +208,12 @@ const AppointmentBooking = () => {
               )}
             </div>
           </div>
+          <button
+                      onClick={handlePayment}
+                      className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Pay with Razorpay
+                    </button>
         </div>
       </div>
     </div>
