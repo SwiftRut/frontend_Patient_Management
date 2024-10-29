@@ -1,9 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
+import { useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { useGlobal } from "../../hooks/useGlobal";
 
 const PatientMeetingConference = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
+  const location = useLocation();
+  const {user} = useAuth();
+  const {userData} = useGlobal();
+  console.log(userData);
+  // This function helps to get query parameters
+  const getQueryParam = (param) => {
+    return new URLSearchParams(location.search).get(param);
+  };
+
+  const room = getQueryParam("room");
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
@@ -30,9 +43,9 @@ const PatientMeetingConference = () => {
     const appID = 1757979495;
     const serverSecret = "04f46682ad34e9005b14d629441180e3";
 
-    const roomID = "sample_room";
+    const roomID = room;
     const userID = "1";
-    const userName = "Lincoln Philips";
+    const userName =  user.firstName + " " + user.lastName;
 
     const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID,  Date.now().toString(),  userName);
     const zp = ZegoUIKitPrebuilt.create(kitToken);

@@ -21,7 +21,7 @@ export default function PrescriptionAccess() {
 
   // Function to handle the date range change
   const handleDateRangeChange = (newRange) => {
-    setDateRange(newRange); // Update the date range with the new values
+    setDateRange(newRange);
     setIsDateRangeModalOpen(false);
   };
 
