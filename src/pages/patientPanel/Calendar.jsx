@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -6,6 +6,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import AppointmentModal from "./AppointmentModal";
 import RescheduleModal from "./RescheduleModal";
+import PropTypes from "prop-types";
 
 const localizer = momentLocalizer(moment);
 
@@ -15,18 +16,20 @@ const Calendar = ({ filterData }) => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const { createAppointment, updateAppointment, deleteAppointment, allAppointments:allAppointements,getAppointmetnsForPatient } = useGlobal();
+  const {
+    createAppointment,
+    updateAppointment,
+    deleteAppointment,
+    allAppointments: allAppointements,
+    getAppointmetnsForPatient,
+  } = useGlobal();
   const { user } = useAuth();
-  console.log(events);
-  useEffect(() => {
-    // getAllAppointments();
-    getAppointmetnsForPatient(user.id);
-    console.log(allAppointements)
-  },[]);
-  useEffect(() => {
-    console.log(allAppointements);
 
-    // Map appointments to the required format for react-big-calendar
+  useEffect(() => {
+    getAppointmetnsForPatient(user.id);
+  }, [user.id]);
+
+  useEffect(() => {
     const mappedEvents = allAppointements?.map((appointment) => ({
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId?.name}`,
       start: new Date(appointment.date),
@@ -69,13 +72,10 @@ const Calendar = ({ filterData }) => {
   };
 
   const handleRescheduleAppointment = async (updatedAppointment) => {
-    console.log(updatedAppointment, "<<<<<<<<<<<<<<<<<<<<<<<<<");
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       const updatedEvents = events.map((event) =>
-        event.id === updatedAppointment.id
-          ? { ...event, ...updatedAppointment }
-          : event
+        event.id === updatedAppointment.id ? { ...event, ...updatedAppointment } : event
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
@@ -87,9 +87,7 @@ const Calendar = ({ filterData }) => {
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       await deleteAppointment(appointmentId);
-      const updatedEvents = events.filter(
-        (event) => event.id !== appointmentId
-      );
+      const updatedEvents = events.filter((event) => event.id !== appointmentId);
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
     } catch (error) {
@@ -126,6 +124,10 @@ const Calendar = ({ filterData }) => {
       />
     </div>
   );
+};
+
+Calendar.propTypes = {
+  filterData: PropTypes.any.isRequired,
 };
 
 export default Calendar;

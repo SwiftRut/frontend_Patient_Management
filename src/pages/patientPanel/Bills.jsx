@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { IoEyeSharp } from "react-icons/io5";
 import { HiCash } from "react-icons/hi";
 import { FaRupeeSign } from "react-icons/fa";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import MainBill from "./MainBill";
-import { useGlobal } from "../../hooks/useGlobal";
+import { useGlobal } from "../../context/GlobalContext";
 
 const Bills = () => {
   const [activeTab, setActiveTab] = useState("Unpaid Bills");
@@ -21,11 +22,14 @@ const Bills = () => {
     getAllBillsById();
   }, []);
 
-  console.log("all bill", allBillsById);
+  console.log("All Bills:", allBillsById);
 
   // Filter bills based on status
   const unpaidBills = allBillsById.filter((bill) => bill.status === "Unpaid");
   const paidBills = allBillsById.filter((bill) => bill.status === "Paid");
+
+  console.log("Unpaid Bills:", unpaidBills);
+  console.log("Paid Bills:", paidBills);
 
   const handleViewBillDetails = (Id) => {
     console.log(Id);
@@ -504,6 +508,46 @@ const Bills = () => {
       )}
     </div>
   );
+};
+
+// PropTypes validation
+Bills.propTypes = {
+  allBillsById: PropTypes.arrayOf(
+    PropTypes.shape({
+      address: PropTypes.string,
+      age: PropTypes.number,
+      amount: PropTypes.number,
+      billNumber: PropTypes.number,
+      createdAt: PropTypes.string,
+      date: PropTypes.string,
+      description: PropTypes.string,
+      discount: PropTypes.number,
+      diseaseName: PropTypes.string,
+      doctorId: PropTypes.shape({
+        _id: PropTypes.string,
+        hospitalId: PropTypes.string,
+        name: PropTypes.string,
+        gender: PropTypes.string,
+      }),
+      gender: PropTypes.string,
+      id: PropTypes.string,
+      patientId: PropTypes.shape({
+        _id: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        email: PropTypes.string,
+      }),
+      paymentType: PropTypes.string,
+      phone: PropTypes.string,
+      status: PropTypes.string,
+      tax: PropTypes.number,
+      time: PropTypes.string,
+      totalAmount: PropTypes.number,
+      updatedAt: PropTypes.string,
+      __v: PropTypes.number,
+      _id: PropTypes.string,
+    })
+  ).isRequired, // Mark as required if necessary
 };
 
 export default Bills;
