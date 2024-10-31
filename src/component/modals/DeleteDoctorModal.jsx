@@ -1,6 +1,6 @@
-import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, IconButton } from '@mui/material';
-import { Close, Delete } from '@mui/icons-material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import PropTypes from "prop-types";
 
 const DeleteDoctorModal = ({ open, handleClose, handleDelete }) => {
   return (
@@ -12,10 +12,9 @@ const DeleteDoctorModal = ({ open, handleClose, handleDelete }) => {
       fullWidth
     >
       <DialogTitle id="delete-doctor-title" className="bg-red-100 text-center">
-
         <div className="flex flex-col items-center">
           <div className="rounded-full bg-red-500 p-3">
-            <Delete className='!h-8 !w-8'/>
+            <Delete className="!h-8 !w-8" />
           </div>
           <p className="mt-2 text-lg font-semibold">Delete Doctor Details?</p>
           <p className="text-sm text-gray-500">
@@ -23,9 +22,7 @@ const DeleteDoctorModal = ({ open, handleClose, handleDelete }) => {
           </p>
         </div>
       </DialogTitle>
-      <DialogContent>
-        {/* Content not needed for this modal */}
-      </DialogContent>
+      <DialogContent>{/* Content not needed for this modal */}</DialogContent>
       <DialogActions className="justify-center pb-6">
         <Button onClick={handleClose} variant="outlined" color="primary">
           No
@@ -36,6 +33,12 @@ const DeleteDoctorModal = ({ open, handleClose, handleDelete }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+DeleteDoctorModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default DeleteDoctorModal;

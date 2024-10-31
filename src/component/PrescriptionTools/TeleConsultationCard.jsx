@@ -2,12 +2,12 @@ import { Button } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 import EventIcon from "@mui/icons-material/Event";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types"; // Add this import
+import PropTypes from "prop-types"; // Import PropTypes
 
 // PatientCard component
 const TeleConsultationCard = ({ patient }) => {
   const navigate = useNavigate();
-  console.log(patient)
+  console.log(patient);
   return (
     <div className="p-0 bg-white rounded-lg shadow-md transition transform hover:-translate-y-1 hover:shadow-xl">
       <div className="mb-4">
@@ -61,6 +61,7 @@ TeleConsultationCard.propTypes = {
     disease: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired, // Ensure 'id' is included
   }).isRequired,
 };
 

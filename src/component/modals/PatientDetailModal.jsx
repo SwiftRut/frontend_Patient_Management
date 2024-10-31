@@ -1,5 +1,6 @@
 import { Dialog, DialogTitle, DialogContent, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import PropTypes from 'prop-types';
 
 const PatientDetailsModal = ({ open, handleClose, patient }) => {
 
@@ -39,6 +40,24 @@ const PatientDetailsModal = ({ open, handleClose, patient }) => {
       </DialogContent>
     </Dialog>
   );
+};
+
+PatientDetailsModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  patient: PropTypes.shape({
+    appointmentType: PropTypes.string,
+    appointmentDate: PropTypes.string,
+    appointmentTime: PropTypes.string,
+    patientName: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    age: PropTypes.number,
+    gender: PropTypes.string,
+    patientIssue: PropTypes.string,
+    diseaseName: PropTypes.string,
+    doctorName: PropTypes.string,
+    address: PropTypes.string,
+  }),
 };
 
 export default PatientDetailsModal;
