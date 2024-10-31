@@ -301,7 +301,7 @@
   border-top-right-radius: 10px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .heading p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .heading span {
@@ -309,7 +309,7 @@
   background-color: rgba(86, 120, 233, 0.1019607843);
   border-radius: 30px;
   color: #5678e9;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list .box .content .data {

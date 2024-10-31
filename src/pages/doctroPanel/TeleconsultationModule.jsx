@@ -5,13 +5,15 @@ import TeleConsultationCard from "../../component/PrescriptionTools/TeleConsulta
 import CustomDateModal from "../../component/modals/CustomDateModal";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import moment from "moment";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } = useGlobal();
-  const [activeTab, setActiveTab] = useState(0);
-  const [dateRange, setDateRange] = useState("Any Date");
-  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const { user } = useAuth();
+
+  const [activeTab, setActiveTab] = useState(0);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -19,8 +21,8 @@ export default function TeleconsultationModule() {
 
   const handleCancelAppointment = async (appointmentId) => {
     try {
-      await cancelAppointment(appointmentId); // API call to cancel
-      getAppointmetnsForDoctor(user.id); // Refresh the list
+      await cancelAppointment(appointmentId);
+      getAppointmetnsForDoctor(user.id);
     } catch (error) {
       console.error("Failed to cancel appointment", error);
     }
@@ -37,6 +39,7 @@ export default function TeleconsultationModule() {
   };
 
   const filterAppointments = (appointments) => {
+    const [startDate, endDate] = dateRange;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -44,17 +47,27 @@ export default function TeleconsultationModule() {
       today: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
-        return aptDate.getTime() === today.getTime() && apt.status !== "canceled";
+        return (
+          aptDate.getTime() === today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
       }),
       upcoming: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
-        aptDate.setHours(0, 0, 0, 0);
-        return aptDate.getTime() > today.getTime() && apt.status !== "canceled";
+        return (
+          aptDate.getTime() > today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
       }),
       previous: appointments.filter((apt) => {
         const aptDate = new Date(apt.date);
-        aptDate.setHours(0, 0, 0, 0);
-        return aptDate.getTime() < today.getTime() && apt.status !== "canceled";
+        return (
+          aptDate.getTime() < today.getTime() &&
+          apt.status !== "canceled" &&
+          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+        );
       }),
       canceled: appointments.filter((apt) => apt.status === "canceled"),
     };
@@ -62,7 +75,6 @@ export default function TeleconsultationModule() {
 
   const getCurrentAppointments = () => {
     const filteredAppointments = filterAppointments(allAppointments || []);
-
     switch (activeTab) {
       case 0:
         return filteredAppointments.today;
@@ -92,20 +104,23 @@ export default function TeleconsultationModule() {
     }
   };
 
-  const formatAppointmentForDisplay = (appointment) => {
-    return {
-      id: appointment._id,
-      patientId: appointment.patientId._id,
-      name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
-      issue: appointment.patient_issue,
-      disease: appointment.patient_issue,
-      date: formatDate(appointment.date),
-      time: formatTime(appointment.appointmentTime),
-      age: appointment.patientId.age,
-      gender: appointment.patientId.gender,
-      avatar: appointment.patientId.avatar,
-      status: appointment.status,
-    };
+  const formatAppointmentForDisplay = (appointment) => ({
+    id: appointment._id,
+    patientId: appointment.patientId._id,
+    name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
+    issue: appointment.patient_issue,
+    disease: appointment.patient_issue,
+    date: formatDate(appointment.date),
+    time: formatTime(appointment.appointmentTime),
+    age: appointment.patientId.age,
+    gender: appointment.patientId.gender,
+    avatar: appointment.patientId.avatar,
+    status: appointment.status,
+  });
+
+  const handleDateSelection = (newRange) => {
+    setDateRange(newRange);
+    setOpenCustomDateModal(false);
   };
 
   const tabName = getCurrentName();
@@ -133,7 +148,9 @@ export default function TeleconsultationModule() {
             color="gray"
             onClick={() => setOpenCustomDateModal(true)}
           >
-            {dateRange}
+            {dateRange[0] && dateRange[1]
+              ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
+              : "Select Date Range"}
           </Button>
         </div>
 
@@ -147,7 +164,7 @@ export default function TeleconsultationModule() {
       <CustomDateModal
         open={openCustomDateModal}
         onClose={() => setOpenCustomDateModal(false)}
-        setDateRange={setDateRange}
+        onApply={handleDateSelection}
       />
     </>
   );

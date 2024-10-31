@@ -113,6 +113,17 @@ const routesConfig = [
         path: "reportingAndAnalytics",
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
       },
+      {
+        path: "/editinvoice",
+        element: (
+          <ProtectedRoute
+            element={<EditDesignInvoice />}
+            allowedRoles={["admin"]}
+            userRole={userRole}
+          />
+        ),
+        allowedRoles: ["admin"],
+      },
     ],
   },
 
@@ -338,17 +349,7 @@ const routesConfig = [
     element: <ProtectedRoute element={<Delete />} allowedRoles={["admin"]} userRole={userRole} />,
     allowedRoles: ["admin"],
   },
-  {
-    path: "/editinvoice/:id",
-    element: (
-      <ProtectedRoute
-        element={<EditDesignInvoice />}
-        allowedRoles={["admin"]}
-        userRole={userRole}
-      />
-    ),
-    allowedRoles: ["admin"],
-  },
+ 
   {
     path: "/chart",
     element: <ProtectedRoute element={<Chart />} allowedRoles={["admin"]} userRole={userRole} />,

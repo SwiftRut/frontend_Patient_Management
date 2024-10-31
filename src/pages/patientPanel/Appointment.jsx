@@ -244,7 +244,7 @@ const Appointment = () => {
                             Hospital Name
                           </p>
                           <span className="text-sm">
-                            {appointment.hospitalName}
+                            {appointment?.doctorId?.hospitalId?.address}
                           </span>
                         </div>
                         <div className="flex justify-between items-center px-3 pb-3">

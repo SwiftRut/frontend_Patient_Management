@@ -53,7 +53,7 @@ export default function MonitorBilling() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <button className="edit-btn flex align-center" onClick={() => navigate("/invoice")}>
+              <button className="edit-btn flex align-center" onClick={() => navigate("/editinvoice")}>
                 <div className="icon">
                   <RiEditBoxFill />
                 </div>
