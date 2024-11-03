@@ -14,7 +14,7 @@ const TeleConsultationCard = ({ patient }) => {
         <h3 className="text-lg font-semibold">{patient.name}</h3>
         <p>
           <strong>Patient Issue: </strong>
-          {patient.issue}
+          {patient.patient_issue}
         </p>
         <p>
           <strong>Disease Name: </strong>
