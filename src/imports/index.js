@@ -1,7 +1,7 @@
 import { lazyLoader } from "../utils/lazyLoader";
 
 // Admin Components
-export const Login = lazyLoader("pages/Login");
+export const Login = lazyLoader("pages/Login.jsx");
 export const AdminRegistration = lazyLoader("pages/adminRegister/AdminRegistration");
 export const AdminMobile = lazyLoader("pages/adminRegister/AdminMobile");
 export const AdminOtp = lazyLoader("pages/adminRegister/AdminOtp");

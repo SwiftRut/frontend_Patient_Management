@@ -363,9 +363,21 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  const appointmentDone = function (id) {
+    try{
+      console.log("appoinment done", id);
+      const response = apiService.AppointmentDone(id);
+      console.log(response.data);
+      return response.data;
+    }catch(error){
+      console.log(error);
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
+        appointmentDone,
         getAllPrescriptions,
         allPrescriptions,
         createPrescription,

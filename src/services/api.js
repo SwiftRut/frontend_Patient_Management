@@ -74,6 +74,7 @@ const   apiService = {
     api.get(`/appoinment/Doctor_Appointment_History/${doctorId}`, doctorId),
   GetAppointsForPatient: (patientId) =>
     api.get(`/appoinment/Patient_Appointment_History/${patientId}`, patientId),
+  AppointmentDone : (patientId) => api.get(`/appoinment/appoinmentDone/${patientId}`),
 
   //Chats
   GetChatHistory: (doctorId, patientId) => api.get(`/chat/${doctorId}/${patientId}`),
