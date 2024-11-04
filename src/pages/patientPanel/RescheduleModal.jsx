@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import moment from 'moment';
+import { useState } from "react";
+import moment from "moment";
+import PropTypes from "prop-types";
 
 const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEvent }) => {
-  const [newDate, setNewDate] = useState('');
-  const [newTime, setNewTime] = useState('');
+  const [newDate, setNewDate] = useState("");
+  const [newTime, setNewTime] = useState("");
 
   if (!isOpen || !selectedEvent) return null;
 
@@ -12,7 +13,7 @@ const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEven
     const updatedAppointment = {
       ...selectedEvent.appointment,
       date: moment(`${newDate} ${newTime}`).toDate(),
-      appointmentTime: moment(`${newDate} ${newTime}`).add(1, 'hour').toDate(), // Assuming 1-hour appointments
+      appointmentTime: moment(`${newDate} ${newTime}`).add(1, "hour").toDate(), // Assuming 1-hour appointments
     };
     onReschedule(updatedAppointment);
   };
@@ -70,6 +71,17 @@ const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEven
       </div>
     </div>
   );
+};
+
+RescheduleModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onReschedule: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  selectedEvent: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    appointment: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export default RescheduleModal;

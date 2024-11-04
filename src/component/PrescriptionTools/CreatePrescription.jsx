@@ -1,9 +1,9 @@
-
 import { Button } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility'; // Material UI eye icon
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types'; // Import PropTypes
 
-const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNew,patientId }) => {
+const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNew, patientId }) => {
   const navigate = useNavigate();
 
   return (
@@ -56,6 +56,18 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
       ></div>
     </div>
   );
+};
+
+// Add PropTypes validation
+CreatePrescription.propTypes = {
+  id: PropTypes.string.isRequired, // Validate id as a required string
+  name: PropTypes.string.isRequired, // Validate name as a required string
+  age: PropTypes.number.isRequired, // Validate age as a required number
+  gender: PropTypes.string.isRequired, // Validate gender as a required string
+  appointmentType: PropTypes.string.isRequired, // Validate appointmentType as a required string
+  time: PropTypes.string.isRequired, // Validate time as a required string
+  isNew: PropTypes.bool.isRequired, // Validate isNew as a required boolean
+  patientId: PropTypes.string.isRequired, // Validate patientId as a required string
 };
 
 export default CreatePrescription;

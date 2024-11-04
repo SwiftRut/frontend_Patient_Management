@@ -9,7 +9,7 @@ const DoctorMeetingConference = () => {
 
   const sidebarRef = useRef(null);
   const location = useLocation();
-  const {userData} = useGlobal();
+  const {userData , appointmentDone} = useGlobal();
   console.log(userData);
   // This function helps to get query parameters
   const getQueryParam = (param) => {
@@ -33,7 +33,6 @@ const DoctorMeetingConference = () => {
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -76,10 +75,12 @@ const DoctorMeetingConference = () => {
     });
   };
 
+
   useEffect(() => {
     const videoCallDiv = document.getElementById('video-call-container');
     if (videoCallDiv && userData) {
       initZegoCloudMeeting(videoCallDiv);
+      appointmentDone(room);
     }
   }, [userData]);
 

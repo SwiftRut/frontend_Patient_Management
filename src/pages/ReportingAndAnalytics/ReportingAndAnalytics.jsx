@@ -173,7 +173,7 @@ export default function ReportingAndAnalytics() {
                   <div className="pending-bill">
                     <div className="pending-bill-data">
                       <div className="bill-table">
-                        <table>
+                        <table className="text-lg">
                           <thead>
                             <tr className="flex">
                               <th>Department Name</th>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Visibility } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function TeleConsultationTable({ patient }) {
     const navigate = useNavigate();
     console.log(patient);
@@ -26,19 +25,18 @@ export default function TeleConsultationTable({ patient }) {
                 </IconButton>
             </td>
         </tr>
-    )
+    );
 }
 
 // Add PropTypes validation
 TeleConsultationTable.propTypes = {
     patient: PropTypes.shape({
-        patientName: PropTypes.string.isRequired,
-        diseaseName: PropTypes.string.isRequired,
-        patientIssue: PropTypes.string.isRequired,
-        lastAppointmentDate: PropTypes.string.isRequired,
-        lastAppointmentTime: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        disease: PropTypes.string.isRequired,
+        issue: PropTypes.string.isRequired,
+        time: PropTypes.string.isRequired,
         age: PropTypes.number.isRequired,
         gender: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
+        patientId: PropTypes.string.isRequired,
     }).isRequired,
 };

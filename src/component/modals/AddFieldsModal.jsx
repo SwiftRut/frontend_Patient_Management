@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { TiMinus } from "react-icons/ti";
+import PropTypes from "prop-types";
+
 const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
   const [fieldType, setFieldType] = useState("Dropdown");
   const [selectionType, setSelectionType] = useState("Single");
@@ -135,6 +137,12 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
       </div>
     )
   );
+};
+
+AddFieldModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onAddField: PropTypes.func.isRequired,
 };
 
 export default AddFieldModal;

@@ -1,9 +1,20 @@
-import React, { useRef } from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { useRef } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { toPng } from 'html-to-image';
+import { toPng } from "html-to-image";
 import signature from "../../assets/signature.svg";
 import { FaDownload } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) => {
   const modalRef = useRef(null);
@@ -60,14 +71,32 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
 
             <div className="mt-4 space-y-2 text-sm">
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>Patient Name: <span className="font-medium">{`${prescriptionData?.patientId.firstName} ${prescriptionData?.patientId.lastName}`}</span></p>
-                <p>Prescription Date: <span className="font-medium">{new Date(prescriptionData.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</span></p>
+                <p>
+                  Patient Name:{" "}
+                  <span className="font-medium">{`${prescriptionData?.patientId.firstName} ${prescriptionData?.patientId.lastName}`}</span>
+                </p>
+                <p>
+                  Prescription Date:{" "}
+                  <span className="font-medium">
+                    {new Date(prescriptionData.date).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
-                <p>Gender: <span className="font-medium">{prescriptionData.patientId.gender}</span></p>
-                <p>Age: <span className="font-medium">{prescriptionData.patientId.age}</span></p>
+                <p>
+                  Gender: <span className="font-medium">{prescriptionData.patientId.gender}</span>
+                </p>
+                <p>
+                  Age: <span className="font-medium">{prescriptionData.patientId.age}</span>
+                </p>
               </div>
-              <p className="break-words">Address: <span className="font-medium">{prescriptionData.patientId.address}</span></p>
+              <p className="break-words">
+                Address: <span className="font-medium">{prescriptionData.patientId.address}</span>
+              </p>
             </div>
           </div>
 
@@ -113,6 +142,32 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
       </DialogContent>
     </Dialog>
   );
+};
+
+PrescriptionModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  prescriptionData: PropTypes.shape({
+    patientId: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      gender: PropTypes.string,
+      age: PropTypes.number,
+      address: PropTypes.string,
+    }),
+    date: PropTypes.string,
+    medications: PropTypes.arrayOf(
+      PropTypes.shape({
+        medicineName: PropTypes.string,
+        strength: PropTypes.string,
+        dose: PropTypes.string,
+        duration: PropTypes.string,
+        whenToTake: PropTypes.string,
+      })
+    ),
+    instructions: PropTypes.string,
+  }).isRequired,
+  onDownload: PropTypes.func,
 };
 
 export default PrescriptionModal;

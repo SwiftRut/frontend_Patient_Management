@@ -251,9 +251,9 @@ const Teleconsultation = () => {
                           {appointment.doctorId?.name || "N/A"}
                         </h2>
                         <div className="flex">
-                          <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2 me-2">
+                          {/* <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:100 p-2 me-2">
                             <RiCalendarScheduleFill />
-                          </div>
+                          </div> */}
                           <div
                             onClick={() => handleViewDetails(appointment)}
                             className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2"
@@ -373,7 +373,7 @@ const Teleconsultation = () => {
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between my-2">
                   Hospital Name:{" "}
                   <span className="text-[#030229]">
-                    {selectedAppointment?.hospitalId?.name || "N/A"}
+                    {selectedAppointment?.doctorId?.hospitalName || "N/A"}
                   </span>
                 </p>
                 <p className="text-[#4F4F4F] text-base font-normal flex justify-between">

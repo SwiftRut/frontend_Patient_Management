@@ -1,5 +1,6 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Box, Button, TextField, Typography } from '@mui/material';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 const CashPaymentModal = ({ open, handleClose, handlePayment }) => {
   const [amount, setAmount] = useState('');
@@ -53,6 +54,13 @@ const CashPaymentModal = ({ open, handleClose, handlePayment }) => {
       </Box>
     </Modal>
   );
+};
+
+// PropTypes validation
+CashPaymentModal.propTypes = {
+  open: PropTypes.bool.isRequired, // Validate open as a required boolean
+  handleClose: PropTypes.func.isRequired, // Validate handleClose as a required function
+  handlePayment: PropTypes.func.isRequired, // Validate handlePayment as a required function
 };
 
 export default CashPaymentModal;
