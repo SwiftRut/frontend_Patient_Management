@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./pages.css";
-import { toast } from "react-toastify";
-
+import {toast} from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
   const { UniversalLogin, user } = useAuth();
@@ -17,6 +16,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
+    toast.success("Have you signed in")
     const slider = document.querySelector(".slider");
     const images = slider.querySelectorAll("img");
     const dots = slider.querySelectorAll(".dot");
@@ -54,9 +54,11 @@ const Login = () => {
       console.log(role);
       if (role) {
         if (role === "admin") {
+          toast.success("admin login successfully")
           window.location.href = "/";
         }
         else if (role === "patient") {
+          toast.success("patient login successfully")
           window.location.href = "/patient";
 
         } else if (role === "doctor") {
@@ -66,8 +68,8 @@ const Login = () => {
         }
       }
     } catch (err) {
-      console.error(err);
       toast.error("Login failed. Please check your credentials.");
+      console.error(err);
       setError("Login failed. Please check your credentials.");
     }
   };
