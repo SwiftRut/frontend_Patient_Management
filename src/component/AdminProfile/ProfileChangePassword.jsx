@@ -2,16 +2,22 @@ import { useState } from "react";
 import '../../pages/profile/profile.css';
 import apiService from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify"
 
 const ProfileChangePassword = () => {
   const { user } = useAuth();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false); 
+  const [showNewPassword, setShowNewPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
 
   const changePassword = async (id, userData) => {
     try {
       const response = await apiService.ChangePassword(id, userData);
+      alert("Password changed successfully");
       console.log("Password changed successfully:", response);
     } catch (error) {
       console.error("Error changing password:", error);
@@ -23,7 +29,8 @@ const ProfileChangePassword = () => {
     if (newPassword !== confirmPassword) {
       alert("New Password and Confirm Password do not match.");
       return;
-    }    changePassword(user.id, { currentPassword, newPassword, confirmPassword });
+    }
+    changePassword(user.id, { currentPassword, newPassword, confirmPassword });
   };
 
   return (
@@ -49,36 +56,51 @@ const ProfileChangePassword = () => {
                 <div className="label">
                   Current Password <span>*</span>
                 </div>
-                <input
-                  type="password"
-                  placeholder="Enter Current Password"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                />
+                <div className="password-input-container">
+                  <input
+                    type={showCurrentPassword ? "text" : "password"}
+                    placeholder="Enter Current Password"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  />
+                  <div className="eye" onClick={() => setShowCurrentPassword(!showCurrentPassword)}>
+                    {showCurrentPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                  </div>
+                </div>
               </div>
 
               <div className="change-input-box">
                 <div className="label">
                   New Password <span>*</span>
                 </div>
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
+                <div className="password-input-container">
+                  <input
+                    type={showNewPassword ? "text" : "password"}
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <div className="eye" onClick={() => setShowNewPassword(!showNewPassword)}>
+                    {showNewPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                  </div>
+                </div>
               </div>
 
               <div className="change-input-box">
                 <div className="label">
                   Confirm Password <span>*</span>
                 </div>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+                <div className="password-input-container">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  <div className="eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                    {showConfirmPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                  </div>
+                </div>
               </div>
 
               <div className="change-input-box">
