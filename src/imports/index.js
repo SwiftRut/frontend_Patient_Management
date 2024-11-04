@@ -1,12 +1,13 @@
+import { lazy } from 'react';
 import { lazyLoader } from "../utils/lazyLoader";
 
 // Admin Components
-export const Login = lazyLoader("pages/Login.jsx");
-export const AdminRegistration = lazyLoader("pages/adminRegister/AdminRegistration.jsx");
-export const AdminMobile = lazyLoader("pages/adminRegister/AdminMobile.jsx");
-export const AdminOtp = lazyLoader("pages/adminRegister/AdminOtp.jsx");
-export const AdminChangePassword = lazyLoader("pages/adminRegister/AdminChangePassword.jsx");
-export const AdminPanel = lazyLoader("pages/AdminPanel.jsx");
+export const Login = lazy(() => import("../pages/Login"));
+export const AdminRegistration = lazy(() => import("../pages/adminRegister/AdminRegistration"));
+export const AdminMobile = lazy(() => import("../pages/adminRegister/AdminMobile"));
+export const AdminOtp = lazy(() => import("../pages/adminRegister/AdminOtp"));
+export const AdminChangePassword = lazy(() => import("../pages/adminRegister/AdminChangePassword"));
+export const AdminPanel = lazy(() => import("../pages/AdminPanel"));
 
 // Invoice Components
 export const Invoice = lazyLoader("pages/invoice/Invoice.jsx");
