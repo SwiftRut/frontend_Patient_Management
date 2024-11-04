@@ -3,7 +3,7 @@ import { TextField, Button, IconButton, FormControl, InputLabel, Select, MenuIte
 import { FieldArray, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './DoctorPanel.css';
+import "./doctorPanel.css";
 import { usePatient } from '../../hooks/usePatient';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useParams } from 'react-router-dom';

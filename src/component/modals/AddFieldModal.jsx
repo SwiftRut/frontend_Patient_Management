@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from '@mui/material';
+import { useState } from "react";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  TextField,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import PropTypes from "prop-types";
 
 const AddFieldModal = ({ open, handleClose, handleAddField }) => {
-  const [fieldType, setFieldType] = useState('Dropdown');
-  const [selectionType, setSelectionType] = useState('Single');
-  const [dropdownOptions, setDropdownOptions] = useState(['']);
-  const [textFieldLabel, setTextFieldLabel] = useState('');
+  const [fieldType, setFieldType] = useState("Dropdown");
+  const [selectionType, setSelectionType] = useState("Single");
+  const [dropdownOptions, setDropdownOptions] = useState([""]);
+  const [textFieldLabel, setTextFieldLabel] = useState("");
 
   const handleOptionChange = (index, value) => {
     const newOptions = [...dropdownOptions];
@@ -14,7 +27,7 @@ const AddFieldModal = ({ open, handleClose, handleAddField }) => {
   };
 
   const addOptionField = () => {
-    setDropdownOptions([...dropdownOptions, '']);
+    setDropdownOptions([...dropdownOptions, ""]);
   };
 
   const handleAdd = () => {
@@ -35,13 +48,13 @@ const AddFieldModal = ({ open, handleClose, handleAddField }) => {
           <FormControlLabel value="Text Field" control={<Radio />} label="Text Field" />
         </RadioGroup>
 
-        {fieldType === 'Dropdown' && (
+        {fieldType === "Dropdown" && (
           <>
             <Select
               value={selectionType}
               onChange={(e) => setSelectionType(e.target.value)}
               fullWidth
-              style={{ marginBottom: '16px' }}
+              style={{ marginBottom: "16px" }}
             >
               <MenuItem value="Single">Single</MenuItem>
               <MenuItem value="Multiple">Multiple</MenuItem>
@@ -61,7 +74,7 @@ const AddFieldModal = ({ open, handleClose, handleAddField }) => {
           </>
         )}
 
-        {fieldType === 'Text Field' && (
+        {fieldType === "Text Field" && (
           <TextField
             fullWidth
             label="Text Field Label"
@@ -72,10 +85,18 @@ const AddFieldModal = ({ open, handleClose, handleAddField }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleAdd} color="primary">Add</Button>
+        <Button onClick={handleAdd} color="primary">
+          Add
+        </Button>
       </DialogActions>
     </Dialog>
   );
+};
+
+AddFieldModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  handleAddField: PropTypes.func.isRequired,
 };
 
 export default AddFieldModal;

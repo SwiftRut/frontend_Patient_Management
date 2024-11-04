@@ -1,5 +1,5 @@
 import React from "react";
-import "./DoctorPanel.css";
+import "./doctorPanel.css";
 import { FaImage } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 

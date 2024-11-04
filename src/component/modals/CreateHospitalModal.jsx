@@ -1,5 +1,6 @@
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import CreateHospitalForm from '../forms/CreateHospitalForm';
+import PropTypes from 'prop-types';
 
 const CreateHospitalModal = ({ openCreateHospital, handleClose }) => {
 
@@ -11,6 +12,11 @@ const CreateHospitalModal = ({ openCreateHospital, handleClose }) => {
       </DialogContent>
     </Dialog>
   );
+};
+
+CreateHospitalModal.propTypes = {
+  openCreateHospital: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default CreateHospitalModal;

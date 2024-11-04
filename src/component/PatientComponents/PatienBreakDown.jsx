@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-
-// Static data for the chart
-const data = [
-
-  { name: 'Old Patients', value: 65, color: '#6CD68C' },  // Green
-  { name: 'New Patients', value: 35, color: '#F5A623' },  // Orange
-];
-
-// Total patients
-const totalPatients = 100;
+import apiService from '../../services/api';
 
 export default function PatientsBreakdown() {
+  const [data, setData] = useState([]);
+  const [totalPatients, setTotalPatients] = useState(0);
+  const [error, setError] = useState(null);
+
+  const fetchPatientData = async () => {
+    try {
+      const response = await apiService.GetAllPatients();
+      let oldPatientsCount = 0;
+      let newPatientsCount = 0;
+      const currentDate = new Date();
+
+      response.data.data.forEach(patient => {
+        const registrationDate = new Date(patient.createdAt);
+        if (registrationDate > currentDate) {
+          newPatientsCount++;
+        } else {
+          oldPatientsCount++;
+        }
+      });
+
+      const formattedData = [
+        { name: 'Old Patients', value: oldPatientsCount, color: '#6CD68C' },
+        { name: 'New Patients', value: newPatientsCount, color: '#F5A623' },
+      ];
+
+      setData(formattedData);
+      setTotalPatients(oldPatientsCount + newPatientsCount);
+    } catch (error) {
+      setError('Failed to fetch patient data.');
+    }
+  };
+
+  useEffect(() => {
+    fetchPatientData();
+  }, []);
+
   return (
     <div className="bg-white w-[42%] p-5">
-      <div className=" bg-gray rounded-lg flex justify-center items-center ">
-        {/* Chart Container */}
+      {error && <div className="text-red-500">{error}</div>}
+      <div className="bg-gray rounded-lg flex justify-center items-center">
         <div className="w-64 h-64 w-[40%]">
           <ResponsiveContainer>
             <PieChart>
-              {/* Pie Component */}
               <Pie
                 data={data}
                 dataKey="value"
@@ -31,14 +57,14 @@ export default function PatientsBreakdown() {
                 startAngle={90}
                 endAngle={-270}
                 paddingAngle={5}
-                cornerRadius={10}  // Rounded edges
+                cornerRadius={10}
               >
                 {data.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={entry.color}
-                    stroke={index === 1 ? '#FFFF' : 'none'}  // Add the black border to old patients
-                    strokeWidth={index === 1 ? 3 : 0}  // Increase border width
+                    stroke={index === 1 ? '#FFFF' : 'none'}
+                    strokeWidth={index === 1 ? 3 : 0}
                   />
                 ))}
               </Pie>
@@ -46,19 +72,17 @@ export default function PatientsBreakdown() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-
-        {/* Legend and Patient Info */}
         <div className="me-4 bg-white w-[50%] p-5 rounded-lg">
           <div className="flex flex-col items-start">
             <div className="flex items-center mb-2">
               <div className="w-4 h-4 mr-2 rounded-full bg-orange-500"></div>
               <span className="text-gray-500">New Patients</span>
-              <span className="ml-auto text-orange-500 font-bold">35</span>
+              <span className="ml-auto text-orange-500 font-bold">{data[1]?.value || 0}</span>
             </div>
             <div className="flex items-center mb-2">
               <div className="w-4 h-4 mr-2 rounded-full bg-green-500"></div>
               <span className="text-gray-500">Old Patients</span>
-              <span className="ml-auto text-green-500 font-bold">65</span>
+              <span className="ml-auto text-green-500 font-bold">{data[0]?.value || 0}</span>
             </div>
             <div className="flex items-center">
               <div className="w-4 h-4 mr-2 rounded-full bg-blue-500"></div>
