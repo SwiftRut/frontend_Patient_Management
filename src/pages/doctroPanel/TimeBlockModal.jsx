@@ -1,68 +1,79 @@
 import React, { useState } from "react";
-import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
-import apiService from "../../services/api";
+import moment from "moment";
 
-const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime }) => {
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot }) => {
+  const [title, setTitle] = useState("");
+  const [reason, setReason] = useState("");
   const { user } = useAuth();
 
-  if (!isOpen) return null;
+  if (!isOpen || !selectedSlot) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const startMoment = moment(selectedSlot.start);
+    const endMoment = moment(selectedSlot.end);
+
     const unavailableTimeData = {
-      date,
+      title,
+      reason,
+      date: startMoment.format('YYYY-MM-DD'),
       timeRange: {
-        start: startTime,
-        end: endTime,
+        start: startMoment.format('HH:mm'),
+        end: endMoment.format('HH:mm'),
       },
+      doctorId: user.id
     };
 
     try {
-      await apiService.AddUnavailableTime(user.id, unavailableTimeData);
-      onAddUnavailableTime(unavailableTimeData);
+      await onAddUnavailableTime(unavailableTimeData);
+      setTitle("");
+      setReason("");
       onClose();
     } catch (error) {
       console.error("Error adding unavailable time:", error);
     }
   };
 
+  const formatTimeSlot = () => {
+    const startDate = new Date(selectedSlot.start);
+    const endDate = new Date(selectedSlot.end);
+    const date = startDate.toLocaleDateString();
+    const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const endTime = endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return `${date} ${startTime} - ${endTime}`;
+  };
+
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
       <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4">Add Unavailable Time</h2>
+        <h2 className="text-xl font-semibold mb-4">Block Time Slot</h2>
+        <div className="mb-4 p-2 bg-gray-50 rounded">
+          <p className="text-sm text-gray-600">Selected Time Slot:</p>
+          <p className="font-medium">{formatTimeSlot()}</p>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label className="font-medium block mb-1">Date</label>
+              <label className="font-medium block mb-1">Title</label>
               <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 className="w-full border rounded px-2 py-1"
+                placeholder="Enter title for blocking"
                 required
               />
             </div>
             <div>
-              <label className="font-medium block mb-1">Start Time</label>
-              <input
-                type="time"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
+              <label className="font-medium block mb-1">Reason</label>
+              <textarea
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
                 className="w-full border rounded px-2 py-1"
-                required
-              />
-            </div>
-            <div>
-              <label className="font-medium block mb-1">End Time</label>
-              <input
-                type="time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className="w-full border rounded px-2 py-1"
+                placeholder="Enter reason for blocking"
+                rows="3"
                 required
               />
             </div>
@@ -79,7 +90,7 @@ const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime }) => {
               type="submit"
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              Add
+              Block Time
             </button>
           </div>
         </form>
