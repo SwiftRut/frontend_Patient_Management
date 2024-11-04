@@ -18,6 +18,7 @@ const Dashboard = () => {
   const { getBills, allBills } = useGlobal();
   const [totalAppointments, setTotalAppointments] = useState(0);
   const [todaysAppointments, setTodaysAppointments] = useState([]);
+  console.log(todaysAppointments)
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalDoctors, setTotalDoctors] = useState(0);
 
