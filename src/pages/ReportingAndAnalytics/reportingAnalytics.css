@@ -229,7 +229,7 @@
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .pending-bill .pending-bill-data .bill-table table thead tr th {
   width: 40%;
   color: #030229;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   padding: 12px 14px;
 }
@@ -253,7 +253,7 @@
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data .bill-table table tbody tr .d-name p,
 .reportingAnalytics-section .row .main .bottom .doctor-count-data .content .pending-bill .pending-bill-data .bill-table table tbody tr .d-name p {
   color: #4F4F4F;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
 }
 .reportingAnalytics-section .row .main .bottom .patient-count-data .content .pending-bill .pending-bill-data .bill-table table tbody tr .status,
