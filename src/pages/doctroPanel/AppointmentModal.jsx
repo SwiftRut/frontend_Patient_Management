@@ -43,6 +43,7 @@ const AppointmentModal = ({
         diseaseName,
       },
     };
+    console.log(appointmentData, "<<<<<<<");
     onBookAppointment(appointmentData);
   };
 
@@ -54,7 +55,7 @@ const AppointmentModal = ({
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-medium">Appointment Type</span>
-              <span className="text-yellow-500">{appointmentType || "Online"}</span>
+              <span className="text-yellow-500">{selectedSlot?.type || "Online"}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Patient Name</span>

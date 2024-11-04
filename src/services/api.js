@@ -91,6 +91,9 @@ const   apiService = {
   GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
   EditPrescription: (id, userData) => api.put(`/prescription/editprescription/${id}`, userData),
   DeletePrescription: (id) => api.delete(`/prescription/deleteprescription/${id}`),
+
+  // Unavailable Times
+  GetUnavailableTimes: (doctorId) => api.get(`/doctor/${doctorId}/unavailable-times`),
 };
 
 export default apiService;
