@@ -1,33 +1,70 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
 import classNames from 'classnames';
+import apiService from '../../services/api'; // Adjust the path to your API service
 
 const PatientSummary = () => {
   const [activeTab, setActiveTab] = useState('Week');
+  const [weeklyData, setWeeklyData] = useState([]);
+  const [dailyData, setDailyData] = useState([]);
 
-  // Sample data for weekly and daily views
-  const weeklyData = [
-    { day: 'Mon', newPatient: 10, oldPatient: 20 },
-    { day: 'Tue', newPatient: 20, oldPatient: 30 },
-    { day: 'Wed', newPatient: 30, oldPatient: 15 },
-    { day: 'Thu', newPatient: 25, oldPatient: 35 },
-    { day: 'Fri', newPatient: 40, oldPatient: 25 },
-    { day: 'Sat', newPatient: 20, oldPatient: 45 },
-    { day: 'Sun', newPatient: 15, oldPatient: 30 },
-  ];
+  useEffect(() => {
+    const fetchPatientData = async () => {
+      try {
+        const response = await apiService.GetAllPatients(); // Fetch all patients
+        const patients = response.data.data; // Assuming the response structure is correct
 
-  const dailyData = [
-    { hour: '12 AM', newPatient: 5, oldPatient: 15 },
-    { hour: '1 AM', newPatient: 10, oldPatient: 20 },
-    { hour: '2 AM', newPatient: 8, oldPatient: 10 },
-    { hour: '3 AM', newPatient: 6, oldPatient: 14 },
-    { hour: '4 AM', newPatient: 12, oldPatient: 9 },
-    { hour: '5 AM', newPatient: 15, oldPatient: 18 },
-    { hour: '6 AM', newPatient: 20, oldPatient: 25 },
-    { hour: '7 AM', newPatient: 12, oldPatient: 22 },
-  ];
+        // Initialize data structures for weekly and daily data
+        const weeklyPatients = Array(7).fill(0).map((_, index) => ({
+          day: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][index],
+          newPatient: 0,
+          oldPatient: 0,
+        }));
+
+        const dailyPatients = Array(24).fill(0).map((_, index) => ({
+          hour: `${index} ${index < 12 ? 'AM' : 'PM'}`,
+          newPatient: 0,
+          oldPatient: 0,
+        }));
+
+        const currentDate = new Date();
+
+        // Process each patient to categorize by day and hour
+        patients.forEach(patient => {
+          const registrationDate = new Date(patient.createdAt);
+          const dayOfWeek = registrationDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+          const hourOfDay = registrationDate.getHours();
+
+          if (registrationDate > currentDate) {
+            // New patient
+            if (dayOfWeek > 0) {
+              weeklyPatients[dayOfWeek - 1].newPatient++;
+            }
+            if (hourOfDay >= 0) {
+              dailyPatients[hourOfDay].newPatient++;
+            }
+          } else {
+            // Old patient
+            if (dayOfWeek > 0) {
+              weeklyPatients[dayOfWeek - 1].oldPatient++;
+            }
+            if (hourOfDay >= 0) {
+              dailyPatients[hourOfDay].oldPatient++;
+            }
+          }
+        });
+
+        setWeeklyData(weeklyPatients);
+        setDailyData(dailyPatients);
+      } catch (error) {
+        console.error("Error fetching patient data:", error);
+      }
+    };
+
+    fetchPatientData();
+  }, []);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -73,8 +110,6 @@ const PatientSummary = () => {
           <Line type="monotone" dataKey="oldPatient" stroke="#1E90FF" name="Old Patient" />
         </LineChart>
       </ResponsiveContainer>
-
-     
     </div>
   );
 };
