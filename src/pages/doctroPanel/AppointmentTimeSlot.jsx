@@ -6,6 +6,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import RescheduleModal from "./RescheduleModal";
 import AppointmentModal from "./AppointmentModal";
+import TimeBlockModal from "./TimeBlockModal";
 import apiService from "../../services/api";
 
 const localizer = momentLocalizer(moment);
@@ -23,7 +24,7 @@ const AppointmentTimeSlot = () => {
   useEffect(() => {
     // Fetch all appointments for the doctor
     getAppointmetnsForDoctor(user.id);
-  }, []);
+  }, [user.id]);
 
   useEffect(() => {
     // Map appointments to the required format for react-big-calendar
@@ -42,7 +43,15 @@ const AppointmentTimeSlot = () => {
     const fetchUnavailableTimes = async () => {
       try {
         const response = await apiService.GetUnavailableTimes(user.id);
-        setUnavailableTimes(response.data);
+        const unavailableEvents = response.data.map((unavailable) => ({
+          title: "Unavailable",
+          start: new Date(unavailable.date + ' ' + unavailable.timeRange.start),
+          end: new Date(unavailable.date + ' ' + unavailable.timeRange.end),
+          allDay: false,
+          id: unavailable._id,
+          isUnavailable: true, // Custom flag to identify unavailable times
+        }));
+        setUnavailableTimes(unavailableEvents);
       } catch (error) {
         console.error("Error fetching unavailable times:", error);
       }
@@ -53,14 +62,24 @@ const AppointmentTimeSlot = () => {
 
   // Handle event click to reschedule
   const handleSelectEvent = (event) => {
-    setSelectedEvent(event);
-    setIsRescheduleModalOpen(true);
+    if (!event.isUnavailable) {
+      setSelectedEvent(event);
+      setIsRescheduleModalOpen(true);
+    }
   };
 
   // Handle slot click to create a new appointment
   const handleSelectSlot = (slotInfo) => {
-    setSelectedSlot(slotInfo);
-    setIsAppointmentModalOpen(true);
+    const isUnavailable = unavailableTimes.some((unavailable) => {
+      return slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end;
+    });
+
+    if (!isUnavailable) {
+      setSelectedSlot(slotInfo);
+      setIsAppointmentModalOpen(true);
+    } else {
+      alert("This time slot is unavailable.");
+    }
   };
 
   // Handle closing of the reschedule modal
@@ -113,7 +132,6 @@ const AppointmentTimeSlot = () => {
   const handleCreateAppointment = async (appointmentData) => {
     try {
       await createAppointment(appointmentData);
-      console.log(appointmentData);
       // Add the new appointment to the events state
       const newEvent = {
         title: `${appointmentData.patientId.firstName} with Dr. ${appointmentData.doctorId.name}`,
@@ -135,7 +153,7 @@ const AppointmentTimeSlot = () => {
       <h3 className="text-lg font-semibold mb-4">Appointment Time Slot (Doctor)</h3>
       <Calendar
         localizer={localizer}
-        events={events}
+        events={[...events, ...unavailableTimes]}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 600 }}
@@ -144,23 +162,11 @@ const AppointmentTimeSlot = () => {
         popup
         selectable
         eventPropGetter={(event) => {
-          const backgroundColor = event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
+          const backgroundColor = event.isUnavailable ? "#d9534f" : "#3a87ad"; // Red for unavailable times
           return { style: { backgroundColor } };
         }}
         onSelectEvent={handleSelectEvent}
-        onSelectSlot={(slotInfo) => {
-          const isUnavailable = unavailableTimes.some((unavailable) => {
-            const start = new Date(unavailable.date + ' ' + unavailable.timeRange.start);
-            const end = new Date(unavailable.date + ' ' + unavailable.timeRange.end);
-            return slotInfo.start >= start && slotInfo.end <= end;
-          });
-
-          if (!isUnavailable) {
-            handleSelectSlot(slotInfo);
-          } else {
-            alert("This time slot is unavailable.");
-          }
-        }}
+        onSelectSlot={handleSelectSlot}
       />
       <RescheduleModal
         isOpen={isRescheduleModalOpen}
@@ -169,7 +175,7 @@ const AppointmentTimeSlot = () => {
         onDelete={handleDeleteAppointment}
         selectedEvent={selectedEvent}
       />
-      <AppointmentModal
+      <TimeBlockModal
         isOpen={isAppointmentModalOpen}
         onClose={handleCloseAppointmentModal}
         onBookAppointment={handleCreateAppointment}

@@ -94,6 +94,7 @@ const   apiService = {
 
   // Unavailable Times
   GetUnavailableTimes: (doctorId) => api.get(`/doctor/${doctorId}/unavailable-times`),
+  AddUnavailableTime: (doctorId, data) => api.post(`/doctor/${doctorId}/unavailable-times`, data),
 };
 
 export default apiService;
