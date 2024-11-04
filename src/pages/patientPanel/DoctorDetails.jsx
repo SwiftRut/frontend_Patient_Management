@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import apiService from "../../services/api";
 
 const DoctorDetails = ({ doctorID }) => {
@@ -43,7 +44,7 @@ const DoctorDetails = ({ doctorID }) => {
               {doctor.firstName} {doctor.lastName}
             </h2>
             <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
-              <img src="/image/vuesax.png" />
+              <img src="/image/vuesax.png" alt="Gender icon" />
               <h3 className="ms-2">{doctor.gender}</h3>
             </span>
           </div>
@@ -51,31 +52,19 @@ const DoctorDetails = ({ doctorID }) => {
         <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">
-                Qualification
-              </h3>
-              <p className="text[#141414] font-medium text-sm">
-                {doctor.qualification}
-              </p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Qualification</h3>
+              <p className="text[#141414] font-medium text-sm">{doctor.qualification}</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">
-                Years Of Experience
-              </h3>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Years Of Experience</h3>
               <p className="text[#141414] font-medium text-sm">{`${doctor.experience} Years`}</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">
-                Specialty Type
-              </h3>
-              <p className="text[#141414] font-medium text-sm">
-                {doctor.speciality}
-              </p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Specialty Type</h3>
+              <p className="text[#141414] font-medium text-sm">{doctor.speciality}</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">
-                Working Time
-              </h3>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Working Time</h3>
               <p className="text[#141414] font-medium text-sm">6 Hour</p>
             </div>
             <div>
@@ -83,25 +72,25 @@ const DoctorDetails = ({ doctorID }) => {
               <p className="text[#141414] font-medium text-sm">1 Hour</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">
-                Emergency Contact Number
-              </h3>
-              <p className="text[#141414] font-medium text-sm">
-                {doctor.contactNumber}
-              </p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">Emergency Contact Number</h3>
+              <p className="text[#141414] font-medium text-sm">{doctor.contactNumber}</p>
             </div>
           </div>
           <div className="mt-4">
             <h3 className="text-[#A7A7A7] font-normal text-md">Description</h3>
             <p className="text[#141414] font-medium text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit.
             </p>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+DoctorDetails.propTypes = {
+  doctorID: PropTypes.string.isRequired,
 };
 
 export default DoctorDetails;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoEyeSharp, IoCloseSharp } from "react-icons/io5";
 import { FaDownload, FaRegImage, FaCalendarAlt } from "react-icons/fa";
 import PrescriptionModal from "../../component/modals/PrescriptionModal.jsx";
@@ -37,10 +37,7 @@ export default function PrescriptionAccess() {
 
     return prescriptions.filter((prescription) => {
       const prescriptionDate = new Date(prescription.date);
-      return (
-        prescriptionDate >= new Date(startDate) &&
-        prescriptionDate <= new Date(endDate)
-      );
+      return prescriptionDate >= new Date(startDate) && prescriptionDate <= new Date(endDate);
     });
   };
 
@@ -55,10 +52,7 @@ export default function PrescriptionAccess() {
   };
 
   // Get filtered prescriptions based on date range
-  const filteredPrescriptions = filterPrescriptionsByDate(
-    patientPrescription,
-    dateRange
-  );
+  const filteredPrescriptions = filterPrescriptionsByDate(patientPrescription, dateRange);
 
   return (
     <>
@@ -72,13 +66,17 @@ export default function PrescriptionAccess() {
                 className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
                 onClick={() => setIsDateRangeModalOpen(true)} // Open Custom Date Picker
               >
-                <span className="pl-3 text-gray-500 me-1"><FaCalendarAlt /></span>
+                <span className="pl-3 text-gray-500 me-1">
+                  <FaCalendarAlt />
+                </span>
                 <input
                   type="text"
                   className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
                   value={
                     dateRange[0] && dateRange[1]
-                      ? `${new Date(dateRange[0]).toLocaleDateString('en-US')} - ${new Date(dateRange[1]).toLocaleDateString('en-US')}`
+                      ? `${new Date(dateRange[0]).toLocaleDateString("en-US")} - ${new Date(
+                          dateRange[1]
+                        ).toLocaleDateString("en-US")}`
                       : "Select Date Range"
                   }
                   readOnly
@@ -96,9 +94,14 @@ export default function PrescriptionAccess() {
           <div className="overflow-y-auto" style={{ height: "550px" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {filteredPrescriptions.map((prescription) => (
-                <div key={prescription._id} className="w-full mx-auto bg-white rounded-lg shadow-md">
+                <div
+                  key={prescription._id}
+                  className="w-full mx-auto bg-white rounded-lg shadow-md"
+                >
                   <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
-                    <h2 className="text-lg font-semibold text-foreground">Dr. {prescription.doctorId.name || 'N/A'}</h2>
+                    <h2 className="text-lg font-semibold text-foreground">
+                      Dr. {prescription.doctorId.name || "N/A"}
+                    </h2>
                     <div className="flex">
                       {/* <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
                         <FaDownload />
@@ -114,27 +117,42 @@ export default function PrescriptionAccess() {
                   <div className="p-3 border rounded-b-lg">
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-base font-normal text-[#818194]">Hospital Name</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{prescription.doctorId.hospitalName || 'N/A'}</p>
+                      <p className="text-sm font-medium text-[#4F4F4F]">
+                        {prescription.doctorId.hospitalName || "N/A"}
+                      </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-base font-normal text-[#818194]">Disease Name</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{prescription.diseaseName || 'N/A'}</p>
+                      <p className="text-sm font-medium text-[#4F4F4F]">
+                        {prescription.diseaseName || "N/A"}
+                      </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-base font-normal text-[#818194]">Date</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{new Date(prescription.date).toLocaleDateString('en-US') || 'N/A'}</p>
+                      <p className="text-sm font-medium text-[#4F4F4F]">
+                        {new Date(prescription.date).toLocaleDateString("en-US") || "N/A"}
+                      </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-base font-normal text-[#818194]">Time</span>
-                      <p className="text-sm font-medium text-[#4F4F4F]">{new Date(prescription.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) || 'N/A'}</p>
+                      <p className="text-sm font-medium text-[#4F4F4F]">
+                        {new Date(prescription.date).toLocaleTimeString("en-US", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }) || "N/A"}
+                      </p>
                     </div>
                     <div className="mt-4 flex items-center border rounded-md p-1">
                       <div className="bg-[#f6f8fb] rounded-lg text-[#5678e9] p-3">
                         <FaRegImage />
                       </div>
                       <div className="ml-2">
-                        <span className="text-[#030229] block">{prescription.fileName || 'Prescription.JPG'}</span>
-                        <span className="text-[#A7A7A7] text-sm">{prescription.fileSize || '5.09 MB'}</span>
+                        <span className="text-[#030229] block">
+                          {prescription.fileName || "Prescription.JPG"}
+                        </span>
+                        <span className="text-[#A7A7A7] text-sm">
+                          {prescription.fileSize || "5.09 MB"}
+                        </span>
                       </div>
                     </div>
                   </div>
