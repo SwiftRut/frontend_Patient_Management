@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./invoice.css";
-import InputField from './InputField';
+import FormInput from '../../component/common/FormInput';
 import { formDataObject, PatientBillFields } from './Contants';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
@@ -133,12 +133,20 @@ const EditBill = () => {
                 <div className="details flex">
                   <div className="form-box">
                     <form onSubmit={handleSubmit} className="flex" id="edit-bill-form">
-                      {HospitalBillFields.map((field, index) => (
-                        <InputField
-                          key={index}
-                          {...field}
+                      {HospitalBillFields.map((field) => (
+                        <FormInput
+                          key={field.name}
+                          label={field.label}
+                          type={field.type}
                           value={formData[field.name] || ''}
-                          onChange={handleChange}
+                          onChange={(e) => handleChange({
+                            target: {
+                              name: field.name,
+                              value: e.target.value
+                            }
+                          })}
+                          placeholder={field.placeholder}
+                          disabled={field.disabled}
                         />
                       ))}
                     </form>
@@ -158,7 +166,7 @@ const EditBill = () => {
                     <div className="form-box">
                       <form className="flex">
                         {PatientBillFields.map((field, index) => (
-                          <InputField
+                          <FormInput
                             key={index}
                             {...field}
                             value={formData[field.name] || ''}

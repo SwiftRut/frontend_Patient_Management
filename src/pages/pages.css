@@ -1383,7 +1383,7 @@ input {
   transform: translateX(-50%);
   text-align: center;
 }
-.login-section .row .main .img-box .slider .dots .dot {
+.login-section .row .main .img-box .slider .dots .dotss {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -1392,7 +1392,7 @@ input {
   cursor: pointer;
   margin: 0 5px;
 }
-.login-section .row .main .img-box .slider .dots .dot.active {
+.login-section .row .main .img-box .slider .dots .dotss.active {
   background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
   width: 30px;
   border-radius: 10px;
