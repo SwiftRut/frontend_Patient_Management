@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify"
+import {toast} from "react-hot-toast";
 
 const AdminRegistration = () => {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const AdminRegistration = () => {
   }, []);
 
   useEffect(() => {
-    fetchData();
+    fetchData();   
   }, []);
 
   const handleChange = (e) => {
@@ -115,7 +115,7 @@ const AdminRegistration = () => {
     try {
       await AdminRegister(formData);
       toast.success("register successfully")
-      navigate("/login");
+      navigate("/login",{ replace: true });
     } catch (error) {
       toast.error(error.response.data.message);
       setError(error.response?.data?.message || "Registration failed");
