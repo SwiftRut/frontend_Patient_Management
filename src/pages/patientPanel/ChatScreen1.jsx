@@ -17,7 +17,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 import { useAuth } from "../../hooks/useAuth";
 
-const socket = io("http://localhost:8001");
+const socket = io(import.meta.env.VITE_API_BASE_URL);
 
 const ChatScreen1 = () => {
   const { user } = useAuth();

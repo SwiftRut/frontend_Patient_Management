@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
+import apiService from "../../services/api";
 
 const AppointmentModal = ({
   isOpen,
@@ -13,6 +14,7 @@ const AppointmentModal = ({
   const [patientName, setPatientName] = useState("");
   const [patientIssue, setPatientIssue] = useState("");
   const [diseaseName, setDiseaseName] = useState("");
+  const [unavailableTimes, setUnavailableTimes] = useState([]);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -24,13 +26,40 @@ const AppointmentModal = ({
     }
   }, [isEditMode, existingData]);
 
+  useEffect(() => {
+    if (isOpen && user.id) {
+      const fetchUnavailableTimes = async () => {
+        try {
+          const response = await apiService.GetUnavailableTimes(user.id);
+          setUnavailableTimes(response.data);
+        } catch (error) {
+          console.error("Error fetching unavailable times:", error);
+        }
+      };
+
+      fetchUnavailableTimes();
+    }
+  }, [isOpen, user.id]);
+
   if (!isOpen || !selectedSlot) return null;
 
   const appointmentDate = moment(selectedSlot.start).format("DD MMMM, YYYY");
   const appointmentTime = `${moment(selectedSlot.start).format("hh:mmA")} - ${moment(selectedSlot.end).format("hh:mmA")}`;
 
+  const isTimeUnavailable = () => {
+    return unavailableTimes.some((unavailable) => {
+      const start = new Date(unavailable.date + ' ' + unavailable.timeRange.start);
+      const end = new Date(unavailable.date + ' ' + unavailable.timeRange.end);
+      return selectedSlot.start >= start && selectedSlot.end <= end;
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isTimeUnavailable()) {
+      alert("The selected time slot is unavailable. Please choose a different time.");
+      return;
+    }
     const appointmentData = {
       start: selectedSlot.start,
       end: selectedSlot.end,
@@ -43,6 +72,7 @@ const AppointmentModal = ({
         diseaseName,
       },
     };
+    console.log(appointmentData, "<<<<<<<");
     onBookAppointment(appointmentData);
   };
 
@@ -54,7 +84,7 @@ const AppointmentModal = ({
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-medium">Appointment Type</span>
-              <span className="text-yellow-500">{appointmentType || "Online"}</span>
+              <span className="text-yellow-500">{selectedSlot?.type || "Online"}</span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Patient Name</span>

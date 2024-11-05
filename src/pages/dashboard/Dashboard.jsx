@@ -22,10 +22,6 @@ const Dashboard = () => {
   const [totalDoctors, setTotalDoctors] = useState(0);
 
   useEffect(() => {
-    getBills();
-  }, []);
-
-  useEffect(() => {
     const fetchAllAppointments = async () => {
       try {
         const response = await apiService.GetallAppointmentsForCount();
@@ -84,6 +80,8 @@ const Dashboard = () => {
     fetchTodaysAppointments();
     fetchPatients();
     fetchDoctors();
+    getBills();
+
   }, []);
 
   return (

@@ -7,7 +7,7 @@
 	height: 20px;
 }
 
-.dot {
+.dot-loading {
 	position: relative;
 	flex: 1;
 	display: flex;
@@ -18,14 +18,14 @@
 	width: 2px;
 }
 
-.dot:first-of-type 
+.dot-loading:first-of-type 
 { margin-left: 0 }
 
-.dot:last-of-type 
+.dot-loading:last-of-type 
 { margin-right: 0 }
 
-.dot::before,
-.dot::after {
+.dot-loading::before,
+.dot-loading::after {
 	content: "";
 	position: absolute;
 	bottom: -5px;
@@ -38,12 +38,12 @@
 	animation: helix 1.25s ease-in-out infinite;
 }
 
-.dot::after {
+.dot-loading::after {
 	bottom: 100%;
 	animation: helix-reversed 1.25s ease-in-out infinite;
 }
 
-.dot i {
+.dot-loading i {
 	position: absolute;
 	z-index: 25;
 	align-self: center;

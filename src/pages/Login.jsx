@@ -6,7 +6,7 @@ import "./pages.css";
 import {toast} from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin, user } = useAuth();
+  const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
@@ -55,6 +55,7 @@ const Login = () => {
         switch (role) {
           case "admin":
             toast.success("Admin login successful");
+            console.log("Navigating to / for admin");
             navigate('/', { replace: true });
             break;
           case "patient":
@@ -191,4 +192,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

@@ -8,8 +8,8 @@ import AddRecord from "./pages/doctroPanel/AddRecord.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
         <Routes>
           <Route path="/doctor/addRecord" element={<AddRecord />} />
 
@@ -26,8 +26,8 @@ function App() {
             return <Route key={index} path={route.path} element={route.element} />;
           })}
         </Routes>
-      </Suspense>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
