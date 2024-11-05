@@ -14,7 +14,6 @@ import DoctorAdd from "./adminPanel/DoctorAdd";
 import DoctorEdit from "./adminPanel/DoctorEdit";
 import CreateBill from "./invoice/CreateBill";
 import EditBill from "./invoice/EditBill";``
-import Bill from "./invoice/Bill";
 import EditDesignInvoice from "./billPayment/EditDesignInvoice";
 import MainBill from "./patientPanel/MainBill";
 

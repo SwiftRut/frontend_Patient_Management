@@ -12,7 +12,7 @@ export default function PatientManagement() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
-  const { getAllPatients, allPatients, getAllAppointments } = usePatient();
+  const { getAllPatients, allPatients } = usePatient();
 
   const filterAppointments = () => {
     if (!allPatients || !Array.isArray(allPatients)) return [];

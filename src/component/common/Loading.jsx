@@ -6,31 +6,31 @@ const Loading = () => {
   return (
     <div className="overlay" style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
       <div className="loader">
-        <div className="dot dot1">
+        <div className="dot-loading dot1">
           <i></i>
         </div>
-        <div className="dot dot2">
+        <div className="dot-loading dot2">
           <i></i>
         </div>
-        <div className="dot dot3">
+        <div className="dot-loading dot3">
           <i></i>
         </div>
-        <div className="dot dot4">
+        <div className="dot-loading dot4">
           <i></i>
         </div>
-        <div className="dot dot5">
+        <div className="dot-loading dot5">
           <i></i>
         </div>
-        <div className="dot dot6">
+        <div className="dot-loading dot6">
           <i></i>
         </div>
-        <div className="dot dot7">
+        <div className="dot-loading dot7">
           <i></i>
         </div>
-        <div className="dot dot8">
+        <div className="dot-loading dot8">
           <i></i>
         </div>
-        <div className="dot dot9">
+        <div className="dot-loading dot9">
           <i></i>
         </div>
       </div>

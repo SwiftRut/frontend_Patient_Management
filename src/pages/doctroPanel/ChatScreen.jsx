@@ -11,9 +11,6 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { Send } from "@mui/icons-material";
-import { initialChats } from "./profile/constants";
-import { useDoctor } from "../../hooks/useDoctor";
-import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 import { useAuth } from "../../hooks/useAuth";
@@ -28,9 +25,7 @@ const ChatScreen = () => {
   const [messageInput, setMessageInput] = useState("");
   const [doctorId] = useState(user.id);
   const [patientContacts, setPatientContacts] = useState([]);
-  const { getAllDoctors } = useDoctor();
-  const { getAllPatients } = usePatient();
-  const { getChatHistory, getPatientContacts, getAppointmetnsForDoctor, allAppointments } = useGlobal();
+  const {  getAppointmetnsForDoctor, allAppointments } = useGlobal();
   
   // Ref for message container
   const msgContainerRef = useRef(null);
