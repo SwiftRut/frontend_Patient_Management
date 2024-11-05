@@ -62,6 +62,7 @@ const   apiService = {
   GetAllHospital: (userData) => api.post("/hospital/get-all-hospitals", userData),
 
   //Appointments
+  GetallAppointmentsForCount: () => api.get(`/appoinment/allAppointmentsForCount`),
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/singleappointment/${id}`),

@@ -22,7 +22,6 @@ const Bills = () => {
   useEffect(() => {
     getAllBillsById();
   }, []);
-
   console.log("All Bills:", allBillsById);
 
   // Filter bills based on status

@@ -11,7 +11,7 @@ const PatientsAge = () => {
     const getPatientData = async () => {
       try {
         const response = await apiService.GetAllPatients();
-        console.log("API Response Patients:", response.data.data); // Log the entire response
+        // console.log("API Response Patients:", response.data.data); // Log the entire response
 
         // Check if the patients array exists in the response
         const patientData = response.data.data; // Adjust based on actual response structure
@@ -49,7 +49,7 @@ const PatientsAge = () => {
           color: index < 6 ? ["#F65D79", "#506EF2", "#51D2A6", "#F6A52D", "#FACF2E", "#9253E1"][index] : "#8884d8", // Default color if not provided
         }));
 
-        console.log("Formatted Data for Chart:", formattedData); // Log formatted data
+        // console.log("Formatted Data for Chart:", formattedData); // Log formatted data
 
         setData(formattedData);
 
@@ -64,7 +64,7 @@ const PatientsAge = () => {
     getPatientData();
   }, []);
 
-  console.log("Current Data State:", data); // Log current data state
+  // console.log("Current Data State:", data); // Log current data state
 
   return (
     <div className="PatientsAge-data">
