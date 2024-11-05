@@ -56,7 +56,7 @@ const Login = () => {
           case "admin":
             toast.success("Admin login successful");
             console.log("Navigating to / for admin");
-            navigate('/', { replace: true });
+            window.location.href = "/";
             break;
           case "patient":
             toast.success("Patient login successful");

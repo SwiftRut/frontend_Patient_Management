@@ -1,9 +1,8 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   base: '/',
@@ -33,6 +32,18 @@ export default defineConfig({
           }
         }
       }
+    },
+    minify: 'terser',  // Use Terser for minification
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        keep_classnames: true,
+        keep_fnames: true,
+        reduce_vars: true,  // Helps with eval minimization
+      },
+      mangle: false,  // Optional: prevent mangling of names
+      safari10: true,  // Optional: improves Safari compatibility
     }
   },
   optimizeDeps: {
@@ -41,4 +52,4 @@ export default defineConfig({
       target: 'es2020'
     }
   }
-})
+});
