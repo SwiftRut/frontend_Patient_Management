@@ -21,19 +21,33 @@ const Dashboard = () => {
   const [totalPatients, setTotalPatients] = useState(0);
   const [totalDoctors, setTotalDoctors] = useState(0);
 
-  console.log("todaysAppointments", todaysAppointments);
-
   useEffect(() => {
     getBills();
   }, []);
 
   useEffect(() => {
-    const fetchAppointments = async () => {
+    const fetchAllAppointments = async () => {
+      try {
+        const response = await apiService.GetallAppointmentsForCount();
+
+        if (response && response.data && Array.isArray(response.data)) {
+          const data = response.data;
+          setTotalAppointments(data.length);
+        } else {
+          console.error("Unexpected response structure:", response);
+          setTotalAppointments(0);
+        }
+      } catch (error) {
+        console.error("Error fetching all appointments:", error);
+        setTotalAppointments(0);
+      }
+    };
+
+    const fetchTodaysAppointments = async () => {
       try {
         const response = await apiService.GetAllTodayAppointments();
         const data = response.data;
-        setTotalAppointments(data.length);
-
+        
         const today = new Date().toISOString().split("T")[0];
 
         const filteredAppointments = data.filter(
@@ -42,7 +56,7 @@ const Dashboard = () => {
         );
         setTodaysAppointments(filteredAppointments);
       } catch (error) {
-        console.error("Error fetching appointments:", error);
+        console.error("Error fetching today's appointments:", error);
       }
     };
 
@@ -66,7 +80,8 @@ const Dashboard = () => {
       }
     };
 
-    fetchAppointments();
+    fetchAllAppointments();
+    fetchTodaysAppointments();
     fetchPatients();
     fetchDoctors();
   }, []);
@@ -169,7 +184,7 @@ const Dashboard = () => {
                                 </td>
                                 <td
                                   className={
-                                    bill.status == "paid" ? "status" : "status1"
+                                    bill.status === "paid" ? "status" : "status1"
                                   }
                                 >
                                   <p>{bill.status}</p>

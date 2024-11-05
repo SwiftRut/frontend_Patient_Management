@@ -1,36 +1,69 @@
-import { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import classNames from 'classnames';
+import { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import classNames from "classnames";
+import apiService from "../../services/api";
 
 const AppointmentGraph = () => {
-  const [activeTab, setActiveTab] = useState('Year'); // default tab
+  const [activeTab, setActiveTab] = useState("Year");
+  const [appointments, setAppointments] = useState([]);
 
-  // Sample data for the Yearly and Monthly Graphs
-  const yearlyData = [
-    { year: '2017', onlineConsultation: 10, otherAppointment: 5 },
-    { year: '2018', onlineConsultation: 15, otherAppointment: 12 },
-    { year: '2019', onlineConsultation: 20, otherAppointment: 18 },
-    { year: '2020', onlineConsultation: 25, otherAppointment: 20 },
-    { year: '2021', onlineConsultation: 50, otherAppointment: 35 },
-    { year: '2022', onlineConsultation: 40, otherAppointment: 30 },
-    { year: '2023', onlineConsultation: 10, otherAppointment: 5 },
-    { year: '2024', onlineConsultation: 30, otherAppointment: 25 },
-  ];
+  useEffect(() => {
+    const getPatientData = async () => {
+      try {
+        const response = await apiService.GetAllPatients();
+        setAppointments(response.data.data);
+      } catch (error) {
+        console.error("Error fetching patient data:", error);
+      }
+    };
 
-  const monthlyData = [
-    { month: 'Jan', onlineConsultation: 5, otherAppointment: 3 },
-    { month: 'Feb', onlineConsultation: 10, otherAppointment: 6 },
-    { month: 'Mar', onlineConsultation: 15, otherAppointment: 9 },
-    { month: 'Apr', onlineConsultation: 20, otherAppointment: 12 },
-    { month: 'May', onlineConsultation: 30, otherAppointment: 20 },
-    { month: 'Jun', onlineConsultation: 25, otherAppointment: 18 },
-    { month: 'Jul', onlineConsultation: 35, otherAppointment: 25 },
-    { month: 'Aug', onlineConsultation: 20, otherAppointment: 15 },
-    { month: 'Sep', onlineConsultation: 10, otherAppointment: 8 },
-    { month: 'Oct', onlineConsultation: 12, otherAppointment: 9 },
-    { month: 'Nov', onlineConsultation: 5, otherAppointment: 3 },
-    { month: 'Dec', onlineConsultation: 8, otherAppointment: 6 },
-  ];
+    getPatientData();
+  }, []);
+
+  const yearlyData = Array(12)
+    .fill(0)
+    .map((_, index) => ({
+      month: new Date(0, index).toLocaleString("default", { month: "short" }),
+      onlineConsultation: 0,
+      otherAppointment: 0,
+    }));
+
+  const currentMonth = new Date().getMonth();
+  const monthlyData = {
+    month: new Date().toLocaleString("default", { month: "short" }),
+    onlineConsultation: 0,
+    otherAppointment: 0,
+  };
+
+  appointments.forEach((appointment) => {
+    const appointmentDate = new Date(appointment.createdAt);
+    const monthIndex = appointmentDate.getMonth();
+
+    if (isNaN(appointmentDate.getTime())) {
+      console.warn("Invalid appointment date:", appointment.createdAt);
+      return;
+    }
+
+    if (monthIndex >= 0 && monthIndex < 12) {
+      yearlyData[monthIndex].otherAppointment++;
+    }
+
+    if (appointmentDate.getMonth() === currentMonth) {
+      monthlyData.otherAppointment++;
+    }
+  });
+
+  const finalYearlyData = yearlyData;
+  const finalMonthlyData = [monthlyData];
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -40,39 +73,51 @@ const AppointmentGraph = () => {
     <div className="p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Appointment</h2>
-        {/* Toggle between Year and Month */}
         <div className="flex space-x-2">
           <button
             className={classNames(
-              'px-4 py-2 rounded-lg',
-              activeTab === 'Year' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600'
+              "px-4 py-2 rounded-lg",
+              activeTab === "Year"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100 text-gray-600"
             )}
-            onClick={() => handleTabChange('Year')}
+            onClick={() => handleTabChange("Year")}
           >
             Year
           </button>
           <button
             className={classNames(
-              'px-4 py-2 rounded-lg',
-              activeTab === 'Month' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600'
+              "px-4 py-2 rounded-lg",
+              activeTab === "Month"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-100 text-gray-600"
             )}
-            onClick={() => handleTabChange('Month')}
+            onClick={() => handleTabChange("Month")}
           >
             Month
           </button>
         </div>
       </div>
 
-      {/* Chart Section */}
       <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={activeTab === 'Year' ? yearlyData : monthlyData}>
+        <BarChart
+          data={activeTab === "Year" ? finalYearlyData : finalMonthlyData}
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={activeTab === 'Year' ? 'year' : 'month'} />
+          <XAxis dataKey={activeTab === "Year" ? "month" : "month"} />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="onlineConsultation" fill="#1E90FF" name="Online Consultation" />
-          <Bar dataKey="otherAppointment" fill="#00BFFF" name="Other Appointment" />
+          <Bar
+            dataKey="onlineConsultation"
+            fill="#1E90FF"
+            name="Online Consultation"
+          />
+          <Bar
+            dataKey="otherAppointment"
+            fill="#00BFFF"
+            name="Other Appointment"
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -5,44 +5,125 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import RescheduleModal from "./RescheduleModal";
+import TimeBlockModal from "./TimeBlockModal";
+import apiService from "../../services/api";
 
 const localizer = momentLocalizer(moment);
 
+// Calendar configuration
+const calendarConfig = {
+  style: { height: 600 },
+  views: ["week", "day"],
+  defaultView: "week",
+  popup: true,
+  selectable: true,
+};
+
+const eventStyleGetter = (event) => ({
+  style: { backgroundColor: event.isUnavailable ? "#d9534f" : "#3a87ad" }
+});
+
 const AppointmentTimeSlot = () => {
+  // State management
   const [events, setEvents] = useState([]);
-  const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const { allAppointments, getAppointmetnsForDoctor, updateAppointment, deleteAppointment } = useGlobal();
+  const [modalState, setModalState] = useState({
+    reschedule: { isOpen: false, event: null },
+    timeBlock: { isOpen: false, slot: null },
+  });
+  const [unavailableTimes, setUnavailableTimes] = useState([]);
+  const [isBlockingMode, setIsBlockingMode] = useState(true);
+
+  const { allAppointments, getAppointmetnsForDoctor, updateAppointment, deleteAppointment, createAppointment } = useGlobal();
   const { user } = useAuth();
 
+  // Event mapping effect
   useEffect(() => {
-    // Fetch all appointments for the doctor
     getAppointmetnsForDoctor(user.id);
-  }, []);
+  }, [user.id]);
 
   useEffect(() => {
-    // Map appointments to the required format for react-big-calendar
     const mappedEvents = allAppointments?.map((appointment) => ({
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId.name}`,
       start: new Date(appointment.date),
       end: new Date(appointment.appointmentTime),
       allDay: false,
       id: appointment._id,
-      appointment: appointment, // Store the full appointment data
+      appointment,
     }));
-    setEvents(mappedEvents);
+    setEvents(mappedEvents || []);
   }, [allAppointments]);
 
-  // Handle event click to reschedule
-  const handleSelectEvent = (event) => {
-    setSelectedEvent(event);
-    setIsRescheduleModalOpen(true);
+  // Fetch unavailable times
+  useEffect(() => {
+    const fetchUnavailableTimes = async () => {
+      try {
+        const response = await apiService.GetUnavailableTimes(user.id);
+        const unavailableEvents = response.data.map((unavailable) => ({
+          title: unavailable.title || "Unavailable",
+          start: moment(`${unavailable.date} ${unavailable.timeRange.start}`).toDate(),
+          end: moment(`${unavailable.date} ${unavailable.timeRange.end}`).toDate(),
+          allDay: false,
+          id: unavailable._id,
+          isUnavailable: true,
+          reason: unavailable.reason
+        }));
+        setUnavailableTimes(unavailableEvents);
+      } catch (error) {
+        console.error("Error fetching unavailable times:", error);
+      }
+    };
+
+    fetchUnavailableTimes();
+  }, [user.id]);
+
+  // Modal handlers
+  const handleModalState = (modalType, isOpen, data = null) => {
+    setModalState(prev => ({
+      ...prev,
+      [modalType]: { isOpen, ...(data && { [modalType === 'reschedule' ? 'event' : 'slot']: data }) }
+    }));
   };
 
-  // Handle closing of the reschedule modal
-  const handleCloseRescheduleModal = () => {
-    setIsRescheduleModalOpen(false);
-    setSelectedEvent(null);
+  // Event handlers
+  const handleSelectEvent = (event) => {
+    if (!event.isUnavailable) {
+      handleModalState('reschedule', true, event);
+    }
+  };
+
+  const handleSelectSlot = (slotInfo) => {
+    const isUnavailable = unavailableTimes.some(
+      (unavailable) => slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end
+    );
+
+    if (isBlockingMode) {
+      handleModalState('timeBlock', true, slotInfo);
+    } else if (!isUnavailable) {
+      handleModalState('appointment', true, slotInfo);
+    } else {
+      alert("This time slot is unavailable.");
+    }
+  };
+
+  // Action handlers
+  const handleAddUnavailableTime = async (unavailableTimeData) => {
+    try {
+      const response = await apiService.AddUnavailableTime(user.id, unavailableTimeData);
+      const newUnavailableEvent = {
+        title: unavailableTimeData.title,
+        start: moment(`${unavailableTimeData.date} ${unavailableTimeData.timeRange.start}`).toDate(),
+        end: moment(`${unavailableTimeData.date} ${unavailableTimeData.timeRange.end}`).toDate(),
+        allDay: false,
+        id: response.data._id,
+        isUnavailable: true,
+        reason: unavailableTimeData.reason
+      };
+      setUnavailableTimes(prev => [...prev, newUnavailableEvent]);
+      handleModalState('timeBlock', false);
+    } catch (error) {
+      console.error("Error adding unavailable time:", error);
+      alert("Failed to add unavailable time. Please try again.");
+    }
   };
 
   // Handle the rescheduling of an appointment
@@ -60,7 +141,7 @@ const AppointmentTimeSlot = () => {
           : event
       );
       setEvents(updatedEvents);
-      handleCloseRescheduleModal();
+      handleModalState('reschedule', false);
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
     }
@@ -73,36 +154,58 @@ const AppointmentTimeSlot = () => {
       // Remove the event from the events state
       const updatedEvents = events.filter((event) => event.id !== appointmentId);
       setEvents(updatedEvents);
-      handleCloseRescheduleModal();
+      handleModalState('reschedule', false);
     } catch (error) {
       console.error("Error deleting appointment:", error);
     }
   };
 
+  // Handle the creation of a new appointment
+  const handleCreateAppointment = async (appointmentData) => {
+    try {
+      await createAppointment(appointmentData);
+      // Add the new appointment to the events state
+      const newEvent = {
+        title: `${appointmentData.patientId.firstName} with Dr. ${appointmentData.doctorId.name}`,
+        start: new Date(appointmentData.date),
+        end: new Date(appointmentData.appointmentTime),
+        allDay: false,
+        id: appointmentData._id,
+        appointment: appointmentData,
+      };
+      setEvents([...events, newEvent]);
+      handleModalState('appointment', false);
+    } catch (error) {
+      console.error("Error creating appointment:", error);
+    }
+  };
+
   return (
     <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
-      <h3 className="text-lg font-semibold mb-4">Appointment Time Slot (Doctor)</h3>
       <Calendar
         localizer={localizer}
-        events={events}
+        events={[...events, ...unavailableTimes]}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 600 }}
-        views={["week", "day"]}
-        defaultView="week"
-        popup
-        eventPropGetter={(event) => {
-          const backgroundColor = event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
-          return { style: { backgroundColor } };
-        }}
+        {...calendarConfig}
+        eventPropGetter={eventStyleGetter}
         onSelectEvent={handleSelectEvent}
+        onSelectSlot={handleSelectSlot}
       />
+      
       <RescheduleModal
-        isOpen={isRescheduleModalOpen}
-        onClose={handleCloseRescheduleModal}
+        isOpen={modalState.reschedule.isOpen}
+        onClose={() => handleModalState('reschedule', false)}
         onReschedule={handleRescheduleAppointment}
         onDelete={handleDeleteAppointment}
-        selectedEvent={selectedEvent}
+        selectedEvent={modalState.reschedule.event}
+      />
+      
+      <TimeBlockModal
+        isOpen={modalState.timeBlock.isOpen}
+        onClose={() => handleModalState('timeBlock', false)}
+        onAddUnavailableTime={handleAddUnavailableTime}
+        selectedSlot={modalState.timeBlock.slot}
       />
     </div>
   );

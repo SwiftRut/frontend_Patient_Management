@@ -5,7 +5,8 @@ import { HiCash } from "react-icons/hi";
 import { FaRupeeSign } from "react-icons/fa";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import MainBill from "./MainBill";
-import { useGlobal } from "../../context/GlobalContext";
+import { useGlobal } from "../../hooks/useGlobal";
+
 
 const Bills = () => {
   const [activeTab, setActiveTab] = useState("Unpaid Bills");
@@ -21,7 +22,6 @@ const Bills = () => {
   useEffect(() => {
     getAllBillsById();
   }, []);
-
   console.log("All Bills:", allBillsById);
 
   // Filter bills based on status

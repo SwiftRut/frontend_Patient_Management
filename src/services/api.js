@@ -62,6 +62,7 @@ const   apiService = {
   GetAllHospital: (userData) => api.post("/hospital/get-all-hospitals", userData),
 
   //Appointments
+  GetallAppointmentsForCount: () => api.get(`/appoinment/allAppointmentsForCount`),
   GetAllAppointments: () => api.get(`/appoinment/allappoinment`),
   GetAllTodayAppointments: () => api.get(`/appoinment/alltodayappoinment`),
   GetAppointmentById: (id) => api.get(`/appoinment/singleappointment/${id}`),
@@ -92,6 +93,10 @@ const   apiService = {
   GetPrescriptionById: (id) => api.get(`/prescription/getPrescriptionById/${id}`),
   EditPrescription: (id, userData) => api.put(`/prescription/editprescription/${id}`, userData),
   DeletePrescription: (id) => api.delete(`/prescription/deleteprescription/${id}`),
+
+  // Unavailable Times
+  GetUnavailableTimes: (doctorId) => api.get(`/doctor/${doctorId}/unavailable-times`),
+  AddUnavailableTime: (doctorId, data) => api.post(`/doctor/${doctorId}/unavailable-times`, data),
 };
 
 export default apiService;

@@ -7,28 +7,30 @@ const PatientsStatistics = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null); 
 
-  // Function to fetch all patients data
-  const fetchAllPatients = async () => {
+  const fetchPatientsData = async () => {
     try {
       const response = await apiService.GetAllPatients();
-      console.log("Fetched patient data:", response.data.data); 
-
-      // Initialize an array to hold counts for each month (1-12)
       const monthlyCounts = Array(12).fill(0);
+      const currentDate = new Date();
 
-      // Iterate through the patients and count them by month
       response.data.data.forEach(patient => {
-        const month = new Date(patient.createdAt).getMonth(); // Get the month (0-11)
-        monthlyCounts[month] += 1; // Increment the count for the corresponding month
+        const createdAt = new Date(patient.createdAt);
+        const month = createdAt.getMonth(); // 0-11
+        const year = createdAt.getFullYear();
+
+        if (timePeriod === 'Year' && year === currentDate.getFullYear()) {
+          monthlyCounts[month] += 1;
+        } else if (timePeriod === 'Month' && year === currentDate.getFullYear() && month === currentDate.getMonth()) {
+          monthlyCounts[month] += 1;
+        } else if (timePeriod === 'Week' && createdAt >= new Date(currentDate.setDate(currentDate.getDate() - 7))) {
+          monthlyCounts[month] += 1;
+        }
       });
 
-      // Prepare the processed data for the chart
       const processedData = monthlyCounts.map((count, index) => ({
-        month: index + 1, // Month number (1-12)
-        patients: count, // Count of patients for that month
+        month: index + 1,
+        patients: count,
       }));
-
-      console.log("Processed Data:", processedData);
 
       setData(processedData);
       setError(null); 
@@ -40,15 +42,13 @@ const PatientsStatistics = () => {
 
   const handleTimePeriodChange = (period) => {
     setTimePeriod(period);
-    fetchAllPatients(); 
+    fetchPatientsData(); 
   };
 
-  // Fetch data on component mount
   useEffect(() => {
-    fetchAllPatients(); 
+    fetchPatientsData(); 
   }, []);
 
-  // Array of month names
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   return (
@@ -61,24 +61,24 @@ const PatientsStatistics = () => {
           <button className=" mx-2 px-2 me-3 hover:bg-[#0EABEB] hover:text-white" onClick={() => handleTimePeriodChange('Week')}>Week</button>
         </div>
       </div>
-      {error && <div className="text-red-500">{error}</div>} {/* Display error message */}
+      {error && <div className="text-red-500">{error}</div>}
       <ResponsiveContainer width="100%" height="80%">
         <LineChart data={data}>
-          <CartesianGrid vertical={false} stroke="#ccc" /> {/* Show only horizontal lines */}
+          <CartesianGrid vertical={false} stroke="#ccc" />
           <XAxis 
             dataKey="month" 
-            ticks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]} // Set X-axis ticks to months 1-12
-            tickFormatter={(month) => monthNames[month - 1]} // Format the tick labels to month names
+            ticks={timePeriod === 'Year' ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] : timePeriod === 'Month' ? [new Date().getMonth() + 1] : [1, 2, 3, 4, 5, 6, 7]} 
+            tickFormatter={(month) => timePeriod === 'Year' ? monthNames[month - 1] : timePeriod === 'Month' ? 'Current Month' : `Week ${month}`} 
           />
           <YAxis 
-            domain={[0, 'dataMax + 5']} // Set the domain to start from 0 and extend a bit above the max value
-            ticks={[0, 5, 10, 15, 20, 25, 30]} // Customize ticks based on expected patient counts
+            domain={[0, 'dataMax + 5']} 
+            ticks={[0, 5, 10, 15, 20, 25, 30]} 
           />
           <Tooltip content={({ payload }) => {
             if (payload && payload.length) {
               return (
                 <div className='grid px-2' style={{ backgroundColor: 'black', color: 'white', padding: '5px', borderRadius: '5px' }}>
-                  <span>Patients</span> <span>{payload[0].value}</span> {/* Show only the number of patients */}
+                  <span>Patients</span> <span>{payload[0].value}</span>
                 </div>
               );
             }
