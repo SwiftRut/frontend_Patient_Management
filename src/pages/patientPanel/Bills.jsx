@@ -7,6 +7,7 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import MainBill from "./MainBill";
 import { useGlobal } from "../../hooks/useGlobal";
 
+
 const Bills = () => {
   const [activeTab, setActiveTab] = useState("Unpaid Bills");
   const [openModel, setOpenModel] = useState(false);

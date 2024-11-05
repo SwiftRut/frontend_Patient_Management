@@ -120,7 +120,7 @@ export default function DoctorManagement() {
                     <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
                       <FaEdit />
                     </div>
-                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
+                    <div className="view" onClick={() => handleViewDoctorDetails(doctor._id)}>
                       <FaEye />
                     </div>
                     <div className="delete" onClick={() => handleDeleteClick(doctor._id)}>
