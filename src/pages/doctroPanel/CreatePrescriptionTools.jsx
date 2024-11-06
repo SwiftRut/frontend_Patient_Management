@@ -21,16 +21,16 @@ const CreatePrescriptionTools = () => {
   // Transform appointment data to match your component props
   const transformedAppointments = allAppointments?.map(appointment => ({
     id: appointment._id,
-    name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
-    age: appointment.patientId.age,
-    gender: appointment.patientId.gender,
-    appointmentType: appointment.type,
+    name: `${appointment?.patientId?.firstName} ${appointment?.patientId?.lastName}`,
+    age: appointment.patientId?.age,
+    gender: appointment.patientId?.gender,
+    appointmentType: appointment?.type,
     time: formatTime(appointment.appointmentTime),
-    isNew: !appointment.patientId.appointmentId || appointment.patientId.appointmentId.length <= 1,
+    isNew: !appointment.patientId?.appointmentId || appointment.patientId.appointmentId.length <= 1,
     // Additional data that might be needed
-    patientId: appointment.patientId._id,
+    patientId: appointment.patientId?._id,
     doctorId: appointment?.doctorId?._id,
-    status: appointment.status
+    status: appointment?.status
   })) || [];
 
   return (
