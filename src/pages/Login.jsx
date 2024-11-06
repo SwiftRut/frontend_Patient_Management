@@ -152,7 +152,7 @@ const Login = () => {
                         className="registration-btn"
                         onClick={() => navigate("/patientRegistration")}
                       >
-                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
+                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register (As Patient)</p>
                       </div>
                        <div
                         className="registration-btn"
