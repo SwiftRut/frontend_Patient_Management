@@ -277,6 +277,8 @@
 }
 .edit-section .row .main .profile-setting .content .left .img-box .img img {
   margin: 0px auto;
+  width: 200px;
+  height: 200px;
 }
 .edit-section .row .main .profile-setting .content .left .img-box .change-profile {
   padding-top: 15px;
@@ -333,6 +335,7 @@
   top: 4px;
   left: 14px;
   background-color: white;
+  z-index: 2;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -359,7 +362,6 @@
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #a7a7a7;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
