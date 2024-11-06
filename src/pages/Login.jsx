@@ -6,7 +6,7 @@ import "./pages.css";
 import {toast} from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin } = useAuth();
+  const { UniversalLogin, user } = useAuth();
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
@@ -16,6 +16,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
+    toast.success("Have you signed in")
     const slider = document.querySelector(".slider");
     const images = slider.querySelectorAll("img");
     const dots = slider.querySelectorAll(".dot");
@@ -52,20 +53,18 @@ const Login = () => {
       const role = await UniversalLogin(formData);
       console.log(role);
       if (role) {
-        switch (role) {
-          case "admin":
-            toast.success("Admin login successful");
-            console.log("Navigating to / for admin");
-            window.location.href = "/";
-            break;
-          case "patient":
-            toast.success("Patient login successful");
-            navigate('/patient', { replace: true });
-            break;
-          case "doctor":
-            toast.success("Doctor login successful");
-            navigate('/doctor', { replace: true });
-            break;
+        if (role === "admin") {
+          toast.success("admin login successfully")
+          window.location.href = "/";
+        }
+        else if (role === "patient") {
+          toast.success("patient login successfully")
+          window.location.href = "/patient";
+
+        } else if (role === "doctor") {
+          toast.success("doctor login successfully")
+          console.log("navigating in doctor")
+          window.location.href = "/doctor";
         }
       }
     } catch (err) {
@@ -155,12 +154,12 @@ const Login = () => {
                       >
                         <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
                       </div>
-                      {/* <div
+                       <div
                         className="registration-btn"
                         onClick={() => navigate("/adminRegistration")}
                       >
-                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
-                      </div> */}
+                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register (As Admin)</p>
+                      </div> 
                     </div>
                   </form>
                 </div>
