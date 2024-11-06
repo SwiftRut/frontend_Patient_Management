@@ -4,13 +4,13 @@
   padding: 10px 10px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients,
-.reportingAnalytics-section .row .main .total-data .total-Docters,
+.reportingAnalytics-section .row .main .total-data .total-Doctors,
 .reportingAnalytics-section .row .main .total-data .total-Appointments {
   width: 25%;
   padding: 15px 20px 0px 15px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content {
   display: flex;
   justify-content: space-between;
@@ -20,12 +20,12 @@
   padding: 15px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .logo_details,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .logo_details {
   align-items: center;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details .logo,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details .logo,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .logo_details .logo,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .logo_details .logo {
   width: 50px;
   border-radius: 50%;
@@ -36,55 +36,55 @@
   align-items: center;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details .logo svg,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details .logo svg,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .logo_details .logo svg,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .logo_details .logo svg {
   width: 30px;
   color: #2E7793;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details .details,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details .details,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .logo_details .details,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .logo_details .details {
   padding-left: 20px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .logo_details .details p,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .logo_details .details p,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .logo_details .details p,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .logo_details .details p {
   color: #030229;
   font-weight: 600;
   font-size: 16px;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .dr-logo .logo,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .dr-logo .logo,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .dr-logo .logo,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .dr-logo .logo {
   background-color: rgba(94, 94, 158, 0.1490196078);
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .dr-logo .logo svg,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .dr-logo .logo svg,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .dr-logo .logo svg,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .dr-logo .logo svg {
   color: #5E5E9E;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .appo-logo .logo,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .appo-logo .logo,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .appo-logo .logo,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .appo-logo .logo {
   background-color: rgba(65, 177, 97, 0.1490196078);
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .appo-logo .logo svg,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .appo-logo .logo svg,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .appo-logo .logo svg,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .appo-logo .logo svg {
   color: #41B161;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .claim-logo .logo,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .claim-logo .logo,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .claim-logo .logo,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .claim-logo .logo {
   background-color: rgba(46, 119, 147, 0.1490196078);
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .claim-logo .logo svg,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .claim-logo .logo svg,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .claim-logo .logo svg,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .claim-logo .logo svg {
   color: #9A5BD4;
 }
 .reportingAnalytics-section .row .main .total-data .total-Patients .content .count span,
-.reportingAnalytics-section .row .main .total-data .total-Docters .content .count span,
+.reportingAnalytics-section .row .main .total-data .total-Doctors .content .count span,
 .reportingAnalytics-section .row .main .total-data .total-Appointments .content .count span {
   display: block;
   color: #030229;
