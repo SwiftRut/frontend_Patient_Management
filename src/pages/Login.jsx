@@ -6,7 +6,7 @@ import "./pages.css";
 import {toast} from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
-  const { UniversalLogin, user } = useAuth();
+  const { UniversalLogin } = useAuth();
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
@@ -16,7 +16,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    toast.success("Have you signed in")
     const slider = document.querySelector(".slider");
     const images = slider.querySelectorAll("img");
     const dots = slider.querySelectorAll(".dot");
