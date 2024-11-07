@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./pages.css";
 import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
-import { PatientFormData } from "./constant.js";
+import { bloodGroups, genders, PatientFormData } from "./constant.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import InputField from "../components/InputField";
+import ImageSlider from "../components/Login/ImageSlider";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -15,9 +16,6 @@ const PatientRegistration = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
-
-  const genders = ["male", "female", "other"];
-  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
   const [formData, setFormData] = useState(PatientFormData);
 
@@ -49,7 +47,6 @@ const PatientRegistration = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-
     if (name === "country") {
       const selectedCountry = countries.find(
         (country) => country.isoCode === value
@@ -72,13 +69,8 @@ const PatientRegistration = () => {
       setError("Passwords do not match");
       return;
     }
-
-    try {
-      await PatientRegister(formData);
-      navigate("/login");
-    } catch (error) {
-      setError(error.response?.data?.message || "Registration failed");
-    }
+    await PatientRegister(formData);
+ 
   };
 
   return (
@@ -287,14 +279,7 @@ const PatientRegistration = () => {
             </div>
           </div>
           <div className="img-box">
-            <div className="slider">
-              <img src="/img/register.png" alt="Image 1" />
-              <img src="/img/register2.png" alt="Image 2" />
-              <div className="dots">
-                <span className="dot active"></span>
-                <span className="dot"></span>
-              </div>
-            </div>
+            <ImageSlider />
             <div className="vector-1">
               <img src="/img/Vector-1.png" width="100%" />
             </div>

@@ -17,3 +17,6 @@ export const PatientFormData = {
     address: "",
     role: "patient",
   }
+
+export const genders = ["male", "female", "other"];
+export const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
