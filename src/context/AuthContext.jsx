@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
       navigate("/login");
     } catch (error) {
       console.error("Registration error:", error);
+      toast.error("Registration failed. Please try again.");
       throw error;
     } finally {
       setLoading(false);
