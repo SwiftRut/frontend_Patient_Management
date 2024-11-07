@@ -342,7 +342,8 @@
 
               .appointments-list {
                 height: 85%;
-                justify-content: space-between;
+                justify-content: start;
+                gap: 10px;
                 align-items: center;
                 overflow-y: scroll;
                 scrollbar-color: #030229 #f4f4f4;

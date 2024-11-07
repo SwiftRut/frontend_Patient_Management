@@ -423,6 +423,7 @@ input {
                   top: 4px;
                   left: 14px;
                   background-color: white;
+                  z-index: 2;
                 }
 
                 input {
@@ -454,7 +455,6 @@ input {
                   border-radius: 10px;
                   outline: none;
                   background-color: white;
-                  color: #a7a7a7;
 
                   &:focus {
                     border: 1px solid #718ebf;
@@ -545,7 +545,7 @@ input {
                 &:nth-child(10) {
                   width: 30%;
 
-                  input {
+                  select {
                     width: 100%;
                   }
                 }

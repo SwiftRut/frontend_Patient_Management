@@ -317,6 +317,7 @@ input {
   top: 4px;
   left: 14px;
   background-color: white;
+  z-index: 2;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box input {
   padding: 12px 14px;
@@ -343,7 +344,6 @@ input {
   border-radius: 10px;
   outline: none;
   background-color: white;
-  color: #a7a7a7;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box select:focus {
   border: 1px solid #718ebf;
@@ -411,7 +411,7 @@ input {
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(10) {
   width: 30%;
 }
-.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(10) input {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(10) select {
   width: 100%;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(11) {

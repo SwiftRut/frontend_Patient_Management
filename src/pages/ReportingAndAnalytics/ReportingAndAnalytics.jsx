@@ -146,6 +146,22 @@ export default function ReportingAndAnalytics() {
                       <FaFileAlt />
                     </div>
                     <div className="details">
+                      <p>Admitted Patient</p>
+                    </div>
+                  </div>
+                  <div className="count">
+                    <span>1000</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="total-Appointments">
+                <div className="content">
+                  <div className="logo_details flex claim-logo">
+                    <div className="logo">
+                      <FaFileAlt />
+                    </div>
+                    <div className="details">
                       <p>Total Claim</p>
                     </div>
                   </div>
