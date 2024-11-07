@@ -39,8 +39,8 @@ const CreatePrescriptionTools = () => {
       <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {transformedAppointments?.map((appointment) => (
           <CreatePrescription
-            key={appointment.id}
-            id={appointment.id}
+            key={appointment?.id}
+            id={appointment?.id}
             name={appointment.name}
             age={appointment.age}
             gender={appointment.gender}
