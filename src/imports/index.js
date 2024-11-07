@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 // Admin Components
-export const Login = lazy(() => import('../pages/Login.jsx'));
+export const Login = lazy(() => import('../pages/Login/Login.jsx'));
 export const AdminRegistration = lazy(() => import('../pages/adminRegister/AdminRegistration.jsx'));
 export const AdminMobile = lazy(() => import('../pages/adminRegister/AdminMobile.jsx'));
 export const AdminOtp = lazy(() => import('../pages/adminRegister/AdminOtp.jsx'));

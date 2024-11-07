@@ -2,39 +2,19 @@ import { useEffect, useState } from "react";
 import "../pages.css";
 import { useNavigate } from "react-router-dom";
 import { Country, City, State } from "country-state-city";
-import Select, { components } from "react-select";
-import PropTypes from "prop-types";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import {toast} from "react-hot-toast";
+import { toast } from "react-toastify"
+import { FormData, HospitalFormData } from "./constants";
 
 const AdminRegistration = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { AdminRegister } = useAuth();
   const { getAllHospitals, allHospitals, createHospital } = useGlobal();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
-    country: "",
-    state: "",
-    city: "",
-    role: "admin",
-    hospital: "",
-  });
-  const [hospitalFormData, setHospitalFormData] = useState({
-    name: "",
-    address: "",
-    country: "",
-    state: "",
-    city: "",
-    zipcode: "",
-  });
+  const [formData, setFormData] = useState(FormData);
+  const [hospitalFormData, setHospitalFormData] = useState(HospitalFormData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState("");
   const [countries, setCountries] = useState([]);
@@ -126,14 +106,7 @@ const AdminRegistration = () => {
     try {
       await createHospital(hospitalFormData);
       await fetchData();
-      setHospitalFormData({
-        name: "",
-        address: "",
-        country: "",
-        state: "",
-        city: "",
-        zipcode: "",
-      });
+      setHospitalFormData(HospitalFormData);
       setIsModalOpen(false);
     } catch (error) {
       toast.error("Error creating hospital")
@@ -141,20 +114,9 @@ const AdminRegistration = () => {
     }
   };
   const handelAddHospitalModel = () => {
-    console.log("hi")
     setIsModalOpen(true)
   }
-  // const SelectMenuButton = (props) => (
-  //   <components.MenuList {...props}>
-  //     {props.children}
-  //     <button className="add-new-hospital " onClick={() => setIsModalOpen(true)}>
-  //       Add New Hospital
-  //     </button>
-  //   </components.MenuList>
-  // );
-  // SelectMenuButton.propTypes = {
-  //   children: PropTypes.node,
-  // };
+
   return (
     <>
       <div className="registration-section ">
@@ -286,37 +248,6 @@ const AdminRegistration = () => {
                       <div className="label">
                         Select Hospital <span>*</span>
                       </div>
-                      {/* <Select
-                        name="hospital"
-                        value={
-                          allHospitals.find((hospital) => hospital._id === formData.hospital)
-                            ? {
-                              label: allHospitals.find(
-                                (hospital) => hospital._id === formData.hospital
-                              ).name,
-                              value: formData.hospital,
-                            }
-                            : null
-                        }
-                        onChange={(selectedOption) =>
-                          setFormData((prevState) => ({
-                            ...prevState,
-                            hospital: selectedOption.value,
-                          }))
-                        }
-                        options={allHospitals.map((hospital) => ({
-                          value: hospital._id,
-                          label: hospital.name,
-                        }))}
-                          {
-                          
-                          value: hospital._id,
-                          label: hospital.name,
-                        }
-                        components={{ MenuList: SelectMenuButton }}
-                        placeholder="Select Hospital"
-                        isClearable
-                      /> */}
                       <select name="hospital" id=""
                         value={
                           allHospitals.find((hospital) => hospital._id === formData.hospital)

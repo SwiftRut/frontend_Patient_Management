@@ -22,7 +22,6 @@ export default function PatientManagement() {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    // Flatten all appointments from all patients
     const allAppointments = allPatients.flatMap(patient => 
       (patient.appointmentId || []).map(apt => ({
         name: `${patient.firstName} ${patient.lastName}`,
