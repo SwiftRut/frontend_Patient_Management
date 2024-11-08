@@ -4,7 +4,8 @@ import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { DoctorFormData } from "./constants.js";
+import { Country, State, City } from "country-state-city"; // Import country-state-city
+import { countryCodes } from "./constants.js"; // Import country codes from your constants file
 
 const DoctorEdit = () => {
   const { doctorId } = useParams(); // Retrieve doctorId from URL parameters
@@ -40,6 +41,11 @@ const DoctorEdit = () => {
   const [signatureFile, setSignatureFile] = useState(null); // State for signature file
   const [photoFile, setPhotoFile] = useState(null); // State for photo file
   const [loading, setLoading] = useState(true);
+  
+  const [countries, setCountries] = useState([]); // State for countries
+  const [states, setStates] = useState([]); // State for states
+  const [cities, setCities] = useState([]); // State for cities
+  const [countryCodesList, setCountryCodesList] = useState([]); // State for country codes
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -49,6 +55,11 @@ const DoctorEdit = () => {
           console.log("Doctor Data Response:", response.data.data); // Log the full data
           if (response.data.data) {
             setDoctorData(response.data.data); // Update state with the doctor data
+            // Set states and cities based on the fetched doctor data
+            const selectedCountry = response.data.data.country;
+            const selectedState = response.data.data.state;
+            setStates(State.getStatesOfCountry(selectedCountry)); // Fetch states based on selected country
+            setCities(City.getCitiesOfState(selectedCountry, selectedState)); // Fetch cities based on selected state
           }
         }
       } catch (error) {
@@ -59,38 +70,40 @@ const DoctorEdit = () => {
     };
 
     fetchDoctor();
+    setCountries(Country.getAllCountries()); // Fetch countries
+    setCountryCodesList(countryCodes); // Set country codes
   }, [doctorId]);
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    const formData = new FormData(); // Create a new FormData object
 
-    // Append JSON data to FormData
-    for (const [key, value] of Object.entries(doctorData)) {
-      formData.append(key, value); // Append each field of doctorData
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData(); // Create a new FormData object
+
+      // Append JSON data to FormData
+      for (const [key, value] of Object.entries(doctorData)) {
+        formData.append(key, value); // Append each field of doctorData
+      }
+
+      // Append signature file if it exists
+      if (signatureFile) {
+        formData.append('signature', signatureFile); // Append the signature file
+      }
+
+      // Append photo file if it exists
+      if (photoFile) {
+        formData.append('profilePicture', photoFile); // Append the photo file
+      }
+
+      // Post the combined FormData to your API
+      const response = await apiService.EditDoctor(doctorId, formData);
+      console.log("Doctor updated successfully:", response.data);
+      alert("Doctor updated successfully!");
+      navigate("/doctorManagement");
+    } catch (error) {
+      console.error("Error updating doctor:", error);
+      alert("An error occurred while updating the doctor.");
     }
-
-    // Append signature file if it exists
-    if (signatureFile) {
-      formData.append('signature', signatureFile); // Append the signature file
-    }
-
-    // Append photo file if it exists
-    if (photoFile) {
-      formData.append('profilePicture', photoFile); // Append the photo file
-    }
-
-    // Post the combined FormData to your API
-    const response = await apiService.EditDoctor(doctorId, formData);
-    console.log("Doctor updated successfully:", response.data);
-    alert("Doctor updated successfully!");
-    navigate("/doctorManagement");
-  } catch (error) {
-    console.error("Error updating doctor:", error);
-    alert("An error occurred while updating the doctor.");
-  }
-};
-
+  };
 
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
@@ -112,7 +125,10 @@ const handleSubmit = async (event) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setDoctorData({ ...doctorData, [name]: value });
+    setDoctorData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   if (loading) {
@@ -169,7 +185,7 @@ const handleSubmit = async (event) => {
                   <div className="right">
                     <div className="form-box">
                       <form className="flex">
-                        {[
+                        {[ 
                           { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
                           { label: "Gender", name: "gender", type: "select", options: ["", "Male", "Female", "Other"], value: doctorData.gender },
@@ -183,9 +199,9 @@ const handleSubmit = async (event) => {
                           { label: "Country Code", name: "countryCode", type: "select", options: ["1", "2"], value: doctorData.countryCode },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { label: "Country", name: "country", type: "text", placeholder: "Enter Country", value: doctorData.country },
-                          { label: "State", name: "state", type: "text", placeholder: "Enter State", value: doctorData.state },
-                          { label: "City", name: "city", type: "text", placeholder: "Enter City", value: doctorData.city },
+                          { label: "Country", name: "country", type: "select", options: countries, value: doctorData.country },
+                          { label: "State", name: "state", type: "select", options: states, value: doctorData.state, disabled: !doctorData.country },
+                          { label: "City", name: "city", type: "select", options: cities, value: doctorData.city, disabled: !doctorData.state },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
                           { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
                           { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
@@ -194,9 +210,10 @@ const handleSubmit = async (event) => {
                           <div className="input-box" key={index}>
                             <div className="label">{field.label}</div>
                             {field.type === 'select' ? (
-                              <select name={field.name} value={field.value} onChange={handleInputChange}>
+                              <select name={field.name} value={field.value} onChange={handleInputChange} disabled={field.disabled}>
+                                <option value="">Select {field.label}</option>
                                 {field.options.map((option, i) => (
-                                  <option value={option} key={i}>{option}</option>
+                                  <option value={option.isoCode || option.name} key={i}>{option.name}</option>
                                 ))}
                               </select>
                             ) : (
@@ -225,7 +242,7 @@ const handleSubmit = async (event) => {
                 <div className="details flex">
                   <div className="form-box">
                     <form className="flex">
-                      {[
+                      {[ 
                         { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
                         { label: "Hospital Name", name: "hospitalName", type: "text", placeholder: "Enter Hospital Name", value: doctorData.hospitalName },
                         { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },

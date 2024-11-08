@@ -133,12 +133,14 @@
                                             top: 4px;
                                             left: 14px;
                                             background-color: white;
+                                            z-index: 2;
                                         }
 
                                         input {
                                             padding: 12px 14px;
                                             border: 1px solid #d9d9d9;
                                             border-radius: 10px;
+                                            z-index: 2;
 
                                             &:focus {
                                                 border: 1px solid #718ebf;
@@ -156,6 +158,7 @@
                                             outline: none;
                                             background-color: white;
                                             color: #a7a7a7;
+                                            z-index: 2;
 
                                             &:focus {
                                                 border: 1px solid #718ebf;
@@ -280,7 +283,7 @@
                                         &:nth-child(14) {
                                             width: 32%;
 
-                                            input {
+                                            select {
                                                 width: 100%;
                                             }
                                         }
@@ -288,7 +291,7 @@
                                         &:nth-child(15) {
                                             width: 32%;
 
-                                            input {
+                                            select {
                                                 width: 100%;
                                             }
                                         }
@@ -296,7 +299,7 @@
                                         &:nth-child(16) {
                                             width: 32%;
 
-                                            input {
+                                            select {
                                                 width: 100%;
                                             }
                                         }
