@@ -37,22 +37,6 @@ export default function DoctorManagement() {
     fetchDoctors();
   }, []);
 
-  const handleAddDoctor = () => {
-    navigate("/doctorAdd");
-  };
-
-  const handleEditDoctor = (doctorId) => {
-    navigate(`/doctorEdit/${doctorId}`);
-  };
-
-  const handleDeleteClick = (id) => {
-    setSelectedDoctorId(id);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedDoctorId(null);
-  };
-
   const handleDeleteSuccess = (deletedId) => {
     setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== deletedId));
     setSelectedDoctorId(null);
@@ -117,13 +101,13 @@ export default function DoctorManagement() {
                     <h3>{doctor.breakTime}</h3>
                   </td>
                   <td className="flex action p-3">
-                    <div className="edit" onClick={() => handleEditDoctor(doctor._id)}>
+                    <div className="edit" onClick={() =>  navigate(`/doctorEdit/${doctor._id}`)}>
                       <FaEdit />
                     </div>
                     <div className="view" onClick={() => handleViewDoctorDetails(doctor._id)}>
                       <FaEye />
                     </div>
-                    <div className="delete" onClick={() => handleDeleteClick(doctor._id)}>
+                    <div className="delete" onClick={() => setSelectedDoctorId(doctor._id)}>
                       <MdDelete />
                     </div>
                   </td>
@@ -166,7 +150,7 @@ export default function DoctorManagement() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                <button className="btn flex align-center" onClick={handleAddDoctor}>
+                <button className="btn flex align-center" onClick={()=>navigate("/doctorAdd")}>
                   <div className="icon">
                     <MdAdd />
                   </div>
@@ -203,7 +187,7 @@ export default function DoctorManagement() {
       {selectedDoctorId && (
         <Delete
           deleteId={selectedDoctorId}
-          onClose={handleCloseModal}
+          onClose={setSelectedDoctorId(null)}
           onDeleteSuccess={handleDeleteSuccess}
         />
       )}

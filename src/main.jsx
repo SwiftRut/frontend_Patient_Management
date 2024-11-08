@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -7,16 +6,17 @@ import { GlobalProvider } from "./context/GlobalContext.jsx";
 import { AdminProvider } from "./context/AdminContext.jsx";
 import { DoctorProvider } from "./context/DoctorContext.jsx";
 import { PatientProvider } from "./context/PatientContext.jsx";
-import { Toaster } from "react-hot-toast"; // Ensure Toaster is imported correctly
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorBoundary from "./context/ErrorBoundary.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-// Create a new QueryClient instance
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
   <ErrorBoundary>
-    <QueryClientProvider client={queryClient}> {/* Correct prop is "client" */}
+    <QueryClientProvider client={queryClient}>
       <PatientProvider>
         <DoctorProvider>
           <AdminProvider>
@@ -39,4 +39,6 @@ createRoot(document.getElementById("root")).render(
       </PatientProvider>
     </QueryClientProvider>  
   </ErrorBoundary>
+  </BrowserRouter>
+
 );

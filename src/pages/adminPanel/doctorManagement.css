@@ -63,6 +63,14 @@
   font-weight: 600;
   cursor: pointer;
 }
+.doctorAdd-section .row .main .top .content .details .left .choose-photo p,
+.doctorEdit-section .row .main .top .content .details .left .choose-photo p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #5678E9;
+  padding-top: 5px;
+}
 .doctorAdd-section .row .main .top .content .details .left .upload-sign,
 .doctorEdit-section .row .main .top .content .details .left .upload-sign {
   margin: 0px auto;

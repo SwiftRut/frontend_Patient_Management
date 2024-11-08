@@ -9,6 +9,7 @@
       }
 
       .profile-setting {
+        
         width: 80%;
         margin: 0px auto;
         margin-top: -15%;
@@ -38,6 +39,8 @@
               .img {
                 img {
                   margin: 0px auto;
+                  width: 200px;
+                  height: 200px;
                 }
               }
 
@@ -376,6 +379,8 @@
               .img {
                 img {
                   margin: 0px auto;
+                  width: 200px;
+                  height: 200px;
                 }
               }
 
@@ -447,6 +452,7 @@
                       top: 4px;
                       left: 14px;
                       background-color: white;
+                      z-index: 2;
                     }
 
                     input {
@@ -477,7 +483,6 @@
                       border-radius: 10px;
                       outline: none;
                       background-color: white;
-                      color: #a7a7a7;
 
                       &:focus {
                         border: 1px solid #718ebf;

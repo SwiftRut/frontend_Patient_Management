@@ -3,10 +3,13 @@ import axios from "axios";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
 import { useGlobal } from "../hooks/useGlobal";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(); //{}
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || "");
   const [loading, setLoading] = useState(true);
   const { getAdminProfile, getDoctorProfile, getPatientProfile } = useGlobal();
@@ -34,8 +37,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
       setUser(data.user);
+      navigate("/login");
     } catch (error) {
       console.error("Registration error:", error);
+      toast.error("Registration failed. Please try again.");
       throw error;
     } finally {
       setLoading(false);
@@ -103,20 +108,26 @@ export const AuthProvider = ({ children }) => {
 
       //here we have call the function based on the user role
       if (response.data.user.role === "doctor") {
-        console.log("doctor profile fetching");
+        toast.success("Doctor login successful");
+        navigate('/doctor', { replace: true });
         await getDoctorProfile(response.data.user.id);
       } else if (response.data.user.role === "admin") {
-        console.log("admin profile fetching");
+        toast.success("Admin login successful");
+        window.location.href = "/";
         await getAdminProfile(response.data.user.id);
       } else {
+        toast.success("Patient login successful");
+        navigate('/patient', { replace: true });
         await getPatientProfile(response.data.user.id);
       }
       return response.data.user.role;
     } catch (error) {
       console.error("Login error:", error);
+      toast.error("Login failed. Please check your credentials.");
       throw error;
     } finally {
       setLoading(false);
+
     }
   };
 

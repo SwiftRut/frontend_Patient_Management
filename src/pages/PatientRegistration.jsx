@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./pages.css";
 import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
-import { PatientFormData } from "./constant.js";
+import { bloodGroups, genders, PatientFormData, PatientRegistrationFormFields } from "./constant.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import ImageSlider from "../components/Login/ImageSlider.jsx";
 
 const PatientRegistration = () => {
   const navigate = useNavigate();
@@ -15,9 +15,6 @@ const PatientRegistration = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
-
-  const genders = ["male", "female", "other"];
-  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
   const [formData, setFormData] = useState(PatientFormData);
 
@@ -67,18 +64,11 @@ const PatientRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
       return;
     }
-
-    try {
-      await PatientRegister(formData);
-      navigate("/login");
-    } catch (error) {
-      setError(error.response?.data?.message || "Registration failed");
-    }
+    await PatientRegister(formData);
   };
 
   return (
@@ -93,16 +83,7 @@ const PatientRegistration = () => {
               <div className="form-box">
                 {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit} className="flex">
-                  {[
-                    { label: "First Name", name: "firstName", type: "text" },
-                    { label: "Last Name", name: "lastName", type: "text" },
-                    { label: "Email Address", name: "email", type: "email" },
-                    { label: "Phone Number", name: "phone", type: "tel" },
-                    { label: "Age", name: "age", type: "number" },
-                    { label: "Height(cm)", name: "height", type: "number" },
-                    { label: "Weight(kg)", name: "weight", type: "number" },
-                    { label: "Date of Birth", name: "dob", type: "date" },
-                  ].map((input) => (
+                  {PatientRegistrationFormFields.map((input) => (
                     <div className="input-box" key={input.name}>
                       <div className="label">
                         {input.label} <span>*</span>
@@ -287,14 +268,7 @@ const PatientRegistration = () => {
             </div>
           </div>
           <div className="img-box">
-            <div className="slider">
-              <img src="/img/register.png" alt="Image 1" />
-              <img src="/img/register2.png" alt="Image 2" />
-              <div className="dots">
-                <span className="dot active"></span>
-                <span className="dot"></span>
-              </div>
-            </div>
+          <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
             <div className="vector-1">
               <img src="/img/Vector-1.png" width="100%" />
             </div>

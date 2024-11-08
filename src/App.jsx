@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import "./component/sidebar.css";
 import "./pages/pages.css";
@@ -9,7 +9,6 @@ import AddRecord from "./pages/doctroPanel/AddRecord.jsx";
 function App() {
   return (
     <Suspense fallback={<Loading />}>
-      <BrowserRouter>
         <Routes>
           <Route path="/doctor/addRecord" element={<AddRecord />} />
 
@@ -26,7 +25,6 @@ function App() {
             return <Route key={index} path={route.path} element={route.element} />;
           })}
         </Routes>
-      </BrowserRouter>
     </Suspense>
   );
 }
