@@ -25,7 +25,6 @@ const Dashboard = () => {
     const fetchAllAppointments = async () => {
       try {
         const response = await apiService.GetallAppointmentsForCount();
-
         if (response && response.data && Array.isArray(response.data)) {
           const data = response.data;
           setTotalAppointments(data.length);
@@ -81,7 +80,6 @@ const Dashboard = () => {
     fetchPatients();
     fetchDoctors();
     getBills();
-
   }, []);
 
   return (
