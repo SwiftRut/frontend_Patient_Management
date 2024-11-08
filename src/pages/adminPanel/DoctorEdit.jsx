@@ -4,44 +4,16 @@ import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { countryCodes, DoctorFormData } from "./constants.js";
 import { Country, State, City } from "country-state-city"; // Import country-state-city
-import { countryCodes } from "./constants.js";
 
 const DoctorEdit = () => {
   const { doctorId } = useParams(); // Retrieve doctorId from URL parameters
   const navigate = useNavigate();
-  const [doctorData, setDoctorData] = useState({
-    name: '',
-    qualification: '',
-    gender: '',
-    speciality: '',
-    workingTime: '',
-    patientCheckupTime: '',
-    breakTime: '',
-    experience: '',
-    phone: '',
-    countryCode: '',
-    age: '',
-    email: '',
-    country: '',
-    state: '',
-    city: '',
-    zipCode: '',
-    doctorAddress: '',
-    description: '',
-    onlineConsultationRate: '',
-    currentHospital: '',
-    hospitalName: '',
-    hospitalAddress: '',
-    worksiteLink: '',
-    emergencyContactNo: '',
-    avatar: '',
-    signature: ''
-  });
+  const [doctorData, setDoctorData] = useState(DoctorFormData); // Initialize with DoctorFormData
   const [signatureFile, setSignatureFile] = useState(null); // State for signature file
   const [photoFile, setPhotoFile] = useState(null); // State for photo file
   const [loading, setLoading] = useState(true);
-  
   const [countries, setCountries] = useState([]); // State for countries
   const [states, setStates] = useState([]); // State for states
   const [cities, setCities] = useState([]); // State for cities
@@ -54,11 +26,6 @@ const DoctorEdit = () => {
           console.log("Doctor Data Response:", response.data.data); // Log the full data
           if (response.data.data) {
             setDoctorData(response.data.data); // Update state with the doctor data
-            // Set states and cities based on the fetched doctor data
-            const selectedCountry = response.data.data.country;
-            const selectedState = response.data.data.state;
-            setStates(State.getStatesOfCountry(selectedCountry)); // Fetch states based on selected country
-            setCities(City.getCitiesOfState(selectedCountry, selectedState)); // Fetch cities based on selected state
           }
         }
       } catch (error) {
@@ -126,13 +93,13 @@ const DoctorEdit = () => {
     setDoctorData({ ...doctorData, [name]: value });
 
     if (name === "country") {
-      const selectedCountry = value;
-      setStates(State.getStatesOfCountry(selectedCountry)); // Fetch states based on selected country
+      const selectedCountry = countries.find(country => country.isoCode === value);
+      setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
       setDoctorData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
       setCities([]); // Clear cities
     } else if (name === "state") {
-      const selectedState = value;
-      setCities(City.getCitiesOfState(doctorData.country, selectedState)); // Fetch cities based on selected state
+      const selectedState = states.find(state => state.isoCode === value);
+      setCities(City.getCitiesOfState(doctorData.country, selectedState.isoCode)); // Fetch cities based on selected state
       setDoctorData(prevData => ({ ...prevData, city: "" })); // Reset city
     }
   };
@@ -194,7 +161,7 @@ const DoctorEdit = () => {
                         {[ 
                           { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
-                          { label: "Gender", name: "gender", type: "select", options: ["", "Male", "Female", "Other"], value: doctorData.gender },
+                          { label: "Gender", name: "gender", type: "select", options: ["Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
                           { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
                           { label: "Work On", name: "workingOn", type: "text", placeholder: "Enter Work On", value: doctorData.workingOn },
@@ -206,8 +173,8 @@ const DoctorEdit = () => {
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
                           { label: "Country", name: "country", type: "select", options: countries, value: doctorData.country },
-                          { label: "State", name: "state", type: "select", options: states, value: doctorData.state, disabled: !doctorData.country },
-                          { label: "City", name: "city", type: "select", options: cities, value: doctorData.city, disabled: !doctorData.state },
+                          { label: "State", name: "state", type: "select", options: states, value: doctorData.state, isDisabled: !doctorData.country },
+                          { label: "City", name: "city", type: "select", options: cities, value: doctorData.city, isDisabled: !doctorData.state },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
                           { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
                           { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
@@ -216,11 +183,25 @@ const DoctorEdit = () => {
                           <div className="input-box" key={index}>
                             <div className="label">{field.label}</div>
                             {field.type === 'select' ? (
-                              <select name={field.name} value={field.value} onChange={handleInputChange} disabled={field.disabled}>
+                              <select name={field.name} value={field.value} onChange={handleInputChange} disabled={field.isDisabled}>
                                 <option value="">Select {field.label}</option>
-                                {field.options.map((option, i) => (
-                                  <option value={option.isoCode || option.name || option} key={i}>{option?.name || option.code + ' ' +option.country }</option>
-                                ))}
+                                {field.options.map((option) => {
+                                  if(field.label == "Country Code") {
+                                    return (<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                  {option.code + ' ' + option.country}
+                                  </option>)
+                                  }
+                                  else if(field.label == "Gender"){
+                                    return (<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                      {option}
+                                      </option>)
+                                  }
+                                  else{
+                                  return(<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                    {option.name}
+                                  </option>)
+                                  }
+})}
                               </select>
                             ) : (
                               <input
@@ -286,3 +267,4 @@ const DoctorEdit = () => {
 };
 
 export default DoctorEdit;
+ 
