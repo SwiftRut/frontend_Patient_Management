@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
 import "./invoice.css";
 import { formDataObject, PatientBillFields } from "./Contants";
-import FormInput from '../../component/common/FormInput';
+import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
 
@@ -231,19 +231,12 @@ const CreateBill = () => {
                 <div className="details flex">
                   <div className="form-box">
                     <form onSubmit={handleSubmit} className="flex" id="create-bill-form">
-                      {HospitalBillFields.map((field) => (
-                        <FormInput
-                          key={field.name}
-                          label={field.label}
-                          type={field.type}
-                          value={formData[field.name] || ''}
-                          onChange={(e) => handleChange({
-                            target: {
-                              name: field.name,
-                              value: e.target.value
-                            }
-                          })}
-                          placeholder={field.placeholder}
+                      {HospitalBillFields.map((field, index) => (
+                        <InputField
+                          key={index}
+                          {...field}
+                          value={formData[field.name]}
+                          onChange={handleChange}
                         />
                       ))}
                     </form>
@@ -263,18 +256,11 @@ const CreateBill = () => {
                     <div className="form-box">
                       <form className="flex">
                         {PatientBillFields.map((field, index) => (
-                          <FormInput
+                          <InputField
                             key={index}
-                            label={field.label}
-                            type={field.type}
-                            value={formData[field.name] || ''}
-                            onChange={(e) => handleChange({
-                              target: {
-                                name: field.name,
-                                value: e.target.value
-                              }
-                            })}
-                            placeholder={field.placeholder}
+                            {...field}
+                            value={formData[field.name]}
+                            onChange={handleChange}
                           />
                         ))}
                       </form>
