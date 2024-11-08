@@ -344,6 +344,7 @@ export const GlobalProvider = ({ children }) => {
       const response = await apiService.CreatePrescription(prescriptionData, id);
       console.log("Prescription created:", response);
       setPrescription(response.data.data);
+      toast.success("Prescription created");
     } catch (error) {
       console.error("Error creating prescription:", error);
       throw error;
