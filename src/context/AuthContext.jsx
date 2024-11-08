@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
 
-      //here we have call the function based on the user role
+      // Here we have to call the function based on the user role
       if (response.data.user.role === "doctor") {
         toast.success("Doctor login successful");
         navigate('/doctor', { replace: true });
@@ -127,7 +127,6 @@ export const AuthProvider = ({ children }) => {
       throw error;
     } finally {
       setLoading(false);
-
     }
   };
 
@@ -138,7 +137,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       delete axios.defaults.headers.common["Authorization"];
-      window.location.href = "/login";
+      navigate("/login")
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);

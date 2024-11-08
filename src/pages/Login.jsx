@@ -14,6 +14,15 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    if (!sessionStorage.getItem("hasVisitedLogin")) {
+      sessionStorage.setItem("hasVisitedLogin", "true");
+      alert("Welcome to the login page!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    }
+  }, []);
 
   useEffect(() => {
     toast.success("Have you signed in")

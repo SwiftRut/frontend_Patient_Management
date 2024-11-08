@@ -3,10 +3,10 @@ import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from "../../services/api.js";
 import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const DoctorAdd = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -141,11 +141,7 @@ const DoctorAdd = () => {
                             <img
                               src={profilePicturePreview}
                               alt="Profile Preview"
-                              style={{
-                                width: "100%",
-                                height: "auto",
-                                cursor: "pointer",
-                              }}
+                              
                             />
                           ) : (
                             <img

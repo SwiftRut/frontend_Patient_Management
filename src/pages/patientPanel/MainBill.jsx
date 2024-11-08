@@ -20,7 +20,7 @@ const MainBill = (modelId) => {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto bg-white dark:bg-card rounded-lg shadow-lg">
+    <div className="max-w-3xl mt-[60px] mx-auto bg-white dark:bg-card rounded-lg shadow-lg">
       {/* Header - Adjusted image sizes and spacing */}
       <div className="flex flex-row justify-between items-center mb-2 p-4 sm:ps-6 gap-4">
         <div className="w-1/2 sm:w-[250px]">
