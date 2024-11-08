@@ -124,6 +124,7 @@
                                             padding: 12px 14px;
                                             border: 1px solid #d9d9d9;
                                             border-radius: 10px;
+                                            width: 100%;
 
                                             &:focus {
                                                 border: 1px solid #718ebf;
@@ -548,7 +549,7 @@
                                     &:nth-child(3) {
                                         width: 24%;
 
-                                        select {
+                                        input {
                                             width: 100%;
                                         }
                                     }
@@ -588,7 +589,7 @@
                                     &:nth-child(8) {
                                         width: 24%;
 
-                                        select {
+                                        input {
                                             width: 100%;
                                         }
                                     }
