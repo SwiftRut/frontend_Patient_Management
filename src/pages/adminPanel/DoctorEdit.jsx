@@ -5,7 +5,7 @@ import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Country, State, City } from "country-state-city"; // Import country-state-city
-import { countryCodes } from "./constants.js"; // Import country codes from your constants file
+import { countryCodes } from "./constants.js";
 
 const DoctorEdit = () => {
   const { doctorId } = useParams(); // Retrieve doctorId from URL parameters
@@ -45,7 +45,6 @@ const DoctorEdit = () => {
   const [countries, setCountries] = useState([]); // State for countries
   const [states, setStates] = useState([]); // State for states
   const [cities, setCities] = useState([]); // State for cities
-  const [countryCodesList, setCountryCodesList] = useState([]); // State for country codes
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -71,7 +70,6 @@ const DoctorEdit = () => {
 
     fetchDoctor();
     setCountries(Country.getAllCountries()); // Fetch countries
-    setCountryCodesList(countryCodes); // Set country codes
   }, [doctorId]);
 
   const handleSubmit = async (event) => {
@@ -125,10 +123,18 @@ const DoctorEdit = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setDoctorData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setDoctorData({ ...doctorData, [name]: value });
+
+    if (name === "country") {
+      const selectedCountry = value;
+      setStates(State.getStatesOfCountry(selectedCountry)); // Fetch states based on selected country
+      setDoctorData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
+      setCities([]); // Clear cities
+    } else if (name === "state") {
+      const selectedState = value;
+      setCities(City.getCitiesOfState(doctorData.country, selectedState)); // Fetch cities based on selected state
+      setDoctorData(prevData => ({ ...prevData, city: "" })); // Reset city
+    }
   };
 
   if (loading) {
@@ -196,7 +202,7 @@ const DoctorEdit = () => {
                           { label: "Break Time", name: "breakTime", type: "text", placeholder: "Enter Break Time", value: doctorData.breakTime },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "select", options: ["1", "2"], value: doctorData.countryCode },
+                          { label: "Country Code", name: "countryCode", type: "select", options: countryCodes, value: doctorData.countryCode },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
                           { label: "Country", name: "country", type: "select", options: countries, value: doctorData.country },
@@ -213,7 +219,7 @@ const DoctorEdit = () => {
                               <select name={field.name} value={field.value} onChange={handleInputChange} disabled={field.disabled}>
                                 <option value="">Select {field.label}</option>
                                 {field.options.map((option, i) => (
-                                  <option value={option.isoCode || option.name} key={i}>{option.name}</option>
+                                  <option value={option.isoCode || option.name || option} key={i}>{option?.name || option.code + ' ' +option.country }</option>
                                 ))}
                               </select>
                             ) : (
