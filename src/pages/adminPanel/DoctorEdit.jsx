@@ -98,6 +98,7 @@ const DoctorEdit = () => {
     }
     else if (name === "city") {
       const selectedCity = cities.find(city => city.name === value);
+      console.log(selectedCity)
       setDoctorData(prevData => ({
         ...prevData,
         city: selectedCity ? selectedCity.name : value
@@ -243,7 +244,7 @@ const DoctorEdit = () => {
                             name: "city", 
                             type: "select", 
                             options: cities,
-                            value: doctorData.city,
+                            value: cities.find(city => city.name === doctorData.city).name,
                             isDisabled: !doctorData.state 
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
