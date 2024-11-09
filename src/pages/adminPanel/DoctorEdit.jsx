@@ -25,7 +25,7 @@ const DoctorEdit = () => {
           const response = await apiService.GetDoctorById(doctorId);
           console.log("Doctor Data Response:", response.data.data); // Log the full data
           if (response.data.data) {
-            setDoctorData(response.data.data); // Update state with the doctor data
+            setDoctorData(response.data.data); // Update state with the doctor dataz
           }
         }
       } catch (error) {
@@ -172,7 +172,7 @@ const DoctorEdit = () => {
                           { label: "Country Code", name: "countryCode", type: "select", options: countryCodes, value: doctorData.countryCode },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { label: "Country", name: "country", type: "select", options: countries, value: doctorData.country },
+                          { label: "Country", name: "country", type: "select", options: countries, value: Country.getAllCountries().find(c => c.name === doctorData.country).isoCode  },
                           { label: "State", name: "state", type: "select", options: states, value: doctorData.state, isDisabled: !doctorData.country },
                           { label: "City", name: "city", type: "select", options: cities, value: doctorData.city, isDisabled: !doctorData.state },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
