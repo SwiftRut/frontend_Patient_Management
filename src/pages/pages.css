@@ -399,7 +399,7 @@ input {
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
   width: 30%;
 }
-.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) select {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) input {
   width: 100%;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {

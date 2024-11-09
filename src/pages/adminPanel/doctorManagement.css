@@ -131,12 +131,14 @@
   top: 4px;
   left: 14px;
   background-color: white;
+  z-index: 2;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+  z-index: 2;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box input:focus,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box input:focus {
@@ -157,6 +159,7 @@
   outline: none;
   background-color: white;
   color: #a7a7a7;
+  z-index: 2;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box select:focus,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box select:focus {
@@ -281,24 +284,24 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(14) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(15) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16),
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16) input,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16) input {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16) select,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(16) select {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(17),

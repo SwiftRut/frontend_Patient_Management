@@ -4,42 +4,19 @@ import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { DoctorFormData } from "./constants.js";
+import { countryCodes, DoctorFormData } from "./constants.js";
+import { Country, State, City } from "country-state-city"; // Import country-state-city
 
 const DoctorEdit = () => {
   const { doctorId } = useParams(); // Retrieve doctorId from URL parameters
   const navigate = useNavigate();
-  const [doctorData, setDoctorData] = useState({
-    name: '',
-    qualification: '',
-    gender: '',
-    speciality: '',
-    workingTime: '',
-    patientCheckupTime: '',
-    breakTime: '',
-    experience: '',
-    phone: '',
-    countryCode: '',
-    age: '',
-    email: '',
-    country: '',
-    state: '',
-    city: '',
-    zipCode: '',
-    doctorAddress: '',
-    description: '',
-    onlineConsultationRate: '',
-    currentHospital: '',
-    hospitalName: '',
-    hospitalAddress: '',
-    worksiteLink: '',
-    emergencyContactNo: '',
-    avatar: '',
-    signature: ''
-  });
+  const [doctorData, setDoctorData] = useState(DoctorFormData); // Initialize with DoctorFormData
   const [signatureFile, setSignatureFile] = useState(null); // State for signature file
   const [photoFile, setPhotoFile] = useState(null); // State for photo file
   const [loading, setLoading] = useState(true);
+  const [countries, setCountries] = useState([]); // State for countries
+  const [states, setStates] = useState([]); // State for states
+  const [cities, setCities] = useState([]); // State for cities
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -59,38 +36,39 @@ const DoctorEdit = () => {
     };
 
     fetchDoctor();
+    setCountries(Country.getAllCountries()); // Fetch countries
   }, [doctorId]);
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  try {
-    const formData = new FormData(); // Create a new FormData object
 
-    // Append JSON data to FormData
-    for (const [key, value] of Object.entries(doctorData)) {
-      formData.append(key, value); // Append each field of doctorData
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData(); // Create a new FormData object
+
+      // Append JSON data to FormData
+      for (const [key, value] of Object.entries(doctorData)) {
+        formData.append(key, value); // Append each field of doctorData
+      }
+
+      // Append signature file if it exists
+      if (signatureFile) {
+        formData.append('signature', signatureFile); // Append the signature file
+      }
+
+      // Append photo file if it exists
+      if (photoFile) {
+        formData.append('profilePicture', photoFile); // Append the photo file
+      }
+
+      // Post the combined FormData to your API
+      const response = await apiService.EditDoctor(doctorId, formData);
+      console.log("Doctor updated successfully:", response.data);
+      alert("Doctor updated successfully!");
+      navigate("/doctorManagement");
+    } catch (error) {
+      console.error("Error updating doctor:", error);
+      alert("An error occurred while updating the doctor.");
     }
-
-    // Append signature file if it exists
-    if (signatureFile) {
-      formData.append('signature', signatureFile); // Append the signature file
-    }
-
-    // Append photo file if it exists
-    if (photoFile) {
-      formData.append('profilePicture', photoFile); // Append the photo file
-    }
-
-    // Post the combined FormData to your API
-    const response = await apiService.EditDoctor(doctorId, formData);
-    console.log("Doctor updated successfully:", response.data);
-    alert("Doctor updated successfully!");
-    navigate("/doctorManagement");
-  } catch (error) {
-    console.error("Error updating doctor:", error);
-    alert("An error occurred while updating the doctor.");
-  }
-};
-
+  };
 
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
@@ -113,6 +91,17 @@ const handleSubmit = async (event) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setDoctorData({ ...doctorData, [name]: value });
+
+    if (name === "country") {
+      const selectedCountry = countries.find(country => country.isoCode === value);
+      setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
+      setDoctorData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
+      setCities([]); // Clear cities
+    } else if (name === "state") {
+      const selectedState = states.find(state => state.isoCode === value);
+      setCities(City.getCitiesOfState(doctorData.country, selectedState.isoCode)); // Fetch cities based on selected state
+      setDoctorData(prevData => ({ ...prevData, city: "" })); // Reset city
+    }
   };
 
   if (loading) {
@@ -169,10 +158,10 @@ const handleSubmit = async (event) => {
                   <div className="right">
                     <div className="form-box">
                       <form className="flex">
-                        {[
+                        {[ 
                           { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
-                          { label: "Gender", name: "gender", type: "select", options: ["", "Male", "Female", "Other"], value: doctorData.gender },
+                          { label: "Gender", name: "gender", type: "select", options: ["Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
                           { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
                           { label: "Work On", name: "workingOn", type: "text", placeholder: "Enter Work On", value: doctorData.workingOn },
@@ -180,12 +169,12 @@ const handleSubmit = async (event) => {
                           { label: "Break Time", name: "breakTime", type: "text", placeholder: "Enter Break Time", value: doctorData.breakTime },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "select", options: ["1", "2"], value: doctorData.countryCode },
+                          { label: "Country Code", name: "countryCode", type: "select", options: countryCodes, value: doctorData.countryCode },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { label: "Country", name: "country", type: "text", placeholder: "Enter Country", value: doctorData.country },
-                          { label: "State", name: "state", type: "text", placeholder: "Enter State", value: doctorData.state },
-                          { label: "City", name: "city", type: "text", placeholder: "Enter City", value: doctorData.city },
+                          { label: "Country", name: "country", type: "select", options: countries, value: doctorData.country },
+                          { label: "State", name: "state", type: "select", options: states, value: doctorData.state, isDisabled: !doctorData.country },
+                          { label: "City", name: "city", type: "select", options: cities, value: doctorData.city, isDisabled: !doctorData.state },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
                           { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
                           { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
@@ -194,10 +183,25 @@ const handleSubmit = async (event) => {
                           <div className="input-box" key={index}>
                             <div className="label">{field.label}</div>
                             {field.type === 'select' ? (
-                              <select name={field.name} value={field.value} onChange={handleInputChange}>
-                                {field.options.map((option, i) => (
-                                  <option value={option} key={i}>{option}</option>
-                                ))}
+                              <select name={field.name} value={field.value} onChange={handleInputChange} disabled={field.isDisabled}>
+                                <option value="">Select {field.label}</option>
+                                {field.options.map((option) => {
+                                  if(field.label == "Country Code") {
+                                    return (<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                  {option.code + ' ' + option.country}
+                                  </option>)
+                                  }
+                                  else if(field.label == "Gender"){
+                                    return (<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                      {option}
+                                      </option>)
+                                  }
+                                  else{
+                                  return(<option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                    {option.name}
+                                  </option>)
+                                  }
+})}
                               </select>
                             ) : (
                               <input
@@ -225,7 +229,7 @@ const handleSubmit = async (event) => {
                 <div className="details flex">
                   <div className="form-box">
                     <form className="flex">
-                      {[
+                      {[ 
                         { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
                         { label: "Hospital Name", name: "hospitalName", type: "text", placeholder: "Enter Hospital Name", value: doctorData.hospitalName },
                         { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
@@ -263,3 +267,4 @@ const handleSubmit = async (event) => {
 };
 
 export default DoctorEdit;
+ 

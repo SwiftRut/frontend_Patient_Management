@@ -106,6 +106,7 @@
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+  width: 100%;
 }
 .create-bill-section .row .main .hospital-details .content .details .right .form-box form .input-box input:focus {
   border: 1px solid #718ebf;
@@ -451,8 +452,8 @@
 .editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(3) {
   width: 24%;
 }
-.bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(3) select,
-.editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(3) select {
+.bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(3) input,
+.editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }
 .bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(4),
@@ -491,8 +492,8 @@
 .editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(8) {
   width: 24%;
 }
-.bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(8) select,
-.editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(8) select {
+.bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(8) input,
+.editBill-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(8) input {
   width: 100%;
 }
 .bill-insurance-section .row .main .patient-details .content .details .form-box form .input-box:nth-child(9),
