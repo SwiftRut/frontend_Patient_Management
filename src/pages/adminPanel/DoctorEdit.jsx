@@ -25,7 +25,10 @@ const DoctorEdit = () => {
           const response = await apiService.GetDoctorById(doctorId);
           if (response.data.data) {
             const doctorInfo = response.data.data;
-            
+            setDoctorData(prevData => ({
+              ...prevData,
+              countryCode:doctorInfo.countryCode
+            }));
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
               country => country.name === doctorInfo.country
@@ -244,7 +247,7 @@ const DoctorEdit = () => {
                             name: "city", 
                             type: "select", 
                             options: cities,
-                            value: cities.find(city => city.name === doctorData.city).name,
+                            value: cities.find(city => city.name === doctorData.city).name || "",
                             isDisabled: !doctorData.state 
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
@@ -265,7 +268,7 @@ const DoctorEdit = () => {
                                 {field.options.map((option) => {
                                   if(field.label === "Country Code") {
                                     return (
-                                      <option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+                                      <option key={option.code} value={option.code}>
                                         {option.code + ' ' + option.country}
                                       </option>
                                     );

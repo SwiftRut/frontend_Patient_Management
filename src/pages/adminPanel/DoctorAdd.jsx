@@ -96,7 +96,6 @@ const DoctorAdd = () => {
       toast.warning("No file selected. Please upload a signature.");
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
