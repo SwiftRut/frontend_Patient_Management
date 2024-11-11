@@ -147,7 +147,8 @@
                 padding-top: 20px;
 
                 form {
-                  justify-content: space-between;
+                  justify-content: start;
+                  column-gap: 18px;
 
                   .input-box {
                     position: relative;
@@ -432,7 +433,8 @@
                 padding-top: 20px;
 
                 form {
-                  justify-content: space-between;
+                  justify-content: start;
+                  column-gap: 18px;
 
                   .input-box {
                     position: relative;
@@ -524,7 +526,7 @@
                     &:nth-child(5) {
                       width: 32%;
 
-                      input {
+                      select {
                         width: 100%;
                       }
                     }
@@ -597,7 +599,9 @@
                   .condition {
                     width: 100%;
                     padding-top: 20px;
-
+                    justify-content: end;
+                    column-gap: 10px;
+                    
                     .policies {
                       input {
                         width: 20px;
@@ -638,6 +642,33 @@
                         font-weight: 400;
                         line-height: 19.2px;
                         text-align: center;
+                      }
+                    }
+
+                    .save-btn {
+                      button {
+                        width: 160px;
+                        height: 48px;
+                        font-size: 20px;
+                        font-weight: 600;
+                        background-color: #0EABEB;
+                        color: white;
+                        border-radius: 10px;
+                      }
+                    }
+
+                    .cancel-btn {
+                      a {
+                        button {
+                          width: 160px;
+                          height: 48px;
+                          font-size: 20px;
+                          font-weight: 600;
+                          color: #141414;
+                          border-radius: 10px;
+                          border: 1px solid #D3D3D3;
+
+                        }
                       }
                     }
                   }

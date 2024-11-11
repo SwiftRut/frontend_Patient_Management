@@ -106,7 +106,9 @@
   padding-top: 20px;
 }
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form {
-  justify-content: space-between;
+  justify-content: start;
+  -moz-column-gap: 18px;
+       column-gap: 18px;
 }
 .doctor-profile-section .row .main .profile-setting .content .right .content .form-box form .input-box {
   position: relative;
@@ -317,7 +319,9 @@
   padding-top: 20px;
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form {
-  justify-content: space-between;
+  justify-content: start;
+  -moz-column-gap: 18px;
+       column-gap: 18px;
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box {
   position: relative;
@@ -392,7 +396,7 @@
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) {
   width: 32%;
 }
-.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) input {
+.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) select {
   width: 100%;
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(6) {
@@ -448,6 +452,9 @@
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .condition {
   width: 100%;
   padding-top: 20px;
+  justify-content: end;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 .doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .condition .policies input {
   width: 20px;
@@ -480,6 +487,24 @@
   font-weight: 400;
   line-height: 19.2px;
   text-align: center;
+}
+.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .condition .save-btn button {
+  width: 160px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #0EABEB;
+  color: white;
+  border-radius: 10px;
+}
+.doctor-edit-section .row .main .profile-setting .content .right .content .form-box form .condition .cancel-btn a button {
+  width: 160px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #141414;
+  border-radius: 10px;
+  border: 1px solid #D3D3D3;
 }
 
 .doctor-ProfileChangePassword-section .right {

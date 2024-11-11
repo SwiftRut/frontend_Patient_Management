@@ -287,14 +287,14 @@ const DoctorProfileEdit = () => {
                         </select>
                       </div>
 
-                      <div className="input-box">
-                        <div className="save-btn">
-                          <button type="submit">Save</button>
-                        </div>
+                      <div className="condition flex">
                         <div className="cancel-btn">
                           <NavLink to={"/doctor/profile"}>
                             <button type="button">Cancel</button>
                           </NavLink>
+                        </div>
+                        <div className="save-btn">
+                          <button type="submit">Save</button>
                         </div>
                       </div>
                     </form>
