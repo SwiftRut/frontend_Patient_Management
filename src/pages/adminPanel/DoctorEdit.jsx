@@ -183,7 +183,7 @@ const DoctorEdit = () => {
       }
       //remove old hospitalIds from formData
       formData.delete('hospitalId');
-      formData.append('hospitalId', doctorData.hospitalId._id  || selectedHospital._id);
+      formData.append('hospitalId', doctorData.hospitalId._id);
       console.log(doctorData.hospitalId._id, "<<<<<<<<<<<<<<<<<<<<");
       const response = await apiService.EditDoctor(doctorId, formData);
       console.log("Doctor updated successfully:", response.data);
