@@ -83,7 +83,7 @@ const EditBill = () => {
   }
 
   const HospitalBillFields = [  
-    { label: "Patient Name", name: "patientName", type: "text" ,disabled: true},
+    { label: "Patient Name", name: "patientName", type: "text", disabled: true, readOnly: true },
     { label: "Phone Number", name: "phone", type: "text",disabled: true },
     { label: "Gender", name: "gender", type: "select",disabled: true, options: [
       { label: "Select Gender", value: "" },
@@ -147,6 +147,7 @@ const EditBill = () => {
                           })}
                           placeholder={field.placeholder}
                           disabled={field.disabled}
+                          readOnly={field.readOnly || false}
                         />
                       ))}
                     </form>

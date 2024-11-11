@@ -9,7 +9,7 @@
     breakTimeStart: "",
     experience: "",
     phone: "",
-    countryCode: "+1",
+    countryCode: "",
     age: "",
     email: "",
     country: "",
