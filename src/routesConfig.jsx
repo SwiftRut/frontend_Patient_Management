@@ -129,7 +129,7 @@ const routesConfig = [
 
   // Doctor routes
   {
-    path: "/doctor",
+    path: "/doctor/*",
     element: (
       <ProtectedRoute
         element={<DoctorPanel />}

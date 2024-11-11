@@ -20,7 +20,7 @@ const DoctorProfileEdit = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
 
-  // Load country data on component mount
+  // Load country data and initialize selected country
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -28,16 +28,15 @@ const DoctorProfileEdit = () => {
     }));
     setCountries(allCountries);
 
-    // Set selected country if profile has a saved country
-    if (profile.country) {
-      const country = allCountries.find(
-        (c) => c.label === profile.country
-      );
-      if (country) setSelectedCountry(country.value);
+    if (profile?.country) {
+      const country = allCountries.find((c) => c.label === profile.country);
+      if (country) {
+        setSelectedCountry(country.value);
+      }
     }
-  }, [profile.country]);
+  }, [profile]); // Changed dependency to profile
 
-  // Load state data when selectedCountry changes
+  // Load state data and initialize selected state
   useEffect(() => {
     if (selectedCountry) {
       const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
@@ -45,46 +44,53 @@ const DoctorProfileEdit = () => {
         label: state.name,
       }));
       setStates(statesList);
-      setCities([]); // Reset cities when country changes
 
-      // Set selected state if profile has a saved state
-      if (profile.state) {
-        const state = statesList.find(
-          (s) => s.label === profile.state
-        );
-        if (state) setSelectedState(state.value);
+      if (profile?.state) {
+        const state = statesList.find((s) => s.label === profile.state);
+        if (state) {
+          setSelectedState(state.value);
+        }
+      } else {
+        setSelectedState(null);
+        setCities([]);
       }
     } else {
       setStates([]);
+      setSelectedState(null);
+      setCities([]);
     }
-  }, [selectedCountry, profile.state]);
+  }, [selectedCountry, profile?.state]);
 
-  // Load city data when selectedState changes
+  // Load city data and initialize selected city
   useEffect(() => {
-    if (selectedState) {
+    if (selectedCountry && selectedState) {
       const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
         value: city.name,
         label: city.name,
       }));
       setCities(citiesList);
 
-      // Set selected city if profile has a saved city
-      if (profile.city) {
+      if (profile?.city) {
         const city = citiesList.find((c) => c.label === profile.city);
-        if (city) setProfile((prev) => ({ ...prev, city: city.value }));
+        if (city) {
+          setProfile((prev) => ({ ...prev, city: city.value }));
+        }
       }
     } else {
       setCities([]);
     }
-  }, [selectedState, selectedCountry, profile.city]);
+  }, [selectedState, selectedCountry, profile?.city, setProfile]);
 
   // Handle country change
   const handleCountryChange = (e) => {
     const countryIsoCode = e.target.value;
     setSelectedCountry(countryIsoCode);
+    setSelectedState(null); // Reset state when country changes
     setProfile((prevProfile) => ({
       ...prevProfile,
       country: countries.find((c) => c.value === countryIsoCode)?.label || "",
+      state: "", // Reset state in profile
+      city: "", // Reset city in profile
     }));
   };
 
@@ -95,6 +101,7 @@ const DoctorProfileEdit = () => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       state: states.find((s) => s.value === stateIsoCode)?.label || "",
+      city: "", // Reset city when state changes
     }));
   };
 
@@ -163,7 +170,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="text"
                           name="name"
-                          value={profile.name || ""}
+                          value={profile?.name || ""}
                           onChange={handleInputChange}
                           placeholder="Enter Name"
                         />
@@ -176,7 +183,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="email"
                           name="email"
-                          value={profile.email || ""}
+                          value={profile?.email || ""}
                           onChange={handleInputChange}
                           placeholder="Email Address"
                         />
@@ -189,7 +196,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="tel"
                           name="phone"
-                          value={profile.phone || ""}
+                          value={profile?.phone || ""}
                           onChange={handleInputChange}
                           placeholder="Phone Number"
                         />
@@ -202,7 +209,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="text"
                           name="hospitalName"
-                          value={profile.hospitalName || ""}
+                          value={profile?.hospitalName || ""}
                           onChange={handleInputChange}
                           placeholder="Hospital Name"
                         />
@@ -214,7 +221,7 @@ const DoctorProfileEdit = () => {
                         </div>
                         <select
                           name="gender"
-                          value={profile.gender || ""}
+                          value={profile?.gender || ""}
                           onChange={handleInputChange}
                         >
                           <option value="">Select Gender</option>
@@ -267,7 +274,7 @@ const DoctorProfileEdit = () => {
                         </div>
                         <select
                           name="city"
-                          value={profile.city || ""}
+                          value={profile?.city || ""}
                           onChange={handleCityChange}
                           disabled={!selectedState}
                         >
