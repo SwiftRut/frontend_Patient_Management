@@ -6,29 +6,37 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { countryCodes, DoctorFormData } from "./constants.js";
 import { Country, State, City } from "country-state-city";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
 
 const DoctorEdit = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
   const [doctorData, setDoctorData] = useState(DoctorFormData);
+  const { getAllHospitals, allHospitals } = useGlobal();
   const [signatureFile, setSignatureFile] = useState(null);
   const [photoFile, setPhotoFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-
+  console.log(doctorData);
+  
   useEffect(() => {
+    getAllHospitals();
     const fetchDoctor = async () => {
       try {
         if (doctorId) {
           const response = await apiService.GetDoctorById(doctorId);
           if (response.data.data) {
             const doctorInfo = response.data.data;
+            console.log(doctorInfo.hospitalId,"<<<< doctorInfo");
+            const selectedHospital = allHospitals.find(hospital => hospital.name === doctorInfo.hospitalId.name);
+            console.log(selectedHospital, "<<<<<<<<<<<<<<<<<<<<");
             setDoctorData(prevData => ({
               ...prevData,
-              countryCode:doctorInfo.countryCode
+              countryCode:doctorInfo.countryCode,            
             }));
+            console.log(doctorInfo.hospitalId._id , "hospitalId")
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
               country => country.name === doctorInfo.country
@@ -57,6 +65,7 @@ const DoctorEdit = () => {
             setDoctorData(doctorInfo);
           }
         }
+        
       } catch (error) {
         console.error("Error fetching doctor data:", error);
       } finally {
@@ -134,6 +143,18 @@ const DoctorEdit = () => {
         city: selectedCity ? selectedCity.name : value
       }));
     }
+    else if (name === "hospitalName") {
+      const selectedHospital = allHospitals.find(hospital => hospital.name === value);
+  setDoctorData(prevData => ({
+    ...prevData,
+    hospitalName: selectedHospital ? selectedHospital.name : value,
+    hospitalId: selectedHospital ? selectedHospital._id : "", // Use only the ID
+    hospitalAddress: selectedHospital ? selectedHospital.address : "",
+    worksiteLink: selectedHospital ? selectedHospital.worksiteLink : "",
+    emergencyContactNo: selectedHospital ? selectedHospital.contact : ""
+  }));
+    }
+    
     else {
       setDoctorData(prevData => ({
         ...prevData,
@@ -150,6 +171,7 @@ const DoctorEdit = () => {
 
       for (const [key, value] of Object.entries(doctorData)) {
         formData.append(key, value);
+        console.log(key, value);
       }
 
       if (signatureFile) {
@@ -159,7 +181,10 @@ const DoctorEdit = () => {
       if (photoFile) {
         formData.append('profilePicture', photoFile);
       }
-
+      //remove old hospitalIds from formData
+      formData.delete('hospitalId');
+      formData.append('hospitalId', doctorData.hospitalId._id  || selectedHospital._id);
+      console.log(doctorData.hospitalId._id, "<<<<<<<<<<<<<<<<<<<<");
       const response = await apiService.EditDoctor(doctorId, formData);
       console.log("Doctor updated successfully:", response.data);
       alert("Doctor updated successfully!");
@@ -338,36 +363,52 @@ const DoctorEdit = () => {
             </div>
 
             <div className="bottom">
-              <div className="content">
-                <div className="details flex">
-                  <div className="form-box">
-                    <form className="flex">
-                      {[
-                        { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
-                        { label: "Hospital Name", name: "hospitalName", type: "text", placeholder: "Enter Hospital Name", value: doctorData.hospitalName },
-                        { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
-                        { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
-                        { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
-                      ].map((field, index) => (
-                        <div className="input-box" key={index}>
-                          <div className="label">{field.label}</div>
-                          <input
-                            type={field.type}
-                            name={field.name}
-                            value={field.value}
-                            onChange={handleInputChange}
-                            placeholder={field.placeholder}
-                          />
-                          <div className="minus-circle">
-                            <FaCircleMinus />
-                          </div>
-                        </div>
-                      ))}
-                    </form>
-                  </div>
-                </div>
+  <div className="content">
+    <div className="details flex">
+      <div className="form-box">
+        <form className="flex">
+          {[
+            { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
+            { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
+            { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
+            { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
+            { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
+          ].map((field, index) => (
+            <div className="input-box" key={index}>
+              <div className="label">{field.label}</div>
+              {field.type === "select" ? (
+                <select
+                  name={field.name}
+                  value={doctorData.hospitalName || ""}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select Hospital</option>
+                  {field.options.map((hospital) => (
+                    <option key={hospital._id} value={hospital.name}>
+                      {hospital.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={field.value}
+                  onChange={handleInputChange}
+                  placeholder={field.placeholder}
+                />
+              )}
+              <div className="minus-circle">
+                <FaCircleMinus />
               </div>
             </div>
+          ))}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
             <div className="save-btn flex">
               <button type="submit">Save</button>
