@@ -158,27 +158,14 @@ const DoctorProfileEdit = () => {
                     <form className="flex" onSubmit={handleFormSubmit}>
                       <div className="input-box">
                         <div className="label">
-                          First Name <span>*</span>
+                          Doctor Name <span>*</span>
                         </div>
                         <input
                           type="text"
-                          name="firstName"
-                          value={profile.firstName || ""}
+                          name="name"
+                          value={profile.name || ""}
                           onChange={handleInputChange}
-                          placeholder="Enter First Name"
-                        />
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Last Name <span>*</span>
-                        </div>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={profile.lastName || ""}
-                          onChange={handleInputChange}
-                          placeholder="Enter Last Name"
+                          placeholder="Enter Name"
                         />
                       </div>
 
