@@ -6,6 +6,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import MainBill from "./MainBill";
 import { useGlobal } from "../../hooks/useGlobal";
+import moment from "moment";
 
 
 const Bills = () => {
@@ -132,7 +133,7 @@ const Bills = () => {
                                   Bill Created Date
                                 </span>
                                 <p className="text-sm font-medium text-[#4F4F4F]">
-                                  {val?.createdAt}
+                                  {moment(val?.createdAt).format('D MMM, YYYY')}
                                 </p>
                               </div>
                               <div className="mt-1 flex items-center justify-between">

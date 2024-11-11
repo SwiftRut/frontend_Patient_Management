@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { MdAdd } from "react-icons/md";
 import { Visibility } from "@mui/icons-material";
 import AddRecord from "../../pages/doctroPanel/AddRecord.jsx";

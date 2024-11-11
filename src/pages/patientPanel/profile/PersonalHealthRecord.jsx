@@ -145,7 +145,9 @@ const PersonalHealthRecord = () => {
                     DOB:
                   </span>
                   <p className="text-[#141414] text-[15px] font-normal">
-                    {userData.dob}
+
+                    {/* /conver ISO in date format */}
+                    {moment(userData.dob).format('D MMM, YYYY')}
                   </p>
                 </div>
                 <div>
