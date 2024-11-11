@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Country, State, City } from "country-state-city"; // Import country-state-city
 
 const DoctorAdd = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,8 +18,13 @@ const DoctorAdd = () => {
   const [profilePicturePreview, setProfilePicturePreview] = useState(null);
   const [formData, setFormData] = useState(DoctorFormData);
 
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+
   useEffect(() => {
     getAllHospitals();
+    setCountries(Country.getAllCountries()); // Fetch countries
   }, []);
 
   const handleChange = (e) => {
@@ -27,6 +33,17 @@ const DoctorAdd = () => {
       ...formData,
       [name]: value,
     });
+
+    if (name === "country") {
+      const selectedCountry = countries.find(country => country.isoCode === value);
+      setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
+      setFormData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
+      setCities([]); // Clear cities
+    } else if (name === "state") {
+      const selectedState = states.find(state => state.isoCode === value);
+      setCities(City.getCitiesOfState(formData.country, selectedState.isoCode)); // Fetch cities based on selected state
+      setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
+    }
   };
 
   const handleProfilePictureChange = (e) => {
@@ -79,7 +96,6 @@ const DoctorAdd = () => {
       toast.warning("No file selected. Please upload a signature.");
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -153,7 +169,7 @@ const DoctorAdd = () => {
                               alt=""
                               style={{ cursor: "pointer" }}
                             />
-                          )}
+                          )}  
                         </div>
                         <input
                           type="file"
@@ -430,47 +446,52 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Country</div>
-                            <input
-                              type="text"
+                            <select
                               name="country"
-                              placeholder="Enter Country"
-                              maxLength={100}
                               value={formData.country}
                               onChange={handleChange}
-                            />
-                            <div className="minus-circle">
-                              <FaCircleMinus />
-                            </div>
+                            >
+                              <option value="">Select Country</option>
+                              {countries.map(country => (
+                                <option key={country.isoCode} value={country.isoCode}>
+                                  {country.name}
+                                </option>
+                              ))}
+                            </select>
                           </div>
 
                           <div className="input-box">
                             <div className="label">State</div>
-                            <input
-                              type="text"
+                            <select
                               name="state"
-                              placeholder="Enter State"
-                              maxLength={100}
                               value={formData.state}
                               onChange={handleChange}
-                            />
-                            <div className="minus-circle">
-                              <FaCircleMinus />
-                            </div>
+                              disabled={!formData.country} // Disable if no country is selected
+                            >
+                              <option value="">Select State</option>
+                              {states.map(state => (
+                                <option key={state.isoCode} value={state.isoCode}>
+                                  {state.name}
+                                </option>
+                              ))}
+                            </select>
                           </div>
 
                           <div className="input-box">
                             <div className="label">City</div>
-                            <input
-                              type="text"
+                            <select
                               name="city"
-                              placeholder="Enter City"
-                              maxLength={100}
                               value={formData.city}
                               onChange={handleChange}
-                            />
-                            <div className="minus-circle">
-                              <FaCircleMinus />
-                            </div>
+                              disabled={!formData.state} // Disable if no state is selected
+                            >
+                              <option value="">Select City</option>
+                              {cities.map(city => (
+                                <option key={city.id} value={city.name}>
+                                  {city.name}
+                                </option>
+                              ))}
+                            </select>
                           </div>
 
                           <div className="input-box">

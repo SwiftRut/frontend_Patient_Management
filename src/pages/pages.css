@@ -399,7 +399,7 @@ input {
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
   width: 30%;
 }
-.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) select {
+.patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) input {
   width: 100%;
 }
 .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
@@ -935,6 +935,7 @@ input {
   padding: 12px 14px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
+  text-align: center;
 }
 .admin-otp-section .row .main .form .admin-otp-content .admin-otp-form-box form .input-box input:focus {
   border: 1px solid #718ebf;
