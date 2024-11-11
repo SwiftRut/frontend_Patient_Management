@@ -7,13 +7,20 @@ import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const {
+    profile,
+    setProfile,
+    handleInputChange,
+    handleImageChange,
+    handleFormSubmit,
+  } = useEdit();
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+  console.log(selectedCountry);
 
   // Load country data on component mount
   useEffect(() => {
@@ -26,17 +33,19 @@ export const Edit = () => {
     // Set selected country if profile has a saved country
     if (profile.country) {
       const country = allCountries.find((c) => c.label === profile.country);
-      if (country) setSelectedCountry(country.value);
+      if (country) setSelectedCountry(country.label);
     }
   }, [profile.country]);
 
   // Load state data when selectedCountry changes
   useEffect(() => {
     if (selectedCountry) {
-      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
-        value: state.isoCode,
-        label: state.name,
-      }));
+      const statesList = State.getStatesOfCountry(selectedCountry).map(
+        (state) => ({
+          value: state.isoCode,
+          label: state.name,
+        })
+      );
       setStates(statesList);
       setCities([]); // Reset cities when country changes
 
@@ -53,7 +62,10 @@ export const Edit = () => {
   // Load city data when selectedState changes
   useEffect(() => {
     if (selectedState) {
-      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
+      const citiesList = City.getCitiesOfState(
+        selectedCountry,
+        selectedState
+      ).map((city) => ({
         value: city.name,
         label: city.name,
       }));
@@ -71,11 +83,12 @@ export const Edit = () => {
 
   // Handle country change
   const handleCountryChange = (e) => {
-    const countryIsoCode = e.target.value;
-    setSelectedCountry(countryIsoCode);
+    console.log(e.target.value);
+    const countryName = e.target.value;
+    setSelectedCountry(e.target.value);
     setProfile((prevProfile) => ({
       ...prevProfile,
-      country: countries.find((c) => c.value === countryIsoCode)?.label || "",
+      country: countries.find((c) => c.label === countryName)?.value || "",
     }));
   };
 
@@ -233,12 +246,12 @@ export const Edit = () => {
                           </div>
                           <select
                             name="country"
-                            value={profile.country || ""}
+                            value={profile.country || selectedCountry}
                             onChange={handleCountryChange}
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
-                              <option key={country.value} value={country.value}>
+                              <option key={country.value} value={country.label}>
                                 {country.label}
                               </option>
                             ))}
@@ -251,7 +264,7 @@ export const Edit = () => {
                           </div>
                           <select
                             name="state"
-                            value={selectedState || ""}
+                            value={selectedCountry || selectedState || ""}
                             onChange={handleStateChange}
                             disabled={!selectedCountry}
                           >
