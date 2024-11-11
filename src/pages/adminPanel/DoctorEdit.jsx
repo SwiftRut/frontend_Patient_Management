@@ -63,19 +63,46 @@ const DoctorEdit = () => {
         setLoading(false);
       }
     };
-
     fetchDoctor();
     setCountries(Country.getAllCountries());
   }, [doctorId]);
 
+ useEffect(() => {
+  if (doctorData.country) {
+    const selectedCountry = Country.getAllCountries().find(
+      country => country.name === doctorData.country
+    );
+    if (selectedCountry) {
+      // Get states for the selected country
+      const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
+      setStates(countryStates);
+
+      // Find the state object based on the state name
+      const selectedState = countryStates.find(
+        state => state.name === doctorData.state
+      );
+
+      if (selectedState) {
+        // Get cities for the selected state
+        const stateCities = City.getCitiesOfState(
+          selectedCountry.isoCode,
+          selectedState.isoCode
+        );
+        setCities(stateCities);
+      }
+    }
+  }
+}, [doctorData.country]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
+    console.log("something changed")
     if (name === "country") {
       const selectedCountry = countries.find(country => country.isoCode === value);
       const countryStates = State.getStatesOfCountry(value);
+      console.log(countryStates, value);
       setStates(countryStates);
-      setCities([]);
+      setCities(null);
       setDoctorData(prevData => ({
         ...prevData,
         country: selectedCountry.name,
@@ -246,8 +273,8 @@ const DoctorEdit = () => {
                             label: "City", 
                             name: "city", 
                             type: "select", 
-                            options: cities,
-                            value: cities.find(city => city.name === doctorData.city).name || "",
+                            options: cities || [], 
+                            value: cities?.find(city => city.name === doctorData.city)?.name || null,
                             isDisabled: !doctorData.state 
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
@@ -265,7 +292,7 @@ const DoctorEdit = () => {
                                 disabled={field.isDisabled}
                               >
                                 <option value="">Select {field.label}</option>
-                                {field.options.map((option) => {
+                                {field?.options?.map((option) => {
                                   if(field.label === "Country Code") {
                                     return (
                                       <option key={option.code} value={option.code}>
