@@ -158,7 +158,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="firstName"
-                            value={profile?.firstName || ""}
+                            value={profile.firstName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter First Name"
                           />
@@ -171,7 +171,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="lastName"
-                            value={profile.lastName || ""}
+                            value={profile.lastName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Last Name"
                           />
@@ -184,7 +184,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="email"
-                            value={profile.email || ""}
+                            value={profile.email ?? ""}
                             onChange={handleInputChange}
                             placeholder="Email Address"
                           />
@@ -197,7 +197,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="phone"
-                            value={profile.phone || ""}
+                            value={profile.phone ?? ""}
                             onChange={handleInputChange}
                             placeholder="Phone Number"
                           />
@@ -210,7 +210,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="hospitalName"
-                            value={profile?.hospitalName || ""}
+                            value={profile.hospitalName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Hospital Name"
                           />
