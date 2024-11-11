@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { countryCodes, DoctorFormData } from "./constants.js";
 import { Country, State, City } from "country-state-city";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-
+import toast from "react-hot-toast";
 const DoctorEdit = () => {
   const { doctorId } = useParams();
   const navigate = useNavigate();
@@ -187,6 +187,7 @@ const DoctorEdit = () => {
       console.log(doctorData.hospitalId._id, "<<<<<<<<<<<<<<<<<<<<");
       const response = await apiService.EditDoctor(doctorId, formData);
       console.log("Doctor updated successfully:", response.data);
+      toast.success("Doctor updated successfully!");
       alert("Doctor updated successfully!");
       navigate("/doctorManagement");
     } catch (error) {
