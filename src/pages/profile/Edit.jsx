@@ -7,13 +7,7 @@ import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -32,40 +26,31 @@ export const Edit = () => {
 
     // Set selected country if profile has a saved country
     if (profile.country) {
-      const country = allCountries.find((c) => c.label === profile.country);
-      if (country) setSelectedCountry(country.label);
+      const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
+      setSelectedCountry(countryCode);
     }
-  }, [profile.country]);
+  }, []);
 
   // Load state data when selectedCountry changes
   useEffect(() => {
     if (selectedCountry) {
-      const statesList = State.getStatesOfCountry(selectedCountry).map(
-        (state) => ({
-          value: state.isoCode,
-          label: state.name,
-        })
-      );
+      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
+        value: state.isoCode,
+        label: state.name,
+      }));
       setStates(statesList);
-      setCities([]); // Reset cities when country changes
 
-      // Set selected state if profile has a saved state
       if (profile.state) {
-        const state = statesList.find((s) => s.label === profile.state);
-        if (state) setSelectedState(state.value);
+        const stateCode = statesList.find((s) => s.label === profile.state)?.value;
+        setSelectedState(stateCode);
       }
-    } else {
-      setStates([]);
     }
-  }, [selectedCountry, profile.state]);
+  }, [selectedCountry]);
 
   // Load city data when selectedState changes
   useEffect(() => {
     if (selectedState) {
-      const citiesList = City.getCitiesOfState(
-        selectedCountry,
-        selectedState
-      ).map((city) => ({
+      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
         value: city.name,
         label: city.name,
       }));
@@ -83,22 +68,27 @@ export const Edit = () => {
 
   // Handle country change
   const handleCountryChange = (e) => {
-    console.log(e.target.value);
-    const countryName = e.target.value;
-    setSelectedCountry(e.target.value);
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      country: countries.find((c) => c.label === countryName)?.value || "",
+    const countryCode = e.target.value;
+    setSelectedCountry(countryCode);
+    const countryName = countries.find((c) => c.value === countryCode)?.label;
+    setProfile((prev) => ({
+      ...prev,
+      country: countryName || "",
+      state: "",
+      city: "",
     }));
+    setSelectedState(null);
   };
 
   // Handle state change
   const handleStateChange = (e) => {
-    const stateIsoCode = e.target.value;
-    setSelectedState(stateIsoCode);
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      state: states.find((s) => s.value === stateIsoCode)?.label || "",
+    const stateCode = e.target.value;
+    setSelectedState(stateCode);
+    const stateName = states.find((s) => s.value === stateCode)?.label;
+    setProfile((prev) => ({
+      ...prev,
+      state: stateName || "",
+      city: "",
     }));
   };
 
@@ -246,12 +236,12 @@ export const Edit = () => {
                           </div>
                           <select
                             name="country"
-                            value={profile.country || selectedCountry}
+                            value={selectedCountry || ""}
                             onChange={handleCountryChange}
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
-                              <option key={country.value} value={country.label}>
+                              <option key={country.value} value={country.value}>
                                 {country.label}
                               </option>
                             ))}
@@ -264,7 +254,7 @@ export const Edit = () => {
                           </div>
                           <select
                             name="state"
-                            value={selectedCountry || selectedState || ""}
+                            value={selectedState || ""}
                             onChange={handleStateChange}
                             disabled={!selectedCountry}
                           >
