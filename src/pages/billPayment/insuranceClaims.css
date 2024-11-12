@@ -103,6 +103,9 @@ input {
   color: white;
   font-weight: 600;
 }
+.insurance-section .row .main th {
+  text-align: center;
+}
 .insurance-section .row .main td {
   text-align: left !important;
   font-weight: 600;
@@ -111,6 +114,7 @@ input {
 .insurance-section .row .main td img {
   margin-right: 10px;
   width: 50px;
+  height: 50px;
 }
 .insurance-section .row .main .time h3 {
   background-color: #f6f8fb;
@@ -119,7 +123,6 @@ input {
   margin: 0px 10px;
   padding: 5px;
   text-align: center;
-  width: 120px;
 }
 .insurance-section .row .main .action .view {
   color: #0eabeb;
