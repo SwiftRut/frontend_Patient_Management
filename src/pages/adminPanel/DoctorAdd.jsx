@@ -3,7 +3,7 @@ import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from "../../services/api.js";
 import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -26,7 +26,17 @@ const DoctorAdd = () => {
     getAllHospitals();
     setCountries(Country.getAllCountries()); // Fetch countries
   }, []);
-
+  useEffect(() => {
+    if (formData.hospital && allHospitals.length) {
+      const selectedHospital = allHospitals.find(hospital => hospital._id === formData.hospital);
+      setFormData(prevData => ({
+        ...prevData,
+        hospitalName: selectedHospital?.name || prevData.hospitalName,
+        hospitalAddress: selectedHospital?.address || prevData.hospitalAddress,
+        hospitalWebsite: selectedHospital?.website || prevData.hospitalWebsite,
+      }));
+    }
+  }, [formData.hospital, allHospitals]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -43,6 +53,15 @@ const DoctorAdd = () => {
       const selectedState = states.find(state => state.isoCode === value);
       setCities(City.getCitiesOfState(formData.country, selectedState.isoCode)); // Fetch cities based on selected state
       setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
+    }else if (name === "hospital") {
+      const selectedHospital = allHospitals.find((hospital) => hospital._id === value);
+      setFormData({
+        ...formData,
+        hospital: value,
+        hospitalName: selectedHospital ? selectedHospital.name : '',
+        hospitalAddress: selectedHospital ? selectedHospital.address : '',
+        hospitalWebsite: selectedHospital ? selectedHospital.website : '',
+      });
     }
   };
 
