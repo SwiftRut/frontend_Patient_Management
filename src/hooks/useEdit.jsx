@@ -21,10 +21,10 @@ export const useEdit = () => {
 
   useEffect(() => {
     const hospitalName = allHospitals?.find((hospital) => hospital._id === profile.hospitalId._id);
-      console.log(hospitalName, profile.hospitalId._id , profile)
+      console.log(hospitalName, profile.hospitalId._id)
       setProfile((prevProfile) => ({
         ...prevProfile,
-        hospitalId: profile.hospitalId,
+        hospitalId: profile.hospitalId._id || profile.hospitalId,
       }));
   }, [allHospitals]);
   const handleInputChange = (e) => {
@@ -41,13 +41,14 @@ export const useEdit = () => {
       return;
     }
     console.log(name, value);
+    console.log(profile,"<<<<<<<< changesl")
     setProfile((prevProfile) => ({
       ...prevProfile,
       // if(user.role === 'doctor' && name === 'hospitalName'){
         
       // }
       [name]: value,
-      hospitalId: profile.hospitalId?._id,
+      hospitalId: profile.hospitalId?._id || profile.hospitalId,
     }));
   };
 
