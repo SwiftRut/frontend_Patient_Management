@@ -133,7 +133,7 @@ const Bills = () => {
                                   Bill Created Date
                                 </span>
                                 <p className="text-sm font-medium text-[#4F4F4F]">
-                                  {moment(val?.createdAt).format('D MMM, YYYY')}
+                                  {moment+(val?.createdAt).format('D MMM, YYYY')}
                                 </p>
                               </div>
                               <div className="mt-1 flex items-center justify-between">
