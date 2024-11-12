@@ -7,26 +7,51 @@ export const useEdit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
-  const [profile, setProfile] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    gender: "",
-    country: "",
-    state: "",
-    city: "",
-    hospitalName: "",
-    // Add other fields with empty initial values
-  });
+
+  // Initialize state based on user role
+  const [profile, setProfile] = useState(
+    user.role === "admin"
+      ? {
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          gender: "",
+          country: "",
+          state: "",
+          city: "",
+          hospitalName: "",
+          avatar: "",
+        }
+      : {
+          name: "",
+          email: "",
+          phone: "",
+          gender: "",
+          country: "",
+          state: "",
+          city: "",
+          hospitalName: "",
+          avatar: "",
+        }
+  );
+
   const [imageBlob, setImageBlob] = useState(null);
 
   // Update profile when userData changes
   useEffect(() => {
     if (userData) {
-      setProfile({
-        ...userData,
-        hospitalName: user.role === "admin" ? userData?.hospitalId?.name : userData?.hospitalName,
-      });
+      if (user.role === "admin") {
+        setProfile({
+          ...userData,
+          hospitalName: userData?.hospitalId?.name,
+        });
+      } else {
+        setProfile({
+          ...userData,
+          hospitalName: userData?.hospitalName,
+        });
+      }
     }
   }, [userData, user.role]);
 
@@ -48,7 +73,7 @@ export const useEdit = () => {
       reader.onload = (e) => {
         setProfile((prevProfile) => ({
           ...prevProfile,
-          profilePic: e.target.result,
+          avatar: e.target.result, // Changed from profilePic to avatar to match state
         }));
       };
       reader.readAsDataURL(file);
@@ -59,21 +84,35 @@ export const useEdit = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      Object.keys(profile).forEach((key) => formData.append(key, profile[key]));
-      if (imageBlob) formData.append("profilePic", imageBlob, "profile.jpg");
+      Object.keys(profile).forEach((key) => {
+        if (profile[key]) {
+          // Only append if value exists
+          formData.append(key, profile[key]);
+        }
+      });
+
+      if (imageBlob) {
+        formData.append("avatar", imageBlob, "profile.jpg"); // Changed from profilePic to avatar
+      }
+
       if (user.role === "doctor") {
         await editDoctorProfile(user.id, formData);
         navigate("/doctor/profile");
-        return;
       } else if (user.role === "admin") {
         await editAdminProfile(user.id, formData);
         navigate("/profile");
-        return;
       }
     } catch (error) {
       console.error("Error saving profile:", error);
     }
   };
 
-  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit };
+  return {
+    profile,
+    setProfile,
+    handleInputChange,
+    handleImageChange,
+    handleFormSubmit,
+    isAdmin: user.role === "admin", // Added to help components determine which fields to show
+  };
 };
