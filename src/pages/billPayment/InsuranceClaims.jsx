@@ -101,7 +101,7 @@ export default function InsuranceClaims() {
                         </td>
                         <td className="align-center p-3" style={{ display: "flex" }}>
                           <div className="avatar">
-                            <img src="/img/Avatar.png" alt="Avatar" />
+                            <img src={claim?.doctorId?.avatar || "/img/Avatar.png"} alt="Avatar" className="rounded-full"/>
                           </div>
                           <div className="name">
                             <h3>{claim.doctorId?.name || 'N/A'}</h3>
