@@ -109,6 +109,11 @@ input {
           }
         }
       }
+
+      th {
+        text-align: center;
+      }
+
       td {
         text-align: left !important;
         font-weight: 600;
@@ -116,6 +121,7 @@ input {
         img {
           margin-right: 10px;
           width: 50px;
+          height: 50px;
         }
       }
       .time {
@@ -126,7 +132,6 @@ input {
           margin: 0px 10px;
           padding: 5px;
           text-align: center;
-          width: 120px;
         }
       }
       .action {
