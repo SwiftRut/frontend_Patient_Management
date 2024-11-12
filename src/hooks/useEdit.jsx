@@ -1,65 +1,53 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "./useAuth";
-import { useGlobal } from "./useGlobal";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './useAuth';
+import { useGlobal } from './useGlobal';
 
 export const useEdit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
-
-  // Initialize state based on user role
-  const [profile, setProfile] = useState(
-    user.role === "admin"
-      ? {
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          gender: "",
-          country: "",
-          state: "",
-          city: "",
-          hospitalName: "",
-          avatar: "",
-        }
-      : {
-          name: "",
-          email: "",
-          phone: "",
-          gender: "",
-          country: "",
-          state: "",
-          city: "",
-          hospitalName: "",
-          avatar: "",
-        }
-  );
+  const [profile, setProfile] = useState({
+    ...userData,
+    // hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
+  });
+  const { getAllHospitals, allHospitals } = useGlobal();
 
   const [imageBlob, setImageBlob] = useState(null);
 
-  // Update profile when userData changes
   useEffect(() => {
-    if (userData) {
-      if (user.role === "admin") {
-        setProfile({
-          ...userData,
-          hospitalName: userData?.hospitalId?.name,
-        });
-      } else {
-        setProfile({
-          ...userData,
-          hospitalName: userData?.hospitalName,
-        });
-      }
-    }
-  }, [userData, user.role]);
+    getAllHospitals();
+  }, []);
 
+  useEffect(() => {
+    const hospitalName = allHospitals?.find((hospital) => hospital._id === profile.hospitalId._id);
+      console.log(hospitalName, profile.hospitalId._id , profile)
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        hospitalId: profile.hospitalId,
+      }));
+  }, [allHospitals]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'hospitalName') {
+      const hospitalName = allHospitals?.find((hospital) => hospital._id === value);
+      console.log(hospitalName)
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        hospitalName: hospitalName?.name,
+        hospitalId: hospitalName?._id,
+        hospitalAddress: hospitalName?.address,
+      }));
+      return;
+    }
+    console.log(name, value);
     setProfile((prevProfile) => ({
       ...prevProfile,
+      // if(user.role === 'doctor' && name === 'hospitalName'){
+        
+      // }
       [name]: value,
+      hospitalId: profile.hospitalId?._id,
     }));
   };
 
@@ -73,46 +61,38 @@ export const useEdit = () => {
       reader.onload = (e) => {
         setProfile((prevProfile) => ({
           ...prevProfile,
-          avatar: e.target.result, // Changed from profilePic to avatar to match state
+          profilePic: e.target.result,
         }));
       };
       reader.readAsDataURL(file);
     }
   };
 
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
+
+      //in this skip unavailable time
       Object.keys(profile).forEach((key) => {
-        if (profile[key]) {
-          // Only append if value exists
-          formData.append(key, profile[key]);
-        }
+        if (key === 'unavailableTimes') return;
+        formData.append(key, profile[key]);
       });
-
-      if (imageBlob) {
-        formData.append("avatar", imageBlob, "profile.jpg"); // Changed from profilePic to avatar
-      }
-
-      if (user.role === "doctor") {
+      if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
+      if (user.role === 'doctor') {
         await editDoctorProfile(user.id, formData);
-        navigate("/doctor/profile");
-      } else if (user.role === "admin") {
+        navigate('/doctor/profile');
+        return;
+      }else if(user.role === 'admin'){
         await editAdminProfile(user.id, formData);
-        navigate("/profile");
+        navigate('/profile');
+        return;
       }
     } catch (error) {
-      console.error("Error saving profile:", error);
+      console.error('Error saving profile:', error);
     }
   };
 
-  return {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-    isAdmin: user.role === "admin", // Added to help components determine which fields to show
-  };
+  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals };
 };

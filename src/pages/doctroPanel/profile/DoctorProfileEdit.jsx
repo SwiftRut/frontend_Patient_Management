@@ -6,7 +6,8 @@ import { useEdit } from "../../../hooks/useEdit";
 
 const DoctorProfileEdit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit,allHospitals
+   } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -212,13 +213,18 @@ const DoctorProfileEdit = () => {
                         <div className="label">
                           Hospital Name <span>*</span>
                         </div>
-                        <input
-                          type="text"
+                        <select
                           name="hospitalName"
-                          value={profile?.hospitalName || ""}
+                          value={profile.hospitalId}
                           onChange={handleInputChange}
-                          placeholder="Hospital Name"
-                        />
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.map((hospital) => (
+                            <option key={hospital._id} value={hospital._id}>
+                              {hospital.name}
+                            </option>
+                          ))}
+                        </select>{" "}
                       </div>
 
                       <div className="input-box">
