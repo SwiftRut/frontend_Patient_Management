@@ -8,15 +8,22 @@ import { Country, State, City } from "country-state-city";
 export const Edit = () => {
   const navigate = useNavigate();
   const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
-  console.log(selectedCountry);
 
-  // Load country data on component mount
+  // Add loading state handler
+  useEffect(() => {
+    if (profile?.firstName || profile?.email) {
+      setIsLoading(false);
+    }
+  }, [profile]);
+
+  // Load country data on component mount and when profile updates
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -25,13 +32,13 @@ export const Edit = () => {
     setCountries(allCountries);
 
     // Set selected country if profile has a saved country
-    if (profile.country) {
+    if (profile?.country) {
       const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
       setSelectedCountry(countryCode);
     }
-  }, []);
+  }, [profile?.country]); // Changed dependency
 
-  // Load state data when selectedCountry changes
+  // Load state data when selectedCountry changes or when profile updates
   useEffect(() => {
     if (selectedCountry) {
       const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
@@ -40,12 +47,12 @@ export const Edit = () => {
       }));
       setStates(statesList);
 
-      if (profile.state) {
+      if (profile?.state) {
         const stateCode = statesList.find((s) => s.label === profile.state)?.value;
         setSelectedState(stateCode);
       }
     }
-  }, [selectedCountry]);
+  }, [selectedCountry, profile?.state]); // Added profile.state dependency
 
   // Load city data when selectedState changes
   useEffect(() => {
@@ -100,6 +107,10 @@ export const Edit = () => {
       city: cityName,
     }));
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or your loading component
+  }
 
   return (
     <div>
