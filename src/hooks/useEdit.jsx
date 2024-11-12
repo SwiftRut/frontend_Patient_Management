@@ -1,25 +1,39 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './useAuth';
-import { useGlobal } from './useGlobal';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
+import { useGlobal } from "./useGlobal";
 
 export const useEdit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
-    ...userData,
-    hospitalName: user.role === 'admin' ? userData?.hospitalId?.name : userData?.hospitalName,
+    name: "",
+    email: "",
+    phone: "",
+    gender: "",
+    country: "",
+    state: "",
+    city: "",
+    hospitalName: "",
+    // Add other fields with empty initial values
   });
   const [imageBlob, setImageBlob] = useState(null);
+
+  // Update profile when userData changes
+  useEffect(() => {
+    if (userData) {
+      setProfile({
+        ...userData,
+        hospitalName: user.role === "admin" ? userData?.hospitalId?.name : userData?.hospitalName,
+      });
+    }
+  }, [userData, user.role]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfile((prevProfile) => ({
       ...prevProfile,
-      // if(user.role === 'doctor' && name === 'hospitalName'){
-        
-      // }
       [name]: value,
     }));
   };
@@ -46,18 +60,18 @@ export const useEdit = () => {
     try {
       const formData = new FormData();
       Object.keys(profile).forEach((key) => formData.append(key, profile[key]));
-      if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
-      if (user.role === 'doctor') {
+      if (imageBlob) formData.append("profilePic", imageBlob, "profile.jpg");
+      if (user.role === "doctor") {
         await editDoctorProfile(user.id, formData);
-        navigate('/doctor/profile');
+        navigate("/doctor/profile");
         return;
-      }else if(user.role === 'admin'){
+      } else if (user.role === "admin") {
         await editAdminProfile(user.id, formData);
-        navigate('/profile');
+        navigate("/profile");
         return;
       }
     } catch (error) {
-      console.error('Error saving profile:', error);
+      console.error("Error saving profile:", error);
     }
   };
 

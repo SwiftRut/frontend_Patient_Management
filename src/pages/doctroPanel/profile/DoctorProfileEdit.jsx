@@ -6,13 +6,8 @@ import { useEdit } from "../../../hooks/useEdit";
 
 const DoctorProfileEdit = () => {
   const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -113,6 +108,17 @@ const DoctorProfileEdit = () => {
       city: cityName,
     }));
   };
+
+  // Add this effect to handle loading state
+  useEffect(() => {
+    if (profile?.name) {
+      setIsLoading(false);
+    }
+  }, [profile]);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or your loading component
+  }
 
   return (
     <div className="doctor-edit-section">
