@@ -492,6 +492,9 @@ input {
   line-height: 19.2px;
   text-align: center;
 }
+.patient-registration-section .row .main .form .content .form-box form .condition .login-btn p span {
+  color: #5678E9;
+}
 .patient-registration-section .row .main .img-box {
   width: 50%;
   padding: 150px;
@@ -1357,7 +1360,9 @@ input {
   color: #030229;
 }
 .login-section .row .main .form .content .form-box form .condition .registration-btn p span {
-  color: #5678e9;
+  color: #5678E9;
+  display: inline-block;
+  font-weight: 400;
 }
 .login-section .row .main .img-box {
   width: 50%;
