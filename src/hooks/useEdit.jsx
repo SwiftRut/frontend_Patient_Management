@@ -9,7 +9,7 @@ export const useEdit = () => {
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
     ...userData,
-    hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
+    hospitalName: user.role === 'admin' ? userData?.hospitalId?.name : userData?.hospitalName,
   });
   const [imageBlob, setImageBlob] = useState(null);
 
