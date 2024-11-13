@@ -20,11 +20,11 @@ export const useEdit = () => {
   }, []);
 
   useEffect(() => {
-    const hospitalName = allHospitals?.find((hospital) => hospital._id === profile.hospitalId._id);
-      console.log(hospitalName, profile.hospitalId._id)
+    const hospitalName = allHospitals?.find((hospital) => hospital._id === profile.hospitalId?._id);
+    
       setProfile((prevProfile) => ({
         ...prevProfile,
-        hospitalId: profile.hospitalId._id || profile.hospitalId,
+        hospitalId: profile.hospitalId?._id || profile.hospitalId,
       }));
   }, [allHospitals]);
   const handleInputChange = (e) => {
