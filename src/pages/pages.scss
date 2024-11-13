@@ -339,21 +339,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -379,6 +375,131 @@ input {
           position: absolute;
           right: 0px;
           top: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width : 575px) {
+
+  .registration-section {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 40px;
+
+          .content {
+            padding: 30px;
+            .head {
+              p {
+                font-size: 26px;
+              }
+            }
+
+            .form-box {
+              form {
+                .input-box {
+                  .label {}
+
+                  input {}
+
+                  .eye {
+                    img {}
+                  }
+
+                  select {
+                    option {
+                      button {}
+                    }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
+                  }
+
+                  .condition {
+                    .policies {
+                      .input {}
+
+                      p {}
+
+                      span {}
+                    }
+
+                    .register-btn {
+                      button {}
+                    }
+
+                    .login-btn {
+                      p {
+                        span {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
         }
       }
     }
@@ -445,8 +566,7 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {
-                  }
+                  img {}
                 }
 
                 select {
@@ -651,7 +771,7 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
-                    
+
                     span {
                       color: #5678E9;
                     }
@@ -694,21 +814,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -739,6 +855,131 @@ input {
     }
   }
 }
+
+// responsive start 
+
+@media(max-width : 575px) {
+
+  .patient-registration-section {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 40px;
+
+          .content {
+            padding: 30px;
+            .head {}
+
+            .form-box {
+              form {
+                .input-box {
+                  .label {}
+
+                  input {}
+
+                  .eye {
+                    img {}
+                  }
+
+                  select {
+                    option {
+                      button {}
+                    }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
+                  }
+
+                  .condition {
+                    .policies {
+                      .input {}
+
+                      p {}
+
+                      span {}
+                    }
+
+                    .register-btn {
+                      button {}
+                    }
+
+                    .login-btn {
+                      p {
+                        span {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+// responsive end
 
 // patient registration section end
 
@@ -938,21 +1179,17 @@ input {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background: linear-gradient(
-                  107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%
-                );
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
                 cursor: pointer;
                 margin: 0 5px;
               }
 
               .dot.active {
-                background: linear-gradient(
-                  107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%
-                );
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
                 width: 30px;
                 border-radius: 10px;
               }
@@ -1135,21 +1372,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1382,21 +1615,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1584,21 +1813,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1793,7 +2018,7 @@ input {
                       color: #5678E9;
                       display: inline-block;
                       font-weight: 400;
-                      
+
                     }
                   }
                 }
@@ -1834,21 +2059,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
