@@ -555,6 +555,22 @@
     }
 }
 
+@media(min-width:1400px){
+    .doctorAdd-section .row .main .top, .doctorEdit-section .row .main .top {
+        padding: 20px 20px;
+        margin: 15px 0px;
+    }
+
+    .doctorAdd-section .row .main .bottom, .doctorEdit-section .row .main .bottom {
+        padding: 20px 20px;
+        margin: 15px 0px;
+    }
+
+    .doctorAdd-section .row .main .save-btn button, .doctorEdit-section .row .main .save-btn button {
+        padding: 14px 40px;
+    }
+}
+
 // doctorEdit section input changes
 
 .doctorEdit-section {
