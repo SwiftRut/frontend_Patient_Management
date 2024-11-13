@@ -381,6 +381,131 @@ input {
   }
 }
 
+@media(max-width : 575px) {
+
+  .registration-section {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 40px;
+
+          .content {
+            padding: 30px;
+            .head {
+              p {
+                font-size: 26px;
+              }
+            }
+
+            .form-box {
+              form {
+                .input-box {
+                  .label {}
+
+                  input {}
+
+                  .eye {
+                    img {}
+                  }
+
+                  select {
+                    option {
+                      button {}
+                    }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
+                  }
+
+                  .condition {
+                    .policies {
+                      .input {}
+
+                      p {}
+
+                      span {}
+                    }
+
+                    .register-btn {
+                      button {}
+                    }
+
+                    .login-btn {
+                      p {
+                        span {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
 //admin registration section end
 
 // patient registration section start
