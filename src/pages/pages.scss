@@ -339,17 +339,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -381,8 +385,7 @@ input {
   }
 }
 
-@media(max-width : 575px) {
-
+@media (max-width: 575px) {
   .registration-section {
     .row {
       .main {
@@ -401,17 +404,21 @@ input {
             .form-box {
               form {
                 .input-box {
-                  .label {}
+                  .label {
+                  }
 
-                  input {}
+                  input {
+                  }
 
                   .eye {
-                    img {}
+                    img {
+                    }
                   }
 
                   select {
                     option {
-                      button {}
+                      button {
+                      }
                     }
                   }
 
@@ -469,20 +476,25 @@ input {
 
                   .condition {
                     .policies {
-                      .input {}
+                      .input {
+                      }
 
-                      p {}
+                      p {
+                      }
 
-                      span {}
+                      span {
+                      }
                     }
 
                     .register-btn {
-                      button {}
+                      button {
+                      }
                     }
 
                     .login-btn {
                       p {
-                        span {}
+                        span {
+                        }
                       }
                     }
                   }
@@ -566,7 +578,8 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {}
+                  img {
+                  }
                 }
 
                 select {
@@ -773,7 +786,7 @@ input {
                     text-align: center;
 
                     span {
-                      color: #5678E9;
+                      color: #5678e9;
                     }
                   }
                 }
@@ -814,17 +827,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -856,10 +873,9 @@ input {
   }
 }
 
-// responsive start 
+// responsive start
 
-@media(max-width : 575px) {
-
+@media (max-width: 575px) {
   .patient-registration-section {
     .row {
       .main {
@@ -869,22 +885,27 @@ input {
 
           .content {
             padding: 30px;
-            .head {}
+            .head {
+            }
 
             .form-box {
               form {
                 .input-box {
-                  .label {}
+                  .label {
+                  }
 
-                  input {}
+                  input {
+                  }
 
                   .eye {
-                    img {}
+                    img {
+                    }
                   }
 
                   select {
                     option {
-                      button {}
+                      button {
+                      }
                     }
                   }
 
@@ -942,20 +963,25 @@ input {
 
                   .condition {
                     .policies {
-                      .input {}
+                      .input {
+                      }
 
-                      p {}
+                      p {
+                      }
 
-                      span {}
+                      span {
+                      }
                     }
 
                     .register-btn {
-                      button {}
+                      button {
+                      }
                     }
 
                     .login-btn {
                       p {
-                        span {}
+                        span {
+                        }
                       }
                     }
                   }
@@ -1179,17 +1205,21 @@ input {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background: linear-gradient(107.38deg,
-                    #4c49ed 2.61%,
-                    #020067 101.2%);
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
                 cursor: pointer;
                 margin: 0 5px;
               }
 
               .dot.active {
-                background: linear-gradient(107.38deg,
-                    #4c49ed 2.61%,
-                    #020067 101.2%);
+                background: linear-gradient(
+                  107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%
+                );
                 width: 30px;
                 border-radius: 10px;
               }
@@ -1372,17 +1402,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -1615,17 +1649,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -1813,17 +1851,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
@@ -2015,10 +2057,9 @@ input {
                     color: #030229;
 
                     span {
-                      color: #5678E9;
+                      color: #5678e9;
                       display: inline-block;
                       font-weight: 400;
-
                     }
                   }
                 }
@@ -2059,17 +2100,21 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%);
+              background: linear-gradient(
+                107.38deg,
+                #4c49ed 2.61%,
+                #020067 101.2%
+              );
               width: 30px;
               border-radius: 10px;
             }
