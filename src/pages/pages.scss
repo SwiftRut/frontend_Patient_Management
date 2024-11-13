@@ -339,21 +339,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -445,8 +441,7 @@ input {
                   top: 27px;
                   right: 15px;
 
-                  img {
-                  }
+                  img {}
                 }
 
                 select {
@@ -651,7 +646,7 @@ input {
                     font-weight: 400;
                     line-height: 19.2px;
                     text-align: center;
-                    
+
                     span {
                       color: #5678E9;
                     }
@@ -694,21 +689,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -742,71 +733,51 @@ input {
 
 // responsive start 
 
-@media(min-width : 375px) {
+@media(max-width : 575px) {
 
-  .patient-registration-section  {
+  .patient-registration-section {
     .row {
       .main {
         .form {
           width: 100%;
-          padding: 20px;
-          .content {
-            padding: 20px;
-            .head {
+          padding: 40px;
 
-            }
+          .content {
+            .head {}
+
             .form-box {
               form {
                 .input-box {
-                  .label {
-                    font-size: 11px;
-                  }
+                  .label {}
 
-                  input {
-                    &::placeholder {
-                      font-size: 13px;
-                    }
-                  }
+                  .input {}
 
                   .eye {
-                    img {
-
-                    }
+                    img {}
                   }
 
                   select {
                     option {
-                      button {
-
-                      }
-                    }
-                  }
-                }
-
-                .condition {
-                  .policies {
-                    display: flex;
-                    input {
-                    }
-                    p {
-
-                    }
-
-                    span {
-
+                      button {}
                     }
                   }
 
-                  .register-btn {
-                    button {
+                  .condition {
+                    .policies {
+                      .input {}
 
+                      p {}
+
+                      span {}
                     }
-                  }
 
-                  .login-btn {
-                    p {
-                      span {
+                    .register-btn {
+                      button {}
+                    }
 
+                    .login-btn {
+                      p {
+                        span {}
                       }
                     }
                   }
@@ -829,91 +800,6 @@ input {
     }
   }
 }
-
-  @media(min-width : 575px) {
-
-    .patient-registration-section  {
-      .row {
-        .main {
-          .form {
-            width: 100%;
-            padding: 40px;
-            .content {
-              .head {
-
-              }
-              .form-box {
-                form {
-                  .input-box {
-                    .label {
-
-                    }
-
-                    .input {
-
-                    }
-
-                    .eye {
-                      img {
-
-                      }
-                    }
-
-                    select {
-                      option {
-                        button {
-
-                        }
-                      }
-                    }
-
-                    .condition {
-                      .policies {
-                        .input {
-
-                        }
-                        p {
-
-                        }
-
-                        span {
-
-                        }
-                      }
-
-                      .register-btn {
-                        button {
-
-                        }
-                      }
-
-                      .login-btn {
-                        p {
-                          span {
-
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          .img-box {
-            width: 100%;
-            padding: 40px;
-
-            .slider {
-              width: auto;
-              height: auto;
-            }
-          }
-        }
-      }
-    }
-  }
 
 // responsive end
 
@@ -1115,21 +1001,17 @@ input {
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background: linear-gradient(
-                  107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%
-                );
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
                 cursor: pointer;
                 margin: 0 5px;
               }
 
               .dot.active {
-                background: linear-gradient(
-                  107.38deg,
-                  #4c49ed 2.61%,
-                  #020067 101.2%
-                );
+                background: linear-gradient(107.38deg,
+                    #4c49ed 2.61%,
+                    #020067 101.2%);
                 width: 30px;
                 border-radius: 10px;
               }
@@ -1312,21 +1194,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1559,21 +1437,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1761,21 +1635,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
@@ -1970,7 +1840,7 @@ input {
                       color: #5678E9;
                       display: inline-block;
                       font-weight: 400;
-                      
+
                     }
                   }
                 }
@@ -2011,21 +1881,17 @@ input {
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               cursor: pointer;
               margin: 0 5px;
             }
 
             .dot.active {
-              background: linear-gradient(
-                107.38deg,
-                #4c49ed 2.61%,
-                #020067 101.2%
-              );
+              background: linear-gradient(107.38deg,
+                  #4c49ed 2.61%,
+                  #020067 101.2%);
               width: 30px;
               border-radius: 10px;
             }
