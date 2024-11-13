@@ -5,7 +5,7 @@ import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
+import { countryCodes, DoctorFormData, timeOptions, timeOptions2 } from "./constants.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Country, State, City } from "country-state-city"; // Import country-state-city
 
