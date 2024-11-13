@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Country, State, City } from "country-state-city";
 import { useEdit } from "../../../hooks/useEdit";
 
 const DoctorProfileEdit = () => {
-  const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals
+   } = useEdit();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -20,7 +15,7 @@ const DoctorProfileEdit = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
 
-  // Load country data on component mount
+  // Load country data and initialize selected country
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -28,16 +23,15 @@ const DoctorProfileEdit = () => {
     }));
     setCountries(allCountries);
 
-    // Set selected country if profile has a saved country
-    if (profile.country) {
-      const country = allCountries.find(
-        (c) => c.label === profile.country
-      );
-      if (country) setSelectedCountry(country.value);
+    if (profile?.country) {
+      const country = allCountries.find((c) => c.label === profile.country);
+      if (country) {
+        setSelectedCountry(country.value);
+      }
     }
-  }, [profile.country]);
+  }, [profile]); // Changed dependency to profile
 
-  // Load state data when selectedCountry changes
+  // Load state data and initialize selected state
   useEffect(() => {
     if (selectedCountry) {
       const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
@@ -45,46 +39,53 @@ const DoctorProfileEdit = () => {
         label: state.name,
       }));
       setStates(statesList);
-      setCities([]); // Reset cities when country changes
 
-      // Set selected state if profile has a saved state
-      if (profile.state) {
-        const state = statesList.find(
-          (s) => s.label === profile.state
-        );
-        if (state) setSelectedState(state.value);
+      if (profile?.state) {
+        const state = statesList.find((s) => s.label === profile.state);
+        if (state) {
+          setSelectedState(state.value);
+        }
+      } else {
+        setSelectedState(null);
+        setCities([]);
       }
     } else {
       setStates([]);
+      setSelectedState(null);
+      setCities([]);
     }
-  }, [selectedCountry, profile.state]);
+  }, [selectedCountry, profile?.state]);
 
-  // Load city data when selectedState changes
+  // Load city data and initialize selected city
   useEffect(() => {
-    if (selectedState) {
+    if (selectedCountry && selectedState) {
       const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
         value: city.name,
         label: city.name,
       }));
       setCities(citiesList);
 
-      // Set selected city if profile has a saved city
-      if (profile.city) {
+      if (profile?.city) {
         const city = citiesList.find((c) => c.label === profile.city);
-        if (city) setProfile((prev) => ({ ...prev, city: city.value }));
+        if (city) {
+          setProfile((prev) => ({ ...prev, city: city.value }));
+        }
       }
     } else {
       setCities([]);
     }
-  }, [selectedState, selectedCountry, profile.city]);
+  }, [selectedState, selectedCountry, profile?.city, setProfile]);
 
   // Handle country change
   const handleCountryChange = (e) => {
     const countryIsoCode = e.target.value;
     setSelectedCountry(countryIsoCode);
+    setSelectedState(null); // Reset state when country changes
     setProfile((prevProfile) => ({
       ...prevProfile,
       country: countries.find((c) => c.value === countryIsoCode)?.label || "",
+      state: "", // Reset state in profile
+      city: "", // Reset city in profile
     }));
   };
 
@@ -95,6 +96,7 @@ const DoctorProfileEdit = () => {
     setProfile((prevProfile) => ({
       ...prevProfile,
       state: states.find((s) => s.value === stateIsoCode)?.label || "",
+      city: "", // Reset city when state changes
     }));
   };
 
@@ -106,6 +108,17 @@ const DoctorProfileEdit = () => {
       city: cityName,
     }));
   };
+
+  // Add this effect to handle loading state
+  useEffect(() => {
+    if (profile?.name) {
+      setIsLoading(false);
+    }
+  }, [profile]);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or your loading component
+  }
 
   return (
     <div className="doctor-edit-section">
@@ -158,27 +171,14 @@ const DoctorProfileEdit = () => {
                     <form className="flex" onSubmit={handleFormSubmit}>
                       <div className="input-box">
                         <div className="label">
-                          First Name <span>*</span>
+                          Doctor Name <span>*</span>
                         </div>
                         <input
                           type="text"
-                          name="firstName"
-                          value={profile.firstName || ""}
+                          name="name"
+                          value={profile?.name || ""}
                           onChange={handleInputChange}
-                          placeholder="Enter First Name"
-                        />
-                      </div>
-
-                      <div className="input-box">
-                        <div className="label">
-                          Last Name <span>*</span>
-                        </div>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={profile.lastName || ""}
-                          onChange={handleInputChange}
-                          placeholder="Enter Last Name"
+                          placeholder="Enter Name"
                         />
                       </div>
 
@@ -189,7 +189,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="email"
                           name="email"
-                          value={profile.email || ""}
+                          value={profile?.email || ""}
                           onChange={handleInputChange}
                           placeholder="Email Address"
                         />
@@ -202,7 +202,7 @@ const DoctorProfileEdit = () => {
                         <input
                           type="tel"
                           name="phone"
-                          value={profile.phone || ""}
+                          value={profile?.phone || ""}
                           onChange={handleInputChange}
                           placeholder="Phone Number"
                         />
@@ -212,13 +212,18 @@ const DoctorProfileEdit = () => {
                         <div className="label">
                           Hospital Name <span>*</span>
                         </div>
-                        <input
-                          type="text"
+                        <select
                           name="hospitalName"
-                          value={profile.hospitalName || ""}
+                          value={profile.hospitalId}
                           onChange={handleInputChange}
-                          placeholder="Hospital Name"
-                        />
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.map((hospital) => (
+                            <option key={hospital._id} value={hospital._id}>
+                              {hospital.name}
+                            </option>
+                          ))}
+                        </select>{" "}
                       </div>
 
                       <div className="input-box">
@@ -227,7 +232,7 @@ const DoctorProfileEdit = () => {
                         </div>
                         <select
                           name="gender"
-                          value={profile.gender || ""}
+                          value={profile?.gender || ""}
                           onChange={handleInputChange}
                         >
                           <option value="">Select Gender</option>
@@ -280,7 +285,7 @@ const DoctorProfileEdit = () => {
                         </div>
                         <select
                           name="city"
-                          value={profile.city || ""}
+                          value={profile?.city || ""}
                           onChange={handleCityChange}
                           disabled={!selectedState}
                         >
@@ -293,14 +298,14 @@ const DoctorProfileEdit = () => {
                         </select>
                       </div>
 
-                      <div className="input-box">
-                        <div className="save-btn">
-                          <button type="submit">Save</button>
-                        </div>
+                      <div className="condition flex">
                         <div className="cancel-btn">
                           <NavLink to={"/doctor/profile"}>
                             <button type="button">Cancel</button>
                           </NavLink>
+                        </div>
+                        <div className="save-btn">
+                          <button type="submit">Save</button>
                         </div>
                       </div>
                     </form>

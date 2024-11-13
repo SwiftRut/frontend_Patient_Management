@@ -7,7 +7,8 @@ import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals  } = useEdit();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -15,7 +16,14 @@ export const Edit = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
 
-  // Load country data on component mount
+  // Add loading state handler
+  useEffect(() => {
+    if (profile?.firstName || profile?.email) {
+      setIsLoading(false);
+    }
+  }, [profile]);
+
+  // Load country data on component mount and when profile updates
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -24,13 +32,13 @@ export const Edit = () => {
     setCountries(allCountries);
 
     // Set selected country if profile has a saved country
-    if (profile.country) {
-      const country = allCountries.find((c) => c.label === profile.country);
-      if (country) setSelectedCountry(country.value);
+    if (profile?.country) {
+      const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
+      setSelectedCountry(countryCode);
     }
-  }, [profile.country]);
+  }, [profile?.country]); // Changed dependency
 
-  // Load state data when selectedCountry changes
+  // Load state data when selectedCountry changes or when profile updates
   useEffect(() => {
     if (selectedCountry) {
       const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
@@ -38,17 +46,13 @@ export const Edit = () => {
         label: state.name,
       }));
       setStates(statesList);
-      setCities([]); // Reset cities when country changes
 
-      // Set selected state if profile has a saved state
-      if (profile.state) {
-        const state = statesList.find((s) => s.label === profile.state);
-        if (state) setSelectedState(state.value);
+      if (profile?.state) {
+        const stateCode = statesList.find((s) => s.label === profile.state)?.value;
+        setSelectedState(stateCode);
       }
-    } else {
-      setStates([]);
     }
-  }, [selectedCountry, profile.state]);
+  }, [selectedCountry, profile?.state]); // Added profile.state dependency
 
   // Load city data when selectedState changes
   useEffect(() => {
@@ -71,21 +75,27 @@ export const Edit = () => {
 
   // Handle country change
   const handleCountryChange = (e) => {
-    const countryIsoCode = e.target.value;
-    setSelectedCountry(countryIsoCode);
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      country: countries.find((c) => c.value === countryIsoCode)?.label || "",
+    const countryCode = e.target.value;
+    setSelectedCountry(countryCode);
+    const countryName = countries.find((c) => c.value === countryCode)?.label;
+    setProfile((prev) => ({
+      ...prev,
+      country: countryName || "",
+      state: "",
+      city: "",
     }));
+    setSelectedState(null);
   };
 
   // Handle state change
   const handleStateChange = (e) => {
-    const stateIsoCode = e.target.value;
-    setSelectedState(stateIsoCode);
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      state: states.find((s) => s.value === stateIsoCode)?.label || "",
+    const stateCode = e.target.value;
+    setSelectedState(stateCode);
+    const stateName = states.find((s) => s.value === stateCode)?.label;
+    setProfile((prev) => ({
+      ...prev,
+      state: stateName || "",
+      city: "",
     }));
   };
 
@@ -98,6 +108,10 @@ export const Edit = () => {
     }));
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>; // Or your loading component
+  }
+  console.log(profile)
   return (
     <div>
       <div className="edit-section">
@@ -155,7 +169,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="firstName"
-                            value={profile?.firstName || ""}
+                            value={profile.firstName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter First Name"
                           />
@@ -168,7 +182,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="lastName"
-                            value={profile.lastName || ""}
+                            value={profile.lastName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Last Name"
                           />
@@ -181,7 +195,7 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="email"
-                            value={profile.email || ""}
+                            value={profile.email ?? ""}
                             onChange={handleInputChange}
                             placeholder="Email Address"
                           />
@@ -194,24 +208,30 @@ export const Edit = () => {
                           <input
                             type="text"
                             name="phone"
-                            value={profile.phone || ""}
+                            value={profile.phone ?? ""}
                             onChange={handleInputChange}
                             placeholder="Phone Number"
                           />
                         </div>
 
                         <div className="input-box">
-                          <div className="label">
-                            Hospital Name <span>*</span>
-                          </div>
-                          <input
-                            type="text"
-                            name="hospitalName"
-                            value={profile?.hospitalName || ""}
-                            onChange={handleInputChange}
-                            placeholder="Hospital Name"
-                          />
+                        <div className="label">
+                          Hospital Name <span>*</span>
                         </div>
+                        <select
+                          name="hospitalName"
+                          value={profile.hospitalId}
+                          onChange={handleInputChange}
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.map((hospital) => (
+                            <option key={hospital._id} value={hospital._id}>
+                              {hospital.name}
+                            </option>
+                          ))}
+                        </select>{" "}
+                      </div>
+
 
                         <div className="input-box">
                           <div className="label">
@@ -233,7 +253,7 @@ export const Edit = () => {
                           </div>
                           <select
                             name="country"
-                            value={profile.country || ""}
+                            value={selectedCountry || ""}
                             onChange={handleCountryChange}
                           >
                             <option value="">Select Country</option>

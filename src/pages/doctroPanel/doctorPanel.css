@@ -154,7 +154,7 @@ ol {
   color: #141414;
 }
 .patioentRecord .pr-select select option {
-  font-size: 20px;
+  font-size: 10px;
   font-family: 600;
   color: #141414;
 }
@@ -288,6 +288,14 @@ ol {
 }
 .allFile-section .pre-bill:hover .viewFullPrescription-btn {
   visibility: visible;
+}
+
+.patioentRecord .css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  font-size: 16px;
+}
+
+.css-w76bbz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0px;
 }
 
 .cp-tool {
@@ -644,7 +652,7 @@ form .condition .login-btn p {
 .teli-module .head button {
   border: 2px solid #d3d3d3;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #141414;
 }
@@ -667,7 +675,7 @@ form .condition .login-btn p {
 .teli-module .box p {
   color: #4f4f4f;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   display: flex;
   justify-content: space-between;
   padding: 5px 15px;

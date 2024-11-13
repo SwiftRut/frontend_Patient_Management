@@ -8,6 +8,8 @@ import '../profile/doctorProfile.css'
 const DoctorProfileData = () => {
   const { user } = useAuth();
   const { getDoctorProfile, userData } = useGlobal();
+
+  console.log("userData",userData)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,18 +49,10 @@ const DoctorProfileData = () => {
         <form action="" className="flex">
           <div className="input-box">
             <div className="label">
-              First Name <span>*</span>
+              Doctor Name <span>*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName} />
+            <input disabled type="text" placeholder="Enter Name" value={userData?.name} />
           </div>
-
-          <div className="input-box">
-            <div className="label">
-              Last Name <span>*</span>
-            </div>
-            <input disabled type="text" placeholder="Enter Last Name" value={userData?.lastName} />
-          </div>
-
           <div className="input-box">
             <div className="label">
               Email Address <span>*</span>

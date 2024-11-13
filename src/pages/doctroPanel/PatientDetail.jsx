@@ -99,7 +99,7 @@ const PatientDetail = () => {
               />
             </div>
             <div className="flex w-5/6">
-              <div className="grid grid-cols-4 gap-0 border-r pe-16">
+              <div className="grid grid-cols-4 gap-0 border-r pe-16 ps-16 w-[80%]">
                 <div>
                   <p className="text-gray-500">Patient Name</p>
                   <p className="font-medium">{displayData.name}</p>
@@ -133,7 +133,7 @@ const PatientDetail = () => {
                   <p className="font-medium">{displayData.weight}</p>
                 </div>
               </div>
-              <div className="ps-5">
+              <div className="ps-6 w-[20%]">
                 <div className="pb-5">
                   <p className="text-gray-500 pb-1">Country</p>
                   <p className="font-medium">{displayData.country}</p>

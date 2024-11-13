@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './useAuth';
 import { useGlobal } from './useGlobal';
@@ -9,18 +9,45 @@ export const useEdit = () => {
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
     ...userData,
-    hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
+    // hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
   });
+  console.log(userData);
+  const { getAllHospitals, allHospitals } = useGlobal();
+
   const [imageBlob, setImageBlob] = useState(null);
 
+  useEffect(() => {
+    getAllHospitals();
+  }, []);
+
+  useEffect(() => {    
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        hospitalId: profile.hospitalId?._id || profile.hospitalId || profile.hospital._id,
+      }));
+  }, [allHospitals]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'hospitalName') {
+      const hospitalName = allHospitals?.find((hospital) => hospital._id === value);
+      console.log(hospitalName)
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        hospitalName: hospitalName?.name,
+        hospitalId: hospitalName?._id,
+        hospitalAddress: hospitalName?.address,
+      }));
+      return;
+    }
+    console.log(name, value);
+    console.log(profile,"<<<<<<<< changesl")
     setProfile((prevProfile) => ({
       ...prevProfile,
       // if(user.role === 'doctor' && name === 'hospitalName'){
         
       // }
       [name]: value,
+      hospitalId: profile.hospitalId?._id || profile.hospitalId,
     }));
   };
 
@@ -41,11 +68,17 @@ export const useEdit = () => {
     }
   };
 
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      Object.keys(profile).forEach((key) => formData.append(key, profile[key]));
+
+      //in this skip unavailable time
+      Object.keys(profile).forEach((key) => {
+        if (key === 'unavailableTimes') return;
+        formData.append(key, profile[key]);
+      });
       if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
       if (user.role === 'doctor') {
         await editDoctorProfile(user.id, formData);
@@ -61,5 +94,5 @@ export const useEdit = () => {
     }
   };
 
-  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit };
+  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals };
 };

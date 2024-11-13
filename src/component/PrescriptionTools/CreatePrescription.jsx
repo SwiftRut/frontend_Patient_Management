@@ -62,12 +62,12 @@ const CreatePrescription = ({ id, name, age, gender, appointmentType, time, isNe
 CreatePrescription.propTypes = {
   id: PropTypes.string.isRequired, // Validate id as a required string
   name: PropTypes.string.isRequired, // Validate name as a required string
-  age: PropTypes.number.isRequired, // Validate age as a required number
-  gender: PropTypes.string.isRequired, // Validate gender as a required string
+  age: PropTypes.number, // Validate age as a required number
+  gender: PropTypes.string, // Validate gender as a required string
   appointmentType: PropTypes.string.isRequired, // Validate appointmentType as a required string
   time: PropTypes.string.isRequired, // Validate time as a required string
   isNew: PropTypes.bool.isRequired, // Validate isNew as a required boolean
-  patientId: PropTypes.string.isRequired, // Validate patientId as a required string
+  patientId: PropTypes.string, // Validate patientId as a required string
 };
 
 export default CreatePrescription;

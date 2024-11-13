@@ -88,7 +88,7 @@ const Login = () => {
                       onClick={() => navigate("/patientRegistration")}
                     >
                       <p style={{ cursor: "pointer" }}>
-                        Don’t have an account? Register
+                        Don’t have an account? <span>Register</span>
                       </p>
                     </div>
                     <div
@@ -96,7 +96,7 @@ const Login = () => {
                       onClick={() => navigate("/adminRegistration")}
                     >
                       <p style={{ cursor: "pointer" }}>
-                        Don’t have an account? Register (As Admin)
+                        Don’t have an account? <span>Register (As Admin)</span>
                       </p>
                     </div>
                   </div>

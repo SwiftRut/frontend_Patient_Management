@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
+import {toast} from "react-hot-toast"
 
 export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";

@@ -7,6 +7,7 @@ import "./doctorPanel.css";
 import { usePatient } from '../../hooks/usePatient';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useParams } from 'react-router-dom';
+
 const CreatePrescriptionForm = () => {
   const { getPatientById, patientDetails } = usePatient();
   const {createPrescription , prescription, getAppointmentById} = useGlobal();

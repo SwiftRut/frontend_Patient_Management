@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import "./reportingAnalytics.css";
 import { FaUsers, FaUser, FaFileAlt } from "react-icons/fa";
 import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
@@ -7,30 +8,25 @@ import PatientsAge from "../Reporting-Analysis/PatientsAge";
 import apiService from "../../services/api.js";
 
 export default function ReportingAndAnalytics() {
-  const [totalPatients, setTotalPatients] = useState(0);
-  const [insuranceBills, setInsuranceBills] = useState(0);
-  const [totalDoctors, setTotalDoctors] = useState(0);
   const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
   const [patientsCountData, setPatientsCountData] = useState([]);
-  const [patients, setPatients] = useState([]);
+  const [cardData, setCardData] = useState({});
 
   useEffect(() => {
-    const fetchInsuranceBills = async () => {
+    const fetchReportingAndAnalytics = async () => {
       try {
-        const response = await apiService.GetInsuranceBills();
-        const data = response.data.data;
-        setInsuranceBills(data.length);
+        const response = await apiService.GetReporingAndAnalytics();
+        const data = response.data;
+        setCardData(data);
+        console.log(data,"<<<<<<<<<<<<<<<<<<<<data you are reporting");
       } catch (error) {
-        console.error("Error fetching insurance bills:", error);
+        console.error("Error fetching reporting and analytics:", error);
       }
     };
-
     const fetchPatients = async () => {
       try {
         const response = await apiService.GetAllPatients();
         const data = response.data.data;
-        setPatients(data);
-        setTotalPatients(data.length);
         countPatientsByDisease(data);
       } catch (error) {
         console.error("Error fetching patients:", error);
@@ -61,15 +57,14 @@ export default function ReportingAndAnalytics() {
         }));
 
         setDoctorSpecialtyData(specialtyDataArray);
-        setTotalDoctors(doctors.length);
       } catch (error) {
         console.error("Error fetching doctors:", error);
       }
     };
 
     fetchDoctors();
-    fetchInsuranceBills();
     fetchPatients();
+    fetchReportingAndAnalytics();
   }, []);
 
   const countPatientsByDisease = (patients) => {
@@ -118,7 +113,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>{totalPatients}</span>
+                    <span>{cardData.totalPatientCount}</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +129,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>500</span>
+                  <span>{cardData.repeatPatientCount}</span>
                   </div>
                 </div>
               </div>
@@ -146,11 +141,13 @@ export default function ReportingAndAnalytics() {
                       <FaFileAlt />
                     </div>
                     <div className="details">
-                      <p>Admitted Patient</p>
+                      {/* <p>Admitted Patient</p> */}
+                      <p>Total Doctors</p>
                     </div>
                   </div>
                   <div className="count">
-                    <span>1000</span>
+                  <span>{cardData.totalDoctorCount}</span>
+
                   </div>
                 </div>
               </div>
@@ -166,7 +163,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>{insuranceBills}</span>
+                  <span>{cardData.insuranceClaimCount}</span>
                   </div>
                 </div>
               </div>
@@ -200,11 +197,11 @@ export default function ReportingAndAnalytics() {
                             </tr>
                           </thead>
                           <tbody>
-                            {patientsCountData.length > 0 ? (
-                              patientsCountData.map((patient) => (
-                                <tr key={patient.department} className="flex">
+                            {cardData.patientCountByDisease.length > 0 ? (
+                              cardData.patientCountByDisease.map((patient) => (
+                                <tr key={patient._id} className="flex">
                                   <td className="d-name">
-                                    <p>{patient.department}</p>
+                                    <p>{patient._id}</p>
                                   </td>
                                   <td className="status">
                                     <p>

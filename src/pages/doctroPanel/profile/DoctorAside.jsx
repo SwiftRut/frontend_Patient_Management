@@ -16,7 +16,7 @@ export const DoctorAside = () => {
         <div className="img">
           <img src={userData?.avatar || "../img/dr-profile.png"} className='rounded-full' />
         </div>
-        <p>{userData ? `${userData?.firstName} ${userData?.lastName}` : 'Lincoln Philips'}</p>
+        <p>{userData ? `Dr. ${userData?.name} `: ''}</p>
       </div>
       <div className="menu">
         <p>Menu</p>
