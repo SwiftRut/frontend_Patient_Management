@@ -740,6 +740,183 @@ input {
   }
 }
 
+// responsive start 
+
+@media(min-width : 375px) {
+
+  .patient-registration-section  {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 20px;
+          .content {
+            padding: 20px;
+            .head {
+
+            }
+            .form-box {
+              form {
+                .input-box {
+                  .label {
+                    font-size: 11px;
+                  }
+
+                  input {
+                    &::placeholder {
+                      font-size: 13px;
+                    }
+                  }
+
+                  .eye {
+                    img {
+
+                    }
+                  }
+
+                  select {
+                    option {
+                      button {
+
+                      }
+                    }
+                  }
+                }
+
+                .condition {
+                  .policies {
+                    display: flex;
+                    input {
+                    }
+                    p {
+
+                    }
+
+                    span {
+
+                    }
+                  }
+
+                  .register-btn {
+                    button {
+
+                    }
+                  }
+
+                  .login-btn {
+                    p {
+                      span {
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+  @media(min-width : 575px) {
+
+    .patient-registration-section  {
+      .row {
+        .main {
+          .form {
+            width: 100%;
+            padding: 40px;
+            .content {
+              .head {
+
+              }
+              .form-box {
+                form {
+                  .input-box {
+                    .label {
+
+                    }
+
+                    .input {
+
+                    }
+
+                    .eye {
+                      img {
+
+                      }
+                    }
+
+                    select {
+                      option {
+                        button {
+
+                        }
+                      }
+                    }
+
+                    .condition {
+                      .policies {
+                        .input {
+
+                        }
+                        p {
+
+                        }
+
+                        span {
+
+                        }
+                      }
+
+                      .register-btn {
+                        button {
+
+                        }
+                      }
+
+                      .login-btn {
+                        p {
+                          span {
+
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .img-box {
+            width: 100%;
+            padding: 40px;
+
+            .slider {
+              width: auto;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+// responsive end
+
 // patient registration section end
 
 // create-hospital section start

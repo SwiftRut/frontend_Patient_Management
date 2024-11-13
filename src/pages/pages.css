@@ -553,6 +553,49 @@ input {
   top: 0px;
 }
 
+@media (min-width: 375px) {
+  .patient-registration-section .row .main .form {
+    width: 100%;
+    padding: 20px;
+  }
+  .patient-registration-section .row .main .form .content {
+    padding: 20px;
+  }
+  .patient-registration-section .row .main .form .content .form-box form .input-box .label {
+    font-size: 11px;
+  }
+  .patient-registration-section .row .main .form .content .form-box form .input-box input::-moz-placeholder {
+    font-size: 13px;
+  }
+  .patient-registration-section .row .main .form .content .form-box form .input-box input::placeholder {
+    font-size: 13px;
+  }
+  .patient-registration-section .row .main .form .content .form-box form .condition .policies {
+    display: flex;
+  }
+  .patient-registration-section .row .main .img-box {
+    width: 100%;
+    padding: 40px;
+  }
+  .patient-registration-section .row .main .img-box .slider {
+    width: auto;
+    height: auto;
+  }
+}
+@media (min-width: 575px) {
+  .patient-registration-section .row .main .form {
+    width: 100%;
+    padding: 40px;
+  }
+  .patient-registration-section .row .main .img-box {
+    width: 100%;
+    padding: 40px;
+  }
+  .patient-registration-section .row .main .img-box .slider {
+    width: auto;
+    height: auto;
+  }
+}
 .hospital-section .row .main .form .content {
   background-color: white;
   border-radius: 15px;
