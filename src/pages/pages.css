@@ -289,74 +289,6 @@ input {
   top: 0px;
 }
 
-@media (max-width: 575px) {
-  .registration-section .row .main .form {
-    width: 100%;
-    padding: 40px;
-  }
-  .registration-section .row .main .form .content {
-    padding: 30px;
-  }
-  .registration-section .row .main .form .content .head p {
-    font-size: 26px;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(2) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(3) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(4) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(5) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(6) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(7) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(10) {
-    width: 48%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(11) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(12) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(13) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(14) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(15) {
-    width: 100%;
-  }
-  .registration-section .row .main .form .content .form-box form .input-box:nth-child(16) {
-    width: 100%;
-  }
-  .registration-section .row .main .img-box {
-    width: 100%;
-    padding: 40px;
-  }
-  .registration-section .row .main .img-box .slider {
-    width: auto;
-    height: auto;
-  }
-}
 .patient-registration-section .row .main .form {
   padding: 120px;
   width: 50%;
@@ -561,7 +493,7 @@ input {
   text-align: center;
 }
 .patient-registration-section .row .main .form .content .form-box form .condition .login-btn p span {
-  color: #5678E9;
+  color: #5678e9;
 }
 .patient-registration-section .row .main .img-box {
   width: 50%;
@@ -621,71 +553,6 @@ input {
   top: 0px;
 }
 
-@media (max-width: 575px) {
-  .patient-registration-section .row .main .form {
-    width: 100%;
-    padding: 40px;
-  }
-  .patient-registration-section .row .main .form .content {
-    padding: 30px;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(1) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(2) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(3) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(4) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(5) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(6) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(7) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(8) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(9) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(10) {
-    width: 48%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(11) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(12) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(13) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(14) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(15) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .form .content .form-box form .input-box:nth-child(16) {
-    width: 100%;
-  }
-  .patient-registration-section .row .main .img-box {
-    width: 100%;
-    padding: 40px;
-  }
-  .patient-registration-section .row .main .img-box .slider {
-    width: auto;
-    height: auto;
-  }
-}
 .hospital-section .row .main .form .content {
   background-color: white;
   border-radius: 15px;
@@ -1493,7 +1360,7 @@ input {
   color: #030229;
 }
 .login-section .row .main .form .content .form-box form .condition .registration-btn p span {
-  color: #5678E9;
+  color: #5678e9;
   display: inline-block;
   font-weight: 400;
 }
@@ -1553,4 +1420,160 @@ input {
   position: absolute;
   right: 0px;
   top: 0px;
+}
+
+@media (max-width: 1400px) {
+  .login-section .row .main .form {
+    padding: 80px 60px;
+  }
+  .login-section .row .main .form .content {
+    padding: 50px 40px;
+  }
+  .login-section .row .main .img-box {
+    padding: 80px 40px;
+  }
+  .login-section .row .main .img-box .slider {
+    width: 550px;
+    height: 550px;
+  }
+}
+@media (max-width: 1200px) {
+  .login-section .row .main .form {
+    padding: 60px 40px;
+  }
+  .login-section .row .main .form .content {
+    padding: 40px 30px;
+  }
+  .login-section .row .main .img-box {
+    padding: 60px 30px;
+  }
+  .login-section .row .main .img-box .slider {
+    width: 450px;
+    height: 450px;
+  }
+}
+@media (max-width: 992px) {
+  .login-section .row .main {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .login-section .row .main .form {
+    width: 100%;
+    padding: 40px 20px;
+    order: 1;
+  }
+  .login-section .row .main .form .content {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .login-section .row .main .img-box {
+    width: 100%;
+    padding: 40px 20px;
+    order: 2;
+  }
+  .login-section .row .main .img-box .slider {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+  }
+  .login-section .row .main .img-box .slider img {
+    display: block;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .login-section .row .main .img-box .slider .dots {
+    bottom: -30px;
+    left: 50%;
+  }
+  .login-section .row .main .img-box .vector-1,
+  .login-section .row .main .img-box .vector-2,
+  .login-section .row .main .img-box .vector-dot {
+    width: 20%;
+  }
+}
+@media (max-width: 768px) {
+  .login-section .row .main .form {
+    padding: 30px 15px;
+  }
+  .login-section .row .main .form .content {
+    padding: 30px 20px;
+  }
+  .login-section .row .main .form .content .head p {
+    font-size: 28px;
+  }
+  .login-section .row .main .img-box {
+    padding: 30px 15px;
+  }
+  .login-section .row .main .img-box .slider {
+    max-width: 300px;
+  }
+  .login-section .row .main .img-box .slider .dots {
+    bottom: -25px;
+  }
+  .login-section .row .main .img-box .slider .dots .dot {
+    width: 8px;
+    height: 8px;
+  }
+  .login-section .row .main .img-box .slider .dots .dot.active {
+    width: 24px;
+  }
+  .login-section .row .main .img-box .vector-1,
+  .login-section .row .main .img-box .vector-2,
+  .login-section .row .main .img-box .vector-dot {
+    width: 15%;
+  }
+}
+@media (max-width: 576px) {
+  .login-section .row .main {
+    flex-direction: column-reverse;
+    background-color: White;
+  }
+  .login-section .row .main .form {
+    padding: 20px 15px;
+  }
+  .login-section .row .main .form .content {
+    padding: 25px 15px;
+  }
+  .login-section .row .main .form .content .head p {
+    font-size: 24px;
+  }
+  .login-section .row .main .form .content .form-box form .input-box {
+    padding: 10px 0;
+  }
+  .login-section .row .main .form .content .form-box form .input-box input, .login-section .row .main .form .content .form-box form .input-box select {
+    padding: 10px 12px;
+  }
+  .login-section .row .main .form .content .form-box form .condition .remember-forgot {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .login-section .row .main .form .content .form-box form .condition .remember-forgot .remember {
+    width: 100%;
+  }
+  .login-section .row .main .form .content .form-box form .condition .remember-forgot .forgot {
+    width: 100%;
+    text-align: center;
+  }
+  .login-section .row .main .form .content .form-box form .condition .login-btn button {
+    font-size: 18px;
+  }
+  .login-section .row .main .img-box {
+    padding: 20px 15px;
+    margin: 5px;
+  }
+  .login-section .row .main .img-box .slider {
+    max-width: 250px;
+  }
+  .login-section .row .main .img-box .slider .dots {
+    bottom: -20px;
+  }
+  .login-section .row .main .img-box .vector-1,
+  .login-section .row .main .img-box .vector-2,
+  .login-section .row .main .img-box .vector-dot {
+    width: 12%;
+  }
 }/*# sourceMappingURL=pages.css.map */
