@@ -197,8 +197,8 @@ export default function ReportingAndAnalytics() {
                             </tr>
                           </thead>
                           <tbody>
-                            {cardData.patientCountByDisease.length > 0 ? (
-                              cardData.patientCountByDisease.map((patient) => (
+                            {cardData?.patientCountByDisease?.length > 0 ? (
+                              cardData?.patientCountByDisease?.map((patient) => (
                                 <tr key={patient._id} className="flex">
                                   <td className="d-name">
                                     <p>{patient._id}</p>
