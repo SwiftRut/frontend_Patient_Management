@@ -11,6 +11,7 @@ export const useEdit = () => {
     ...userData,
     // hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
   });
+  console.log(userData);
   const { getAllHospitals, allHospitals } = useGlobal();
 
   const [imageBlob, setImageBlob] = useState(null);
@@ -19,12 +20,10 @@ export const useEdit = () => {
     getAllHospitals();
   }, []);
 
-  useEffect(() => {
-    const hospitalName = allHospitals?.find((hospital) => hospital._id === profile.hospitalId?._id);
-    
+  useEffect(() => {    
       setProfile((prevProfile) => ({
         ...prevProfile,
-        hospitalId: profile.hospitalId?._id || profile.hospitalId,
+        hospitalId: profile.hospitalId?._id || profile.hospitalId || profile.hospital._id,
       }));
   }, [allHospitals]);
   const handleInputChange = (e) => {

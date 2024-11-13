@@ -7,7 +7,7 @@ import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals  } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -111,7 +111,7 @@ export const Edit = () => {
   if (isLoading) {
     return <div>Loading...</div>; // Or your loading component
   }
-
+  console.log(profile)
   return (
     <div>
       <div className="edit-section">
@@ -215,17 +215,23 @@ export const Edit = () => {
                         </div>
 
                         <div className="input-box">
-                          <div className="label">
-                            Hospital Name <span>*</span>
-                          </div>
-                          <input
-                            type="text"
-                            name="hospitalName"
-                            value={profile.hospitalName ?? ""}
-                            onChange={handleInputChange}
-                            placeholder="Hospital Name"
-                          />
+                        <div className="label">
+                          Hospital Name <span>*</span>
                         </div>
+                        <select
+                          name="hospitalName"
+                          value={profile.hospitalId}
+                          onChange={handleInputChange}
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.map((hospital) => (
+                            <option key={hospital._id} value={hospital._id}>
+                              {hospital.name}
+                            </option>
+                          ))}
+                        </select>{" "}
+                      </div>
+
 
                         <div className="input-box">
                           <div className="label">

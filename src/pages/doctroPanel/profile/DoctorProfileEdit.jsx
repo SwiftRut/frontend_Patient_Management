@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Country, State, City } from "country-state-city";
 import { useEdit } from "../../../hooks/useEdit";
 
 const DoctorProfileEdit = () => {
-  const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit,allHospitals
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals
    } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 

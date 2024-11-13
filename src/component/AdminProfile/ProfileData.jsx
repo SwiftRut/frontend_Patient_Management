@@ -7,16 +7,8 @@ import { useAuth } from "../../hooks/useAuth";
 export default function ProfileData() {
   const { user } = useAuth();
   const {getAdminProfile, userData } = useGlobal();
-  console.log(userData)
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-          await getAdminProfile(user.id);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
+    getAdminProfile(user.id);
   },[])
   return (
     <div className="content">
