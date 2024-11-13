@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./reportingAnalytics.css";
 import { FaUsers, FaUser, FaFileAlt } from "react-icons/fa";
 import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
@@ -8,24 +8,11 @@ import PatientsAge from "../Reporting-Analysis/PatientsAge";
 import apiService from "../../services/api.js";
 
 export default function ReportingAndAnalytics() {
-  const [totalPatients, setTotalPatients] = useState(0);
-  const [insuranceBills, setInsuranceBills] = useState(0);
-  const [totalDoctors, setTotalDoctors] = useState(0);
   const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
   const [patientsCountData, setPatientsCountData] = useState([]);
-  const [patients, setPatients] = useState([]);
   const [cardData, setCardData] = useState({});
 
   useEffect(() => {
-    const fetchInsuranceBills = async () => {
-      try {
-        const response = await apiService.GetInsuranceBills();
-        const data = response.data.data;
-        setInsuranceBills(data.length);
-      } catch (error) {
-        console.error("Error fetching insurance bills:", error);
-      }
-    };
     const fetchReportingAndAnalytics = async () => {
       try {
         const response = await apiService.GetReporingAndAnalytics();
@@ -40,8 +27,6 @@ export default function ReportingAndAnalytics() {
       try {
         const response = await apiService.GetAllPatients();
         const data = response.data.data;
-        setPatients(data);
-        setTotalPatients(data.length);
         countPatientsByDisease(data);
       } catch (error) {
         console.error("Error fetching patients:", error);
@@ -72,14 +57,12 @@ export default function ReportingAndAnalytics() {
         }));
 
         setDoctorSpecialtyData(specialtyDataArray);
-        setTotalDoctors(doctors.length);
       } catch (error) {
         console.error("Error fetching doctors:", error);
       }
     };
 
     fetchDoctors();
-    fetchInsuranceBills();
     fetchPatients();
     fetchReportingAndAnalytics();
   }, []);
@@ -180,7 +163,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>{insuranceBills}</span>
+                  <span>{cardData.insuranceClaimCount}</span>
                   </div>
                 </div>
               </div>
@@ -214,11 +197,11 @@ export default function ReportingAndAnalytics() {
                             </tr>
                           </thead>
                           <tbody>
-                            {patientsCountData.length > 0 ? (
-                              patientsCountData.map((patient) => (
-                                <tr key={patient.department} className="flex">
+                            {cardData.patientCountByDisease.length > 0 ? (
+                              cardData.patientCountByDisease.map((patient) => (
+                                <tr key={patient._id} className="flex">
                                   <td className="d-name">
-                                    <p>{patient.department}</p>
+                                    <p>{patient._id}</p>
                                   </td>
                                   <td className="status">
                                     <p>
