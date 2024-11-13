@@ -385,6 +385,139 @@ input {
   }
 }
 
+@media (max-width: 575px) {
+  .registration-section {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 40px;
+
+          .content {
+            padding: 30px;
+            .head {
+              p {
+                font-size: 26px;
+              }
+            }
+
+            .form-box {
+              form {
+                .input-box {
+                  .label {
+                  }
+
+                  input {
+                  }
+
+                  .eye {
+                    img {
+                    }
+                  }
+
+                  select {
+                    option {
+                      button {
+                      }
+                    }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
+                  }
+
+                  .condition {
+                    .policies {
+                      .input {
+                      }
+
+                      p {
+                      }
+
+                      span {
+                      }
+                    }
+
+                    .register-btn {
+                      button {
+                      }
+                    }
+
+                    .login-btn {
+                      p {
+                        span {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
 //admin registration section end
 
 // patient registration section start
@@ -739,6 +872,140 @@ input {
     }
   }
 }
+
+// responsive start
+
+@media (max-width: 575px) {
+  .patient-registration-section {
+    .row {
+      .main {
+        .form {
+          width: 100%;
+          padding: 40px;
+
+          .content {
+            padding: 30px;
+            .head {
+            }
+
+            .form-box {
+              form {
+                .input-box {
+                  .label {
+                  }
+
+                  input {
+                  }
+
+                  .eye {
+                    img {
+                    }
+                  }
+
+                  select {
+                    option {
+                      button {
+                      }
+                    }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
+                  }
+
+                  .condition {
+                    .policies {
+                      .input {
+                      }
+
+                      p {
+                      }
+
+                      span {
+                      }
+                    }
+
+                    .register-btn {
+                      button {
+                      }
+                    }
+
+                    .login-btn {
+                      p {
+                        span {
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .img-box {
+          width: 100%;
+          padding: 40px;
+
+          .slider {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+// responsive end
 
 // patient registration section end
 
@@ -1880,222 +2147,3 @@ input {
 }
 
 // login section end
-
-// Add these media queries at the end of the login-section
-
-@media (max-width: 1400px) {
-  .login-section {
-    .row .main {
-      .form {
-        padding: 80px 60px;
-
-        .content {
-          padding: 50px 40px;
-        }
-      }
-
-      .img-box {
-        padding: 80px 40px;
-
-        .slider {
-          width: 550px;
-          height: 550px;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .login-section {
-    .row .main {
-      .form {
-        padding: 60px 40px;
-
-        .content {
-          padding: 40px 30px;
-        }
-      }
-
-      .img-box {
-        padding: 60px 30px;
-
-        .slider {
-          width: 450px;
-          height: 450px;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 992px) {
-  .login-section {
-    .row .main {
-      display: flex;
-      flex-direction: column;
-      height: auto;
-
-      .form {
-        width: 100%;
-        padding: 40px 20px;
-        order: 1; // Moves form to top
-
-        .content {
-          max-width: 500px;
-          width: 100%;
-          margin: 0 auto;
-        }
-      }
-
-      .img-box {
-        width: 100%;
-        padding: 40px 20px;
-        order: 2; // Moves image section below form
-
-        .slider {
-          width: 100%;
-          max-width: 400px;
-          height: auto;
-          aspect-ratio: 1/1;
-          margin: 0 auto;
-
-          img {
-            display: block; // Show images
-            object-fit: cover;
-          }
-
-          .dots {
-            bottom: -30px;
-            left: 50%;
-          }
-        }
-
-        .vector-1,
-        .vector-2,
-        .vector-dot {
-          width: 20%;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .login-section {
-    .row .main {
-      .form {
-        padding: 30px 15px;
-
-        .content {
-          padding: 30px 20px;
-
-          .head p {
-            font-size: 28px;
-          }
-        }
-      }
-
-      .img-box {
-        padding: 30px 15px;
-
-        .slider {
-          max-width: 300px;
-
-          .dots {
-            bottom: -25px;
-
-            .dot {
-              width: 8px;
-              height: 8px;
-
-              &.active {
-                width: 24px;
-              }
-            }
-          }
-        }
-
-        .vector-1,
-        .vector-2,
-        .vector-dot {
-          width: 15%;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 576px) {
-  .login-section {
-    .row .main {
-      flex-direction: column-reverse;
-      background-color: White;
-      margin: 10px 20px;
-
-      .form {
-        padding: 20px 15px;
-
-        .content {
-          padding: 25px 15px;
-
-          .head p {
-            font-size: 24px;
-          }
-
-          .form-box {
-            form {
-              .input-box {
-                padding: 10px 0;
-
-                input,
-                select {
-                  padding: 10px 12px;
-                }
-              }
-
-              .condition {
-                .remember-forgot {
-                  flex-direction: column;
-                  gap: 10px;
-
-                  .remember {
-                    width: 100%;
-                  }
-
-                  .forgot {
-                    width: 100%;
-                    text-align: center;
-                  }
-                }
-
-                .login-btn button {
-                  font-size: 18px;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      .img-box {
-        padding: 20px 15px;
-        margin: 5px;
-
-        .slider {
-          max-width: 250px;
-
-          .dots {
-            bottom: -20px;
-          }
-        }
-
-        .vector-1,
-        .vector-2,
-        .vector-dot {
-          width: 12%;
-        }
-      }
-    }
-  }
-}
