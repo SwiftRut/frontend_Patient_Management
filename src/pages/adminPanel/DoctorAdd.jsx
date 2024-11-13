@@ -5,7 +5,7 @@ import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-import { countryCodes, DoctorFormData, timeOptions, timeOptions2 } from "./constants.js";
+import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Country, State, City } from "country-state-city"; // Import country-state-city
 
@@ -28,8 +28,8 @@ const DoctorAdd = () => {
   }, []);
   useEffect(() => {
     if (formData.hospital && allHospitals.length) {
-      const selectedHospital = allHospitals.find(hospital => hospital._id === formData.hospital);
-      setFormData(prevData => ({
+      const selectedHospital = allHospitals.find((hospital) => hospital._id === formData.hospital);
+      setFormData((prevData) => ({
         ...prevData,
         hospitalName: selectedHospital?.name || prevData.hospitalName,
         hospitalAddress: selectedHospital?.address || prevData.hospitalAddress,
@@ -45,22 +45,22 @@ const DoctorAdd = () => {
     });
 
     if (name === "country") {
-      const selectedCountry = countries.find(country => country.isoCode === value);
+      const selectedCountry = countries.find((country) => country.isoCode === value);
       setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
-      setFormData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
+      setFormData((prevData) => ({ ...prevData, state: "", city: "" })); // Reset state and city
       setCities([]); // Clear cities
     } else if (name === "state") {
-      const selectedState = states.find(state => state.isoCode === value);
+      const selectedState = states.find((state) => state.isoCode === value);
       setCities(City.getCitiesOfState(formData.country, selectedState.isoCode)); // Fetch cities based on selected state
-      setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
-    }else if (name === "hospital") {
+      setFormData((prevData) => ({ ...prevData, city: "" })); // Reset city
+    } else if (name === "hospital") {
       const selectedHospital = allHospitals.find((hospital) => hospital._id === value);
       setFormData({
         ...formData,
         hospital: value,
-        hospitalName: selectedHospital ? selectedHospital.name : '',
-        hospitalAddress: selectedHospital ? selectedHospital.address : '',
-        hospitalWebsite: selectedHospital ? selectedHospital.website : '',
+        hospitalName: selectedHospital ? selectedHospital.name : "",
+        hospitalAddress: selectedHospital ? selectedHospital.address : "",
+        hospitalWebsite: selectedHospital ? selectedHospital.website : "",
       });
     }
   };
@@ -91,13 +91,14 @@ const DoctorAdd = () => {
     if (file) {
       if (file.type !== "image/png" && file.type !== "image/jpeg") {
         toast.error("Please upload a valid PNG or JPEG file for the signature.");
-        input.value = ''; // Reset input
+        input.value = ""; // Reset input
         return;
       }
 
-      if (file.size > 5 * 1024 * 1024) { // 5MB
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB
         toast.error("File size must be less than 5MB.");
-        input.value = ''; // Reset input
+        input.value = ""; // Reset input
         return;
       }
 
@@ -166,11 +167,7 @@ const DoctorAdd = () => {
                       <div className="choose-photo">
                         <div
                           className="image"
-                          onClick={() =>
-                            document
-                              .getElementById("profilePictureUpload")
-                              .click()
-                          }
+                          onClick={() => document.getElementById("profilePictureUpload").click()}
                         >
                           {profilePicturePreview ? (
                             <img
@@ -183,12 +180,8 @@ const DoctorAdd = () => {
                               }}
                             />
                           ) : (
-                            <img
-                              src="../img/doctorAdd.png"
-                              alt=""
-                              style={{ cursor: "pointer" }}
-                            />
-                          )}  
+                            <img src="../img/doctorAdd.png" alt="" style={{ cursor: "pointer" }} />
+                          )}
                         </div>
                         <input
                           type="file"
@@ -200,11 +193,7 @@ const DoctorAdd = () => {
                         />
                         <p
                           style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            document
-                              .getElementById("profilePictureUpload")
-                              .click()
-                          }
+                          onClick={() => document.getElementById("profilePictureUpload").click()}
                         >
                           Choose Photo
                         </p>
@@ -223,10 +212,7 @@ const DoctorAdd = () => {
                             id="signatureUpload"
                             name="signature"
                           />
-                          <label
-                            htmlFor="signatureUpload"
-                            style={{ cursor: "pointer" }}
-                          >
+                          <label htmlFor="signatureUpload" style={{ cursor: "pointer" }}>
                             Upload a file
                           </label>
                           <h5>PNG or JPEG Up To 5MB</h5>
@@ -275,11 +261,7 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Gender</div>
-                            <select
-                              name="gender"
-                              value={formData.gender}
-                              onChange={handleChange}
-                            >
+                            <select name="gender" value={formData.gender} onChange={handleChange}>
                               <option>Select Gender</option>
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>
@@ -465,13 +447,9 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Country</div>
-                            <select
-                              name="country"
-                              value={formData.country}
-                              onChange={handleChange}
-                            >
+                            <select name="country" value={formData.country} onChange={handleChange}>
                               <option value="">Select Country</option>
-                              {countries.map(country => (
+                              {countries.map((country) => (
                                 <option key={country.isoCode} value={country.isoCode}>
                                   {country.name}
                                 </option>
@@ -488,7 +466,7 @@ const DoctorAdd = () => {
                               disabled={!formData.country} // Disable if no country is selected
                             >
                               <option value="">Select State</option>
-                              {states.map(state => (
+                              {states.map((state) => (
                                 <option key={state.isoCode} value={state.isoCode}>
                                   {state.name}
                                 </option>
@@ -505,7 +483,7 @@ const DoctorAdd = () => {
                               disabled={!formData.state} // Disable if no state is selected
                             >
                               <option value="">Select City</option>
-                              {cities.map(city => (
+                              {cities.map((city) => (
                                 <option key={city.id} value={city.name}>
                                   {city.name}
                                 </option>
@@ -593,9 +571,7 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="input-box">
-                            <div className="label">
-                              Online Consultation Rate
-                            </div>
+                            <div className="label">Online Consultation Rate</div>
                             <input
                               type="number"
                               name="onlineConsultationRate"
@@ -627,7 +603,13 @@ const DoctorAdd = () => {
                             name="currentHospital"
                             placeholder="Enter Current Hospital"
                             maxLength={100}
-                            value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name) || formData.currentHospital}
+                            value={
+                              (formData.hospital &&
+                                allHospitals.find(
+                                  (hospital) => hospital._id === formData.hospital.toString().name
+                                )) ||
+                              formData.currentHospital
+                            }
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
@@ -642,7 +624,10 @@ const DoctorAdd = () => {
                             name="hospitalName"
                             placeholder="Enter Hospital Name"
                             maxLength={100}
-                            value={allHospitals?.find((item) => item._id === formData.hospital)?.name || formData.hospitalName}
+                            value={
+                              allHospitals?.find((item) => item._id === formData.hospital)?.name ||
+                              formData.hospitalName
+                            }
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
@@ -651,11 +636,7 @@ const DoctorAdd = () => {
                         </div>
                         <div className="input-box">
                           <div className="label">Hospital</div>
-                          <select
-                            name="hospital"
-                            value={formData.hospital}
-                            onChange={handleChange}
-                          >
+                          <select name="hospital" value={formData.hospital} onChange={handleChange}>
                             <option value="">Select Hospital</option>
                             {allHospitals.map((hospital) => (
                               <option key={hospital._id} value={hospital._id}>
@@ -675,7 +656,10 @@ const DoctorAdd = () => {
                             name="hospitalAddress"
                             placeholder="Enter Hospital Address"
                             maxLength={200}
-                            value={allHospitals?.find((item) => item._id === formData.hospital)?.address || formData.hospitalAddress}
+                            value={
+                              allHospitals?.find((item) => item._id === formData.hospital)
+                                ?.address || formData.hospitalAddress
+                            }
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
