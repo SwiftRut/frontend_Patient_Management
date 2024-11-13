@@ -81,6 +81,7 @@ const   apiService = {
   GetChatHistory: (doctorId, patientId) => api.get(`/chat/${doctorId}/${patientId}`),
   GetDoctorContacts: (id) => api.get(`/chat/contacts/patient/${id}`),
   GetPatientContacts: (id) => api.get(`/chat/contacts/doctor/${id}`),
+  GetReporingAndAnalytics: () => api.get(`/aggregation/reporting-and-analytics`),
 
   //Payment
   AppointmentFee: (doctorId, appointmentType) =>

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "./reportingAnalytics.css";
 import { FaUsers, FaUser, FaFileAlt } from "react-icons/fa";
@@ -13,6 +14,7 @@ export default function ReportingAndAnalytics() {
   const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
   const [patientsCountData, setPatientsCountData] = useState([]);
   const [patients, setPatients] = useState([]);
+  const [cardData, setCardData] = useState({});
 
   useEffect(() => {
     const fetchInsuranceBills = async () => {
@@ -24,7 +26,16 @@ export default function ReportingAndAnalytics() {
         console.error("Error fetching insurance bills:", error);
       }
     };
-
+    const fetchReportingAndAnalytics = async () => {
+      try {
+        const response = await apiService.GetReporingAndAnalytics();
+        const data = response.data;
+        setCardData(data);
+        console.log(data,"<<<<<<<<<<<<<<<<<<<<data you are reporting");
+      } catch (error) {
+        console.error("Error fetching reporting and analytics:", error);
+      }
+    };
     const fetchPatients = async () => {
       try {
         const response = await apiService.GetAllPatients();
@@ -70,6 +81,7 @@ export default function ReportingAndAnalytics() {
     fetchDoctors();
     fetchInsuranceBills();
     fetchPatients();
+    fetchReportingAndAnalytics();
   }, []);
 
   const countPatientsByDisease = (patients) => {
@@ -118,7 +130,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>{totalPatients}</span>
+                    <span>{cardData.totalPatientCount}</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +146,7 @@ export default function ReportingAndAnalytics() {
                     </div>
                   </div>
                   <div className="count">
-                    <span>500</span>
+                  <span>{cardData.repeatPatientCount}</span>
                   </div>
                 </div>
               </div>
@@ -146,11 +158,13 @@ export default function ReportingAndAnalytics() {
                       <FaFileAlt />
                     </div>
                     <div className="details">
-                      <p>Admitted Patient</p>
+                      {/* <p>Admitted Patient</p> */}
+                      <p>Total Doctors</p>
                     </div>
                   </div>
                   <div className="count">
-                    <span>1000</span>
+                  <span>{cardData.totalDoctorCount}</span>
+
                   </div>
                 </div>
               </div>
