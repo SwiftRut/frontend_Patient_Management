@@ -560,8 +560,7 @@
   .doctorEdit-section .row .main .top {
     border: 2px solid #F4F4F4;
     border-radius: 15px;
-    padding: 20px 20px;
-    margin: 15px 0px;
+    padding: 15px 15px;
   }
   .doctorAdd-section .row .main .top .content .head p,
   .doctorEdit-section .row .main .top .content .head p {
@@ -671,12 +670,12 @@
   .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box,
   .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box {
     position: relative;
-    padding: 15px 0px 0px;
+    padding: 11px 0px 0px;
   }
   .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box .label,
   .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box .label {
     position: absolute;
-    top: 4px;
+    top: 0px;
     left: 14px;
     background-color: white;
     z-index: 2;
@@ -916,7 +915,7 @@
   .doctorEdit-section .row .main .bottom {
     border: 2px solid #F4F4F4;
     border-radius: 15px;
-    padding: 20px 20px;
+    padding: 15px 15px;
     margin: 15px 0px;
   }
   .doctorAdd-section .row .main .bottom .content .head,
@@ -963,12 +962,12 @@
   .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box,
   .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box {
     position: relative;
-    padding: 15px 0px 0px;
+    padding: 11px 0px 0px;
   }
   .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box .label,
   .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box .label {
     position: absolute;
-    top: 4px;
+    top: 0px;
     left: 14px;
     background-color: white;
   }
@@ -1131,5 +1130,8 @@
   width: 100%;
 }
 .doctorEdit-section .bottom .content .details .form-box form .input-box:nth-child(2) select {
+  width: 100%;
+}
+.doctorEdit-section .bottom .content .details .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }/*# sourceMappingURL=doctorManagement.css.map */
