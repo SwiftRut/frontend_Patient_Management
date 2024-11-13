@@ -743,6 +743,7 @@ input {
           padding: 40px;
 
           .content {
+            padding: 30px;
             .head {}
 
             .form-box {
@@ -750,7 +751,7 @@ input {
                 .input-box {
                   .label {}
 
-                  .input {}
+                  input {}
 
                   .eye {
                     img {}
@@ -760,6 +761,58 @@ input {
                     option {
                       button {}
                     }
+                  }
+
+                  &:nth-child(1) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(3) {
+                    width: 100%;
+                  }
+
+                  &:nth-child(4) {
+                    width: 100%;
+                  }
+                  &:nth-child(5) {
+                    width: 48%;
+                  }
+                  &:nth-child(6) {
+                    width: 48%;
+                  }
+                  &:nth-child(7) {
+                    width: 48%;
+                  }
+                  &:nth-child(8) {
+                    width: 48%;
+                  }
+                  &:nth-child(9) {
+                    width: 48%;
+                  }
+                  &:nth-child(10) {
+                    width: 48%;
+                  }
+                  &:nth-child(11) {
+                    width: 100%;
+                  }
+                  &:nth-child(12) {
+                    width: 100%;
+                  }
+                  &:nth-child(13) {
+                    width: 100%;
+                  }
+                  &:nth-child(14) {
+                    width: 100%;
+                  }
+                  &:nth-child(15) {
+                    width: 100%;
+                  }
+                  &:nth-child(16) {
+                    width: 100%;
                   }
 
                   .condition {
