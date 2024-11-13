@@ -154,7 +154,7 @@ ol {
   color: #141414;
 }
 .patioentRecord .pr-select select option {
-  font-size: 20px;
+  font-size: 10px;
   font-family: 600;
   color: #141414;
 }
@@ -288,6 +288,14 @@ ol {
 }
 .allFile-section .pre-bill:hover .viewFullPrescription-btn {
   visibility: visible;
+}
+
+.patioentRecord .css-sc8y68-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  font-size: 16px;
+}
+
+.css-w76bbz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0px;
 }
 
 .cp-tool {
