@@ -11,6 +11,7 @@ import Onsite from "./Onsite"; // Import the Onsite component
 import Delete from "./Delete.jsx";
 import { useDoctor } from "../../hooks/useDoctor.jsx";
 import toast from "react-hot-toast";
+import apiService from "../../services/api.js";
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -54,6 +55,19 @@ export default function DoctorManagement() {
     doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleDeleteDoctor = async (id) => {
+    try {
+      const response = await apiService.DeleteDoctor(id);
+      console.log(response.data);
+      if (response.data) {
+        toast.success("Doctor deleted successfully");
+        await getAllDoctors();
+      }
+    } catch (error) {
+      console.error("Error deleting doctor:", error);
+      toast.error("Error deleting doctor");
+    }
+  };
   const renderDoctorsTable = () => {
     return (
       <div
@@ -110,7 +124,7 @@ export default function DoctorManagement() {
                     <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
                       <FaEye />
                     </div>
-                    <div className="delete" onClick={() => setSelectedDoctorId(doctor._id)}>
+                    <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
                       <MdDelete />
                     </div>
                   </td>

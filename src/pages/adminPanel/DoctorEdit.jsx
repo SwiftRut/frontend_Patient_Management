@@ -4,7 +4,7 @@ import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { countryCodes, DoctorFormData } from "./constants.js";
+import { countryCodes, DoctorFormData, timeOptions } from "./constants.js";
 import { Country, State, City } from "country-state-city";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
 import toast from "react-hot-toast";
@@ -267,9 +267,9 @@ const DoctorEdit = () => {
                           { label: "Gender", name: "gender", type: "select", options: ["Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
                           { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
-                          { label: "Work On", name: "workingOn", type: "text", placeholder: "Enter Work On", value: doctorData.workingOn },
-                          { label: "Check Up Time", name: "patientCheckupTime", type: "text", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime },
-                          { label: "Break Time", name: "breakTime", type: "text", placeholder: "Enter Break Time", value: doctorData.breakTime },
+                          { label: "Work On", name: "workingOn", type: "select", placeholder: "Enter Work On", value: doctorData.workingOn , options: ["Part-time", "Full-time", "Contract"] },
+                          { label: "Check Up Time", name: "patientCheckupTime", type: "select", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime , options: timeOptions },
+                          { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime , options: timeOptions },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
                           { label: "Country Code", name: "countryCode", type: "select", options: countryCodes, value: doctorData.countryCode },
@@ -330,8 +330,8 @@ const DoctorEdit = () => {
                                   }
                                   else {
                                     return (
-                                      <option key={option.isoCode || option.name} value={option.isoCode || option.name}>
-                                        {option.name}
+                                      <option key={option.isoCode || option.name} value={option.isoCode || option.name || option}>
+                                        {option.name || option}
                                       </option>
                                     );
                                   }
