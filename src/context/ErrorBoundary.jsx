@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ErrorPage } from "../pages/ErrorPage";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div>
-          <h1>Something went wrong.</h1>
+          <ErrorPage />
           <button onClick={this.handleReload}>Reload</button>
         </div>
       );

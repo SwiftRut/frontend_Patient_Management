@@ -50,7 +50,7 @@ export const GlobalProvider = ({ children }) => {
       setUserData(response.data);
       toast.success("Admin profile fetched successfully");
     } catch (error) {
-      console.log("Error fetching admin profile:", error);
+      console.error("Error fetching admin profile:", error);
       toast.error("Error fetching admin profile");
       throw error;
     }
@@ -62,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
       setUserData(response.data.data);
       toast.success("Admin profile edited successfully");
     } catch (error) {
-      console.log("Error editing admin profile:", error);
+      console.error("Error editing admin profile:", error);
       toast.error("Error editing admin profile");
       throw error;
     }

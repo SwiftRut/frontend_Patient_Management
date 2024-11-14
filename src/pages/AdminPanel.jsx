@@ -18,6 +18,7 @@ import EditBill from "./invoice/EditBill";
 import EditDesignInvoice from "./billPayment/EditDesignInvoice";
 import MainBill from "./patientPanel/MainBill";
 
+
 export default function AdminPanel() {
   return (
     <>
@@ -47,6 +48,7 @@ export default function AdminPanel() {
           <Route path="paymentMethod" element={<PaymentMethod />} />
 
           <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
+          
         </Routes>
       </div>
     </>
