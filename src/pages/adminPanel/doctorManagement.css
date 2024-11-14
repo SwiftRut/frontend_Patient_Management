@@ -10,7 +10,7 @@
 }
 .doctorAdd-section .row .main .top,
 .doctorEdit-section .row .main .top {
-  padding: 20px;
+  padding: 20px 20px;
   border: 2px solid #F4F4F4;
   border-radius: 15px;
   margin: 15px 0px;
@@ -117,8 +117,8 @@
 .doctorAdd-section .row .main .top .content .details .right .form-box form,
 .doctorEdit-section .row .main .top .content .details .right .form-box form {
   justify-content: start;
-  -moz-column-gap: 21px;
-       column-gap: 21px;
+  -moz-column-gap: 14px;
+       column-gap: 14px;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box,
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box {
@@ -409,8 +409,8 @@
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form,
 .doctorEdit-section .row .main .bottom .content .details .form-box form {
-  -moz-column-gap: 28px;
-       column-gap: 28px;
+  -moz-column-gap: 14px;
+       column-gap: 14px;
 }
 .doctorAdd-section .row .main .bottom .content .details .form-box form .input-box,
 .doctorEdit-section .row .main .bottom .content .details .form-box form .input-box {
@@ -534,7 +534,7 @@
 .doctorAdd-section .row .main .save-btn button,
 .doctorEdit-section .row .main .save-btn button {
   background-color: #F6F8FB;
-  padding: 12px 40px;
+  padding: 10px 40px;
   color: #4F4F4F;
   font-size: 20px;
   font-weight: 600;
@@ -549,34 +549,34 @@
 .doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(3) {
   width: 32%;
 }
-.doctorEdit-section .input-box:nth-child(3) input {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }
-.doctorEdit-section .input-box:nth-child(5) {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(5) {
   width: 32%;
 }
-.doctorEdit-section .input-box:nth-child(5) input {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(5) input {
   width: 100%;
 }
-.doctorEdit-section .input-box:nth-child(6) {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(6) {
   width: 32%;
 }
-.doctorEdit-section .input-box:nth-child(6) input {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(6) input {
   width: 100%;
 }
-.doctorEdit-section .input-box:nth-child(7) {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(7) {
   width: 32%;
 }
-.doctorEdit-section .input-box:nth-child(7) input {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(7) input {
   width: 100%;
 }
-.doctorEdit-section .input-box:nth-child(8) {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(8) {
   width: 32%;
 }
-.doctorEdit-section .input-box:nth-child(8) input {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(8) input {
   width: 100%;
 }
-.doctorEdit-section .input-box:nth-child(11) {
+.doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(11) {
   width: 32%;
 }
 .doctorEdit-section .top .content .details .right .form-box form .input-box:nth-child(11) input {
