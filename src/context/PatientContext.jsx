@@ -15,7 +15,6 @@ export const PatientProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllPatients();
       setAllPatients(response.data.data); 
-      toast.success("All patients fetched successfully");
       return response.data.data; 
     } catch (error) {
       console.error("Error fetching patients:", error);
@@ -29,7 +28,6 @@ export const PatientProvider = ({ children }) => {
     try {
       const response = await apiService.GetPatientById(id);
       setPatientDetails(response.data.data); 
-      toast.success("Patient details fetched successfully");
       return response.data.data; 
     } catch (error) {
       console.error(`Error fetching patient with ID ${id}:`, error);

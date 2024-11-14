@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'; 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'; 
 import apiService from '../../services/api'; 
+import toast from 'react-hot-toast';
 
 const PatientsStatistics = () => {
   const [timePeriod, setTimePeriod] = useState('Year'); 
@@ -33,11 +34,12 @@ const PatientsStatistics = () => {
       }));
 
       setData(processedData);
-      setError(null); 
+      setError(null);
     } catch (error) {
       console.error("Failed to fetch patient data", error);
       setError('Failed to fetch patient data.'); 
       toast.error("Failed to fetch patient data");
+      throw error;
     }
   };
 

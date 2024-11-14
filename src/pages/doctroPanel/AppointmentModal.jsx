@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
 import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 const AppointmentModal = ({
   isOpen,
@@ -34,6 +35,7 @@ const AppointmentModal = ({
           setUnavailableTimes(response.data);
         } catch (error) {
           console.error("Error fetching unavailable times:", error);
+          toast.error("Error fetching unavailable times")
         }
       };
 

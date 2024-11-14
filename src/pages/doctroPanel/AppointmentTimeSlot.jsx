@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 import RescheduleModal from "./RescheduleModal";
 import TimeBlockModal from "./TimeBlockModal";
 import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 const localizer = momentLocalizer(moment);
 
@@ -70,6 +71,7 @@ const AppointmentTimeSlot = () => {
         setUnavailableTimes(unavailableEvents);
       } catch (error) {
         console.error("Error fetching unavailable times:", error);
+        toast.error("Error fetching unavailable times.");
       }
     };
 
@@ -120,9 +122,10 @@ const AppointmentTimeSlot = () => {
       };
       setUnavailableTimes(prev => [...prev, newUnavailableEvent]);
       handleModalState('timeBlock', false);
+      toast.success("Unavailable time added successfully.");
     } catch (error) {
       console.error("Error adding unavailable time:", error);
-      alert("Failed to add unavailable time. Please try again.");
+      toast.error("Failed to add unavailable time. Please try again.");
     }
   };
 
@@ -142,8 +145,10 @@ const AppointmentTimeSlot = () => {
       );
       setEvents(updatedEvents);
       handleModalState('reschedule', false);
+      toast.success("Appointment rescheduled successfully.");
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
+      toast.error("Error rescheduling appointment.");
     }
   };
 
@@ -155,8 +160,10 @@ const AppointmentTimeSlot = () => {
       const updatedEvents = events.filter((event) => event.id !== appointmentId);
       setEvents(updatedEvents);
       handleModalState('reschedule', false);
+      toast.success("Appointment deleted successfully.");
     } catch (error) {
       console.error("Error deleting appointment:", error);
+      toast.error("Error deleting appointment.");
     }
   };
 
@@ -175,8 +182,10 @@ const AppointmentTimeSlot = () => {
       };
       setEvents([...events, newEvent]);
       handleModalState('appointment', false);
+      toast.success("Appointment created successfully.");
     } catch (error) {
       console.error("Error creating appointment:", error);
+      toast.error("Error creating appointment.");
     }
   };
 

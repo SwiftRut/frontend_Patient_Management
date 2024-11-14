@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot }) => {
   const [title, setTitle] = useState("");
@@ -31,8 +32,10 @@ const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot })
       setTitle("");
       setReason("");
       onClose();
+      toast.success("Unavailable time added successfully.");
     } catch (error) {
       console.error("Error adding unavailable time:", error);
+      toast.error("Failed to add unavailable time. Please try again.");
     }
   };
 

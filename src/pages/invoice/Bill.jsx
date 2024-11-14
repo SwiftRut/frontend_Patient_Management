@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import "./bill.css";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Bill() {
   const { id } = useParams();
@@ -31,6 +32,7 @@ export default function Bill() {
         setFormData(bill)
       } catch (error) {
         console.error("Error fetching billing data:", error);
+        toast.error("Error fetching billing data.");
       }
     };
     fetchData();

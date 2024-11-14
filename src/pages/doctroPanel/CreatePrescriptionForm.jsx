@@ -7,6 +7,7 @@ import "./doctorPanel.css";
 import { usePatient } from '../../hooks/usePatient';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const CreatePrescriptionForm = () => {
   const { getPatientById, patientDetails } = usePatient();
@@ -70,8 +71,10 @@ const {id} = useParams();
       
       createPrescription(prescriptionPayload, id);
       setPrescriptionData(values);
+      toast.success("Prescription created successfully.");
     } catch (error) {
       console.error('Error creating prescription:', error);
+      toast.error("Error creating prescription.");
     }
   };
 

@@ -15,6 +15,7 @@ import { toPng } from "html-to-image";
 import signature from "../../assets/signature.svg";
 import { FaDownload } from "react-icons/fa";
 import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 
 const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) => {
   const modalRef = useRef(null);
@@ -27,9 +28,10 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
         link.href = dataUrl;
         link.download = "prescription.jpg"; // Default download name
         link.click();
+        toast.success("Prescription image downloaded successfully.");
       } catch (error) {
         console.error("Failed to download image:", error);
-        alert("Failed to download the prescription image. Please try again.");
+        toast.error("Failed to download the prescription image. Please try again.");
       }
     }
   };

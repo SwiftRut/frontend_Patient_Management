@@ -16,6 +16,7 @@ import CustomDateModal from "../../component/modals/CustomDateModal";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal";
 import DoctorDetails from "./DoctorDetails";
 import Onsite from "../doctorManagement/Onsite";
+import toast from "react-hot-toast";
 
 const Appointment = () => {
   const [activeTab, setActiveTab] = useState("scheduled");
@@ -117,8 +118,10 @@ const Appointment = () => {
         setAllAppointments(updatedAppointments);
         setActiveTab("cancel");
       }
+      toast.success("Appointment canceled successfully.");
     } catch (error) {
       console.error("Error canceling appointment:", error);
+      toast.error("Error canceling appointment.");
     }
   };
 

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './useAuth';
-import { useGlobal } from './useGlobal';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
+import { useGlobal } from "./useGlobal";
+import toast from "react-hot-toast";
 
 export const useEdit = () => {
   const navigate = useNavigate();
@@ -21,17 +21,22 @@ export const useEdit = () => {
     getAllHospitals();
   }, []);
 
-  useEffect(() => {    
-      setProfile((prevProfile) => ({
-        ...prevProfile,
-        hospitalId: profile?.hospitalId?._id || profile?.hospitalId || profile?.hospital?._id,
-      }));
+  useEffect(() => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      hospitalId:
+        profile?.hospitalId?._id ||
+        profile?.hospitalId ||
+        profile?.hospital?._id,
+    }));
   }, [allHospitals]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'hospitalName') {
-      const hospitalName = allHospitals?.find((hospital) => hospital._id === value);
-      console.log(hospitalName)
+    if (name === "hospitalName") {
+      const hospitalName = allHospitals?.find(
+        (hospital) => hospital._id === value
+      );
+      console.log(hospitalName);
       setProfile((prevProfile) => ({
         ...prevProfile,
         hospitalName: hospitalName?.name,
@@ -41,11 +46,11 @@ export const useEdit = () => {
       return;
     }
     console.log(name, value);
-    console.log(profile,"<<<<<<<< changesl")
+    console.log(profile, "<<<<<<<< changesl");
     setProfile((prevProfile) => ({
       ...prevProfile,
       // if(user.role === 'doctor' && name === 'hospitalName'){
-        
+
       // }
       [name]: value,
       hospitalId: profile.hospitalId?._id || profile.hospitalId,
@@ -69,7 +74,6 @@ export const useEdit = () => {
     }
   };
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -77,24 +81,32 @@ export const useEdit = () => {
 
       //in this skip unavailable time
       Object.keys(profile).forEach((key) => {
-        if (key === 'unavailableTimes') return;
+        if (key === "unavailableTimes") return;
         formData.append(key, profile[key]);
       });
-      if (imageBlob) formData.append('profilePic', imageBlob, 'profile.jpg');
-      if (user.role === 'doctor') {
+      if (imageBlob) formData.append("profilePic", imageBlob, "profile.jpg");
+      if (user.role === "doctor") {
         await editDoctorProfile(user.id, formData);
-        navigate('/doctor/profile');
+        navigate("/doctor/profile");
         return;
-      }else if(user.role === 'admin'){
+      } else if (user.role === "admin") {
         await editAdminProfile(user.id, formData);
-        navigate('/profile');
+        navigate("/profile");
         return;
       }
+      toast.success("Profile updated successfully");
     } catch (error) {
-      console.error('Error saving profile:', error);
-      toast.error('Error saving profile');
+      console.error("Error saving profile:", error);
+      toast.error("Error saving profile");
     }
   };
 
-  return { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals };
+  return {
+    profile,
+    setProfile,
+    handleInputChange,
+    handleImageChange,
+    handleFormSubmit,
+    allHospitals,
+  };
 };

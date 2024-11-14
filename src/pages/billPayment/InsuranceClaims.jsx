@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
+import toast from "react-hot-toast";
 
 export default function InsuranceClaims() {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ export default function InsuranceClaims() {
         await getBills();
       } catch (err) {
         setError("Failed to fetch claims data");
+        toast.error("Failed to fetch claims data");
+        console.error(err);
       } finally {
         setLoading(false);
       }

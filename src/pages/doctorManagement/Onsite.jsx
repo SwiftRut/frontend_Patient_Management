@@ -6,6 +6,7 @@ import { TbBuildingHospital } from "react-icons/tb";
 import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const Onsite = ({ selectedDoctor, setOpenModel }) => {
   const [doctor, setDoctor] = useState({});
@@ -21,6 +22,7 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
           "Error fetching doctor details: " +
             (error.response ? error.response.data.message : error.message)
         );
+        toast.error("Error fetching doctor details");
       } finally {
       }
     };

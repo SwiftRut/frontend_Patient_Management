@@ -27,11 +27,13 @@ export default function DoctorManagement() {
     const fetchDoctors = async () => {
       try {
         await getAllDoctors();
+        
       } catch (error) {
         setError(
           "Error fetching doctors: " +
             (error.response ? error.response.data.message : error.message)
         );
+        toast.error("Error fetching doctors");
       } finally {
         setLoading(false);
       }

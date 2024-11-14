@@ -64,6 +64,7 @@ const VideoCall = () => {
   } catch (error) {
     console.error("Error starting the call:", error);
     toast.error("An error occurred while trying to start the call. Please check your camera and microphone permissions.");
+    throw error;
   }
 };
 

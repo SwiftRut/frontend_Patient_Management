@@ -7,6 +7,7 @@ import { useGlobal } from "../../../hooks/useGlobal";
 import { useAuth } from "../../../hooks/useAuth";
 import * as htmlToImage from 'html-to-image';
 import moment from 'moment';
+import toast from "react-hot-toast";
 
 const Prescriptions = () => {
   const { userData, patientPrescription, findPatientPrescriptions } = useGlobal();
@@ -60,8 +61,10 @@ const Prescriptions = () => {
       link.download = `prescription-${selectedPrescription.patientId.firstName}-${new Date().toISOString()}.png`;
       link.href = dataUrl;
       link.click();
+      toast.success("Prescription downloaded successfully.");
     } catch (error) {
       console.error('Error downloading prescription:', error);
+      toast.error("Error downloading prescription.");
     }
   };
 
