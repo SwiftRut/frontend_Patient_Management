@@ -19,7 +19,6 @@ const DoctorEdit = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  console.log(doctorData);
   
   useEffect(() => {
     getAllHospitals();
@@ -29,14 +28,11 @@ const DoctorEdit = () => {
           const response = await apiService.GetDoctorById(doctorId);
           if (response.data.data) {
             const doctorInfo = response.data.data;
-            console.log(doctorInfo.hospitalId,"<<<< doctorInfo");
             const selectedHospital = allHospitals.find(hospital => hospital.name === doctorInfo.hospitalId.name);
-            console.log(selectedHospital, "<<<<<<<<<<<<<<<<<<<<");
             setDoctorData(prevData => ({
               ...prevData,
               countryCode:doctorInfo.countryCode,            
             }));
-            console.log(doctorInfo.hospitalId._id , "hospitalId")
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
               country => country.name === doctorInfo.country
@@ -68,6 +64,7 @@ const DoctorEdit = () => {
         
       } catch (error) {
         console.error("Error fetching doctor data:", error);
+        toast.error("Error fetching doctor data");
       } finally {
         setLoading(false);
       }
@@ -184,15 +181,13 @@ const DoctorEdit = () => {
       //remove old hospitalIds from formData
       formData.delete('hospitalId');
       formData.append('hospitalId', doctorData.hospitalId._id);
-      console.log(doctorData.hospitalId._id, "<<<<<<<<<<<<<<<<<<<<");
       const response = await apiService.EditDoctor(doctorId, formData);
       console.log("Doctor updated successfully:", response.data);
       toast.success("Doctor updated successfully!");
-      alert("Doctor updated successfully!");
       navigate("/doctorManagement");
     } catch (error) {
       console.error("Error updating doctor:", error);
-      alert("An error occurred while updating the doctor.");
+      toast.error("Error updating doctor");
     }
   };
 
