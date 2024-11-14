@@ -4,6 +4,7 @@ import {
 } from 'recharts';
 import classNames from 'classnames';
 import apiService from '../../services/api'; // Adjust the path to your API service
+import toast from 'react-hot-toast';
 
 const PatientSummary = () => {
   const [activeTab, setActiveTab] = useState('Week');
@@ -60,6 +61,7 @@ const PatientSummary = () => {
         setDailyData(dailyPatients);
       } catch (error) {
         console.error("Error fetching patient data:", error);
+        toast.error("Error fetching patient data");
       }
     };
 

@@ -23,9 +23,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllHospitals();
       setAllHospitals(response.data.data);
-      toast.success("All hospitals fetched successfully");
     } catch (error) {
-      console.log("Error fetching hospitals:", error);
+      console.error("Error fetching hospitals:", error);
       toast.error("Error fetching hospitals");
       throw error;
     }
@@ -48,7 +47,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAdminProfile(id);
       setUserData(response.data);
-      toast.success("Admin profile fetched successfully");
     } catch (error) {
       console.error("Error fetching admin profile:", error);
       toast.error("Error fetching admin profile");
@@ -73,9 +71,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetPatientProfile(id);
       setUserData(response.data.data);
-      toast.success("Patient profile fetched successfully");
     } catch (error) {
-      console.log("Error fetching patient profile:", error);
+      console.error("Error fetching patient profile:", error);
       toast.error("Error fetching patient profile");
       throw error;
     }
@@ -87,7 +84,7 @@ export const GlobalProvider = ({ children }) => {
       setUserData(response.data.data);
       toast.success("Patient Edited Successful");
     } catch (error) {
-      console.log("Error editing patient profile:", error);
+      console.error("Error editing patient profile:", error);
       toast.error("Error editing patient profile");
       throw error;
     }
@@ -100,7 +97,7 @@ export const GlobalProvider = ({ children }) => {
       setUserData(response.data.data);
       toast.success("Patient Edited Successful");
     } catch (error) {
-      console.log("Error fetching doctor profile:", error);
+      console.error("Error fetching doctor profile:", error);
       toast.error("Error fetching doctor profile");
       throw error;
     }
@@ -112,7 +109,7 @@ export const GlobalProvider = ({ children }) => {
       setUserData(response.data.data);
       toast.success("Doctor Edited Successful");
     } catch (error) {
-      console.log("Error editing doctor profile:", error);
+      console.error("Error editing doctor profile:", error);
       toast.error("Error editing doctor profile");
       throw error;
     }
@@ -137,7 +134,7 @@ export const GlobalProvider = ({ children }) => {
       setBill(response.data.data);
       toast.success("bill updated successfully");
     } catch (error) {
-      console.log("Error updating bill:", error);
+      console.error("Error updating bill:", error);
       toast.error("Error updating bill");
       throw error;
     }
@@ -147,9 +144,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetBills();
       setAllBills(response.data.data);
-      toast.success("All bills fetched successfully");
     } catch (error) {
-      console.log("Error fetching bills:", error);
+      console.error("Error fetching bills:", error);
       toast.error("Error fetching bills");
       throw error;
     }
@@ -159,9 +155,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetBillsById();
       setAllBillsById(response.data.data);
-      toast.success("All bills fetched successfully");
     } catch (error) {
-      console.log("Error fetching bills:", error);
+      console.error("Error fetching bills:", error);
       toast.error("Error fetching bills");
       throw error;
     }
@@ -171,10 +166,9 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetBillById(id);
       setBill(response.data.data);
-      toast.success("Bill fetched successfully");
       return response.data.data;
     } catch (error) {
-      console.log("Error fetching bill by ID:", error);
+      console.error("Error fetching bill by ID:", error);
       toast.error("Error fetching bill by ID");
       throw error;
     }
@@ -185,7 +179,7 @@ export const GlobalProvider = ({ children }) => {
       await apiService.DeleteBill(id);
       toast.success("Bill deleted successfully");
     } catch (error) {
-      console.log("Error deleting bill:", error);
+      console.error("Error deleting bill:", error);
       toast.error("Error deleting bill");
       throw error;
     }
@@ -196,9 +190,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllAppointments();
       setAllAppointments(response.data.data);
-      toast.success("All appointments fetched successfully");
     } catch (error) {
-      console.log("Error fetching appointments:", error);
+      console.error("Error fetching appointments:", error);
       toast.error("Error fetching appointments");
       throw error;
     }
@@ -207,9 +200,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllTodayAppointments(id);
       setAllAppointments(response.data);
-      toast.success("All appointments fetched successfully");
     } catch (error) {
-      console.log("Error fetching appointments:", error);
+      console.error("Error fetching appointments:", error);
       toast.error("Error fetching appointments");
       throw error;
     }
@@ -219,10 +211,9 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointmentById(id);
       console.log("Fetched appointment:", response);
-      toast.success("Appointment fetched successfully");
       return response.data;
     } catch (error) {
-      console.log("Error fetching appointment by ID:", error);
+      console.error("Error fetching appointment by ID:", error);
       toast.error("Error fetching appointment by ID");
       throw error;
     }
@@ -233,9 +224,8 @@ export const GlobalProvider = ({ children }) => {
       const response = await apiService.GetALLAppointmentById(patientId);
       console.log("Fetched appointment:", response);
       setAllAppointmentsById(response.data);
-      toast.success("Appointment fetched successfully");
     } catch (error) {
-      console.log("Error fetching appointment by ID:", error);
+      console.error("Error fetching appointment by ID:", error);
       toast.error("Error fetching appointment by ID");
       throw error;
     }
@@ -246,7 +236,7 @@ export const GlobalProvider = ({ children }) => {
       await apiService.EditAppointment(id, userData);
       toast.success("Appointment edited successfully");
     } catch (error) {
-      console.log("Error editing appointment:", error);
+      console.error("Error editing appointment:", error);
       toast.error("Error editing appointment");
       throw error;
     }
@@ -261,7 +251,7 @@ export const GlobalProvider = ({ children }) => {
         throw new Error(response.message);
       }
     } catch (error) {
-      console.log("Error canceled appointment:", error);
+      console.error("Error canceled appointment:", error);
       toast.error("Error canceled appointment");
       throw error;
     }
@@ -272,9 +262,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetChatHistory(doctorId, patientId);
       return response.data;
-      toast.success("Chat history fetched successfully");
     } catch (error) {
-      console.log("Error fetching chat history:", error);
+      console.error("Error fetching chat history:", error);
       toast.error("Error fetching chat history");
       throw error;
     }
@@ -283,10 +272,9 @@ export const GlobalProvider = ({ children }) => {
   const getDoctorContacts = async (patientId) => {
     try {
       const response = await apiService.GetDoctorContacts(patientId);
-      toast.success("Doctor contacts fetched successfully");
       return response.data;
     } catch (error) {
-      console.log("Error fetching doctor contacts:", error);
+      console.error("Error fetching doctor contacts:", error);
       toast.error("Error fetching doctor contacts");
       throw error;
     }
@@ -295,10 +283,9 @@ export const GlobalProvider = ({ children }) => {
   const getPatientContacts = async (doctorId) => {
     try {
       const response = await apiService.GetPatientContacts(doctorId);
-      toast.success("Patient contacts fetched successfully");
       return response.data;
     } catch (error) {
-      console.log("Error fetching patient contacts:", error);
+      console.error("Error fetching patient contacts:", error);
       toast.error("Error fetching patient contacts");
       throw error;
     }
@@ -313,7 +300,7 @@ export const GlobalProvider = ({ children }) => {
       }
       toast.success("Appointment created successfully");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.success("Patient Edited Successful");
       throw error;
     }
@@ -353,9 +340,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllPrescriptions();
       setAllPrescriptions(response.data);
-      toast.success("Prescription fetched successfully");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Error fetching prescriptions");
       throw error;
     }
@@ -365,9 +351,8 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointsForDoctor(doctorId);
       setAllAppointments(response.data.data);
-      toast.success("Appointments fetched successfully");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Error fetching appointments");
       throw error;
     }
@@ -376,11 +361,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetAppointsForPatient(patientId);
       setAllAppointments(response.data.data);
-      toast.success("Appointment fetched successfully");
       return response.data.data;
     } catch (error) {
       console.error(error);
       toast.error("Error fetching appointments");
+      throw error;
     }
   };
 
@@ -404,7 +389,6 @@ export const GlobalProvider = ({ children }) => {
   const findPatientPrescriptions = async (patientId) => {
     try {
       const response = await apiService.GetPrescriptionById(patientId);
-      toast.success("Prescription fetched successfully");
       setPatientPrescription(response.data);
     } catch (error) {
       console.error("Error creating prescription:", error);
@@ -422,6 +406,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
       toast.error("Error appointment done");
+      throw error;
     }
   };
 

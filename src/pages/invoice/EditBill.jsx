@@ -5,6 +5,7 @@ import { formDataObject, PatientBillFields } from './Contants';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useDoctor } from '../../hooks/useDoctor';
+import toast from "react-hot-toast";
 
 const EditBill = () => {
   const { id } = useParams();
@@ -45,9 +46,11 @@ const EditBill = () => {
           setError("No data returned from server");
         }
         await getAllDoctors();
+        toast.success("Bill updated successfully.");
       } catch (error) {
         console.error("Error fetching bill data:", error);
         setError("Error fetching bill data. Please try again.");
+        toast.error("Error fetching bill data.");
       } finally {
         setLoading(false);
       }
@@ -68,9 +71,11 @@ const EditBill = () => {
     try {
       await updateBill(formData, id);
       navigate("/");
+      toast.success("Bill updated successfully.");
     } catch (error) {
       console.error("Error submitting form:", error);
       setError("Error updating bill. Please try again.");
+      toast.error("Error updating bill. Please try again.");
     }
   };
 

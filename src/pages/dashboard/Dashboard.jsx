@@ -12,6 +12,7 @@ import PatientsStatistics from "../../component/PatientComponents/PatientsStatis
 import PatientsBreakdown from "../../component/PatientComponents/PatienBreakDown.jsx";
 import apiService from "../../services/api.js";
 import "./dashboard.css";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Dashboard = () => {
         }
       } catch (error) {
         console.error("Error fetching all appointments:", error);
+        toast.error("Error fetching all appointments");
         setTotalAppointments(0);
       }
     };
@@ -52,6 +54,7 @@ const Dashboard = () => {
         setTodaysAppointments(filteredAppointments);
       } catch (error) {
         console.error("Error fetching today's appointments:", error);
+        toast.error("Error fetching today's appointments");
       }
     };
 
@@ -62,6 +65,7 @@ const Dashboard = () => {
         setTotalPatients(data.length);
       } catch (error) {
         console.error("Error fetching patients:", error);
+        toast.error("Error fetching patients")
       }
     };
 
@@ -72,6 +76,7 @@ const Dashboard = () => {
         setTotalDoctors(data.length);
       } catch (error) {
         console.error("Error fetching doctors:", error);
+        toast.error("Error fetching doctors");
       }
     };
 

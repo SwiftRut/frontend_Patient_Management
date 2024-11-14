@@ -153,6 +153,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Logout failed:", error);
       toast.error("Logout Failed");
+      throw error;
     }
   };
 

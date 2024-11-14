@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import classNames from "classnames";
 import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 const AppointmentGraph = () => {
   const [activeTab, setActiveTab] = useState("Year");
@@ -23,6 +24,7 @@ const AppointmentGraph = () => {
         setAppointments(response.data.data);
       } catch (error) {
         console.error("Error fetching patient data:", error);
+        toast.error("Error fetching patient data.");
       }
     };
 

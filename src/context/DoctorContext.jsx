@@ -10,10 +10,9 @@ export const DoctorProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllDoctors();
       setAllDoctors(response.data.data);
-      toast.success("All doctors fetched successfully")
       return response.data.data[0]._id;
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching doctors:", error);
       toast.error("Error fetching doctors");
       throw error;
     }

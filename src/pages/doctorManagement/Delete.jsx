@@ -15,11 +15,13 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
         await apiService.DeleteDoctor(deleteId);
         onDeleteSuccess(deleteId);
         onClose();
+        toast.success("Doctor deleted successfully");
       } catch (error) {
         setError(
           "Error deleting doctor: " + (error.response ? error.response.data.message : error.message)
         );
         toast.error("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
+        console.error("Error deleting doctor:", error);
       } finally {
         setLoading(false);
       }

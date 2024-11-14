@@ -48,6 +48,7 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
       } catch (error) {
         console.error("Failed to download image:", error);
         toast.error("Failed to download the prescription image. Please try again.");
+        throw error;
       }
     }
   };

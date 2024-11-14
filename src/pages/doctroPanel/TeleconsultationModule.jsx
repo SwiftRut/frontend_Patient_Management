@@ -6,6 +6,7 @@ import CustomDateModal from "../../component/modals/CustomDateModal";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } = useGlobal();
@@ -23,8 +24,10 @@ export default function TeleconsultationModule() {
     try {
       await cancelAppointment(appointmentId);
       getAppointmetnsForDoctor(user.id);
+      toast.success("Appointment canceled successfully.");
     } catch (error) {
       console.error("Failed to cancel appointment", error);
+      toast.error("Failed to cancel appointment.");
     }
   };
 

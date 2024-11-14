@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Onsite from "./Onsite"; // Import the Onsite component
 import Delete from "./Delete.jsx";
 import { useDoctor } from "../../hooks/useDoctor.jsx";
+import toast from "react-hot-toast";
 export default function DoctorManagement() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,11 +26,13 @@ export default function DoctorManagement() {
     const fetchDoctors = async () => {
       try {
         await getAllDoctors();
+        
       } catch (error) {
         setError(
           "Error fetching doctors: " +
             (error.response ? error.response.data.message : error.message)
         );
+        toast.error("Error fetching doctors");
       } finally {
         setLoading(false);
       }

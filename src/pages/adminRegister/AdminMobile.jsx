@@ -32,6 +32,7 @@ const AdminMobile = () => {
       setSuccessMessage(response.data.message);
 
       navigate('/verifyOtp', { state: { identifier } });
+      toast.success("Login Successful");
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message)
@@ -58,6 +59,7 @@ const AdminMobile = () => {
       toast.success(response.data.message)
       setSuccessMessage(response.data.message);
       navigate('/dashboard'); // After successful login
+      toast.success("Login Successful");
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message)

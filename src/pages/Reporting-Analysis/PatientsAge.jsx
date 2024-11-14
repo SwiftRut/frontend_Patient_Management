@@ -2,6 +2,7 @@ import { FaDotCircle } from "react-icons/fa";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { useState, useEffect } from "react";
 import apiService from "../../services/api"; // Adjust path if necessary
+import toast from "react-hot-toast";
 
 const PatientsAge = () => {
   const [data, setData] = useState([]); // Start with an empty array
@@ -46,7 +47,17 @@ const PatientsAge = () => {
         const formattedData = Object.keys(ageGroups).map((key, index) => ({
           name: key,
           value: ageGroups[key],
-          color: index < 6 ? ["#F65D79", "#506EF2", "#51D2A6", "#F6A52D", "#FACF2E", "#9253E1"][index] : "#8884d8", // Default color if not provided
+          color:
+            index < 6
+              ? [
+                  "#F65D79",
+                  "#506EF2",
+                  "#51D2A6",
+                  "#F6A52D",
+                  "#FACF2E",
+                  "#9253E1",
+                ][index]
+              : "#8884d8", // Default color if not provided
         }));
 
         // console.log("Formatted Data for Chart:", formattedData); // Log formatted data
@@ -58,6 +69,7 @@ const PatientsAge = () => {
         setTotalPatients(total);
       } catch (error) {
         console.error("Error fetching patient data:", error);
+        toast.error("Error fetching patient data");
       }
     };
 
@@ -78,7 +90,7 @@ const PatientsAge = () => {
           <div className="Patients-data flex w-1/2">
             {/* Render the PieChart with dynamic data */}
             {data.length > 0 ? ( // Check if data is not empty
-              <ResponsiveContainer >
+              <ResponsiveContainer>
                 <PieChart>
                   <Pie
                     data={data}

@@ -115,6 +115,7 @@ const AdminRegistration = () => {
       await fetchData();
       setHospitalFormData(HospitalFormData);
       setIsModalOpen(false);
+      toast.success("Hospital created successfully");
     } catch (error) {
       toast.error("Error creating hospital");
       console.error("Error creating hospital:", error);

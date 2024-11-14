@@ -6,6 +6,7 @@ import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
 import PatientSummary from "../Reporting-Analysis/PatientSummary";
 import PatientsAge from "../Reporting-Analysis/PatientsAge";
 import apiService from "../../services/api.js";
+import toast from "react-hot-toast";
 
 export default function ReportingAndAnalytics() {
   const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
@@ -21,6 +22,7 @@ export default function ReportingAndAnalytics() {
         console.log(data,"<<<<<<<<<<<<<<<<<<<<data you are reporting");
       } catch (error) {
         console.error("Error fetching reporting and analytics:", error);
+        toast.error("Error fetching reporting and analytics");
       }
     };
     const fetchPatients = async () => {
@@ -30,6 +32,7 @@ export default function ReportingAndAnalytics() {
         countPatientsByDisease(data);
       } catch (error) {
         console.error("Error fetching patients:", error);
+        toast.error("Error fetching patients");
       }
     };
 
@@ -59,6 +62,7 @@ export default function ReportingAndAnalytics() {
         setDoctorSpecialtyData(specialtyDataArray);
       } catch (error) {
         console.error("Error fetching doctors:", error);
+        toast.error("Error fetching doctors")
       }
     };
 
