@@ -13,7 +13,8 @@ import PaymentMethod from "./billPayment/PaymentMethod";
 import DoctorAdd from "./adminPanel/DoctorAdd";
 import DoctorEdit from "./adminPanel/DoctorEdit";
 import CreateBill from "./invoice/CreateBill";
-import EditBill from "./invoice/EditBill";``
+import EditBill from "./invoice/EditBill";
+``;
 import EditDesignInvoice from "./billPayment/EditDesignInvoice";
 import MainBill from "./patientPanel/MainBill";
 
@@ -21,7 +22,7 @@ export default function AdminPanel() {
   return (
     <>
       <Sidebar />
-      <div className="main-content h-screen overflow-y-hidden">
+      <div className="main-content h-screen overflow-y-scroll">
         <Header />
 
         <Routes>
@@ -45,10 +46,7 @@ export default function AdminPanel() {
           <Route path="insuranceClaims" element={<InsuranceClaims />} />
           <Route path="paymentMethod" element={<PaymentMethod />} />
 
-          <Route
-            path="reportingAndAnalytics"
-            element={<ReportingAndAnalytics />}
-          />
+          <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
         </Routes>
       </div>
     </>

@@ -25,6 +25,8 @@ input {
 .main-content {
   width: 83%;
   margin-left: 17%;
+  scrollbar-color: #9f9fa1 #f4f4f4;
+  scrollbar-width: thin;
 }
 
 .registration-section .row .main {
@@ -1022,6 +1024,152 @@ input {
   top: 0px;
 }
 
+@media (max-width: 1200px) {
+  .admin-mobile-section .row .main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .admin-mobile-section .row .main .form {
+    padding: 60px 40px;
+    width: 50%;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content {
+    padding: 30px;
+  }
+  .admin-mobile-section .row .main .img-box {
+    padding: 60px 40px;
+    width: 50%;
+  }
+  .admin-mobile-section .row .main .img-box .slider {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+    width: 24px;
+  }
+}
+@media (max-width: 992px) {
+  .admin-mobile-section .row .main .form {
+    width: 100%;
+    padding: 40px 20px;
+    order: 1;
+  }
+  .admin-mobile-section .row .main .img-box {
+    width: 100%;
+    padding: 30px 20px;
+    order: 2;
+  }
+  .admin-mobile-section .row .main .img-box .slider {
+    max-width: 400px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots {
+    bottom: -15px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot {
+    width: 7px;
+    height: 7px;
+    margin: 0 3px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+    width: 21px;
+  }
+}
+@media (max-width: 768px) {
+  .admin-mobile-section .row .main .form {
+    padding: 30px 15px;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content {
+    padding: 20px;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content .head p {
+    font-size: 28px;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content .note p {
+    font-size: 14px;
+  }
+  .admin-mobile-section .row .main .img-box {
+    padding: 20px 15px;
+  }
+  .admin-mobile-section .row .main .img-box .slider {
+    max-width: 300px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots {
+    bottom: -12px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot {
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+    width: 18px;
+  }
+}
+@media (max-width: 576px) {
+  .admin-mobile-section .row .main .form {
+    padding: 20px 10px;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content {
+    padding: 15px;
+  }
+  .admin-mobile-section .row .main .form .admin-mobile-content .head p {
+    font-size: 24px;
+  }
+  .admin-mobile-section .row .main .img-box {
+    padding: 15px 10px;
+  }
+  .admin-mobile-section .row .main .img-box .slider {
+    max-width: 250px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots {
+    bottom: -10px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot {
+    width: 5px;
+    height: 5px;
+    margin: 0 2px;
+  }
+  .admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+    width: 15px;
+  }
+}
+.admin-mobile-section .row .main .img-box .slider {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.admin-mobile-section .row .main .img-box .slider .dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+}
+.admin-mobile-section .row .main .img-box .slider .dots .dot {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+}
+.admin-mobile-section .row .main .img-box .slider .dots .dot.active {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
 .admin-otp-section .row .main {
   height: 100vh;
 }
@@ -1364,6 +1512,146 @@ input {
   position: absolute;
   right: 0px;
   top: 0px;
+}
+
+@media (max-width: 1200px) {
+  .changePassword-section .row .main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .changePassword-section .row .main .form {
+    padding: 60px 40px;
+    width: 50%;
+  }
+  .changePassword-section .row .main .form .changePassword-content {
+    padding: 30px;
+  }
+  .changePassword-section .row .main .img-box {
+    padding: 60px 40px;
+    width: 50%;
+  }
+  .changePassword-section .row .main .img-box .slider {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .changePassword-section .row .main .img-box .slider .dots {
+    bottom: -20px;
+    left: 50%;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot.active {
+    width: 24px;
+  }
+}
+@media (max-width: 992px) {
+  .changePassword-section .row .main .form {
+    width: 100%;
+    padding: 40px 20px;
+    order: 1;
+  }
+  .changePassword-section .row .main .img-box {
+    width: 100%;
+    padding: 30px 20px;
+    order: 2;
+  }
+  .changePassword-section .row .main .img-box .slider {
+    max-width: 400px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots {
+    bottom: -15px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot {
+    width: 7px;
+    height: 7px;
+    margin: 0 3px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot.active {
+    width: 21px;
+  }
+}
+@media (max-width: 768px) {
+  .changePassword-section .row .main .form {
+    padding: 30px 15px;
+  }
+  .changePassword-section .row .main .form .changePassword-content {
+    padding: 20px;
+  }
+  .changePassword-section .row .main .form .changePassword-content .head p {
+    font-size: 28px;
+  }
+  .changePassword-section .row .main .img-box {
+    padding: 20px 10px;
+  }
+  .changePassword-section .row .main .img-box .slider {
+    max-width: 300px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots {
+    bottom: -12px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot {
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot.active {
+    width: 18px;
+  }
+}
+@media (max-width: 576px) {
+  .changePassword-section .row .main .form {
+    padding: 20px 10px;
+  }
+  .changePassword-section .row .main .form .changePassword-content {
+    padding: 15px;
+  }
+  .changePassword-section .row .main .form .changePassword-content .head p {
+    font-size: 24px;
+  }
+  .changePassword-section .row .main .img-box {
+    padding: 15px 10px;
+  }
+  .changePassword-section .row .main .img-box .slider {
+    max-width: 250px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots {
+    bottom: -10px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot {
+    width: 5px;
+    height: 5px;
+    margin: 0 2px;
+  }
+  .changePassword-section .row .main .img-box .slider .dots .dot.active {
+    width: 15px;
+  }
+}
+.changePassword-section .row .main .img-box .slider {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.changePassword-section .row .main .img-box .slider .dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+}
+.changePassword-section .row .main .img-box .slider .dots .dot {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(107.38deg, #4c49ed 2.61%, #020067 101.2%);
+}
+.changePassword-section .row .main .img-box .slider .dots .dot.active {
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .login-section .row .main {
