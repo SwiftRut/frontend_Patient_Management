@@ -388,7 +388,7 @@ const DoctorAdd = () => {
                           <div className="input-box">
                             <div className="label">Experience</div>
                             <input
-                              type="text"
+                              type="number"
                               name="experience"
                               placeholder="Enter Experience in Years"
                               maxLength={10}
@@ -701,7 +701,7 @@ const DoctorAdd = () => {
                         <div className="input-box">
                           <div className="label">Emergency Contact</div>
                           <input
-                            type="text"
+                            type="tel"
                             name="emergencyContactNo"
                             placeholder="Enter Emergency Contact"
                             maxLength={15}
