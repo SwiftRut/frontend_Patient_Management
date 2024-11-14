@@ -1,12 +1,8 @@
 import React from "react";
-import { useAuth } from "../hooks/useAuth";
-import { useGlobal } from "../hooks/useGlobal";
+
 import "./ErrorPage.css";
 
 export const ErrorPage = () => {
-  const { userData } = useGlobal();
-  console.log(userData);
-
   return (
     <section class="page_404">
       <div class="">

@@ -18,9 +18,9 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div>
+        // make the componnet center
+        <div className="center h-screen w-100 d-flex align-items-center justify-content-center ">
           <ErrorPage />
-          <button onClick={this.handleReload}>Reload</button>
         </div>
       );
     }
