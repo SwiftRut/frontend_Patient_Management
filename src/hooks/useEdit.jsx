@@ -23,7 +23,7 @@ export const useEdit = () => {
   useEffect(() => {    
       setProfile((prevProfile) => ({
         ...prevProfile,
-        hospitalId: profile.hospitalId?._id || profile.hospitalId || profile.hospital._id,
+        hospitalId: profile?.hospitalId?._id || profile?.hospitalId || profile?.hospital?._id,
       }));
   }, [allHospitals]);
   const handleInputChange = (e) => {
