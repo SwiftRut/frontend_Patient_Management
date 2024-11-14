@@ -78,7 +78,7 @@ const PatientsAge = () => {
           <div className="Patients-data flex w-1/2">
             {/* Render the PieChart with dynamic data */}
             {data.length > 0 ? ( // Check if data is not empty
-              <ResponsiveContainer height={300}>
+              <ResponsiveContainer >
                 <PieChart>
                   <Pie
                     data={data}
