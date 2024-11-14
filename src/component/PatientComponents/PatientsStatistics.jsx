@@ -37,6 +37,7 @@ const PatientsStatistics = () => {
     } catch (error) {
       console.error("Failed to fetch patient data", error);
       setError('Failed to fetch patient data.'); 
+      toast.error("Failed to fetch patient data");
     }
   };
 

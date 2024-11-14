@@ -32,6 +32,7 @@ export default function PatientsBreakdown() {
       setTotalPatients(oldPatientsCount + newPatientsCount);
     } catch (error) {
       setError('Failed to fetch patient data.');
+      toast.error('Failed to fetch patient data.');
     }
   };
 

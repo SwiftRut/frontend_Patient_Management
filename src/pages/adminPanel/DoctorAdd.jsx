@@ -80,7 +80,7 @@ const DoctorAdd = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a valid PNG or JPEG file for the profile picture.");
+      toast.error("Please upload a valid PNG or JPEG file for the profile picture.");
     }
   };
 

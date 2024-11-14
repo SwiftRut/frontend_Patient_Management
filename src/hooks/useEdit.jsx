@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './useAuth';
 import { useGlobal } from './useGlobal';
+import toast from 'react-hot-toast';
 
 export const useEdit = () => {
   const navigate = useNavigate();
@@ -91,6 +92,7 @@ export const useEdit = () => {
       }
     } catch (error) {
       console.error('Error saving profile:', error);
+      toast.error('Error saving profile');
     }
   };
 
