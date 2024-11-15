@@ -399,7 +399,7 @@
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) {
   width: 32%;
 }
-.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) input {
+.edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(5) select {
   width: 100%;
 }
 .edit-section .row .main .profile-setting .content .right .content .form-box form .input-box:nth-child(6) {

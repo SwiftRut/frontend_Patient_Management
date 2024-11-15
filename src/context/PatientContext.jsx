@@ -2,6 +2,7 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import apiService from '../services/api';
+import toast from 'react-hot-toast';
 
 export const PatientContext = createContext();
 
@@ -14,10 +15,10 @@ export const PatientProvider = ({ children }) => {
     try {
       const response = await apiService.GetAllPatients();
       setAllPatients(response.data.data); 
-      console.log(response.data.data, "<<<<<<<<<<<<<<<<<<<< all Patients");
       return response.data.data; 
     } catch (error) {
       console.error("Error fetching patients:", error);
+      toast.error("Error fetching patients");
       throw error;
     }
   };
@@ -27,10 +28,10 @@ export const PatientProvider = ({ children }) => {
     try {
       const response = await apiService.GetPatientById(id);
       setPatientDetails(response.data.data); 
-      console.log(response.data.data, "<<<<<<<<<<<<<<<<<<<< patient details");
       return response.data.data; 
     } catch (error) {
       console.error(`Error fetching patient with ID ${id}:`, error);
+      toast.error(`Error fetching patient with ID ${id}`);
       throw error;
     }
   };

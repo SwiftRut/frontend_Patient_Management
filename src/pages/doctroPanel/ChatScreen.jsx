@@ -17,6 +17,7 @@ import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 import io from "socket.io-client";
 import { useAuth } from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const socket = io(import.meta.env.VITE_API_BASE_URL);
 
@@ -71,8 +72,10 @@ const ChatScreen = () => {
       const history = await getChatHistory(doctorId, chat._id);
       setMessages(history);
       socket.emit("joinRoom", { doctorId, patientId: chat._id });
+      toast.success("Chat started successfully.");
     } catch (error) {
       console.error("Failed to fetch chat history:", error);
+      toast.error("Failed to fetch chat history.");
     }
   };
 

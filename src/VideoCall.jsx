@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import io from "socket.io-client";
+import toast from "react-hot-toast";
 
 const socket = io("http://localhost:8001");
 
@@ -45,14 +46,13 @@ const VideoCall = () => {
       console.log(`Received remote stream for room: ${room}`);
       const remoteStream = event.streams[0];
       remoteVideoRef.current.srcObject = remoteStream; // Set remote video stream
-      alert("Connected to the other user!");
+      toast.success("Connected to the other user!");
     };
 
     // Handle the case where there might be no tracks received
     peerConnection.oniceconnectionstatechange = () => {
       if (peerConnection.iceConnectionState === "disconnected") {
-        console.log("Disconnected from the peer connection");
-        alert("Disconnected from the other user.");
+        toast.error("Disconnected from the other user.");
       }
     };
 
@@ -63,7 +63,8 @@ const VideoCall = () => {
     setIsCallActive(true);
   } catch (error) {
     console.error("Error starting the call:", error);
-    alert("An error occurred while trying to start the call. Please check your camera and microphone permissions.");
+    toast.error("An error occurred while trying to start the call. Please check your camera and microphone permissions.");
+    throw error;
   }
 };
 
@@ -98,8 +99,8 @@ const VideoCall = () => {
       peerConnection.ontrack = (event) => {
         console.log(`Received remote stream for room: ${room}`);
         const remoteStream = event.streams[0];
-        remoteVideoRef.current.srcObject = remoteStream; // Set remote video stream
-        alert("Connected to the other user!");
+        remoteVideoRef.current.srcObject = remoteStream; 
+        toast.success("Connected to the other user!");
       };
     });
 
@@ -119,7 +120,7 @@ const VideoCall = () => {
 
     socket.on("userJoined", (data) => {
       const { name } = data;
-      alert(`${name} has joined the room!`); // Notify when a user joins
+      toast.success(`${name} has joined the room!`); 
     });
 
     return () => {

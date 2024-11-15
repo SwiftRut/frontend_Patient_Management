@@ -9,6 +9,7 @@ import { useGlobal } from "../../../hooks/useGlobal";
 import { useAuth } from "../../../hooks/useAuth";
 import moment from 'moment';
 import * as htmlToImage from 'html-to-image';
+import toast from "react-hot-toast";
 
 const PersonalHealthRecord = () => {
   const [selectedPrescription, setSelectedPrescription] = useState(null);
@@ -71,8 +72,10 @@ const PersonalHealthRecord = () => {
       link.download = `prescription-${modalData.patientId.firstName}-${new Date().toISOString()}.png`;
       link.href = dataUrl;
       link.click();
+      toast.success("Prescription downloaded successfully.");
     } catch (error) {
       console.error('Error downloading prescription:', error);
+      toast.error("Error downloading prescription.");
     } finally {
       setIsDownloading(false);
     }
@@ -145,7 +148,9 @@ const PersonalHealthRecord = () => {
                     DOB:
                   </span>
                   <p className="text-[#141414] text-[15px] font-normal">
-                    {userData.dob}
+
+                    {/* /conver ISO in date format */}
+                    {moment(userData.dob).format('D MMM, YYYY')}
                   </p>
                 </div>
                 <div>

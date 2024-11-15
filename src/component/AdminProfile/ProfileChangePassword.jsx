@@ -17,17 +17,18 @@ const ProfileChangePassword = () => {
   const changePassword = async (id, userData) => {
     try {
       const response = await apiService.ChangePassword(id, userData);
-      alert("Password changed successfully");
-      console.log("Password changed successfully:", response);
+      toast.success("Password changed successfully");   
     } catch (error) {
       console.error("Error changing password:", error);
+      toast.error("Error changing password");
+      throw error;
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
-      alert("New Password and Confirm Password do not match.");
+      toast.error("New Password and Confirm Password do not match.");     
       return;
     }
     changePassword(user.id, { currentPassword, newPassword, confirmPassword });

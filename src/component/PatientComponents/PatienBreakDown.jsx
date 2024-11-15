@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import apiService from '../../services/api';
+import toast from 'react-hot-toast';
 
 export default function PatientsBreakdown() {
   const [data, setData] = useState([]);
@@ -32,6 +33,8 @@ export default function PatientsBreakdown() {
       setTotalPatients(oldPatientsCount + newPatientsCount);
     } catch (error) {
       setError('Failed to fetch patient data.');
+      toast.error('Failed to fetch patient data.');
+      throw error;
     }
   };
 

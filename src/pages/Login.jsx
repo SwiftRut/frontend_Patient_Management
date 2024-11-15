@@ -76,6 +76,7 @@ const Login = () => {
           window.location.href = "/doctor";
         }
       }
+      toast.success("Login Successful");
     } catch (err) {
       toast.error("Login failed. Please check your credentials.");
       console.error(err);

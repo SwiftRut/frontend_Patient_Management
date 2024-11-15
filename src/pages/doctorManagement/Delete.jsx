@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../doctorManagement/delete.css";
 import { MdDeleteSweep } from "react-icons/md";
 import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
   const [loading, setLoading] = useState(false);
@@ -14,10 +15,13 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
         await apiService.DeleteDoctor(deleteId);
         onDeleteSuccess(deleteId);
         onClose();
+        toast.success("Doctor deleted successfully");
       } catch (error) {
         setError(
           "Error deleting doctor: " + (error.response ? error.response.data.message : error.message)
         );
+        toast.error("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
+        console.error("Error deleting doctor:", error);
       } finally {
         setLoading(false);
       }

@@ -7,6 +7,7 @@ import { formDataObject, PatientBillFields } from "./Contants";
 import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
+import toast from "react-hot-toast";
 
 const CreateBill = () => {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ const CreateBill = () => {
       }));
     } catch (error) {
       console.error("Error fetching patient details:", error);
+      toast.error("Error fetching patient details.");
     }
   };
 
@@ -89,6 +91,7 @@ const CreateBill = () => {
       navigate("/"); 
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error("Error submitting form.");
     }
   };
 

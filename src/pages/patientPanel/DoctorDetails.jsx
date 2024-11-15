@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 const DoctorDetails = ({ doctorID }) => {
   const [doctor, setDoctor] = useState(null);
@@ -14,6 +15,7 @@ const DoctorDetails = ({ doctorID }) => {
       console.log(response.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
     } catch (err) {
       console.error("Error fetching doctor data:", err);
+      toast.error("Error fetching doctor data.");
       setError("Failed to fetch doctor data.");
     } finally {
       setLoading(false);

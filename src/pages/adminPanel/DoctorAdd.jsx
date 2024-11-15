@@ -21,6 +21,7 @@ const DoctorAdd = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [isoCodes, setIsoCodes] = useState([]);
 
   useEffect(() => {
     getAllHospitals();
@@ -29,25 +30,34 @@ const DoctorAdd = () => {
   useEffect(() => {
     if (formData.hospital && allHospitals.length) {
       const selectedHospital = allHospitals.find(hospital => hospital._id === formData.hospital);
+      console.log(selectedHospital)
       setFormData(prevData => ({
         ...prevData,
         hospitalName: selectedHospital?.name || prevData.hospitalName,
         hospitalAddress: selectedHospital?.address || prevData.hospitalAddress,
-        hospitalWebsite: selectedHospital?.website || prevData.hospitalWebsite,
+        hospitalWebsite: selectedHospital?.worksiteLink || prevData.hospitalWebsite,
       }));
     }
   }, [formData.hospital, allHospitals]);
+  console.log(formData)
+  
   const handleChange = (e) => {
+    console.log("IONASD")
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
 
+
     if (name === "country") {
+      console.log("hii");
+      
       const selectedCountry = countries.find(country => country.isoCode === value);
+      console.log(selectedCountry)
       setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
       setFormData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
+      setIsoCodes(selectedCountry.phonecode); // Set isoCode for use in the next step
       setCities([]); // Clear cities
     } else if (name === "state") {
       const selectedState = states.find(state => state.isoCode === value);
@@ -55,12 +65,15 @@ const DoctorAdd = () => {
       setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
     }else if (name === "hospital") {
       const selectedHospital = allHospitals.find((hospital) => hospital._id === value);
+      console.log(selectedHospital)
       setFormData({
         ...formData,
         hospital: value,
         hospitalName: selectedHospital ? selectedHospital.name : '',
         hospitalAddress: selectedHospital ? selectedHospital.address : '',
         hospitalWebsite: selectedHospital ? selectedHospital.website : '',
+        emergencyContactNo: selectedHospital ? selectedHospital.emergencyContactNo : ''
+
       });
     }
   };
@@ -80,7 +93,7 @@ const DoctorAdd = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Please upload a valid PNG or JPEG file for the profile picture.");
+      toast.error("Please upload a valid PNG or JPEG file for the profile picture.");
     }
   };
 
@@ -117,14 +130,36 @@ const DoctorAdd = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       toast.error("Password and Confirm Password do not match.");
       return;
     }
+  
+    // Fetch the country, state, and city names based on the selected ISO codes
+    const countryObj = Country.getAllCountries().find(country => country.isoCode === formData.country);
+    const countryName = countryObj?.name;
+  
+    const stateObj = State.getStatesOfCountry(formData.country).find(state => state.isoCode === formData.state);
+    const stateName = stateObj?.name;
+  
+    const cityObj = City.getCitiesOfState(formData.country, formData.state).find(city => city.name === formData.city);
+    const cityName = cityObj?.name;
+  
+    console.log("Form Data:", formData.city, formData.country, formData.state);
+    console.log("Resolved Names:", cityName, countryName, stateName, "<<<<<<<<<<<<<< this is submitted");
+    
+    if (!countryName || !stateName || !cityName) {
+      toast.error("Please select a valid country, state, and city.");
+      return;
+    }
+  
+    // Construct the full phone number
     const fullPhoneNumber = formData.countryCode + formData.phone;
+  
+    // Prepare data to submit
     const dataToSubmit = new FormData();
-
     Object.keys(formData).forEach((key) => {
       if (key === "signature" || key === "profilePicture") {
         if (formData[key]) {
@@ -134,9 +169,15 @@ const DoctorAdd = () => {
         dataToSubmit.append(key, formData[key]);
       }
     });
-
+    
+    // Set additional data
+    dataToSubmit.set("countryCode", formData.countryCode);
     dataToSubmit.set("phone", fullPhoneNumber);
-
+    dataToSubmit.set("country", countryName);
+    dataToSubmit.set("state", stateName);
+    dataToSubmit.set("city", cityName);
+  
+    // Submit the form data
     try {
       const response = await apiService.CreateDoctor(dataToSubmit);
       console.log(response.data);
@@ -149,6 +190,7 @@ const DoctorAdd = () => {
       toast.error("Failed to add doctor. Please try again later.");
     }
   };
+  
 
   return (
     <div>
@@ -264,7 +306,7 @@ const DoctorAdd = () => {
                               type="text"
                               name="qualification"
                               placeholder="Enter Doctor Qualification"
-                              maxLength={100}
+                              maxLength={30}
                               value={formData.qualification}
                               onChange={handleChange}
                             />
@@ -296,7 +338,7 @@ const DoctorAdd = () => {
                               type="text"
                               name="speciality"
                               placeholder="Enter Specialty Type"
-                              maxLength={100}
+                              maxLength={30}
                               value={formData.speciality}
                               onChange={handleChange}
                             />
@@ -388,7 +430,7 @@ const DoctorAdd = () => {
                           <div className="input-box">
                             <div className="label">Experience</div>
                             <input
-                              type="text"
+                              type="number"
                               name="experience"
                               placeholder="Enter Experience in Years"
                               maxLength={10}
@@ -417,17 +459,19 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Country Code</div>
-                            <select
+                            <input type="text" name="countryCode" value={isoCodes} disabled />
+                            {/* <select
                               name="countryCode"
-                              value={formData.countryCode}
-                              onChange={handleChange}
+                              value={isoCodes}
+                              // onChange={handleChange}
+                              disabled
                             >
                               {countryCodes.map((country, index) => (
                                 <option key={index} value={country.code}>
                                   {country.code} ({country.country})
                                 </option>
                               ))}
-                            </select>
+                            </select> */}
                             <div className="minus-circle">
                               <FaCircleMinus />
                             </div>
@@ -467,7 +511,7 @@ const DoctorAdd = () => {
                             <div className="label">Country</div>
                             <select
                               name="country"
-                              value={formData.country}
+                              // value={formData.country}
                               onChange={handleChange}
                             >
                               <option value="">Select Country</option>
@@ -626,7 +670,7 @@ const DoctorAdd = () => {
                             type="text"
                             name="currentHospital"
                             placeholder="Enter Current Hospital"
-                            maxLength={100}
+                            maxLength={30}
                             value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name) || formData.currentHospital}
                             onChange={handleChange}
                           />
@@ -644,6 +688,7 @@ const DoctorAdd = () => {
                             maxLength={100}
                             value={allHospitals?.find((item) => item._id === formData.hospital)?.name || formData.hospitalName}
                             onChange={handleChange}
+                            disabled={true}
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
@@ -677,6 +722,7 @@ const DoctorAdd = () => {
                             maxLength={200}
                             value={allHospitals?.find((item) => item._id === formData.hospital)?.address || formData.hospitalAddress}
                             onChange={handleChange}
+                            disabled={true}
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
@@ -692,6 +738,7 @@ const DoctorAdd = () => {
                             maxLength={100}
                             value={formData.hospitalWebsite}
                             onChange={handleChange}
+                            disabled={true}
                           />
                           <div className="minus-circle">
                             <FaCircleMinus />
@@ -701,11 +748,11 @@ const DoctorAdd = () => {
                         <div className="input-box">
                           <div className="label">Emergency Contact</div>
                           <input
-                            type="text"
+                            type="tel"
                             name="emergencyContactNo"
                             placeholder="Enter Emergency Contact"
                             maxLength={15}
-                            value={formData.emergencyContact}
+                            value={formData.emergencyContactNo}
                             onChange={handleChange}
                           />
                           <div className="minus-circle">

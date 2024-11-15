@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const MainBill = (modelId) => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const MainBill = (modelId) => {
         await getBillById(dataId);
       } catch (error) {
         console.error("Error fetching billing data:", error);
+        toast.error("Error fetching billing data");
       }
     };
     fetchData();

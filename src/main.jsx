@@ -15,30 +15,29 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <PatientProvider>
-        <DoctorProvider>
-          <AdminProvider>
-            <GlobalProvider>
-              <AuthProvider>
-                <Toaster
-                  position="top-center"
-                  reverseOrder={false}
-                  toastOptions={{
-                    style: {
-                      margin: "0",
-                    },
-                  }}
-                />
-                <App />
-              </AuthProvider>
-            </GlobalProvider>
-          </AdminProvider>
-        </DoctorProvider>
-      </PatientProvider>
-    </QueryClientProvider>  
-  </ErrorBoundary>
+    <GlobalProvider>
+      <AuthProvider>
+        <ErrorBoundary>
+          <QueryClientProvider client={queryClient}>
+            <PatientProvider>
+              <DoctorProvider>
+                <AdminProvider>
+                  <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                    toastOptions={{
+                      style: {
+                        margin: "0",
+                      },
+                    }}
+                  />
+                  <App />
+                </AdminProvider>
+              </DoctorProvider>
+            </PatientProvider>
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </AuthProvider>
+    </GlobalProvider>
   </BrowserRouter>
-
 );

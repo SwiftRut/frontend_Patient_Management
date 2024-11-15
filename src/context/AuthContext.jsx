@@ -21,9 +21,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.patient));
       axios.defaults.headers.common["Authorization"] = `Barer ${response.data.token}`;
       setUser(response.data.user);
+      toast.success("Login Successful");
       return true;
     } catch (error) {
       console.error("Login error:", error);
+      toast.error("Login Failed");
       throw error;
     } finally {
       setLoading(false);
@@ -37,6 +39,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
       setUser(data.user);
+      toast.success("Registration Successful");
       navigate("/login");
     } catch (error) {
       console.error("Registration error:", error);
@@ -55,9 +58,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.patient));
       axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
+      toast.success("Login Successful");
       return true;
     } catch (error) {
       console.error("Login error:", error);
+      toast.error("Login Failed");
       throw error;
     } finally {
       setLoading(false);
@@ -71,8 +76,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", data.token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
       setUser(data.user);
+      toast.success("Registration Successful");
     } catch (error) {
       console.error("Registration error:", error);
+      toast.error("Registration Failed");
       throw error;
     } finally {
       setLoading(false);
@@ -87,9 +94,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
+      toast.success("Login Successful");
       return true;
     } catch (error) {
       console.error("Login error:", error);
+      toast.error("Login Failed");
       throw error;
     } finally {
       setLoading(false);
@@ -105,6 +114,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
       setUser(response.data.user);
+      toast.success("Login Successful");
 
       // Here we have to call the function based on the user role
       if (response.data.user.role === "doctor") {
@@ -137,10 +147,13 @@ export const AuthProvider = ({ children }) => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       delete axios.defaults.headers.common["Authorization"];
+      toast.success("Logout Successful");
       navigate("/login")
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);
+      toast.error("Logout Failed");
+      throw error;
     }
   };
 

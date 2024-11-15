@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ErrorPage } from "../pages/ErrorPage";
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -17,9 +18,9 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div>
-          <h1>Something went wrong.</h1>
-          <button onClick={this.handleReload}>Reload</button>
+        // make the componnet center
+        <div className="center h-screen w-100 d-flex align-items-center justify-content-center ">
+          <ErrorPage />
         </div>
       );
     }

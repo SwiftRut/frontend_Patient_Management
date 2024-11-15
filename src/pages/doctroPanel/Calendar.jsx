@@ -6,6 +6,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import AppointmentModal from "./AppointmentModal";
 import RescheduleModal from "./RescheduleModal";
+import toast from "react-hot-toast";
 
 const localizer = momentLocalizer(moment);
 
@@ -56,8 +57,10 @@ const Calendar = ({ filterData }) => {
       await createAppointment(user.id, appointmentData);
       setEvents([...events, appointmentData]);
       handleCloseModal();
+      toast.success("Appointment booked successfully.");
     } catch (error) {
       console.error("Error booking appointment:", error);
+      toast
     }
   };
 
@@ -70,8 +73,10 @@ const Calendar = ({ filterData }) => {
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
+      toast.success("Appointment rescheduled successfully.");
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
+      toast.error("Error rescheduling appointment.");
     }
   };
 
@@ -81,8 +86,10 @@ const Calendar = ({ filterData }) => {
       const updatedEvents = events.filter(event => event.id !== appointmentId);
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
+      toast.success("Appointment deleted successfully.");
     } catch (error) {
       console.error("Error deleting appointment:", error);
+      toast.error("Error deleting appointment.");
     }
   };
 

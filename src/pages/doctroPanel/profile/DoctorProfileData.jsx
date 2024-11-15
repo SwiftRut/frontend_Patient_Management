@@ -24,8 +24,10 @@ const DoctorProfileData = () => {
     const fetchData = async () => {
       try {
         await getDoctorProfile(user.id);
+        
       } catch (error) {
         console.error(error);
+        toast.error("Error fetching doctor profile.");
       }
     }
     fetchData();

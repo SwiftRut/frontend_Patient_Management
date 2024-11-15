@@ -7,6 +7,7 @@ import PatientDetailsForm from "../PatientDetailsForm";
 import HospitalDetailsForm from "../HospitalDetailsForm";
 import AddFieldModal from "../../component/AddFieldsModal";
 import AddNewField from "./AddNewField";
+import toast from "react-hot-toast";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -65,8 +66,10 @@ const Invoice = () => {
           hospitalId: data?.hospital?._id || "",
           phoneNumber: data?.hospital?.phoneNumber || "",
         }));
+        
       } catch (error) {
         console.error("Error fetching admin profile:", error);
+        toast.error("Error fetching admin profile.");
       }
     };
     fetchData();
@@ -90,8 +93,10 @@ const Invoice = () => {
         await createBill(data);
       }
       navigate("/");
+      toast.success("Bill created successfully.");
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error("Error submitting form.");
     }
   };
 

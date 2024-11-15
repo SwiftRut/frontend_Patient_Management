@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 import apiService from "../services/api";
+import toast from "react-hot-toast";
 export const DoctorContext = createContext();
 
 export const DoctorProvider = ({ children }) => {
@@ -11,7 +12,8 @@ export const DoctorProvider = ({ children }) => {
       setAllDoctors(response.data.data);
       return response.data.data[0]._id;
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching doctors:", error);
+      toast.error("Error fetching doctors");
       throw error;
     }
   };

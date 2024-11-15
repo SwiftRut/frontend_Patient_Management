@@ -3,6 +3,7 @@ import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
+import toast from "react-hot-toast";
 
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
@@ -14,8 +15,8 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
-
   useEffect(() => {
+    toast.success("hospital might not work due to data inefficiency !!  You can continue without it!");
     getAllDoctors();
     getAllHospitals();
     getAllAppointments();
