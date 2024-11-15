@@ -216,7 +216,7 @@ const DoctorEdit = () => {
   }
   console.log(doctorData)
   console.log(selectedCountry, selectedState, selectedCity)
-  console.log(states,states.find(s => s.name == doctorData.state), cities)
+  console.log(states,states.find(s => s.name == doctorData.state), cities);
   return (
     <div className="doctorEdit-section">
       <div className="row">
@@ -286,7 +286,7 @@ const DoctorEdit = () => {
                             name: "country", 
                             type: "select", 
                             options: countries,
-                            value: countries.find(c => c.name === doctorData.country)?.isoCode || doctorData.country ||""
+                            value: countries.find(c => c.name === doctorData.country)?.isoCode ||""
                           },
                           { 
                             label: "State", 
