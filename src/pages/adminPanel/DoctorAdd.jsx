@@ -460,18 +460,6 @@ const DoctorAdd = () => {
                           <div className="input-box">
                             <div className="label">Country Code</div>
                             <input type="text" name="countryCode" value={isoCodes} disabled />
-                            {/* <select
-                              name="countryCode"
-                              value={isoCodes}
-                              // onChange={handleChange}
-                              disabled
-                            >
-                              {countryCodes.map((country, index) => (
-                                <option key={index} value={country.code}>
-                                  {country.code} ({country.country})
-                                </option>
-                              ))}
-                            </select> */}
                             <div className="minus-circle">
                               <FaCircleMinus />
                             </div>

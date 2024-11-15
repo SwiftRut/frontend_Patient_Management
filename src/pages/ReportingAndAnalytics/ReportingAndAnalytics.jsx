@@ -19,7 +19,6 @@ export default function ReportingAndAnalytics() {
         const response = await apiService.GetReporingAndAnalytics();
         const data = response.data;
         setCardData(data);
-        console.log(data,"<<<<<<<<<<<<<<<<<<<<data you are reporting");
       } catch (error) {
         console.error("Error fetching reporting and analytics:", error);
         toast.error("Error fetching reporting and analytics");
@@ -205,7 +204,7 @@ export default function ReportingAndAnalytics() {
                               cardData?.patientCountByDisease?.map((patient) => (
                                 <tr key={patient._id} className="flex">
                                   <td className="d-name">
-                                    <p>{patient._id}</p>
+                                    <p>{patient._id || "N/A"}</p>
                                   </td>
                                   <td className="status">
                                     <p>
@@ -246,15 +245,15 @@ export default function ReportingAndAnalytics() {
                             </tr>
                           </thead>
                           <tbody>
-                            {doctorSpecialtyData.map((specialty) => (
-                              <tr key={specialty.specialty} className="flex">
+                            {cardData?.doctorCountByDepartment?.map((specialty) => (
+                              <tr key={specialty._id} className="flex">
                                 <td className="d-name">
-                                  <p>{specialty.specialty}</p>
+                                  <p>{specialty._id || "N/A"}</p>
                                 </td>
                                 <td className="status">
                                   <p>
                                     <FaUsers />
-                                    <span>{specialty.doctorCount}</span>
+                                    <span>{specialty.count}</span>
                                   </p>
                                 </td>
                               </tr>
