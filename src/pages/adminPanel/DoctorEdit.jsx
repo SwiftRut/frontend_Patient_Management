@@ -19,7 +19,10 @@ const DoctorEdit = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  
+  const [isoCodes, setIsoCodes] = useState();
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   useEffect(() => {
     getAllHospitals();
     const fetchDoctor = async () => {
@@ -28,6 +31,7 @@ const DoctorEdit = () => {
           const response = await apiService.GetDoctorById(doctorId);
           if (response.data.data) {
             const doctorInfo = response.data.data;
+            setCountries(Country.getAllCountries());
             const selectedHospital = allHospitals.find(hospital => hospital.name === doctorInfo.hospitalId.name);
             setDoctorData(prevData => ({
               ...prevData,
@@ -37,17 +41,19 @@ const DoctorEdit = () => {
             const selectedCountry = Country.getAllCountries().find(
               country => country.name === doctorInfo.country
             );
+            setSelectedCountry(selectedCountry);
+
 
             if (selectedCountry) {
               // Get states for the selected country
               const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
               setStates(countryStates);
-
               // Find the state object based on the state name
               const selectedState = countryStates.find(
                 state => state.name === doctorInfo.state
               );
-
+              
+              setSelectedState(doctorInfo.state);
               if (selectedState) {
                 // Get cities for the selected state
                 const stateCities = City.getCitiesOfState(
@@ -55,6 +61,7 @@ const DoctorEdit = () => {
                   selectedState.isoCode
                 );
                 setCities(stateCities);
+                setSelectedCity(stateCities.find(city => city.name === doctorInfo.city));
               }
             }
 
@@ -70,7 +77,6 @@ const DoctorEdit = () => {
       }
     };
     fetchDoctor();
-    setCountries(Country.getAllCountries());
   }, [doctorId]);
 
  useEffect(() => {
@@ -80,6 +86,8 @@ const DoctorEdit = () => {
     );
     if (selectedCountry) {
       // Get states for the selected country
+      setIsoCodes(selectedCountry.phonecode);
+      console.log(selectedCountry.phonecode);
       const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
       setStates(countryStates);
 
@@ -102,11 +110,9 @@ const DoctorEdit = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log("something changed")
     if (name === "country") {
       const selectedCountry = countries.find(country => country.isoCode === value);
       const countryStates = State.getStatesOfCountry(value);
-      console.log(countryStates, value);
       setStates(countryStates);
       setCities(null);
       setDoctorData(prevData => ({
@@ -123,7 +129,7 @@ const DoctorEdit = () => {
       );
       
       if (selectedCountry && selectedState) {
-        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, value);
+        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, selectedState.isoCode );
         setCities(stateCities);
         setDoctorData(prevData => ({
           ...prevData,
@@ -134,7 +140,6 @@ const DoctorEdit = () => {
     }
     else if (name === "city") {
       const selectedCity = cities.find(city => city.name === value);
-      console.log(selectedCity)
       setDoctorData(prevData => ({
         ...prevData,
         city: selectedCity ? selectedCity.name : value
@@ -182,7 +187,6 @@ const DoctorEdit = () => {
       formData.delete('hospitalId');
       formData.append('hospitalId', doctorData.hospitalId._id);
       const response = await apiService.EditDoctor(doctorId, formData);
-      console.log("Doctor updated successfully:", response.data);
       toast.success("Doctor updated successfully!");
       navigate("/doctorManagement");
     } catch (error) {
@@ -210,7 +214,9 @@ const DoctorEdit = () => {
   if (loading) {
     return <p>Loading doctor data...</p>;
   }
-
+  console.log(doctorData)
+  console.log(selectedCountry, selectedState, selectedCity)
+  console.log(states,states.find(s => s.name == doctorData.state), cities)
   return (
     <div className="doctorEdit-section">
       <div className="row">
@@ -272,7 +278,7 @@ const DoctorEdit = () => {
                           { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime , options: timeOptions },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "select", options: countryCodes, value: doctorData.countryCode },
+                          { label: "Country Code", name: "countryCode", type: "text", options: countryCodes, value: doctorData.countryCode || "+" +isoCodes},
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
                           { 
@@ -280,7 +286,7 @@ const DoctorEdit = () => {
                             name: "country", 
                             type: "select", 
                             options: countries,
-                            value: countries.find(c => c.name === doctorData.country)?.isoCode || ""
+                            value: countries.find(c => c.name === doctorData.country)?.isoCode || doctorData.country ||""
                           },
                           { 
                             label: "State", 
@@ -295,7 +301,7 @@ const DoctorEdit = () => {
                             name: "city", 
                             type: "select", 
                             options: cities || [], 
-                            value: cities?.find(city => city.name === doctorData.city)?.name || null,
+                            value: selectedCity?.name || null,
                             isDisabled: !doctorData.state 
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
