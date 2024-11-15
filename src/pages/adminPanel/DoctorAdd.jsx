@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Country, State, City } from "country-state-city"; // Import country-state-city
 
 const DoctorAdd = () => {
-  // const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { getAllHospitals, allHospitals } = useGlobal();
 
