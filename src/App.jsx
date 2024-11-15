@@ -11,7 +11,7 @@ function App() {
     <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/doctor/addRecord" element={<AddRecord />} />
-
+          
           {routesConfig.map((route, index) => {
             if (route.children) {
               return (
