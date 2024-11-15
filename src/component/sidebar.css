@@ -64,8 +64,9 @@ input {
   display: flex;
   align-items: center;
 }
-.sidebar .asite .menu ul li a img {
+.sidebar .asite .menu ul li a svg {
   margin-right: 10px;
+  font-size: 22px;
 }
 .sidebar .asite .menu ul .dropdown {
   list-style: disc;
