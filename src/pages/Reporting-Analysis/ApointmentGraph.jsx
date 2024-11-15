@@ -10,62 +10,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import classNames from "classnames";
-import apiService from "../../services/api";
-import toast from "react-hot-toast";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
 
 const AppointmentGraph = () => {
   const [activeTab, setActiveTab] = useState("Year");
-  const [appointments, setAppointments] = useState([]);
+  const { cardData } = useGlobal();
 
-  useEffect(() => {
-    const getPatientData = async () => {
-      try {
-        const response = await apiService.GetAllPatients();
-        setAppointments(response.data.data);
-      } catch (error) {
-        console.error("Error fetching patient data:", error);
-        toast.error("Error fetching patient data.");
-      }
-    };
-
-    getPatientData();
-  }, []);
-
-  const yearlyData = Array(12)
-    .fill(0)
-    .map((_, index) => ({
-      month: new Date(0, index).toLocaleString("default", { month: "short" }),
-      onlineConsultation: 0,
-      otherAppointment: 0,
-    }));
-
+  // Get current month index (0 for January, 11 for December)
   const currentMonth = new Date().getMonth();
-  const monthlyData = {
-    month: new Date().toLocaleString("default", { month: "short" }),
-    onlineConsultation: 0,
-    otherAppointment: 0,
-  };
 
-  appointments.forEach((appointment) => {
-    const appointmentDate = new Date(appointment.createdAt);
-    const monthIndex = appointmentDate.getMonth();
-
-    if (isNaN(appointmentDate.getTime())) {
-      console.warn("Invalid appointment date:", appointment.createdAt);
-      return;
-    }
-
-    if (monthIndex >= 0 && monthIndex < 12) {
-      yearlyData[monthIndex].otherAppointment++;
-    }
-
-    if (appointmentDate.getMonth() === currentMonth) {
-      monthlyData.otherAppointment++;
-    }
-  });
-
-  const finalYearlyData = yearlyData;
-  const finalMonthlyData = [monthlyData];
+  // Extracting yearly and monthly data from cardData
+  const finalYearlyData = cardData?.finalYearlyData ?? [];
+  const finalMonthlyData = [cardData?.monthlyData];
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -74,7 +30,7 @@ const AppointmentGraph = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Appointment</h2>
+        <h2 className="text-lg font-semibold">Appointment Statistics</h2>
         <div className="flex space-x-2">
           <button
             className={classNames(
@@ -101,12 +57,12 @@ const AppointmentGraph = () => {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={activeTab === "Year" ? finalYearlyData : finalMonthlyData}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={activeTab === "Year" ? "month" : "month"} />
+          <XAxis dataKey="month" />
           <YAxis />
           <Tooltip />
           <Legend />
