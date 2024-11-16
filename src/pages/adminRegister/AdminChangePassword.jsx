@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import apiService from '../../services/api.js';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { toast } from "react-toastify"
+import { toast } from "react-hot-toast"
 import '../pages.css'
 
 export default function AdminChangePassword() {

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import apiService from '../../services/api.js';
-import { toast } from "react-toastify"
+import { toast } from "react-hot-toast"
 import '../pages.css';
 
 const AdminMobile = () => {
