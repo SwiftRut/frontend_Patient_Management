@@ -52,8 +52,10 @@ input {
       display: none;
     }
 
-    img {
+    svg {
+      font-size: 30px;
       padding-right: 10px;
+      color: gray;
 
       @media (max-width: 576px) {
         padding-right: 5px;

@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { breadcrumbNames } from "./constants";
 import { useAuth } from "../hooks/useAuth";
+import { IoHomeSharp } from "react-icons/io5";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -61,7 +62,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="breadcrumbs">
-        <img src="/img/home-2.png" alt="Home Icon" />
+      <IoHomeSharp />
         <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
           <NavLink to={"/"}>

@@ -67,6 +67,8 @@ input {
 }
 .onsite-section .row .main .box img {
   border-radius: 50%;
+  width: 75px;
+  height: 75px;
 }
 .onsite-section .row .main .box .info {
   color: #fff;
@@ -74,14 +76,18 @@ input {
   font-size: 18px;
   font-weight: 600;
 }
+.onsite-section .row .main .box .info h4 {
+  font-size: 20px;
+  font-weight: 800;
+}
 .onsite-section .row .main .box .info p {
   display: flex;
   color: #fff;
   background-color: #718ebf;
   border-radius: 50px;
-  padding: 10px;
+  padding: 6px 23px 6px 15px;
   margin: 10px 0;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
 }
 .onsite-section .row .main .box .info p h3 {
@@ -93,7 +99,7 @@ input {
   border-radius: 50px;
   font-size: 16px;
   border: 1px solid #fff;
-  padding: 10px 30px;
+  padding: 6px 30px;
 }
 .onsite-section .row .main .deatils .table {
   width: 100%;

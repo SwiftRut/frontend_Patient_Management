@@ -7,10 +7,14 @@ import { IoLinkSharp } from "react-icons/io5";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocation } from "react-icons/io5";
 import toast from "react-hot-toast";
+import { CiMapPin } from "react-icons/ci";
 
 const Onsite = ({ selectedDoctor, setOpenModel }) => {
   const [doctor, setDoctor] = useState({});
   const [error, setError] = useState(null);
+
+  console.log(doctor);
+  
 
   useEffect(() => {
     const fetchDoctorDetails = async () => {
@@ -48,11 +52,13 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
               <div className="box">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <img src={doctor.avtar} width="13%" />
+                    <div className="image" >
+                    <img src={doctor.avatar} />
+                    </div>
                     <div className="info">
-                      <h4>{doctor.name}</h4>
-                      <p>
-                        <img src="/image/vuesax.png" />
+                      <h4>Dr. {doctor.name}</h4>
+                      <p className="flex align-center">
+                      <CiMapPin />
                         <span>{doctor.gender}</span>
                       </p>
                     </div>

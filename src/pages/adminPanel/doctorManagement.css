@@ -260,8 +260,8 @@
 .doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) {
   width: 32%;
 }
-.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select,
-.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) select {
+.doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input,
+.doctorEdit-section .row .main .top .content .details .right .form-box form .input-box:nth-child(11) input {
   width: 100%;
 }
 .doctorAdd-section .row .main .top .content .details .right .form-box form .input-box:nth-child(12),
@@ -585,6 +585,6 @@
 .doctorEdit-section .bottom .content .details .form-box form .input-box:nth-child(2) select {
   width: 100%;
 }
-.doctorEdit-section .bottom .content .details .form-box form .input-box:nth-child(3) select {
+.doctorEdit-section .bottom .content .details .form-box form .input-box:nth-child(3) input {
   width: 100%;
 }/*# sourceMappingURL=doctorManagement.css.map */
