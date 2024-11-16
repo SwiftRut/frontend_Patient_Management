@@ -2,6 +2,11 @@ import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { MdDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import { MdAnalytics } from "react-icons/md";
+import { FaSackDollar } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [isAccordionOpen, setAccordionOpen] = useState(false);
@@ -22,19 +27,19 @@ const Sidebar = () => {
             <ul>
               <li>
                 <NavLink to={"/"}>
-                  <img src="/img/Dashboard.png" alt="Dashboard" />
+                  <MdDashboard />
                   <p>Dashboard</p>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/doctorManagement"}>
-                  <img src="/img/Doctor-Management.png" alt="Doctor Management" />
+                <FaUser />
                   <p>Doctor Management</p>
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/patientManagement"}>
-                  <img src="/img/Patient-Management.png" alt="Patient Management" />
+                <FaUsers />
                   <p>Patient Management</p>
                 </NavLink>
               </li>
@@ -43,10 +48,7 @@ const Sidebar = () => {
                 style={{ display: "flex", flexDirection: "column" }}
               >
                 <NavLink>
-                <img
-                  src="/img/BillingAndPayments.png"
-                  alt="Billing and Payments"
-                />
+                <FaSackDollar />
                 <p className="menu-item">Billing and Payments</p>
                 </NavLink>
 
@@ -73,7 +75,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink to={"/reportingAndAnalytics"}>
-                  <img src="/img/ReportingAndAnalytics.png" alt="Reporting and Analytics" />
+                <MdAnalytics />
                   <p>Reporting and Analytics</p>
                 </NavLink>
               </li>

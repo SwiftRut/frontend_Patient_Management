@@ -5,101 +5,12 @@ import { FaUsers, FaUser, FaFileAlt } from "react-icons/fa";
 import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
 import PatientSummary from "../Reporting-Analysis/PatientSummary";
 import PatientsAge from "../Reporting-Analysis/PatientsAge";
-import apiService from "../../services/api.js";
-import toast from "react-hot-toast";
-
+import { useGlobal } from "../../hooks/useGlobal.jsx";
 export default function ReportingAndAnalytics() {
-  const [doctorSpecialtyData, setDoctorSpecialtyData] = useState([]);
-  const [patientsCountData, setPatientsCountData] = useState([]);
-  const [cardData, setCardData] = useState({});
-
+  const { fetchReportingAndAnalytics, cardData } = useGlobal();
   useEffect(() => {
-    const fetchReportingAndAnalytics = async () => {
-      try {
-        const response = await apiService.GetReporingAndAnalytics();
-        const data = response.data;
-        setCardData(data);
-        console.log(data,"<<<<<<<<<<<<<<<<<<<<data you are reporting");
-      } catch (error) {
-        console.error("Error fetching reporting and analytics:", error);
-        toast.error("Error fetching reporting and analytics");
-      }
-    };
-    const fetchPatients = async () => {
-      try {
-        const response = await apiService.GetAllPatients();
-        const data = response.data.data;
-        countPatientsByDisease(data);
-      } catch (error) {
-        console.error("Error fetching patients:", error);
-        toast.error("Error fetching patients");
-      }
-    };
-
-    const fetchDoctors = async () => {
-      try {
-        const response = await apiService.GetAllDoctors();
-        const doctors = response.data.data;
-
-        const specialtyCountMap = {};
-        doctors.forEach((doctor) => {
-          const specialty = doctor.speciality;
-          if (specialty) {
-            if (!specialtyCountMap[specialty]) {
-              specialtyCountMap[specialty] = { doctorCount: 0, patientCount: 0 };
-            }
-            specialtyCountMap[specialty].doctorCount += 1;
-            specialtyCountMap[specialty].patientCount += doctor.patientsCount || 0;
-          }
-        });
-
-        const specialtyDataArray = Object.keys(specialtyCountMap).map((specialty) => ({
-          specialty,
-          doctorCount: specialtyCountMap[specialty].doctorCount,
-          patientCount: specialtyCountMap[specialty].patientCount,
-        }));
-
-        setDoctorSpecialtyData(specialtyDataArray);
-      } catch (error) {
-        console.error("Error fetching doctors:", error);
-        toast.error("Error fetching doctors")
-      }
-    };
-
-    fetchDoctors();
-    fetchPatients();
     fetchReportingAndAnalytics();
   }, []);
-
-  const countPatientsByDisease = (patients) => {
-    console.log("Patients data:", patients);
-
-    const diseaseCountMap = {};
-
-    patients.forEach((patient) => {
-      patient.appointmentId.forEach((appointment) => {
-        const disease = appointment.patient_issue;
-        console.log("Processing appointment:", appointment);
-        console.log("Disease found:", disease);
-
-        if (disease) {
-          if (!diseaseCountMap[disease]) {
-            diseaseCountMap[disease] = 0;
-          }
-          diseaseCountMap[disease]++;
-        }
-      });
-    });
-
-    const countedData = Object.keys(diseaseCountMap).map((disease) => ({
-      department: disease,
-      count: diseaseCountMap[disease],
-    }));
-
-    console.log("Counted data:", countedData);
-    setPatientsCountData(countedData);
-  };
-
   return (
     <div>
       <div className="reportingAnalytics-section">
@@ -205,7 +116,7 @@ export default function ReportingAndAnalytics() {
                               cardData?.patientCountByDisease?.map((patient) => (
                                 <tr key={patient._id} className="flex">
                                   <td className="d-name">
-                                    <p>{patient._id}</p>
+                                    <p>{patient._id || "N/A"}</p>
                                   </td>
                                   <td className="status">
                                     <p>
@@ -246,15 +157,15 @@ export default function ReportingAndAnalytics() {
                             </tr>
                           </thead>
                           <tbody>
-                            {doctorSpecialtyData.map((specialty) => (
-                              <tr key={specialty.specialty} className="flex">
+                            {cardData?.doctorCountByDepartment?.map((specialty) => (
+                              <tr key={specialty._id} className="flex">
                                 <td className="d-name">
-                                  <p>{specialty.specialty}</p>
+                                  <p>{specialty._id || "N/A"}</p>
                                 </td>
                                 <td className="status">
                                   <p>
                                     <FaUsers />
-                                    <span>{specialty.doctorCount}</span>
+                                    <span>{specialty.count}</span>
                                   </p>
                                 </td>
                               </tr>

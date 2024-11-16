@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobal } from '../../hooks/useGlobal';
 import { useDoctor } from '../../hooks/useDoctor';
 import toast from "react-hot-toast";
+import InputField from "./InputField";
 
 const EditBill = () => {
   const { id } = useParams();
@@ -90,7 +91,7 @@ const EditBill = () => {
   const HospitalBillFields = [  
     { label: "Patient Name", name: "patientName", type: "text", disabled: true, readOnly: true },
     { label: "Phone Number", name: "phone", type: "text",disabled: true },
-    { label: "Gender", name: "gender", type: "select",disabled: true, options: [
+    { label: "Gender", name: "gender", type: "select", options: [
       { label: "Select Gender", value: "" },
       { label: "Male", value: "male" },
       { label: "Female", value: "female" },
@@ -139,7 +140,7 @@ const EditBill = () => {
                   <div className="form-box">
                     <form onSubmit={handleSubmit} className="flex" id="edit-bill-form">
                       {HospitalBillFields.map((field) => (
-                        <FormInput
+                        <InputField
                           key={field.name}
                           label={field.label}
                           type={field.type}
@@ -150,6 +151,8 @@ const EditBill = () => {
                               value: e.target.value
                             }
                           })}
+                          name={field.name}
+                          options={field.options}
                           placeholder={field.placeholder}
                           disabled={field.disabled}
                           readOnly={field.readOnly || false}

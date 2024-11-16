@@ -54,11 +54,13 @@ input {
     display: none;
   }
 }
-.header .breadcrumbs img {
+.header .breadcrumbs svg {
+  font-size: 30px;
   padding-right: 10px;
+  color: gray;
 }
 @media (max-width: 576px) {
-  .header .breadcrumbs img {
+  .header .breadcrumbs svg {
     padding-right: 5px;
     max-width: 20px;
     height: auto;

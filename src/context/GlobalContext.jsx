@@ -409,10 +409,23 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-
+  const [cardData, setCardData] = useState({});
+  const fetchReportingAndAnalytics = async () => {
+    try {
+      const response = await apiService.GetReporingAndAnalytics();
+      const data = response.data;
+      setCardData(data);
+    } catch (error) {
+      console.error("Error fetching reporting and analytics:", error);
+      toast.error("Error fetching reporting and analytics");
+    }
+  };
   return (
     <GlobalContext.Provider
       value={{
+        cardData,
+        setCardData,
+        fetchReportingAndAnalytics,
         appointmentDone,
         getAllPrescriptions,
         allPrescriptions,
