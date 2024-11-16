@@ -16,6 +16,7 @@ const InputField = ({
   className,
   ...props
 }) => {
+  console.log(value)
   if (type === 'select') {
     return (
       <div className={`input-box ${className}`}>
