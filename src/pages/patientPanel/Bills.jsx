@@ -26,8 +26,8 @@ const Bills = () => {
   console.log("All Bills:", allBillsById);
 
   // Filter bills based on status
-  const unpaidBills = allBillsById.filter((bill) => bill.status === "Unpaid");
-  const paidBills = allBillsById.filter((bill) => bill.status === "Paid");
+  const unpaidBills = allBillsById?.filter((bill) => bill.status === "Unpaid");
+  const paidBills = allBillsById?.filter((bill) => bill.status === "Paid");
 
   console.log("Unpaid Bills:", unpaidBills);
   console.log("Paid Bills:", paidBills);
@@ -101,8 +101,8 @@ const Bills = () => {
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      {unpaidBills.length > 0 ? (
-                        unpaidBills.map((val, index) => (
+                      {unpaidBills?.length > 0 ? (
+                        unpaidBills?.map((val, index) => (
                           <div key={index} className="w-full mx-auto bg-white rounded-lg shadow-md">
                             <div className="bg-[#f6f8fb] p-3 flex items-center justify-between  ">
                               <h2 className="text-lg font-semibold text-foreground">
@@ -133,7 +133,7 @@ const Bills = () => {
                                   Bill Created Date
                                 </span>
                                 <p className="text-sm font-medium text-[#4F4F4F]">
-                                  {moment+(val?.createdAt).format('D MMM, YYYY')}
+                                  {moment(val?.createdAt).format('D MMM, YYYY')}
                                 </p>
                               </div>
                               <div className="mt-1 flex items-center justify-between">

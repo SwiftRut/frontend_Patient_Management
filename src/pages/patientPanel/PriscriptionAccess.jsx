@@ -93,14 +93,14 @@ export default function PrescriptionAccess() {
 
           <div className="overflow-y-auto" style={{ height: "550px" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {filteredPrescriptions.map((prescription) => (
+              {filteredPrescriptions?.map((prescription) => (
                 <div
                   key={prescription._id}
                   className="w-full mx-auto bg-white rounded-lg shadow-md"
                 >
                   <div className="bg-[#f6f8fb] p-2 flex items-center justify-between rounded-t-lg">
                     <h2 className="text-lg font-semibold text-foreground">
-                      Dr. {prescription.doctorId.name || "N/A"}
+                      Dr. {prescription?.doctorId?.name || "N/A"}
                     </h2>
                     <div className="flex">
                       {/* <div className="bg-white rounded-lg border text-[#A7A7A7] hover:text-[#0EABEB] transition duration:300 p-2 me-2">
@@ -118,7 +118,7 @@ export default function PrescriptionAccess() {
                     <div className="mt-1 flex items-center justify-between">
                       <span className="text-base font-normal text-[#818194]">Hospital Name</span>
                       <p className="text-sm font-medium text-[#4F4F4F]">
-                        {prescription.doctorId.hospitalName || "N/A"}
+                        {prescription?.doctorId?.hospitalName || "N/A"}
                       </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
