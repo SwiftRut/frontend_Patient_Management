@@ -26,7 +26,7 @@ const MainBill = (modelId) => {
       {/* Header - Adjusted image sizes and spacing */}
       <div className="flex flex-row justify-between items-center mb-2 p-4 sm:ps-6 gap-4">
         <div className="w-1/2 sm:w-[250px]">
-          <img src="/img/logo.png" className="w-full h-auto object-contain" alt="Logo" />
+          <img src="/img/logo.png" className="h-auto object-contain" alt="Logo" width="100%" height="auto" />
         </div>
         <div className="w-1/2 sm:w-[200px]">
           <img src="/img/invoice.png" className="w-full h-auto object-contain" alt="Invoice" />

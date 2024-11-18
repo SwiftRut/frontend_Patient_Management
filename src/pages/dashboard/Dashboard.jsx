@@ -224,6 +224,8 @@ const Dashboard = () => {
                         <img
                           src="../img/Frame1.png"
                           alt="No Appointments Data"
+                          style={{objectFit:"cover"
+                          }}
                         />
                       </div>
                     ) : (

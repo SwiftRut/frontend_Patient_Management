@@ -18,15 +18,19 @@ import Calendar from "../patientPanel/Calendar.jsx";
 import AllFiles from "./AllFiles.jsx";
 import AddRecord from "./AddRecord.jsx";
 import DoctorMeetingConference from "../DoctorMeetingConference/DoctorMeetingConference.jsx";
+import { useGlobal } from "../../hooks/useGlobal.jsx";
+import { SearchResult } from "../SearchResult.jsx";
 
 
 export default function DoctorPanel() {
+  const { searchTerm, setSearchTerm } = useGlobal();
+  const { selectedOption, setSelectedOption } = useGlobal();
   return (
     <>
       <DoctorHeader />
       <DoctorAsidePanel />
       <div className="main-content h-full">
-        <Routes>
+       { searchTerm === "" ? ( <Routes>
           <Route path="profile/*" element={<DoctorProfile />} />
           <Route path="edit" element={<DoctorProfileEdit />} />
           <Route path="" element={<AppointmentManagement />} />
@@ -47,6 +51,9 @@ export default function DoctorPanel() {
           <Route path="addRecord" element={<AddRecord />} />
           <Route path="vid" element={<DoctorMeetingConference />} />
         </Routes>
+         ) : (
+          <SearchResult />
+        )}
       </div>
     </>
   );

@@ -5,7 +5,7 @@ export default function Bill2() {
       <div className="main flex justify-center items-center">
         <div className="invoice">
           <div className="head">
-            <img src="/img/logo.png" width="300px" />
+            <img src="/img/logo.png" width="100%" height="auto" alt="Logo" />
             <div className="title">
               <img src="/img/invoice.png" />
             </div>

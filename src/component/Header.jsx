@@ -20,12 +20,13 @@ import { IoHomeSharp } from "react-icons/io5";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
-  const { userData, getAdminProfile} = useGlobal();
-  const {user} = useAuth();
+  const { selectedOption, setSelectedOption } = useGlobal();
+  const { searchTerm, setSearchTerm } = useGlobal();
+  const { userData, getAdminProfile } = useGlobal();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -49,20 +50,22 @@ const Header = () => {
       handleSearch();
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     console.log(user);
     getAdminProfile(user.id);
-  },[])
-  console.log(userData,"<<<<<<<<<<<<<<<<<<<<<<<<<<< header")
-  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
+  }, []);
+  console.log(userData, "<<<<<<<<<<<<<<<<<<<<<<<<<<< header");
+  const userName = `${userData?.firstName || "User"} ${
+    userData?.lastName || "Name"
+  }`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
-  console.log("image",userData)
+  console.log("image", userData);
 
   return (
-    <div className="header">
+    <div className="header sticky top-0 bg-gray-100">
       <div className="breadcrumbs">
-      <IoHomeSharp />
+        <IoHomeSharp />
         <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
           <NavLink to={"/"}>
@@ -92,7 +95,11 @@ const Header = () => {
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
-          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => handleClose(null)}
+          >
             <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
             <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>

@@ -254,7 +254,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 15px;
-  height: 310px;
+  height: 330px;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .head {
   justify-content: space-between;
@@ -278,7 +278,8 @@
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .img img {
   margin: 0px auto;
-  height: 100%;
+  height: auto;
+  max-width: 100%;
 }
 .deshbord-section .row .main .bottom .appointments-data .today-appointments .appointments-content .appointments-list {
   height: 85%;

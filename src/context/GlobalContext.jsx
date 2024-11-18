@@ -17,6 +17,8 @@ export const GlobalProvider = ({ children }) => {
   const [allBillsById, setAllBillsById] = useState([]);
   const [allAppointments, setAllAppointments] = useState([]);
   const [allAppointmentsById, setAllAppointmentsById] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedOption, setSelectedOption] = useState("All");
 
   // Hospital Management
   const getAllHospitals = async () => {
@@ -490,6 +492,10 @@ export const GlobalProvider = ({ children }) => {
         getChatHistory,
         getDoctorContacts,
         getPatientContacts,
+        searchTerm,
+        setSearchTerm,
+        selectedOption,
+        setSelectedOption,
       }}
     >
       {children}
