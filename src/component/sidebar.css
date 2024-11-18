@@ -40,7 +40,8 @@ input {
   margin-bottom: 10px;
 }
 .sidebar .asite .logo img {
-  width: 250px;
+  width: 100%;
+  height: auto;
 }
 .sidebar .asite .menu {
   height: 80%;

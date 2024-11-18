@@ -185,7 +185,7 @@ const DoctorEdit = () => {
       }
       //remove old hospitalIds from formData
       formData.delete('hospitalId');
-      formData.append('hospitalId', doctorData.hospitalId._id);
+      aata.append('hospitalId', doctorData.hospitalId._id);
       const response = await apiService.EditDoctor(doctorId, formData);
       toast.success("Doctor updated successfully!");
       navigate("/doctorManagement");
