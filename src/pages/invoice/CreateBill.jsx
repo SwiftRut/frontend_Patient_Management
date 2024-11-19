@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
-import "./invoice.css";
 import { formDataObject, PatientBillFields } from "./Contants";
 import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
@@ -67,11 +66,11 @@ const CreateBill = () => {
       const patientDetails = await getPatientById(patientId);
       setFormData((prev) => ({
         ...prev,
-        phone: patientDetails.phone || "", 
+        phone: patientDetails.phone || "",
         age: patientDetails.age || "",
         gender: patientDetails.gender || "",
         address: patientDetails.address || "",
-        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`, 
+        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`,
       }));
     } catch (error) {
       console.error("Error fetching patient details:", error);
@@ -82,13 +81,13 @@ const CreateBill = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createBill(formData); 
+      await createBill(formData);
       setFormData((prev) => ({
         ...prev,
-        billNumber: prev.billNumber + 1, 
-        totalAmount: 0, 
+        billNumber: prev.billNumber + 1,
+        totalAmount: 0,
       }));
-      navigate("/"); 
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Error submitting form.");
@@ -118,9 +117,9 @@ const CreateBill = () => {
     const interval = setInterval(() => {
       setFormData((prev) => ({
         ...prev,
-        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), 
+        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       }));
-    }, 60000); 
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
@@ -134,14 +133,14 @@ const CreateBill = () => {
       options: loadingPatients
         ? [{ label: "Loading...", value: "" }]
         : [
-            { label: "Select Patient Name", value: "" },
-            ...(Array.isArray(allPatients) && allPatients.length > 0
-              ? allPatients.map((patient) => ({
-                  label: `${patient.firstName} ${patient.lastName}`,
-                  value: patient._id,
-                }))
-              : []),
-          ],
+          { label: "Select Patient Name", value: "" },
+          ...(Array.isArray(allPatients) && allPatients.length > 0
+            ? allPatients.map((patient) => ({
+              label: `${patient.firstName} ${patient.lastName}`,
+              value: patient._id,
+            }))
+            : []),
+        ],
     },
     { label: "Phone Number", name: "phone", type: "text", readOnly: true },
     {
@@ -154,7 +153,7 @@ const CreateBill = () => {
         { label: "Female", value: "female" },
         { label: "Other", value: "other" },
       ],
-      value: formData.gender, 
+      value: formData.gender,
     },
     { label: "Age", name: "age", type: "text", readOnly: true },
     {
@@ -164,14 +163,14 @@ const CreateBill = () => {
       options: loadingDoctors
         ? [{ label: "Loading...", value: "" }]
         : [
-            { label: "Select Doctor Name", value: "" },
-            ...(Array.isArray(allDoctors) && allDoctors.length > 0
-              ? allDoctors.map((doctor) => ({
-                  label: doctor.name,
-                  value: doctor._id,
-                }))
-              : []),
-          ],
+          { label: "Select Doctor Name", value: "" },
+          ...(Array.isArray(allDoctors) && allDoctors.length > 0
+            ? allDoctors.map((doctor) => ({
+              label: doctor.name,
+              value: doctor._id,
+            }))
+            : []),
+        ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
     { label: "Description", name: "description", type: "text" },
@@ -222,11 +221,12 @@ const CreateBill = () => {
 
   return (
     <div>
-      <div className="bill-insurance-section">
+
+      <div className="create-bill-section">
         <div className="row">
           <div className="main">
             <div className="title">
-              <p>Create Bill</p>
+              <p>Create Bill </p>
             </div>
 
             <div className="patient-details">
@@ -280,7 +280,8 @@ const CreateBill = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+
     </div>
   );
 };
