@@ -7,6 +7,7 @@ import { Loading } from "./imports/index.js";
 import AddRecord from "./pages/doctroPanel/AddRecord.jsx";
 import { ErrorPage } from "./pages/ErrorPage.jsx";
 
+//backup_before_tailwind
 function App() {
   return (
     <Suspense fallback={<Loading />}>
