@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
-import "./component/sidebar.css";
 import "./pages/pages.css";
 import routesConfig from "./routesConfig.jsx";
 import { Loading } from "./imports/index.js";
