@@ -22,12 +22,12 @@ input {
   flex-wrap: wrap;
 }
 
-.main-content {
+/* .main-content {
   width: 83%;
   margin-left: 17%;
   scrollbar-color: #9f9fa1 #f4f4f4;
   scrollbar-width: thin;
-}
+} */
 
 .registration-section .row .main {
   height: 100vh;
