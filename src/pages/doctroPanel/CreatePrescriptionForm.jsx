@@ -114,9 +114,10 @@ const {id} = useParams();
                       value={values.patientName}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="border p-2 rounded w-full"
+                      className={`border p-2 rounded w-full ${errors.patientName && touched.patientName ? 'border-red-500' : ''}`}
                       disabled
                     />
+                    {errors.patientName && touched.patientName && <p className="text-red-500 text-sm">{errors.patientName}</p>}
                   </div>
 
                   <div className="input-box w-1/3">
@@ -127,9 +128,10 @@ const {id} = useParams();
                       value={values.age}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="border p-2 rounded w-full"
+                      className={`border p-2 rounded w-full ${errors.age && touched.age ? 'border-red-500' : ''}`}
                       disabled
                     />
+                    {errors.age && touched.age && <p className="text-red-500 text-sm">{errors.age}</p>}
                   </div>
 
                   <div className="input-box w-1/3">
@@ -139,9 +141,10 @@ const {id} = useParams();
                       value={values.gender}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="border p-2 rounded w-full"
+                      className={`border p-2 rounded w-full ${errors.gender && touched.gender ? 'border-red-500' : ''}`}
                       disabled
                     />
+                    {errors.gender && touched.gender && <p className="text-red-500 text-sm">{errors.gender}</p>}
                   </div>
                 </div>
 
@@ -158,15 +161,16 @@ const {id} = useParams();
                             value={medicine.medicineName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className="border p-2 rounded w-full"
+                            className={`border p-2 rounded w-full ${errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] ? 'border-red-500' : ''}`}
                           />
+                          {errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] && <p className="text-red-500 text-sm">{errors.medicines[index]}</p>}
                           <TextField
                             label="Strength"
                             name={`medicines[${index}].strength`}
                             value={medicine.strength}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className="border p-2 rounded w-full"
+                            className={`border p-2 rounded w-full ${errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] ? 'border-red-500' : ''}`}
                           />
                           <FormControl fullWidth className='select'>
                             <InputLabel id={`dose-label-${index}`}>Dose</InputLabel>
@@ -185,6 +189,7 @@ const {id} = useParams();
                               ))}
                             </Select>
                           </FormControl>
+                          {errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] && <p className="text-red-500 text-sm">{errors.medicines[index]}</p>}
 
                           <TextField
                             label="Duration"
@@ -192,8 +197,9 @@ const {id} = useParams();
                             value={medicine.duration}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className="border p-2 rounded w-full"
+                            className={`border p-2 rounded w-full ${errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] ? 'border-red-500' : ''}`}
                           />
+                          {errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] && <p className="text-red-500 text-sm">{errors.medicines[index]}</p>}
 
                           <FormControl fullWidth className='select'>
                             <InputLabel id={`whenToTake-label-${index}`}>When to Take</InputLabel>
@@ -204,7 +210,9 @@ const {id} = useParams();
                               onChange={handleChange}
                               onBlur={handleBlur}
                               label="When to Take"
+  
                             >
+                  
                               {whenToTakeOptions.map((option) => (
                                 <MenuItem key={option} value={option}>
                                   {option}
@@ -212,6 +220,7 @@ const {id} = useParams();
                               ))}
                             </Select>
                           </FormControl>
+                          {errors.medicines && touched.medicines && errors.medicines[index] && touched.medicines[index] && <p className="text-red-500 text-sm">{errors.medicines[index]}</p>}
 
                           <IconButton onClick={() => remove(index)} className="text-red-600">
                             <DeleteIcon />

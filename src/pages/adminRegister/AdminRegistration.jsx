@@ -89,6 +89,36 @@ const AdminRegistration = () => {
       [name]: value,
     }));
   };
+  const validateFormData = () => {
+    let valid = true;
+    setError("");
+    // Validate admin registration form
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
+      setError("Passwords do not match");
+      valid = false;
+    }
+
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.country || !formData.state || !formData.city || !formData.hospital || !formData.password) {
+      toast.error("All fields are required.");
+      setError("All fields are required.");
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const validateHospitalFormData = () => {
+    let valid = true;
+
+    // Validate hospital form
+    if (!hospitalFormData.name || !hospitalFormData.address || !hospitalFormData.country || !hospitalFormData.state || !hospitalFormData.city || !hospitalFormData.zipcode) {
+      toast.error("All fields are required for hospital registration.");
+      valid = false;
+    }
+
+    return valid;
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -110,6 +140,7 @@ const AdminRegistration = () => {
   };
   const handleHospitalSubmit = async (e) => {
     e.preventDefault();
+    if (!validateHospitalFormData()) return;
     try {
       await createHospital(hospitalFormData);
       await fetchData();
@@ -202,6 +233,7 @@ const AdminRegistration = () => {
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
+                        disabled={!formData.country}
                         required
                       >
                         <option value="">Select Country</option>
@@ -302,6 +334,7 @@ const AdminRegistration = () => {
                           value={formData.password}
                           onChange={handleChange}
                           placeholder="Enter Password"
+                          required
                         />
                         <div
                           className="eye"

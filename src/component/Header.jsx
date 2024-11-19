@@ -63,7 +63,7 @@ const Header = () => {
   console.log("image", userData);
 
   return (
-    <div className="header sticky top-0 bg-gray-100">
+    <div className="header sticky top-0 bg-gray-100 z-10">
       <div className="breadcrumbs">
         <IoHomeSharp />
         <IoIosArrowForward className="icon" />
