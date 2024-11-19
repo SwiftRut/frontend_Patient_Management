@@ -249,8 +249,10 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.CancelAppointment(appointmentId);
       toast.success("Appointment canceled successfully");
-      if (!response.ok) {
-        throw new Error(response.message);
+      if (user.role === "patient") {
+        getAppointmetnsForPatient(user.id);
+      } else if (user.role === "doctor") {
+        getAppointmetnsForDoctor(user.id);
       }
     } catch (error) {
       console.error("Error canceled appointment:", error);
@@ -394,7 +396,6 @@ export const GlobalProvider = ({ children }) => {
       setPatientPrescription(response.data);
     } catch (error) {
       console.error("Error creating prescription:", error);
-      toast.error("Error creating prescription");
       throw error;
     }
   };
