@@ -29,7 +29,7 @@ export default function AdminPanel() {
   return (
     <>
       <Sidebar />
-      <div className="main-content h-screen overflow-y-scroll">
+      <div className="content w-[85%] ml-[15%] h-screen overflow-y-scroll">
         <Header />
         {searchTerm === "" ? (
           <Routes>
