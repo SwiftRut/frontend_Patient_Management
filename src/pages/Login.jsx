@@ -85,7 +85,8 @@ const Login = () => {
         }
         else if (role === "patient") {
           toast.success("patient login successfully")
-          window.location.href = "/patient";
+          // window.location.href = "/patient";
+          navigate("/patient");
 
         } else if (role === "doctor") {
           toast.success("doctor login successfully")
