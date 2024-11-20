@@ -131,7 +131,7 @@ const Dashboard = () => {
                 <PatientsStatistics />
               </div>
 
-              <div class="Billing-data w-[42%] bg-white rounded-lg p-4">
+              <div class="Billing-data h-[450px] w-[42%] bg-white rounded-lg p-4">
                 <div class="head flex justify-between items-center mb-4">
                   <div class="title">
                     <p class="text-[#030229] text-xl font-bold">Billing & Payments</p>

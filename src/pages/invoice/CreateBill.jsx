@@ -221,8 +221,8 @@ const CreateBill = () => {
 
   return (
     <div>
-
-      <div className="create-bill-section">
+      
+      <div className="bill-insurance-section">
         <div className="row">
           <div className="main">
             <div className="title">
@@ -280,7 +280,8 @@ const CreateBill = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
+
 
     </div>
   );
