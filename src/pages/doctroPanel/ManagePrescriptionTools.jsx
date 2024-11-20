@@ -118,10 +118,11 @@ const ManagePrescriptionTools = () => {
                 />
               </TableCell>
               <TableCell>
-                {new Date(prescription.date).toLocaleTimeString('en-US', {
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  hour12: true
+                {/* here we have to change the date format */}
+                {new Date(prescription.date).toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric'
                 })}
               </TableCell>
               <TableCell>{`${prescription.patientId.age} Years`}</TableCell>

@@ -40,22 +40,22 @@ const Dashboard = () => {
     };
 
     const fetchTodaysAppointments = async () => {
-      try {
         const response = await apiService.GetAllTodayAppointments();
         const data = response.data;
-
+    
+        // Get today's date in 'YYYY-MM-DD' format (UTC)
         const today = new Date().toISOString().split("T")[0];
-
-        const filteredAppointments = data.filter(
-          (appointment) =>
-            new Date(appointment.date).toISOString().split("T")[0] === today
-        );
+    
+        // Filter appointments with today's date
+        const filteredAppointments = data.filter((appointment) => {
+          const appointmentDate = new Date(appointment.date).toISOString().split("T")[0];
+          return appointmentDate === today;
+        });
+    
         setTodaysAppointments(filteredAppointments);
-      } catch (error) {
-        console.error("Error fetching today's appointments:", error);
-        toast.error("Error fetching today's appointments");
-      }
+
     };
+    
 
     const fetchPatients = async () => {
       try {
