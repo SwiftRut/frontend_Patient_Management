@@ -224,7 +224,7 @@ const Dashboard = () => {
                         />
                       </div>
                     ) : (
-                      <div class="appointments-list flex gap-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#f4f4f4]">
+                      <div class="appointments-list h-[80%] flex overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#f4f4f4]">
                         {todaysAppointments.map((appointment, index) => (
                           <div class="box w-1/3 p-2" key={index}>
                             <div class="content">
