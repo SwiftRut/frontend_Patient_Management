@@ -127,7 +127,7 @@ const EditBill = () => {
 
   return (
     <div>
-      <div className="bill-insurance-section">
+      <div className="editBill-section">
         <div className="row">
           <div className="main">
             <div className="title">
