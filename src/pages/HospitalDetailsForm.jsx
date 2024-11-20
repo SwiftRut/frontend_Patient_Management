@@ -224,9 +224,6 @@ const HospitalDetailsForm = ({
                     onRemove={() => removeDynamicField("hospital", index)}
                   />
                 ))}
-                <div className="save-btn flex ml-5">
-                  <button type="submit">Save</button>
-                </div>
               </form>
             </div>
           </div>
