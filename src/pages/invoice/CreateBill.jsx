@@ -222,7 +222,7 @@ const CreateBill = () => {
   return (
     <div>
       
-      <div className="bill-insurance-section">
+      <div className="create-bill-insurance-section">
         <div className="row">
           <div className="main">
             <div className="title">
