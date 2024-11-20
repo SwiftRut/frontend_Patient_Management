@@ -73,6 +73,30 @@ const DoctorMeetingConference = () => {
         })
     }, 
     });
+    console.log({
+      container: element,
+      sharedLinks: [
+        {
+          name: 'Personal link',
+          url:
+           window.location.protocol + '//' + 
+           window.location.host + window.location.pathname +
+            '?roomID=' +
+            roomID,
+        },
+      ],
+      roomID: roomID,
+      userID: userID,
+      userName: userName,
+      scenario: {
+        mode: ZegoUIKitPrebuilt.OneONoneCall,
+      },
+      onUserAvatarSetter:(userList) => {
+        userList.forEach(user => {
+            user.setUserAvatar("/assets/images/Avatar-2.png")
+        })
+    }, 
+    })
   };
 
 
