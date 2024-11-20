@@ -330,13 +330,13 @@ const CreatePrescriptionForm = () => {
                     </div>
                     <div className="name">
                       <p>Dr. {userData.name}</p>
-                      <span>Obstetrics and Gynecology</span>
+                      <span>{userData.qualification?.toUpperCase()}</span>
                     </div>
                   </div>
                   <div className="dr-details">
                     <div className="flex justify-between align-center">
                       <p>
-                        Hospital Name: <span>Medical Center</span>
+                        Hospital Name: <span>{userData.hospitalName}</span>
                       </p>
                       <p>
                         Prescription Date:{" "}
@@ -358,7 +358,7 @@ const CreatePrescriptionForm = () => {
                       <p className="add">
                         Address:{" "}
                         <span>
-                          B-105 Virat Bungalows, Punagam, Motavaracha, Jamnagar.
+                          {userData.hospitalId.address}
                         </span>
                       </p>
                     </div>
