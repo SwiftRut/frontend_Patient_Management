@@ -27,21 +27,38 @@ export default function DoctorPanel() {
   return (
     <>
       <DoctorAsidePanel />
-      <div className="main-content h-full">
-       { searchTerm === "" ? ( <Routes>
-          <Route path="profile/*" element={<DoctorProfile />} />
-          <Route path="edit" element={<DoctorProfileEdit />} />
-          <Route path="" element={<AppointmentManagement />} />
+      <div className="content w-[85%] ml-[15%] h-screen overflow-y-scroll">
+        <DoctorHeader />
+        {searchTerm === "" ? (
+          <Routes>
+            <Route path="profile/*" element={<DoctorProfile />} />
+            <Route path="edit" element={<DoctorProfileEdit />} />
+            <Route path="" element={<AppointmentManagement />} />
 
-          <Route path="patientRecordAccesst" element={<PatientRecordAccesst />} />
-          <Route path="createPrescriptionTools" element={<CreatePrescriptionTools />} />
-          <Route path="managePrescriptionTools" element={<ManagePrescriptionTools />} />
-          <Route path="teleconsultationModule" element={<TeleconsultationModule />} />
-          <Route path="chatScreen" element={<ChatScreen />} />
-          <Route path="appointmentTimeSlot" element={<AppointmentTimeSlot />} />
-          {/* <Route path="appointmentTimeSlot" element={<Calendar />} /> */}
-          <Route path="patientDetail/:id" element={<PatientDetail />} />
-          <Route path="allFiles" element={<AllFiles />} />
+            <Route
+              path="patientRecordAccesst"
+              element={<PatientRecordAccesst />}
+            />
+            <Route
+              path="createPrescriptionTools"
+              element={<CreatePrescriptionTools />}
+            />
+            <Route
+              path="managePrescriptionTools"
+              element={<ManagePrescriptionTools />}
+            />
+            <Route
+              path="teleconsultationModule"
+              element={<TeleconsultationModule />}
+            />
+            <Route path="chatScreen" element={<ChatScreen />} />
+            <Route
+              path="appointmentTimeSlot"
+              element={<AppointmentTimeSlot />}
+            />
+            {/* <Route path="appointmentTimeSlot" element={<Calendar />} /> */}
+            <Route path="patientDetail/:id" element={<PatientDetail />} />
+            <Route path="allFiles" element={<AllFiles />} />
 
             <Route path="prescriptionView/:id" element={<PrescriptionView />} />
             <Route
