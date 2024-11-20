@@ -119,7 +119,9 @@ export const AuthProvider = ({ children }) => {
       // Here we have to call the function based on the user role
       if (response.data.user.role === "doctor") {
         toast.success("Doctor login successful");
-        navigate('/doctor', { replace: true });
+        // navigate('/doctor', { replace: true });
+        window.location.href = "/doctor";
+
         await getDoctorProfile(response.data.user.id);
       } else if (response.data.user.role === "admin") {
         toast.success("Admin login successful");
@@ -127,7 +129,9 @@ export const AuthProvider = ({ children }) => {
         await getAdminProfile(response.data.user.id);
       } else {
         toast.success("Patient login successful");
-        navigate('/patient', { replace: true });
+        // navigate('/patient', { replace: true });
+        window.location.href = "/patient";
+
         await getPatientProfile(response.data.user.id);
       }
       return response.data.user.role;

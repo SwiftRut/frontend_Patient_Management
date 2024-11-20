@@ -40,8 +40,8 @@ const PatientMeetingConference = () => {
   }, [isSidebarOpen]);
 
   const initZegoCloudMeeting = async (element) => {
-    const appID = 1757979495;
-    const serverSecret = "04f46682ad34e9005b14d629441180e3";
+    const appID = 546307271;
+    const serverSecret = "d192040c648427252aa596e0503f1a15";
 
     const roomID = room;
     const userID = "1";

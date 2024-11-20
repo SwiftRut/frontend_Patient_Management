@@ -59,6 +59,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      //validtae the password should have the 1 symbol and one uppercase and one lowercase lettern and one number 
+      if (formData.password.length < 6) {
+        toast.error("Password should be atleast 6 characters long");
+        return;
+      }
+      if (!formData.password.match(/[A-Z]/)) {
+        toast.error("Password should have atleast one uppercase letter");
+        return;
+      }
+      if (!formData.password.match(/[a-z]/)) {
+        toast.error("Password should have atleast one lowercase letter");
+        return;
+      }
+      if (!formData.password.match(/\d/)) {
+        toast.error("Password should have atleast one number");
+        return;
+      }
       const role = await UniversalLogin(formData);
       console.log(role);
       if (role) {
@@ -120,6 +137,7 @@ const Login = () => {
                           name="password"
                           value={formData.password}
                           onChange={handleChange}
+                          
                           placeholder="Enter Password"
                         />
                         <div className="eye" onClick={() => setShowPassword(!showPassword)}>

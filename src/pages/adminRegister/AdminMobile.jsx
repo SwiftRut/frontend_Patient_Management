@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import apiService from '../../services/api.js';
-import { toast } from "react-toastify"
+import { toast } from "react-hot-toast"
 import '../pages.css';
 
 const AdminMobile = () => {
@@ -14,6 +14,28 @@ const AdminMobile = () => {
   const navigate = useNavigate();
 
   const isLoginMode = location.pathname === '/login';
+
+  const validateIdentifier = (identifier) => {
+    if (!identifier) {
+      return 'Please enter an email or phone number';
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^\d{10}$/; // Adjust as needed for your phone number format
+    if (!emailPattern.test(identifier) && !phonePattern.test(identifier)) {
+      return 'Please enter a valid email or phone number';
+    }
+    return '';
+  };
+
+  const validatePassword = (password) => {
+    if (!password) {
+      return 'Please enter a password';
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    return '';
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,10 +69,11 @@ const AdminMobile = () => {
     e.preventDefault();
     setError('');
     setSuccessMessage('');
-
+    const identifierError = validateIdentifier(identifier);
+    const passwordError = validatePassword(password);
     if (!identifier || !password) {
-      toast.error('Please enter email/phone and password')
-      setError('Please enter email/phone and password');
+      toast.error(identifierError || passwordError)
+      setError(identifierError || passwordError);
       return;
     }
 
@@ -98,13 +121,13 @@ const AdminMobile = () => {
 
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage, { position: toast.POSITION.TOP_RIGHT });
+      toast.success(successMessage);
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (error) {
-      toast.error(error, { position: toast.POSITION.TOP_RIGHT });
+      toast.error(error);
     }
   }, [error]);
 

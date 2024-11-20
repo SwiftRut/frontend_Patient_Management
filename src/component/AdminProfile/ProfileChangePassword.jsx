@@ -3,7 +3,6 @@ import '../../pages/profile/profile.css';
 import apiService from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify"
 
 const ProfileChangePassword = () => {
   const { user } = useAuth();
