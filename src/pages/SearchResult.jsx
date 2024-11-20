@@ -292,7 +292,7 @@ export const SearchResult = () => {
                         </h3>
                       </td>
                       <td className="p-3">
-                        <h3 className="text-md font-semibold text-[#4F4F4F]">
+                        <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
                           {appointment.type}
                         </h3>
                       </td>

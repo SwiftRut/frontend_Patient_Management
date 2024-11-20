@@ -1,6 +1,4 @@
-
 import { useEffect, useState } from "react";
-import "./doctorManagement.css";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
@@ -28,7 +26,6 @@ export default function DoctorManagement() {
     const fetchDoctors = async () => {
       try {
         await getAllDoctors();
-        
       } catch (error) {
         setError(
           "Error fetching doctors: " +
@@ -43,7 +40,9 @@ export default function DoctorManagement() {
   }, []);
 
   const handleDeleteSuccess = (deletedId) => {
-    setDoctors((prevDoctors) => prevDoctors.filter((doctor) => doctor._id !== deletedId));
+    setDoctors((prevDoctors) =>
+      prevDoctors.filter((doctor) => doctor._id !== deletedId)
+    );
     setSelectedDoctorId(null);
   };
 
@@ -72,60 +71,95 @@ export default function DoctorManagement() {
   const renderDoctorsTable = () => {
     return (
       <div
-        className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+        className="h-[80%] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
         style={{ maxHeight: "calc(100vh - 260px)" }}
       >
-        <table className="min-w-full table-auto">
+        <table className="min-w-full table-layout table-auto">
           <thead className="sticky top-0 bg-gray-100 z-10">
             <tr>
-              <th className="p-3 text-left text-lg font-semibold">Doctor Name</th>
-              <th className="p-3 text-left text-lg font-semibold">Gender</th>
-              <th className="p-3 text-left text-lg font-semibold">Qualification</th>
-              <th className="p-3 text-left text-lg font-semibold">Specialty</th>
-              <th className="p-3 text-left text-lg font-semibold">Working Time</th>
-              <th className="p-3 text-left text-lg font-semibold">Patient Check Up Time</th>
-              <th className="p-3 text-left text-lg font-semibold">Break Time</th>
-              <th className="p-3 text-left text-lg font-semibold">Action</th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold rounded-tl-xl">
+                Doctor Name
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Gender
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Qualification
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Specialty
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Working Time
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Patient Check Up Time
+              </th>
+              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+                Break Time
+              </th>
+              <th className="p-2 text-[#030229] text-center text-lg font-semibold rounded-tr-xl">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor) => (
                 <tr key={doctor._id} className="border-t">
-                  <td className="flex align-center p-3">
-                    <div className="avatar">
+                  <td className="flex items-center p-3">
+                    <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
                       <img src={doctor.avatar} alt={doctor.name} />
                     </div>
-                    <div className="name">
+                    <div className="text-[#4F4F4F] text-lg font-semibold">
                       <h3>{doctor.name}</h3>
                     </div>
                   </td>
-                  <td className="p-3">
+                  <td className="">
                     {doctor.gender === "female" ? (
-                      <BsGenderFemale className="gender" />
+                      <BsGenderFemale className="w-5 h-5 text-[#718ebf] bg-[#f6f8fb] rounded-full mr-2  " />
                     ) : (
-                      <BsGenderMale className="gender" />
+                      <div className="w-10 h-10 text-[#718ebf] bg-[#f6f8fb] rounded-full flex items-center justify-center text-lg">
+                        <BsGenderMale />
+                      </div>
                     )}
                   </td>
-                  <td className="p-3">{doctor.qualification}</td>
-                  <td className="p-3">{doctor.speciality}</td>
-                  <td className="time p-3">
+                  <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
+                    {doctor.qualification}
+                  </td>
+                  <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
+                    {doctor.speciality}
+                  </td>
+                  <td className="time p-3 text-[#4F4F4F] text-lg font-semibold">
                     <h3>{doctor.workingOn}</h3>
                   </td>
-                  <td className="time p-3">
-                    <h3>{doctor.patientCheckupTime}</h3>
+                  <td className="text-[#718EBF] text-lg font-semibold">
+                    <h3 className="mx-8 bg-[#f6f8fb] rounded-full p-1 text-center">
+                      {doctor.patientCheckupTime}
+                    </h3>
                   </td>
-                  <td className="time p-3">
-                    <h3>{doctor.breakTime}</h3>
+                  <td className="text-[#718EBF] text-lg font-semibold">
+                    <h3 className="bg-[#f6f8fb] rounded-full p-1 text-center">
+                      {doctor.breakTime}
+                    </h3>
                   </td>
-                  <td className="flex action p-3">
-                    <div className="edit" onClick={() =>  navigate(`/doctorEdit/${doctor._id}`)}>
-                      <FaEdit />
+                  <td className="flex items-center pb-3 px-3">
+                    <div
+                      className="w-10 h-10 text-[#39973D] bg-[#f6f8fb] rounded-md flex items-center justify-center text-lg"
+                      onClick={() => navigate(`/doctorEdit/${doctor._id}`)}
+                    >
+                      <FaEdit className="" />
                     </div>
-                    <div className="view" onClick={() => handleViewDoctorDetails(doctor)}>
+                    <div
+                      className="w-10 h-10 text-[#0EABEB] bg-[#f6f8fb] rounded-md flex items-center justify-center text-lg mx-2"
+                      onClick={() => handleViewDoctorDetails(doctor)}
+                    >
                       <FaEye />
                     </div>
-                    <div className="delete" onClick={() => handleDeleteDoctor(doctor._id)}>
+                    <div
+                      className="w-10 h-10 text-[#E11D29] bg-[#f6f8fb] rounded-md flex items-center justify-center text-lg"
+                      onClick={() => handleDeleteDoctor(doctor._id)}
+                    >
                       <MdDelete />
                     </div>
                   </td>
@@ -149,16 +183,16 @@ export default function DoctorManagement() {
 
   return (
     <div>
-      <div className="dr-managment-section bg-gray">
-        <div className="row">
-          <div className="main">
-            <div className="top flex align-center">
-              <div className="heading">
+      <div class="dr-managment-section bg-gray-100 p-2">
+        <div class="">
+          <div class="bg-white rounded-lg p-2 shadow-lg">
+            <div class="top flex justify-between items-center p-2 pb-5">
+              <div class="heading font-bold text-[26px]">
                 <h3>Doctor Management</h3>
               </div>
-              <div className="search-btn flex">
-                <div className="input flex align-center">
-                  <div className="search">
+              <div class="flex items-center space-x-2">
+                <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                  <div class="text-xl text-gray-700">
                     <CiSearch />
                   </div>
                   <input
@@ -166,20 +200,25 @@ export default function DoctorManagement() {
                     placeholder="Search Doctor"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    class="bg-transparent pl-2 text-lg outline-none"
                   />
                 </div>
-                <button className="btn flex align-center" onClick={()=>navigate("/doctorAdd")}>
-                  <div className="icon">
+                <button
+                  class="btn flex items-center bg-[#0EABEB] text-white rounded-lg px-4 py-2 ml-2"
+                  onClick={() => navigate("/doctorAdd")}
+                >
+                  <div class=" bg-white text-[#0EABEB] rounded text-xl mr-2">
                     <MdAdd />
                   </div>
-                  <div className="text">
+                  <div class="text font-semibold text-lg">
                     <h3>Add New Doctor</h3>
                   </div>
                 </button>
               </div>
             </div>
+
             {loading && <h3>Loading...</h3>}
-            {error && <h3 style={{ color: "red" }}>{error}</h3>}
+            {error && <h3 class="text-red-500">{error}</h3>}
             {!loading && !error && renderDoctorsTable()}
           </div>
         </div>
@@ -191,13 +230,22 @@ export default function DoctorManagement() {
           <div className="onsite-modal-content">
             <div className="onsite-modal-header">
               <h3>Doctor Details</h3>
-              <button className="close-button" onClick={() => setOpenModel(false)}>
+              <button
+                className="close-button"
+                onClick={() => setOpenModel(false)}
+              >
                 &times;
               </button>
             </div>
-            <Onsite selectedDoctor={selectedDoctor} setOpenModel={setOpenModel}  />
+            <Onsite
+              selectedDoctor={selectedDoctor}
+              setOpenModel={setOpenModel}
+            />
           </div>
-          <div className="onsite-modal-overlay" onClick={() => setOpenModel(false)}></div>
+          <div
+            className="onsite-modal-overlay"
+            onClick={() => setOpenModel(false)}
+          ></div>
         </div>
       )}
 

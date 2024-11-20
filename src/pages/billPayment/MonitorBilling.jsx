@@ -22,15 +22,28 @@ export default function MonitorBilling() {
     fetchBills();
   }, []);
 
-  const filteredBills = allBills.filter((bill) =>
-    bill.billNumber.toString().includes(searchQuery.toLowerCase()) ||
-    (bill.patientId && bill.patientId.firstName && bill.patientId.firstName.toLowerCase().includes(searchQuery.toLowerCase())) ||
-    (bill.doctorId && bill.doctorId.firstName && bill.doctorId.firstName.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredBills = allBills.filter(
+    (bill) =>
+      bill.billNumber.toString().includes(searchQuery.toLowerCase()) ||
+      (bill.patientId &&
+        bill.patientId.firstName &&
+        bill.patientId.firstName
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())) ||
+      (bill.doctorId &&
+        bill.doctorId.firstName &&
+        bill.doctorId.firstName
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()))
   );
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
   };
 
   return (
@@ -53,7 +66,10 @@ export default function MonitorBilling() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <button className="edit-btn flex align-center" onClick={() => navigate("/editinvoice")}>
+              <button
+                className="edit-btn flex align-center"
+                onClick={() => navigate("/editinvoice")}
+              >
                 <div className="icon">
                   <RiEditBoxFill />
                 </div>
@@ -61,7 +77,10 @@ export default function MonitorBilling() {
                   <h3>Edit Design Invoice</h3>
                 </div>
               </button>
-              <button className="btn flex align-center" onClick={() => navigate("/createbill")}>
+              <button
+                className="btn flex align-center"
+                onClick={() => navigate("/invoice")}
+              >
                 <div className="icon">
                   <MdAdd />
                 </div>
@@ -78,37 +97,68 @@ export default function MonitorBilling() {
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
-                  <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
-                  <th className="p-3 text-left text-lg font-semibold">Doctor Name</th>
-                  <th className="p-3 text-left text-lg font-semibold">Description</th>
-                  <th className="py-3 px-7 text-left text-lg font-semibold">Status</th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Bill Number
+                  </th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Patient Name
+                  </th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Doctor Name
+                  </th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Description
+                  </th>
+                  <th className="py-3 px-7 text-left text-lg font-semibold">
+                    Status
+                  </th>
                   <th className="p-3 text-left text-lg font-semibold">Date</th>
                   <th className="p-3 text-left text-lg font-semibold">Time</th>
-                  <th className="p-3 text-left text-lg font-semibold">Total Amount</th>
-                  <th className="p-3 text-left text-lg font-semibold">Action</th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Total Amount
+                  </th>
+                  <th className="p-3 text-left text-lg font-semibold">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan="9" className="p-3 text-center">Loading...</td>
+                    <td colSpan="9" className="p-3 text-center">
+                      Loading...
+                    </td>
                   </tr>
                 ) : filteredBills.length > 0 ? (
                   filteredBills.map((bill) => (
                     <tr key={bill._id} className="border-t">
                       <td className="p-3">{bill.billNumber}</td>
-                      <td className="p-3">{bill.patientId ? bill.patientId.firstName + ' ' + bill.patientId.lastName : 'N/A'}</td>
-                      <td className="p-3">{bill.doctorId ? bill.doctorId.name : 'N/A'}</td>
+                      <td className="p-3">
+                        {bill.patientId
+                          ? bill.patientId.firstName +
+                            " " +
+                            bill.patientId.lastName
+                          : "N/A"}
+                      </td>
+                      <td className="p-3">
+                        {bill.doctorId ? bill.doctorId.name : "N/A"}
+                      </td>
                       <td className="p-3">{bill.description}</td>
-                      <td className={`p-3 ${bill.status === "Paid" ? "status" : "red"}`}>
+                      <td
+                        className={`p-3 ${
+                          bill.status === "Paid" ? "status" : "red"
+                        }`}
+                      >
                         <h3>{bill.status}</h3>
                       </td>
                       <td className="p-3">{formatDate(bill.date)}</td>
                       <td className="p-3">{bill.time}</td>
                       <td className="p-3">${bill.totalAmount.toFixed(2)}</td>
                       <td className="action p-3">
-                        <div className="view" onClick={() => navigate(`/bill/${bill._id}`)}>
+                        <div
+                          className="view"
+                          onClick={() => navigate(`/bill/${bill._id}`)}
+                        >
                           <FaEye />
                         </div>
                       </td>
@@ -116,7 +166,9 @@ export default function MonitorBilling() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="9" className="p-3 text-center">No records found</td>
+                    <td colSpan="9" className="p-3 text-center">
+                      No records found
+                    </td>
                   </tr>
                 )}
               </tbody>
