@@ -5,7 +5,7 @@ import { FaLocationDot } from "react-icons/fa6";
 export default function Bill3() {
   return (
     <>
-      <div class="invoice2 bg-white rounded-lg shadow-lg overflow-hidden max-w-3xl mx-auto max-h-[950px]">
+      <div class="invoice2 bg-white rounded-lg shadow-lg overflow-hidden max-w-2xl mx-auto max-h-[950px]">
         <div class="border-b-4 border-[#0eabeb] rounded-b-[40px]">
           <header class="bg-[#0eabeb] text-white p-3 px-5 rounded-t-lg flex justify-between items-center mb-2 rounded-b-[40px]">
             <div class="logo flex items-center">

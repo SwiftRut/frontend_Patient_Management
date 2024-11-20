@@ -73,19 +73,19 @@ export default function MonitorBilling() {
               </div>
               {/* Edit Button */}
               <button
-                className="edit-btn flex items-center bg-transparent border border-blue-400 rounded-lg px-3 py-2 ml-3"
+                className="edit-btn flex items-center bg-transparent border border-[#0EABEB] rounded-lg px-3 py-2 ml-3"
                 onClick={() => navigate("/editinvoice")}
               >
-                <div className="icon bg-white text-blue-400 rounded-sm px-1 text-xl mr-2">
+                <div className="icon bg-white text-[#0EABEB] rounded-sm px-1 text-xl mr-2">
                   <RiEditBoxFill />
                 </div>
-                <div className="text text-blue-400 font-semibold text-lg">
+                <div className="text text-[#0EABEB] font-semibold text-lg">
                   Edit Design Invoice
                 </div>
               </button>
               {/* Add Button */}
               <button
-                className="btn flex items-center bg-blue-400 rounded-lg px-4 py-2 ml-3"
+                className="btn flex items-center bg-[#0EABEB] rounded-lg px-4 py-2 ml-3"
                 onClick={() => navigate("/createbill")}
               >
                 <div className="icon bg-white text-blue-400 rounded-sm px-1 text-xl mr-2">
@@ -100,7 +100,7 @@ export default function MonitorBilling() {
           {/* Data Table */}
           <div
             className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-            style={{ maxHeight: "calc(100vh - 260px)" }}
+            style={{ maxHeight: "calc(100vh - 170px)" }}
           >
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
@@ -143,7 +143,7 @@ export default function MonitorBilling() {
                   </tr>
                 ) : filteredBills.length > 0 ? (
                   filteredBills.map((bill) => (
-                    <tr key={bill._id} className="border-t">
+                    <tr key={bill._id} className="border-b">
                       <td className="text-center p-3">
                         <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[50%]">
                           {bill.billNumber}

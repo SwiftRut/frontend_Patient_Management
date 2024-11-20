@@ -8,7 +8,7 @@ export default function Bill2() {
             <img src="/img/invoice.png" class="w-[45%] h-auto" alt="Logo" />
           </div>
           <div class="content px-5 py-4">
-            <div class="billing-info flex justify-between mb-5">
+            <div class="billing-info flex justify-between mb-4">
               <div>
                 <h3 class="text-base font-bold text-[#141414]">Billing To:</h3>
                 <h3 class="text-base font-bold text-[#141414]">
