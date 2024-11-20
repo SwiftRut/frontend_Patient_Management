@@ -155,9 +155,9 @@ const Invoice = () => {
 
   return (
     <div>
-      <div className="invoice-create-bill-section">
+      <div className="invoice-create-bill-section p-5">
         <div className="row">
-          <div className="main">
+          <div className="main p-[15px] bg-[white] rounded-[15px]">
             <div className="title">
               <p>Create Bill</p>
             </div>
