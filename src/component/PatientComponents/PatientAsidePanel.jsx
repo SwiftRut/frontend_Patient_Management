@@ -22,7 +22,7 @@ export default function PatientAsidePanel() {
         <div className="asite">
           <div className="logo">
             <NavLink to={"/patient"}>
-              <img src="/img/logo.png" alt="Logo" />
+              <img src="/img/logo.png" alt="Logo" width="100%" height="auto" />
             </NavLink>
           </div>
           <nav className="mb-40">
@@ -83,7 +83,9 @@ export default function PatientAsidePanel() {
             </div>
             <div className="text">
               <h3>Hospital appointment</h3>
-              <p>You have to fill up the form to be admitted to the hospital.</p>
+              <p>
+                You have to fill up the form to be admitted to the hospital.
+              </p>
               <div className="btn">
                 <button>
                   <FaCalendarAlt />
@@ -99,7 +101,6 @@ export default function PatientAsidePanel() {
           </div>
         </div>
       </div>
-      
     </>
   );
 }

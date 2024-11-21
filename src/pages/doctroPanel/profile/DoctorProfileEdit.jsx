@@ -14,6 +14,25 @@ const DoctorProfileEdit = () => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+  const [errors, setErrors] = useState({});
+
+   // Validation function
+   const validate = () => {
+    const newErrors = {};
+    if (!profile.name) newErrors.name = "Name is required.";
+    if (!profile.email) newErrors.email = "Email is required.";
+    else if (!/\S+@\S+\.\S+/.test(profile.email)) newErrors.email = "Email format is invalid.";
+    if (!profile.phone) newErrors.phone = "Phone number is required.";
+    else if (!/^\d{10}$/.test(profile.phone)) newErrors.phone = "Phone number should be 10 digits.";
+    if (!profile.country) newErrors.country = "Country is required.";
+    if (!profile.state) newErrors.state = "State is required.";
+    if (!profile.city) newErrors.city = "City is required.";
+    if (!profile.hospitalId) newErrors.hospitalId = "Hospital is required.";
+    if (!profile.gender) newErrors.gender = "Gender is required.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
 
   // Load country data and initialize selected country
   useEffect(() => {
@@ -180,6 +199,7 @@ const DoctorProfileEdit = () => {
                           onChange={handleInputChange}
                           placeholder="Enter Name"
                         />
+                        {errors.name && <span className="error">{errors.name}</span>}
                       </div>
 
                       <div className="input-box">
@@ -193,6 +213,7 @@ const DoctorProfileEdit = () => {
                           onChange={handleInputChange}
                           placeholder="Email Address"
                         />
+                        {errors.email && <span className="error">{errors.email}</span>}
                       </div>
 
                       <div className="input-box">
@@ -206,6 +227,7 @@ const DoctorProfileEdit = () => {
                           onChange={handleInputChange}
                           placeholder="Phone Number"
                         />
+                        {errors.phone && <span className="error">{errors.phone}</span>}
                       </div>
 
                       <div className="input-box">
@@ -223,7 +245,9 @@ const DoctorProfileEdit = () => {
                               {hospital.name}
                             </option>
                           ))}
-                        </select>{" "}
+                        </select>
+                        {errors.hospitalName && <span className="error">{errors.hospitalName}</span>}
+                        {" "}
                       </div>
 
                       <div className="input-box">
@@ -240,6 +264,7 @@ const DoctorProfileEdit = () => {
                           <option value="Female">Female</option>
                           <option value="Other">Other</option>
                         </select>
+                        {errors.gender && <span className="error">{errors.gender}</span>}
                       </div>
 
                       <div className="input-box">
@@ -258,6 +283,7 @@ const DoctorProfileEdit = () => {
                             </option>
                           ))}
                         </select>
+                        {errors.country && <span className="error">{errors.country}</span>}
                       </div>
 
                       <div className="input-box">
@@ -277,6 +303,7 @@ const DoctorProfileEdit = () => {
                             </option>
                           ))}
                         </select>
+                        {errors.state && <span className="error">{errors.state}</span>}
                       </div>
 
                       <div className="input-box">
@@ -296,6 +323,7 @@ const DoctorProfileEdit = () => {
                             </option>
                           ))}
                         </select>
+                        {errors.city && <span className="error">{errors.city}</span>}
                       </div>
 
                       <div className="condition flex">

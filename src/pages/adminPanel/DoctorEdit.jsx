@@ -23,6 +23,7 @@ const DoctorEdit = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
+  const [errors, setErrors] = useState({});
   useEffect(() => {
     getAllHospitals();
     const fetchDoctor = async () => {
@@ -79,6 +80,60 @@ const DoctorEdit = () => {
     fetchDoctor();
   }, [doctorId]);
 
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'name':
+        if (!value) return 'Doctor name is required';
+        return '';
+      case 'qualification':
+        if (!value) return 'Qualification is required';
+        return '';
+      case 'gender':
+        if (!value) return 'Gender is required';
+        return '';
+      case 'speciality':
+        if (!value) return 'Specialty type is required';
+        return '';
+      case 'workingTime':
+        if (!value) return 'Working time is required';
+        return '';
+      case 'workingOn':
+        if (!value) return 'Work type is required';
+        return '';
+      case 'patientCheckupTime':
+        if (!value) return 'Check-up time is required';
+        return '';
+      case 'breakTime':
+        if (!value) return 'Break time is required';
+        return '';
+      case 'experience':
+        if (!value) return 'Experience is required';
+        if (isNaN(value) || value < 0) return 'Experience must be a positive number';
+        return '';
+      case 'phone':
+        if (!value) return 'Phone number is required';
+        if (!/^\d{10}$/.test(value)) return 'Phone number must be 10 digits';
+        return '';
+      case 'age':
+        if (!value) return 'Age is required';
+        if (value < 25 || value > 75) return 'Age must be between 25 and 75';
+        return '';
+      case 'email':
+        if (!value) return 'Email is required';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/. test(value)) return 'Enter a valid email address';
+        return '';
+      case 'zipCode':
+        if (!value) return 'Zip code is required';
+        if (!/^\d{6}$/.test(value)) return 'Zip code must be 6 digits';
+        return '';
+      case 'hospitalName':
+        if (!value) return 'Hospital name is required';
+        return '';
+      default:
+        return '';
+    }
+  };
+
  useEffect(() => {
   if (doctorData.country) {
     const selectedCountry = Country.getAllCountries().find(
@@ -110,6 +165,11 @@ const DoctorEdit = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const error = validateField(name, value);
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: error
+    }));
     if (name === "country") {
       const selectedCountry = countries.find(country => country.isoCode === value);
       const countryStates = State.getStatesOfCountry(value);
@@ -168,6 +228,17 @@ const DoctorEdit = () => {
   // Rest of your existing functions (handleSubmit, handleSignatureChange, handlePhotoChange)
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const newErrors = {};
+    Object.keys(doctorData).forEach(field => {
+      const error = validateField(field, doctorData[field]);
+      if (error) newErrors[field] = error;
+    });
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      toast.error('Please fix all errors before submitting');
+      return;
+    }
     try {
       const formData = new FormData();
 
@@ -185,7 +256,7 @@ const DoctorEdit = () => {
       }
       //remove old hospitalIds from formData
       formData.delete('hospitalId');
-      formData.append('hospitalId', doctorData.hospitalId._id);
+      aata.append('hospitalId', doctorData.hospitalId._id);
       const response = await apiService.EditDoctor(doctorId, formData);
       toast.success("Doctor updated successfully!");
       navigate("/doctorManagement");
@@ -352,6 +423,9 @@ const DoctorEdit = () => {
                                 placeholder={field.placeholder}
                               />
                             )}
+                             {errors[field.name] && (
+                              <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
+                            )}
                             <div className="minus-circle">
                               <FaCircleMinus />
                             </div>
@@ -400,6 +474,9 @@ const DoctorEdit = () => {
                   placeholder={field.placeholder}
                 />
               )}
+               {errors[field.name] && (
+                            <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
+                          )}
               <div className="minus-circle">
                 <FaCircleMinus />
               </div>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../doctorManagement/delete.css";
 import { MdDeleteSweep } from "react-icons/md";
 import apiService from "../../services/api";
 import toast from "react-hot-toast";
@@ -18,9 +17,13 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
         toast.success("Doctor deleted successfully");
       } catch (error) {
         setError(
-          "Error deleting doctor: " + (error.response ? error.response.data.message : error.message)
+          "Error deleting doctor: " +
+            (error.response ? error.response.data.message : error.message)
         );
-        toast.error("Error deleting doctor: " + (error.response ? error.response.data.message : error.message));
+        toast.error(
+          "Error deleting doctor: " +
+            (error.response ? error.response.data.message : error.message)
+        );
         console.error("Error deleting doctor:", error);
       } finally {
         setLoading(false);
@@ -30,29 +33,37 @@ export default function Delete({ deleteId, onClose, onDeleteSuccess }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg max-w-md">
-        <div className="delete-section">
-          <div className="row">
-            <div className="box">
-              <div className="note">
-                <div className="icon">
-                  <MdDeleteSweep />
-                </div>
-                <div className="text">
-                  <h3>Delete Doctor Details?</h3>
-                  <p>Are you sure you want to delete this doctor’s details?</p>
-                  {error && <p className="error-message">{error}</p>}
-                </div>
-                <div className="btns flex">
-                  <button className="no" onClick={onClose} disabled={loading}>
-                    No
-                  </button>
-                  <button className="yes" onClick={handleDelete} disabled={loading}>
-                    {loading ? "Deleting..." : "Yes"}
-                  </button>
-                </div>
-              </div>
-            </div>
+      <div className="bg-white rounded-lg shadow-lg max-w-md p-6 border-t-4 border-red-600">
+        <div className="flex flex-col items-center">
+          <div className="w-16 h-16 rounded-full bg-red-600 text-white text-2xl flex items-center justify-center mt-4 mb-3">
+            <MdDeleteSweep />
+          </div>
+          <div className="text-center w-4/5 mx-auto">
+            <h3 className="text-2xl font-bold text-gray-800">
+              Delete Doctor Details?
+            </h3>
+            <p className="text-lg text-gray-600">
+              Are you sure you want to delete this doctor’s details?
+            </p>
+            {error && <p className="text-red-500 mt-2">{error}</p>}
+          </div>
+          <div className="flex justify-between w-full mt-6">
+            <button
+              className="w-1/2 border border-gray-300 rounded-lg py-2 text-lg font-semibold text-gray-800 mr-2"
+              onClick={onClose}
+              disabled={loading}
+            >
+              No
+            </button>
+            <button
+              className={`w-1/2 bg-blue-600 rounded-lg py-2 text-lg font-semibold text-white ml-2 ${
+                loading ? "cursor-not-allowed opacity-70" : ""
+              }`}
+              onClick={handleDelete}
+              disabled={loading}
+            >
+              {loading ? "Deleting..." : "Yes"}
+            </button>
           </div>
         </div>
       </div>

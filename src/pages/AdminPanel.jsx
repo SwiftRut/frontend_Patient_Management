@@ -14,42 +14,49 @@ import DoctorAdd from "./adminPanel/DoctorAdd";
 import DoctorEdit from "./adminPanel/DoctorEdit";
 import CreateBill from "./invoice/CreateBill";
 import EditBill from "./invoice/EditBill";
-``;
 import EditDesignInvoice from "./billPayment/EditDesignInvoice";
 import MainBill from "./patientPanel/MainBill";
-
+import { useGlobal } from "../hooks/useGlobal";
+import { SearchResult } from "./SearchResult";
+import { Invoice } from "../imports";
 
 export default function AdminPanel() {
+  const { searchTerm, setSearchTerm } = useGlobal();
+  const { selectedOption, setSelectedOption } = useGlobal();
+
+  console.log(selectedOption, "<<<<<<<<<<<<<<<<<<<<<<<<<<< selectedOption");
+  console.log(searchTerm, "<<<<<<<<<<<<<<<<<<<<<<<<<<< searchTerm");
+
   return (
     <>
       <Sidebar />
-      <div className="main-content h-screen overflow-y-scroll">
+      <div className="content w-[85%] ml-[15%] h-screen overflow-y-scroll">
         <Header />
-
-        <Routes>
-          <Route path="" element={<Dashboard />} />
-          <Route path="profile/*" element={<Profile />} />
-          <Route path="edit" element={<Edit />} />
-
-          <Route path="/createBill" element={<CreateBill />} />
-          <Route path="/editBill/:id" element={<EditBill />} />
-          <Route path="/bill/:id" element={<MainBill />} />
-
-          <Route path="/editinvoice" element={<EditDesignInvoice />} />
-
-          <Route path="doctorManagement" element={<DoctorManagement />} />
-          <Route path="doctorAdd" element={<DoctorAdd />} />
-          <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
-
-          <Route path="patientManagement" element={<PatientManagement />} />
-
-          <Route path="monitorBilling" element={<MonitorBilling />} />
-          <Route path="insuranceClaims" element={<InsuranceClaims />} />
-          <Route path="paymentMethod" element={<PaymentMethod />} />
-
-          <Route path="reportingAndAnalytics" element={<ReportingAndAnalytics />} />
-          
-        </Routes>
+        {searchTerm === "" ? (
+          <Routes>
+            <Route path="" element={<Dashboard />} />
+            <Route path="profile/*" element={<Profile />} />
+            <Route path="edit" element={<Edit />} />
+            <Route path="/createBill" element={<CreateBill />} />
+            <Route path="/editBill/:id" element={<EditBill />} />
+            <Route path="/bill/:id" element={<MainBill />} />
+            <Route path="/editinvoice" element={<EditDesignInvoice />} />
+            <Route path="doctorManagement" element={<DoctorManagement />} />
+            <Route path="doctorAdd" element={<DoctorAdd />} />
+            <Route path="doctorEdit/:doctorId" element={<DoctorEdit />} />
+            <Route path="patientManagement" element={<PatientManagement />} />
+            <Route path="monitorBilling" element={<MonitorBilling />} />
+            <Route path="insuranceClaims" element={<InsuranceClaims />} />
+            <Route path="paymentMethod" element={<PaymentMethod />} />
+            <Route path="invoice" element={<Invoice />} />
+            <Route
+              path="reportingAndAnalytics"
+              element={<ReportingAndAnalytics />}
+            />
+          </Routes>
+        ) : (
+          <SearchResult />
+        )}
       </div>
     </>
   );

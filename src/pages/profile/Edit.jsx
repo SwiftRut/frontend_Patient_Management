@@ -7,7 +7,7 @@ import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -114,57 +114,55 @@ export const Edit = () => {
   console.log(profile)
   return (
     <div>
-      <div className="edit-section">
-        <div className="row">
-          <div className="main">
-            <div className="top"></div>
-            <div className="profile-setting">
-              <div className="head">
-                <p>Profile Setting</p>
+      <div class="edit-section">
+        <div class="row">
+          <div class="main">
+            <div class="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
+            <div class="profile-setting w-[80%] mx-auto mt-[-15%]">
+              <div class="head pb-[15px]">
+                <p class="text-[44px] font-bold text-white">Profile Setting</p>
               </div>
-              <div className="content flex">
-                <div className="left">
-                  <div className="img-box">
-                    <div className="img">
+              <div class="content bg-white rounded-[15px] p-[20px] shadow-[0_0_3px_1px_#d7d5d5] flex">
+                <div class="left p-[20px] w-[23%] border-r-[3px] border-[#d9d9d94d]">
+                  <div class="img-box">
+                    <div class="img">
                       <img
                         src={profile?.avatar || "../img/profile.png"}
                         alt=""
-                        className="rounded-full"
+                        class="mx-auto w-[200px] h-[200px] rounded-full"
                       />
                     </div>
-                    <div className="change-profile">
+                    <div class="change-profile pt-[15px]">
                       <ul>
-                        <li>
-                          <input
-                            type="file"
-                            id="profilePic"
-                            name="profilePic"
-                            style={{ display: "none" }}
-                            onChange={handleImageChange}
-                            accept="image/*"
-                          />
-                          <label htmlFor="profilePic" className="flex">
+                        <li class="flex justify-center items-center p-[12px] bg-[#F6F8FB] rounded-[10px]">
+                          {/* here on click i should be able to downlaod the image */}
+                          <label for="profilePic" class="flex items-center cursor-pointer">
                             <FaCamera />
-                            <span>Change Profile</span>
+                            <span class="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">Change Profile</span>
                           </label>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-
-                <div className="right">
-                  <div className="content">
-                    <div className="head">
-                      <div className="title">
-                        <p>Edit Profile</p>
+                <div class="right w-[77%]">
+                  <div class="content p-[30px] rounded-[15px]">
+                    <div class="head flex justify-between items-center">
+                      <div class="title">
+                        <p class="text-[34px] font-semibold text-[#030229]">
+                          Edit Profile
+                        </p>
                       </div>
                     </div>
-                    <div className="form-box">
-                      <form onSubmit={handleFormSubmit} className="flex">
-                        <div className="input-box">
-                          <div className="label">
-                            First Name <span>*</span>
+                    <div class="form-box pt-[20px]">
+                      <form
+                        onSubmit={handleFormSubmit}
+                        class="flex flex-wrap justify-between"
+                      >
+
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            First Name <span class="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
@@ -172,12 +170,13 @@ export const Edit = () => {
                             value={profile.firstName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter First Name"
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Last Name <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Last Name <span class="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
@@ -185,76 +184,81 @@ export const Edit = () => {
                             value={profile.lastName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Last Name"
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Email Address <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Email Address <span class="text-red-500">*</span>
                           </div>
                           <input
-                            type="text"
+                            type="email"
                             name="email"
                             value={profile.email ?? ""}
                             onChange={handleInputChange}
-                            placeholder="Email Address"
+                            placeholder="Enter Email"
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Phone Number <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Phone Number <span class="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
                             name="phone"
                             value={profile.phone ?? ""}
                             onChange={handleInputChange}
-                            placeholder="Phone Number"
+                            placeholder="Enter Phone Number"
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
                           />
                         </div>
 
-                        <div className="input-box">
-                        <div className="label">
-                          Hospital Name <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Hospital Name <span class="text-red-500">*</span>
+                          </div>
+                          <select
+                            name="hospitalName"
+                            value={profile.hospitalId}
+                            onChange={handleInputChange}
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                          >
+                            <option value="">Select Hospital</option>
+                            {allHospitals.map((hospital) => (
+                              <option key={hospital._id} value={hospital._id}>
+                                {hospital.name}
+                              </option>
+                            ))}
+                          </select>
                         </div>
-                        <select
-                          name="hospitalName"
-                          value={profile.hospitalId}
-                          onChange={handleInputChange}
-                        >
-                          <option value="">Select Hospital</option>
-                          {allHospitals.map((hospital) => (
-                            <option key={hospital._id} value={hospital._id}>
-                              {hospital.name}
-                            </option>
-                          ))}
-                        </select>{" "}
-                      </div>
 
-
-                        <div className="input-box">
-                          <div className="label">
-                            Gender <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Gender <span class="text-red-500">*</span>
                           </div>
                           <select
                             name="gender"
                             value={profile.gender || ""}
                             onChange={handleInputChange}
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
                           >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Country <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                            Country <span class="text-red-500">*</span>
                           </div>
                           <select
                             name="country"
                             value={selectedCountry || ""}
                             onChange={handleCountryChange}
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
@@ -265,17 +269,18 @@ export const Edit = () => {
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            State <span>*</span>
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                          State <span class="text-red-500">*</span>
                           </div>
                           <select
                             name="state"
                             value={selectedState || ""}
                             onChange={handleStateChange}
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
                             disabled={!selectedCountry}
                           >
-                            <option value="">Select State</option>
+                             <option value="">Select State</option>
                             {states.map((state) => (
                               <option key={state.value} value={state.value}>
                                 {state.label}
@@ -283,18 +288,19 @@ export const Edit = () => {
                             ))}
                           </select>
                         </div>
-
-                        <div className="input-box">
-                          <div className="label">
-                            City <span>*</span>
+                        
+                        <div class="input-box w-[32%] relative py-[15px]">
+                          <div class="label absolute top-[4px] left-[14px] bg-white z-10">
+                          City <span class="text-red-500">*</span>
                           </div>
                           <select
-                            name="city"
+                            name="gender"
                             value={profile.city || ""}
                             onChange={handleCityChange}
+                            class="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
                             disabled={!selectedState}
                           >
-                            <option value="">Select City</option>
+                             <option value="">Select City</option>
                             {cities.map((city) => (
                               <option key={city.value} value={city.value}>
                                 {city.label}
@@ -303,13 +309,20 @@ export const Edit = () => {
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="save-btn me-3">
-                            <button type="submit">Save</button>
+
+                        <div class="input-box flex justify-end w-full py-[15px]">
+                          <div class="save-btn mr-[15px]">
+                            <button
+                              type="submit"
+                              class="p-[12px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
+                            >
+                              Save
+                            </button>
                           </div>
-                          <div className="cancel-btn">
+                          <div class="cancel-btn">
                             <button
                               type="button"
+                              class="p-[12px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
                               onClick={() => {
                                 setProfile({ ...profile });
                                 navigate("/profile");
@@ -328,6 +341,7 @@ export const Edit = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

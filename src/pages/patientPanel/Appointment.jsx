@@ -40,7 +40,7 @@ const Appointment = () => {
 
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
-  }, [user.id]);
+  }, [user.id,searchTerm,dateRange]);
 
   useEffect(() => {
     filterAppointments();
@@ -49,6 +49,25 @@ const Appointment = () => {
   const clearDateRange = (e) => {
     e.stopPropagation();
     setDateRange([null, null]);
+  };
+  const handleDeleteAppointment = async (appointmentId) => {
+    try {
+      const response = await deleteAppointment(appointmentId);
+      await getAppointmetnsForPatient(user.id); 
+      if (response.status === 200) {
+        const updatedAppointments = allAppointments.map((appointment) =>
+          appointment._id === appointmentId
+            ? { ...appointment, status: "canceled" }
+            : appointment
+        );
+        getAppointmetnsForPatient(user.id);
+        setAllAppointments(updatedAppointments);
+        setActiveTab("cancel");
+      }
+      toast.success("Appointment deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
+    }
   };
 
   const filterAppointments = () => {
@@ -107,21 +126,21 @@ const Appointment = () => {
   const handleCancelAppointment = async (appointmentId) => {
     try {
       const response = await cancelAppointment(appointmentId);
-      await getAppointmetnsForPatient(user.id);
+      console.log("response", response);
 
       if (response.status === 200) {
+        console.log("response", response);
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
             : appointment
         );
+        getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
         setActiveTab("cancel");
       }
-      toast.success("Appointment canceled successfully.");
     } catch (error) {
       console.error("Error canceling appointment:", error);
-      toast.error("Error canceling appointment.");
     }
   };
 
@@ -305,7 +324,7 @@ const Appointment = () => {
                               <button
                                 className="px-3 py-2 m-2 bg-red-500 text-white rounded-md w-full"
                                 onClick={() =>
-                                  deleteAppointment(appointment._id)
+                                  handleDeleteAppointment(appointment._id)
                                 }
                               >
                                 Delete

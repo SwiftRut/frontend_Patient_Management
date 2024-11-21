@@ -17,6 +17,7 @@ const AppointmentModal = ({
   const [diseaseName, setDiseaseName] = useState("");
   const [unavailableTimes, setUnavailableTimes] = useState([]);
   const { user } = useAuth();
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     // Populate fields if in edit mode
@@ -56,8 +57,23 @@ const AppointmentModal = ({
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!patientIssue) {
+      newErrors.patientIssue = "Patient issue is required.";
+    }
+    if (isTimeUnavailable()) {
+      newErrors.timeUnavailable = "The selected time slot is unavailable. Please choose a different time.";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return; 
+    }
     if (isTimeUnavailable()) {
       alert("The selected time slot is unavailable. Please choose a different time.");
       return;
@@ -105,10 +121,11 @@ const AppointmentModal = ({
               <textarea
                 value={patientIssue}
                 onChange={(e) => setPatientIssue(e.target.value)}
-                className="w-full border rounded px-2 py-1"
+                className={`w-full border rounded px-2 py-1  ${errors.patientIssue ? 'border-red-500' : ''}`}
                 placeholder="Enter Patient Issue"
                 required
               />
+              {errors.patientIssue && <p className="text-red-500 text-sm">{errors.patientIssue}</p>}
             </div>
             <div>
               <label className="font-medium block mb-1">Disease Name (Optional)</label>
@@ -119,6 +136,7 @@ const AppointmentModal = ({
                 className="w-full border rounded px-2 py-1"
                 placeholder="Enter Disease Name"
               />
+              {errors.timeUnavailable && <p className="text-red-500 text-sm">{errors.timeUnavailable}</p>}
             </div>
           </div>
           <div className="flex justify-end mt-6 space-x-4">

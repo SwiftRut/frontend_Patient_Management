@@ -33,8 +33,8 @@ import { useAuth } from "../../hooks/useAuth";
 
 const PatientHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+  const { selectedOption, setSelectedOption } = useGlobal();
+  const { searchTerm, setSearchTerm } = useGlobal();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setserchOpen] = useState(false);
   const { userData, getPatientProfile} = useGlobal();

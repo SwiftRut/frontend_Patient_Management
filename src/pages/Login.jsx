@@ -58,6 +58,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+     // Validation
+     const { identifier, password } = formData;
+     if (!identifier || !password) {
+       setError("Email/Phone and Password are required.");
+       toast.error("Please fill out all fields.");
+       return;
+     }
+ 
+     // Email or Phone validation regex
+     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+     const phoneRegex = /^[0-9]{10}$/; // Example: 10 digit phone number validation
+ 
+     if (!emailRegex.test(identifier) && !phoneRegex.test(identifier)) {
+       setError("Please enter a valid email or phone number.");
+       toast.error("Invalid email or phone number.");
+       return;
+     }
     try {
       const role = await UniversalLogin(formData);
       console.log(role);
@@ -68,7 +85,8 @@ const Login = () => {
         }
         else if (role === "patient") {
           toast.success("patient login successfully")
-          window.location.href = "/patient";
+          // window.location.href = "/patient";
+          navigate("/patient");
 
         } else if (role === "doctor") {
           toast.success("doctor login successfully")
@@ -107,6 +125,7 @@ const Login = () => {
                         value={formData.identifier}
                         onChange={handleChange}
                         placeholder="Enter Email or Phone Number"
+                        required
                       />
                     </div>
 

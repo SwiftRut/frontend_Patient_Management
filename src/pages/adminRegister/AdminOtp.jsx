@@ -3,8 +3,7 @@ import { IoTimeOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import apiService from '../../services/api.js';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 
 export default function AdminOtp() {
   const location = useLocation();

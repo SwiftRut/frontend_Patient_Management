@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
-import { Button, IconButton, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
-import { CalendarToday, Search, DateRange } from "@mui/icons-material";
+import {
+  Button,
+  IconButton,
+  TextField,
+  InputAdornment,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-
+import { TbCalendarTime, TbCalendarX } from 'react-icons/tb';
 export default function AppointmentManagement() {
-  const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } = useGlobal();
+  const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } =
+    useGlobal();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -16,9 +24,9 @@ export default function AppointmentManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("Today Appointment");
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
-  const [openCancelAppointmentModal, setOpenCancelAppointmentModal] = useState(false);
+  const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
+    useState(false);
   const [timeFilter, setTimeFilter] = useState("All");
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -26,12 +34,20 @@ export default function AppointmentManagement() {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
   };
 
   const formatTime = (timeString) => {
     const date = new Date(timeString);
-    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   const categorizeAppointments = () => {
@@ -39,22 +55,22 @@ export default function AppointmentManagement() {
     today.setHours(0, 0, 0, 0);
 
     return {
-      today: allAppointments.filter(apt => {
+      today: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate.getTime() === today.getTime();
       }),
-      upcoming: allAppointments.filter(apt => {
+      upcoming: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate > today;
       }),
-      previous: allAppointments.filter(apt => {
+      previous: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate < today;
       }),
-      canceled: allAppointments.filter(apt => apt.status === "cancelled")
+      canceled: allAppointments.filter((apt) => apt.status === "cancelled"),
     };
   };
 
@@ -110,12 +126,13 @@ export default function AppointmentManagement() {
     );
   });
 
-  const timeFilteredAppointments = filterAppointmentsByTime(filteredAppointments);
+  const timeFilteredAppointments =
+    filterAppointmentsByTime(filteredAppointments);
 
   return (
     <div className="bg-[#e4e3e3] p-6 h-full">
       <div className="p-6 bg-white rounded-lg shadow-md h-full">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4  border-b  ">
           <div className="flex space-x-8 text-sm font-semibold text-gray-500 thead">
             {[
               "Today Appointment",
@@ -127,7 +144,7 @@ export default function AppointmentManagement() {
                 key={tab}
                 className={
                   activeTab === tab
-                    ? "!text-[#0EABEB] !border-b-2 !border-[#0EABEB]"
+                    ? "!text-[#0EABEB] !border-b-2 !border-b-[#0EABEB]"
                     : "text-gray-400"
                 }
                 onClick={() => setActiveTab(tab)}
@@ -157,17 +174,19 @@ export default function AppointmentManagement() {
                 }}
               />
 
-              <Select
-                value={timeFilter}
-                onChange={(e) => setTimeFilter(e.target.value)}
-                variant="outlined"
-              >
-                <MenuItem value="All">All Time</MenuItem>
-                <MenuItem value="Day">Today</MenuItem>
-                <MenuItem value="Week">Week</MenuItem>
-                <MenuItem value="Month">Month</MenuItem>
-              </Select>
-
+              {(activeTab == "Cancel Appointment" ||
+                activeTab == "Previous Appointment") &&
+                  <Select
+                    value={timeFilter}
+                    onChange={(e) => setTimeFilter(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="All">All Time</MenuItem>
+                    <MenuItem value="Day">Today</MenuItem>
+                    <MenuItem value="Week">Week</MenuItem>
+                    <MenuItem value="Month">Month</MenuItem>
+                  </Select>
+                }
               <div className="time-slot">
                 <Button
                   variant="contained"
@@ -204,7 +223,9 @@ export default function AppointmentManagement() {
                     <td className="p-3">{appointment.patient_issue}</td>
                     <td className="p-3">{formatDate(appointment.date)}</td>
                     <td className="p-3 text-blue-600">
-                      <span className="a-time">{formatTime(appointment.appointmentTime)}</span>
+                      <span className="a-time">
+                        {formatTime(appointment.appointmentTime)}
+                      </span>
                     </td>
                     <td className="p-3">
                       <h3 className={`px-3 py-1 text-sm font-medium rounded-full w-[6.5rem] text-center ${
@@ -217,16 +238,19 @@ export default function AppointmentManagement() {
                     </td>
                     <td className="p-3 btn">
                       <IconButton
-                        color="primary"
+                        color=" w-10 h-10 rounded-full bg-[#F6F8FB]"
                         onClick={() => setOpenCancelAppointmentModal(true)}
                       >
-                        <CalendarToday style={{ color: "#E11D29" }} />
+                        <TbCalendarX
+                          style={{ color: "#E11D29" }}
+
+                        />
                       </IconButton>
                       <IconButton
                         color="secondary"
                         onClick={() => navigate("/doctor/appointmentTimeSlot")}
                       >
-                        <CalendarToday style={{ color: "#5678E9" }} />
+                        <TbCalendarTime style={{ color: "#5678E9" }} />
                       </IconButton>
                     </td>
                   </tr>
