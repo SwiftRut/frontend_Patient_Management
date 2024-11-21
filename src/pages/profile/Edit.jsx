@@ -135,7 +135,14 @@ export const Edit = () => {
                     <div class="change-profile pt-[15px]">
                       <ul>
                         <li class="flex justify-center items-center p-[12px] bg-[#F6F8FB] rounded-[10px]">
-                          {/* here on click i should be able to downlaod the image */}
+                        <input
+                          type="file"
+                          id="profilePic"
+                          name="profilePic"
+                          style={{ display: "none" }}
+                          onChange={handleImageChange}
+                          accept="image/*"
+                        />
                           <label for="profilePic" class="flex items-center cursor-pointer">
                             <FaCamera />
                             <span class="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">Change Profile</span>
