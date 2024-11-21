@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../doctorManagement/Onsite.css";
+
 import apiService from "../../services/api.js";
 import { IoIosArrowBack } from "react-icons/io";
 import { TbBuildingHospital } from "react-icons/tb";
@@ -14,7 +14,6 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
   const [error, setError] = useState(null);
 
   console.log(doctor);
-  
 
   useEffect(() => {
     const fetchDoctorDetails = async () => {
@@ -40,183 +39,261 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-2/6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 h-5/6 m-3">
-        <div className="onsite-section">
-          <div className="row">
-            <div className="main">
-              <div className="top flex align-center">
-                <div className="icon" onClick={() => handleBack()}>
-                  <IoIosArrowBack />
-                </div>
-                <h3>Doctor Management</h3>
+        <div className="p-4">
+          <div className="flex flex-col space-y-6">
+            {/* Header Section */}
+            <div className="flex items-center border-b border-gray-200 pb-4">
+              <div
+                className="w-12 h-12 flex items-center justify-center rounded-full text-xl border border-gray-200 cursor-pointer"
+                onClick={() => handleBack()}
+              >
+                <IoIosArrowBack />
               </div>
-              <div className="box">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="image" >
-                    <img src={doctor.avatar} />
-                    </div>
-                    <div className="info">
-                      <h4>Dr. {doctor.name}</h4>
-                      <p className="flex align-center">
-                      <CiMapPin />
-                        <span>{doctor.gender}</span>
+              <h3 className="text-2xl font-bold text-gray-900 ml-4">
+                Doctor Management
+              </h3>
+            </div>
+
+            {/* Doctor Box */}
+            <div className="bg-blue-900 rounded-lg p-4 text-white flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <img
+                  src={doctor.avatar}
+                  className="w-20 h-20 rounded-full"
+                  alt="Doctor Avatar"
+                />
+                <div>
+                  <h4 className="text-lg font-extrabold">Dr. {doctor.name}</h4>
+                  <p className="flex items-center text-base font-medium mt-2 bg-[#718EBF] px-4 py-2 rounded-full space-x-2">
+                    <CiMapPin />
+                    <span>{doctor.gender}</span>
+                  </p>
+                </div>
+              </div>
+              <button className="bg-green-600 text-white px-6 py-2 rounded-full font-semibold border border-white">
+                Onsite
+              </button>
+            </div>
+
+            {/* Details Table 1 */}
+            <div className="bg-[#F6F8FB] rounded-lg px-4">
+              <table className="w-full table-fixed text-left">
+                <tbody>
+                  <tr>
+                    <td class="py-1 w-2/4">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Doctor Qualification
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.qualification}
                       </p>
-                    </div>
-                  </div>
-                  <div className="btn">
-                    <button>Onsite</button>
-                  </div>
-                </div>
-              </div>
-              <div className="deatils">
-                <div className="table">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <h3>Doctor Qualification</h3>
-                          <p>{doctor.qualification}</p>
-                        </td>
-                        <td>
-                          <h3>Years Of Experience</h3>
-                          <p>{doctor.experience}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>Specialty Type</h3>
-                          <p>{doctor.speciality}</p>
-                        </td>
-                        <td>
-                          <h3>Working Time</h3>
-                          <p>{doctor.workingTime}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>Patient Check Up Time</h3>
-                          <p>{doctor.patientCheckupTime}</p>
-                        </td>
-                        <td>
-                          <h3>Break Time</h3>
-                          <p>{doctor.breakTime}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan={2}>
-                          <h3>Description</h3>
-                          <p>{doctor.description}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan={2}>
-                          <h3>Signature</h3>
-                          <img src={doctor.signatureUpload} width="100%" />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    </td>
+                    <td class="py-1 w-2/4">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Years Of Experience
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.experience}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Specialty Type
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.speciality}
+                      </p>
+                    </td>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Working Time
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.workingTime}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Patient Check Up Time
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.patientCheckupTime}
+                      </p>
+                    </td>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Break Time
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.breakTime}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="3" className="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Description
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.description}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan="3" className="py-2">
+                      <h4 className="py-2 text-gray-500 font-semibold">
+                        Signature
+                      </h4>
 
-                <div className="table" style={{ marginTop: "20px" }}>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <h3>Age</h3>
-                          <p>{doctor.age}</p>
-                        </td>
-                        <td>
-                          <h3>Email</h3>
-                          <p>{doctor.email}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>Phone</h3>
-                          <p>{doctor.phone}</p>
-                        </td>
-                        <td>
-                          <h3>Online Consultation Rate</h3>
-                          <p>{doctor.onlineConsultationRate}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>Country</h3>
-                          <p>{doctor.country}</p>
-                        </td>
-                        <td>
-                          <h3>State</h3>
-                          <p>{doctor.state}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <h3>Zip Code</h3>
-                          <p>{doctor.zipCode}</p>
-                        </td>
-                        <td>
-                          <h3>City</h3>
-                          <p>{doctor.city}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colSpan={2}>
-                          <h3>Address</h3>
-                          <p>{doctor.address}</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                      <img
+                        src={doctor.signatureUpload}
+                        alt="Doctor Signature"
+                        className="w-full"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-              {/* online */}
-              <div className="working-details mt-5">
-                <div className="title flex">
-                  <h3>Working On Online</h3>
-                  <p className="font-semibold">{doctor.workingOn}</p>
-                </div>
-                <ul>
-                  <li className="hospital-data flex align-center">
-                    <div className="icon">
-                      <TbBuildingHospital />
-                    </div>
-                    <div className="text">
-                      <h2>Hospital Name</h2>
-                      <p>{doctor.hospitalName}</p>
-                    </div>
-                  </li>
-                  <li className="hospital-data flex align-center">
-                    <div className="icon">
-                      <IoLinkSharp />
-                    </div>
-                    <div className="text">
-                      <h2>Hospital Website Link</h2>
-                      <p>{doctor.worksiteLink}</p>
-                    </div>
-                  </li>
-                  <li className="hospital-data flex align-center">
-                    <div className="icon">
-                      <BiSolidPhoneCall />
-                    </div>
-                    <div className="text">
-                      <h2>Emergency Contact Number</h2>
-                      <p>{doctor.emergencyContactNo}</p>
-                    </div>
-                  </li>
-                  <li className="hospital-data flex align-center">
-                    <div className="icon">
-                      <IoLocation />
-                    </div>
-                    <div className="text">
-                      <h2>Hospital Address</h2>
-                      <p>{doctor?.hospitalId?.address}</p>
-                    </div>
-                  </li>
-                </ul>
+            {/* Details Table 2 */}
+            <div className="bg-[#F6F8FB] rounded-lg p-4 mt-6">
+              <table className="w-full table-fixed text-left">
+                <tbody>
+                  <tr>
+                    <td class="py-1 w-2/4">
+                      <h3 class="text-gray-500 text-lg font-normal">Age</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.age}
+                      </p>
+                    </td>
+                    <td class="py-1 w-2/4">
+                      <h3 class="text-gray-500 text-lg font-normal">Email</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.email}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">Phone</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.phone}
+                      </p>
+                    </td>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Online Consultation Rate
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.onlineConsultationRate}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">Country</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.country}
+                      </p>
+                    </td>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">State</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.state}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">
+                        Zip Code
+                      </h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.zipCode}
+                      </p>
+                    </td>
+                    <td class="py-2">
+                      <h3 class="text-gray-500 text-lg font-normal">City</h3>
+                      <p class="text-gray-800 text-lg font-medium">
+                        {doctor.city}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr colSpan="3" className="py-2">
+                    <td>
+                      <h4 className="py-2 text-gray-500 font-semibold">
+                        Address
+                      </h4>
+                      <p colSpan="3" className="py-2 font-semibold">
+                        {doctor.address}
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Working Details */}
+            <div className="bg-gray-100 rounded-lg p-4 mt-6">
+              <div className="flex justify-between border-b border-white pb-4">
+                <h3 className="text-xl font-bold text-gray-900">
+                  Working On Online
+                </h3>
+                <p className="font-semibold text-[#718EBF]">
+                  {doctor.workingOn}
+                </p>
               </div>
+              <ul className="space-y-4 mt-4">
+                <li className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white text-blue-500 rounded-md flex items-center justify-center text-2xl">
+                    <TbBuildingHospital />
+                  </div>
+                  <div>
+                    <h2 className="text-gray-500 font-medium">Hospital Name</h2>
+                    <p className="font-semibold">{doctor.hospitalName}</p>
+                  </div>
+                </li>
+                <li className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white text-blue-500 rounded-md flex items-center justify-center text-2xl">
+                    <IoLinkSharp />
+                  </div>
+                  <div>
+                    <h2 className="text-gray-500 font-medium">
+                      Hospital Website Link
+                    </h2>
+                    <p className="font-semibold">{doctor.worksiteLink}</p>
+                  </div>
+                </li>
+                <li className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white text-blue-500 rounded-md flex items-center justify-center text-2xl">
+                    <BiSolidPhoneCall />
+                  </div>
+                  <div>
+                    <h2 className="text-gray-500 font-medium">
+                      Emergency Contact Number
+                    </h2>
+                    <p className="font-semibold">{doctor.emergencyContactNo}</p>
+                  </div>
+                </li>
+                <li className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white text-blue-500 rounded-md flex items-center justify-center text-2xl">
+                    <IoLocation />
+                  </div>
+                  <div>
+                    <h2 className="text-gray-500 font-medium">
+                      Hospital Address
+                    </h2>
+                    <p className="font-semibold">
+                      {doctor.hospitalId?.address}
+                    </p>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

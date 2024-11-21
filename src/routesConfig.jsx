@@ -114,6 +114,10 @@ const routesConfig = [
         element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
       },
       {
+        path: "invoice",
+        element: <ProtectedRoute element={null} allowedRoles={["admin"]} userRole={userRole} />,
+      },
+      {
         path: "/editinvoice",
         element: (
           <ProtectedRoute
@@ -291,17 +295,17 @@ const routesConfig = [
   },
 
   // Extra routes
-  {
-    path: "/invoice",
-    element: (
-      <ProtectedRoute
-        element={<Invoice />}
-        allowedRoles={["admin", "doctor", "patient"]}
-        userRole={userRole}
-      />
-    ),
-    allowedRoles: ["admin", "doctor", "patient"],
-  },
+  // {
+  //   path: "/invoice",
+  //   element: (
+  //     <ProtectedRoute
+  //       element={<Invoice />}
+  //       allowedRoles={["admin", "doctor", "patient"]}
+  //       userRole={userRole}
+  //     />
+  //   ),
+  //   allowedRoles: ["admin", "doctor", "patient"],
+  // },
 
   {
     path: "/schedular",

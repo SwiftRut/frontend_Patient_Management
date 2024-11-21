@@ -1,4 +1,4 @@
-import "../billPayment/paymentMethod.css";
+// import "../billPayment/paymentMethod.css";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { FaWallet } from "react-icons/fa";
 
 export default function PaymentMethod() {
   const navigate = useNavigate();
-  const { getBills, allBills } = useGlobal(); 
+  const { getBills, allBills } = useGlobal();
   const [searchQuery, setSearchQuery] = useState("");
   const [isPayment, setIsPayment] = useState(false);
   const [billData, setBillData] = useState(null);
@@ -26,9 +26,9 @@ export default function PaymentMethod() {
   // Fetch bills when the component mounts
   useEffect(() => {
     const fetchBills = async () => {
-      setLoading(true); 
-      await getBills(); 
-      setLoading(false); 
+      setLoading(true);
+      await getBills();
+      setLoading(false);
     };
     fetchBills();
   }, []);
@@ -38,19 +38,24 @@ export default function PaymentMethod() {
     const lowerCaseQuery = searchQuery.toLowerCase();
     return (
       data.billNumber.toString().toLowerCase().includes(lowerCaseQuery) ||
-      (data.patientId && data.patientId.firstName.toLowerCase().includes(lowerCaseQuery)) ||
-      (data.patientId && data.patientId.phoneNumber.toLowerCase().includes(lowerCaseQuery)) ||
+      (data.patientId &&
+        data.patientId.firstName.toLowerCase().includes(lowerCaseQuery)) ||
+      (data.patientId &&
+        data.patientId.phoneNumber.toLowerCase().includes(lowerCaseQuery)) ||
       data.diseaseName.toLowerCase().includes(lowerCaseQuery)
     );
   });
 
+  // Function to format the date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
 
-    // Function to format the date
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    };
-  
   return (
     <>
       <div className="payment-section">
@@ -82,34 +87,62 @@ export default function PaymentMethod() {
               <table className="min-w-full table-auto">
                 <thead className="sticky top-0 bg-gray-100 z-10">
                   <tr>
-                    <th className="p-3 text-left text-lg font-semibold">Bill Number</th>
-                    <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
-                    <th className="p-3 text-left text-lg font-semibold">Disease Name</th>
-                    <th className="p-3 text-left text-lg font-semibold">Phone Number</th>
-                    <th className="p-3 text-left text-lg font-semibold">Status</th>
-                    <th className="p-3 text-left text-lg font-semibold">Date</th>
-                    <th className="p-3 text-left text-lg font-semibold">Time</th>
-                    <th className="p-3 text-left text-lg font-semibold">Action</th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Bill Number
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Patient Name
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Disease Name
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Phone Number
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Status
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Date
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Time
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
                     <tr>
-                      <td colSpan="8" className="p-3 text-center">Loading...</td>
+                      <td colSpan="8" className="p-3 text-center">
+                        Loading...
+                      </td>
                     </tr>
                   ) : filteredData.length > 0 ? (
                     filteredData.map((data, index) => (
                       <tr key={index}>
                         <td className="p-3">{data.billNumber}</td>
                         <td className="p-3">
-                          {data.patientId ? `${data.patientId.firstName} ${data.patientId.lastName}` : 'N/A'}
+                          {data.patientId
+                            ? `${data.patientId.firstName} ${data.patientId.lastName}`
+                            : "N/A"}
                         </td>
                         <td className="p-3">{data.diseaseName}</td>
-                        <td className="p-3">{data.patientId ? data.patientId.phone : 'N/A'}</td>
-                        <td className={`p-3 ${data.status === "Paid" ? "status" : "red"}`}>
+                        <td className="p-3">
+                          {data.patientId ? data.patientId.phone : "N/A"}
+                        </td>
+                        <td
+                          className={`p-3 ${
+                            data.status === "Paid" ? "status" : "red"
+                          }`}
+                        >
                           <h3>{data.status}</h3>
                         </td>
-                        <td className="p-3">{data.date ? formatDate(data.date) : 'N/A'}</td>
+                        <td className="p-3">
+                          {data.date ? formatDate(data.date) : "N/A"}
+                        </td>
                         <td className="p-3">{data.time}</td>
                         <td className="flex action p-3">
                           <div
@@ -124,15 +157,20 @@ export default function PaymentMethod() {
                           >
                             <FaEye />
                           </div>
-                          <div className="delete" onClick={() => openModal(data)}>
-                          <FaWallet />
+                          <div
+                            className="delete"
+                            onClick={() => openModal(data)}
+                          >
+                            <FaWallet />
                           </div>
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="8" className="p-3 text-center">No results found</td>
+                      <td colSpan="8" className="p-3 text-center">
+                        No results found
+                      </td>
                     </tr>
                   )}
                 </tbody>
@@ -142,7 +180,7 @@ export default function PaymentMethod() {
         </div>
       </div>
 
-      {isPayment && ( 
+      {isPayment && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-5 rounded-lg shadow-lg">
             <CashPayment setIsPayment={setIsPayment} billData={billData} />

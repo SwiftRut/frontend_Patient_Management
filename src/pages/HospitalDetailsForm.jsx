@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import DynamicField from "./DynamicField";
 import { FaEdit } from "react-icons/fa";
@@ -13,6 +13,8 @@ const HospitalDetailsForm = ({
   removeDynamicField,
   openModal,
 }) => {
+  const [formErrors, setFormErrors] = useState({}); // Added state for form errors
+
   const validateForm = () => {
     const errors = {};
 
@@ -38,6 +40,7 @@ const HospitalDetailsForm = ({
     setFormErrors(errors);
     return Object.keys(errors).length === 0; // Returns true if there are no errors
   };
+
   return (
     <div className="hospital-details">
       <div className="content">
@@ -80,7 +83,7 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     placeholder="Enter Name"
                   />
-                    {formErrors.hospitalName && (
+                  {formErrors?.hospitalName && (
                     <p className="text-red-500 text-xs">{formErrors.hospitalName}</p>
                   )}
                   <div className="minus-circle">
@@ -112,7 +115,7 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Email"
                     required
                   />
-                    {formErrors.email && (
+                  {formErrors.email && (
                     <p className="text-red-500 text-xs">{formErrors.email}</p>
                   )}
                   <div className="minus-circle">
@@ -130,7 +133,7 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     required
                   />
-                   {formErrors.billDate && (
+                  {formErrors.billDate && (
                     <p className="text-red-500 text-xs">{formErrors.billDate}</p>
                   )}
                   <div className="minus-circle">
@@ -148,7 +151,7 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     required
                   />
-                   {formErrors.billTime && (
+                  {formErrors.billTime && (
                     <p className="text-red-500 text-xs">{formErrors.billTime}</p>
                   )}
                   <div className="minus-circle">
@@ -186,7 +189,7 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Phone Number"
                     required
                   />
-                   {formErrors.phoneNumber && (
+                  {formErrors.phoneNumber && (
                     <p className="text-red-500 text-xs">{formErrors.phoneNumber}</p>
                   )}
                   <div className="minus-circle">
@@ -205,7 +208,7 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Address"
                     required
                   />
-                   {formErrors.hospitalAddress && (
+                  {formErrors.hospitalAddress && (
                     <p className="text-red-500 text-xs">{formErrors.hospitalAddress}</p>
                   )}
                   <div className="minus-circle">
@@ -221,9 +224,6 @@ const HospitalDetailsForm = ({
                     onRemove={() => removeDynamicField("hospital", index)}
                   />
                 ))}
-                <div className="save-btn flex ml-5">
-                  <button type="submit">Save</button>
-                </div>
               </form>
             </div>
           </div>

@@ -18,6 +18,7 @@ import EditDesignInvoice from "./billPayment/EditDesignInvoice";
 import MainBill from "./patientPanel/MainBill";
 import { useGlobal } from "../hooks/useGlobal";
 import { SearchResult } from "./SearchResult";
+import { Invoice } from "../imports";
 
 export default function AdminPanel() {
   const { searchTerm, setSearchTerm } = useGlobal();
@@ -47,6 +48,7 @@ export default function AdminPanel() {
             <Route path="monitorBilling" element={<MonitorBilling />} />
             <Route path="insuranceClaims" element={<InsuranceClaims />} />
             <Route path="paymentMethod" element={<PaymentMethod />} />
+            <Route path="invoice" element={<Invoice />} />
             <Route
               path="reportingAndAnalytics"
               element={<ReportingAndAnalytics />}

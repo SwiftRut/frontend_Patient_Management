@@ -6,8 +6,6 @@ import { useAuth } from "../../hooks/useAuth";
 import PatientDetailsForm from "../PatientDetailsForm";
 import HospitalDetailsForm from "../HospitalDetailsForm";
 import AddFieldModal from "../../component/AddFieldsModal";
-import AddNewField from "./AddNewField";
-import toast from "react-hot-toast";
 
 const Invoice = () => {
   const navigate = useNavigate();
@@ -66,14 +64,12 @@ const Invoice = () => {
           hospitalId: data?.hospital?._id || "",
           phoneNumber: data?.hospital?.phoneNumber || "",
         }));
-        
       } catch (error) {
         console.error("Error fetching admin profile:", error);
-        toast.error("Error fetching admin profile.");
       }
     };
     fetchData();
-  }, []);
+  }, [user.id, getAdminProfile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,10 +89,8 @@ const Invoice = () => {
         await createBill(data);
       }
       navigate("/");
-      toast.success("Bill created successfully.");
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error submitting form.");
     }
   };
 
@@ -138,7 +132,9 @@ const Invoice = () => {
   const removeDynamicField = (section, index) => {
     if (section === "hospital") {
       const fieldToRemove = hospitalDynamicFields[index];
-      setHospitalDynamicFields((prevFields) => prevFields.filter((_, i) => i !== index));
+      setHospitalDynamicFields((prevFields) =>
+        prevFields.filter((_, i) => i !== index)
+      );
       setFormData((prevData) => {
         const newData = { ...prevData };
         delete newData[fieldToRemove.name];
@@ -146,7 +142,9 @@ const Invoice = () => {
       });
     } else if (section === "patient") {
       const fieldToRemove = patientDynamicFields[index];
-      setPatientDynamicFields((prevFields) => prevFields.filter((_, i) => i !== index));
+      setPatientDynamicFields((prevFields) =>
+        prevFields.filter((_, i) => i !== index)
+      );
       setPatientData((prevData) => {
         const newData = { ...prevData };
         delete newData[fieldToRemove.name];
@@ -157,9 +155,9 @@ const Invoice = () => {
 
   return (
     <div>
-      <div className="create-bill-section">
+      <div className="invoice-create-bill-section p-5">
         <div className="row">
-          <div className="main">
+          <div className="main p-[15px] bg-[white] rounded-[15px]">
             <div className="title">
               <p>Create Bill</p>
             </div>
@@ -183,7 +181,9 @@ const Invoice = () => {
               onDynamicFieldChange={(name, value) =>
                 handleDynamicFieldChange("patient", name, value)
               }
-              onRemoveDynamicField={(index) => removeDynamicField("patient", index)}
+              onRemoveDynamicField={(index) =>
+                removeDynamicField("patient", index)
+              }
             />
 
             <div className="save-btn flex">
@@ -192,7 +192,7 @@ const Invoice = () => {
           </div>
         </div>
       </div>
-      <AddNewField
+      <AddFieldModal
         isOpen={isModalOpen}
         onClose={closeModal}
         onAddField={(field) => handleNewField(field)}

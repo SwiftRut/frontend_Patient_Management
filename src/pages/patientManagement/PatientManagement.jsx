@@ -1,4 +1,3 @@
-import "./patientManage.css";
 import { CiSearch } from "react-icons/ci";
 import { FaEye } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -16,69 +15,67 @@ export default function PatientManagement() {
 
   const filterAppointments = () => {
     if (!allPatients || !Array.isArray(allPatients)) return [];
-    
+
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allAppointments = allPatients.flatMap(patient => 
-      (patient.appointmentId || []).map(apt => ({
+    const allAppointments = allPatients.flatMap((patient) =>
+      (patient.appointmentId || []).map((apt) => ({
         name: `${patient.firstName} ${patient.lastName}`,
         issue: apt.patient_issue,
-        doctor: "Dr. " + (apt.doctorId?.name || "Unknown"), 
+        doctor: "Dr. " + (apt.doctorId?.name || "Unknown"),
         disease: apt.type,
-        time: new Date(apt.appointmentTime).toLocaleTimeString('en-US', {
-          hour: 'numeric',
-          minute: '2-digit',
-          hour12: true
+        time: new Date(apt.appointmentTime).toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
         }),
         type: apt.type === "follow_up" ? "Follow-up" : "Consultation",
         phone: patient.phone,
         age: `${patient.age} Years`,
         gender: patient.gender,
         address: patient.address,
-        date: new Date(apt.date).toLocaleDateString('en-US', {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric'
+        date: new Date(apt.date).toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
         }),
         status: apt.status,
         appointmentDate: new Date(apt.date),
         patientDetails: {
           ...patient,
-          appointment: apt
-        }
+          appointment: apt,
+        },
       }))
     );
 
     switch (activeTab) {
       case "today":
-        return allAppointments.filter(apt => {
+        return allAppointments.filter((apt) => {
           const aptDate = new Date(apt.appointmentDate);
-          return aptDate.getDate() === today.getDate() &&
-                 aptDate.getMonth() === today.getMonth() &&
-                 aptDate.getFullYear() === today.getFullYear() &&
-                 apt.status === "scheduled";
+          return (
+            aptDate.getDate() === today.getDate() &&
+            aptDate.getMonth() === today.getMonth() &&
+            aptDate.getFullYear() === today.getFullYear() &&
+            apt.status === "scheduled"
+          );
         });
-      
+
       case "upcoming":
-        return allAppointments.filter(apt => 
-          apt.appointmentDate > tomorrow &&
-          apt.status === "scheduled"
+        return allAppointments.filter(
+          (apt) => apt.appointmentDate > tomorrow && apt.status === "scheduled"
         );
-      
+
       case "previous":
-        return allAppointments.filter(apt => 
-          apt.appointmentDate < today ||
-          apt.status === "completed"
+        return allAppointments.filter(
+          (apt) => apt.appointmentDate < today || apt.status === "completed"
         );
-      
+
       case "cancelled":
-        return allAppointments.filter(apt => 
-          apt.status === "cancelled"
-        );
-      
+        return allAppointments.filter((apt) => apt.status === "cancelled");
+
       default:
         return [];
     }
@@ -113,78 +110,130 @@ export default function PatientManagement() {
 
   return (
     <>
-      <div className="patient-section bg-gray">
+
+      <div className="patient-section p-4 bg-gray-100">
         <div className="row">
-          <div className="main">
-            <div className="flex top-menu">
-              <button onClick={() => setActiveTab("today")}>Today Appointment</button>
-              <button onClick={() => setActiveTab("upcoming")}>Upcoming Appointment</button>
-              <button onClick={() => setActiveTab("previous")}>Previous Appointment</button>
-              <button onClick={() => setActiveTab("cancelled")}>Cancel Appointment</button>
+          <div className="main bg-white rounded-lg p-4 m-2 h-full">
+            <div className="top-menu flex border-b border-gray-300 space-x-6">
+              <button
+                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                onClick={() => setActiveTab("today")}
+              >
+                Today Appointment
+              </button>
+              <button
+                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                onClick={() => setActiveTab("upcoming")}
+              >
+                Upcoming Appointment
+              </button>
+              <button
+                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                onClick={() => setActiveTab("previous")}
+              >
+                Previous Appointment
+              </button>
+              <button
+                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                onClick={() => setActiveTab("cancelled")}
+              >
+                Cancel Appointment
+              </button>
             </div>
-            <div className="top flex align-center">
+            <div className="top flex justify-between items-center py-4">
               <div className="heading">
-                <h3>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Appointments</h3>
+                <h3 className="text-2xl font-bold">
+                  {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
+                  Appointments
+                </h3>
               </div>
               <div className="search-btn flex">
-                <div className="input flex align-center">
-                  <div className="search">
+                <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                  <div class="text-xl text-gray-700">
                     <CiSearch />
                   </div>
                   <input
                     type="text"
-                    placeholder="Search Patient"
+                    placeholder="Search Doctor"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    class="bg-transparent pl-2 text-lg outline-none"
                   />
                 </div>
               </div>
             </div>
-            <div
-              className="pr-data h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-              style={{ maxHeight: "calc(100vh - 260px)" }}
-            >
+            <div className="pr-data h-[80%] overflow-y-auto max-h-[calc(100vh-260px)] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
               <table className="min-w-full table-auto">
-                <thead className="sticky top-0 bg-gray-100 z-10">
+                <thead className="sticky top-0 bg-[#F6F8FB] z-10">
                   <tr>
-                    <th className="p-3 text-left text-lg font-semibold">Patient Name</th>
-                    <th className="p-3 text-left text-lg font-semibold">Patient Issue</th>
-                    <th className="p-3 text-left text-lg font-semibold">Doctor Name</th>
-                    <th className="p-3 text-left text-lg font-semibold">Diseases Name</th>
-                    <th className="p-3 text-left text-lg font-semibold">Appointment Time</th>
-                    <th className="p-3 text-left text-lg font-semibold">Appointment Type</th>
-                    <th className="p-3 text-left text-lg font-semibold">Action</th>
+                    <th className="p-3 text-left text-lg font-semibold rounded-tl-lg">
+                      Patient Name
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Patient Issue
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Doctor Name
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Diseases Name
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Appointment Time
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold">
+                      Appointment Type
+                    </th>
+                    <th className="p-3 text-left text-lg font-semibold rounded-tr-lg">
+                      Action
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {searchFilteredAppointments.length > 0 ? (
                     searchFilteredAppointments.map((appointment, index) => (
                       <tr key={index} className="border-t">
-                        <td className="flex align-center p-3">
+                        <td className="flex items-center p-3">
                           <div className="avatar">
-                            <img src={appointment.patientDetails?.avatar || "/img/Avatar.png"} alt="Avatar" />
+                            <img
+                              src={
+                                appointment.patientDetails?.avatar ||
+                                "/img/Avatar.png"
+                              }
+                              alt="Avatar"
+                              className="w-12 h-12 rounded-full mr-2"
+                            />
                           </div>
                           <div className="name">
-                            <h3>{appointment.name}</h3>
+                            <h3 className="text-[#4F4F4F] text-lg font-semibold">
+                              {appointment.name}
+                            </h3>
                           </div>
                         </td>
-                        <td className="p-3">
+                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
                           <h3>{appointment.issue}</h3>
                         </td>
-                        <td className="p-3">
+                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
                           <h3>{appointment.doctor}</h3>
                         </td>
-                        <td className="p-3">
+                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
                           <h3>{appointment.disease}</h3>
                         </td>
                         <td className="time p-3">
-                          <h3>{appointment.time}</h3>
+                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                            {appointment.time}
+                          </h3>
                         </td>
                         <td className="time p-3">
-                          <h3>{appointment.type}</h3>
+                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                            {appointment.type}
+                          </h3>
                         </td>
                         <td className="action p-3">
-                          <div className="view" onClick={() => openModal(appointment)}>
+                          <div
+                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-lg w-[45%] px-2 py-2 text-center text-lg font-semibold"
+                            onClick={() => openModal(appointment)}
+                          >
                             <FaEye />
                           </div>
                         </td>
@@ -192,7 +241,7 @@ export default function PatientManagement() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="7" className="p-3 text-center">
+                      <td colSpan="7" className="p-3 text-center text-gray-600">
                         No appointments found.
                       </td>
                     </tr>
