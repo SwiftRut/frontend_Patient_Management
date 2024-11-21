@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaCircleMinus } from "react-icons/fa6";
-import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -296,48 +295,49 @@ const DoctorEdit = () => {
             <div className="top p-[20px] border rounded-[15px] my-[15px]">
               <div className="content">
                 <div className="head">
-                  <p>Edit Doctor Detail</p>
+                  <p className="text-[24px] font-bold text-[#030229]">Edit Doctor Detail</p>
                 </div>
-                <div className="details flex">
-                  <div className="left flex">
-                    <div className="choose-photo">
-                      <div className="image">
-                        <img src={doctorData.avatar} alt="Doctor Avatar" />
+                <div className="details flex justify-between">
+                  <div className="left w-[19%] flex flex-col items-center ">
+                    <div className="choose-photo flex flex-col items-center">
+                      <div className="image mt-[30px] mb-4">
+                        <img src={doctorData.avatar} alt="Doctor Avatar" className="w-32 h-32 rounded-full object-cover" />
                       </div>
 
                       <div className="choose-img">
-                        <label htmlFor="photo-upload" className="upload-label">Choose Photo</label>
+                        <label htmlFor="photo-upload" className="upload-label text-blue-500 cursor-pointer">Choose Photo</label>
                         <input
                           id="photo-upload"
                           type="file"
                           accept="image/*"
                           onChange={handlePhotoChange}
-                          style={{ display: 'none' }}
+                          className="hidden"
                         />
                       </div>
                     </div>
 
-                    <div className="upload-sign">
-                      <div className="title">
-                        <p>Signature</p>
+                    <div className="upload-sign  w-[100%] flex-col  mt-5 ">
+                      <div className="title mb-2">
+                        <p className="text-lg font-semibold">Signature</p>
                       </div>
-                      <div className="sign">
-                        <img src={doctorData.signature} alt="Doctor Signature" />
-                        <label htmlFor="signature-upload" className="upload-label">Upload a file</label>
-                        <h5>PNG Up To 5MB</h5>
+
+                      <div className="mt-2 flex flex-col items-center w-[100%] border-2 border-dashed border-[#D3D3D3] rounded-[6px] p-5">
+                        <img src={doctorData.signature} alt="Doctor Signature" className="w-32 h-16 object-contain mb-2" />
+                        <label htmlFor="signature-upload" className="upload-label text-blue-500 cursor-pointer">Upload a file</label>
+                        <h5 className="text-sm text-gray-500">PNG Up To 5MB</h5>
                         <input
                           id="signature-upload"
                           type="file"
                           accept="image/*"
                           onChange={handleSignatureChange}
-                          style={{ display: 'none' }}
+                          className="hidden"
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="right">
+                  <div className="right w-[79%]">
                     <div className="form-box">
-                      <form className="flex">
+                      <form className="flex gap-x-[22px]">
                         {[
                           { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
@@ -380,14 +380,15 @@ const DoctorEdit = () => {
                           { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
                           { label: "Online Consultation Rate", name: "onlineConsultationRate", type: "text", placeholder: "Enter Consultation Rate", value: doctorData.onlineConsultationRate },
                         ].map((field, index) => (
-                          <div className="input-box" key={index}>
-                            <div className="label">{field.label}</div>
+                          <div className="input-box relative py-[15px] w-[32%] " key={index}>
+                            <div className="label absolute top-[4px] left-[14px] bg-white z-10">{field.label}</div>
                             {field.type === 'select' ? (
                               <select
                                 name={field.name}
                                 value={field.value}
                                 onChange={handleInputChange}
                                 disabled={field.isDisabled}
+                                className="w-full py-[12px] px-[14px] border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] text-[#a7a7a7] outline-none"
                               >
                                 <option value="">Select {field.label}</option>
                                 {field?.options?.map((option) => {
@@ -421,13 +422,14 @@ const DoctorEdit = () => {
                                 value={field.value}
                                 onChange={handleInputChange}
                                 placeholder={field.placeholder}
+                                className="w-full py-[12px] px-[14px] border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] text-[#a7a7a7]"
                               />
                             )}
                             {errors[field.name] && (
                               <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                             )}
-                            <div className="minus-circle">
-                              <FaCircleMinus />
+                            <div className="minus-circle absolute top-[6px] right-[-8px]">
+                              <FaCircleMinus className="text-[#A7A7A7] text-[20px]" />
                             </div>
                           </div>
                         ))}
@@ -437,12 +439,11 @@ const DoctorEdit = () => {
                 </div>
               </div>
             </div>
-
-            <div className="bottom">
+            <div className="bottom p-5 border-2 border-[#F4F4F4] rounded-xl my-4">
               <div className="content">
                 <div className="details flex">
-                  <div className="form-box">
-                    <form className="flex">
+                  <div className="form-box w-full">
+                    <form className="flex gap-x-[22px]">
                       {[
                         { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
                         { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
@@ -450,13 +451,14 @@ const DoctorEdit = () => {
                         { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
                         { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
                       ].map((field, index) => (
-                        <div className="input-box" key={index}>
-                          <div className="label">{field.label}</div>
+                        <div className="input-box relative py-4 w-[32%]" key={index}>
+                          <div className="label absolute top-1 left-4 bg-white z-10">{field.label}</div>
                           {field.type === "select" ? (
                             <select
                               name={field.name}
                               value={doctorData.hospitalName || ""}
                               onChange={handleInputChange}
+                              className="p-3 border border-[#d9d9d9] rounded-xl w-full focus:border-[#718ebf] bg-white text-[#a7a7a7]"
                             >
                               <option value="">Select Hospital</option>
                               {field.options.map((hospital) => (
@@ -472,13 +474,14 @@ const DoctorEdit = () => {
                               value={field.value}
                               onChange={handleInputChange}
                               placeholder={field.placeholder}
+                              className="p-3 border border-[#d9d9d9] rounded-xl w-full focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
                           )}
                           {errors[field.name] && (
                             <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                           )}
-                          <div className="minus-circle">
-                            <FaCircleMinus />
+                          <div className="minus-circle absolute top-1 right-[-8px]">
+                            <FaCircleMinus className="text-[#A7A7A7] text-xl" />
                           </div>
                         </div>
                       ))}
@@ -487,10 +490,10 @@ const DoctorEdit = () => {
                 </div>
               </div>
             </div>
-
-
-            <div className="save-btn flex">
-              <button type="submit">Save</button>
+            <div className="save-btn flex justify-end">
+              <button type="submit" className="bg-gray-100 px-10 py-2 text-gray-600 text-lg font-semibold rounded-lg hover:bg-blue-500 hover:text-white">
+                Save
+              </button>
             </div>
           </form>
         </div>
