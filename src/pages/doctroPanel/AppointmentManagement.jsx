@@ -7,15 +7,13 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { TbCalendarX } from "react-icons/tb";
-import { TbCalendarTime } from "react-icons/tb";
-import { Search, DateRange } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-
+import { TbCalendarTime, TbCalendarX } from 'react-icons/tb';
 export default function AppointmentManagement() {
   const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } =
     useGlobal();
@@ -29,7 +27,6 @@ export default function AppointmentManagement() {
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
     useState(false);
   const [timeFilter, setTimeFilter] = useState("All");
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -177,17 +174,19 @@ export default function AppointmentManagement() {
                 }}
               />
 
-              <Select
-                value={timeFilter}
-                onChange={(e) => setTimeFilter(e.target.value)}
-                variant="outlined"
-              >
-                <MenuItem value="All">All Time</MenuItem>
-                <MenuItem value="Day">Today</MenuItem>
-                <MenuItem value="Week">Week</MenuItem>
-                <MenuItem value="Month">Month</MenuItem>
-              </Select>
-
+              {(activeTab == "Cancel Appointment" ||
+                activeTab == "Previous Appointment") &&
+                  <Select
+                    value={timeFilter}
+                    onChange={(e) => setTimeFilter(e.target.value)}
+                    variant="outlined"
+                  >
+                    <MenuItem value="All">All Time</MenuItem>
+                    <MenuItem value="Day">Today</MenuItem>
+                    <MenuItem value="Week">Week</MenuItem>
+                    <MenuItem value="Month">Month</MenuItem>
+                  </Select>
+                }
               <div className="time-slot">
                 <Button
                   variant="contained"
@@ -207,24 +206,12 @@ export default function AppointmentManagement() {
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <th className="p-3 text-left text-sm font-semibold rounded-tl-lg">
-                    Patient Name
-                  </th>
-                  <th className="p-3 text-left text-sm font-semibold">
-                    Patient Issue
-                  </th>
-                  <th className="p-3 text-left text-sm font-semibold">
-                    Appointment Date
-                  </th>
-                  <th className="p-3 text-left text-sm font-semibold">
-                    Appointment Time
-                  </th>
-                  <th className="p-3 text-left text-sm font-semibold">
-                    Appointment Type
-                  </th>
-                  <th className="p-3 text-left text-sm font-semibold rounded-tr-lg">
-                    Action
-                  </th>
+                  <th className="p-3 text-left text-sm font-semibold">Patient Name</th>
+                  <th className="p-3 text-left text-sm font-semibold">Patient Issue</th>
+                  <th className="p-3 text-left text-sm font-semibold">Appointment Date</th>
+                  <th className="p-3 text-left text-sm font-semibold">Appointment Time</th>
+                  <th className="p-3 text-left text-sm font-semibold">Appointment Type</th>
+                  <th className="p-3 text-left text-sm font-semibold">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -241,13 +228,11 @@ export default function AppointmentManagement() {
                       </span>
                     </td>
                     <td className="p-3">
-                      <h3
-                        className={`px-3 py-1 text-sm font-medium rounded-full w-[60%] text-center ${
-                          appointment.type === "online"
-                            ? "bg-yellow-100 text-yellow-600"
-                            : "bg-blue-100 text-blue-600"
-                        }`}
-                      >
+                      <h3 className={`px-3 py-1 text-sm font-medium rounded-full w-[6.5rem] text-center ${
+                        appointment.type === "online" 
+                          ? "bg-yellow-100 text-yellow-600" 
+                          : "bg-blue-100 text-blue-600"
+                      }`}>
                         {appointment.type}
                       </h3>
                     </td>
