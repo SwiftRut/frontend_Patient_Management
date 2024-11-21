@@ -8,10 +8,12 @@ import AppointmentModal from "./AppointmentModal";
 import RescheduleModal from "./RescheduleModal";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
 const Calendar = ({ filterData }) => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
@@ -30,6 +32,7 @@ const Calendar = ({ filterData }) => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
 
+  
   useEffect(() => {
     const mappedEvents = allAppointements?.map((appointment) => ({
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId?.name}`,
@@ -61,16 +64,15 @@ const Calendar = ({ filterData }) => {
     setIsRescheduleModalOpen(false);
     setSelectedEvent(null);
   };
-
   const handleBookAppointment = async (appointmentData) => {
     try {
       await createAppointment(user.id, appointmentData);
       setEvents([...events, appointmentData]);
       handleCloseModal();
-      toast.success("Appointment booked successfully.");
+      navigate("/patient/appointment");
+      
     } catch (error) {
       console.error("Error booking appointment:", error);
-      toast.error("Error booking appointment.");
     }
   };
 

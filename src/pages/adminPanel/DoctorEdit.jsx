@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaCircleMinus } from "react-icons/fa6";
-import './doctorManagement.css';
 import apiService from '../../services/api.js';
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +35,7 @@ const DoctorEdit = () => {
             const selectedHospital = allHospitals.find(hospital => hospital.name === doctorInfo.hospitalId.name);
             setDoctorData(prevData => ({
               ...prevData,
-              countryCode:doctorInfo.countryCode,            
+              countryCode: doctorInfo.countryCode,
             }));
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
@@ -53,7 +52,7 @@ const DoctorEdit = () => {
               const selectedState = countryStates.find(
                 state => state.name === doctorInfo.state
               );
-              
+
               setSelectedState(doctorInfo.state);
               if (selectedState) {
                 // Get cities for the selected state
@@ -69,7 +68,7 @@ const DoctorEdit = () => {
             setDoctorData(doctorInfo);
           }
         }
-        
+
       } catch (error) {
         console.error("Error fetching doctor data:", error);
         toast.error("Error fetching doctor data");
@@ -120,7 +119,7 @@ const DoctorEdit = () => {
         return '';
       case 'email':
         if (!value) return 'Email is required';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/. test(value)) return 'Enter a valid email address';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address';
         return '';
       case 'zipCode':
         if (!value) return 'Zip code is required';
@@ -134,34 +133,34 @@ const DoctorEdit = () => {
     }
   };
 
- useEffect(() => {
-  if (doctorData.country) {
-    const selectedCountry = Country.getAllCountries().find(
-      country => country.name === doctorData.country
-    );
-    if (selectedCountry) {
-      // Get states for the selected country
-      setIsoCodes(selectedCountry.phonecode);
-      console.log(selectedCountry.phonecode);
-      const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
-      setStates(countryStates);
-
-      // Find the state object based on the state name
-      const selectedState = countryStates.find(
-        state => state.name === doctorData.state
+  useEffect(() => {
+    if (doctorData.country) {
+      const selectedCountry = Country.getAllCountries().find(
+        country => country.name === doctorData.country
       );
+      if (selectedCountry) {
+        // Get states for the selected country
+        setIsoCodes(selectedCountry.phonecode);
+        console.log(selectedCountry.phonecode);
+        const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
+        setStates(countryStates);
 
-      if (selectedState) {
-        // Get cities for the selected state
-        const stateCities = City.getCitiesOfState(
-          selectedCountry.isoCode,
-          selectedState.isoCode
+        // Find the state object based on the state name
+        const selectedState = countryStates.find(
+          state => state.name === doctorData.state
         );
-        setCities(stateCities);
+
+        if (selectedState) {
+          // Get cities for the selected state
+          const stateCities = City.getCitiesOfState(
+            selectedCountry.isoCode,
+            selectedState.isoCode
+          );
+          setCities(stateCities);
+        }
       }
     }
-  }
-}, [doctorData.country]);
+  }, [doctorData.country]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -181,15 +180,15 @@ const DoctorEdit = () => {
         state: "",
         city: ""
       }));
-    } 
+    }
     else if (name === "state") {
       const selectedState = states.find(state => state.isoCode === value);
       const selectedCountry = Country.getAllCountries().find(
         country => country.name === doctorData.country
       );
-      
+
       if (selectedCountry && selectedState) {
-        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, selectedState.isoCode );
+        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, selectedState.isoCode);
         setCities(stateCities);
         setDoctorData(prevData => ({
           ...prevData,
@@ -207,16 +206,16 @@ const DoctorEdit = () => {
     }
     else if (name === "hospitalName") {
       const selectedHospital = allHospitals.find(hospital => hospital.name === value);
-  setDoctorData(prevData => ({
-    ...prevData,
-    hospitalName: selectedHospital ? selectedHospital.name : value,
-    hospitalId: selectedHospital ? selectedHospital._id : "", // Use only the ID
-    hospitalAddress: selectedHospital ? selectedHospital.address : "",
-    worksiteLink: selectedHospital ? selectedHospital.worksiteLink : "",
-    emergencyContactNo: selectedHospital ? selectedHospital.contact : ""
-  }));
+      setDoctorData(prevData => ({
+        ...prevData,
+        hospitalName: selectedHospital ? selectedHospital.name : value,
+        hospitalId: selectedHospital ? selectedHospital._id : "", // Use only the ID
+        hospitalAddress: selectedHospital ? selectedHospital.address : "",
+        worksiteLink: selectedHospital ? selectedHospital.worksiteLink : "",
+        emergencyContactNo: selectedHospital ? selectedHospital.contact : ""
+      }));
     }
-    
+
     else {
       setDoctorData(prevData => ({
         ...prevData,
@@ -287,118 +286,120 @@ const DoctorEdit = () => {
   }
   console.log(doctorData)
   console.log(selectedCountry, selectedState, selectedCity)
-  console.log(states,states.find(s => s.name == doctorData.state), cities);
+  console.log(states, states.find(s => s.name == doctorData.state), cities);
   return (
-    <div className="doctorEdit-section">
+    <div className="doctorEdit-section p-[20px]">
       <div className="row">
-        <div className="main">
+        <div className="main p-[20px] bg-white rounded-[15px]">
           <form onSubmit={handleSubmit}>
-            <div className="top">
+            <div className="top p-[20px] border rounded-[15px] my-[15px]">
               <div className="content">
                 <div className="head">
-                  <p>Edit Doctor Detail</p>
+                  <p className="text-[24px] font-bold text-[#030229]">Edit Doctor Detail</p>
                 </div>
-                <div className="details flex">
-                  <div className="left flex">
-                    <div className="choose-photo">
-                      <div className="image">
-                        <img src={doctorData.avatar} alt="Doctor Avatar" />
+                <div className="details flex justify-between">
+                  <div className="left w-[19%] flex flex-col items-center ">
+                    <div className="choose-photo flex flex-col items-center">
+                      <div className="image mt-[30px] mb-4">
+                        <img src={doctorData.avatar} alt="Doctor Avatar" className="w-32 h-32 rounded-full object-cover" />
                       </div>
 
                       <div className="choose-img">
-                        <label htmlFor="photo-upload" className="upload-label">Choose Photo</label>
+                        <label htmlFor="photo-upload" className="upload-label text-blue-500 cursor-pointer">Choose Photo</label>
                         <input
                           id="photo-upload"
                           type="file"
                           accept="image/*"
                           onChange={handlePhotoChange}
-                          style={{ display: 'none' }}
+                          className="hidden"
                         />
                       </div>
                     </div>
 
-                    <div className="upload-sign">
-                      <div className="title">
-                        <p>Signature</p>
+                    <div className="upload-sign  w-[100%] flex-col  mt-5 ">
+                      <div className="title mb-2">
+                        <p className="text-lg font-semibold">Signature</p>
                       </div>
-                      <div className="sign">
-                        <img src={doctorData.signature} alt="Doctor Signature" />
-                        <label htmlFor="signature-upload" className="upload-label">Upload a file</label>
-                        <h5>PNG Up To 5MB</h5>
+
+                      <div className="mt-2 flex flex-col items-center w-[100%] border-2 border-dashed border-[#D3D3D3] rounded-[6px] p-5">
+                        <img src={doctorData.signature} alt="Doctor Signature" className="w-32 h-16 object-contain mb-2" />
+                        <label htmlFor="signature-upload" className="upload-label text-blue-500 cursor-pointer">Upload a file</label>
+                        <h5 className="text-sm text-gray-500">PNG Up To 5MB</h5>
                         <input
                           id="signature-upload"
                           type="file"
                           accept="image/*"
                           onChange={handleSignatureChange}
-                          style={{ display: 'none' }}
+                          className="hidden"
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="right">
+                  <div className="right w-[79%]">
                     <div className="form-box">
-                      <form className="flex">
+                      <form className="flex gap-x-[22px]">
                         {[
                           { label: "Doctor Name", name: "name", type: "text", placeholder: "Enter Doctor Name", value: doctorData.name },
                           { label: "Doctor Qualification", name: "qualification", type: "text", placeholder: "Enter Doctor Qualification", value: doctorData.qualification },
                           { label: "Gender", name: "gender", type: "select", options: ["Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
                           { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
-                          { label: "Work On", name: "workingOn", type: "select", placeholder: "Enter Work On", value: doctorData.workingOn , options: ["Part-time", "Full-time", "Contract"] },
-                          { label: "Check Up Time", name: "patientCheckupTime", type: "select", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime , options: timeOptions },
-                          { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime , options: timeOptions },
+                          { label: "Work On", name: "workingOn", type: "select", placeholder: "Enter Work On", value: doctorData.workingOn, options: ["Part-time", "Full-time", "Contract"] },
+                          { label: "Check Up Time", name: "patientCheckupTime", type: "select", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime, options: timeOptions },
+                          { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime, options: timeOptions },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "text", options: countryCodes, value: doctorData.countryCode || "+" +isoCodes},
+                          { label: "Country Code", name: "countryCode", type: "text", options: countryCodes, value: doctorData.countryCode || "+" + isoCodes },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { 
-                            label: "Country", 
-                            name: "country", 
-                            type: "select", 
+                          {
+                            label: "Country",
+                            name: "country",
+                            type: "select",
                             options: countries,
-                            value: countries.find(c => c.name === doctorData.country)?.isoCode ||""
+                            value: countries.find(c => c.name === doctorData.country)?.isoCode || ""
                           },
-                          { 
-                            label: "State", 
-                            name: "state", 
-                            type: "select", 
+                          {
+                            label: "State",
+                            name: "state",
+                            type: "select",
                             options: states,
                             value: states.find(s => s.name === doctorData.state)?.isoCode || "",
-                            isDisabled: !doctorData.country 
+                            isDisabled: !doctorData.country
                           },
-                          { 
-                            label: "City", 
-                            name: "city", 
-                            type: "select", 
-                            options: cities || [], 
+                          {
+                            label: "City",
+                            name: "city",
+                            type: "select",
+                            options: cities || [],
                             value: selectedCity?.name || null,
-                            isDisabled: !doctorData.state 
+                            isDisabled: !doctorData.state
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
                           { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
                           { label: "Description", name: "description", type: "text", placeholder: "Enter Description", value: doctorData.description },
                           { label: "Online Consultation Rate", name: "onlineConsultationRate", type: "text", placeholder: "Enter Consultation Rate", value: doctorData.onlineConsultationRate },
                         ].map((field, index) => (
-                          <div className="input-box" key={index}>
-                            <div className="label">{field.label}</div>
+                          <div className="input-box relative py-[15px] w-[32%] " key={index}>
+                            <div className="label absolute top-[4px] left-[14px] bg-white z-10">{field.label}</div>
                             {field.type === 'select' ? (
-                              <select 
-                                name={field.name} 
-                                value={field.value} 
-                                onChange={handleInputChange} 
+                              <select
+                                name={field.name}
+                                value={field.value}
+                                onChange={handleInputChange}
                                 disabled={field.isDisabled}
+                                className="w-full py-[12px] px-[14px] border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] text-[#a7a7a7] outline-none"
                               >
                                 <option value="">Select {field.label}</option>
                                 {field?.options?.map((option) => {
-                                  if(field.label === "Country Code") {
+                                  if (field.label === "Country Code") {
                                     return (
                                       <option key={option.code} value={option.code}>
                                         {option.code + ' ' + option.country}
                                       </option>
                                     );
                                   }
-                                  else if(field.label === "Gender"){
+                                  else if (field.label === "Gender") {
                                     return (
                                       <option key={option} value={option}>
                                         {option}
@@ -421,13 +422,14 @@ const DoctorEdit = () => {
                                 value={field.value}
                                 onChange={handleInputChange}
                                 placeholder={field.placeholder}
+                                className="w-full py-[12px] px-[14px] border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] text-[#a7a7a7]"
                               />
                             )}
-                             {errors[field.name] && (
+                            {errors[field.name] && (
                               <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                             )}
-                            <div className="minus-circle">
-                              <FaCircleMinus />
+                            <div className="minus-circle absolute top-[6px] right-[-8px]">
+                              <FaCircleMinus className="text-[#A7A7A7] text-[20px]" />
                             </div>
                           </div>
                         ))}
@@ -437,60 +439,61 @@ const DoctorEdit = () => {
                 </div>
               </div>
             </div>
-
-            <div className="bottom">
-  <div className="content">
-    <div className="details flex">
-      <div className="form-box">
-        <form className="flex">
-          {[
-            { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
-            { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
-            { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
-            { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
-            { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
-          ].map((field, index) => (
-            <div className="input-box" key={index}>
-              <div className="label">{field.label}</div>
-              {field.type === "select" ? (
-                <select
-                  name={field.name}
-                  value={doctorData.hospitalName || ""}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Hospital</option>
-                  {field.options.map((hospital) => (
-                    <option key={hospital._id} value={hospital.name}>
-                      {hospital.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  type={field.type}
-                  name={field.name}
-                  value={field.value}
-                  onChange={handleInputChange}
-                  placeholder={field.placeholder}
-                />
-              )}
-               {errors[field.name] && (
+            <div className="bottom p-5 border-2 border-[#F4F4F4] rounded-xl my-4">
+              <div className="content">
+                <div className="details flex">
+                  <div className="form-box w-full">
+                    <form className="flex gap-x-[22px]">
+                      {[
+                        { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
+                        { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
+                        { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
+                        { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
+                        { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
+                      ].map((field, index) => (
+                        <div className="input-box relative py-4 w-[32%]" key={index}>
+                          <div className="label absolute top-1 left-4 bg-white z-10">{field.label}</div>
+                          {field.type === "select" ? (
+                            <select
+                              name={field.name}
+                              value={doctorData.hospitalName || ""}
+                              onChange={handleInputChange}
+                              className="p-3 border border-[#d9d9d9] rounded-xl w-full focus:border-[#718ebf] bg-white text-[#a7a7a7]"
+                            >
+                              <option value="">Select Hospital</option>
+                              {field.options.map((hospital) => (
+                                <option key={hospital._id} value={hospital.name}>
+                                  {hospital.name}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input
+                              type={field.type}
+                              name={field.name}
+                              value={field.value}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder}
+                              className="p-3 border border-[#d9d9d9] rounded-xl w-full focus:border-[#718ebf] placeholder-[#a7a7a7]"
+                            />
+                          )}
+                          {errors[field.name] && (
                             <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                           )}
-              <div className="minus-circle">
-                <FaCircleMinus />
+                          <div className="minus-circle absolute top-1 right-[-8px]">
+                            <FaCircleMinus className="text-[#A7A7A7] text-xl" />
+                          </div>
+                        </div>
+                      ))}
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-            <div className="save-btn flex">
-              <button type="submit">Save</button>
+            <div className="save-btn flex justify-end">
+              <button type="submit" className="bg-gray-100 px-10 py-2 text-gray-600 text-lg font-semibold rounded-lg hover:bg-blue-500 hover:text-white">
+                Save
+              </button>
             </div>
           </form>
         </div>
