@@ -7,13 +7,13 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { CalendarToday, Search, DateRange } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-
+import { TbCalendarTime, TbCalendarX } from 'react-icons/tb';
 export default function AppointmentManagement() {
   const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } =
     useGlobal();
@@ -27,7 +27,6 @@ export default function AppointmentManagement() {
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
     useState(false);
   const [timeFilter, setTimeFilter] = useState("All");
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
