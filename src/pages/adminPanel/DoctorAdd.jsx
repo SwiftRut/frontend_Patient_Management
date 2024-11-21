@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from "../../services/api.js";
-import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
@@ -375,7 +374,7 @@ const DoctorAdd = () => {
         <div className="row">
           <div className="main p-[20px] bg-white ">
             <form action="" onSubmit={handleSubmit}>
-              <div className="top">
+              <div className="top border p-[20px] rounded-[15px] my-[15px]">
                 <div className="content">
                   <div className="head">
                     <p className="text-[24px] font-bold text-[#030229]">Add New Doctor</p>

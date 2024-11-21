@@ -36,7 +36,7 @@ const DoctorEdit = () => {
             const selectedHospital = allHospitals.find(hospital => hospital.name === doctorInfo.hospitalId.name);
             setDoctorData(prevData => ({
               ...prevData,
-              countryCode:doctorInfo.countryCode,            
+              countryCode: doctorInfo.countryCode,
             }));
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
@@ -53,7 +53,7 @@ const DoctorEdit = () => {
               const selectedState = countryStates.find(
                 state => state.name === doctorInfo.state
               );
-              
+
               setSelectedState(doctorInfo.state);
               if (selectedState) {
                 // Get cities for the selected state
@@ -69,7 +69,7 @@ const DoctorEdit = () => {
             setDoctorData(doctorInfo);
           }
         }
-        
+
       } catch (error) {
         console.error("Error fetching doctor data:", error);
         toast.error("Error fetching doctor data");
@@ -120,7 +120,7 @@ const DoctorEdit = () => {
         return '';
       case 'email':
         if (!value) return 'Email is required';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/. test(value)) return 'Enter a valid email address';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address';
         return '';
       case 'zipCode':
         if (!value) return 'Zip code is required';
@@ -134,34 +134,34 @@ const DoctorEdit = () => {
     }
   };
 
- useEffect(() => {
-  if (doctorData.country) {
-    const selectedCountry = Country.getAllCountries().find(
-      country => country.name === doctorData.country
-    );
-    if (selectedCountry) {
-      // Get states for the selected country
-      setIsoCodes(selectedCountry.phonecode);
-      console.log(selectedCountry.phonecode);
-      const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
-      setStates(countryStates);
-
-      // Find the state object based on the state name
-      const selectedState = countryStates.find(
-        state => state.name === doctorData.state
+  useEffect(() => {
+    if (doctorData.country) {
+      const selectedCountry = Country.getAllCountries().find(
+        country => country.name === doctorData.country
       );
+      if (selectedCountry) {
+        // Get states for the selected country
+        setIsoCodes(selectedCountry.phonecode);
+        console.log(selectedCountry.phonecode);
+        const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
+        setStates(countryStates);
 
-      if (selectedState) {
-        // Get cities for the selected state
-        const stateCities = City.getCitiesOfState(
-          selectedCountry.isoCode,
-          selectedState.isoCode
+        // Find the state object based on the state name
+        const selectedState = countryStates.find(
+          state => state.name === doctorData.state
         );
-        setCities(stateCities);
+
+        if (selectedState) {
+          // Get cities for the selected state
+          const stateCities = City.getCitiesOfState(
+            selectedCountry.isoCode,
+            selectedState.isoCode
+          );
+          setCities(stateCities);
+        }
       }
     }
-  }
-}, [doctorData.country]);
+  }, [doctorData.country]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -181,15 +181,15 @@ const DoctorEdit = () => {
         state: "",
         city: ""
       }));
-    } 
+    }
     else if (name === "state") {
       const selectedState = states.find(state => state.isoCode === value);
       const selectedCountry = Country.getAllCountries().find(
         country => country.name === doctorData.country
       );
-      
+
       if (selectedCountry && selectedState) {
-        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, selectedState.isoCode );
+        const stateCities = City.getCitiesOfState(selectedCountry.isoCode, selectedState.isoCode);
         setCities(stateCities);
         setDoctorData(prevData => ({
           ...prevData,
@@ -207,16 +207,16 @@ const DoctorEdit = () => {
     }
     else if (name === "hospitalName") {
       const selectedHospital = allHospitals.find(hospital => hospital.name === value);
-  setDoctorData(prevData => ({
-    ...prevData,
-    hospitalName: selectedHospital ? selectedHospital.name : value,
-    hospitalId: selectedHospital ? selectedHospital._id : "", // Use only the ID
-    hospitalAddress: selectedHospital ? selectedHospital.address : "",
-    worksiteLink: selectedHospital ? selectedHospital.worksiteLink : "",
-    emergencyContactNo: selectedHospital ? selectedHospital.contact : ""
-  }));
+      setDoctorData(prevData => ({
+        ...prevData,
+        hospitalName: selectedHospital ? selectedHospital.name : value,
+        hospitalId: selectedHospital ? selectedHospital._id : "", // Use only the ID
+        hospitalAddress: selectedHospital ? selectedHospital.address : "",
+        worksiteLink: selectedHospital ? selectedHospital.worksiteLink : "",
+        emergencyContactNo: selectedHospital ? selectedHospital.contact : ""
+      }));
     }
-    
+
     else {
       setDoctorData(prevData => ({
         ...prevData,
@@ -287,13 +287,13 @@ const DoctorEdit = () => {
   }
   console.log(doctorData)
   console.log(selectedCountry, selectedState, selectedCity)
-  console.log(states,states.find(s => s.name == doctorData.state), cities);
+  console.log(states, states.find(s => s.name == doctorData.state), cities);
   return (
-    <div className="doctorEdit-section">
+    <div className="doctorEdit-section p-[20px]">
       <div className="row">
-        <div className="main">
+        <div className="main p-[20px] bg-white rounded-[15px]">
           <form onSubmit={handleSubmit}>
-            <div className="top">
+            <div className="top p-[20px] border rounded-[15px] my-[15px]">
               <div className="content">
                 <div className="head">
                   <p>Edit Doctor Detail</p>
@@ -344,36 +344,36 @@ const DoctorEdit = () => {
                           { label: "Gender", name: "gender", type: "select", options: ["Male", "Female", "Other"], value: doctorData.gender },
                           { label: "Specialty Type", name: "speciality", type: "text", placeholder: "Enter Specialty Type", value: doctorData.speciality },
                           { label: "Working Time", name: "workingTime", type: "text", placeholder: "Enter Working Time", value: doctorData.workingTime },
-                          { label: "Work On", name: "workingOn", type: "select", placeholder: "Enter Work On", value: doctorData.workingOn , options: ["Part-time", "Full-time", "Contract"] },
-                          { label: "Check Up Time", name: "patientCheckupTime", type: "select", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime , options: timeOptions },
-                          { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime , options: timeOptions },
+                          { label: "Work On", name: "workingOn", type: "select", placeholder: "Enter Work On", value: doctorData.workingOn, options: ["Part-time", "Full-time", "Contract"] },
+                          { label: "Check Up Time", name: "patientCheckupTime", type: "select", placeholder: "Enter Check Up Time", value: doctorData.patientCheckupTime, options: timeOptions },
+                          { label: "Break Time", name: "breakTime", type: "select", placeholder: "Enter Break Time", value: doctorData.breakTime, options: timeOptions },
                           { label: "Experience", name: "experience", type: "text", placeholder: "Enter Experience", value: doctorData.experience },
                           { label: "Phone Number", name: "phone", type: "text", placeholder: "Enter Phone Number", value: doctorData.phone },
-                          { label: "Country Code", name: "countryCode", type: "text", options: countryCodes, value: doctorData.countryCode || "+" +isoCodes},
+                          { label: "Country Code", name: "countryCode", type: "text", options: countryCodes, value: doctorData.countryCode || "+" + isoCodes },
                           { label: "Age", name: "age", type: "number", placeholder: "Enter Age", value: doctorData.age },
                           { label: "Email", name: "email", type: "email", placeholder: "Enter Email", value: doctorData.email },
-                          { 
-                            label: "Country", 
-                            name: "country", 
-                            type: "select", 
+                          {
+                            label: "Country",
+                            name: "country",
+                            type: "select",
                             options: countries,
-                            value: countries.find(c => c.name === doctorData.country)?.isoCode ||""
+                            value: countries.find(c => c.name === doctorData.country)?.isoCode || ""
                           },
-                          { 
-                            label: "State", 
-                            name: "state", 
-                            type: "select", 
+                          {
+                            label: "State",
+                            name: "state",
+                            type: "select",
                             options: states,
                             value: states.find(s => s.name === doctorData.state)?.isoCode || "",
-                            isDisabled: !doctorData.country 
+                            isDisabled: !doctorData.country
                           },
-                          { 
-                            label: "City", 
-                            name: "city", 
-                            type: "select", 
-                            options: cities || [], 
+                          {
+                            label: "City",
+                            name: "city",
+                            type: "select",
+                            options: cities || [],
                             value: selectedCity?.name || null,
-                            isDisabled: !doctorData.state 
+                            isDisabled: !doctorData.state
                           },
                           { label: "Zip Code", name: "zipCode", type: "text", placeholder: "Enter Zip Code", value: doctorData.zipCode },
                           { label: "Address", name: "doctorAddress", type: "text", placeholder: "Enter Address", value: doctorData.doctorAddress },
@@ -383,22 +383,22 @@ const DoctorEdit = () => {
                           <div className="input-box" key={index}>
                             <div className="label">{field.label}</div>
                             {field.type === 'select' ? (
-                              <select 
-                                name={field.name} 
-                                value={field.value} 
-                                onChange={handleInputChange} 
+                              <select
+                                name={field.name}
+                                value={field.value}
+                                onChange={handleInputChange}
                                 disabled={field.isDisabled}
                               >
                                 <option value="">Select {field.label}</option>
                                 {field?.options?.map((option) => {
-                                  if(field.label === "Country Code") {
+                                  if (field.label === "Country Code") {
                                     return (
                                       <option key={option.code} value={option.code}>
                                         {option.code + ' ' + option.country}
                                       </option>
                                     );
                                   }
-                                  else if(field.label === "Gender"){
+                                  else if (field.label === "Gender") {
                                     return (
                                       <option key={option} value={option}>
                                         {option}
@@ -423,7 +423,7 @@ const DoctorEdit = () => {
                                 placeholder={field.placeholder}
                               />
                             )}
-                             {errors[field.name] && (
+                            {errors[field.name] && (
                               <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                             )}
                             <div className="minus-circle">
@@ -439,54 +439,54 @@ const DoctorEdit = () => {
             </div>
 
             <div className="bottom">
-  <div className="content">
-    <div className="details flex">
-      <div className="form-box">
-        <form className="flex">
-          {[
-            { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
-            { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
-            { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
-            { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
-            { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
-          ].map((field, index) => (
-            <div className="input-box" key={index}>
-              <div className="label">{field.label}</div>
-              {field.type === "select" ? (
-                <select
-                  name={field.name}
-                  value={doctorData.hospitalName || ""}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Hospital</option>
-                  {field.options.map((hospital) => (
-                    <option key={hospital._id} value={hospital.name}>
-                      {hospital.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  type={field.type}
-                  name={field.name}
-                  value={field.value}
-                  onChange={handleInputChange}
-                  placeholder={field.placeholder}
-                />
-              )}
-               {errors[field.name] && (
+              <div className="content">
+                <div className="details flex">
+                  <div className="form-box">
+                    <form className="flex">
+                      {[
+                        { label: "Current Hospital", name: "currentHospital", type: "text", placeholder: "Enter Doctor Current Hospital", value: doctorData.currentHospital },
+                        { label: "Hospital Name", name: "hospitalName", type: "select", placeholder: "Enter Hospital Name", value: doctorData.hospitalName, options: allHospitals },
+                        { label: "Hospital Address", name: "hospitalAddress", type: "text", placeholder: "Enter Hospital Address", value: doctorData.hospitalAddress },
+                        { label: "Hospital Website", name: "worksiteLink", type: "text", placeholder: "Enter Hospital Website", value: doctorData.worksiteLink },
+                        { label: "Emergency Contact", name: "emergencyContactNo", type: "text", placeholder: "Enter Emergency Contact", value: doctorData.emergencyContactNo },
+                      ].map((field, index) => (
+                        <div className="input-box" key={index}>
+                          <div className="label">{field.label}</div>
+                          {field.type === "select" ? (
+                            <select
+                              name={field.name}
+                              value={doctorData.hospitalName || ""}
+                              onChange={handleInputChange}
+                            >
+                              <option value="">Select Hospital</option>
+                              {field.options.map((hospital) => (
+                                <option key={hospital._id} value={hospital.name}>
+                                  {hospital.name}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input
+                              type={field.type}
+                              name={field.name}
+                              value={field.value}
+                              onChange={handleInputChange}
+                              placeholder={field.placeholder}
+                            />
+                          )}
+                          {errors[field.name] && (
                             <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>
                           )}
-              <div className="minus-circle">
-                <FaCircleMinus />
+                          <div className="minus-circle">
+                            <FaCircleMinus />
+                          </div>
+                        </div>
+                      ))}
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
             <div className="save-btn flex">

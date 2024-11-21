@@ -11,362 +11,362 @@
             // border-radius: 15px;
 
             .top {
-                padding: 20px 20px;
-                border: 2px solid #F4F4F4;
-                border-radius: 15px;
-                margin: 15px 0px;
+                // padding: 20px 20px;
+                // border: 2px solid #F4F4F4;
+                // border-radius: 15px;
+                // margin: 15px 0px;
 
                 .content {
                     .head {
 
                         p {
-                            // font-size: 24px;
-                            // font-weight: 700;
-                            // color: #030229;
+                            font-size: 24px;
+                            font-weight: 700;
+                            color: #030229;
                         }
                     }
 
                     .details {
-                        // justify-content: space-between;
-
-                        // .left {
-                        //     width: 19%;
-                        //     flex-direction: column;
-                        //     align-items: flex-start;
-                        //     gap: 30px;
-
-                        //     .choose-photo {
-                        //         margin: 0px auto;
-                        //         margin-top: 30px;
-
-                        //         .image {
-                        //             width: 186px;
-                        //             height: 186px;
-                        //             border: 3px solid #D9D9D9;
-                        //             border-radius: 100%;
-
-
-                        //             img {
-                        //                 width: 100%;
-                        //                 height: 100%;
-                        //                 border-radius: 100%;
-                        //             }
-                        //         }
-
-                        //         .choose-img {
-                        //             text-align: center;
-                        //             padding-top: 10px;
-
-                        //             label {
-                        //                 padding-top: 15px;
-                        //                 color: #5678E9;
-                        //                 font-size: 18px;
-                        //                 font-weight: 600;
-                        //                 cursor: pointer;
-                        //             }
-                        //         }
-
-                        //         p {
-                        //             text-align: center;
-                        //             font-size: 18px;
-                        //             font-weight: 600;
-                        //             color: #5678E9;
-                        //             padding-top: 5px;
-                        //         }
-                        //     }
-
-                        //     .upload-sign {
-                        //         margin: 0px auto;
-                        //         width: 100%;
-
-                        //         .title {
-                        //             padding-bottom: 15px;
-
-                        //             p {
-                        //                 color: black 1;
-                        //                 font-size: 16px;
-                        //                 font-weight: 600;
-                        //             }
-                        //         }
-
-                        //         .sign {
-                        //             border: 2px dotted #D3D3D3;
-                        //             border-radius: 6px;
-                        //             padding: 20px;
-                        //             text-align: center;
-
-                        //             label {
-                        //                 color: #5678E9;
-                        //                 font-size: 14px;
-                        //                 font-weight: 700;
-                        //                 text-align: center;
-                        //                 padding: 10px 0px;
-                        //                 cursor: pointer;
-                        //                 display: inline-block;
-                        //             }
-
-                        //             h5 {
-                        //                 color: #A7A7A7;
-                        //                 font-size: 12px;
-                        //                 font-weight: 500;
-                        //                 text-align: center;
-                        //             }
-                        //         }
-                        //     }
-                        // }
-
-                        // .right {
-                        //     // width: 79%;
-
-                        //     .form-box {
-
-                        //         form {
-                        //             // justify-content: start;
-                        //             // column-gap: 14px;
-
-                        //             // .input-box {
-                        //             //     position: relative;
-                        //             //     padding: 15px 0px 0px;
-
-                        //             //     .label {
-                        //             //         position: absolute;
-                        //             //         top: 4px;
-                        //             //         left: 14px;
-                        //             //         background-color: white;
-                        //             //         z-index: 2;
-                        //             //     }
-
-                        //             //     input {
-                        //             //         padding: 12px 14px;
-                        //             //         border: 1px solid #d9d9d9;
-                        //             //         border-radius: 10px;
-                        //             //         z-index: 2;
-
-                        //             //         &:focus {
-                        //             //             border: 1px solid #718ebf;
-                        //             //         }
-
-                        //             //         &::placeholder {
-                        //             //             color: #a7a7a7;
-                        //             //         }
-                        //             //     }
-
-                        //             //     select {
-                        //             //         padding: 12px 14px;
-                        //             //         border: 1px solid #d9d9d9;
-                        //             //         border-radius: 10px;
-                        //             //         outline: none;
-                        //             //         background-color: white;
-                        //             //         color: #a7a7a7;
-                        //             //         z-index: 2;
-
-                        //             //         &:focus {
-                        //             //             border: 1px solid #718ebf;
-                        //             //         }
-                        //             //     }
-
-                        //             //     .minus-circle {
-                        //             //         position: absolute;
-                        //             //         top: 6px;
-                        //             //         right: -8px;
-
-                        //             //         svg {
-                        //             //             font-size: 20px;
-                        //             //             color: #A7A7A7;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(1) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(2) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(3) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(4) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(5) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(6) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(7) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(8) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(9) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(10) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(11) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(12) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(13) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(14) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(15) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(16) {
-                        //             //         width: 32%;
-
-                        //             //         select {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(17) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(18) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(19) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(20) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-
-                        //             //         .eye {
-                        //             //             position: absolute;
-                        //             //             top: 27px;
-                        //             //             right: 15px;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(21) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-
-                        //             //         .eye {
-                        //             //             position: absolute;
-                        //             //             top: 27px;
-                        //             //             right: 15px;
-                        //             //         }
-                        //             //     }
-
-                        //             //     &:nth-child(22) {
-                        //             //         width: 32%;
-
-                        //             //         input {
-                        //             //             width: 100%;
-                        //             //         }
-                        //             //     }
-                        //             // }
-                        //         }
-                        //     }
-                        // }
+                        justify-content: space-between;
+
+                        .left {
+                            width: 19%;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 30px;
+
+                            .choose-photo {
+                                margin: 0px auto;
+                                margin-top: 30px;
+
+                                .image {
+                                    width: 186px;
+                                    height: 186px;
+                                    border: 3px solid #D9D9D9;
+                                    border-radius: 100%;
+
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 100%;
+                                    }
+                                }
+
+                                .choose-img {
+                                    text-align: center;
+                                    padding-top: 10px;
+
+                                    label {
+                                        padding-top: 15px;
+                                        color: #5678E9;
+                                        font-size: 18px;
+                                        font-weight: 600;
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                p {
+                                    text-align: center;
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                    color: #5678E9;
+                                    padding-top: 5px;
+                                }
+                            }
+
+                            .upload-sign {
+                                margin: 0px auto;
+                                width: 100%;
+
+                                .title {
+                                    padding-bottom: 15px;
+
+                                    p {
+                                        color: black 1;
+                                        font-size: 16px;
+                                        font-weight: 600;
+                                    }
+                                }
+
+                                .sign {
+                                    border: 2px dotted #D3D3D3;
+                                    border-radius: 6px;
+                                    padding: 20px;
+                                    text-align: center;
+
+                                    label {
+                                        color: #5678E9;
+                                        font-size: 14px;
+                                        font-weight: 700;
+                                        text-align: center;
+                                        padding: 10px 0px;
+                                        cursor: pointer;
+                                        display: inline-block;
+                                    }
+
+                                    h5 {
+                                        color: #A7A7A7;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+
+                        .right {
+                            width: 79%;
+
+                            .form-box {
+
+                                form {
+                                    justify-content: start;
+                                    column-gap: 14px;
+
+                                    .input-box {
+                                        position: relative;
+                                        padding: 15px 0px 0px;
+
+                                        .label {
+                                            position: absolute;
+                                            top: 4px;
+                                            left: 14px;
+                                            background-color: white;
+                                            z-index: 2;
+                                        }
+
+                                        input {
+                                            padding: 12px 14px;
+                                            border: 1px solid #d9d9d9;
+                                            border-radius: 10px;
+                                            z-index: 2;
+
+                                            &:focus {
+                                                border: 1px solid #718ebf;
+                                            }
+
+                                            &::placeholder {
+                                                color: #a7a7a7;
+                                            }
+                                        }
+
+                                        select {
+                                            padding: 12px 14px;
+                                            border: 1px solid #d9d9d9;
+                                            border-radius: 10px;
+                                            outline: none;
+                                            background-color: white;
+                                            color: #a7a7a7;
+                                            z-index: 2;
+
+                                            &:focus {
+                                                border: 1px solid #718ebf;
+                                            }
+                                        }
+
+                                        .minus-circle {
+                                            position: absolute;
+                                            top: 6px;
+                                            right: -8px;
+
+                                            svg {
+                                                font-size: 20px;
+                                                color: #A7A7A7;
+                                            }
+                                        }
+
+                                        &:nth-child(1) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(2) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(3) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(4) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(5) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(6) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(7) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(8) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(9) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(10) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(11) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(12) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(13) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(14) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(15) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(16) {
+                                            width: 32%;
+
+                                            select {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(17) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(18) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(19) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+
+                                        &:nth-child(20) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+
+                                            .eye {
+                                                position: absolute;
+                                                top: 27px;
+                                                right: 15px;
+                                            }
+                                        }
+
+                                        &:nth-child(21) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+
+                                            .eye {
+                                                position: absolute;
+                                                top: 27px;
+                                                right: 15px;
+                                            }
+                                        }
+
+                                        &:nth-child(22) {
+                                            width: 32%;
+
+                                            input {
+                                                width: 100%;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
