@@ -144,26 +144,26 @@ export default function MonitorBilling() {
                 ) : filteredBills.length > 0 ? (
                   filteredBills.map((bill) => (
                     <tr key={bill._id} className="border-b">
-                      <td className="text-center p-3">
+                      <td className="text-center p-3 flex justify-center">
                         <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[50%]">
                           {bill.billNumber}
                         </h3>
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         {bill.patientId
                           ? bill.patientId.firstName +
                             " " +
                             bill.patientId.lastName
                           : "N/A"}
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         {bill.doctorId ? bill.doctorId.name : "N/A"}
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         {bill.description}
                       </td>
                       <td
-                        className={`p-3 ${
+                        className={`p-2 ${
                           bill.status === "Paid"
                             ? "bg-green-100 text-green-700"
                             : "text-red-700"
@@ -173,20 +173,20 @@ export default function MonitorBilling() {
                           {bill.status}
                         </h3>
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         {formatDate(bill.date)}
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[90%] text-center">
                           {bill.time}
                         </h3>
                       </td>
-                      <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                      <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                         <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[90%] text-center">
                           ${bill.totalAmount.toFixed(2)}
                         </h3>
                       </td>
-                      <td className="action p-3 text-center ">
+                      <td className="action p-2 flex justify-center">
                         <div
                           className="view text-blue-400 bg-gray-100 rounded-lg p-2 text-center cursor-pointer w-[40%] text-[#4F4F4F] text-lg font-semiboldf"
                           onClick={() => navigate(`/bill/${bill._id}`)}

@@ -191,7 +191,7 @@ export default function InsuranceClaims() {
       <div className="row">
         <div className="main bg-white rounded-lg p-4 h-full mx-2">
           <div className="top flex justify-between items-center pb-5">
-            <div className="heading font-bold text-xl">
+            <div className="heading font-bold text-2xl">
               <h3>Insurance Claims</h3>
             </div>
             <div className="search-btn flex">
@@ -251,12 +251,12 @@ export default function InsuranceClaims() {
                   {filteredClaims.length > 0 ? (
                     filteredClaims.map((claim, index) => (
                       <tr key={index} className="border-b">
-                        <td className="time p-3 text-center">
+                        <td className="time p-2 text-center">
                           <h3 className="bg-gray-100 text-[#718EBF] rounded-full py-1 px-5 inline-block font-semibold text-lg">
                             {claim.billNumber}
                           </h3>
                         </td>
-                        <td className="p-3 flex items-center space-x-4">
+                        <td className="p-2 flex items-center space-x-4">
                           <div className="avatar">
                             <img
                               src={claim?.doctorId?.avatar || "/img/Avatar.png"}
@@ -270,26 +270,26 @@ export default function InsuranceClaims() {
                             </h3>
                           </div>
                         </td>
-                        <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                           {claim.patientId
                             ? `${claim.patientId.firstName} ${claim.patientId.lastName}`
                             : "N/A"}
                         </td>
-                        <td className="p-3 text-center  text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 text-center  text-[#4F4F4F] text-lg font-semibold">
                           {claim.diseaseName || "N/A"}
                         </td>
-                        <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                           {claim.insuranceId?.insuranceCompany || "N/A"}
                         </td>
-                        <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                           <h3 className="bg-gray-100 text-[#718EBF] rounded-full py-1 px-3 inline-block">
                             {claim.insuranceId?.insurancePlan || "N/A"}
                           </h3>
                         </td>
-                        <td className="p-3 text-center text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 text-center text-[#4F4F4F] text-lg font-semibold">
                           {formatDate(claim.date)}
                         </td>
-                        <td className="action p-3 text-center font-semibold">
+                        <td className="action p-2 text-center font-semibold">
                           <div
                             className="view text-blue-500 bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
                             onClick={() => navigate(`/bill/${claim._id}`)}
