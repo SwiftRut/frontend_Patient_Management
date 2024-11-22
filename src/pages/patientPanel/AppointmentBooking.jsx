@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
-import toast from "react-hot-toast";
-
+import {toast} from "react-hot-toast";
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
   const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
