@@ -132,8 +132,16 @@ const handlePayment = () => {
               />
 
               {/* City Select */}
-              https://chatgpt.com/share/6740acc1-79a4-8007-95c0-8dd558b4ab89hi
-              {/* Doctor Select */}
+              <SelectInput
+                label="City"
+                value={city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("city", "country", country)}
+              />              {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
                 value={doctor}

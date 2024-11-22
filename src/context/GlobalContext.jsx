@@ -556,6 +556,7 @@ export const GlobalProvider = ({ children }) => {
         fcmToken,
         createNewFCM,
         getNotifications,
+        setFcmToken
       }}
     >
       {children}
