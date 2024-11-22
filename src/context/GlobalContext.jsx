@@ -247,7 +247,7 @@ export const GlobalProvider = ({ children }) => {
   //canceled appointment
   const cancelAppointment = async (appointmentId) => {
     try {
-      const response = await apiService.CancelAppointment(appointmentId);
+      await apiService.CancelAppointment(appointmentId);
       toast.success("Appointment canceled successfully");
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
@@ -296,7 +296,7 @@ export const GlobalProvider = ({ children }) => {
   };
   const createAppointment = async (patientId, userData) => {
     try {
-      const response = await apiService.createAppointment(patientId, userData);
+      await apiService.createAppointment(patientId, userData);
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
       } else if (user.role === "doctor") {
@@ -310,8 +310,9 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const updateAppointment = async (id, userData) => {
+    console.log(id, userData);
     try {
-      const response = await apiService.EditAppointment(id, userData);
+      await apiService.EditAppointment(id, userData);
       toast.success("Appointment edited successfully");
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
@@ -326,7 +327,7 @@ export const GlobalProvider = ({ children }) => {
   };
   const deleteAppointment = async (id) => {
     try {
-      const response = await apiService.DeleteAppointment(id);
+      await apiService.DeleteAppointment(id);
       toast.success("Appointment deleted successfully");
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
