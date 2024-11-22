@@ -21,6 +21,6 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-src/pages/patientManagement/PatientManagement
+*.sw?   
 package-lock.json
+.env

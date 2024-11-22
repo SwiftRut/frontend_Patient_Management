@@ -131,8 +131,28 @@ const handlePayment = () => {
                 options={getUniqueValues("state", "country", country)}
               />
 
-              {/* City Select */}
-              https://chatgpt.com/share/6740acc1-79a4-8007-95c0-8dd558b4ab89hi
+      {/* City Select */}
+      <SelectInput
+                label="City"
+                value={city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("city", "state", state)}
+              />
+
+              {/* Hospital Select */}
+              <SelectInput
+                label="Hospital"
+                value={hospital}
+                onChange={(e) => {
+                  setHospital(e.target.value);
+                  setDoctor("");
+                }}
+                options={filteredHospitals.map((hospital) => hospital.name)}
+              />
               {/* Doctor Select */}
               <SelectInput
                 label="Doctor"

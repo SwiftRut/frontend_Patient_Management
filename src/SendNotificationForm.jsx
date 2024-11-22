@@ -3,7 +3,6 @@ import { useGlobal } from './hooks/useGlobal';
 import apiService from './services/api';
 
 const SendNotificationForm = () => {
-    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const [body, setBody] = useState('');
     const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState('');
