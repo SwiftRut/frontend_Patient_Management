@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../pages.css";
 import { useNavigate } from "react-router-dom";
 import { Country, City, State } from "country-state-city";
 import { useGlobal } from "../../hooks/useGlobal";
@@ -180,7 +179,7 @@ const AdminRegistration = () => {
               <p className="text-2xl font-semibold text-left">Registration</p>
             </div>
             {error && <div className="text-red-600 mb-4">{error}</div>}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="input-box relative">
                   <label className="block text-sm font-medium absolute top-[-0.75rem] left-4 bg-white z-10">
@@ -253,7 +252,7 @@ const AdminRegistration = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    disabled={!formData.country}
+                    // disabled={!formData.country}
                     required
                     className="w-full p-2 border border-gray-300 rounded-lg"
                   >

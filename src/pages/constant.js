@@ -22,7 +22,7 @@ export const genders = ["male", "female", "other"];
 export const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 export const PatientRegistrationFormFields = [
-  { label: "First Name", name: "firstName", type: "text" },
+  { label: "First Name", name: "firstName", type: "text", style:"w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-400" },
   { label: "Last Name", name: "lastName", type: "text" },
   { label: "Email Address", name: "email", type: "email" },
   { label: "Phone Number", name: "phone", type: "tel" },
