@@ -58,7 +58,8 @@ export default function PaymentMethod() {
 
   return (
     <>
-      <div className="main bg-white rounded-lg m-2h-full">
+      <div className="bg-[#F6F8FB] p-[20px]">
+      <div className="main bg-white rounded-lg m-2h-full p-5">
         <div className="top flex items-center justify-between p-2 pb-5">
           <div className="heading font-bold text-2xl">Billing Details</div>
           <div className="search-btn flex items-center">
@@ -180,6 +181,7 @@ export default function PaymentMethod() {
             </tbody>
           </table>
         </div>
+      </div>
       </div>
 
       {isPayment && (

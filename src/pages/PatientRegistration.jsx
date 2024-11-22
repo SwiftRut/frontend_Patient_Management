@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./pages.css";
 import { useAuth } from "../hooks/useAuth.jsx";
 import { Country, City, State } from "country-state-city";
-import { bloodGroups, genders, PatientFormData, PatientRegistrationFormFields } from "./constant.js";
+import {
+  bloodGroups,
+  genders,
+  PatientFormData,
+  PatientRegistrationFormFields,
+} from "./constant.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import ImageSlider from "../components/Login/ImageSlider.jsx";
 
@@ -22,26 +27,26 @@ const PatientRegistration = () => {
     setCountries(Country.getAllCountries());
   }, []);
 
-  useEffect(() => {
-    const slider = document.querySelector(".slider");
-    const images = slider.querySelectorAll("img");
-    const dots = slider.querySelectorAll(".dot");
-    let currentIndex = 0;
-    images[currentIndex].style.display = "block";
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        currentIndex = index;
-        updateSlider();
-      });
-    });
-    function updateSlider() {
-      images.forEach((image) => (image.style.display = "none"));
-      images[currentIndex].style.display = "block";
-      dots.forEach((dot, index) =>
-        dot.classList.toggle("active", index === currentIndex)
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   const slider = document.querySelector(".slider");
+  //   const images = slider.querySelectorAll("img");
+  //   const dots = slider.querySelectorAll(".dot");
+  //   let currentIndex = 0;
+  //   images[currentIndex].style.display = "block";
+  //   dots.forEach((dot, index) => {
+  //     dot.addEventListener("click", () => {
+  //       currentIndex = index;
+  //       updateSlider();
+  //     });
+  //   });
+  //   function updateSlider() {
+  //     images.forEach((image) => (image.style.display = "none"));
+  //     images[currentIndex].style.display = "block";
+  //     dots.forEach((dot, index) =>
+  //       dot.classList.toggle("active", index === currentIndex)
+  //     );
+  //   }
+  // }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -267,13 +272,19 @@ const PatientRegistration = () => {
               </div>
             </div>
           </div>
-          <div className="img-box">
-          <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
-            <div className="vector-1">
-              <img src="/img/Vector-1.png" width="100%" />
+          <div className="img-box w-full md:w-1/2 w-1/2 md:p-32 p-0 relative bg-gray-100">
+            <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
+
+            <div className="vector-1 absolute right-0 bottom-0 sm:w-1/3 w-[10%]">
+              <img src="/img/Vector-1.png" class="w-full" />
             </div>
-            <div className="vector-2">
-              <img src="/img/Vector-2.png" width="100%" />
+
+            <div className="vector-2 absolute left-0 top-0 sm:w-1/3 w-[10%]">
+              <img src="/img/Vector-2.png" class="w-full" />
+            </div>
+
+            <div className="vector-dot absolute right-0 top-0 sm:w-1/10 w-[10%]">
+              <img src="/img/Vector-dot.png" class="w-full" />
             </div>
           </div>
         </div>
