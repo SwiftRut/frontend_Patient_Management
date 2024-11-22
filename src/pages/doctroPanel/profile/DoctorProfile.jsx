@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import DoctorProfileChangePassord from "./DoctorProfileChangePassord";
 import DoctorProfileTermsCondition from "./DoctorProfileTermsCondition";
 import DoctorProfilePrivacyPolicy from "./DoctorProfilePrivacyPolicy";
-import '../profile/doctorProfile.css'
 
 export default function DoctorProfile() {
 
@@ -13,15 +12,15 @@ export default function DoctorProfile() {
       <div className="doctor-profile-section">
         <div className="row">
           <div className="main">
-            <div className="top"></div>
-            <div className="profile-setting">
-              <div className="head">
-                <p>Profile Setting</p>
+            <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
+            <div className="profile-setting w-[80%] m-auto mt-[-12%]">
+              <div className="head pb-[15px]">
+                <p className="text-[44px] font-bold text-white">Profile Setting</p>
               </div>
-              <div className="content flex">
+              <div className="content flex bg-white rounded-[15px] p-[20px] shadow-2xl ">
                 <DoctorAside />
 
-                <div className="right">
+                <div className="right w-[77%] ps-[20px]">
                   <Routes>
                     <Route path="" element={<DoctorProfileData />} />
                     <Route path="changePassword" element={<DoctorProfileChangePassord />} />
@@ -29,6 +28,7 @@ export default function DoctorProfile() {
                     <Route path="privacyPolicy" element={<DoctorProfilePrivacyPolicy />} />
                   </Routes>
                 </div>
+
               </div>
             </div>
           </div>

@@ -402,7 +402,7 @@ const AdminRegistration = () => {
           </div>
         </div>
 
-        <div className="img-box w-full md:w-1/2 w-1/2 md:p-32 p-0 relative bg-gray-100">
+        <div className="img-box w-full md:w-1/2 w-1/2 md:p-[6.4%] p-0 relative bg-gray-100">
           <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
 
           <div className="vector-1 absolute right-0 bottom-0 sm:w-1/3 w-[10%]">

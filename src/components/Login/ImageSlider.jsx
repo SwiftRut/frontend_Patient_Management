@@ -14,7 +14,7 @@ const ImageSlider = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full h-[700px] ">
+    <div className="relative h-[700px] ">
       {/* Slider Image */}
       <div className="w-full h-full">
         <img
