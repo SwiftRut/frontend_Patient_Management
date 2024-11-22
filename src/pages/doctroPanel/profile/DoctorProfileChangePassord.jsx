@@ -1,5 +1,4 @@
 import { useState } from "react";
-import '../profile/doctorProfile.css'
 
 const DoctorProfileChangePassord = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -29,61 +28,65 @@ const DoctorProfileChangePassord = () => {
       return;
     }
 
-   };
+  };
 
   return (
-    <div className="doctor-ProfileChangePassword-section">
-      <div className="right">
-        <div className="content">
+    <div className="doctor-ProfileChangePassword-section flex justify-center">
+      <div className="right w-[77%]">
+        <div className="content p-8 bg-white rounded-2xl shadow-sm">
           <div className="head">
             <div className="title">
-              <p>Change Password</p>
+              <p className="text-2xl font-semibold text-[#030229]">Change Password</p>
             </div>
-            <div className="discription">
-              <p>
+            <div className="description pt-4">
+              <p className="text-base text-[#4F4F4F]">
                 To change your password, please fill in the fields below. Your password must contain
                 at least 8 characters, it must also include at least one uppercase letter, one
                 lowercase letter, one number, and one special character.
               </p>
             </div>
           </div>
-          <div className="form-box">
-            <form onSubmit={handleSubmit} className="flex">
-              <div className="change-input-box">
-                <div className="label">
-                  Current Password <span>*</span>
-                </div>
+          <div className="form-box pt-5">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="change-input-box relative">
+                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                  Current Password <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="password"
                   placeholder="Enter Current Password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
                 />
               </div>
 
-              <div className="change-input-box">
-                <div className="label">
-                  New Password <span>*</span>
-                </div>
+              <div className="change-input-box relative">
+                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                  New Password <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="password"
                   placeholder="New Password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
                 />
               </div>
 
-              <div className="change-input-box">
-                <div className="label">
-                  Confirm Password <span>*</span>
-                </div>
+              <div className="change-input-box relative">
+                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                  Confirm Password <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
                 />
               </div>
+
               {errorMessage && (
                 <div className="error-message">
                   <p className="text-red-500">{errorMessage}</p>
@@ -91,13 +94,19 @@ const DoctorProfileChangePassord = () => {
               )}
 
               <div className="change-input-box">
-                <button type="submit">Change Password</button>
+                <button
+                  type="submit"
+                  className="w-full bg-[#0EABEB] text-white rounded-lg px-4 py-3 text-lg font-semibold"
+                >
+                  Change Password
+                </button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

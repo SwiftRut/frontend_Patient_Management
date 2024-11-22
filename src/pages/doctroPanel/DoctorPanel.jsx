@@ -1,6 +1,5 @@
 import DoctorProfile from "./profile/DoctorProfile.jsx";
 import { Route, Routes } from "react-router-dom";
-// import "../doctroPanel/profile/doctorProfile.css";
 import DoctorProfileEdit from "./profile/DoctorProfileEdit.jsx";
 import AppointmentManagement from "./AppointmentManagement.jsx";
 import PatientRecordAccesst from "./PatientRecordAccesst.jsx";
