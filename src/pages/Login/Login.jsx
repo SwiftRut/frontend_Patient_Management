@@ -161,15 +161,15 @@ const Login = () => {
                         onClick={() => navigate("/patientRegistration")}
                       >
                         <p style={{ cursor: "pointer" }}>
-                          Don’t have an account? Register
+                          Don’t have an account? Register (patient)
                         </p>
                       </div>
-                      {/* <div
+                      <div
                         className="registration-btn"
                         onClick={() => navigate("/adminRegistration")}
                       >
-                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register</p>
-                      </div> */}
+                        <p style={{ cursor: "pointer" }}>Don’t have an account? Register (admin)</p>
+                      </div>
                     </div>
                   </form>
                 </div>

@@ -121,13 +121,13 @@ const AdminMobile = () => {
 
   useEffect(() => {
     if (successMessage) {
-      toast.success(successMessage, { position: toast.POSITION.TOP_RIGHT });
+      toast.success(successMessage);
     }
   }, [successMessage]);
 
   useEffect(() => {
     if (error) {
-      toast.error(error, { position: toast.POSITION.TOP_RIGHT });
+      toast.error(error);
     }
   }, [error]);
 
