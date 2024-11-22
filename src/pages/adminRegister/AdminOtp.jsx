@@ -140,7 +140,6 @@ export default function AdminOtp() {
 
   return (
     <div>
-      <ToastContainer />
       <div className="admin-otp-section">
         <div className="row">
           <div className="main flex">
