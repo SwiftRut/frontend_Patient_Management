@@ -90,7 +90,7 @@ const Dashboard = () => {
     <>
       <div className="deshbord-section">
         <div className="row">
-          <div className="main">
+          <div className="main bg-[#F6F8FB]">
             <div class="top flex px-5 pt-5 pb-2">
               <div class="Patients-data w-[58%] px-4">
                 <div class="total-data flex justify-between items-center mb-4">

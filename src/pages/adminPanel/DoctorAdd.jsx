@@ -194,9 +194,9 @@ const DoctorAdd = () => {
 
   return (
     <div>
-      <div className="doctorAdd-section">
+      <div className="doctorAdd-section p-[20px] bg-[#F6F8FB]">
         <div className="row">
-          <div className="main">
+          <div className="main p-[20px] bg-white rounded-[15px]">
             <form action="" onSubmit={handleSubmit}>
               <div className="top">
                 <div className="content">
