@@ -4,9 +4,10 @@ import { useDoctor } from "../../hooks/useDoctor";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 import {toast} from "react-hot-toast";
+import { all } from "axios";
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
+  const { getAllHospitals, allHospitals, getAllAppointments, onClickNotification } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -197,7 +198,9 @@ const handlePayment = () => {
                         city,
                         country,
                         appointmentType,
+                        
                       }}
+                      selectedDoctor={allDoctors.find((doc) => doc._id === doctor)}
                     />
                   </div>
                   <div className="col-span-3 p-3">

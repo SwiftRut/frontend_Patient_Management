@@ -68,7 +68,20 @@ export const GlobalProvider = ({ children }) => {
       console.log("response", response);
     }
   };
-  // initializeFCM();
+
+  const onClickNotification = async (fcmToken, title, body) => {
+    console.log("onClickNotification", fcmToken, title, body);
+    try {
+      const response = await apiService.GetNotifications({ deviceToken: fcmToken, title, body });
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Notification sent successfully!');
+      } 
+  } catch (error) {
+    console.error('Error sending notification:', error);
+  }
+  }
   const createNewFCM = async () => {
     try {
       const newToken = await requestFCMToken();
@@ -363,9 +376,11 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  const createAppointment = async (patientId, userData) => {
+  const createAppointment = async (patientId, userData, selectedDoctor) => {
+    console.log("selectedDoctor", selectedDoctor.deviceToken);
     try {
       await apiService.createAppointment(patientId, userData);
+      onClickNotification(selectedDoctor.deviceToken, "New Appointment", "You have a new appointment");
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
       } else if (user.role === "doctor") {
@@ -572,6 +587,7 @@ export const GlobalProvider = ({ children }) => {
         fcmToken,
         createNewFCM,
         getNotifications,
+        onClickNotification,
       }}
     >
       {children}
