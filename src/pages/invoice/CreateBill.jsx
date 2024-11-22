@@ -220,8 +220,8 @@ const CreateBill = () => {
   ];
 
   return (
-    <div>
-      <div class="p-5">
+    <div className="bg-[#F6F8FB]">
+      <div class="p-5 p-[20px] ">
         <div class="flex justify-center">
           <div class="p-4 bg-white rounded-xl">
             <div class="mb-4">

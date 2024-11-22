@@ -4,96 +4,96 @@
   .row {
     .main {
 
-      .total-data {
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 10px;
+      // .total-data {
+      //   justify-content: space-between;
+      //   align-items: center;
+      //   padding: 10px 10px;
 
-        .total-Patients,
-        .total-Doctors ,
-        .total-Appointments {
-          width: 25%;
-          padding: 15px 20px 0px 15px;
+      //   .total-Patients,
+      //   .total-Doctors ,
+      //   .total-Appointments {
+      //     width: 25%;
+      //     padding: 15px 20px 0px 15px;
 
-          .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            border-radius: 15px;
-            padding: 15px;
+      //     .content {
+      //       display: flex;
+      //       justify-content: space-between;
+      //       align-items: center;
+      //       background-color: white;
+      //       border-radius: 15px;
+      //       padding: 15px;
 
-            .logo_details {
-              align-items: center;
+      //       .logo_details {
+      //         align-items: center;
 
-              .logo {
-                width: 50px;
-                border-radius: 50%;
-                height: 50px;
-                background-color: #2E779326;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+      //         .logo {
+      //           width: 50px;
+      //           border-radius: 50%;
+      //           height: 50px;
+      //           background-color: #2E779326;
+      //           display: flex;
+      //           justify-content: center;
+      //           align-items: center;
 
-                svg {
-                  width: 30px;
-                  color: #2E7793;
-                }
-              }
+      //           svg {
+      //             width: 30px;
+      //             color: #2E7793;
+      //           }
+      //         }
 
-              .details {
-                padding-left: 20px;
+      //         .details {
+      //           padding-left: 20px;
 
-                p {
-                  color: #030229;
-                  font-weight: 600;
-                  font-size: 16px;
-                }
-              }
-            }
+      //           p {
+      //             color: #030229;
+      //             font-weight: 600;
+      //             font-size: 16px;
+      //           }
+      //         }
+      //       }
 
-            .dr-logo {
-              .logo {
-                background-color: #5E5E9E26;
+      //       .dr-logo {
+      //         .logo {
+      //           background-color: #5E5E9E26;
 
-                svg {
-                  color: #5E5E9E;
-                }
-              }
-            }
+      //           svg {
+      //             color: #5E5E9E;
+      //           }
+      //         }
+      //       }
 
-            .appo-logo {
-              .logo {
-                background-color: #41B16126;
+      //       .appo-logo {
+      //         .logo {
+      //           background-color: #41B16126;
 
-                svg {
-                  color: #41B161;
-                }
-              }
-            }
+      //           svg {
+      //             color: #41B161;
+      //           }
+      //         }
+      //       }
 
-            .claim-logo {
-              .logo {
-                background-color: #2E779326;
+      //       .claim-logo {
+      //         .logo {
+      //           background-color: #2E779326;
 
-                svg {
-                  color: #9A5BD4;
-                }
-              }
-            }
+      //           svg {
+      //             color: #9A5BD4;
+      //           }
+      //         }
+      //       }
 
-            .count {
-              span {
-                display: block;
-                color: #030229;
-                font-size: 26px;
-                font-weight: 800;
-              }
-            }
+      //       .count {
+      //         span {
+      //           display: block;
+      //           color: #030229;
+      //           font-size: 26px;
+      //           font-weight: 800;
+      //         }
+      //       }
 
-          }
-        }
-      }
+      //     }
+      //   }
+      // }
 
       .top {
         padding: 0px 10px 0px 10px;

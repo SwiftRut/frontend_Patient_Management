@@ -187,7 +187,7 @@ export default function InsuranceClaims() {
     //     </div>
     //   </div>
     // </div>
-    <div className="insurance-section">
+    <div className="insurance-section bg-[#F6F8FB] p-[20px]">
       <div className="row">
         <div className="main bg-white rounded-lg p-4 h-full mx-2">
           <div className="top flex justify-between items-center pb-5">

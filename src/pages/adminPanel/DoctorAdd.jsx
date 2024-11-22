@@ -370,9 +370,9 @@ const DoctorAdd = () => {
 
   return (
     <div>
-      <div className="doctorAdd-section">
+      <div className="doctorAdd-section p-[20px] bg-[#F6F8FB]">
         <div className="row">
-          <div className="main p-[20px] bg-white ">
+          <div className="main p-[20px] bg-white rounded-[15px]">
             <form action="" onSubmit={handleSubmit}>
               <div className="top border p-[20px] rounded-[15px] my-[15px]">
                 <div className="content">

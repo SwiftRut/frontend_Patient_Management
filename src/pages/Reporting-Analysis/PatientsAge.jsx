@@ -5,6 +5,7 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 const PatientsAge = () => {
   const { cardData } = useGlobal();
   return (
+
     <div className="PatientsAge-data">
       <div className="content">
         <div className="head">
@@ -67,6 +68,7 @@ const PatientsAge = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

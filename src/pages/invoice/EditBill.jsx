@@ -130,7 +130,7 @@ const EditBill = () => {
 
   return (
     <div>
-      <div className="edit-bill-insurance-section p-5">
+      <div className="edit-bill-insurance-section p-5 bg-[#F6F8FB]">
         <div className="row">
           <div className="main bg-white p-4 rounded-xl">
             <div className="title">
