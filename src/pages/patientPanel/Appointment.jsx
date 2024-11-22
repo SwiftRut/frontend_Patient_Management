@@ -228,7 +228,7 @@ const Appointment = () => {
                       </span>
                       <input
                         type="text"
-                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
+                        className="flex-1 focus:outline-none border-0 text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px] "
                         value={
                           dateRange[0] && dateRange[1]
                             ? `${moment(dateRange[0]).format(

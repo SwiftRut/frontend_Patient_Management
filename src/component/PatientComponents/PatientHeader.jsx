@@ -191,7 +191,7 @@ const PatientHeader = () => {
               <input
                 type="text"
                 placeholder="Quick Search"
-                className="bg-transparent w-[60px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                className="bg-transparent w-[60px] sm:w-[200px] sm:text-sm text-gray-600 placeholder-gray-400 text-[10px] border-0 focus:outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

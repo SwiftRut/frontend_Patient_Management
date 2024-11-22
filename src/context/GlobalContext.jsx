@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
 import { toast } from "react-hot-toast";
+import { requestFCMToken } from '../utils/firebaseUtils';
+import { getMessaging, onMessage } from '@firebase/messaging';
 
 export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";
@@ -19,7 +21,58 @@ export const GlobalProvider = ({ children }) => {
   const [allAppointmentsById, setAllAppointmentsById] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("All");
+  const [fcmToken, setFcmToken] = useState('');
 
+  useEffect(() => {
+    const messaging = getMessaging();
+    const initializeFCM = async () => {
+      try {
+        const token = await requestFCMToken();
+        console.log('FCM Token from context:', token);
+        setFcmToken(token);
+      } catch (error) {
+        console.error('Error fetching FCM token:', error);
+      }
+    };
+
+    initializeFCM();
+    const unsubscribe = onMessage(messaging, (payload) => {
+      console.log('Foreground message:', payload);
+      const { title, body } = payload.notification;
+      if (Notification.permission === "granted") {
+          new Notification(title, {
+              body: body,
+              // icon: icon, // Optional: Add an icon
+          });
+      } else {
+          console.warn("Notifications permission not granted");
+      }
+      toast.success(title);
+  });
+    return () => {
+      unsubscribe();
+    }
+  }, []);
+  const createNewFCM = async () => {
+    try {
+      const newToken = await requestFCMToken();
+      console.log('New FCM Token:(onRefresh)', newToken);
+      setFcmToken(newToken);
+    } catch (error) {
+      console.error('Error generating new FCM token:', error);
+    }
+  };
+
+  const getNotifications = async (data) => {
+    try {
+      const response = await apiService.GetNotifications(data);
+      console.log("Notifications:", response);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+      toast.error("Error fetching notifications");
+      throw error;
+    }
+  };
   // Hospital Management
   const getAllHospitals = async () => {
     try {
@@ -498,6 +551,11 @@ export const GlobalProvider = ({ children }) => {
         setSearchTerm,
         selectedOption,
         setSelectedOption,
+
+        // FCM
+        fcmToken,
+        createNewFCM,
+        getNotifications,
       }}
     >
       {children}
