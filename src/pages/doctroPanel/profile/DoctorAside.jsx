@@ -5,41 +5,60 @@ import { FaLock } from "react-icons/fa";
 import { FaStickyNote } from "react-icons/fa";
 import { SiSpringsecurity } from "react-icons/si";
 import { NavLink } from "react-router-dom";
-import '../profile/doctorProfile.css'
 import { useGlobal } from "../../../hooks/useGlobal";
 
 export const DoctorAside = () => {
   const { userData } = useGlobal();
   return (
-    <div className="left">
-      <div className="img-box">
+    <div className="left w-[23%] p-5 w-1/4 border-r border-gray-300">
+      <div className="img-box text-center">
         <div className="img">
-          <img src={userData?.avatar || "../img/dr-profile.png"} className='rounded-full' />
+          <img
+            src={userData?.avatar || "../img/dr-profile.png"}
+            className="rounded-full mx-auto w-[214px] h-[214px]"
+          />
         </div>
-        <p>{userData ? `Dr. ${userData?.name} `: ''}</p>
+        <p className="text-2xl font-semibold py-2">
+          {userData ? `Dr. ${userData?.name}` : ''}
+        </p>
       </div>
       <div className="menu">
-        <p>Menu</p>
-
+        <p className="text-xl font-semibold text-gray-900 py-2">Menu</p>
         <ul>
-          <li>
-            <NavLink to={"/doctor/profile"}>
-              <CgProfile /> <span>Profile</span>
+          <li className="mb-2">
+            <NavLink
+              to={"/doctor/profile"}
+              className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
+            >
+              <CgProfile />
+              <span className="ml-4 text-base font-medium text-gray-600">Profile</span>
+            </NavLink>
+          </li>
+          <li className="mb-2">
+            <NavLink
+              to={"/doctor/profile/changePassword"}
+              className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
+            >
+              <FaLock />
+              <span className="ml-4 text-base font-medium text-gray-600">Change Password</span>
+            </NavLink>
+          </li>
+          <li className="mb-2">
+            <NavLink
+              to={"/doctor/profile/termsCondition"}
+              className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
+            >
+              <FaStickyNote />
+              <span className="ml-4 text-base font-medium text-gray-600">Terms & Condition</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/doctor/profile/changePassword"}>
-              <FaLock /> <span>Change Password</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/doctor/profile/termsCondition"}>
-              <FaStickyNote /> <span>Terms & Condition</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/doctor/profile/privacyPolicy"}>
-              <SiSpringsecurity /> <span>Privacy Policy</span>
+            <NavLink
+              to={"/doctor/profile/privacyPolicy"}
+              className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
+            >
+              <SiSpringsecurity />
+              <span className="ml-4 text-base font-medium text-gray-600">Privacy Policy</span>
             </NavLink>
           </li>
         </ul>

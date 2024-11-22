@@ -131,8 +131,8 @@ const handlePayment = () => {
                 options={getUniqueValues("state", "country", country)}
               />
 
-              {/* City Select */}
-              <SelectInput
+      {/* City Select */}
+      <SelectInput
                 label="City"
                 value={city}
                 onChange={(e) => {
@@ -140,8 +140,20 @@ const handlePayment = () => {
                   setHospital("");
                   setDoctor("");
                 }}
-                options={getUniqueValues("city", "country", country)}
-              />              {/* Doctor Select */}
+                options={getUniqueValues("city", "state", state)}
+              />
+
+              {/* Hospital Select */}
+              <SelectInput
+                label="Hospital"
+                value={hospital}
+                onChange={(e) => {
+                  setHospital(e.target.value);
+                  setDoctor("");
+                }}
+                options={filteredHospitals.map((hospital) => hospital.name)}
+              />
+              {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
                 value={doctor}

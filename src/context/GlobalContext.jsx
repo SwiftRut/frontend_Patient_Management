@@ -25,16 +25,6 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     const messaging = getMessaging();
-    const initializeFCM = async () => {
-      try {
-        const token = await requestFCMToken();
-        console.log('FCM Token from context:', token);
-        setFcmToken(token);
-      } catch (error) {
-        console.error('Error fetching FCM token:', error);
-      }
-    };
-
     initializeFCM();
     const unsubscribe = onMessage(messaging, (payload) => {
       console.log('Foreground message:', payload);
@@ -53,6 +43,32 @@ export const GlobalProvider = ({ children }) => {
       unsubscribe();
     }
   }, []);
+
+  const initializeFCM = async () => {
+    try {
+      const token = await requestFCMToken();
+      console.log('FCM Token from context:', token);
+      setFcmToken(token);
+      setFCMTODB(token);
+
+    } catch (error) {
+      console.error('Error fetching FCM token:', error);
+    }
+  };
+  const setFCMTODB = async (token) => {
+
+    console.log(user);
+    if(user.role === "doctor"){
+      console.log("FCM Token from context from patient: ", token);
+      const response = await apiService.UpdateDoctorToken({token: token});
+      console.log("response", response);
+    }else if(user.role === "patient"){
+      console.log("FCM Token from context from patient: ", token);
+      const response = await apiService.UpdatePatientToken({token: token});
+      console.log("response", response);
+    }
+  };
+  // initializeFCM();
   const createNewFCM = async () => {
     try {
       const newToken = await requestFCMToken();
