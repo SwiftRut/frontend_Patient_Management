@@ -92,9 +92,9 @@ export default function ReportingAndAnalytics() {
               </div>
             </div>
 
-            <div className="bottom flex">
+            <div className="bottom flex justify-between py-5 px-3">
 
-              <div class="patient-count-data w-[32.5%]">
+              <div class="patient-count-data w-[32.5%] p-[10px]">
                 <div class="content h-[330px] bg-white p-5 rounded-lg">
                   <div class="head">
                     <div class="title">
@@ -139,7 +139,7 @@ export default function ReportingAndAnalytics() {
                 </div>
               </div>
 
-              <div class="doctor-count-data w-[32.5%]">
+              <div class="doctor-count-data w-[32.5%] p-[10px]">
                 <div class="content h-[330px] bg-white p-5 rounded-lg">
                   <div class="head">
                     <div class="title">
