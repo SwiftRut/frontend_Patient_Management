@@ -5,7 +5,7 @@ const DoctorProfileTermsCondition = () => {
     <div>
       <div className="doctor-ProfileTermsCondition-section flex justify-center">
         <div className="condition-right w-full">
-          <div className="content p-8 bg-white rounded-2xl shadow-sm">
+          <div className="content p-8 bg-white rounded-2xl shadow-xl">
             <div className="head flex items-center justify-between">
               <div className="title">
                 <p className="text-2xl font-semibold text-gray-900">Terms & Condition</p>

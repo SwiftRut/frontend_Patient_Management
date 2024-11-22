@@ -137,7 +137,7 @@ const DoctorProfileEdit = () => {
             <p className="text-[44px] font-bold text-white">Profile Setting</p>
           </div>
           <div className="content bg-white rounded-[15px] p-[20px] shadow-[0px_0px_3px_1px_#d7d5d5] flex">
-            <div className="left w-[23%] p-[20px] border-r-[3px] border-[#d9d9d94d]">
+            <div className="left w-[23%] p-[20px] border-r-[2px] border-[#d9d9d94d]">
               <div className="img-box">
                 <div className="img">
                   <img

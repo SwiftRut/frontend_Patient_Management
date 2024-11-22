@@ -33,7 +33,7 @@ const DoctorProfileChangePassord = () => {
   return (
     <div className="doctor-ProfileChangePassword-section flex justify-center">
       <div className="right w-[77%]">
-        <div className="content p-8 bg-white rounded-2xl shadow-sm">
+        <div className="content p-8 bg-white rounded-2xl shadow-xl">
           <div className="head">
             <div className="title">
               <p className="text-2xl font-semibold text-[#030229]">Change Password</p>

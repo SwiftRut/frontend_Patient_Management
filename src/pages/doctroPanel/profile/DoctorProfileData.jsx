@@ -47,7 +47,7 @@ const DoctorProfileData = () => {
   }, [userData]);
 
   return (
-    <div className="content p-x-[30px] p-y-[20px] bg-white rounded-2xl shadow-sm">
+    <div className="content px-[30px] py-[20px] bg-white rounded-2xl shadow-xl">
       <div className="head flex items-center justify-between mb-6">
         <div className="title">
           <p className="text-[34px] text-[#030229] font-semibold ">Profile</p>
