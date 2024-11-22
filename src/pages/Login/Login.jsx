@@ -207,7 +207,7 @@ const Login = () => {
               </div>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1 relative">
-                  <label className="block text-gray-600 absolute top-[-0.75rem] left-4 bg-white z-10">
+                  <label className="block text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
                     Email or Phone <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -220,7 +220,7 @@ const Login = () => {
                   />
                 </div>
                 <div className="space-y-1 relative">
-                  <label className="block text-gray-600 absolute top-[-0.75rem] left-4 bg-white z-10">
+                  <label className="block text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
                     Password <span className="text-red-500">*</span>
                   </label>
                   <input

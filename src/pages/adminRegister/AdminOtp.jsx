@@ -2,8 +2,9 @@ import "../pages.css";
 import { IoTimeOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import apiService from '../../services/api.js';
-import { toast } from 'react-hot-toast';
+import apiService from "../../services/api.js";
+import { toast } from "react-hot-toast";
+import ImageSlider from "../../components/Login/ImageSlider.jsx";
 
 export default function AdminOtp() {
   const location = useLocation();
@@ -18,34 +19,34 @@ export default function AdminOtp() {
   useEffect(() => {
     if (!identifier) {
       toast.error("Invalid request. Please try again.");
-      navigate('/someFallbackRoute'); // Navigate to a fallback route
+      navigate("/someFallbackRoute"); // Navigate to a fallback route
     }
   }, [identifier, navigate]);
 
-  useEffect(() => {
-    const slider = document.querySelector(".slider");
-    const images = slider.querySelectorAll("img");
-    const dots = slider.querySelectorAll(".dot");
-    let currentIndex = 0;
-    images[currentIndex].style.display = "block";
+  // useEffect(() => {
+  //   const slider = document.querySelector(".slider");
+  //   const images = slider.querySelectorAll("img");
+  //   const dots = slider.querySelectorAll(".dot");
+  //   let currentIndex = 0;
+  //   images[currentIndex].style.display = "block";
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        currentIndex = index;
-        updateSlider();
-      });
-    });
+  //   dots.forEach((dot, index) => {
+  //     dot.addEventListener("click", () => {
+  //       currentIndex = index;
+  //       updateSlider();
+  //     });
+  //   });
 
-    function updateSlider() {
-      images.forEach((image) => {
-        image.style.display = "none";
-      });
-      images[currentIndex].style.display = "block";
-      dots.forEach((dot, index) => {
-        dot.classList.toggle("active", index === currentIndex);
-      });
-    }
-  }, []);
+  //   function updateSlider() {
+  //     images.forEach((image) => {
+  //       image.style.display = "none";
+  //     });
+  //     images[currentIndex].style.display = "block";
+  //     dots.forEach((dot, index) => {
+  //       dot.classList.toggle("active", index === currentIndex);
+  //     });
+  //   }
+  // }, []);
 
   // Countdown Timer for Resend OTP
   useEffect(() => {
@@ -64,7 +65,9 @@ export default function AdminOtp() {
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   const handleInputChange = (index, event) => {
@@ -98,7 +101,7 @@ export default function AdminOtp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const enteredOtp = otp.join('');
+    const enteredOtp = otp.join("");
 
     if (enteredOtp.length !== 6) {
       toast.error("Please enter a valid 6-digit OTP.");
@@ -112,12 +115,12 @@ export default function AdminOtp() {
       });
 
       toast.success(response.data.message);
-      navigate('/resetPassword', { state: { identifier } });
+      navigate("/resetPassword", { state: { identifier } });
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message);
       } else {
-        toast.error('Something went wrong. Please try again.');
+        toast.error("Something went wrong. Please try again.");
       }
     }
   };
@@ -133,31 +136,126 @@ export default function AdminOtp() {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message);
       } else {
-        toast.error('Something went wrong. Please try again.');
+        toast.error("Something went wrong. Please try again.");
       }
     }
   };
 
   return (
+    // <div>
+    //   <div class="admin-otp-section">
+    //     <div class="row">
+    //       <div class="main flex h-screen">
+    //         <div class="form p-[120px_100px] w-1/2 bg-white flex justify-center items-center">
+    //           <div class="admin-otp-content p-[40px] border border-[#f4f4f4] shadow-[0_2px_2px_0_#f4f4f4,0_0px_10px_0_#f4f4f4] rounded-xl">
+    //             <div class="head pb-[15px]">
+    //               <p class="text-[34px] font-semibold">Enter OTP</p>
+    //             </div>
+    //             <div class="note">
+    //               <p class="text-[#4f4f4f] text-[16px] font-medium">
+    //                 Please enter the 6-digit code that was sent to your phone
+    //                 number.
+    //               </p>
+    //             </div>
+    //             <div class="admin-otp-form-box pt-[10px]">
+    //               <form class="flex justify-between" onSubmit={handleSubmit}>
+    //                 {[...Array(6)].map((_, index) => (
+    //                   <div
+    //                     class="input-box relative py-[15px] w-[15%]"
+    //                     key={index}
+    //                   >
+    //                     <input
+    //                       type="text"
+    //                       maxLength="1"
+    //                       pattern="\d*"
+    //                       inputMode="numeric"
+    //                       ref={(el) => (inputRefs.current[index] = el)}
+    //                       onChange={(e) => handleInputChange(index, e)}
+    //                       onKeyDown={(e) => handleKeyDown(index, e)}
+    //                       class="p-[12px_14px] border border-[#d9d9d9] rounded-[10px] text-center focus:border-[#718ebf]"
+    //                       style={{ MozAppearance: "textfield" }}
+    //                     />
+    //                   </div>
+    //                 ))}
+
+    //                 <div class="condition w-full pt-[20px]">
+    //                   <div class="resend-otp flex justify-between items-center">
+    //                     <div class="sec">
+    //                       <p class="flex items-center">
+    //                         <IoTimeOutline />
+    //                         <span class="px-[5px]">
+    //                           {formatTime(timer)}
+    //                         </span>{" "}
+    //                         sec
+    //                       </p>
+    //                     </div>
+    //                     <div class="r-otp">
+    //                       <button
+    //                         type="button"
+    //                         onClick={handleResendOtp}
+    //                         disabled={isResendDisabled}
+    //                         class="text-[#5678e9]"
+    //                       >
+    //                         Resend OTP
+    //                       </button>
+    //                     </div>
+    //                   </div>
+
+    //                   <div class="verify pt-[15px]">
+    //                     <button
+    //                       type="submit"
+    //                       class="w-full bg-[#f6f8fb] text-[#4f4f4f] p-[12px_14px] rounded-[10px] text-[20px] transition-all duration-500 hover:bg-[#0eabeb] hover:text-white"
+    //                     >
+    //                       Verify
+    //                     </button>
+    //                   </div>
+    //                 </div>
+    //               </form>
+    //             </div>
+    //           </div>
+    //         </div>
+
+    //         <div class="w-full md:w-1/2 bg-gray-100 relative p-2 md:p-16">
+    //           <ImageSlider
+    //             images={["/img/register.png", "/img/register2.png"]}
+    //           />
+
+    //           <div class="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+    //             <img src="/img/Vector-1.png" class="w-full" />
+    //           </div>
+    //           <div class="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+    //             <img src="/img/Vector-2.png" class="w-full" />
+    //           </div>
+    //           <div class="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
+    //             <img src="/img/Vector-dot.png" class="w-full" />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
     <div>
-      <ToastContainer />
-      <div className="admin-otp-section">
-        <div className="row">
-          <div className="main flex">
-            <div className="form">
-              <div className="admin-otp-content">
-                <div className="head">
-                  <p>Enter OTP</p>
+      <div class="admin-otp-section">
+        <div class="row">
+          <div class="flex min-h-screen">
+            {/* <!-- Form Section --> */}
+            <div class="form p-6 md:p-16 w-full md:w-1/2 bg-white flex justify-center items-center">
+              <div class="admin-otp-content p-10 border border-gray-200 shadow-md rounded-xl">
+                <div class="head pb-4">
+                  <p class="text-2xl font-semibold">Enter OTP</p>
                 </div>
 
-                <div className="note">
-                  <p>Please enter the 6-digit code that was sent to your phone number.</p>
+                <div class="note">
+                  <p class="text-gray-600 text-base font-medium">
+                    Please enter the 6-digit code that was sent to your phone
+                    number.
+                  </p>
                 </div>
 
-                <div className="admin-otp-form-box">
-                  <form className="flex" onSubmit={handleSubmit}>
+                <div class="admin-otp-form-box pt-2">
+                  <form class="flex space-x-2" onSubmit={handleSubmit}>
                     {[...Array(6)].map((_, index) => (
-                      <div className="input-box" key={index}>
+                      <div class="input-box relative py-4 w-[14%]" key={index}>
                         <input
                           type="text"
                           maxLength="1"
@@ -166,55 +264,58 @@ export default function AdminOtp() {
                           ref={(el) => (inputRefs.current[index] = el)}
                           onChange={(e) => handleInputChange(index, e)}
                           onKeyDown={(e) => handleKeyDown(index, e)}
-                          style={{ MozAppearance: "textfield" }}
+                          class="w-full p-3 border border-gray-300 rounded-xl text-center focus:border-blue-400"
                         />
                       </div>
                     ))}
 
-                    <div className="condition">
-                      <div className="resend-otp flex">
-                        <div className="sec">
-                          <p className="flex">
-                            <IoTimeOutline />
-                            <span>{formatTime(timer)}</span> sec
-                          </p>
+                    <div class="condition w-full pt-5">
+                      <div class="resend-otp flex justify-between items-center">
+                        <div class="sec flex items-center">
+                          <IoTimeOutline />
+                          <span class="px-2">{formatTime(timer)}</span> sec
                         </div>
-                        <div className="r-otp">
+                        <div class="r-otp">
                           <button
                             type="button"
                             onClick={handleResendOtp}
                             disabled={isResendDisabled}
+                            class="text-blue-600"
                           >
                             Resend OTP
                           </button>
                         </div>
                       </div>
 
-                      <div className="verify">
-                        <button type="submit">Verify</button>
+                      <div class="verify pt-4">
+                        <button
+                          type="submit"
+                          class="w-full bg-gray-100 text-gray-600 py-3 px-4 rounded-xl text-xl hover:bg-blue-500 hover:text-white transition"
+                        >
+                          Verify
+                        </button>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-            <div className="img-box">
-              <div className="slider">
-                <img src="/img/register.png" alt="Image 1" />
-                <img src="/img/register2.png" alt="Image 2" />
-                <div className="dots">
-                  <span className="dot active"></span>
-                  <span className="dot"></span>
-                </div>
+
+            {/* <!-- Image Section --> */}
+            <div class="w-full md:w-1/2 bg-gray-100 relative p-4 md:p-16">
+              <ImageSlider
+                images={["/img/register.png", "/img/register2.png"]}
+              />
+
+              {/* <!-- Decorative Vectors --> */}
+              <div class="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+                <img src="/img/Vector-1.png" class="w-full" />
               </div>
-              <div className="vector-1">
-                <img src="/img/Vector-1.png" width="100%" alt="Vector 1" />
+              <div class="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+                <img src="/img/Vector-2.png" class="w-full" />
               </div>
-              <div className="vector-2">
-                <img src="/img/Vector-2.png" width="100%" alt="Vector 2" />
-              </div>
-              <div className="vector-dot">
-                <img src="/img/Vector-dot.png" width="100%" alt="Vector Dot" />
+              <div class="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
+                <img src="/img/Vector-dot.png" class="w-full" />
               </div>
             </div>
           </div>
