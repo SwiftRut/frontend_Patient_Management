@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { useGlobal } from "../../../hooks/useGlobal";
 import '../profile/doctorProfile.css'
+import toast from "react-hot-toast";
 
 const DoctorProfileData = () => {
   const { user } = useAuth();

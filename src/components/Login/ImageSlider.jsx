@@ -1,51 +1,45 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 
 const ImageSlider = ({ images }) => {
-  const sliderRef = useRef(null);
-  const currentIndexRef = useRef(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    const imageElements = slider.querySelectorAll("img");
-    const dots = slider.querySelectorAll(".dot");
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
-    const updateSlider = (index) => {
-      imageElements.forEach((image) => (image.style.display = "none"));
-      imageElements[index].style.display = "block";
-      dots.forEach((dot, idx) => dot.classList.toggle("active", idx === index));
-    };
-
-    const handleDotClick = (index) => {
-      currentIndexRef.current = index;
-      updateSlider(currentIndexRef.current);
-    };
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => handleDotClick(index));
-    });
-
-    // Initialize the slider
-    updateSlider(currentIndexRef.current);
-
-    return () => {
-      dots.forEach((dot) => {
-        dot.removeEventListener("click", () => handleDotClick(currentIndexRef.current));
-      });
-    };
-  }, [images]);
+  const prevImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
 
   return (
-    <div className="slider" ref={sliderRef}>
-      {images.map((src, index) => (
-        <img key={index} src={src} alt={`Image ${index + 1}`} style={{ display: index === 0 ? 'block' : 'none' }} />
-      ))}
-      <div className="dots">
+    <div className="relative w-full h-[600px] ">
+      {/* Slider Image */}
+      <div className="w-full h-full overflow-hidden">
+        <img
+          src={images[currentImageIndex]}
+          alt="slider"
+          className="sm:w-full sm:h-full w-[100%] h-[80%]  object-cover transition-transform duration-500"
+        />
+      </div>
+
+      {/* Dot Indicators */}
+      <div className="absolute sm:bottom-[-3rem] bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
-          <span key={index} className={`dot ${index === 0 ? "active" : ""}`}></span>
+          <span
+            key={index}
+            className={`w-3 h-3 rounded-full cursor-pointer ${
+              index === currentImageIndex
+                ? "bg-gradient-to-r from-[#4c49ed] to-[#020067] w-[30px] h-3"
+                : "bg-gray-400"
+            }`}
+            onClick={() => setCurrentImageIndex(index)}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-export default ImageSlider; 
+export default ImageSlider;
