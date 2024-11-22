@@ -14,13 +14,13 @@ const ImageSlider = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full h-[600px] ">
+    <div className="relative w-full h-[700px] ">
       {/* Slider Image */}
-      <div className="w-full h-full overflow-hidden">
+      <div className="w-full h-full">
         <img
           src={images[currentImageIndex]}
           alt="slider"
-          className="sm:w-full sm:h-full w-[100%] h-[80%]  object-cover transition-transform duration-500"
+          className="sm:w-full sm:h-full w-[100%] h-[70%]object-cover transition-transform duration-500"
         />
       </div>
 
