@@ -6,15 +6,17 @@ const PatientsAge = () => {
   const { cardData } = useGlobal();
   return (
 
-    <div className="PatientsAge-data">
-      <div className="content">
+    <div className="PatientsAge-data w-1/3 h-[330px]">
+      <div className="content p-5 bg-white rounded-2xl h-full">
         <div className="head">
           <div className="title">
-            <p>Patients Age</p>
+            <p className="text-[24px] font-bold text-[#030229] border-b border-[#F4F4F4]">
+              Patients Age
+            </p>
           </div>
         </div>
-        <div className="Summary-status flex">
-          <div className="Patients-data flex w-1/2">
+        <div className="Summary-status flex pt-2">
+          <div className="Patients-data flex w-1/2 bg-[#F6F8FB] rounded-2xl items-center px-5 justify-between">
             {cardData?.ageRangePercentage?.length > 0 ? ( // Check if data is not empty
               <ResponsiveContainer>
                 <PieChart>
@@ -44,14 +46,17 @@ const PatientsAge = () => {
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div>No data available</div> // Placeholder if no data
+              <div className="text-gray-500">No data available</div> // Placeholder if no data
             )}
           </div>
-          <div className="details w-1/2">
-            <div className="content mt-3">
+          <div className="details w-1/2 mt-3">
+            <div className="content bg-white rounded-2xl p-2">
               <ul>
                 {cardData?.ageRangePercentage?.map((item, index) => (
-                  <li key={index} className="age-group flex my-2">
+                  <li
+                    key={index}
+                    className="age-group flex items-center gap-4 py-2 text-[15px] font-semibold text-[#4F4F4F]"
+                  >
                     <FaDotCircle color={item.color} />
                     <span className="mx-4">{item.name}</span>
                     <span>
@@ -68,6 +73,7 @@ const PatientsAge = () => {
         </div>
       </div>
     </div>
+
 
   );
 };

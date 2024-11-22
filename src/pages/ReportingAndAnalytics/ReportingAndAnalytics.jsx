@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import "./reportingAnalytics.css";
 import { FaUsers, FaUser, FaFileAlt } from "react-icons/fa";
 import AppointmentGraph from "../Reporting-Analysis/ApointmentGraph";
 import PatientSummary from "../Reporting-Analysis/PatientSummary";
@@ -84,7 +83,7 @@ export default function ReportingAndAnalytics() {
               </div>
             </div>
 
-            <div className="top flex">
+            <div className="top flex p-2.5">
               <div className="w-1/2 p-3">
                 <AppointmentGraph />
               </div>
