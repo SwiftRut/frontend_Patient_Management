@@ -31,25 +31,25 @@ const DoctorProfileChangePassord = () => {
   };
 
   return (
-    <div className="doctor-ProfileChangePassword-section flex justify-center">
+    <div className="doctor-ProfileChangePassword-section ">
       <div className="right w-[77%]">
         <div className="content p-8 bg-white rounded-2xl shadow-xl">
           <div className="head">
             <div className="title">
-              <p className="text-2xl font-semibold text-[#030229]">Change Password</p>
+              <p className="text-[34px] font-semibold text-[#030229]">Change Password</p>
             </div>
             <div className="description pt-4">
-              <p className="text-base text-[#4F4F4F]">
+              <p className="text-[16px] font-normal text-[#4F4F4F]">
                 To change your password, please fill in the fields below. Your password must contain
                 at least 8 characters, it must also include at least one uppercase letter, one
                 lowercase letter, one number, and one special character.
               </p>
             </div>
           </div>
-          <div className="form-box pt-5">
+          <div className="form-box pt-[30px]">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="change-input-box relative">
-                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
                   Current Password <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -62,7 +62,7 @@ const DoctorProfileChangePassord = () => {
               </div>
 
               <div className="change-input-box relative">
-                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
                   New Password <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -75,7 +75,7 @@ const DoctorProfileChangePassord = () => {
               </div>
 
               <div className="change-input-box relative">
-                <label className="absolute -top-2 left-4 bg-white px-1 text-sm text-gray-600">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
                   Confirm Password <span className="text-red-500">*</span>
                 </label>
                 <input
