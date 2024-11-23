@@ -74,14 +74,14 @@ export default function PatientRecordAccess() {
   console.log(allAppointments);
   return (
     <div className="bg-[#F6F8FB] p-3 h-[92%]">
-      <div className="patioentRecord p-6 bg-white rounded-lg shadow-md">
+      <div className="patioentRecord p-4 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-[20px] font-bold text-[#030229]">
+          <h2 className="text-[26px] font-bold text-[#030229]">
             Patient Record Access
           </h2>
           <div className="flex space-x-4">
             <div className="search-btn flex">
-              <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+              <div class="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
                 <div class="text-xl text-gray-700">
                   <CiSearch />
                 </div>
@@ -107,32 +107,32 @@ export default function PatientRecordAccess() {
           </div>
         </div>
 
-        <div className="pr-data max-h-[600px] overflow-y-auto">
+        <div className="pr-data max-h-[760px] overflow-y-auto">
           <table className="min-w-full table-auto">
             <thead className="sticky top-0 bg-gray-100 z-10">
               <tr>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold rounded-tl-lg">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
                   Patient Name
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Disease Name
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Patient Issue
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Last Appointment Date
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Last Appointment Time
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Age
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                   Gender
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg text-sm font-semibold rounded-tr-lg">
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tr-lg">
                   Action
                 </th>
               </tr>
@@ -153,8 +153,9 @@ export default function PatientRecordAccess() {
                     {patient.lastAppointmentDate}
                   </td>
                   <td className="p-3 ">
-                    <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">{patient.lastAppointmentTime}</span>
-                    
+                    <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">
+                      {patient.lastAppointmentTime}
+                    </span>
                   </td>
                   <td className="p-3 text-[#4F4F4F] text-base font-semibold">
                     {patient.age}

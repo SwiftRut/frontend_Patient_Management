@@ -289,12 +289,12 @@ const CreatePrescriptionForm = () => {
                             </FormControl>
                           </td>
                           <td className=" p-2">
-                            <IconButton
+                            <button
                               onClick={() => remove(index)}
-                              className="text-red-600"
+                              className="text-red-600 "
                             >
                               <DeleteIcon />
-                            </IconButton>
+                            </button>
                           </td>
                         </tr>
                       </tbody>

@@ -136,7 +136,7 @@ export default function AppointmentManagement() {
     <div className="bg-[#F6F8FB] p-3 h-[92%]">
       <div className="p-6 bg-white rounded-lg shadow-md ">
         <div className="flex justify-between items-center mb-4  border-b  ">
-          <div className="flex space-x-8 text-sm font-semibold text-gray-500 thead">
+          <div className="flex space-x-8 text-base font-normal text-gray-500 thead">
             {[
               "Today Appointment",
               "Upcoming Appointment",
@@ -206,7 +206,7 @@ export default function AppointmentManagement() {
         </div>
 
         <div className="flex-grow overflow-hidden">
-          <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+          <div className="max-h-[calc(100vh-260px)] overflow-y-auto">
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>

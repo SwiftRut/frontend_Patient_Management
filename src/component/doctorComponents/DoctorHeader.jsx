@@ -14,6 +14,9 @@ import { Notifications, ArrowDropDown } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { GoHomeFill } from "react-icons/go";
+import { FaAngleRight } from "react-icons/fa6";
+import { RiSearchLine } from "react-icons/ri";
 
 const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,17 +72,24 @@ const DoctorHeader = () => {
   };
 
   return (
-    <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-3">
+    <div className="header bg-white sticky top-0 z-50 flex items-center justify-between p-3">
       {/* Breadcrumb */}
       <div>
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs
+          aria-label="breadcrumb"
+          className="bg-[#f8fcfe] border rounded-full py-2 px-3 text-lg font-normal"
+        >
+          <div className="flex items-center">
+            <GoHomeFill className="text-[#A7A7A7] text-2xl" />
+            <FaAngleRight className="text-[#A7A7A7] mx-2" />
+          </div>
           <Link underline="hover" color="inherit" to="/doctor">
             Home
           </Link>
           {location.pathname !== "/" && <Link to={"/doctor"}>doctor</Link>}
           {location.pathname !== "/" && (
             <NavLink to={location.pathname.split("/")[2]}>
-              <Typography variant="body2" color="textPrimary">
+              <Typography variant="body2" color="#0EABEB">
                 {breadcrumbNames[location.pathname.split("/")[2]]}
               </Typography>
             </NavLink>
@@ -88,7 +98,8 @@ const DoctorHeader = () => {
       </div>
 
       <div className="flex">
-        <div className="flex items-right bg-gray-200 rounded-full px-4">
+        <div className="flex items-right items-center bg-gray-100 rounded-full px-4">
+          <RiSearchLine className="text-[#4F4F4F] text-xl me-2" />
           <InputBase
             placeholder="Quick Search"
             inputProps={{ "aria-label": "search" }}
@@ -112,11 +123,14 @@ const DoctorHeader = () => {
           </Menu>
         </div>
         <div className="flex items-center space-x-4">
-          <IconButton aria-label="notifications">
+          <button
+            aria-label="notifications"
+            className="bg-gray-200 rounded-full p-2 mx-2"
+          >
             <Badge badgeContent={4} color="secondary">
               <Notifications />
             </Badge>
-          </IconButton>
+          </button>
           <NavLink to={"/doctor/profile"}>
             <div className="flex items-center">
               <Avatar src={userAvatar} alt="User Image" />
