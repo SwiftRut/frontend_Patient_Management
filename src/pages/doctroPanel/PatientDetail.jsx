@@ -5,6 +5,7 @@ import { MdAdd } from "react-icons/md";
 import { Visibility } from "@mui/icons-material";
 import AddRecord from "../../pages/doctroPanel/AddRecord.jsx";
 import { usePatient } from "../../hooks/usePatient.jsx";
+import { FaEye } from "react-icons/fa";
 
 const PatientDetail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,9 @@ const PatientDetail = () => {
 
   // Merge patientDetails with fallback data, preferring patientDetails values when available
   const displayData = {
-    name: patientDetails ? `${patientDetails.firstName} ${patientDetails.lastName}` : `${fallbackData.firstName} ${fallbackData.lastName}`,
+    name: patientDetails
+      ? `${patientDetails.firstName} ${patientDetails.lastName}`
+      : `${fallbackData.firstName} ${fallbackData.lastName}`,
     phone: patientDetails?.phone || fallbackData.phone,
     age: patientDetails?.age ? `${patientDetails.age} Years` : fallbackData.age,
     gender: patientDetails?.gender || fallbackData.gender,
@@ -43,8 +46,12 @@ const PatientDetail = () => {
     avatar: patientDetails?.avatar || fallbackData.avatar,
     bloodGroup: patientDetails?.bloodGroup || "Not Specified",
     email: patientDetails?.email || "Not Available",
-    height: patientDetails?.height ? `${patientDetails.height} cm` : "Not Specified",
-    weight: patientDetails?.weight ? `${patientDetails.weight} kg` : "Not Specified",
+    height: patientDetails?.height
+      ? `${patientDetails.height} cm`
+      : "Not Specified",
+    weight: patientDetails?.weight
+      ? `${patientDetails.weight} kg`
+      : "Not Specified",
     country: patientDetails?.country || "Not Specified",
     state: patientDetails?.state || "Not Specified",
     city: patientDetails?.city || "Not Specified",
@@ -63,17 +70,17 @@ const PatientDetail = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
   const formatTime = (dateString) => {
-    return new Date(dateString).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -148,67 +155,87 @@ const PatientDetail = () => {
         </div>
 
         <div className="p-table bg-white p-4 rounded-lg mt-3">
-          <h3 className="text-2xl font-bold mb-4 text-[#030229]">All Appointments</h3>
-          <table className="min-w-full table-auto">
-          <thead className="bg-gray-100">
-              <tr>
-                {/* <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th> */}
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Patient Issue</th>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Date</th>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Time</th>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Appointment Type</th>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Status</th>
-                <th className="p-3 text-left text-lg font-bold text-[#030229]">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {appointments.map((appointment, index) => (
-                <tr key={index} className="border-t">
-                  {/* <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+          <h3 className="text-2xl font-bold mb-4 text-[#030229]">
+            All Appointments
+          </h3>
+          <div className="max-h-[calc(100vh-440px)] overflow-y-auto">
+            <table className="min-w-full table-auto">
+              <thead className="sticky top-0 bg-gray-100 z-10">
+                <tr>
+                  {/* <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th> */}
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
+                    Patient Issue
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Appointment Date
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Appointment Time
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Appointment Type
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Status
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments.map((appointment, index) => (
+                  <tr key={index} className="border-t">
+                    {/* <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
                     {appointment.disease_name || 'Not Specified'}
                   </td> */}
-                  <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
-                    {appointment.patient_issue}
-                  </td>
-                  <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
-                    {formatDate(appointment.date)}
-                  </td>
-                  <td className="p-3">
-                    <span className="text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]">
-                      {formatTime(appointment.appointmentTime)}
-                    </span>
-                  </td>
-                  <td className="p-3">
-                    <span className={`px-3 py-1 text-lg font-semibold rounded-full capitalize ${
-                      appointment.type === "online"
-                        ? "bg-yellow-100 text-yellow-600"
-                        : appointment.type === "follow_up"
-                        ? "bg-purple-100 text-purple-600"
-                        : "bg-blue-100 text-blue-600"
-                    }`}>
-                      {appointment.type.replace("_", " ")}
-                    </span>
-                  </td>
-                  <td className="p-3">
-                    <span className={`px-3 py-1 text-lg font-semibold rounded-full capitalize ${
-                      appointment.status === "scheduled"
-                        ? "bg-green-100 text-green-600"
-                        : appointment.status === "completed"
-                        ? "bg-blue-100 text-blue-600"
-                        : "bg-red-100 text-red-600"
-                    }`}>
-                      {appointment.status}
-                    </span>
-                  </td>
-                  <td className="p-3 text-lg font-semibold">
-                    <IconButton color="primary" onClick={handleViewFiles}>
-                      <Visibility />
-                    </IconButton>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                      {appointment.patient_issue}
+                    </td>
+                    <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                      {formatDate(appointment.date)}
+                    </td>
+                    <td className="p-3">
+                      <span className="text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]">
+                        {formatTime(appointment.appointmentTime)}
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <span
+                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center capitalize ${
+                          appointment.type === "online"
+                            ? "bg-[#fff9e7] text-[#FFC313]"
+                            : appointment.type === "follow_up"
+                            ? "bg-[#eef1fd] text-[#5678E9]"
+                            : "bg-[#fff9e7] text-[#FFC313]"
+                        }`}
+                      >
+                        {appointment.type.replace("_", " ")}
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <span
+                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center ${
+                          appointment.status === "scheduled"
+                            ? "bg-green-100 text-green-600"
+                            : appointment.status === "completed"
+                            ? "bg-[#eef1fd] text-[#5678E9]"
+                            : "bg-red-100 text-red-600"
+                        }`}
+                      >
+                        {appointment.status}
+                      </span>
+                    </td>
+                    <td className="p-3 text-lg font-semibold">
+                      <button className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer" onClick={handleViewFiles}>
+                        <FaEye />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -216,7 +243,10 @@ const PatientDetail = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="modal">
             <div className="modal-content">
-              <AddRecord patient={selectedPatient} setIsModalOpen={setIsModalOpen} />
+              <AddRecord
+                patient={selectedPatient}
+                setIsModalOpen={setIsModalOpen}
+              />
             </div>
           </div>
         </div>

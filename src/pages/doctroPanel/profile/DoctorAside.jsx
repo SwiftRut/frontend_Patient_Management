@@ -10,7 +10,7 @@ import { useGlobal } from "../../../hooks/useGlobal";
 export const DoctorAside = () => {
   const { userData } = useGlobal();
   return (
-    <div className="left w-[23%] p-5 w-1/4 border-r border-gray-300">
+    <div className="left w-[23%] p-5 w-1/4 border border-r border-black">
       <div className="img-box text-center">
         <div className="img">
           <img
@@ -19,7 +19,7 @@ export const DoctorAside = () => {
           />
         </div>
         <p className="text-2xl font-semibold py-2">
-          {userData ? `Dr. ${userData?.name}` : ''}
+          {userData ? `Dr. ${userData?.name}` : ""}
         </p>
       </div>
       <div className="menu">
@@ -31,7 +31,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
             >
               <CgProfile />
-              <span className="ml-4 text-base font-medium text-gray-600">Profile</span>
+              <span className="ml-4 text-base font-medium text-gray-600">
+                Profile
+              </span>
             </NavLink>
           </li>
           <li className="mb-2">
@@ -40,7 +42,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
             >
               <FaLock />
-              <span className="ml-4 text-base font-medium text-gray-600">Change Password</span>
+              <span className="ml-4 text-base font-medium text-gray-600">
+                Change Password
+              </span>
             </NavLink>
           </li>
           <li className="mb-2">
@@ -49,7 +53,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
             >
               <FaStickyNote />
-              <span className="ml-4 text-base font-medium text-gray-600">Terms & Condition</span>
+              <span className="ml-4 text-base font-medium text-gray-600">
+                Terms & Condition
+              </span>
             </NavLink>
           </li>
           <li>
@@ -58,7 +64,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-gray-100 p-4 rounded-lg hover:text-sky-500 hover:fill-sky-500"
             >
               <SiSpringsecurity />
-              <span className="ml-4 text-base font-medium text-gray-600">Privacy Policy</span>
+              <span className="ml-4 text-base font-medium text-gray-600">
+                Privacy Policy
+              </span>
             </NavLink>
           </li>
         </ul>

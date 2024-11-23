@@ -1,9 +1,8 @@
-
 const AddRecord = ({ setIsModalOpen }) => {
   return (
     <>
       {/* add record model */}
-      <div className=" bg-white rounded-lg shadow-md overflow-hidden bg-gray ">
+      <div className=" bg-white rounded-lg shadow-md overflow-hidden bg-gray w-[100%]">
         <div className="px-6 py-4">
           <h2 className="text-xl font-bold mb-4 text-[#030229] border-b pb-2">
             Add Record
@@ -77,7 +76,10 @@ const AddRecord = ({ setIsModalOpen }) => {
           </div>
         </div>
         <div className="px-6 py-4 flex justify-between">
-          <button onClick={() => setIsModalOpen(false)} className="py-2  me-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 w-[47%]">
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="py-2  me-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 w-[47%]"
+          >
             Cancel
           </button>
           <button className="py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-[#4F4F4F] bg-[#F6F8FB] hover:bg-[#0EABEB] hover:text-white w-[47%] transition duration-300">
@@ -85,13 +87,10 @@ const AddRecord = ({ setIsModalOpen }) => {
           </button>
         </div>
       </div>
-
-
     </>
   );
 };
 
 export default AddRecord;
 
-
-// 
+//

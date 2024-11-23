@@ -21,7 +21,7 @@ const calendarConfig = {
 };
 
 const eventStyleGetter = (event) => ({
-  style: { backgroundColor: event.isUnavailable ? "#d9534f" : "#3a87ad" }
+  style: { backgroundColor: event.isUnavailable ? "#d9534f" : "#3a87ad" },
 });
 
 const AppointmentTimeSlot = () => {
@@ -34,7 +34,13 @@ const AppointmentTimeSlot = () => {
   const [unavailableTimes, setUnavailableTimes] = useState([]);
   const [isBlockingMode, setIsBlockingMode] = useState(true);
 
-  const { allAppointments, getAppointmetnsForDoctor, updateAppointment, deleteAppointment, createAppointment } = useGlobal();
+  const {
+    allAppointments,
+    getAppointmetnsForDoctor,
+    updateAppointment,
+    deleteAppointment,
+    createAppointment,
+  } = useGlobal();
   const { user } = useAuth();
 
   // Event mapping effect
@@ -61,12 +67,16 @@ const AppointmentTimeSlot = () => {
         const response = await apiService.GetUnavailableTimes(user.id);
         const unavailableEvents = response.data.map((unavailable) => ({
           title: unavailable.title || "Unavailable",
-          start: moment(`${unavailable.date} ${unavailable.timeRange.start}`).toDate(),
-          end: moment(`${unavailable.date} ${unavailable.timeRange.end}`).toDate(),
+          start: moment(
+            `${unavailable.date} ${unavailable.timeRange.start}`
+          ).toDate(),
+          end: moment(
+            `${unavailable.date} ${unavailable.timeRange.end}`
+          ).toDate(),
           allDay: false,
           id: unavailable._id,
           isUnavailable: true,
-          reason: unavailable.reason
+          reason: unavailable.reason,
         }));
         setUnavailableTimes(unavailableEvents);
       } catch (error) {
@@ -80,28 +90,32 @@ const AppointmentTimeSlot = () => {
 
   // Modal handlers
   const handleModalState = (modalType, isOpen, data = null) => {
-    setModalState(prev => ({
+    setModalState((prev) => ({
       ...prev,
-      [modalType]: { isOpen, ...(data && { [modalType === 'reschedule' ? 'event' : 'slot']: data }) }
+      [modalType]: {
+        isOpen,
+        ...(data && { [modalType === "reschedule" ? "event" : "slot"]: data }),
+      },
     }));
   };
 
   // Event handlers
   const handleSelectEvent = (event) => {
     if (!event.isUnavailable) {
-      handleModalState('reschedule', true, event);
+      handleModalState("reschedule", true, event);
     }
   };
 
   const handleSelectSlot = (slotInfo) => {
     const isUnavailable = unavailableTimes.some(
-      (unavailable) => slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end
+      (unavailable) =>
+        slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end
     );
 
     if (isBlockingMode) {
-      handleModalState('timeBlock', true, slotInfo);
+      handleModalState("timeBlock", true, slotInfo);
     } else if (!isUnavailable) {
-      handleModalState('appointment', true, slotInfo);
+      handleModalState("appointment", true, slotInfo);
     } else {
       alert("This time slot is unavailable.");
     }
@@ -110,18 +124,25 @@ const AppointmentTimeSlot = () => {
   // Action handlers
   const handleAddUnavailableTime = async (unavailableTimeData) => {
     try {
-      const response = await apiService.AddUnavailableTime(user.id, unavailableTimeData);
+      const response = await apiService.AddUnavailableTime(
+        user.id,
+        unavailableTimeData
+      );
       const newUnavailableEvent = {
         title: unavailableTimeData.title,
-        start: moment(`${unavailableTimeData.date} ${unavailableTimeData.timeRange.start}`).toDate(),
-        end: moment(`${unavailableTimeData.date} ${unavailableTimeData.timeRange.end}`).toDate(),
+        start: moment(
+          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.start}`
+        ).toDate(),
+        end: moment(
+          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.end}`
+        ).toDate(),
         allDay: false,
         id: response.data._id,
         isUnavailable: true,
-        reason: unavailableTimeData.reason
+        reason: unavailableTimeData.reason,
       };
-      setUnavailableTimes(prev => [...prev, newUnavailableEvent]);
-      handleModalState('timeBlock', false);
+      setUnavailableTimes((prev) => [...prev, newUnavailableEvent]);
+      handleModalState("timeBlock", false);
       toast.success("Unavailable time added successfully.");
     } catch (error) {
       console.error("Error adding unavailable time:", error);
@@ -144,7 +165,7 @@ const AppointmentTimeSlot = () => {
           : event
       );
       setEvents(updatedEvents);
-      handleModalState('reschedule', false);
+      handleModalState("reschedule", false);
       toast.success("Appointment rescheduled successfully.");
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
@@ -157,9 +178,11 @@ const AppointmentTimeSlot = () => {
     try {
       await deleteAppointment(appointmentId);
       // Remove the event from the events state
-      const updatedEvents = events.filter((event) => event.id !== appointmentId);
+      const updatedEvents = events.filter(
+        (event) => event.id !== appointmentId
+      );
       setEvents(updatedEvents);
-      handleModalState('reschedule', false);
+      handleModalState("reschedule", false);
       toast.success("Appointment deleted successfully.");
     } catch (error) {
       console.error("Error deleting appointment:", error);
@@ -181,7 +204,7 @@ const AppointmentTimeSlot = () => {
         appointment: appointmentData,
       };
       setEvents([...events, newEvent]);
-      handleModalState('appointment', false);
+      handleModalState("appointment", false);
       toast.success("Appointment created successfully.");
     } catch (error) {
       console.error("Error creating appointment:", error);
@@ -190,32 +213,34 @@ const AppointmentTimeSlot = () => {
   };
 
   return (
-    <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6">
-      <Calendar
-        localizer={localizer}
-        events={[...events, ...unavailableTimes]}
-        startAccessor="start"
-        endAccessor="end"
-        {...calendarConfig}
-        eventPropGetter={eventStyleGetter}
-        onSelectEvent={handleSelectEvent}
-        onSelectSlot={handleSelectSlot}
-      />
-      
-      <RescheduleModal
-        isOpen={modalState.reschedule.isOpen}
-        onClose={() => handleModalState('reschedule', false)}
-        onReschedule={handleRescheduleAppointment}
-        onDelete={handleDeleteAppointment}
-        selectedEvent={modalState.reschedule.event}
-      />
-      
-      <TimeBlockModal
-        isOpen={modalState.timeBlock.isOpen}
-        onClose={() => handleModalState('timeBlock', false)}
-        onAddUnavailableTime={handleAddUnavailableTime}
-        selectedSlot={modalState.timeBlock.slot}
-      />
+    <div className="bg-[#F6F8FB] p-3 h-[90%]">
+      <div className="AppointmentTimeSlot p-6 bg-white rounded-lg shadow-md m-6 h-full">
+        <Calendar
+          localizer={localizer}
+          events={[...events, ...unavailableTimes]}
+          startAccessor="start"
+          endAccessor="end"
+          {...calendarConfig}
+          eventPropGetter={eventStyleGetter}
+          onSelectEvent={handleSelectEvent}
+          onSelectSlot={handleSelectSlot}
+        />
+
+        <RescheduleModal
+          isOpen={modalState.reschedule.isOpen}
+          onClose={() => handleModalState("reschedule", false)}
+          onReschedule={handleRescheduleAppointment}
+          onDelete={handleDeleteAppointment}
+          selectedEvent={modalState.reschedule.event}
+        />
+
+        <TimeBlockModal
+          isOpen={modalState.timeBlock.isOpen}
+          onClose={() => handleModalState("timeBlock", false)}
+          onAddUnavailableTime={handleAddUnavailableTime}
+          selectedSlot={modalState.timeBlock.slot}
+        />
+      </div>
     </div>
   );
 };

@@ -15,25 +15,22 @@ import admin from "../../assets/admin-image.png";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 
-
-
 const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { selectedOption, setSelectedOption } = useGlobal();
   const { searchTerm, setSearchTerm } = useGlobal();
   const navigate = useNavigate();
   const location = useLocation();
-  const { userData, getDoctorProfile} = useGlobal();
-  const {user} = useAuth();
+  const { userData, getDoctorProfile } = useGlobal();
+  const { user } = useAuth();
 
-
-  const userName = `${userData?.name|| "User"}`;
+  const userName = `${userData?.name || "User"}`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
 
-  useEffect(()=>{
+  useEffect(() => {
     getDoctorProfile(user.id);
-  },[])
+  }, []);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -70,9 +67,9 @@ const DoctorHeader = () => {
       handleSearch();
     }
   };
-  
+
   return (
-    <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-4">
+    <div className="header bg-white shadow-md sticky top-0 z-50 flex items-center justify-between p-3">
       {/* Breadcrumb */}
       <div>
         <Breadcrumbs aria-label="breadcrumb">
@@ -104,7 +101,11 @@ const DoctorHeader = () => {
             <span className="text-sm">{selectedOption}</span>
             <ArrowDropDown />
           </IconButton>
-          <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => handleClose(null)}>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={() => handleClose(null)}
+          >
             <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
             <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
             <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>

@@ -18,7 +18,7 @@ export default function DoctorAsidePanel() {
   return (
     <>
       <div class="sidebar flex">
-        <div class="asite bg-white text-gray-500 w-[15%] h-screen fixed top-0 left-0">
+        <div class="asite bg-white text-gray-500 w-[15%] h-screen fixed top-0 left-0 border border-r">
           <div class="logo font-bold mb-5 text-center">
             <img src="/img/logo.png" alt="Logo" class="w-3/4 h-auto" />
           </div>
@@ -116,8 +116,6 @@ export default function DoctorAsidePanel() {
           </div>
         </div>
       </div>
-      {/* <div class="content w-[83%] ml-[17%] p-5"></div>
-<div class="header w-[83%] ml-[17%]"></div> */}
     </>
   );
 }
