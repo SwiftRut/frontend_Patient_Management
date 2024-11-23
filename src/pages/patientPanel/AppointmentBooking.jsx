@@ -4,9 +4,10 @@ import { useDoctor } from "../../hooks/useDoctor";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
 import {toast} from "react-hot-toast";
+import { all } from "axios";
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
+  const { getAllHospitals, allHospitals, getAllAppointments, onClickNotification } = useGlobal();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -131,8 +132,28 @@ const handlePayment = () => {
                 options={getUniqueValues("state", "country", country)}
               />
 
-              {/* City Select */}
-              https://chatgpt.com/share/6740acc1-79a4-8007-95c0-8dd558b4ab89hi
+      {/* City Select */}
+      <SelectInput
+                label="City"
+                value={city}
+                onChange={(e) => {
+                  setCity(e.target.value);
+                  setHospital("");
+                  setDoctor("");
+                }}
+                options={getUniqueValues("city", "state", state)}
+              />
+
+              {/* Hospital Select */}
+              <SelectInput
+                label="Hospital"
+                value={hospital}
+                onChange={(e) => {
+                  setHospital(e.target.value);
+                  setDoctor("");
+                }}
+                options={filteredHospitals.map((hospital) => hospital.name)}
+              />
               {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
@@ -177,7 +198,9 @@ const handlePayment = () => {
                         city,
                         country,
                         appointmentType,
+                        
                       }}
+                      selectedDoctor={allDoctors.find((doc) => doc._id === doctor)}
                     />
                   </div>
                   <div className="col-span-3 p-3">

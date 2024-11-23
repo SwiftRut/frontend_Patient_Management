@@ -101,6 +101,10 @@ const   apiService = {
 
   // Notification
   GetNotifications: (data) => api.post(`/notification/sendNotification`,data),
+
+  // Token
+  UpdateDoctorToken: (data) => api.post(`/notification/updateDoctor`, data),
+  UpdatePatientToken: (data) => api.post(`/notification/updatePatient`, data),
 };
 
 export default apiService;

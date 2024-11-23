@@ -17,13 +17,13 @@ export default function DoctorAsidePanel() {
 
   return (
     <>
-      <div class="sidebar flex">
-        <div class="asite bg-white text-gray-500 w-[15%] h-screen fixed top-0 left-0 border border-r">
-          <div class="logo font-bold mb-5 text-center">
-            <img src="/img/logo.png" alt="Logo" class="w-3/4 h-auto" />
+      <div className="sidebar flex">
+        <div className="asite bg-white text-gray-500 w-[15%] h-screen fixed top-0 left-0">
+          <div className="logo font-bold mb-5 text-center">
+            <img src="/img/logo.png" alt="Logo" className="w-3/4 h-auto" />
           </div>
-          <div class="menu flex flex-col h-[80%] justify-between">
-            <ul class="bg-white">
+          <div className="menu flex flex-col h-[80%] justify-between">
+            <ul className="bg-white">
               <li>
                 <NavLink
                   to="/doctor"
@@ -116,6 +116,8 @@ export default function DoctorAsidePanel() {
           </div>
         </div>
       </div>
+      {/* <div className="content w-[83%] ml-[17%] p-5"></div>
+<div className="header w-[83%] ml-[17%]"></div> */}
     </>
   );
 }

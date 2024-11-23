@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData }) => {
+const Calendar = ({ filterData, selectedDoctor }) => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,7 +66,7 @@ const Calendar = ({ filterData }) => {
   };
   const handleBookAppointment = async (appointmentData) => {
     try {
-      await createAppointment(user.id, appointmentData);
+      await createAppointment(user.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();
       navigate("/patient/appointment");
@@ -137,6 +137,7 @@ const Calendar = ({ filterData }) => {
 
 Calendar.propTypes = {
   filterData: PropTypes.any.isRequired,
+  selectedDoctor: PropTypes.any.isRequired,
 };
 
 export default Calendar;

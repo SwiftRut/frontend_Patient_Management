@@ -11,7 +11,7 @@ export default function DoctorProfile() {
     <div>
       <div className="doctor-profile-section">
         <div className="row">
-          <div className="main">
+          <div className="main bg-[#e5e7eb]">
             <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
             <div className="profile-setting w-[80%] m-auto mt-[-12%]">
               <div className="head pb-[15px]">

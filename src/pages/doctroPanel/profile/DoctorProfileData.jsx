@@ -47,16 +47,16 @@ const DoctorProfileData = () => {
   }, [userData]);
 
   return (
-    <div className="content px-[30px] py-[20px] bg-white rounded-2xl shadow-xl">
+    <div className="content px-[30px] py-[20px] bg-white rounded-2xl">
       <div className="head flex items-center justify-between mb-6">
         <div className="title">
           <p className="text-[34px] text-[#030229] font-semibold ">Profile</p>
         </div>
         <div className="edit">
           <NavLink to={"/doctor/edit"}>
-            <button className="flex items-center bg-[#0EABEB] px-4 py-3 rounded-lg">
-              <FaEdit className="text-white" />
-              <span className="text-white text-lg font-semibold pl-2">Edit Profile</span>
+            <button className="flex items-center bg-[#0EABEB] px-[14px] py-[12px] rounded-lg">
+              <FaEdit className="text-white text-[20px]" />
+              <span className="text-white text-[20px] font-semibold pl-2">Edit Profile</span>
             </button>
           </NavLink>
         </div>
@@ -64,7 +64,7 @@ const DoctorProfileData = () => {
       <div className="form-box pt-5">
         <form className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Doctor Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -72,12 +72,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Enter Name"
               value={userData?.name}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] border-[#D9D9D9] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.name && <p className="text-red-500 text-sm mt-1">{errorMessages.name}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Email Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -85,12 +85,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Email Address"
               value={userData?.email}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.email && <p className="text-red-500 text-sm mt-1">{errorMessages.email}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Phone Number <span className="text-red-500">*</span>
             </label>
             <input
@@ -98,12 +98,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Phone Number"
               value={userData?.phone}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.phone && <p className="text-red-500 text-sm mt-1">{errorMessages.phone}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Hospital Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -111,14 +111,14 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Hospital Name"
               value={userData?.hospitalName}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.hospitalName && (
               <p className="text-red-500 text-sm mt-1">{errorMessages.hospitalName}</p>
             )}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Gender <span className="text-red-500">*</span>
             </label>
             <input
@@ -126,12 +126,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Gender"
               value={userData?.gender}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.gender && <p className="text-red-500 text-sm mt-1">{errorMessages.gender}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               City <span className="text-red-500">*</span>
             </label>
             <input
@@ -139,12 +139,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="City"
               value={userData?.city}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.city && <p className="text-red-500 text-sm mt-1">{errorMessages.city}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               State <span className="text-red-500">*</span>
             </label>
             <input
@@ -152,12 +152,12 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="State"
               value={userData?.state}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.state && <p className="text-red-500 text-sm mt-1">{errorMessages.state}</p>}
           </div>
           <div className="input-box relative w-[100%]">
-            <label className="absolute top-[-14px] left-4 bg-white px-1 text-gray-600 text-sm">
+            <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
               Country <span className="text-red-500">*</span>
             </label>
             <input
@@ -165,7 +165,7 @@ const DoctorProfileData = () => {
               type="text"
               placeholder="Country"
               value={userData?.country}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.country && (
               <p className="text-red-500 text-sm mt-1">{errorMessages.country}</p>

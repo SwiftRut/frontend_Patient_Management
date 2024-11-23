@@ -58,8 +58,8 @@ export default function MonitorBilling() {
             <div className="search-btn flex items-center">
               {/* Search Input */}
               <div className="search-btn flex">
-                <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
-                  <div class="text-xl text-gray-700">
+                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                  <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
                   <input
@@ -67,7 +67,7 @@ export default function MonitorBilling() {
                     placeholder="Search Doctor"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    class="bg-transparent pl-2 text-lg outline-none"
+                    className="bg-transparent pl-2 text-lg outline-none"
                   />
                 </div>
               </div>

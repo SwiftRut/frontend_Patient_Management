@@ -91,39 +91,39 @@ const Dashboard = () => {
       <div className="deshbord-section">
         <div className="row">
           <div className="main bg-[#F6F8FB]">
-            <div class="top flex px-5 pt-5 pb-2">
-              <div class="Patients-data w-[58%] px-4">
-                <div class="total-data flex justify-between items-center mb-4">
-                  <div class="total-Patients w-[32%] bg-white rounded-lg p-4">
-                    <div class="content flex items-center">
-                      <div class="logo w-12 h-12 rounded-full bg-[#2e779326] flex justify-center items-center">
-                        <FaUsers class="text-[#2e7793] w-7" />
+            <div className="top flex px-5 pt-5 pb-2">
+              <div className="Patients-data w-[58%] px-4">
+                <div className="total-data flex justify-between items-center mb-4">
+                  <div className="total-Patients w-[32%] bg-white rounded-lg p-4">
+                    <div className="content flex items-center">
+                      <div className="logo w-12 h-12 rounded-full bg-[#2e779326] flex justify-center items-center">
+                        <FaUsers className="text-[#2e7793] w-7" />
                       </div>
-                      <div class="details pl-4">
-                        <p class="text-gray-400 text-sm font-normal">Total Patients</p>
-                        <span class="block text-[#030229] text-2xl font-extrabold">{totalPatients}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="total-Docters w-[32%] bg-white rounded-lg p-4">
-                    <div class="content flex items-center">
-                      <div class="logo dr-logo w-12 h-12 rounded-full bg-[#5e5e9e26] flex justify-center items-center">
-                        <FaUser class="text-[#5e5e9e] w-7" />
-                      </div>
-                      <div class="details pl-4">
-                        <p class="text-gray-400 text-sm font-normal">Total Doctors</p>
-                        <span class="block text-[#030229] text-2xl font-extrabold">{totalDoctors}</span>
+                      <div className="details pl-4">
+                        <p className="text-gray-400 text-sm font-normal">Total Patients</p>
+                        <span className="block text-[#030229] text-2xl font-extrabold">{totalPatients}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="total-Appointments w-[32%] bg-white rounded-lg p-4">
-                    <div class="content flex items-center">
-                      <div class="logo appo-logo w-12 h-12 rounded-full bg-[#41b16126] flex justify-center items-center">
-                        <FaFileAlt class="text-[#41b161] w-7" />
+                  <div className="total-Docters w-[32%] bg-white rounded-lg p-4">
+                    <div className="content flex items-center">
+                      <div className="logo dr-logo w-12 h-12 rounded-full bg-[#5e5e9e26] flex justify-center items-center">
+                        <FaUser className="text-[#5e5e9e] w-7" />
                       </div>
-                      <div class="details pl-4">
-                        <p class="text-gray-400 text-sm font-normal">Total Appointments</p>
-                        <span class="block text-[#030229] text-2xl font-extrabold">{totalAppointments}</span>
+                      <div className="details pl-4">
+                        <p className="text-gray-400 text-sm font-normal">Total Doctors</p>
+                        <span className="block text-[#030229] text-2xl font-extrabold">{totalDoctors}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="total-Appointments w-[32%] bg-white rounded-lg p-4">
+                    <div className="content flex items-center">
+                      <div className="logo appo-logo w-12 h-12 rounded-full bg-[#41b16126] flex justify-center items-center">
+                        <FaFileAlt className="text-[#41b161] w-7" />
+                      </div>
+                      <div className="details pl-4">
+                        <p className="text-gray-400 text-sm font-normal">Total Appointments</p>
+                        <span className="block text-[#030229] text-2xl font-extrabold">{totalAppointments}</span>
                       </div>
                     </div>
                   </div>
@@ -131,67 +131,67 @@ const Dashboard = () => {
                 <PatientsStatistics />
               </div>
 
-              <div class="Billing-data h-[450px] w-[42%] bg-white rounded-lg p-4">
-                <div class="head flex justify-between items-center mb-4">
-                  <div class="title">
-                    <p class="text-[#030229] text-xl font-bold">Billing & Payments</p>
+              <div className="Billing-data h-[450px] w-[42%] bg-white rounded-lg p-4">
+                <div className="head flex justify-between items-center mb-4">
+                  <div className="title">
+                    <p className="text-[#030229] text-xl font-bold">Billing & Payments</p>
                   </div>
-                  <div class="btn">
+                  <div className="btn">
                     <button
-                      class="flex items-center justify-center text-white text-lg font-semibold px-3 py-2 rounded-md bg-[#0eabeb] gap-2"
+                      className="flex items-center justify-center text-white text-lg font-semibold px-3 py-2 rounded-md bg-[#0eabeb] gap-2"
                       onClick={() => navigate("/createbill")}
                     >
-                      <FaAddressCard class="text-white" />
+                      <FaAddressCard className="text-white" />
                       Create Bills
                     </button>
                   </div>
                 </div>
-                <div class="pending-bill h-[85%]">
-                  <div class="bill-status pt-2">
-                    <p class="text-[#030229] text-base font-semibold">
+                <div className="pending-bill h-[85%]">
+                  <div className="bill-status pt-2">
+                    <p className="text-[#030229] text-base font-semibold">
                       Pending Bills: <span>{allBills.length}</span>
                     </p>
                   </div>
-                  <div class="pending-bill-data pt-10 h-[90%]">
+                  <div className="pending-bill-data pt-10 h-[90%]">
                     {allBills.length === 0 ? (
-                      <div class="img">
-                        <img src="../img/FrameBill.png" alt="No Billing Data" class="mx-auto" />
+                      <div className="img">
+                        <img src="../img/FrameBill.png" alt="No Billing Data" className="mx-auto" />
                       </div>
                     ) : (
-                      <div class="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-gray-200">
-                        <table class="w-full px-2">
+                      <div className="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-gray-200">
+                        <table className="w-full px-2">
                           <thead>
-                            <tr class="bg-gray-100">
-                              <th class="text-[#030229] text-sm font-semibold px-4 py-3">Bill No</th>
-                              <th class="text-[#030229] text-sm font-semibold px-4 py-3">Patient Name</th>
-                              <th class="text-[#030229] text-sm font-semibold px-4 py-3">Disease Name</th>
-                              <th class="text-[#030229] text-sm font-semibold px-4 py-3">Status</th>
-                              <th class="text-[#030229] text-sm font-semibold px-4 py-3">Action</th>
+                            <tr className="bg-gray-100">
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Bill No</th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Patient Name</th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Disease Name</th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Status</th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Action</th>
                             </tr>
                           </thead>
                           <tbody>
                             {allBills.map((bill) => (
                               <tr key={bill.id}>
-                                <td class="bill-num px-2 py-1">
-                                  <p class="text-[#718ebf] bg-gray-100 rounded-full text-center px-4 py-1">{bill.billNumber}</p>
+                                <td className="bill-num px-2 py-1">
+                                  <p className="text-[#718ebf] bg-gray-100 rounded-full text-center px-4 py-1">{bill.billNumber}</p>
                                 </td>
-                                <td class="patient-name px-2 py-1">
-                                  <p class="text-gray-700 text-xs font-medium">{`${bill.patientId?.firstName} ${bill.patientId?.lastName}`}</p>
+                                <td className="patient-name px-2 py-1">
+                                  <p className="text-gray-700 text-xs font-medium">{`${bill.patientId?.firstName} ${bill.patientId?.lastName}`}</p>
                                 </td>
-                                <td class="disease-name px-2 py-1">
-                                  <p class="text-gray-700 text-xs font-medium">{bill.diseaseName}</p>
+                                <td className="disease-name px-2 py-1">
+                                  <p className="text-gray-700 text-xs font-medium">{bill.diseaseName}</p>
                                 </td>
-                                <td class={`${bill.status === "paid" ? "status" : "status1"} px-2 py-1`}>
-                                  <p class={`${bill.status === "paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"} text-sm font-semibold px-5 py-1 rounded-full`}>
+                                <td className={`${bill.status === "paid" ? "status" : "status1"} px-2 py-1`}>
+                                  <p className={`${bill.status === "paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"} text-sm font-semibold px-5 py-1 rounded-full`}>
                                     {bill.status}
                                   </p>
                                 </td>
-                                <td class="action flex justify-center items-center px-2 py-1">
+                                <td className="action flex justify-center items-center px-2 py-1">
                                   <div
-                                    class="box w-7 h-7 bg-gray-100 flex items-center justify-center rounded-md cursor-pointer"
+                                    className="box w-7 h-7 bg-gray-100 flex items-center justify-center rounded-md cursor-pointer"
                                     onClick={() => navigate(`/bill/${bill.id}`)}
                                   >
-                                    <FaEye class="text-[#0eabeb]" />
+                                    <FaEye className="text-[#0eabeb]" />
                                   </div>
                                 </td>
                               </tr>
@@ -205,13 +205,13 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="bottom flex px-[20px] py-[10px] pb-[30px]">
-              <div class="appointments-data w-[58%] px-[15px]">
-                <div class="today-appointments">
-                  <div class="appointments-content bg-white p-5 rounded-lg h-[330px]">
-                    <div class="head">
-                      <div class="title flex justify-between items-center">
-                        <p class="text-xl font-semibold">Today's Appointments List</p>
-                        <span class="text-blue-500 cursor-pointer">View All</span>
+              <div className="appointments-data w-[58%] px-[15px]">
+                <div className="today-appointments">
+                  <div className="appointments-content bg-white p-5 rounded-lg h-[330px]">
+                    <div className="head">
+                      <div className="title flex justify-between items-center">
+                        <p className="text-xl font-semibold">Today's Appointments List</p>
+                        <span className="text-blue-500 cursor-pointer">View All</span>
                       </div>
                     </div>
 
@@ -224,27 +224,27 @@ const Dashboard = () => {
                         />
                       </div>
                     ) : (
-                      <div class="appointments-list h-[80%] flex overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#f4f4f4]">
+                      <div className="appointments-list h-[80%] flex overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#f4f4f4]">
                         {todaysAppointments.map((appointment, index) => (
-                          <div class="box w-1/3 p-2" key={index}>
-                            <div class="content">
-                              <div class="heading flex justify-between items-center bg-[#f6f8fb] p-3 rounded-t-lg">
-                                <p class="text-sm font-semibold">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
+                          <div className="box w-1/3 p-2" key={index}>
+                            <div className="content">
+                              <div className="heading flex justify-between items-center bg-[#f6f8fb] p-3 rounded-t-lg">
+                                <p className="text-sm font-semibold">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
                                 <span>{appointment.type}</span>
                               </div>
-                              <div class="data border border-[#f4f4f4] p-3">
+                              <div className="data border border-[#f4f4f4] p-3">
                                 <ul>
                                   <li>
-                                    <p class="text-sm text-[#818194]">Doctor Name</p>
-                                    <span class="text-sm font-semibold text-[#4f4f4f]">Dr. {appointment?.doctorId?.name}</span>
+                                    <p className="text-sm text-[#818194]">Doctor Name</p>
+                                    <span className="text-sm font-semibold text-[#4f4f4f]">Dr. {appointment?.doctorId?.name}</span>
                                   </li>
                                   <li>
-                                    <p class="text-sm text-[#818194]">Disease Name</p>
-                                    <span class="text-sm font-semibold text-[#4f4f4f]">{appointment?.patient_issue}</span>
+                                    <p className="text-sm text-[#818194]">Disease Name</p>
+                                    <span className="text-sm font-semibold text-[#4f4f4f]">{appointment?.patient_issue}</span>
                                   </li>
                                   <li>
-                                    <p class="text-sm text-[#818194]">Appointment Time</p>
-                                    <span class="text-sm font-semibold text-[#4f4f4f]">
+                                    <p className="text-sm text-[#818194]">Appointment Time</p>
+                                    <span className="text-sm font-semibold text-[#4f4f4f]">
                                       {appointment?.appointmentTime &&
                                         new Date(appointment.appointmentTime).toLocaleTimeString([], {
                                           hour: '2-digit',
