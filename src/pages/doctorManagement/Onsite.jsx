@@ -80,65 +80,65 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
               <table className="w-full table-fixed text-left">
                 <tbody>
                   <tr>
-                    <td class="py-1 w-2/4">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-1 w-2/4">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Doctor Qualification
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.qualification}
                       </p>
                     </td>
-                    <td class="py-1 w-2/4">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-1 w-2/4">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Years Of Experience
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.experience}
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Specialty Type
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.speciality}
                       </p>
                     </td>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Working Time
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.workingTime}
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Patient Check Up Time
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.patientCheckupTime}
                       </p>
                     </td>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Break Time
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.breakTime}
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td colSpan="3" className="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Description
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.description}
                       </p>
                     </td>
@@ -165,61 +165,61 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
               <table className="w-full table-fixed text-left">
                 <tbody>
                   <tr>
-                    <td class="py-1 w-2/4">
-                      <h3 class="text-gray-500 text-lg font-normal">Age</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-1 w-2/4">
+                      <h3 className="text-gray-500 text-lg font-normal">Age</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.age}
                       </p>
                     </td>
-                    <td class="py-1 w-2/4">
-                      <h3 class="text-gray-500 text-lg font-normal">Email</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-1 w-2/4">
+                      <h3 className="text-gray-500 text-lg font-normal">Email</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.email}
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">Phone</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">Phone</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.phone}
                       </p>
                     </td>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Online Consultation Rate
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.onlineConsultationRate}
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">Country</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">Country</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.country}
                       </p>
                     </td>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">State</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">State</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.state}
                       </p>
                     </td>
                   </tr>
                   <tr>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">
                         Zip Code
                       </h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.zipCode}
                       </p>
                     </td>
-                    <td class="py-2">
-                      <h3 class="text-gray-500 text-lg font-normal">City</h3>
-                      <p class="text-gray-800 text-lg font-medium">
+                    <td className="py-2">
+                      <h3 className="text-gray-500 text-lg font-normal">City</h3>
+                      <p className="text-gray-800 text-lg font-medium">
                         {doctor.city}
                       </p>
                     </td>

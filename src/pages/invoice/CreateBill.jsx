@@ -221,18 +221,18 @@ const CreateBill = () => {
 
   return (
     <div className="bg-[#F6F8FB]">
-      <div class="p-5 p-[20px] ">
-        <div class="flex justify-center">
-          <div class="p-4 bg-white rounded-xl">
-            <div class="mb-4">
-              <p class="text-[#030229] text-2xl font-bold">Create Bill</p>
+      <div className="p-5 p-[20px] ">
+        <div className="flex justify-center">
+          <div className="p-4 bg-white rounded-xl">
+            <div className="mb-4">
+              <p className="text-[#030229] text-2xl font-bold">Create Bill</p>
             </div>
 
-            <div class="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
-              <div class="space-y-4">
-                <div class="flex">
-                  <div class="w-full">
-                    <form id="create-bill-form" onsubmit="handleSubmit" class="flex flex-wrap justify-between">
+            <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
+              <div className="space-y-4">
+                <div className="flex">
+                  <div className="w-full">
+                    <form id="create-bill-form" onsubmit="handleSubmit" className="flex flex-wrap justify-between">
                       {HospitalBillFields.map((field, index) => (
                         <InputField
                           key={index}
@@ -248,12 +248,12 @@ const CreateBill = () => {
             </div>
 
             {formData.paymentType === "Insurance" && (
-              <div class="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
-                <div class="space-y-4">
-                  <p class="text-[#030229] text-xl font-bold">Insurance Details</p>
-                  <div class="flex">
-                    <div class="w-full">
-                      <form class="flex flex-wrap justify-between gap-4">
+              <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
+                <div className="space-y-4">
+                  <p className="text-[#030229] text-xl font-bold">Insurance Details</p>
+                  <div className="flex">
+                    <div className="w-full">
+                      <form className="flex flex-wrap justify-between gap-4">
                         {PatientBillFields.map((field, index) => (
                           <InputField
                             key={index}
@@ -269,11 +269,11 @@ const CreateBill = () => {
               </div>
             )}
 
-            <div class="flex justify-end">
+            <div className="flex justify-end">
               <button
                 type="submit"
                 form="create-bill-form"
-                class="bg-[#F6F8FB] text-[#4F4F4F] text-lg font-semibold py-3 px-8 rounded-lg hover:bg-[#0EABEB] hover:text-white"
+                className="bg-[#F6F8FB] text-[#4F4F4F] text-lg font-semibold py-3 px-8 rounded-lg hover:bg-[#0EABEB] hover:text-white"
                 onClick={handleSubmit}
               >
                 Save

@@ -406,15 +406,15 @@ const AdminRegistration = () => {
           <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
 
           <div className="vector-1 absolute right-0 bottom-0 sm:w-1/3 w-[10%]">
-            <img src="/img/Vector-1.png" class="w-full" />
+            <img src="/img/Vector-1.png" className="w-full" />
           </div>
 
           <div className="vector-2 absolute left-0 top-0 sm:w-1/3 w-[10%]">
-            <img src="/img/Vector-2.png" class="w-full" />
+            <img src="/img/Vector-2.png" className="w-full" />
           </div>
 
           <div className="vector-dot absolute right-0 top-0 sm:w-1/10 w-[10%]">
-            <img src="/img/Vector-dot.png" class="w-full" />
+            <img src="/img/Vector-dot.png" className="w-full" />
           </div>
         </div>
       </div>

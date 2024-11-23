@@ -17,67 +17,67 @@ export default function ReportingAndAnalytics() {
         <div className="row">
           <div className="main bg-[#F6F8FB]">
 
-            <div class="total-data flex justify-between items-center p-2.5">
-              <div class="total-Patients w-1/4 px-3 pt-3.5">
-                <div class="content flex justify-between items-center bg-white rounded-lg p-3.5">
-                  <div class="logo_details flex items-center">
-                    <div class="logo w-12 h-12 rounded-full bg-[#2E779326] flex justify-center items-center">
-                      <FaUsers class="w-7 text-[#2E7793]" />
+            <div className="total-data flex justify-between items-center p-2.5">
+              <div className="total-Patients w-1/4 px-3 pt-3.5">
+                <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
+                  <div className="logo_details flex items-center">
+                    <div className="logo w-12 h-12 rounded-full bg-[#2E779326] flex justify-center items-center">
+                      <FaUsers className="w-7 text-[#2E7793]" />
                     </div>
-                    <div class="details pl-5">
-                      <p class="text-[#030229] font-semibold text-lg">Total Patients</p>
-                    </div>
-                  </div>
-                  <div class="count">
-                    <span class="text-[#030229] text-2xl font-extrabold">{cardData.totalPatientCount}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="total-Doctors w-1/4 px-3 pt-3.5">
-                <div class="content flex justify-between items-center bg-white rounded-lg p-3.5">
-                  <div class="logo_details flex items-center">
-                    <div class="logo w-12 h-12 rounded-full bg-[#5E5E9E26] flex justify-center items-center">
-                      <FaUser class="w-7 text-[#5E5E9E]" />
-                    </div>
-                    <div class="details pl-5">
-                      <p class="text-[#030229] font-semibold text-lg">Repeat Patient</p>
+                    <div className="details pl-5">
+                      <p className="text-[#030229] font-semibold text-lg">Total Patients</p>
                     </div>
                   </div>
-                  <div class="count">
-                    <span class="text-[#030229] text-2xl font-extrabold">{cardData.repeatPatientCount}</span>
+                  <div className="count">
+                    <span className="text-[#030229] text-2xl font-extrabold">{cardData.totalPatientCount}</span>
                   </div>
                 </div>
               </div>
 
-              <div class="total-Appointments w-1/4 px-3 pt-3.5">
-                <div class="content flex justify-between items-center bg-white rounded-lg p-3.5">
-                  <div class="logo_details flex items-center">
-                    <div class="logo w-12 h-12 rounded-full bg-[#41B16126] flex justify-center items-center">
-                      <FaFileAlt class="w-7 text-[#41B161]" />
+              <div className="total-Doctors w-1/4 px-3 pt-3.5">
+                <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
+                  <div className="logo_details flex items-center">
+                    <div className="logo w-12 h-12 rounded-full bg-[#5E5E9E26] flex justify-center items-center">
+                      <FaUser className="w-7 text-[#5E5E9E]" />
                     </div>
-                    <div class="details pl-5">
-                      <p class="text-[#030229] font-semibold text-lg">Total Doctors</p>
+                    <div className="details pl-5">
+                      <p className="text-[#030229] font-semibold text-lg">Repeat Patient</p>
                     </div>
                   </div>
-                  <div class="count">
-                    <span class="text-[#030229] text-2xl font-extrabold">{cardData.totalDoctorCount}</span>
+                  <div className="count">
+                    <span className="text-[#030229] text-2xl font-extrabold">{cardData.repeatPatientCount}</span>
                   </div>
                 </div>
               </div>
 
-              <div class="total-Appointments w-1/4 px-3 pt-3.5">
-                <div class="content flex justify-between items-center bg-white rounded-lg p-3.5">
-                  <div class="logo_details flex items-center">
-                    <div class="logo w-12 h-12 rounded-full bg-[#2E779326] flex justify-center items-center">
-                      <FaFileAlt class="w-7 text-[#9A5BD4]" />
+              <div className="total-Appointments w-1/4 px-3 pt-3.5">
+                <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
+                  <div className="logo_details flex items-center">
+                    <div className="logo w-12 h-12 rounded-full bg-[#41B16126] flex justify-center items-center">
+                      <FaFileAlt className="w-7 text-[#41B161]" />
                     </div>
-                    <div class="details pl-5">
-                      <p class="text-[#030229] font-semibold text-lg">Total Claim</p>
+                    <div className="details pl-5">
+                      <p className="text-[#030229] font-semibold text-lg">Total Doctors</p>
                     </div>
                   </div>
-                  <div class="count">
-                    <span class="text-[#030229] text-2xl font-extrabold">{cardData.insuranceClaimCount}</span>
+                  <div className="count">
+                    <span className="text-[#030229] text-2xl font-extrabold">{cardData.totalDoctorCount}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="total-Appointments w-1/4 px-3 pt-3.5">
+                <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
+                  <div className="logo_details flex items-center">
+                    <div className="logo w-12 h-12 rounded-full bg-[#2E779326] flex justify-center items-center">
+                      <FaFileAlt className="w-7 text-[#9A5BD4]" />
+                    </div>
+                    <div className="details pl-5">
+                      <p className="text-[#030229] font-semibold text-lg">Total Claim</p>
+                    </div>
+                  </div>
+                  <div className="count">
+                    <span className="text-[#030229] text-2xl font-extrabold">{cardData.insuranceClaimCount}</span>
                   </div>
                 </div>
               </div>
@@ -94,41 +94,41 @@ export default function ReportingAndAnalytics() {
 
             <div className="bottom flex justify-between py-5 px-3">
 
-              <div class="patient-count-data w-[32.5%] p-[10px]">
-                <div class="content h-[330px] bg-white p-5 rounded-lg">
-                  <div class="head">
-                    <div class="title">
-                      <p class="text-[24px] font-bold text-[#030229]">Patients Count by Disease</p>
+              <div className="patient-count-data w-[32.5%] p-[10px]">
+                <div className="content h-[330px] bg-white p-5 rounded-lg">
+                  <div className="head">
+                    <div className="title">
+                      <p className="text-[24px] font-bold text-[#030229]">Patients Count by Disease</p>
                     </div>
                   </div>
-                  <div class="pending-bill h-[85%]">
-                    <div class="pending-bill-data pt-2.5 h-[90%]">
-                      <div class="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#F4F4F4]">
-                        <table class="w-full px-2.5 text-lg">
+                  <div className="pending-bill h-[85%]">
+                    <div className="pending-bill-data pt-2.5 h-[90%]">
+                      <div className="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#F4F4F4]">
+                        <table className="w-full px-2.5 text-lg">
                           <thead>
-                            <tr class="flex bg-[#f6f8fb] justify-between items-center">
-                              <th class="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Disease Name</th>
-                              <th class="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Patient Count</th>
+                            <tr className="flex bg-[#f6f8fb] justify-between items-center">
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Disease Name</th>
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Patient Count</th>
                             </tr>
                           </thead>
-                          <tbody class="w-full">
+                          <tbody className="w-full">
                             {cardData?.patientCountByDisease?.length > 0 ? (
                               cardData?.patientCountByDisease?.map((patient) => (
-                                <tr key={patient._id} class="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5">
-                                  <td class="d-name text-center w-[20%]">
-                                    <p class="text-[#4F4F4F] text-[15px] font-medium">{patient._id || 'N/A'}</p>
+                                <tr key={patient._id} className="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5">
+                                  <td className="d-name text-center w-[20%]">
+                                    <p className="text-[#4F4F4F] text-[15px] font-medium">{patient._id || 'N/A'}</p>
                                   </td>
-                                  <td class="status pr-3.5 text-center w-[20%]">
-                                    <p class="bg-[#39973D1A] text-[#39973D] rounded-full flex justify-center items-center">
+                                  <td className="status pr-3.5 text-center w-[20%]">
+                                    <p className="bg-[#39973D1A] text-[#39973D] rounded-full flex justify-center items-center">
                                       <FaUsers />
-                                      <span class="text-[13px] font-semibold py-1 px-2.5">{patient.count}</span>
+                                      <span className="text-[13px] font-semibold py-1 px-2.5">{patient.count}</span>
                                     </p>
                                   </td>
                                 </tr>
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="2" class="text-center">No data available</td>
+                                <td colSpan="2" className="text-center">No data available</td>
                               </tr>
                             )}
                           </tbody>
@@ -139,33 +139,33 @@ export default function ReportingAndAnalytics() {
                 </div>
               </div>
 
-              <div class="doctor-count-data w-[32.5%] p-[10px]">
-                <div class="content h-[330px] bg-white p-5 rounded-lg">
-                  <div class="head">
-                    <div class="title">
-                      <p class="text-[24px] font-bold text-[#030229]">Doctor Count by Department</p>
+              <div className="doctor-count-data w-[32.5%] p-[10px]">
+                <div className="content h-[330px] bg-white p-5 rounded-lg">
+                  <div className="head">
+                    <div className="title">
+                      <p className="text-[24px] font-bold text-[#030229]">Doctor Count by Department</p>
                     </div>
                   </div>
-                  <div class="pending-bill h-[85%]">
-                    <div class="pending-bill-data pt-2.5 h-[90%]">
-                      <div class="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#F4F4F4]">
-                        <table class="w-full px-2.5">
+                  <div className="pending-bill h-[85%]">
+                    <div className="pending-bill-data pt-2.5 h-[90%]">
+                      <div className="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-[#F4F4F4]">
+                        <table className="w-full px-2.5">
                           <thead>
-                            <tr class="flex bg-[#f6f8fb] justify-between items-center">
-                              <th class="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Department Name</th>
-                              <th class="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Doctor Count</th>
+                            <tr className="flex bg-[#f6f8fb] justify-between items-center">
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Department Name</th>
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">Doctor Count</th>
                             </tr>
                           </thead>
-                          <tbody class="w-full">
+                          <tbody className="w-full">
                             {cardData?.doctorCountByDepartment?.map((specialty) => (
-                              <tr key={specialty._id} class="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5">
-                                <td class="d-name text-center w-[20%]">
-                                  <p class="text-[#4F4F4F] text-[15px] font-medium">{specialty._id || 'N/A'}</p>
+                              <tr key={specialty._id} className="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5">
+                                <td className="d-name text-center w-[20%]">
+                                  <p className="text-[#4F4F4F] text-[15px] font-medium">{specialty._id || 'N/A'}</p>
                                 </td>
-                                <td class="status pr-3.5 text-center w-[20%]">
-                                  <p class="bg-[#39973D1A] text-[#39973D] rounded-full flex justify-center items-center">
+                                <td className="status pr-3.5 text-center w-[20%]">
+                                  <p className="bg-[#39973D1A] text-[#39973D] rounded-full flex justify-center items-center">
                                     <FaUsers />
-                                    <span class="text-[13px] font-semibold py-1 px-2.5">{specialty.count}</span>
+                                    <span className="text-[13px] font-semibold py-1 px-2.5">{specialty.count}</span>
                                   </p>
                                 </td>
                               </tr>

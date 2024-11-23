@@ -82,15 +82,15 @@ const ProfileChangePassword = () => {
   };
 
   return (
-    <div class="ProfileChangePassword-section">
-  <div class="right w-3/4 mx-auto">
-    <div class="content p-8 rounded-xl shadow-sm bg-white">
-      <div class="head">
-        <div class="title">
-          <p class="text-2xl font-semibold text-gray-800">Change Password</p>
+    <div className="ProfileChangePassword-section">
+  <div className="right w-3/4 mx-auto">
+    <div className="content p-8 rounded-xl shadow-sm bg-white">
+      <div className="head">
+        <div className="title">
+          <p className="text-2xl font-semibold text-gray-800">Change Password</p>
         </div>
-        <div class="description pt-4">
-          <p class="text-sm font-normal text-gray-600">
+        <div className="description pt-4">
+          <p className="text-sm font-normal text-gray-600">
             To change your password, please fill in the fields below. Your
             password must contain at least 8 characters, it must also
             include at least one uppercase letter, one lowercase letter, one
@@ -98,69 +98,69 @@ const ProfileChangePassword = () => {
           </p>
         </div>
       </div>
-      <div class="form-box pt-5">
-        <form onSubmit={handleSubmit} class="space-y-6">
-          <div class="change-input-box relative">
-            <label class="absolute top-1 left-3 bg-white text-gray-500 text-sm">Current Password <span class="text-red-500">*</span></label>
-            <div class="password-input-container relative">
+      <div className="form-box pt-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="change-input-box relative">
+            <label className="absolute top-1 left-3 bg-white text-gray-500 text-sm">Current Password <span className="text-red-500">*</span></label>
+            <div className="password-input-container relative">
               <input
                 type={showCurrentPassword ? "text" : "password"}
                 placeholder="Enter Current Password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
               />
               <div
-                class="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
               >
                 {showCurrentPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
               </div>
             </div>
-            {errors.currentPassword && <span class="error text-red-500 text-sm">{errors.currentPassword}</span>}
+            {errors.currentPassword && <span className="error text-red-500 text-sm">{errors.currentPassword}</span>}
           </div>
-          <div class="change-input-box relative">
-            <label class="absolute top-1 left-3 bg-white text-gray-500 text-sm">New Password <span class="text-red-500">*</span></label>
-            <div class="password-input-container relative">
+          <div className="change-input-box relative">
+            <label className="absolute top-1 left-3 bg-white text-gray-500 text-sm">New Password <span className="text-red-500">*</span></label>
+            <div className="password-input-container relative">
               <input
                 type={showNewPassword ? "text" : "password"}
                 placeholder="New Password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
               />
               <div
-                class="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowNewPassword(!showNewPassword)}
               >
                 {showNewPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
               </div>
             </div>
-            {errors.newPassword && <span class="error text-red-500 text-sm">{errors.newPassword}</span>}
+            {errors.newPassword && <span className="error text-red-500 text-sm">{errors.newPassword}</span>}
           </div>
-          <div class="change-input-box relative">
-            <label class="absolute top-1 left-3 bg-white text-gray-500 text-sm">Confirm Password <span class="text-red-500">*</span></label>
-            <div class="password-input-container relative">
+          <div className="change-input-box relative">
+            <label className="absolute top-1 left-3 bg-white text-gray-500 text-sm">Confirm Password <span className="text-red-500">*</span></label>
+            <div className="password-input-container relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400"
               />
               <div
-                class="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
               </div>
             </div>
-            {errors.confirmPassword && <span class="error text-red-500 text-sm">{errors.confirmPassword}</span>}
+            {errors.confirmPassword && <span className="error text-red-500 text-sm">{errors.confirmPassword}</span>}
           </div>
-          <div class="change-input-box">
+          <div className="change-input-box">
             <button
               type="submit"
-              class="w-full bg-blue-500 text-white font-semibold text-lg rounded-lg p-3 hover:bg-blue-600"
+              className="w-full bg-blue-500 text-white font-semibold text-lg rounded-lg p-3 hover:bg-blue-600"
             >
               Change Password
             </button>

@@ -143,25 +143,25 @@ export default function AdminOtp() {
 
   return (
     // <div>
-    //   <div class="admin-otp-section">
-    //     <div class="row">
-    //       <div class="main flex h-screen">
-    //         <div class="form p-[120px_100px] w-1/2 bg-white flex justify-center items-center">
-    //           <div class="admin-otp-content p-[40px] border border-[#f4f4f4] shadow-[0_2px_2px_0_#f4f4f4,0_0px_10px_0_#f4f4f4] rounded-xl">
-    //             <div class="head pb-[15px]">
-    //               <p class="text-[34px] font-semibold">Enter OTP</p>
+    //   <div className="admin-otp-section">
+    //     <div className="row">
+    //       <div className="main flex h-screen">
+    //         <div className="form p-[120px_100px] w-1/2 bg-white flex justify-center items-center">
+    //           <div className="admin-otp-content p-[40px] border border-[#f4f4f4] shadow-[0_2px_2px_0_#f4f4f4,0_0px_10px_0_#f4f4f4] rounded-xl">
+    //             <div className="head pb-[15px]">
+    //               <p className="text-[34px] font-semibold">Enter OTP</p>
     //             </div>
-    //             <div class="note">
-    //               <p class="text-[#4f4f4f] text-[16px] font-medium">
+    //             <div className="note">
+    //               <p className="text-[#4f4f4f] text-[16px] font-medium">
     //                 Please enter the 6-digit code that was sent to your phone
     //                 number.
     //               </p>
     //             </div>
-    //             <div class="admin-otp-form-box pt-[10px]">
-    //               <form class="flex justify-between" onSubmit={handleSubmit}>
+    //             <div className="admin-otp-form-box pt-[10px]">
+    //               <form className="flex justify-between" onSubmit={handleSubmit}>
     //                 {[...Array(6)].map((_, index) => (
     //                   <div
-    //                     class="input-box relative py-[15px] w-[15%]"
+    //                     className="input-box relative py-[15px] w-[15%]"
     //                     key={index}
     //                   >
     //                     <input
@@ -172,39 +172,39 @@ export default function AdminOtp() {
     //                       ref={(el) => (inputRefs.current[index] = el)}
     //                       onChange={(e) => handleInputChange(index, e)}
     //                       onKeyDown={(e) => handleKeyDown(index, e)}
-    //                       class="p-[12px_14px] border border-[#d9d9d9] rounded-[10px] text-center focus:border-[#718ebf]"
+    //                       className="p-[12px_14px] border border-[#d9d9d9] rounded-[10px] text-center focus:border-[#718ebf]"
     //                       style={{ MozAppearance: "textfield" }}
     //                     />
     //                   </div>
     //                 ))}
 
-    //                 <div class="condition w-full pt-[20px]">
-    //                   <div class="resend-otp flex justify-between items-center">
-    //                     <div class="sec">
-    //                       <p class="flex items-center">
+    //                 <div className="condition w-full pt-[20px]">
+    //                   <div className="resend-otp flex justify-between items-center">
+    //                     <div className="sec">
+    //                       <p className="flex items-center">
     //                         <IoTimeOutline />
-    //                         <span class="px-[5px]">
+    //                         <span className="px-[5px]">
     //                           {formatTime(timer)}
     //                         </span>{" "}
     //                         sec
     //                       </p>
     //                     </div>
-    //                     <div class="r-otp">
+    //                     <div className="r-otp">
     //                       <button
     //                         type="button"
     //                         onClick={handleResendOtp}
     //                         disabled={isResendDisabled}
-    //                         class="text-[#5678e9]"
+    //                         className="text-[#5678e9]"
     //                       >
     //                         Resend OTP
     //                       </button>
     //                     </div>
     //                   </div>
 
-    //                   <div class="verify pt-[15px]">
+    //                   <div className="verify pt-[15px]">
     //                     <button
     //                       type="submit"
-    //                       class="w-full bg-[#f6f8fb] text-[#4f4f4f] p-[12px_14px] rounded-[10px] text-[20px] transition-all duration-500 hover:bg-[#0eabeb] hover:text-white"
+    //                       className="w-full bg-[#f6f8fb] text-[#4f4f4f] p-[12px_14px] rounded-[10px] text-[20px] transition-all duration-500 hover:bg-[#0eabeb] hover:text-white"
     //                     >
     //                       Verify
     //                     </button>
@@ -215,19 +215,19 @@ export default function AdminOtp() {
     //           </div>
     //         </div>
 
-    //         <div class="w-full md:w-1/2 bg-gray-100 relative p-2 md:p-16">
+    //         <div className="w-full md:w-1/2 bg-gray-100 relative p-2 md:p-16">
     //           <ImageSlider
     //             images={["/img/register.png", "/img/register2.png"]}
     //           />
 
-    //           <div class="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
-    //             <img src="/img/Vector-1.png" class="w-full" />
+    //           <div className="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+    //             <img src="/img/Vector-1.png" className="w-full" />
     //           </div>
-    //           <div class="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
-    //             <img src="/img/Vector-2.png" class="w-full" />
+    //           <div className="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+    //             <img src="/img/Vector-2.png" className="w-full" />
     //           </div>
-    //           <div class="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
-    //             <img src="/img/Vector-dot.png" class="w-full" />
+    //           <div className="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
+    //             <img src="/img/Vector-dot.png" className="w-full" />
     //           </div>
     //         </div>
     //       </div>
@@ -235,27 +235,27 @@ export default function AdminOtp() {
     //   </div>
     // </div>
     <div>
-      <div class="admin-otp-section">
-        <div class="row">
-          <div class="flex min-h-screen">
+      <div className="admin-otp-section">
+        <div className="row">
+          <div className="flex min-h-screen">
             {/* <!-- Form Section --> */}
-            <div class="form p-6 md:p-16 w-full md:w-1/2 bg-white flex justify-center items-center">
-              <div class="admin-otp-content p-10 border border-gray-200 shadow-md rounded-xl">
-                <div class="head pb-4">
-                  <p class="text-2xl font-semibold">Enter OTP</p>
+            <div className="form p-6 md:p-16 w-full md:w-1/2 bg-white flex justify-center items-center">
+              <div className="admin-otp-content p-10 border border-gray-200 shadow-md rounded-xl">
+                <div className="head pb-4">
+                  <p className="text-2xl font-semibold">Enter OTP</p>
                 </div>
 
-                <div class="note">
-                  <p class="text-gray-600 text-base font-medium">
+                <div className="note">
+                  <p className="text-gray-600 text-base font-medium">
                     Please enter the 6-digit code that was sent to your phone
                     number.
                   </p>
                 </div>
 
-                <div class="admin-otp-form-box pt-2">
-                  <form class="flex space-x-2" onSubmit={handleSubmit}>
+                <div className="admin-otp-form-box pt-2">
+                  <form className="flex space-x-2" onSubmit={handleSubmit}>
                     {[...Array(6)].map((_, index) => (
-                      <div class="input-box relative py-4 w-[14%]" key={index}>
+                      <div className="input-box relative py-4 w-[14%]" key={index}>
                         <input
                           type="text"
                           maxLength="1"
@@ -264,33 +264,33 @@ export default function AdminOtp() {
                           ref={(el) => (inputRefs.current[index] = el)}
                           onChange={(e) => handleInputChange(index, e)}
                           onKeyDown={(e) => handleKeyDown(index, e)}
-                          class="w-full p-3 border border-gray-300 rounded-xl text-center focus:border-blue-400"
+                          className="w-full p-3 border border-gray-300 rounded-xl text-center focus:border-blue-400"
                         />
                       </div>
                     ))}
 
-                    <div class="condition w-full pt-5">
-                      <div class="resend-otp flex justify-between items-center">
-                        <div class="sec flex items-center">
+                    <div className="condition w-full pt-5">
+                      <div className="resend-otp flex justify-between items-center">
+                        <div className="sec flex items-center">
                           <IoTimeOutline />
-                          <span class="px-2">{formatTime(timer)}</span> sec
+                          <span className="px-2">{formatTime(timer)}</span> sec
                         </div>
-                        <div class="r-otp">
+                        <div className="r-otp">
                           <button
                             type="button"
                             onClick={handleResendOtp}
                             disabled={isResendDisabled}
-                            class="text-blue-600"
+                            className="text-blue-600"
                           >
                             Resend OTP
                           </button>
                         </div>
                       </div>
 
-                      <div class="verify pt-4">
+                      <div className="verify pt-4">
                         <button
                           type="submit"
-                          class="w-full bg-gray-100 text-gray-600 py-3 px-4 rounded-xl text-xl hover:bg-blue-500 hover:text-white transition"
+                          className="w-full bg-gray-100 text-gray-600 py-3 px-4 rounded-xl text-xl hover:bg-blue-500 hover:text-white transition"
                         >
                           Verify
                         </button>
@@ -302,20 +302,20 @@ export default function AdminOtp() {
             </div>
 
             {/* <!-- Image Section --> */}
-            <div class="w-full md:w-1/2 bg-gray-100 relative p-4 md:p-16">
+            <div className="w-full md:w-1/2 bg-gray-100 relative p-4 md:p-16">
               <ImageSlider
                 images={["/img/register.png", "/img/register2.png"]}
               />
 
               {/* <!-- Decorative Vectors --> */}
-              <div class="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
-                <img src="/img/Vector-1.png" class="w-full" />
+              <div className="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+                <img src="/img/Vector-1.png" className="w-full" />
               </div>
-              <div class="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
-                <img src="/img/Vector-2.png" class="w-full" />
+              <div className="absolute left-0 top-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">
+                <img src="/img/Vector-2.png" className="w-full" />
               </div>
-              <div class="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
-                <img src="/img/Vector-dot.png" class="w-full" />
+              <div className="absolute right-0 top-0 w-1/6 sm:w-1/8 md:w-1/10 lg:w-1/12">
+                <img src="/img/Vector-dot.png" className="w-full" />
               </div>
             </div>
           </div>

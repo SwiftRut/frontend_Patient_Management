@@ -4,135 +4,135 @@ import PropTypes from "prop-types";
 export default function PatientDetails({ patient, closeModal }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div class="bg-white p-5 rounded-lg shadow-lg w-[20%]">
-        <div class="patientdetails-section">
-          <div class="row">
-            <div class="details bg-white rounded-lg p-5">
-              <div class="top flex justify-between items-center border-b border-gray-300 pb-2">
-                <h3 class="text-2xl font-bold text-gray-900">
+      <div className="bg-white p-5 rounded-lg shadow-lg w-[20%]">
+        <div className="patientdetails-section">
+          <div className="row">
+            <div className="details bg-white rounded-lg p-5">
+              <div className="top flex justify-between items-center border-b border-gray-300 pb-2">
+                <h3 className="text-2xl font-bold text-gray-900">
                   Patient Details
                 </h3>
                 <div
-                  class="icon text-red-500 text-3xl cursor-pointer"
+                  className="icon text-red-500 text-3xl cursor-pointer"
                   onClick={closeModal}
                 >
                   <MdCancel />
                 </div>
               </div>
-              <div class="data mt-4">
+              <div className="data mt-4">
                 <ul>
-                  <li class="flex justify-between py-2">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between py-2">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Patient Name
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">{`${patient.firstName} ${patient.lastName}`}</p>
+                    <p className="text-lg font-medium text-gray-900">{`${patient.firstName} ${patient.lastName}`}</p>
                   </li>
-                  <li class="flex justify-between">
-                    <h3 class="text-lg font-semibold text-gray-600">Email</h3>
-                    <p class="text-lg font-medium text-gray-900">
+                  <li className="flex justify-between">
+                    <h3 className="text-lg font-semibold text-gray-600">Email</h3>
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.email}
                     </p>
                   </li>
-                  <li class="flex justify-between py-2">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between py-2">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Phone Number
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.phone}
                     </p>
                   </li>
-                  <li class="flex justify-between">
-                    <h3 class="text-lg font-semibold text-gray-600">Age</h3>
-                    <p class="text-lg font-medium text-gray-900">
+                  <li className="flex justify-between">
+                    <h3 className="text-lg font-semibold text-gray-600">Age</h3>
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.age}
                     </p>
                   </li>
-                  <li class="flex justify-between py-2">
-                    <h3 class="text-lg font-semibold text-gray-600">Gender</h3>
-                    <p class="text-lg font-medium text-gray-900">
+                  <li className="flex justify-between py-2">
+                    <h3 className="text-lg font-semibold text-gray-600">Gender</h3>
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.gender}
                     </p>
                   </li>
-                  <li class="flex justify-between">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Blood Group
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.bloodGroup}
                     </p>
                   </li>
-                  <li class="flex justify-between py-2">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between py-2">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Height (cm)
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.height}
                     </p>
                   </li>
-                  <li class="flex justify-between">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Weight (kg)
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {patient.weight}
                     </p>
                   </li>
-                  <li class="flex justify-between py-2">
-                    <h3 class="text-lg font-semibold text-gray-600">
+                  <li className="flex justify-between py-2">
+                    <h3 className="text-lg font-semibold text-gray-600">
                       Date of Birth
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">
+                    <p className="text-lg font-medium text-gray-900">
                       {new Date(patient.dob).toLocaleDateString()}
                     </p>
                   </li>
-                  <li class="">
-                    <h3 class="text-lg font-semibold text-gray-600 pb-2">
+                  <li className="">
+                    <h3 className="text-lg font-semibold text-gray-600 pb-2">
                       Address
                     </h3>
-                    <p class="text-lg font-medium text-gray-900">{`${patient.address}, ${patient.city}, ${patient.state}, ${patient.country}`}</p>
+                    <p className="text-lg font-medium text-gray-900">{`${patient.address}, ${patient.city}, ${patient.state}, ${patient.country}`}</p>
                   </li>
                   <template v-if="patient.appointment">
-                    <li class="flex justify-between py-2">
-                      <h3 class="text-lg font-semibold text-gray-600">
+                    <li className="flex justify-between py-2">
+                      <h3 className="text-lg font-semibold text-gray-600">
                         Appointment Type
                       </h3>
-                      <p class="text-lg font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         {patient.appointment.type}
                       </p>
                     </li>
-                    <li class="flex justify-between py-2">
-                      <h3 class="text-lg font-semibold text-gray-600">
+                    <li className="flex justify-between py-2">
+                      <h3 className="text-lg font-semibold text-gray-600">
                         Appointment Date
                       </h3>
-                      <p class="text-lg font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         {new Date(
                           patient.appointment.date
                         ).toLocaleDateString()}
                       </p>
                     </li>
-                    <li class="flex justify-between py-2">
-                      <h3 class="text-lg font-semibold text-gray-600">
+                    <li className="flex justify-between py-2">
+                      <h3 className="text-lg font-semibold text-gray-600">
                         Appointment Time
                       </h3>
-                      <p class="text-lg font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         {new Date(
                           patient.appointment.appointmentTime
                         ).toLocaleTimeString()}
                       </p>
                     </li>
-                    <li class="flex justify-between py-2">
-                      <h3 class="text-lg font-semibold text-gray-600">
+                    <li className="flex justify-between py-2">
+                      <h3 className="text-lg font-semibold text-gray-600">
                         Doctor Name
                       </h3>
-                      <p class="text-lg font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         {patient.appointment.doctorId.name}
                       </p>
                     </li>
-                    <li class="flex justify-between py-2">
-                      <h3 class="text-lg font-semibold text-gray-600">
+                    <li className="flex justify-between py-2">
+                      <h3 className="text-lg font-semibold text-gray-600">
                         Patient Issue
                       </h3>
-                      <p class="text-lg font-medium text-gray-900">
+                      <p className="text-lg font-medium text-gray-900">
                         {patient.appointment.patient_issue}
                       </p>
                     </li>

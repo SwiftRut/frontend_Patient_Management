@@ -183,16 +183,16 @@ export default function DoctorManagement() {
 
   return (
     <div>
-      <div class="dr-managment-section bg-gray-100 p-2">
-        <div class="">
-          <div class="bg-white rounded-lg p-2 shadow-lg">
-            <div class="top flex justify-between items-center p-2 pb-5">
-              <div class="heading font-bold text-[26px]">
+      <div className="dr-managment-section bg-gray-100 p-2">
+        <div className="">
+          <div className="bg-white rounded-lg p-2 shadow-lg">
+            <div className="top flex justify-between items-center p-2 pb-5">
+              <div className="heading font-bold text-[26px]">
                 <h3>Doctor Management</h3>
               </div>
-              <div class="flex items-center space-x-2">
-                <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
-                  <div class="text-xl text-gray-700">
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                  <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
                   <input
@@ -200,17 +200,17 @@ export default function DoctorManagement() {
                     placeholder="Search Doctor"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    class="bg-transparent pl-2 text-lg outline-none"
+                    className="bg-transparent pl-2 text-lg outline-none"
                   />
                 </div>
                 <button
-                  class="btn flex items-center bg-[#0EABEB] text-white rounded-lg px-4 py-2 ml-2"
+                  className="btn flex items-center bg-[#0EABEB] text-white rounded-lg px-4 py-2 ml-2"
                   onClick={() => navigate("/doctorAdd")}
                 >
-                  <div class=" bg-white text-[#0EABEB] rounded text-xl mr-2">
+                  <div className=" bg-white text-[#0EABEB] rounded text-xl mr-2">
                     <MdAdd />
                   </div>
-                  <div class="text font-semibold text-lg">
+                  <div className="text font-semibold text-lg">
                     <h3>Add New Doctor</h3>
                   </div>
                 </button>
@@ -218,7 +218,7 @@ export default function DoctorManagement() {
             </div>
 
             {loading && <h3>Loading...</h3>}
-            {error && <h3 class="text-red-500">{error}</h3>}
+            {error && <h3 className="text-red-500">{error}</h3>}
             {!loading && !error && renderDoctorsTable()}
           </div>
         </div>
