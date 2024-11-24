@@ -164,6 +164,18 @@ const PatientRegistration = () => {
                   />
                 </div>
                 <div className="input-box relative">
+                <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
+                    Country Code <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={handleChange}
+                    placeholder="Enter Country Code"
+                    className="w-full border  border-gray-300 py-2 px-4 rounded-md"
+                  />
+                   </div>
+                <div className="input-box relative">
                   <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
                     Gender <span className="text-red-500">*</span>
                   </label>

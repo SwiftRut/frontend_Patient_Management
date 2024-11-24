@@ -5,6 +5,7 @@ export const PatientFormData = {
   password: "",
   confirmPassword: "",
   phone: "",
+  countryCode: "",
   age: "",
   height: "",
   weight: "",

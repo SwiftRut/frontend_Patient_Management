@@ -229,6 +229,21 @@ const AdminRegistration = () => {
 
                 <div className="input-box relative">
                   <label className="block text-sm font-medium absolute top-[-0.75rem] left-4 bg-white z-10">
+                    Country Code <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={handleChange}
+                    placeholder="Enter Country Code"
+                    required
+                    className="w-full p-2 border border-gray-300 rounded-lg"
+                  />
+                </div>  
+
+                <div className="input-box relative">
+                  <label className="block text-sm font-medium absolute top-[-0.75rem] left-4 bg-white z-10">
                     Phone Number <span className="text-red-600">*</span>
                   </label>
                   <input
