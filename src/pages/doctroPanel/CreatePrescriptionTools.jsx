@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreatePrescription from "../../component/PrescriptionTools/CreatePrescription";
 import { useGlobal } from "../../hooks/useGlobal";
+import { CiSearch } from "react-icons/ci";
+import { FaCalendarAlt } from "react-icons/fa";
 
 const CreatePrescriptionTools = () => {
   const { getAllTodayAppointments, allAppointments } = useGlobal();
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getAllTodayAppointments();
@@ -11,46 +14,76 @@ const CreatePrescriptionTools = () => {
 
   // Format appointment time
   const formatTime = (dateString) => {
-    return new Date(dateString).toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
+    return new Date(dateString).toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     });
   };
 
   // Transform appointment data to match your component props
-  const transformedAppointments = allAppointments?.map(appointment => ({
-    id: appointment._id,
-    name: `${appointment?.patientId?.firstName} ${appointment?.patientId?.lastName}`,
-    age: appointment.patientId?.age,
-    gender: appointment.patientId?.gender,
-    appointmentType: appointment?.type,
-    time: formatTime(appointment.appointmentTime),
-    isNew: !appointment.patientId?.appointmentId || appointment.patientId.appointmentId.length <= 1,
-    // Additional data that might be needed
-    patientId: appointment.patientId?._id,
-    doctorId: appointment?.doctorId?._id,
-    status: appointment?.status
-  })) || [];
+  const transformedAppointments =
+    allAppointments?.map((appointment) => ({
+      id: appointment._id,
+      name: `${appointment?.patientId?.firstName} ${appointment?.patientId?.lastName}`,
+      age: appointment.patientId?.age,
+      gender: appointment.patientId?.gender,
+      appointmentType: appointment?.type,
+      time: formatTime(appointment.appointmentTime),
+      isNew:
+        !appointment.patientId?.appointmentId ||
+        appointment.patientId.appointmentId.length <= 1,
+      // Additional data that might be needed
+      patientId: appointment.patientId?._id,
+      doctorId: appointment?.doctorId?._id,
+      status: appointment?.status,
+    })) || [];
 
   return (
-    <div className="cp-tool p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">Today Appointment</h1>
-      <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {transformedAppointments?.map((appointment) => (
-          <CreatePrescription
-            key={appointment?.id}
-            id={appointment?.id}
-            name={appointment.name}
-            age={appointment.age}
-            gender={appointment.gender}
-            appointmentType={appointment.appointmentType}
-            time={appointment.time}
-            isNew={appointment.isNew}
-            status={appointment.status} // Additional prop if needed in the card
-            patientId={appointment.patientId}
-          />
-        ))}
+    <div className="bg-[#F6F8FB] p-3 h-[92.5%]">
+      <div className="cp-tool p-6 bg-white rounded-lg">
+        <div className="flex justify-between mb-4">
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Today Appointment</h1>
+          </div>
+          <div className="flex space-x-4">
+          <div className="search-btn flex">
+            <div class="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+              <div class="text-xl text-gray-700">
+                <CiSearch />
+              </div>
+              <input
+                type="text"
+                placeholder="Search Doctor"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                class="bg-transparent pl-2 text-lg"
+              />
+            </div>
+          </div>
+          <div className="flex items-center border py-2 px-3 rounded-lg"> 
+          <FaCalendarAlt className="text-[#4F4F4F] text-xl me-2" />
+            <h2 className="text-[20px] font-semibold text-[#141414]">2 March, 2024</h2>
+          </div>
+          </div>
+      
+        </div>
+        <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+          {transformedAppointments?.map((appointment) => (
+            <CreatePrescription
+              key={appointment?.id}
+              id={appointment?.id}
+              name={appointment.name}
+              age={appointment.age}
+              gender={appointment.gender}
+              appointmentType={appointment.appointmentType}
+              time={appointment.time}
+              isNew={appointment.isNew}
+              status={appointment.status} // Additional prop if needed in the card
+              patientId={appointment.patientId}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

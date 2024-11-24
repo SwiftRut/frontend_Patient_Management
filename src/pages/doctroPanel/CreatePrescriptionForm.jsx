@@ -116,308 +116,333 @@ const CreatePrescriptionForm = () => {
       enableReinitialize={true}
     >
       {({ values, handleChange, handleBlur, errors, touched }) => (
-        <div>
-          <Form className="h-screen overflow-y-hidden">
-            <div className="flex justify-between p-8 bg-gray-100 shadow-lg rounded-lg">
-              {/* Left Side - Form */}
-              <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto">
-                <h2 className="text-2xl font-bold mb-4">Create Prescription</h2>
-                <div className="flex justify-between mb-6">
-                  <div className="input-box w-1/3">
-                    <div className="label">Patient Name</div>
-                    <input
-                      type="text"
-                      name="patientName"
-                      value={values.patientName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={`border p-2 rounded w-full ${
-                        errors.patientName && touched.patientName
-                          ? "border-red-500"
-                          : ""
-                      }`}
-                      disabled
-                    />
-                    {errors.patientName && touched.patientName && (
-                      <p className="text-red-500 text-sm">
-                        {errors.patientName}
-                      </p>
-                    )}
-                  </div>
-                  <div className="input-box w-1/3">
-                    <div className="label">Age</div>
-                    <input
-                      name="age"
-                      type="number"
-                      value={values.age}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={`border p-2 rounded w-full ${
-                        errors.age && touched.age ? "border-red-500" : ""
-                      }`}
-                      disabled
-                    />
-                    {errors.age && touched.age && (
-                      <p className="text-red-500 text-sm">{errors.age}</p>
-                    )}
-                  </div>
-                  <div className="input-box w-1/3">
-                    <div className="label">Gender</div>
-                    <input
-                      name="gender"
-                      value={values.gender}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={`border p-2 rounded w-full ${
-                        errors.gender && touched.gender ? "border-red-500" : ""
-                      }`}
-                      disabled
-                    />
-                    {errors.gender && touched.gender && (
-                      <p className="text-red-500 text-sm">{errors.gender}</p>
-                    )}
-                  </div>
+        <div className="flex justify-between p-8 bg-[#F6F8FB] p-3 h-[92%]">
+          {/* Left Side - Form */}
+          <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto">
+            <h2 className="text-2xl font-bold mb-4">Create Prescription</h2>
+            <div className="flex justify-between mb-6">
+              <div className="input-box w-[45%] relative">
+                <div className=" text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
+                  Patient Name
                 </div>
-
-                {/* Medicines Table */}
-                <h2 className="text-xl font-bold mb-4">Drug Prescription</h2>
-                <FieldArray name="medicines">
-                  {({ push, remove }) => (
-                    <>
-                      {values?.medicines?.map((medicine, index) => (
-                        <div
-                          key={index}
-                          className="drug grid grid-cols-6 gap-4 mb-4"
-                        >
-                          <TextField
-                            label="Medicine Name"
-                            name={`medicines[${index}].medicineName`}
-                            value={medicine?.medicineName || ""}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={`border p-2 rounded w-full ${
-                              errors.medicines?.[index]?.medicineName &&
-                              touched.medicines?.[index]?.medicineName
-                                ? "border-red-500"
-                                : ""
-                            }`}
-                          />
-                          <TextField
-                            label="Strength"
-                            name={`medicines[${index}].strength`}
-                            value={medicine?.strength || ""}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={`border p-2 rounded w-full ${
-                              errors.medicines?.[index]?.strength &&
-                              touched.medicines?.[index]?.strength
-                                ? "border-red-500"
-                                : ""
-                            }`}
-                          />
-                          <FormControl fullWidth className="select">
-                            <InputLabel id={`dose-label-${index}`}>
-                              Dose
-                            </InputLabel>
-                            <Select
-                              labelId={`dose-label-${index}`}
-                              name={`medicines[${index}].dose`}
-                              value={medicine?.dose || ""}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              label="Dose"
-                            >
-                              {doseOptions.map((option) => (
-                                <MenuItem key={option} value={option}>
-                                  {option}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                          <TextField
-                            label="Duration"
-                            name={`medicines[${index}].duration`}
-                            value={medicine?.duration || ""}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={`border p-2 rounded w-full ${
-                              errors.medicines?.[index]?.duration &&
-                              touched.medicines?.[index]?.duration
-                                ? "border-red-500"
-                                : ""
-                            }`}
-                          />
-                          <FormControl fullWidth className="select">
-                            <InputLabel id={`whenToTake-label-${index}`}>
-                              When to Take
-                            </InputLabel>
-                            <Select
-                              labelId={`whenToTake-label-${index}`}
-                              name={`medicines[${index}].whenToTake`}
-                              value={medicine?.whenToTake || ""}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              label="When to Take"
-                            >
-                              {whenToTakeOptions.map((option) => (
-                                <MenuItem key={option} value={option}>
-                                  {option}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                          <IconButton
-                            onClick={() => remove(index)}
-                            className="text-red-600"
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        </div>
-                      ))}
-
-                      <div className="add-medicine">
-                        <Button
-                          variant="contained"
-                          onClick={() =>
-                            push({
-                              medicineName: "",
-                              strength: "",
-                              dose: "",
-                              duration: "",
-                              whenToTake: "",
-                            })
-                          }
-                          className="mt-4"
-                        >
-                          Add Medicine
-                        </Button>
-                      </div>
-                    </>
-                  )}
-                </FieldArray>
-
-                {/* Additional Notes */}
-                <div className="addition-note">
-                  <TextField
-                    label="Additional Note"
-                    name="additionalNote"
-                    value={values.additionalNote}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="border p-2 rounded w-full mt-6"
-                    multiline
-                    rows={4}
-                  />
-                </div>
-                <div className="save-btn">
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className="mt-6"
-                  >
-                    Submit
-                  </Button>
-                </div>
+                <input
+                  type="text"
+                  name="patientName"
+                  value={values.patientName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`border p-3  rounded-md w-full bg-transparent ${
+                    errors.patientName && touched.patientName
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  disabled
+                />
+                {errors.patientName && touched.patientName && (
+                  <p className="text-red-500 text-sm">{errors.patientName}</p>
+                )}
               </div>
-
-              {/* Right Side - Prescription Preview */}
-              <div className="Prescription-bill w-[39%] bg-white p-4 rounded-lg overflow-auto">
-                <div className="p-4 rounded-lg bg-[#F6F8FB]">
-                  <div className="head flex justify-between align-center">
-                    <div className="logo">
-                      <img src="/image/bill-logo.png" alt="" />
-                    </div>
-                    <div className="name">
-                      <p>Dr. {userData.name}</p>
-                      <span>{userData.qualification?.toUpperCase()}</span>
-                    </div>
-                  </div>
-                  <div className="dr-details">
-                    <div className="flex justify-between align-center">
-                      <p>
-                        Hospital Name: <span>{userData.hospitalName}</span>
-                      </p>
-                      <p>
-                        Prescription Date:{" "}
-                        <span>{new Date().toLocaleDateString()}</span>
-                      </p>
-                    </div>
-                    <div className="flex justify-between align-center">
-                      <p>
-                        Patient Name: <span>{values.patientName}</span>
-                      </p>
-                      <p>
-                        Age: <span>{values.age}</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        Gender: <span>{values.gender}</span>
-                      </p>
-                      <p className="add">
-                        Address:{" "}
-                        <span>
-                          {userData.hospitalId.address}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+              <div className="input-box w-1/4 relative">
+                <div className="text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
+                  Age
                 </div>
-                <div className="pt-4">
-                  <table className="w-full rounded-lg mt-4">
-                    <thead className="bg-[#F6F8FB]">
-                      <tr>
-                        <th className="border-b-[1px] p-2">Medicine Name</th>
-                        <th className="border-b-[1px] p-2">Strength</th>
-                        <th className="border-b-[1px] p-2">Dose</th>
-                        <th className="border-b-[1px] p-2">Duration</th>
-                        <th className="border-b-[1px] p-2">When to Take</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {values?.medicines?.map((medicine, index) => (
-                        <tr key={index}>
-                          <td className="border-b-[1px] p-2">
-                            {medicine?.medicineName}
+                <input
+                  name="age"
+                  type="number"
+                  value={values.age}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`border p-3 rounded-md w-full bg-transparent ${
+                    errors.age && touched.age ? "border-red-500" : ""
+                  }`}
+                  disabled
+                />
+                {errors.age && touched.age && (
+                  <p className="text-red-500 text-sm">{errors.age}</p>
+                )}
+              </div>
+              <div className="input-box w-1/4 relative">
+                <div className="text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
+                  Gender
+                </div>
+                <input
+                  name="gender"
+                  value={values.gender}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={`border p-3 rounded-md w-full bg-transparent ${
+                    errors.gender && touched.gender ? "border-red-500" : ""
+                  }`}
+                  disabled
+                />
+                {errors.gender && touched.gender && (
+                  <p className="text-red-500 text-sm">{errors.gender}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Medicines Table */}
+            <h2 className="text-xl font-bold mb-4">Drug Prescription</h2>
+            <FieldArray name="medicines">
+              {({ push, remove }) => (
+                <>
+                  {values?.medicines?.map((medicine, index) => (
+                    <div key={index} className="drug ">
+                      <thead className="sticky top-0 bg-gray-100 z-10">
+                        <tr>
+                          <th className="p-3 rounded-tl-lg">Medicine Name</th>
+                          <th className="p-3">Strength</th>
+                          <th className="p-3">Dose</th>
+                          <th className="p-3">Duration</th>
+                          <th className="p-3">When to Take</th>
+                          <th className="p-3 rounded-tr-lg">Action</th>
+                        </tr>
+                      </thead>
+
+                      <tbody className="">
+                        <tr className="border-b">
+                          <td className=" p-2">
+                            <TextField
+                              label="Medicine Name"
+                              name={`medicines[${index}].medicineName`}
+                              value={medicine?.medicineName || ""}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              className={`border p-2 rounded w-full ${
+                                errors.medicines?.[index]?.medicineName &&
+                                touched.medicines?.[index]?.medicineName
+                                  ? "border-red-500"
+                                  : ""
+                              }`}
+                            />
                           </td>
-                          <td className="border-b-[1px] text-center p-2">
-                            {medicine?.strength}
+                          <td className=" p-2">
+                            <TextField
+                              label="Strength"
+                              name={`medicines[${index}].strength`}
+                              value={medicine?.strength || ""}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              className={`border p-2 rounded w-[200px] ${
+                                errors.medicines?.[index]?.strength &&
+                                touched.medicines?.[index]?.strength
+                                  ? "border-red-500"
+                                  : ""
+                              }`}
+                            />
                           </td>
-                          <td className="border-b-[1px] text-center p-2">
-                            {medicine?.dose}
+                          <td className=" p-2">
+                            <FormControl fullWidth className="select">
+                              <InputLabel className={`dose-label-${index}`}>
+                                Dose
+                              </InputLabel>
+                              <Select
+                                labelId={`dose-label-${index}`}
+                                name={`medicines[${index}].dose`}
+                                value={medicine?.dose || ""}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label="Dose"
+                              >
+                                {doseOptions.map((option) => (
+                                  <MenuItem key={option} value={option}>
+                                    {option}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
                           </td>
-                          <td className="border-b-[1px] text-center p-2">
-                            {medicine?.duration}
+                          <td className=" p-2">
+                            <TextField
+                              label="Duration"
+                              name={`medicines[${index}].duration`}
+                              value={medicine?.duration || ""}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              className={`w-[150px] border p-2 rounded  ${
+                                errors.medicines?.[index]?.duration &&
+                                touched.medicines?.[index]?.duration
+                                  ? "border-red-500"
+                                  : ""
+                              }`}
+                            />
                           </td>
-                          <td className="border-b-[1px] text-center p-2">
-                            {medicine?.whenToTake}
+                          <td className=" p-2">
+                            <FormControl fullWidth className="select">
+                              <InputLabel id={`whenToTake-label-${index}`}>
+                                When to Take
+                              </InputLabel>
+                              <Select
+                                labelId={`whenToTake-label-${index}`}
+                                name={`medicines[${index}].whenToTake`}
+                                value={medicine?.whenToTake || ""}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                label="When to Take"
+                              >
+                                {whenToTakeOptions.map((option) => (
+                                  <MenuItem key={option} value={option}>
+                                    {option}
+                                  </MenuItem>
+                                ))}
+                              </Select>
+                            </FormControl>
+                          </td>
+                          <td className=" p-2">
+                            <button
+                              onClick={() => remove(index)}
+                              className="text-red-600 "
+                            >
+                              <DeleteIcon />
+                            </button>
                           </td>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="note">
-                    <h3 className="mt-4 font-bold">Additional Note:</h3>
-                    <p>{values.additionalNote}</p>
-                  </div>
-                  <div className="condition flex justify-between align-center">
-                    <div className="sign">
-                      <span>Doctor Signature</span>
+                      </tbody>
                     </div>
-                    <div className="btn">
-                      <button
-                        type="submit"
-                        className="bg-blue-500 text-white py-2 px-4 rounded"
-                      >
-                        Save
-                      </button>
-                    </div>
+                  ))}
+
+                  <div className="add-medicine">
+                    <Button
+                      variant="contained"
+                      onClick={() =>
+                        push({
+                          medicineName: "",
+                          strength: "",
+                          dose: "",
+                          duration: "",
+                          whenToTake: "",
+                        })
+                      }
+                      className="mt-4"
+                    >
+                      Add Medicine
+                    </Button>
                   </div>
+                </>
+              )}
+            </FieldArray>
+
+            {/* Additional Notes */}
+            <div className="addition-note border relative rounded-lg p-4 mt-10">
+              <label className="block text-[#030229] absolute top-[-20px] left-4 bg-white z-10 text-lg">
+                Additional Note <span className="text-red-500">*</span>
+              </label>
+              <input
+                label="Additional Note"
+                name="additionalNote"
+                value={values.additionalNote}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className=" p-10 rounded w-full mt-6"
+                multiline
+                rows={4}
+              />
+            </div>
+            <div className="save-btn mt-10">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className="mt-6"
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Side - Prescription Preview */}
+          <div className="Prescription-bill w-[39%] bg-white p-4 rounded-lg overflow-auto">
+            <div className="p-4 rounded-lg bg-[#F6F8FB]">
+              <div className="head flex justify-between align-center">
+                <div className="logo">
+                  <img src="/image/bill-logo.png" alt="" />
+                </div>
+                <div className="name">
+                  <p className="text-[24px] font-bold text-[#0EABEB]">Dr. {userData.name}</p>
+                  <span className="text-[#9191a2] text-[14px] font-semibold">{userData.qualification?.toUpperCase()}</span>
+                </div>
+              </div>
+              <div className="dr-details">
+                <div className="flex justify-between align-center">
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Hospital Name: <span className="text-[#818194] text-[14px]">{userData.hospitalName}</span>
+                  </p>
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Prescription Date:{" "}
+                    <span className="text-[#818194] text-[14px]">{new Date().toLocaleDateString()}</span>
+                  </p>
+                </div>
+                <div className="flex justify-between align-center">
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Patient Name: <span className="text-[#818194] text-[14px]">{values.patientName}</span>
+                  </p>
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Age: <span className="text-[#818194] text-[14px]">{values.age}</span>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Gender: <span className="text-[#818194] text-[14px]">{values.gender}</span>
+                  </p>
+                  <p className="text-[#141414] text-[16px] font-semibold">
+                    Address: <span className="text-[#818194] text-[14px]">{userData.hospitalId?.address}</span>
+                  </p>
                 </div>
               </div>
             </div>
-          </Form>
+            <div className="pt-4">
+              <table className="w-full rounded-lg mt-4">
+                <thead className="bg-[#F6F8FB]">
+                  <tr>
+                    <th className="border-b-[1px] p-3 rounded-tl-lg">
+                      Medicine Name</th>
+                    <th className="border-b-[1px] p-3 ">Strength</th>
+                    <th className="border-b-[1px] p-3">Dose</th>
+                    <th className="border-b-[1px] p-3">Duration</th>
+                    <th className="border-b-[1px] p-3 rounded-tr-lg">When to Take</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {values?.medicines?.map((medicine, index) => (
+                    <tr key={index}>
+                      <td className="border-b-[1px] p-2">
+                        {medicine?.medicineName}
+                      </td>
+                      <td className="border-b-[1px] text-center p-2">
+                        {medicine?.strength}
+                      </td>
+                      <td className="border-b-[1px] text-center p-2">
+                        {medicine?.dose}
+                      </td>
+                      <td className="border-b-[1px] text-center p-2">
+                        {medicine?.duration}
+                      </td>
+                      <td className="border-b-[1px] text-center p-2">
+                        {medicine?.whenToTake}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="note">
+                <h3 className="mt-4 font-bold">Additional Note:</h3>
+                <p>{values.additionalNote}</p>
+              </div>
+              <div className="condition flex justify-between align-center">
+                <div className="sign border-b ">
+                  <span className="text-[14px] text-[#A7A7A7]">Doctor Signature</span>
+                </div>
+                <div className="btn">
+                  <button
+                    type="submit"
+                    className="bg-blue-500 text-white py-2 px-10 rounded"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </Formik>

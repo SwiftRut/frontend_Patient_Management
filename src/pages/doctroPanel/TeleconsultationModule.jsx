@@ -9,7 +9,8 @@ import moment from "moment";
 import toast from "react-hot-toast";
 
 export default function TeleconsultationModule() {
-  const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } = useGlobal();
+  const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } =
+    useGlobal();
   const { user } = useAuth();
 
   const [activeTab, setActiveTab] = useState(0);
@@ -33,12 +34,20 @@ export default function TeleconsultationModule() {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
   };
 
   const formatTime = (timeString) => {
     const date = new Date(timeString);
-    return date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
   };
 
   const filterAppointments = (appointments) => {
@@ -53,7 +62,9 @@ export default function TeleconsultationModule() {
         return (
           aptDate.getTime() === today.getTime() &&
           apt.status !== "canceled" &&
-          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+          (!startDate ||
+            !endDate ||
+            (aptDate >= startDate && aptDate <= endDate))
         );
       }),
       upcoming: appointments.filter((apt) => {
@@ -61,7 +72,9 @@ export default function TeleconsultationModule() {
         return (
           aptDate.getTime() > today.getTime() &&
           apt.status !== "canceled" &&
-          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+          (!startDate ||
+            !endDate ||
+            (aptDate >= startDate && aptDate <= endDate))
         );
       }),
       previous: appointments.filter((apt) => {
@@ -69,7 +82,9 @@ export default function TeleconsultationModule() {
         return (
           aptDate.getTime() < today.getTime() &&
           apt.status !== "canceled" &&
-          (!startDate || !endDate || (aptDate >= startDate && aptDate <= endDate))
+          (!startDate ||
+            !endDate ||
+            (aptDate >= startDate && aptDate <= endDate))
         );
       }),
       canceled: appointments.filter((apt) => apt.status === "canceled"),
@@ -127,40 +142,46 @@ export default function TeleconsultationModule() {
   };
 
   const tabName = getCurrentName();
-  const currentAppointments = getCurrentAppointments().map(formatAppointmentForDisplay);
+  const currentAppointments = getCurrentAppointments().map(
+    formatAppointmentForDisplay
+  );
 
   return (
     <>
-      <div className="teli-module p-8 bg-gray-100 min-h-screen">
-        <Tabs
-          className="teli-btn"
-          value={activeTab}
-          onChange={(elem, newValue) => setActiveTab(newValue)}
-        >
-          <Tab label="Today Appointment" />
-          <Tab label="Upcoming Appointment" />
-          <Tab label="Previous Appointment" />
-          <Tab label="Cancel Appointment" />
-        </Tabs>
-
-        <div className="head mt-4 mb-6 flex justify-between items-center">
-          <h2 className="text-xl font-semibold">{tabName}</h2>
-          <Button
-            variant="outlined"
-            startIcon={<DateRange />}
-            color="gray"
-            onClick={() => setOpenCustomDateModal(true)}
+      <div className="bg-[#F6F8FB] p-3 h-[92.5%]">
+        <div className="teli-module p-6 bg-white rounded-lg">
+          <Tabs
+            className="teli-btn border-b"
+            value={activeTab}
+            onChange={(elem, newValue) => setActiveTab(newValue)}
           >
-            {dateRange[0] && dateRange[1]
-              ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
-              : "Select Date Range"}
-          </Button>
-        </div>
+            <Tab label="Today Appointment" />
+            <Tab label="Upcoming Appointment" />
+            <Tab label="Previous Appointment" />
+            <Tab label="Cancel Appointment" />
+          </Tabs>
 
-        <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {currentAppointments.map((patient) => (
-            <TeleConsultationCard key={patient.id} patient={patient} />
-          ))}
+          <div className="head mt-4 mb-6 flex justify-between items-center">
+            <h2 className="text-[26px] font-bold text-[#030229]">{tabName}</h2>
+            <Button
+              variant="outlined"
+              startIcon={<DateRange />}
+              color="gray"
+              onClick={() => setOpenCustomDateModal(true)}
+            >
+              {dateRange[0] && dateRange[1]
+                ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(
+                    dateRange[1]
+                  ).format("MM/DD/YYYY")}`
+                : "Select Date Range"}
+            </Button>
+          </div>
+
+          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
+            {currentAppointments.map((patient) => (
+              <TeleConsultationCard key={patient.id} patient={patient} />
+            ))}
+          </div>
         </div>
       </div>
 
