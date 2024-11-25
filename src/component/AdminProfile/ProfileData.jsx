@@ -220,187 +220,187 @@ export default function ProfileData() {
     //   </div>
     // </div>
     <div className="content">
-  <div className="head flex items-center justify-between">
-    <div className="title">
-      <p className="text-[34px] font-semibold text-[#030229]">Profile</p>
+      <div className="head flex items-center justify-between">
+        <div className="title">
+          <p className="text-[34px] font-semibold text-[#030229]">Profile </p>
+        </div>
+        <div className="edit">
+          <NavLink to="/edit">
+            <button className="flex items-center bg-[#0eabeb] px-4 py-3 rounded-lg text-[20px]">
+              <FaEdit className="text-white" />
+              <span className="text-white text-[20px] font-semibold pl-2">
+                Edit Profile
+              </span>
+            </button>
+          </NavLink>
+        </div>
+      </div>
+      <div className="form-box pt-[35px]">
+        <form onSubmit={handleSubmit} className="flex flex-wrap gap-5">
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              First Name <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Enter First Name"
+              value={userData?.firstName}
+              className="w-full px-4 py-3 border border-gray-300 bg-white text-[16px] font-normal rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.firstName && (
+              <span className="error text-red-500 text-sm">
+                {errors.firstName}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Last Name <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Enter Last Name"
+              value={userData?.lastName}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.lastName && (
+              <span className="error text-red-500 text-sm">
+                {errors.lastName}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Email Address <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Email Address"
+              value={userData?.email}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.email && (
+              <span className="error text-red-500 text-sm">
+                {errors.email}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Phone Number* <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Phone Number"
+              value={userData?.phone}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.phone && (
+              <span className="error text-red-500 text-sm">
+                {errors.phone}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Hospital Name <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Hospital Name"
+              value={userData?.hospital?.name}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.hospital && (
+              <span className="error text-red-500 text-sm">
+                {errors.hospital}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Gender <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Gender"
+              value={userData?.gender}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.gender && (
+              <span className="error text-red-500 text-sm">
+                {errors.gender}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              City <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="City"
+              value={userData?.city}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.city && (
+              <span className="error text-red-500 text-sm">
+                {errors.city}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              State <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="State"
+              value={userData?.state}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.state && (
+              <span className="error text-red-500 text-sm">
+                {errors.state}
+              </span>
+            )}
+          </div>
+
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Country <span className="text-red-500">*</span>
+            </div>
+            <input
+              disabled
+              type="text"
+              placeholder="Country"
+              value={userData?.country}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
+            {errors.country && (
+              <span className="error text-red-500 text-sm">
+                {errors.country}
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
-    <div className="edit">
-      <NavLink to="/edit">
-        <button className="flex items-center bg-[#0eabeb] px-4 py-3 rounded-lg">
-          <FaEdit className="text-white" />
-          <span className="text-white text-[20px] font-semibold pl-2">
-            Edit Profile
-          </span>
-        </button>
-      </NavLink>
-    </div>
-  </div>
-  <div className="form-box pt-5">
-    <form onSubmit={handleSubmit} className="flex flex-wrap gap-5">
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          First Name <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Enter First Name"
-          value={userData?.firstName}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.firstName && (
-          <span className="error text-red-500 text-sm">
-            {errors.firstName}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Last Name <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Enter Last Name"
-          value={userData?.lastName}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.lastName && (
-          <span className="error text-red-500 text-sm">
-            {errors.lastName}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Email Address <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Email Address"
-          value={userData?.email}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.email && (
-          <span className="error text-red-500 text-sm">
-            {errors.email}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Phone Number* <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Phone Number"
-          value={userData?.phone}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.phone && (
-          <span className="error text-red-500 text-sm">
-            {errors.phone}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Hospital Name <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Hospital Name"
-          value={userData?.hospital?.name}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.hospital && (
-          <span className="error text-red-500 text-sm">
-            {errors.hospital}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Gender <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Gender"
-          value={userData?.gender}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.gender && (
-          <span className="error text-red-500 text-sm">
-            {errors.gender}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          City <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="City"
-          value={userData?.city}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.city && (
-          <span className="error text-red-500 text-sm">
-            {errors.city}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          State <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="State"
-          value={userData?.state}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.state && (
-          <span className="error text-red-500 text-sm">
-            {errors.state}
-          </span>
-        )}
-      </div>
-
-      <div className="input-box relative w-[30%]">
-        <div className="label absolute top-[-0.75rem] left-4 bg-white">
-          Country <span>*</span>
-        </div>
-        <input
-          disabled
-          type="text"
-          placeholder="Country"
-          value={userData?.country}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
-        />
-        {errors.country && (
-          <span className="error text-red-500 text-sm">
-            {errors.country}
-          </span>
-        )}
-      </div>
-    </form>
-  </div>
-</div>
 
   );
 }

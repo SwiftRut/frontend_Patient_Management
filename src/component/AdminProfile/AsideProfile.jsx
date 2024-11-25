@@ -7,8 +7,10 @@ import { useGlobal } from "../../hooks/useGlobal";
 
 export default function AsideProfile() {
   const { userData } = useGlobal();
+  const { userData } = useGlobal();
   return (
-    <div className="left w-[23%] border-r-3 border-gray-200 px-5 py-4">
+    <div className="left w-[23%]  border-r-[3px] border-gray-200 px-5 py-4">
+
       <div className="img-box text-center">
         <div className="img">
           <img
@@ -17,23 +19,23 @@ export default function AsideProfile() {
             className="w-48 h-48 mx-auto rounded-full"
           />
         </div>
-        <p className="text-xl font-semibold mt-2">
-          {userData
-            ? `${userData?.firstName} ${userData?.lastName}`
-            : "Lincoln Philips"}
+        <p className="text-[24px] font-semibold mt-2">
+          {userData ? `${userData?.firstName} ${userData?.lastName}` : "Lincoln Philips"}
         </p>
       </div>
 
+
       <div className="menu mt-6">
-        <p className="text-lg font-semibold text-gray-800 mb-4">Menu</p>
+        <p className="text-[20px] font-semibold text-[#141414] mb-4">Menu </p>
         <ul>
+
           <li className="mb-3">
             <NavLink
               to=""
-              className="flex items-center bg-gray-100 px-4 py-3 rounded-lg hover:bg-blue-100"
+              className="flex items-center bg-gray-100 px-4 py-3 rounded-lg hover:bg-blue-100 hover:bg-blue-100 "
             >
-              <CgProfile className="text-gray-700 " />
-              <span className="ml-4 text-gray-700  text-sm font-medium">
+              <CgProfile className="text-gray-700 hover:text-blue-500 text-[20px]" />
+              <span className="ml-4 text-gray-700 hover:text-blue-500 text-[18px] font-medium">
                 Profile
               </span>
             </NavLink>
@@ -44,8 +46,8 @@ export default function AsideProfile() {
               to="changePassword"
               className="flex items-center bg-gray-100 px-4 py-3 rounded-lg hover:bg-blue-100"
             >
-              <FaLock className="text-gray-700 hover:text-blue-500" />
-              <span className="ml-4 text-gray-700 hover:text-blue-500 text-sm font-medium">
+              <FaLock className="text-gray-700 hover:text-blue-500 text-[24px]" />
+              <span className="ml-4 text-gray-700 hover:text-blue-500 text-[18px] font-medium">
                 Change Password
               </span>
             </NavLink>
@@ -56,8 +58,8 @@ export default function AsideProfile() {
               to="termsCondition"
               className="flex items-center bg-gray-100 px-4 py-3 rounded-lg hover:bg-blue-100"
             >
-              <FaStickyNote className="text-gray-700 hover:text-blue-500" />
-              <span className="ml-4 text-gray-700 hover:text-blue-500 text-sm font-medium">
+              <FaStickyNote className="text-gray-700 hover:text-blue-500 text-[24px]" />
+              <span className="ml-4 text-gray-700 hover:text-blue-500 text-[18px] font-medium">
                 Terms & Condition
               </span>
             </NavLink>
@@ -68,8 +70,8 @@ export default function AsideProfile() {
               to="privacyPolicy"
               className="flex items-center bg-gray-100 px-4 py-3 rounded-lg hover:bg-blue-100"
             >
-              <SiSpringsecurity className="text-gray-700 hover:text-blue-500" />
-              <span className="ml-4 text-gray-700 hover:text-blue-500 text-sm font-medium">
+              <SiSpringsecurity className="text-gray-700 hover:text-blue-500 text-[24px]" />
+              <span className="ml-4 text-gray-700 hover:text-blue-500 text-[18px] font-medium">
                 Privacy Policy
               </span>
             </NavLink>
