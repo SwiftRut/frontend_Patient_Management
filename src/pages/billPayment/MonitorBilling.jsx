@@ -58,7 +58,7 @@ export default function MonitorBilling() {
             <div className="search-btn flex items-center">
               {/* Search Input */}
               <div className="search-btn flex">
-                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
                   <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
@@ -88,7 +88,7 @@ export default function MonitorBilling() {
                 className="btn flex items-center bg-[#0EABEB] rounded-lg px-4 py-2 ml-3"
                 onClick={() => navigate("/createbill")}
               >
-                <div className="icon bg-white text-blue-400 rounded-sm px-1 text-xl mr-2">
+                <div className="icon bg-white text-blue-400 rounded-sm w-5 h-5 text-xl mr-2">
                   <MdAdd />
                 </div>
                 <div className="text text-white font-semibold text-lg">
@@ -166,7 +166,7 @@ export default function MonitorBilling() {
                         className={`p-2 ${
                           bill.status === "Paid"
                             ? "bg-green-100 text-green-700"
-                            : "text-red-700"
+                            : "text-[#E11D29]"
                         } rounded-full text-center font-semibold m-3 `}
                       >
                         <h3 className="bg-red-100 p-2 rounded-full text-center text-lg font-semibold">

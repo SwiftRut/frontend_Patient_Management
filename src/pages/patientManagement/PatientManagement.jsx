@@ -110,10 +110,9 @@ export default function PatientManagement() {
 
   return (
     <>
-
-      <div className="patient-section p-4 bg-gray-100">
+      <div className="patient-section h-[93%] p-2 bg-gray-100">
         <div className="row">
-          <div className="main bg-white rounded-lg p-4 m-2 h-full">
+          <div className="main bg-white rounded-lg p-4  h-full">
             <div className="top-menu flex border-b border-gray-300 space-x-6">
               <button
                 className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
@@ -162,7 +161,7 @@ export default function PatientManagement() {
                 </div>
               </div>
             </div>
-            <div className="pr-data h-[80%] overflow-y-auto max-h-[calc(100vh-260px)] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+            <div className="pr-data h-[80%] overflow-y-auto max-h-[calc(100vh-249px)] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
               <table className="min-w-full table-auto">
                 <thead className="sticky top-0 bg-[#F6F8FB] z-10">
                   <tr>
@@ -220,18 +219,18 @@ export default function PatientManagement() {
                           <h3>{appointment.disease}</h3>
                         </td>
                         <td className="time p-3">
-                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full w-[70%] py-2 text-center text-lg font-semibold">
                             {appointment.time}
                           </h3>
                         </td>
-                        <td className="time p-3">
-                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                        <td className="time">
+                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full w-[70%] py-2 text-center text-lg font-semibold">
                             {appointment.type}
                           </h3>
                         </td>
                         <td className="action p-3">
                           <div
-                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-lg w-[45%] px-2 py-2 text-center text-lg font-semibold"
+                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-lg w-10 h-10 px-2 py-2 text-center text-lg font-semibold flex items-center justify-center"
                             onClick={() => openModal(appointment)}
                           >
                             <FaEye />

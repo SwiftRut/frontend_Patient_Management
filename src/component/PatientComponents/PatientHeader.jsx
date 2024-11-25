@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
-
+import { io } from "socket.io-client";
 import {
   Breadcrumbs,
   Typography,
@@ -29,7 +29,7 @@ import {
 } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 import { useAuth } from "../../hooks/useAuth";
-
+import NotificationBox from "../../NotificaitionBox";
 
 const PatientHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -37,11 +37,14 @@ const PatientHeader = () => {
   const { searchTerm, setSearchTerm } = useGlobal();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setserchOpen] = useState(false);
-  const { userData, getPatientProfile} = useGlobal();
-  const {user} = useAuth();
+  const { userData, getPatientProfile } = useGlobal();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [notifications, setNotifications] = useState([]);
+  // const [notifications, setNotifications] = useState([]);
+  const { notifications, setNotifications } = useGlobal();
+  console.log(notifications ,"<<<<notification");
+  
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -55,26 +58,134 @@ const PatientHeader = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     getPatientProfile(user.id);
-  },[])
+  }, []);
   // const user = {
   //   firstName: "Lincoln",
   //   lastName: "Philips",
   //   role: "doctor",
   // };
 
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  // const handleClose = (option) => {
+  //   if (option) {
+  //     setSelectedOption(option);
+  //   }
+  //   setAnchorEl(null);
+  // };
+
+  // Load initial notifications
+  useEffect(() => {
+    const loadNotifications = async () => {
+      if (!userData?.id) return;
+
+      setLoading(true);
+      try {
+        const response = await apiService.GetUserNotifications(userData.id);
+        setNotifications(response.data);
+        const unreadCount = response.data.filter((n) => !n.isRead).length;
+        setUnreadCount(unreadCount);
+      } catch (error) {
+        console.error("Error loading notifications:", error);
+        toast.error("Failed to load notifications");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadNotifications();
+  }, [userData]);
+
+  // Socket connection for real-time notifications
+  useEffect(() => {
+    const socket = io(import.meta.env.VITE_API_BASE_URL);
+
+    socket.emit("userOnline", userData.id);
+
+    socket.on("notification", (notification) => {
+      setNotifications((prev) => [
+        {
+          ...notification,
+          isRead: false,
+          timestamp: new Date(),
+        },
+        ...prev,
+      ]);
+      setUnreadCount((prev) => prev + 1);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [userData]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (option) => {
-    if (option) {
-      setSelectedOption(option);
-    }
+  const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const markAllAsRead = async () => {
+    try {
+      await apiService.MarkAllNotificationsAsRead(userData.id);
+      setNotifications((prev) =>
+        prev.map((notification) => ({ ...notification, isRead: true }))
+      );
+      setUnreadCount(0);
+    } catch (error) {
+      console.error("Error marking all as read:", error);
+      toast.error("Failed to mark notifications as read");
+    }
+  };
+
+  const handleNotificationClick = async (notification) => {
+    if (!notification.isRead) {
+      try {
+        await apiService.MarkNotificationAsRead(notification._id);
+        setNotifications((prev) =>
+          prev.map((n) =>
+            n._id === notification._id ? { ...n, isRead: true } : n
+          )
+        );
+        setUnreadCount((prev) => prev - 1);
+      } catch (error) {
+        console.error("Error marking notification as read:", error);
+      }
+    }
+    // Handle notification click action here (e.g., navigation)
+  };
+
+  const getNotificationIcon = (type) => {
+    switch (type?.toLowerCase()) {
+      case "success":
+        return <CheckCircleOutline className="text-green-500" />;
+      case "error":
+        return <ErrorOutline className="text-red-500" />;
+      case "warning":
+        return <InfoOutlined className="text-yellow-500" />;
+      default:
+        return <InfoOutlined className="text-blue-500" />;
+    }
+  };
+
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diff = now - date;
+
+    if (diff < 60000) return "Just now";
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+    return date.toLocaleDateString();
+  };
+
+  const open = Boolean(anchorEl);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -96,11 +207,13 @@ const PatientHeader = () => {
     }
     setDrawerOpen(open);
   };
-  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
+  const userName = `${userData?.firstName || "User"} ${
+    userData?.lastName || "Name"
+  }`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
 
-  const drawerContent =(
+  const drawerContent = (
     <div className="w-64 p-4">
       <List>
         <ListItem button component={Link} to="/patient">
@@ -217,9 +330,10 @@ const PatientHeader = () => {
           aria-label="notifications"
           className="hidden sm:inline-flex"
         >
-          <Badge badgeContent={4} color="secondary">
-            <Notifications />
+          <Badge  color="secondary">
+            <NotificationBox />
           </Badge>
+          
         </IconButton>
         <div className=" flex items-center ml-4">
           <Avatar src={userAvatar} alt="User Image" />
