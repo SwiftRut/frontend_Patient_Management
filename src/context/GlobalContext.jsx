@@ -443,9 +443,9 @@ export const GlobalProvider = ({ children }) => {
     try {
 
       await apiService.createAppointment(patientId, userData);
-      // onClickNotification(selectedDoctor.deviceToken, "New Appointment", "You have a new appointment");
+      onClickNotification(selectedDoctor.deviceToken, "New Appointment", "You have a new appointment");
       socket.emit('sendNotification', {
-        userId: patientId,
+        userId: patientId || user.id,
         message: `Your appointment has been booked.`,
         type: 'bill',
       });

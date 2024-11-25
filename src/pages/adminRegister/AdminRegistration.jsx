@@ -383,6 +383,16 @@ const AdminRegistration = () => {
                   required
                   className="w-full p-2 border border-gray-300 rounded-lg"
                 />
+                 <div
+                    className="absolute top-3 right-4 cursor-pointer"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <FaEye size={20} />
+                    ) : (
+                      <FaEyeSlash size={20} />
+                    )}
+                  </div>
               </div>
 
               <div className="flex items-center">
