@@ -110,30 +110,30 @@ export default function PatientManagement() {
 
   return (
     <>
-      <div className="patient-section h-[93%] p-2 bg-gray-100">
+      <div className="patient-section h-[92%] p-2 bg-gray-100">
         <div className="row">
           <div className="main bg-white rounded-lg p-4  h-full">
             <div className="top-menu flex border-b border-gray-300 space-x-6">
               <button
-                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("today")}
               >
                 Today Appointment
               </button>
               <button
-                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("upcoming")}
               >
                 Upcoming Appointment
               </button>
               <button
-                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("previous")}
               >
                 Previous Appointment
               </button>
               <button
-                className="text-xl text-gray-600 font-normal pb-5 focus:border-b-4 focus:border-blue-500 focus:text-blue-500"
+                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("cancelled")}
               >
                 Cancel Appointment
@@ -147,7 +147,7 @@ export default function PatientManagement() {
                 </h3>
               </div>
               <div className="search-btn flex">
-                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
                   <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>

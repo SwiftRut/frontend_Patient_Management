@@ -16,19 +16,19 @@ import {
   DialogTitle,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { 
-  Send, 
-  AttachFile, 
-  Image, 
-  VideoCall, 
-  Description, 
-  Close 
+import {
+  Send,
+  AttachFile,
+  Image,
+  VideoCall,
+  Description,
+  Close,
 } from "@mui/icons-material";
 import io from "socket.io-client";
 import toast from "react-hot-toast";
 import { useAuth } from "../../hooks/useAuth";
 import { useDoctor } from "../../hooks/useDoctor";
-import { usePatient } from "../../hooks/usePatient"
+import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
 // Initialize socket connection - replace with your API URL
 const socket = io(import.meta.env.VITE_API_BASE_URL);
@@ -48,7 +48,7 @@ const ChatScreen = () => {
     open: false,
     content: null,
     type: null,
-    fileName: null
+    fileName: null,
   });
 
   // Refs
@@ -60,7 +60,12 @@ const ChatScreen = () => {
   // Custom hooks
   const { getAllDoctors } = useDoctor();
   const { getAllPatients } = usePatient();
-  const { getChatHistory, getPatientContacts, getAppointmetnsForDoctor, allAppointments } = useGlobal();
+  const {
+    getChatHistory,
+    getPatientContacts,
+    getAppointmetnsForDoctor,
+    allAppointments,
+  } = useGlobal();
 
   // Fetch appointments
   useEffect(() => {
@@ -75,18 +80,23 @@ const ChatScreen = () => {
   // Process appointments into contacts
   useEffect(() => {
     if (allAppointments?.length > 0) {
-      const uniquePatients = Array.from(new Set(allAppointments.map(apt => apt.patientId._id)))
-        .map(patientId => {
-          const appointment = allAppointments.find(apt => apt.patientId._id === patientId);
-          return {
-            _id: appointment.patientId._id,
-            firstName: appointment.patientId.firstName,
-            lastName: appointment.patientId.lastName,
-            profile: appointment.patientId.avatar,
-            lastAppointment: new Date(appointment.appointmentTime).toLocaleDateString(),
-            email: appointment.patientId.email
-          };
-        });
+      const uniquePatients = Array.from(
+        new Set(allAppointments.map((apt) => apt.patientId._id))
+      ).map((patientId) => {
+        const appointment = allAppointments.find(
+          (apt) => apt.patientId._id === patientId
+        );
+        return {
+          _id: appointment.patientId._id,
+          firstName: appointment.patientId.firstName,
+          lastName: appointment.patientId.lastName,
+          profile: appointment.patientId.avatar,
+          lastAppointment: new Date(
+            appointment.appointmentTime
+          ).toLocaleDateString(),
+          email: appointment.patientId.email,
+        };
+      });
       setPatientContacts(uniquePatients);
       if (!selectedChat && uniquePatients.length > 0) {
         setSelectedChat(uniquePatients[0]);
@@ -155,8 +165,12 @@ const ChatScreen = () => {
 
     // Validate file type
     const allowedTypes = {
-      image: ['image/jpeg', 'image/png', 'image/gif'],
-      file: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+      image: ["image/jpeg", "image/png", "image/gif"],
+      file: [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ],
     };
 
     if (!allowedTypes[type].includes(file.type)) {
@@ -167,16 +181,16 @@ const ChatScreen = () => {
     try {
       // Convert file to base64
       const base64File = await fileToBase64(file);
-      
+
       setPreviewFile({
         file,
         type,
         base64: base64File,
-        preview: type === 'image' ? base64File : null
+        preview: type === "image" ? base64File : null,
       });
     } catch (error) {
-      console.error('File processing error:', error);
-      toast.error('Failed to process file');
+      console.error("File processing error:", error);
+      toast.error("Failed to process file");
     }
   };
 
@@ -197,10 +211,13 @@ const ChatScreen = () => {
         messageData.type = previewFile.type;
         messageData.fileUrl = previewFile.base64;
         messageData.fileName = previewFile.file.name;
-        messageData.fileSize = `${(previewFile.file.size / (1024 * 1024)).toFixed(2)} MB`;
+        messageData.fileSize = `${(
+          previewFile.file.size /
+          (1024 * 1024)
+        ).toFixed(2)} MB`;
         messageData.messageContent = messageInput.trim();
       } else {
-        messageData.type = 'text';
+        messageData.type = "text";
         messageData.messageContent = messageInput.trim();
       }
 
@@ -209,8 +226,8 @@ const ChatScreen = () => {
       setPreviewFile(null);
       scrollToBottom();
     } catch (error) {
-      console.error('Send message error:', error);
-      toast.error('Failed to send message');
+      console.error("Send message error:", error);
+      toast.error("Failed to send message");
     }
   };
 
@@ -220,14 +237,14 @@ const ChatScreen = () => {
 
     return (
       <div className="relative p-2 bg-gray-50 rounded-lg mb-2">
-        {previewFile.type === 'image' && (
-          <img 
-            src={previewFile.preview} 
-            alt="Preview" 
+        {previewFile.type === "image" && (
+          <img
+            src={previewFile.preview}
+            alt="Preview"
             className="max-h-32 rounded-lg"
           />
         )}
-        {previewFile.type === 'file' && (
+        {previewFile.type === "file" && (
           <div className="flex items-center space-x-2">
             <Description className="text-gray-500" />
             <span className="text-sm">{previewFile.file.name}</span>
@@ -249,29 +266,33 @@ const ChatScreen = () => {
       open: true,
       content,
       type,
-      fileName
+      fileName,
     });
   };
 
   const renderMessage = (msg, index) => (
     <div
       key={index}
-      className={`mb-2 ${msg?.senderId === doctorId ? "text-right" : "text-left"}`}
+      className={`mb-2 ${
+        msg?.senderId === doctorId ? "text-right" : "text-left"
+      }`}
     >
-      <div className={`inline-block max-w-md ${
-        msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
-      } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}>
-        {msg.type === 'text' && (
-          <p className="text-sm">{msg.messageContent}</p>
-        )}
-        
-        {msg.type === 'image' && (
+      <div
+        className={`inline-block max-w-md ${
+          msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
+        } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
+      >
+        {msg.type === "text" && <p className="text-sm">{msg.messageContent}</p>}
+
+        {msg.type === "image" && (
           <div className="relative group">
-            <img 
-              src={msg.fileUrl} 
-              alt="Shared image" 
+            <img
+              src={msg.fileUrl}
+              alt="Shared image"
               className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
-              onClick={() => handlePreviewClick(msg.fileUrl, 'image', msg.fileName)}
+              onClick={() =>
+                handlePreviewClick(msg.fileUrl, "image", msg.fileName)
+              }
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
               {msg.messageContent && (
@@ -282,12 +303,14 @@ const ChatScreen = () => {
             </div>
           </div>
         )}
-        
-        {msg.type === 'file' && (
+
+        {msg.type === "file" && (
           <div className="flex flex-col space-y-2">
-            <div 
+            <div
               className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
-              onClick={() => handlePreviewClick(msg.fileUrl, 'file', msg.fileName)}
+              onClick={() =>
+                handlePreviewClick(msg.fileUrl, "file", msg.fileName)
+              }
             >
               <Description className="text-gray-500" />
               <div>
@@ -302,7 +325,7 @@ const ChatScreen = () => {
             )}
           </div>
         )}
-        
+
         <p className="text-xs text-gray-500 mt-1">
           {new Date(msg.timestamp).toLocaleTimeString()}
         </p>
@@ -313,18 +336,24 @@ const ChatScreen = () => {
   const PreviewModal = () => (
     <Dialog
       open={previewModal.open}
-      onClose={() => setPreviewModal({ open: false, content: null, type: null })}
+      onClose={() =>
+        setPreviewModal({ open: false, content: null, type: null })
+      }
       maxWidth="lg"
       fullWidth
     >
       <DialogTitle className="flex justify-between items-center">
         {previewModal.fileName}
-        <IconButton onClick={() => setPreviewModal({ open: false, content: null, type: null })}>
+        <IconButton
+          onClick={() =>
+            setPreviewModal({ open: false, content: null, type: null })
+          }
+        >
           <Close />
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        {previewModal.type === 'image' ? (
+        {previewModal.type === "image" ? (
           <img
             src={previewModal.content}
             alt="Preview"
@@ -372,7 +401,10 @@ const ChatScreen = () => {
               selected={selectedChat?._id === contact._id}
             >
               <ListItemAvatar>
-                <Avatar src={contact.profile} alt={`${contact.firstName} ${contact.lastName}`} />
+                <Avatar
+                  src={contact.profile}
+                  alt={`${contact.firstName} ${contact.lastName}`}
+                />
               </ListItemAvatar>
               <ListItemText
                 primary={`${contact.firstName} ${contact.lastName}`}
@@ -391,9 +423,9 @@ const ChatScreen = () => {
           <>
             {/* Chat Header */}
             <div className="flex items-center mb-4">
-              <Avatar 
-                src={selectedChat.profile} 
-                alt={`${selectedChat.firstName} ${selectedChat.lastName}`} 
+              <Avatar
+                src={selectedChat.profile}
+                alt={`${selectedChat.firstName} ${selectedChat.lastName}`}
               />
               <div className="ml-4">
                 <h2 className="text-lg font-bold">
@@ -404,7 +436,10 @@ const ChatScreen = () => {
             </div>
 
             {/* Messages Container */}
-            <div ref={msgContainerRef} className="flex-1 overflow-y-scroll mb-4">
+            <div
+              ref={msgContainerRef}
+              className="flex-1 overflow-y-scroll mb-4"
+            >
               {messages.map((msg, index) => renderMessage(msg, index))}
             </div>
 
@@ -412,29 +447,31 @@ const ChatScreen = () => {
             <div className="mt-4">
               {/* File Preview */}
               <FilePreview />
-              
+
               {/* Message Input Area */}
-              <div className="flex items-center space-x-2">
-                <IconButton onClick={handleAttachClick}>
-                  <AttachFile />
-                </IconButton>
-                
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Type a message..."
-                  value={messageInput}
-                  onChange={(e) => setMessageInput(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      sendMessage();
-                    }
-                  }}
-                  multiline
-                  maxRows={4}
-                />
-                
+              <div className="flex items-center justify-between space-x-2 border">
+                <div>
+                  <IconButton onClick={handleAttachClick}>
+                    <AttachFile />
+                  </IconButton>
+
+                  <input
+                    fullWidth
+                    variant="outlined"
+                    placeholder="Type a message..."
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                      }
+                    }}
+                    multiline
+                    maxRows={4}
+                  />
+                </div>
+
                 <IconButton onClick={sendMessage} color="primary">
                   <Send />
                 </IconButton>
@@ -453,7 +490,7 @@ const ChatScreen = () => {
                       accept="image/*"
                       className="hidden"
                       onChange={(e) => {
-                        handleFileSelect(e, 'image');
+                        handleFileSelect(e, "image");
                         setAnchorEl(null);
                       }}
                     />
@@ -467,7 +504,7 @@ const ChatScreen = () => {
                       accept=".pdf,.doc,.docx"
                       className="hidden"
                       onChange={(e) => {
-                        handleFileSelect(e, 'file');
+                        handleFileSelect(e, "file");
                         setAnchorEl(null);
                       }}
                     />

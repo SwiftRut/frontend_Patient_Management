@@ -17,6 +17,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { GoHomeFill } from "react-icons/go";
 import { FaAngleRight } from "react-icons/fa6";
 import { RiSearchLine } from "react-icons/ri";
+import NotificationBox from "../../NotificaitionBox";
 
 const DoctorHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -125,10 +126,10 @@ const DoctorHeader = () => {
         <div className="flex items-center space-x-4">
           <button
             aria-label="notifications"
-            className="bg-gray-200 rounded-full p-2 mx-2"
+            // className="bg-gray-200 rounded-full p-2 mx-2 relative"
           >
-            <Badge badgeContent={4} color="secondary">
-              <Notifications />
+            <Badge color="secondary">
+              <NotificationBox />
             </Badge>
           </button>
           <NavLink to={"/doctor/profile"}>

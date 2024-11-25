@@ -187,7 +187,7 @@ export default function InsuranceClaims() {
     //     </div>
     //   </div>
     // </div>
-    <div className="insurance-section bg-[#F6F8FB] p-[20px]">
+    <div className="insurance-section bg-[#F6F8FB] p-[20px]  h-[93%]">
       <div className="row">
         <div className="main bg-white rounded-lg p-4 h-full mx-2">
           <div className="top flex justify-between items-center pb-5">
@@ -195,7 +195,7 @@ export default function InsuranceClaims() {
               <h3>Insurance Claims</h3>
             </div>
             <div className="search-btn flex">
-              <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+              <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
                 <div className="text-xl text-gray-700">
                   <CiSearch />
                 </div>
@@ -291,7 +291,7 @@ export default function InsuranceClaims() {
                         </td>
                         <td className="action p-2 text-center font-semibold">
                           <div
-                            className="view text-blue-500 bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
+                            className="view text-[#0EABEB] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
                             onClick={() => navigate(`/bill/${claim._id}`)}
                           >
                             <FaEye />

@@ -188,7 +188,7 @@ export default function MonitorBilling() {
                       </td>
                       <td className="action p-2 flex justify-center">
                         <div
-                          className="view text-blue-400 bg-gray-100 rounded-lg p-2 text-center cursor-pointer w-[40%] text-[#4F4F4F] text-lg font-semiboldf"
+                          className="view text-blue-400 bg-gray-100 rounded-lg p-2 text-center cursor-pointer w-[40%] flex items-center justify-center text-[#4F4F4F] text-lg font-semiboldf"
                           onClick={() => navigate(`/bill/${bill._id}`)}
                         >
                           <FaEye />

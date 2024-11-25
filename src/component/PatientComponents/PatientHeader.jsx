@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
-import { io } from "socket.io-client";
+
 import {
   Breadcrumbs,
   Typography,
@@ -41,10 +41,7 @@ const PatientHeader = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  // const [notifications, setNotifications] = useState([]);
-  const { notifications, setNotifications } = useGlobal();
-  console.log(notifications ,"<<<<notification");
-  
+  const [notifications, setNotifications] = useState([]);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -67,125 +64,16 @@ const PatientHeader = () => {
   //   role: "doctor",
   // };
 
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = (option) => {
-  //   if (option) {
-  //     setSelectedOption(option);
-  //   }
-  //   setAnchorEl(null);
-  // };
-
-  // Load initial notifications
-  useEffect(() => {
-    const loadNotifications = async () => {
-      if (!userData?.id) return;
-
-      setLoading(true);
-      try {
-        const response = await apiService.GetUserNotifications(userData.id);
-        setNotifications(response.data);
-        const unreadCount = response.data.filter((n) => !n.isRead).length;
-        setUnreadCount(unreadCount);
-      } catch (error) {
-        console.error("Error loading notifications:", error);
-        toast.error("Failed to load notifications");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadNotifications();
-  }, [userData]);
-
-  // Socket connection for real-time notifications
-  useEffect(() => {
-    const socket = io(import.meta.env.VITE_API_BASE_URL);
-
-    socket.emit("userOnline", userData.id);
-
-    socket.on("notification", (notification) => {
-      setNotifications((prev) => [
-        {
-          ...notification,
-          isRead: false,
-          timestamp: new Date(),
-        },
-        ...prev,
-      ]);
-      setUnreadCount((prev) => prev + 1);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [userData]);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (option) => {
+    if (option) {
+      setSelectedOption(option);
+    }
     setAnchorEl(null);
   };
-
-  const markAllAsRead = async () => {
-    try {
-      await apiService.MarkAllNotificationsAsRead(userData.id);
-      setNotifications((prev) =>
-        prev.map((notification) => ({ ...notification, isRead: true }))
-      );
-      setUnreadCount(0);
-    } catch (error) {
-      console.error("Error marking all as read:", error);
-      toast.error("Failed to mark notifications as read");
-    }
-  };
-
-  const handleNotificationClick = async (notification) => {
-    if (!notification.isRead) {
-      try {
-        await apiService.MarkNotificationAsRead(notification._id);
-        setNotifications((prev) =>
-          prev.map((n) =>
-            n._id === notification._id ? { ...n, isRead: true } : n
-          )
-        );
-        setUnreadCount((prev) => prev - 1);
-      } catch (error) {
-        console.error("Error marking notification as read:", error);
-      }
-    }
-    // Handle notification click action here (e.g., navigation)
-  };
-
-  const getNotificationIcon = (type) => {
-    switch (type?.toLowerCase()) {
-      case "success":
-        return <CheckCircleOutline className="text-green-500" />;
-      case "error":
-        return <ErrorOutline className="text-red-500" />;
-      case "warning":
-        return <InfoOutlined className="text-yellow-500" />;
-      default:
-        return <InfoOutlined className="text-blue-500" />;
-    }
-  };
-
-  const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diff = now - date;
-
-    if (diff < 60000) return "Just now";
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    return date.toLocaleDateString();
-  };
-
-  const open = Boolean(anchorEl);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -326,15 +214,14 @@ const PatientHeader = () => {
           </div>
         </div>
 
-        <IconButton
+        <button
           aria-label="notifications"
-          className="hidden sm:inline-flex"
+          // className="bg-gray-200 rounded-full p-2 mx-2 relative"
         >
-          <Badge  color="secondary">
+          <Badge color="secondary">
             <NotificationBox />
           </Badge>
-          
-        </IconButton>
+        </button>
         <div className=" flex items-center ml-4">
           <Avatar src={userAvatar} alt="User Image" />
           <div className="hidden sm:inline-block sm:ml-2">
