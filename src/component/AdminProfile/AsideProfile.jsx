@@ -7,6 +7,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 
 export default function AsideProfile() {
   const { userData } = useGlobal();
+  const { userData } = useGlobal();
   return (
     <div className="left w-[23%]  border-r-[3px] border-gray-200 px-5 py-4">
 

@@ -42,22 +42,17 @@ const DoctorAdd = () => {
   console.log(formData)
   
   const handleChange = (e) => {
-    console.log("IONASD")
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
 
-
     if (name === "country") {
-      console.log("hii");
-      
       const selectedCountry = countries.find(country => country.isoCode === value);
-      console.log(selectedCountry)
-      setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
-      setFormData(prevData => ({ ...prevData, state: "", city: "" })); // Reset state and city
       setIsoCodes(selectedCountry.phonecode); // Set isoCode for use in the next step
+      setFormData(prevData => ({ ...prevData, state: "", city: "", countryCode: `+${selectedCountry.phonecode}` })); // Set formatted country code
+      setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
       setCities([]); // Clear cities
     } else if (name === "state") {
       const selectedState = states.find(state => state.isoCode === value);
@@ -147,8 +142,7 @@ const DoctorAdd = () => {
     const cityObj = City.getCitiesOfState(formData.country, formData.state).find(city => city.name === formData.city);
     const cityName = cityObj?.name;
   
-    console.log("Form Data:", formData.city, formData.country, formData.state);
-    console.log("Resolved Names:", cityName, countryName, stateName, "<<<<<<<<<<<<<< this is submitted");
+    console.log(">>>>formdata",formData)
     
     if (!countryName || !stateName || !cityName) {
       toast.error("Please select a valid country, state, and city.");

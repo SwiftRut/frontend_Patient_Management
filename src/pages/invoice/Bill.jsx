@@ -70,7 +70,7 @@ export default function Bill() {
               </div>
             </div>
             <div className="invoice__patient bg-gray-100 p-4 rounded-lg flex justify-between">
-              <div>
+              <div className="space-y-1">
                 <p className="text-sm font-semibold text-[#141414]">
                   Name:{" "}
                   <span className="text-sm text-[#818194] font-semibold ml-3">
@@ -97,7 +97,7 @@ export default function Bill() {
                   </span>
                 </p>
               </div>
-              <div>
+              <div className="space-y-1">
                 <p className="text-sm font-semibold text-[#141414]">
                   Disease Name:{" "}
                   <span className="text-sm text-[#818194] font-semibold ml-3">

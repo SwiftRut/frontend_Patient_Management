@@ -19,11 +19,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="bg-white text-gray-400 w-[15%] h-screen fixed top-0 left-0">
+      <div className="bg-white text-gray-400 w-[15%] h-screen fixed top-0 left-0 border border-r">
         <div className="logo font-bold mb-4 p-3">
           <img src="/img/logo.png" alt="Logo" className="w-3/4 h-auto" />
         </div>
-        <div className="menu flex flex-col h-[80%] justify-between">
+        <div className="menu flex flex-col h-[84%] justify-between">
           <ul className="space-y-2">
             <li>
               <NavLink

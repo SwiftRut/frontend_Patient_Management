@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function PatientDetails({ patient, closeModal }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-[20%]">
+      <div className="bg-white p-3 rounded-lg shadow-lg w-[20%]">
         <div className="patientdetails-section">
           <div className="row">
             <div className="details bg-white rounded-lg p-5">
@@ -28,7 +28,9 @@ export default function PatientDetails({ patient, closeModal }) {
                     <p className="text-lg font-medium text-gray-900">{`${patient.firstName} ${patient.lastName}`}</p>
                   </li>
                   <li className="flex justify-between">
-                    <h3 className="text-lg font-semibold text-gray-600">Email</h3>
+                    <h3 className="text-lg font-semibold text-gray-600">
+                      Email
+                    </h3>
                     <p className="text-lg font-medium text-gray-900">
                       {patient.email}
                     </p>
@@ -48,7 +50,9 @@ export default function PatientDetails({ patient, closeModal }) {
                     </p>
                   </li>
                   <li className="flex justify-between py-2">
-                    <h3 className="text-lg font-semibold text-gray-600">Gender</h3>
+                    <h3 className="text-lg font-semibold text-gray-600">
+                      Gender
+                    </h3>
                     <p className="text-lg font-medium text-gray-900">
                       {patient.gender}
                     </p>

@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
-import { useGlobal } from './hooks/useGlobal';
-import { useAuth } from './hooks/useAuth';
-import apiService from './services/api';
+import React, { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import { useGlobal } from "./hooks/useGlobal";
+import { useAuth } from "./hooks/useAuth";
+import apiService from "./services/api";
+import { MdOutlineBookmarkAdded } from "react-icons/md";
+import { IoCloseCircle } from "react-icons/io5";
+import { LuMessagesSquare } from "react-icons/lu";
 import {
   Badge,
   IconButton,
@@ -14,17 +17,17 @@ import {
   Button,
   Box,
   Divider,
-  CircularProgress
-} from '@mui/material';
+  CircularProgress,
+} from "@mui/material";
 import {
   NotificationsOutlined,
   Circle as CircleIcon,
   CheckCircleOutline,
   ErrorOutline,
   InfoOutlined,
-  Close as CloseIcon
-} from '@mui/icons-material';
-import { toast } from 'react-hot-toast';
+  Close as CloseIcon,
+} from "@mui/icons-material";
+import { toast } from "react-hot-toast";
 
 const NotificationBox = () => {
   const [unreadCount, setUnreadCount] = useState(0);
@@ -37,16 +40,16 @@ const NotificationBox = () => {
   useEffect(() => {
     const loadNotifications = async () => {
       if (!userData?.id) return;
-      
+
       setLoading(true);
       try {
         const response = await apiService.GetUserNotifications(userData.id);
         setNotifications(response.data);
-        const unreadCount = response.data.filter(n => !n.isRead).length;
+        const unreadCount = response.data.filter((n) => !n.isRead).length;
         setUnreadCount(unreadCount);
       } catch (error) {
-        console.error('Error loading notifications:', error);
-        toast.error('Failed to load notifications');
+        console.error("Error loading notifications:", error);
+        toast.error("Failed to load notifications");
       } finally {
         setLoading(false);
       }
@@ -59,14 +62,17 @@ const NotificationBox = () => {
   useEffect(() => {
     const socket = io(import.meta.env.VITE_API_BASE_URL);
 
-    socket.emit('userOnline', userData.id);
+    socket.emit("userOnline", userData.id);
 
-    socket.on('notification', (notification) => {
-      setNotifications((prev) => [{
-        ...notification,
-        isRead: false,
-        timestamp: new Date(),
-      }, ...prev]);
+    socket.on("notification", (notification) => {
+      setNotifications((prev) => [
+        {
+          ...notification,
+          isRead: false,
+          timestamp: new Date(),
+        },
+        ...prev,
+      ]);
       setUnreadCount((prev) => prev + 1);
     });
 
@@ -86,13 +92,13 @@ const NotificationBox = () => {
   const markAllAsRead = async () => {
     try {
       await apiService.MarkAllNotificationsAsRead(userData.id);
-      setNotifications(prev => 
-        prev.map(notification => ({ ...notification, isRead: true }))
+      setNotifications((prev) =>
+        prev.map((notification) => ({ ...notification, isRead: true }))
       );
       setUnreadCount(0);
     } catch (error) {
-      console.error('Error marking all as read:', error);
-      toast.error('Failed to mark notifications as read');
+      console.error("Error marking all as read:", error);
+      toast.error("Failed to mark notifications as read");
     }
   };
 
@@ -100,14 +106,14 @@ const NotificationBox = () => {
     if (!notification.isRead) {
       try {
         await apiService.MarkNotificationAsRead(notification._id);
-        setNotifications(prev =>
-          prev.map(n =>
+        setNotifications((prev) =>
+          prev.map((n) =>
             n._id === notification._id ? { ...n, isRead: true } : n
           )
         );
-        setUnreadCount(prev => prev - 1);
+        setUnreadCount((prev) => prev - 1);
       } catch (error) {
-        console.error('Error marking notification as read:', error);
+        console.error("Error marking notification as read:", error);
       }
     }
     // Handle notification click action here (e.g., navigation)
@@ -115,14 +121,14 @@ const NotificationBox = () => {
 
   const getNotificationIcon = (type) => {
     switch (type?.toLowerCase()) {
-      case 'success':
+      case "success":
         return <CheckCircleOutline className="text-green-500" />;
-      case 'error':
+      case "error":
         return <ErrorOutline className="text-red-500" />;
-      case 'warning':
+      case "warning":
         return <InfoOutlined className="text-yellow-500" />;
       default:
-        return <InfoOutlined className="text-blue-500" />;
+        return <InfoOutlined className="text-[#0EABEB]" />;
     }
   };
 
@@ -130,8 +136,8 @@ const NotificationBox = () => {
     const date = new Date(timestamp);
     const now = new Date();
     const diff = now - date;
-    
-    if (diff < 60000) return 'Just now';
+
+    if (diff < 60000) return "Just now";
     if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
     if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
     return date.toLocaleDateString();
@@ -150,36 +156,39 @@ const NotificationBox = () => {
       <Popover
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+          vertical: "bottom",
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         PaperProps={{
-          className: 'w-80 max-h-[500px]'
+          className: "w-100 h-[500px]",
         }}
       >
         <Box className="p-2">
           <div className="flex justify-between items-center mb-2 px-2">
-            <Typography variant="h6" className="font-semibold">
+            <h2 className="font-bold text-[#030229] text-[20px]">
               Notifications
-            </Typography>
+            </h2>
             {unreadCount > 0 && (
-              <Button
-                size="small"
-                onClick={markAllAsRead}
-                className="text-blue-500 hover:bg-blue-50"
-              >
-                Mark all as read
-              </Button>
+              <div>
+                <button
+                  onClick={markAllAsRead}
+                  className="text-blue-500 hover:bg-blue-50 text-lg"
+                >
+                  <MdOutlineBookmarkAdded />
+                </button>
+                <button className="ms-2 text-lg text-red-500">
+                  <IoCloseCircle onClick={handleClose} />
+                </button>
+              </div>
             )}
           </div>
           <Divider />
-          
+
           <List className="p-0">
             {loading ? (
               <ListItem>
@@ -190,11 +199,11 @@ const NotificationBox = () => {
                 <ListItem
                   key={notification._id}
                   className={`hover:bg-gray-50 cursor-pointer ${
-                    !notification.isRead ? 'bg-blue-50' : ''
+                    !notification.isRead ? "bg-blue-50" : ""
                   }`}
                   onClick={() => handleNotificationClick(notification)}
                 >
-                  <div className="flex items-start space-x-2">
+                  {/* <div className="flex items-start space-x-2">
                     {getNotificationIcon(notification.type)}
                     <ListItemText
                       primary={
@@ -213,6 +222,23 @@ const NotificationBox = () => {
                         </div>
                       }
                     />
+                  </div> */}
+                  <div className="flex items-start space-x-1 border-b p-2 ">
+                    <div className="w-10 h-10 bg-[#c3eafa] rounded-full flex justify-center items-center">
+                      {getNotificationIcon(notification.type)}
+                    </div>
+
+                    <div>
+                      <div className="font-medium text-xs">
+                        {notification.message}
+                      </div>
+                      <div className="flex justify-between items-center text-gray-500 text-xs">
+                        <span className="text-[#5678E9]">
+                          {notification.type}
+                        </span>
+                        <span>{formatTimestamp(notification.createdAt)}</span>
+                      </div>
+                    </div>
                   </div>
                 </ListItem>
               ))
