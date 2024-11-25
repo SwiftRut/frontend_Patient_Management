@@ -11,6 +11,9 @@ import {
   Tooltip,
   Menu,
   MenuItem,
+  Dialog,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -41,6 +44,12 @@ const ChatScreen1 = () => {
   const messagesEndRef = useRef(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [previewFile, setPreviewFile] = useState(null);
+  const [previewModal, setPreviewModal] = useState({
+    open: false,
+    content: null,
+    type: null,
+    fileName: null
+  });
 
   // Fetch appointments on component mount
   useEffect(() => {
@@ -247,7 +256,17 @@ const ChatScreen1 = () => {
     );
   };
 
-  // Update the message rendering section
+  // Add this function to handle preview clicks
+  const handlePreviewClick = (content, type, fileName) => {
+    setPreviewModal({
+      open: true,
+      content,
+      type,
+      fileName
+    });
+  };
+
+  // Update the renderMessage function
   const renderMessage = (msg, index) => (
     <div
       key={index}
@@ -266,7 +285,7 @@ const ChatScreen1 = () => {
               src={msg.fileUrl} 
               alt="Shared image" 
               className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
-              onClick={() => window.open(msg.fileUrl, '_blank')}
+              onClick={() => handlePreviewClick(msg.fileUrl, 'image', msg.fileName)}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
               {msg.messageContent && (
@@ -280,17 +299,15 @@ const ChatScreen1 = () => {
         
         {msg.type === 'file' && (
           <div className="flex flex-col space-y-2">
-            <div className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50">
+            <div 
+              className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+              onClick={() => handlePreviewClick(msg.fileUrl, 'file', msg.fileName)}
+            >
               <Description className="text-gray-500" />
               <div>
-                <a 
-                  href={msg.fileUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
+                <span className="text-blue-500 hover:underline">
                   {msg.fileName}
-                </a>
+                </span>
                 <p className="text-xs text-gray-500">{msg.fileSize}</p>
               </div>
             </div>
@@ -305,6 +322,40 @@ const ChatScreen1 = () => {
         </p>
       </div>
     </div>
+  );
+
+  // Add this preview modal component before the return statement
+  const PreviewModal = () => (
+    <Dialog
+      open={previewModal.open}
+      onClose={() => setPreviewModal({ open: false, content: null, type: null })}
+      maxWidth="lg"
+      fullWidth
+    >
+      <DialogTitle className="flex justify-between items-center">
+        {previewModal.fileName}
+        <IconButton onClick={() => setPreviewModal({ open: false, content: null, type: null })}>
+          <Close />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent>
+        {previewModal.type === 'image' ? (
+          <img
+            src={previewModal.content}
+            alt="Preview"
+            className="w-full h-auto"
+          />
+        ) : (
+          <iframe
+            src={previewModal.content}
+            title="Document Preview"
+            width="100%"
+            height="600px"
+            className="border-0"
+          />
+        )}
+      </DialogContent>
+    </Dialog>
   );
 
   return (
@@ -453,6 +504,7 @@ const ChatScreen1 = () => {
           </div>
         )}
       </div>
+      <PreviewModal />
     </div>
   );
 };

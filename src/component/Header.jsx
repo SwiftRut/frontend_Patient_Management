@@ -113,23 +113,23 @@ const Header = () => {
   console.log("image", userData);
 
   return (
-    <div class="header sticky top-0 bg-white z-10 flex items-center justify-between p-2">
-      <div class="breadcrumbs flex items-center space-x-2 text-gray-600">
+    <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-2">
+      <div className="breadcrumbs flex items-center space-x-2 text-gray-600">
         <IoHomeSharp />
-        <IoIosArrowForward class="icon" />
+        <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
           <NavLink to="/">
-            <Typography variant="body2" color="inherit" class="text-sm">
+            <Typography variant="body2" color="inherit" className="text-sm">
               Home
             </Typography>
           </NavLink>
-          <Typography variant="body2" color="text-primary" class="text-sm">
+          <Typography variant="body2" color="text-primary" className="text-sm">
             {breadcrumbNames[location.pathname.split("/")[1]] || "Page"}
           </Typography>
         </Breadcrumbs>
       </div>
 
-      <div class="flex justify-between items-center mt-4">
+      <div className="flex justify-between items-center mt-4">
         <div className="flex items-right items-center bg-gray-100 rounded-full px-4">
           <RiSearchLine className="text-[#4F4F4F] text-xl me-2" />
           <InputBase

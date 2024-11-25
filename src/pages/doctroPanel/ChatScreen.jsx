@@ -11,6 +11,9 @@ import {
   Tooltip,
   Menu,
   MenuItem,
+  Dialog,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { 
@@ -41,6 +44,12 @@ const ChatScreen = () => {
   const [patientContacts, setPatientContacts] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [previewFile, setPreviewFile] = useState(null);
+  const [previewModal, setPreviewModal] = useState({
+    open: false,
+    content: null,
+    type: null,
+    fileName: null
+  });
 
   // Refs
   const msgContainerRef = useRef(null);
@@ -235,6 +244,105 @@ const ChatScreen = () => {
     );
   };
 
+  const handlePreviewClick = (content, type, fileName) => {
+    setPreviewModal({
+      open: true,
+      content,
+      type,
+      fileName
+    });
+  };
+
+  const renderMessage = (msg, index) => (
+    <div
+      key={index}
+      className={`mb-2 ${msg?.senderId === doctorId ? "text-right" : "text-left"}`}
+    >
+      <div className={`inline-block max-w-md ${
+        msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
+      } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}>
+        {msg.type === 'text' && (
+          <p className="text-sm">{msg.messageContent}</p>
+        )}
+        
+        {msg.type === 'image' && (
+          <div className="relative group">
+            <img 
+              src={msg.fileUrl} 
+              alt="Shared image" 
+              className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
+              onClick={() => handlePreviewClick(msg.fileUrl, 'image', msg.fileName)}
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
+              {msg.messageContent && (
+                <p className="text-sm mb-1">{msg.messageContent}</p>
+              )}
+              <p className="text-xs">{msg.fileName}</p>
+              <p className="text-xs">{msg.fileSize}</p>
+            </div>
+          </div>
+        )}
+        
+        {msg.type === 'file' && (
+          <div className="flex flex-col space-y-2">
+            <div 
+              className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+              onClick={() => handlePreviewClick(msg.fileUrl, 'file', msg.fileName)}
+            >
+              <Description className="text-gray-500" />
+              <div>
+                <span className="text-blue-500 hover:underline">
+                  {msg.fileName}
+                </span>
+                <p className="text-xs text-gray-500">{msg.fileSize}</p>
+              </div>
+            </div>
+            {msg.messageContent && (
+              <p className="text-sm">{msg.messageContent}</p>
+            )}
+          </div>
+        )}
+        
+        <p className="text-xs text-gray-500 mt-1">
+          {new Date(msg.timestamp).toLocaleTimeString()}
+        </p>
+      </div>
+    </div>
+  );
+
+  const PreviewModal = () => (
+    <Dialog
+      open={previewModal.open}
+      onClose={() => setPreviewModal({ open: false, content: null, type: null })}
+      maxWidth="lg"
+      fullWidth
+    >
+      <DialogTitle className="flex justify-between items-center">
+        {previewModal.fileName}
+        <IconButton onClick={() => setPreviewModal({ open: false, content: null, type: null })}>
+          <Close />
+        </IconButton>
+      </DialogTitle>
+      <DialogContent>
+        {previewModal.type === 'image' ? (
+          <img
+            src={previewModal.content}
+            alt="Preview"
+            className="w-full h-auto"
+          />
+        ) : (
+          <iframe
+            src={previewModal.content}
+            title="Document Preview"
+            width="100%"
+            height="600px"
+            className="border-0"
+          />
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
       {/* Contact List */}
@@ -297,64 +405,7 @@ const ChatScreen = () => {
 
             {/* Messages Container */}
             <div ref={msgContainerRef} className="flex-1 overflow-y-scroll mb-4">
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`mb-2 ${msg?.senderId === doctorId ? "text-right" : "text-left"}`}
-                >
-                  <div className={`inline-block max-w-md ${
-                    msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
-                  } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}>
-                    {msg.type === 'text' && (
-                      <p className="text-sm">{msg.messageContent}</p>
-                    )}
-                    
-                    {msg.type === 'image' && (
-                      <div className="relative group">
-                        <img 
-                          src={msg.fileUrl} 
-                          alt="Shared image" 
-                          className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
-                          onClick={() => window.open(msg.fileUrl, '_blank')}
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                          {msg.messageContent && (
-                            <p className="text-sm mb-1">{msg.messageContent}</p>
-                          )}
-                          <p className="text-xs">{msg.fileName}</p>
-                          <p className="text-xs">{msg.fileSize}</p>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {msg.type === 'file' && (
-                      <div className="flex flex-col space-y-2">
-                        <div className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50">
-                          <Description className="text-gray-500" />
-                          <div>
-                            <a 
-                              href={msg.fileUrl} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="text-blue-500 hover:underline"
-                            >
-                              {msg.fileName}
-                            </a>
-                            <p className="text-xs text-gray-500">{msg.fileSize}</p>
-                          </div>
-                        </div>
-                        {msg.messageContent && (
-                          <p className="text-sm">{msg.messageContent}</p>
-                        )}
-                      </div>
-                    )}
-                    
-                    <p className="text-xs text-gray-500 mt-1">
-                      {new Date(msg.timestamp).toLocaleTimeString()}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              {messages.map((msg, index) => renderMessage(msg, index))}
             </div>
 
             {/* Input Area */}
@@ -432,6 +483,8 @@ const ChatScreen = () => {
           </div>
         )}
       </div>
+
+      <PreviewModal />
     </div>
   );
 };
