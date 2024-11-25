@@ -96,34 +96,34 @@ const Dashboard = () => {
                 <div className="total-data flex justify-between items-center mb-4">
                   <div className="total-Patients w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo w-12 h-12 rounded-full bg-[#2e779326] flex justify-center items-center">
+                      <div className="logo w-[60px] h-12 rounded-full bg-[#2e779326] flex justify-center items-center">
                         <FaUsers className="text-[#2e7793] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-gray-400 text-sm font-normal">Total Patients</p>
-                        <span className="block text-[#030229] text-2xl font-extrabold">{totalPatients}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Patients</p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalPatients}</span>
                       </div>
                     </div>
                   </div>
                   <div className="total-Docters w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo dr-logo w-12 h-12 rounded-full bg-[#5e5e9e26] flex justify-center items-center">
+                      <div className="logo dr-logo ww-[60px] h-12 rounded-full bg-[#5e5e9e26] flex justify-center items-center">
                         <FaUser className="text-[#5e5e9e] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-gray-400 text-sm font-normal">Total Doctors</p>
-                        <span className="block text-[#030229] text-2xl font-extrabold">{totalDoctors}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Doctors</p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalDoctors}</span>
                       </div>
                     </div>
                   </div>
                   <div className="total-Appointments w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo appo-logo w-12 h-12 rounded-full bg-[#41b16126] flex justify-center items-center">
+                      <div className="logo appo-logo ww-[60px] h-12 rounded-full bg-[#41b16126] flex justify-center items-center">
                         <FaFileAlt className="text-[#41b161] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-gray-400 text-sm font-normal">Total Appointments</p>
-                        <span className="block text-[#030229] text-2xl font-extrabold">{totalAppointments}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Appointments</p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalAppointments}</span>
                       </div>
                     </div>
                   </div>
