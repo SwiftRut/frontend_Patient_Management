@@ -78,7 +78,6 @@ const DoctorEdit = () => {
     };
     fetchDoctor();
   }, [doctorId]);
-
   const validateField = (name, value) => {
     switch (name) {
       case 'name':
@@ -264,7 +263,6 @@ const DoctorEdit = () => {
       toast.error("Error updating doctor");
     }
   };
-
   const handleSignatureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
