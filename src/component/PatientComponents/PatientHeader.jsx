@@ -41,6 +41,7 @@ const PatientHeader = () => {
   const {user} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [notifications, setNotifications] = useState([]);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);

@@ -27,7 +27,7 @@ const Calendar = ({ filterData, selectedDoctor }) => {
     getAppointmetnsForPatient,
   } = useGlobal();
   const { user } = useAuth();
-
+  console.log(user,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");  
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
@@ -65,8 +65,10 @@ const Calendar = ({ filterData, selectedDoctor }) => {
     setSelectedEvent(null);
   };
   const handleBookAppointment = async (appointmentData) => {
+
+    console.log(user.id,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< from handel");
     try {
-      await createAppointment(user.id, appointmentData, selectedDoctor);
+      await createAppointment(user?.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();
       navigate("/patient/appointment");

@@ -23,6 +23,7 @@ const SendNotificationForm = () => {
                 setMessage('Notification sent successfully!');
                 // Generate a new FCM token
                 await createNewFCM();
+                refereshFCMToken();
                 setBody('');
                 setTitle('');
             } else {
