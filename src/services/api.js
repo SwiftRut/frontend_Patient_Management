@@ -100,7 +100,11 @@ const   apiService = {
   AddUnavailableTime: (doctorId, data) => api.post(`/doctor/${doctorId}/unavailable-times`, data),
 
   // Notification
-  GetNotifications: (data) => api.post(`/notification/sendNotification`,data),
+  GetNotifications: (data) => api.post(`/notification/sendNotification`, data),
+  GetUserNotifications: (userId) => api.get(`/notification/getnotificationforuser/${userId}`),
+  MarkNotificationAsRead: (notificationId) => api.put(`/notification/markAsRead/${notificationId}`),
+  MarkAllNotificationsAsRead: (userId) => api.put(`/notification/markAllAsRead/${userId}`),
+  DeleteNotification: (notificationId) => api.delete(`/notification/deletenotification/${notificationId}`),
 
   // Token
   UpdateDoctorToken: (data) => api.post(`/notification/updateDoctor`, data),

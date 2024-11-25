@@ -135,7 +135,7 @@ export const GlobalProvider = ({ children }) => {
 
   const createHospital = async (userData) => {
     try {
-      const response = await apiService.CreateHospital(userData);
+      await apiService.CreateHospital(userData);
       toast.success("Hospital created successfully");
     } catch (error) {
       console.error("Error creating hospital:", error);
@@ -664,6 +664,8 @@ export const GlobalProvider = ({ children }) => {
         createNewFCM,
         getNotifications,
         onClickNotification,
+        notifications,
+        setNotifications,
       }}
     >
       {children}
