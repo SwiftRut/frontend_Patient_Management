@@ -142,7 +142,7 @@ const DoctorAdd = () => {
     const cityObj = City.getCitiesOfState(formData.country, formData.state).find(city => city.name === formData.city);
     const cityName = cityObj?.name;
   
-    console.log(">>>>formdata",formData)
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>formdata",formData)
     
     if (!countryName || !stateName || !cityName) {
       toast.error("Please select a valid country, state, and city.");
