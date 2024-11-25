@@ -19,6 +19,7 @@ import { useAuth } from "../hooks/useAuth";
 import { IoHomeSharp } from "react-icons/io5";
 import { RiSearchLine } from "react-icons/ri";
 import { IoCloseCircle } from "react-icons/io5";
+import NotificationBox from "../NotificaitionBox";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -30,53 +31,52 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const notifications = [
-    {
-      id: 1,
-      type: "invoice",
-      title: "Change Invoice Theme",
-      description: "Lincoln Philips Change Invoice Theme.",
-      time: "5 min ago",
-    },
-    {
-      id: 2,
-      type: "invoice",
-      title: "Dr.Bharat",
-      description: "Created Bill by dr.bharat.",
-      time: "5 min ago",
-    },
-    {
-      id: 3,
-      type: "payment",
-      title: "Payment Received.",
-      description: "24,668 is the payment done of Miracle Center.",
-      time: "1:52PM",
-      status: "paid",
-    },
-    {
-      id: 4,
-      type: "payment",
-      title: "Payment Cancelled.",
-      description: "24,688 is the payment Cancelled of Miracle Center.",
-      time: "1:52PM",
-      status: "cancelled",
-    },
-    {
-      id: 5,
-      type: "profile",
-      title: "Lincoln Philips",
-      description:
-        "Dr.Bharat Patel has been appointed to work with Successfully In Hospital.",
-      time: "1:34PM",
-    },
-    {
-      id: 6,
-      type: "profile",
-      title: "Lincoln Philips",
-      description: "Doctor Removed Rakesh Patel.",
-      time: "9:00AM",
-    },
-  ];
+  //   {
+  //     id: 1,
+  //     type: "invoice",
+  //     title: "Change Invoice Theme",
+  //     description: "Lincoln Philips Change Invoice Theme.",
+  //     time: "5 min ago",
+  //   },
+  //   {
+  //     id: 2,
+  //     type: "invoice",
+  //     title: "Dr.Bharat",
+  //     description: "Created Bill by dr.bharat.",
+  //     time: "5 min ago",
+  //   },
+  //   {
+  //     id: 3,
+  //     type: "payment",
+  //     title: "Payment Received.",
+  //     description: "24,668 is the payment done of Miracle Center.",
+  //     time: "1:52PM",
+  //     status: "paid",
+  //   },
+  //   {
+  //     id: 4,
+  //     type: "payment",
+  //     title: "Payment Cancelled.",
+  //     description: "24,688 is the payment Cancelled of Miracle Center.",
+  //     time: "1:52PM",
+  //     status: "cancelled",
+  //   },
+  //   {
+  //     id: 5,
+  //     type: "profile",
+  //     title: "Lincoln Philips",
+  //     description:
+  //       "Dr.Bharat Patel has been appointed to work with Successfully In Hospital.",
+  //     time: "1:34PM",
+  //   },
+  //   {
+  //     id: 6,
+  //     type: "profile",
+  //     title: "Lincoln Philips",
+  //     description: "Doctor Removed Rakesh Patel.",
+  //     time: "9:00AM",
+  //   },
+  // ];
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -114,7 +114,7 @@ const Header = () => {
 
   return (
     <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-2">
-      <div className="breadcrumbs flex items-center space-x-2 text-gray-600">
+      <div className="breadcrumbs flex items-center space-x-2 text-gray-600 bg-[#f8fcfe] border rounded-full py-2 px-3 text-lg font-normal">
         <IoHomeSharp />
         <IoIosArrowForward className="icon" />
         <Breadcrumbs aria-label="breadcrumb">
@@ -129,7 +129,7 @@ const Header = () => {
         </Breadcrumbs>
       </div>
 
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex justify-between items-center mt-0">
         <div className="flex items-right items-center bg-gray-100 rounded-full px-4">
           <RiSearchLine className="text-[#4F4F4F] text-xl me-2" />
           <InputBase
@@ -157,10 +157,10 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <button
             aria-label="notifications"
-            className="bg-gray-200 rounded-full p-2 mx-2 relative"
+            // className="bg-gray-200 rounded-full p-2 mx-2 relative"
           >
-            <Badge badgeContent={4} color="secondary">
-              <Notifications onClick={() => setNoticiation(true)} />
+            <Badge color="secondary">
+              <NotificationBox />
             </Badge>
           </button>
           <NavLink to={"/profile"}>
@@ -178,106 +178,6 @@ const Header = () => {
           </NavLink>
         </div>
       </div>
-      {notification && (
-        <div className="w-[400px] bg-white shadow-lg rounded-lg absolute top-[80px] right-[159px] z-50">
-          <div className="flex justify-between items-center px-4 py-3 border-b">
-            <h2 className="text-lg font-semibold">Notification</h2>
-            <button className="text-red-500 hover:text-red-600">
-              <IoCloseCircle onClose={() => setNoticiation(false)} />
-            </button>
-          </div>
-          <div className="divide-y">
-            {notifications.map((notification) => (
-              <div
-                key={notification.id}
-                className="flex items-start space-x-3 px-4 py-3"
-              >
-                <div className="flex-shrink-0">
-                  {notification.type === "invoice" && (
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-4 h-4 text-blue-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
-                    </div>
-                  )}
-                  {notification.type === "payment" && (
-                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <div
-                        className={`w-3 h-3 rounded-full ${
-                          notification.status === "paid"
-                            ? "bg-green-500"
-                            : "bg-red-500"
-                        }`}
-                      />
-                    </div>
-                  )}
-                  {notification.type === "profile" && (
-                    <img
-                      src="/placeholder.svg?height=32&width=32"
-                      alt="Profile"
-                      width={32}
-                      height={32}
-                      className="rounded-full"
-                    />
-                  )}
-                </div>
-                <div className="flex-grow min-w-0">
-                  <p className="text-sm font-medium text-gray-900">
-                    {notification.title}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {notification.description.split(" ").map((word, index) => {
-                      if (
-                        ["invoice", "theme", "bill", "appointed"].some((term) =>
-                          word.toLowerCase().includes(term)
-                        )
-                      ) {
-                        return (
-                          <span key={index} className="text-blue-500">
-                            {word}{" "}
-                          </span>
-                        );
-                      }
-                      if (word.toLowerCase().includes("done")) {
-                        return (
-                          <span key={index} className="text-green-500">
-                            {word}{" "}
-                          </span>
-                        );
-                      }
-                      if (
-                        ["cancelled", "removed"].some((term) =>
-                          word.toLowerCase().includes(term)
-                        )
-                      ) {
-                        return (
-                          <span key={index} className="text-red-500">
-                            {word}{" "}
-                          </span>
-                        );
-                      }
-                      return word + " ";
-                    })}
-                  </p>
-                </div>
-                <div className="flex-shrink-0 text-xs text-gray-400">
-                  {notification.time}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

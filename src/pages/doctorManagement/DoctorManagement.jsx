@@ -71,8 +71,8 @@ export default function DoctorManagement() {
   const renderDoctorsTable = () => {
     return (
       <div
-        className="h-[80%] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-        style={{ maxHeight: "calc(100vh - 260px)" }}
+        className="h-[100%] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+        style={{ maxHeight: "calc(100vh - 180px)" }}
       >
         <table className="min-w-full table-layout table-auto">
           <thead className="sticky top-0 bg-gray-100 z-10">
@@ -183,70 +183,48 @@ export default function DoctorManagement() {
 
   return (
     <div>
-      <div className="dr-managment-section bg-gray-100 p-2">
-        <div className="">
-          <div className="bg-white rounded-lg p-2 shadow-lg">
-            <div className="top flex justify-between items-center p-2 pb-5">
-              <div className="heading font-bold text-[26px]">
-                <h3>Doctor Management</h3>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
-                  <div className="text-xl text-gray-700">
-                    <CiSearch />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search Doctor"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="bg-transparent pl-2 text-lg outline-none"
-                  />
-                </div>
-                <button
-                  className="btn flex items-center bg-[#0EABEB] text-white rounded-lg px-4 py-2 ml-2"
-                  onClick={() => navigate("/doctorAdd")}
-                >
-                  <div className=" bg-white text-[#0EABEB] rounded text-xl mr-2">
-                    <MdAdd />
-                  </div>
-                  <div className="text font-semibold text-lg">
-                    <h3>Add New Doctor</h3>
-                  </div>
-                </button>
-              </div>
+      <div className="bg-[#F6F8FB] p-3 h-[97%]">
+        <div className="bg-white rounded-lg p-2 shadow-lg">
+          <div className="top flex justify-between items-center p-2 pb-5">
+            <div className="heading font-bold text-[26px]">
+              <h3>Doctor Management</h3>
             </div>
-
-            {loading && <h3>Loading...</h3>}
-            {error && <h3 className="text-red-500">{error}</h3>}
-            {!loading && !error && renderDoctorsTable()}
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                <div className="text-xl text-gray-700">
+                  <CiSearch />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search Doctor"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="bg-transparent pl-2 text-lg outline-none"
+                />
+              </div>
+              <button
+                className="btn flex items-center bg-[#0EABEB] text-white rounded-lg px-4 py-2 ml-2"
+                onClick={() => navigate("/doctorAdd")}
+              >
+                <div className=" bg-white text-[#0EABEB] rounded text-xl mr-2">
+                  <MdAdd />
+                </div>
+                <div className="text font-semibold text-lg">
+                  <h3>Add New Doctor</h3>
+                </div>
+              </button>
+            </div>
           </div>
+
+          {loading && <h3>Loading...</h3>}
+          {error && <h3 className="text-red-500">{error}</h3>}
+          {!loading && !error && renderDoctorsTable()}
         </div>
       </div>
 
       {/* Modal for Onsite component */}
       {openModel && (
-        <div className="onsite-modal">
-          <div className="onsite-modal-content">
-            <div className="onsite-modal-header">
-              <h3>Doctor Details</h3>
-              <button
-                className="close-button"
-                onClick={() => setOpenModel(false)}
-              >
-                &times;
-              </button>
-            </div>
-            <Onsite
-              selectedDoctor={selectedDoctor}
-              setOpenModel={setOpenModel}
-            />
-          </div>
-          <div
-            className="onsite-modal-overlay"
-            onClick={() => setOpenModel(false)}
-          ></div>
-        </div>
+        <Onsite selectedDoctor={selectedDoctor} setOpenModel={setOpenModel} />
       )}
 
       {/* Modal for Delete doctor */}
