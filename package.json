@@ -28,6 +28,7 @@
     "chart.js": "^4.4.4",
     "classnames": "^2.5.1",
     "country-state-city": "^3.2.1",
+    "crypto": "^1.0.1",
     "datepicker": "^0.0.0",
     "firebase": "^11.0.2",
     "formik": "^2.4.6",

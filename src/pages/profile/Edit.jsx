@@ -168,7 +168,7 @@ export const Edit = () => {
                       >
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             First Name <span className="text-red-500">*</span>
                           </div>
                           <input
@@ -177,12 +177,12 @@ export const Edit = () => {
                             value={profile.firstName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter First Name"
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Last Name <span className="text-red-500">*</span>
                           </div>
                           <input
@@ -191,12 +191,12 @@ export const Edit = () => {
                             value={profile.lastName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Last Name"
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Email Address <span className="text-red-500">*</span>
                           </div>
                           <input
@@ -205,12 +205,12 @@ export const Edit = () => {
                             value={profile.email ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Email"
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
-                        <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                        <div className="input-box w-[32%] relative py-[15px] ">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Phone Number <span className="text-red-500">*</span>
                           </div>
                           <input
@@ -219,19 +219,19 @@ export const Edit = () => {
                             value={profile.phone ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Phone Number"
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Hospital Name <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="hospitalName"
                             value={profile.hospitalId}
                             onChange={handleInputChange}
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                           >
                             <option value="">Select Hospital</option>
                             {allHospitals.map((hospital) => (
@@ -243,14 +243,14 @@ export const Edit = () => {
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Gender <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="gender"
                             value={profile.gender || ""}
                             onChange={handleInputChange}
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                           >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -258,14 +258,14 @@ export const Edit = () => {
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             Country <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="country"
                             value={selectedCountry || ""}
                             onChange={handleCountryChange}
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
@@ -277,14 +277,14 @@ export const Edit = () => {
                         </div>
 
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                           State <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="state"
                             value={selectedState || ""}
                             onChange={handleStateChange}
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedCountry}
                           >
                              <option value="">Select State</option>
@@ -297,14 +297,14 @@ export const Edit = () => {
                         </div>
                         
                         <div className="input-box w-[32%] relative py-[15px]">
-                          <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                           City <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="gender"
                             value={profile.city || ""}
                             onChange={handleCityChange}
-                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedState}
                           >
                              <option value="">Select City</option>
@@ -318,24 +318,24 @@ export const Edit = () => {
 
 
                         <div className="input-box flex justify-end w-full py-[15px]">
-                          <div className="save-btn mr-[15px]">
-                            <button
-                              type="submit"
-                              className="p-[12px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
-                            >
-                              Save
-                            </button>
-                          </div>
-                          <div className="cancel-btn">
+                          <div className="cancel-btn mr-[15px]">
                             <button
                               type="button"
-                              className="p-[12px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
+                              className="py-[12px] py-[14px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
                               onClick={() => {
                                 setProfile({ ...profile });
                                 navigate("/profile");
                               }}
                             >
                               Cancel
+                            </button>
+                          </div>
+                          <div className="save-btn">
+                            <button
+                              type="submit"
+                              className="py-[12px] py-[14px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
+                            >
+                              Save
                             </button>
                           </div>
                         </div>

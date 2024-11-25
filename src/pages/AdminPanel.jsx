@@ -36,7 +36,7 @@ export default function AdminPanel() {
           <Routes>
             <Route path="" element={<Dashboard />} />
             <Route path="profile/*" element={<Profile />} />
-            <Route path="edit" element={<Edit />} />
+            <Route path="edit/" element={<Edit />} />
             <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill/:id" element={<EditBill />} />
             <Route path="/bill/:id" element={<MainBill />} />

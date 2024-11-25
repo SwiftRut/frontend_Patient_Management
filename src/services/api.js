@@ -86,6 +86,10 @@ const   apiService = {
   //Payment
   AppointmentFee: (doctorId, appointmentType) =>
     api.get(`/appoinment/appointment-fee?doctorId=${doctorId}&appointmentType=${appointmentType}`),
+  createRazorpayOrder: (data) => api.post("/appoinment/create-razorpay-order", data),
+  verifyPayment: (data) => api.post("/appoinment/verify-payment", data),
+  createAppointmentWithPayment: (appointmentData) => 
+    api.post("/appoinment/appoinmentcreate", appointmentData),
 
   //Prescription
   CreatePrescription: (userData, id) =>

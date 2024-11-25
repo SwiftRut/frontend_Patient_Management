@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData, selectedDoctor }) => {
+const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment }) => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +47,15 @@ const Calendar = ({ filterData, selectedDoctor }) => {
 
   const handleSlotSelected = (slotInfo) => {
     setSelectedSlot(slotInfo);
+    if (onDateTimeSelect) {
+      const date = slotInfo.start;
+      const time = slotInfo.start.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+      });
+      onDateTimeSelect(date, time);
+    }
     setIsModalOpen(true);
   };
 
@@ -68,6 +77,7 @@ const Calendar = ({ filterData, selectedDoctor }) => {
 
     console.log(user.id,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< from handel");
     try {
+      await handlePayment();
       await createAppointment(user?.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();
@@ -87,6 +97,16 @@ const Calendar = ({ filterData, selectedDoctor }) => {
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment rescheduled successfully.");
+      
+      if (onDateTimeSelect) {
+        const date = new Date(updatedAppointment.date);
+        const time = new Date(updatedAppointment.appointmentTime).toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+        onDateTimeSelect(date, time);
+      }
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
       toast.error("Error rescheduling appointment.");
@@ -140,6 +160,7 @@ const Calendar = ({ filterData, selectedDoctor }) => {
 Calendar.propTypes = {
   filterData: PropTypes.any.isRequired,
   selectedDoctor: PropTypes.any.isRequired,
+  onDateTimeSelect: PropTypes.func,
 };
 
 export default Calendar;
