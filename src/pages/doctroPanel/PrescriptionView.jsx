@@ -139,29 +139,29 @@ const PrescriptionView = () => {
             <div className="w-[70%] border-r">
              <div className="flex justify-between pe-80 mb-3">
              <div>
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Name</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Name</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.name}</p>
               </div>
               <div className="ps-8">
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Number</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Number</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.phone}</p>
               </div>
               <div >
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Issue</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Issue</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.issue}</p>
               </div>
              </div>
               <div className="flex justify-between pe-80">
               <div >
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Gender</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Gender</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.gender}</p>
               </div>
               <div>
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Doctor Name</p>
+                <p className="text-[#A7A7A7] text-basefont-normal">Doctor Name</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.doctorName}</p>
               </div>
               <div>
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Age</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Age</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.age}</p>
               </div>
               </div>
@@ -169,11 +169,11 @@ const PrescriptionView = () => {
             </div>
             <div className="ps-5">
               <div className="pb-5">
-                <p className="text-[#A7A7A7] text-[20px] font-normal pb-1">Last Appointment Time</p>
+                <p className="text-[#A7A7A7] text-base font-normal pb-1">Last Appointment Time</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.lastAppointmentTime}</p>
               </div>
               <div>
-                <p className="text-[#A7A7A7] text-[20px] font-normal">Patient Address</p>
+                <p className="text-[#A7A7A7] text-base font-normal">Patient Address</p>
                 <p className="text-[18px] font-normal text-[#141414]">{patient.address}</p>
               </div>
             </div>

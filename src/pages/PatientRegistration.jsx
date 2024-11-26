@@ -164,17 +164,24 @@ const PatientRegistration = () => {
                   />
                 </div>
                 <div className="input-box relative">
-                <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
-                    Country Code <span className="text-red-500">*</span>
+                  <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
+                    Blood Group <span className="text-red-500">*</span>
                   </label>
-                  <input
-                    name="countryCode"
-                    value={formData.countryCode}
+                  <select
+                    name="bloodGroup"
+                    value={formData.bloodGroup}
                     onChange={handleChange}
-                    placeholder="Enter Country Code"
+                    required
                     className="w-full border  border-gray-300 py-2 px-4 rounded-md"
-                  />
-                   </div>
+                  >
+                    <option value="" className="text-gray-500"> Select Blood Group</option>
+                    {bloodGroups.map((group) => (
+                      <option key={group} value={group}>
+                        {group}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div className="input-box relative">
                   <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
                     Gender <span className="text-red-500">*</span>
@@ -190,25 +197,6 @@ const PatientRegistration = () => {
                     {genders.map((gender) => (
                       <option key={gender} value={gender}>
                         {gender}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="input-box relative">
-                  <label className="block text-sm text-[#030229] font-medium absolute top-[-0.6rem] left-4 bg-white z-10">
-                    Blood Group <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    name="bloodGroup"
-                    value={formData.bloodGroup}
-                    onChange={handleChange}
-                    required
-                    className="w-full border  border-gray-300 py-2 px-4 rounded-md"
-                  >
-                    <option value="">Select Blood Group</option>
-                    {bloodGroups.map((group) => (
-                      <option key={group} value={group}>
-                        {group}
                       </option>
                     ))}
                   </select>

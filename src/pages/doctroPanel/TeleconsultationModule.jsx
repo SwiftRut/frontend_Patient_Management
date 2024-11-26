@@ -7,6 +7,7 @@ import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
 import toast from "react-hot-toast";
+import { FaEye } from "react-icons/fa";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } =
@@ -141,6 +142,70 @@ export default function TeleconsultationModule() {
     setOpenCustomDateModal(false);
   };
 
+  const renderAppointmentTable = (appointments) => {
+    return (
+      <div className="bg-white p-2 rounded-lg">
+        <div className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{ height: "calc(100vh - 280px)" }}>
+          <table className="min-w-full table-auto">
+            <thead className="sticky top-0 bg-gray-100 z-10">
+              <tr>
+                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tl-lg">Patient Name</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">Patient Issue</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">Diseases Name</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">Appointment Time</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">Status</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tr-lg">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.length > 0 ? (
+                appointments.map((patient) => (
+                  <tr key={patient.id} className="border-b">
+                    <td className="flex items-center p-3">
+                      <div className="avatar w-12 h-12 rounded-full overflow-hidden">
+                        <img src={patient.avatar || "/img/Avatar.png"} alt="Avatar" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.name}</h3>
+                      </div>
+                    </td>
+                    <td className="p-3">
+                      <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.issue}</h3>
+                    </td>
+                    <td className="p-3">
+                      <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.disease}</h3>
+                    </td>
+                    <td className="p-3">
+                      <p className="text-[#718EBF] rounded-full bg-[#F6F8FB] py-2 text-center">
+                        {`${patient.date} ${patient.time}`}
+                      </p>
+                    </td>
+                    <td className="p-3">
+                      <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                        {patient.status}
+                      </h3>
+                    </td>
+                    <td className="p-3">
+                      <div className="p-2 rounded cursor-pointer bg-[#F6F8FB] w-[40%]">
+                        <FaEye className="text-[#0EABEB]" />
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="p-3 text-center text-gray-500">
+                    No appointments found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
   const tabName = getCurrentName();
   const currentAppointments = getCurrentAppointments().map(
     formatAppointmentForDisplay
@@ -177,11 +242,15 @@ export default function TeleconsultationModule() {
             </Button>
           </div>
 
-          <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
-            {currentAppointments.map((patient) => (
-              <TeleConsultationCard key={patient.id} patient={patient} />
-            ))}
-          </div>
+          {activeTab === 0 ? (
+            <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
+              {currentAppointments.map((patient) => (
+                <TeleConsultationCard key={patient.id} patient={patient} />
+              ))}
+            </div>
+          ) : (
+            renderAppointmentTable(currentAppointments)
+          )}
         </div>
       </div>
 
