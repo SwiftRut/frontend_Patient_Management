@@ -2,7 +2,7 @@ const AddRecord = ({ setIsModalOpen }) => {
   return (
     <>
       {/* add record model */}
-      <div className=" bg-white rounded-lg shadow-md overflow-hidden bg-gray w-[100%]">
+      <div className=" bg-white rounded-lg shadow-md  bg-gray w-[100%]">
         <div className="px-6 py-4">
           <h2 className="text-xl font-bold mb-4 text-[#030229] border-b pb-2">
             Add Record
