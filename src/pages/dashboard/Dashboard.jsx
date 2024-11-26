@@ -131,28 +131,28 @@ const Dashboard = () => {
                 <PatientsStatistics />
               </div>
 
-              <div className="Billing-data h-[450px] w-[42%] bg-white rounded-lg p-4">
-                <div className="head flex justify-between items-center mb-4">
+              <div className="Billing-data h-[505px] w-[42%] bg-white rounded-lg p-4">
+                <div className="head flex justify-between items-center mb-4 border-b pb-4">
                   <div className="title">
-                    <p className="text-[#030229] text-xl font-bold">Billing & Payments</p>
+                    <p className="text-[#030229] text-[26px] font-bold">Billing & Payments</p>
                   </div>
                   <div className="btn">
                     <button
-                      className="flex items-center justify-center text-white text-lg font-semibold px-3 py-2 rounded-md bg-[#0eabeb] gap-2"
+                      className="flex items-center justify-center text-white text-[20px] font-semibold px-3 py-2 rounded-md bg-[#0eabeb] gap-2"
                       onClick={() => navigate("/createbill")}
                     >
-                      <FaAddressCard className="text-white" />
+                      <FaAddressCard className="text-white text-[22px]" />
                       Create Bills
                     </button>
                   </div>
                 </div>
                 <div className="pending-bill h-[85%]">
                   <div className="bill-status pt-2">
-                    <p className="text-[#030229] text-base font-semibold">
+                    <p className="text-[#030229] text-[20px] font-semibold">
                       Pending Bills: <span>{allBills.length}</span>
                     </p>
                   </div>
-                  <div className="pending-bill-data pt-10 h-[90%]">
+                  <div className="pending-bill-data pt-5 h-[90%]">
                     {allBills.length === 0 ? (
                       <div className="img">
                         <img src="../img/FrameBill.png" alt="No Billing Data" className="mx-auto" />
@@ -210,8 +210,8 @@ const Dashboard = () => {
                   <div className="appointments-content bg-white p-5 rounded-lg h-[330px]">
                     <div className="head">
                       <div className="title flex justify-between items-center">
-                        <p className="text-xl font-semibold">Today's Appointments List</p>
-                        <span className="text-blue-500 cursor-pointer">View All</span>
+                        <p className="text-[26px] font-bold">Today's Appointments List</p>
+                        <span className="text-blue-500 cursor-pointer text-[16px] font-medium"> View All</span>
                       </div>
                     </div>
 
@@ -229,22 +229,22 @@ const Dashboard = () => {
                           <div className="box w-1/3 p-2" key={index}>
                             <div className="content">
                               <div className="heading flex justify-between items-center bg-[#f6f8fb] p-3 rounded-t-lg">
-                                <p className="text-sm font-semibold">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
+                                <p className="text-[18px] text-[#030229] font-semibold">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
                                 <span>{appointment.type}</span>
                               </div>
                               <div className="data border border-[#f4f4f4] p-3">
                                 <ul>
                                   <li>
-                                    <p className="text-sm text-[#818194]">Doctor Name</p>
-                                    <span className="text-sm font-semibold text-[#4f4f4f]">Dr. {appointment?.doctorId?.name}</span>
+                                    <p className="text-[16px] font-normal text-[#818194]">Doctor Name</p>
+                                    <span className="text-sm font-bold text-[#4f4f4f]">Dr. {appointment?.doctorId?.name}</span>
                                   </li>
                                   <li>
-                                    <p className="text-sm text-[#818194]">Disease Name</p>
-                                    <span className="text-sm font-semibold text-[#4f4f4f]">{appointment?.patient_issue}</span>
+                                    <p className="text-[16px] font-normal text-[#818194]">Disease Name</p>
+                                    <span className="text-sm font-bold text-[#4f4f4f]">{appointment?.patient_issue}</span>
                                   </li>
                                   <li>
-                                    <p className="text-sm text-[#818194]">Appointment Time</p>
-                                    <span className="text-sm font-semibold text-[#4f4f4f]">
+                                    <p className="text-[16px] font-normal text-[#818194]">Appointment Time</p>
+                                    <span className="text-sm font-bold text-[#4f4f4f]">
                                       {appointment?.appointmentTime &&
                                         new Date(appointment.appointmentTime).toLocaleTimeString([], {
                                           hour: '2-digit',
