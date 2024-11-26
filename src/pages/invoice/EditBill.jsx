@@ -133,14 +133,14 @@ const EditBill = () => {
         <div className="row">
           <div className="main bg-white p-4 rounded-xl">
             <div className="title">
-              <p className="text-dark text-2xl font-bold">Edit Bill</p>
+              <p className="text-dark text-[26px] font-bold">Edit Bill</p>
             </div>
 
-            <div className="patient-details my-4 p-5 border-2 border-gray-200 rounded-xl">
+            <div className="patient-details my-4 p-5 border-2 border-gray-200 bg-white rounded-xl">
               <div className="content">
                 <div className="details flex flex-wrap">
                   <div className="form-box w-full">
-                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-4" id="edit-bill-form">
+                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-x-4" id="edit-bill-form">
                       {HospitalBillFields.map((field) => (
                         <InputField
                           key={field.name}
