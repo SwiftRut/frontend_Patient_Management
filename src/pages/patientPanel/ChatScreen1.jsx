@@ -55,11 +55,8 @@ const ChatScreen1 = () => {
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, []);
-  console.log(allAppointments)
-  // Process appointments to get doctor contacts
   useEffect(() => {
     if (allAppointments?.length > 0) {
-      // Create unique doctor contacts from appointments, filtering out null or undefined doctorId
       const uniqueDoctors = Array.from(
         new Set(
           allAppointments

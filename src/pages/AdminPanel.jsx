@@ -24,9 +24,6 @@ export default function AdminPanel() {
   const { searchTerm, setSearchTerm } = useGlobal();
   const { selectedOption, setSelectedOption } = useGlobal();
 
-  console.log(selectedOption, "<<<<<<<<<<<<<<<<<<<<<<<<<<< selectedOption");
-  console.log(searchTerm, "<<<<<<<<<<<<<<<<<<<<<<<<<<< searchTerm");
-
   return (
     <>
       <Sidebar />

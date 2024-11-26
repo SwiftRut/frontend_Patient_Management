@@ -13,8 +13,6 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
   const [doctor, setDoctor] = useState({});
   const [error, setError] = useState(null);
 
-  console.log(doctor);
-
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {

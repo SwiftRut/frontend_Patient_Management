@@ -19,7 +19,7 @@ const InputField = ({
   if (type === 'select') {
     return (
       <div className={`relative py-4 w-[24%] ${className}`}>
-        <div className="absolute top-1 left-3 bg-white text-gray-600 text-sm">{label}</div>
+        <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">{label}</div>
         <select
           name={name}
           value={value}
@@ -43,7 +43,7 @@ const InputField = ({
 
   return (
     <div className={`relative py-4 w-[24%] ${className}`}>
-      <div className="absolute top-1 left-3 bg-white text-gray-600 text-sm">{label}</div>
+      <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">{label}</div>
       <input
         type={type}
         name={name}
@@ -52,7 +52,7 @@ const InputField = ({
         onChange={onChange}
         readOnly={readOnly}
         disabled={disabled}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+        className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
         {...props}
       />
       <div className="absolute top-1.5 right-[-8px] text-gray-400 text-xl">

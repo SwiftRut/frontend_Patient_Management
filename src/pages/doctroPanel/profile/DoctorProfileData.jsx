@@ -20,7 +20,6 @@ const DoctorProfileData = () => {
   });
   const [errorMessages, setErrorMessages] = useState({});
 
-  console.log("userData", userData)
   useEffect(() => {
     const fetchData = async () => {
       try {

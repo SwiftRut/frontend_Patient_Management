@@ -58,7 +58,6 @@ export default function DoctorManagement() {
   const handleDeleteDoctor = async (id) => {
     try {
       const response = await apiService.DeleteDoctor(id);
-      console.log(response.data);
       if (response.data) {
         toast.success("Doctor deleted successfully");
         await getAllDoctors();

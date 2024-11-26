@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 import { useGlobal } from "../../../hooks/useGlobal";
@@ -22,10 +22,9 @@ const ProfileSetting = () => {
     state: "",
     city: "",
     address: "",
-    profilePic: null // for profile picture upload
+    profilePic: null
   });
 
-  // Prefill form with userData when component mounts
   useEffect(() => {
     if (userData) {
       setFormData({
@@ -43,19 +42,17 @@ const ProfileSetting = () => {
         state: userData.state || "",
         city: userData.city || "",
         address: userData.address || "",
-        profilePic: null // Keep null initially unless there's a file
+        profilePic: null
       });
     }
   }, [userData]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { id, value, files } = e.target;
-    // If there's a file input (profilePic), update formData accordingly
     if (id === "profilePic") {
       setFormData((prevData) => ({
         ...prevData,
-        profilePic: files[0] || null // Handle single file input
+        profilePic: files[0] || null
       }));
     } else {
       setFormData((prevData) => ({
@@ -65,26 +62,20 @@ const ProfileSetting = () => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formToSubmit = new FormData(); // Use FormData to handle file uploads
-    // Append all form data fields
+    const formToSubmit = new FormData();
     for (const key in formData) {
       formToSubmit.append(key, formData[key]);
     }
-
-    // Submit form data with the profile picture
     await editPatientProfile(user?.id, formToSubmit);
-
-    console.log("Form Data Submitted:", formData);
   };
 
   return (
     <div className="bg-gray-100 w-full h-[100vh]">
       <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold ">
         <div className="container mx-auto w-[90%] 2xl:w-[100%]">
-          <h1 className="text-white font-bold text-black mb-3 pt-5">Profile Setting</h1>
+          <h1 className="font-bold text-black mb-3 pt-5">Profile Setting</h1>
         </div>
       </div>
 

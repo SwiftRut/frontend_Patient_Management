@@ -16,14 +16,12 @@ export const Edit = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
 
-  // Add loading state handler
   useEffect(() => {
     if (profile?.firstName || profile?.email) {
       setIsLoading(false);
     }
   }, [profile]);
 
-  // Load country data on component mount and when profile updates
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -36,9 +34,7 @@ export const Edit = () => {
       const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
       setSelectedCountry(countryCode);
     }
-  }, [profile?.country]); // Changed dependency
-
-  // Load state data when selectedCountry changes or when profile updates
+  }, [profile?.country]); 
   useEffect(() => {
     if (selectedCountry) {
       const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
@@ -52,9 +48,8 @@ export const Edit = () => {
         setSelectedState(stateCode);
       }
     }
-  }, [selectedCountry, profile?.state]); // Added profile.state dependency
+  }, [selectedCountry, profile?.state]);
 
-  // Load city data when selectedState changes
   useEffect(() => {
     if (selectedState) {
       const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
@@ -73,7 +68,6 @@ export const Edit = () => {
     }
   }, [selectedState, selectedCountry, profile.city]);
 
-  // Handle country change
   const handleCountryChange = (e) => {
     const countryCode = e.target.value;
     setSelectedCountry(countryCode);
@@ -87,7 +81,7 @@ export const Edit = () => {
     setSelectedState(null);
   };
 
-  // Handle state change
+
   const handleStateChange = (e) => {
     const stateCode = e.target.value;
     setSelectedState(stateCode);
@@ -99,7 +93,6 @@ export const Edit = () => {
     }));
   };
 
-  // Handle city change
   const handleCityChange = (e) => {
     const cityName = e.target.value;
     setProfile((prevProfile) => ({
@@ -109,9 +102,8 @@ export const Edit = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Or your loading component
+    return <div>Loading...</div>;
   }
-  console.log(profile)
   return (
     <div>
       <div className="edit-section">
@@ -143,7 +135,7 @@ export const Edit = () => {
                           onChange={handleImageChange}
                           accept="image/*"
                         />
-                          <label for="profilePic" className="flex items-center cursor-pointer">
+                          <label htmlFor="profilePic" className="flex items-center cursor-pointer">
                             <FaCamera />
                             <span className="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">Change Profile</span>
                           </label>
@@ -321,7 +313,7 @@ export const Edit = () => {
                           <div className="cancel-btn mr-[15px]">
                             <button
                               type="button"
-                              className="py-[12px] py-[14px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
+                              className=" py-[14px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
                               onClick={() => {
                                 setProfile({ ...profile });
                                 navigate("/profile");
@@ -333,7 +325,7 @@ export const Edit = () => {
                           <div className="save-btn">
                             <button
                               type="submit"
-                              className="py-[12px] py-[14px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
+                              className="py-[14px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
                             >
                               Save
                             </button>

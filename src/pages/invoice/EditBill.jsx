@@ -21,7 +21,6 @@ const EditBill = () => {
       try {
         setLoading(true);
         const data = await getBillById(id);
-        console.log("Fetched data:", data);
         if (data) {
           setFormData({
             billNumber: data.billNumber,
@@ -118,6 +117,7 @@ const EditBill = () => {
           label: doctor?.name,
           value: doctor?._id,
         })),
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor?._id }))
       ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
@@ -149,10 +149,10 @@ const EditBill = () => {
         <div className="row">
           <div className="main bg-white p-4 rounded-xl">
             <div className="title">
-              <p className="text-dark text-2xl font-bold">Edit Bill</p>
+              <p className="text-dark text-[26px] font-bold">Edit Bill</p>
             </div>
 
-            <div className="patient-details my-4 p-5 border-2 border-gray-200 rounded-xl">
+            <div className="patient-details my-4 p-5 border-2 border-gray-200 bg-white rounded-xl">
               <div className="content">
                 <div className="details flex flex-wrap">
                   <div className="form-box w-full">
@@ -161,6 +161,7 @@ const EditBill = () => {
                       className="flex flex-wrap gap-4"
                       id="edit-bill-form"
                     >
+                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-x-4" id="edit-bill-form">
                       {HospitalBillFields.map((field) => (
                         <InputField
                           key={field.name}

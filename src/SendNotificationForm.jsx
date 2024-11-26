@@ -9,7 +9,6 @@ const SendNotificationForm = () => {
     const [message, setMessage] = useState('');
     const { fcmToken, createNewFCM } = useGlobal();
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -35,14 +34,6 @@ const SendNotificationForm = () => {
             setLoading(false);
         }
     };
-
-    // Display the FCM token after it's generated
-    useEffect(() => {
-        // This effect runs when the FCM token changes
-        if (fcmToken) {
-            console.log('FCM Token:', fcmToken);
-        }
-    }, [fcmToken]);
 
     return (
         <div className="max-w-md mx-auto p-4 border border-gray-300 rounded-lg shadow-md">

@@ -24,7 +24,6 @@ export const requestFCMToken = async()=>{
             throw new Error('Permission not granted')
         }
     }).catch((error)=>{
-        console.log("Error getting FCM token", error)
         throw error
     })
 }
@@ -41,7 +40,6 @@ export const onTokenRefresh = (messaging, updateTokenCallback) => {
     messaging.onTokenRefresh(async () => {
         try {
             const newToken = await getToken(messaging, { vapidKey });
-            console.log("New FCM Token:", newToken);
             updateTokenCallback(newToken); // Update your app state with the new token
         } catch (error) {
             console.error("Error retrieving new FCM token:", error);

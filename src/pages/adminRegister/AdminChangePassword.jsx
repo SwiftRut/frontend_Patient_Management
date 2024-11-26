@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import apiService from "../../services/api.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
-// import "../pages.css";
 import ImageSlider from "../../components/Login/ImageSlider.jsx";
 
 export default function AdminChangePassword() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { identifier } = location.state || {}; // Access the identifier passed from the previous component
+  const { identifier } = location.state || {};
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,35 +16,11 @@ export default function AdminChangePassword() {
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // useEffect(() => {
-  //   const slider = document.querySelector(".slider");
-  //   const images = slider.querySelectorAll("img");
-  //   const dots = slider.querySelectorAll(".dot");
-  //   let currentIndex = 0;
-  //   images[currentIndex].style.display = "block";
-  //   dots.forEach((dot, index) => {
-  //     dot.addEventListener("click", () => {
-  //       currentIndex = index;
-  //       updateSlider();
-  //     });
-  //   });
-  //   function updateSlider() {
-  //     images.forEach((image) => {
-  //       image.style.display = "none";
-  //     });
-  //     images[currentIndex].style.display = "block";
-  //     dots.forEach((dot, index) => {
-  //       dot.classList.toggle("active", index === currentIndex);
-  //     });
-  //   }
-  // }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccessMessage("");
 
-    // Validation checks
     if (!newPassword || !confirmPassword) {
       toast.error("Both password and confirm password are required");
       setError("Both fields are required.");
@@ -79,11 +54,6 @@ export default function AdminChangePassword() {
     }
   };
 
-  // Toggle password visibility
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
   return (
     <div>
       <div className="changePassword-section">
@@ -97,14 +67,12 @@ export default function AdminChangePassword() {
                   </p>
                 </div>
 
-                {/* Display success message */}
                 {successMessage && (
                   <div className="success-message text-green-500 text-sm md:text-base">
                     {successMessage}
                   </div>
                 )}
 
-                {/* Display error message */}
                 {error && (
                   <div className="error-message text-red-500 text-sm md:text-base">
                     {error}
@@ -126,7 +94,7 @@ export default function AdminChangePassword() {
                       />
                       <div
                         className="eye absolute top-6 md:top-7 right-4 cursor-pointer"
-                        onClick={togglePasswordVisibility}
+                        onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <FaEye /> : <FaEyeSlash />}
                       </div>
@@ -145,7 +113,7 @@ export default function AdminChangePassword() {
                       />
                       <div
                         className="eye absolute top-6 md:top-7 right-4 cursor-pointer"
-                        onClick={togglePasswordVisibility}
+                        onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <FaEye /> : <FaEyeSlash />}
                       </div>

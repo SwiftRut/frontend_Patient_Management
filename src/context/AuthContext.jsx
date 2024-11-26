@@ -114,7 +114,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const UniversalLogin = async function (userData) {
-    console.log("inside UniversalLogin", userData);
     setLoading(true);
     try {
       const response = await apiService.UniversalLogin(userData);

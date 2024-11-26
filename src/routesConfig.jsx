@@ -30,9 +30,7 @@ import ProtectedRoute from "./routes/PrivateRoute";
 
 const user = JSON.parse(localStorage.getItem("user"));
 const userRole = user?.role || "No Role";
-// console.log(userRole, "<<<<<<<<<<<<<< userfrom router config");
 
-//with protection
 const routesConfig = [
   { path: "/login", element: <Login />, allowedRoles: [] },
   { path: "/adminRegistration", element: <AdminRegistration />, allowedRoles: [] },

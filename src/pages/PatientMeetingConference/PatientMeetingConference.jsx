@@ -9,9 +9,6 @@ const PatientMeetingConference = () => {
   const sidebarRef = useRef(null);
   const location = useLocation();
   const {user} = useAuth();
-  const {userData} = useGlobal();
-  console.log(userData);
-  // This function helps to get query parameters
   const getQueryParam = (param) => {
     return new URLSearchParams(location.search).get(param);
   };

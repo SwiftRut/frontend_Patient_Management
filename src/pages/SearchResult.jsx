@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDoctor } from "../hooks/useDoctor";
 import { usePatient } from "../hooks/usePatient";
 import { useGlobal } from "../hooks/useGlobal";
-import { FaEdit, FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 export const SearchResult = () => {
@@ -13,11 +11,6 @@ export const SearchResult = () => {
   const { selectedOption, setSelectedOption } = useGlobal();
   const [activeTab, setActiveTab] = useState("today");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
-  console.log(
-    filteredAppointments,
-    "<<<<<<<<<<<<<<<<<<<<<<<<<<< filteredAppointments"
-  );
-  console.log(selectedOption, "<<<<<<<<<<<<<<<<<<<<<<<<< selectedOption");
 
   const filteredDoctors = allDoctors.filter((doctor) =>
     doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,10 +22,8 @@ export const SearchResult = () => {
       appointment.doctor.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const filterAppointments = () => {
-    // Check if `allPatients` is an array and return an empty array if not
     if (!allPatients || !Array.isArray(allPatients)) return [];
 
-    // Flatten and map over `allPatients` to create allAppointments
     const allAppointments = allPatients.flatMap((patient) =>
       (patient.appointmentId || []).map((apt) => ({
         name: `${patient.firstName} ${patient.lastName}`,
@@ -63,14 +54,13 @@ export const SearchResult = () => {
       }))
     );
 
-    // Ensure appointments are unique by appointmentDate and patient name
     const uniqueAppointments = allAppointments.filter(
       (value, index, self) =>
         index ===
         self.findIndex(
           (t) =>
             t.appointmentDate.getTime() === value.appointmentDate.getTime() &&
-            t.name === value.name // comparing name and appointmentDate to ensure uniqueness
+            t.name === value.name
         )
     );
 
@@ -79,7 +69,6 @@ export const SearchResult = () => {
 
   useEffect(() => {
     const filtered = filterAppointments();
-    console.log(filtered, "<<<<<<<<<<<<<<<<<<<<<<<<<< filtered");
     setFilteredAppointments(filtered);
   }, [allPatients, activeTab]);
   useEffect(() => {
@@ -321,8 +310,6 @@ export const SearchResult = () => {
     );
   };
 
-  console.log(allDoctors, "<<<<<<<<<<<<<<<<<<<<<<<<<<< allDoctors");
-
   const renderTable = () => {
     switch (selectedOption) {
       case "Doctor":
@@ -337,7 +324,7 @@ export const SearchResult = () => {
           </>
         );
       default:
-        return null; // Optional: handle any unexpected values here
+        return null;
     }
   };
   return <div>{renderTable()}</div>;

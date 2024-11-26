@@ -65,7 +65,6 @@ const Calendar = ({ filterData }) => {
   };
 
   const handleRescheduleAppointment = async (updatedAppointment) => {
-    console.log(updatedAppointment,"<<<<<<<<<<<<<<<<<<<<<<<<<")
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       const updatedEvents = events.map(event => 

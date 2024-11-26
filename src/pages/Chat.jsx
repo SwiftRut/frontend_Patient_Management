@@ -7,11 +7,10 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
   const [user, setUser] = useState("User 1");
-  const [error, setError] = useState(""); // For error message
+  const [error, setError] = useState("");
 
   useEffect(() => {
     socket.on("chatMessage", (msg) => {
-      console.log(msg);
       setChat((prevChat) => [...prevChat, msg]);
     });
 
@@ -27,7 +26,7 @@ const Chat = () => {
     } else {
       socket.emit("chatMessage", { username: user, msg: message });
       setMessage("");
-      setError(""); // Reset error on valid message
+      setError("");
     }
   };
 
@@ -85,7 +84,6 @@ const Chat = () => {
             Send
           </button>
         </form>
-        {/* Error Message */}
         {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
       </div>
     </div>

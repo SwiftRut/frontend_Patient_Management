@@ -31,52 +31,6 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //   {
-  //     id: 1,
-  //     type: "invoice",
-  //     title: "Change Invoice Theme",
-  //     description: "Lincoln Philips Change Invoice Theme.",
-  //     time: "5 min ago",
-  //   },
-  //   {
-  //     id: 2,
-  //     type: "invoice",
-  //     title: "Dr.Bharat",
-  //     description: "Created Bill by dr.bharat.",
-  //     time: "5 min ago",
-  //   },
-  //   {
-  //     id: 3,
-  //     type: "payment",
-  //     title: "Payment Received.",
-  //     description: "24,668 is the payment done of Miracle Center.",
-  //     time: "1:52PM",
-  //     status: "paid",
-  //   },
-  //   {
-  //     id: 4,
-  //     type: "payment",
-  //     title: "Payment Cancelled.",
-  //     description: "24,688 is the payment Cancelled of Miracle Center.",
-  //     time: "1:52PM",
-  //     status: "cancelled",
-  //   },
-  //   {
-  //     id: 5,
-  //     type: "profile",
-  //     title: "Lincoln Philips",
-  //     description:
-  //       "Dr.Bharat Patel has been appointed to work with Successfully In Hospital.",
-  //     time: "1:34PM",
-  //   },
-  //   {
-  //     id: 6,
-  //     type: "profile",
-  //     title: "Lincoln Philips",
-  //     description: "Doctor Removed Rakesh Patel.",
-  //     time: "9:00AM",
-  //   },
-  // ];
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -101,16 +55,13 @@ const Header = () => {
     }
   };
   useEffect(() => {
-    console.log(user);
     getAdminProfile(user.id);
   }, []);
-  console.log(userData, "<<<<<<<<<<<<<<<<<<<<<<<<<<< header");
   const userName = `${userData?.firstName || "User"} ${
     userData?.lastName || "Name"
   }`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
-  console.log("image", userData);
 
   return (
     <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-3">

@@ -71,7 +71,6 @@ export default function PatientRecordAccess() {
       patient.diseaseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log(allAppointments);
   return (
     <div className="bg-[#F6F8FB] p-3 h-[92%]">
       <div className="patioentRecord p-4 bg-white rounded-lg shadow-md">

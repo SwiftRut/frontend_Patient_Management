@@ -146,7 +146,6 @@ const DoctorEdit = () => {
       if (selectedCountry) {
         // Get states for the selected country
         setIsoCodes(selectedCountry.phonecode);
-        console.log(selectedCountry.phonecode);
         const countryStates = State.getStatesOfCountry(selectedCountry.isoCode);
         setStates(countryStates);
 
@@ -250,7 +249,6 @@ const DoctorEdit = () => {
 
       for (const [key, value] of Object.entries(doctorData)) {
         formData.append(key, value);
-        console.log(key, value);
       }
 
       if (signatureFile) {
