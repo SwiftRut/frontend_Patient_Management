@@ -40,7 +40,7 @@ const NotificationBox = () => {
       try {
         const response = await apiService.GetUserNotifications(userData.id);
         setNotifications(response.data);
-        const unreadCount = response.data.filter((n) => !n.isRead).length;
+        const unreadCount = response?.data?.filter((n) => !n.isRead).length;
         setUnreadCount(unreadCount);
       } catch (error) {
         console.error("Error loading notifications:", error);
@@ -187,8 +187,8 @@ const NotificationBox = () => {
               <ListItem>
                 <CircularProgress size={20} className="mx-auto" />
               </ListItem>
-            ) : notifications.length > 0 ? (
-              notifications.map((notification) => (
+            ) : notifications?.length > 0 ? (
+              notifications?.map((notification) => (
                 <ListItem
                   key={notification._id}
                   className={`hover:bg-gray-50 cursor-pointer ${
