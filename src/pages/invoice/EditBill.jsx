@@ -28,8 +28,8 @@ const EditBill = () => {
             phone: data.phone,
             gender: data.gender,
             age: data.age,
-            doctorId: data.doctorId._id,
-            doctorName: data.doctorId.name,
+            doctorId: data.doctorId?._id,
+            doctorName: data.doctorId?.name,
             diseaseName: data.diseaseName,
             description: data.description,
             paymentType: data.paymentType,
@@ -104,7 +104,7 @@ const EditBill = () => {
       type: "select",
       options: [
         { label: "Select Doctor", value: "" },
-        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor?._id }))
       ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
