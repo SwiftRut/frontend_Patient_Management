@@ -58,130 +58,134 @@ export default function PaymentMethod() {
 
   return (
     <>
-      <div className="bg-[#F6F8FB] p-[20px]">
-      <div className="main bg-white rounded-lg m-2h-full p-5">
-        <div className="top flex items-center justify-between p-2 pb-5">
-          <div className="heading font-bold text-2xl">Billing Details</div>
-          <div className="search-btn flex items-center">
-            <div className="input flex items-center py-2 px-3 bg-gray-100 border border-gray-300 rounded-full w-[350px] text-lg">
-              <div className="search text-black text-xl">
-                <CiSearch />
+      <div className="bg-[#F6F8FB] p-[20px] h-[93%]">
+        <div className="main bg-white rounded-lg m-2h-full p-5">
+          <div className="top flex items-center justify-between p-2 pb-5">
+            <div className="heading font-bold text-2xl">Billing Details</div>
+            <div className="search-btn flex items-center">
+              <div className="input flex items-center py-2 px-3 bg-gray-100 rounded-full w-[350px] text-lg">
+                <div className="search text-black text-xl">
+                  <CiSearch />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search Patient Name or Phone"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-transparent pl-2 flex-1"
+                />
               </div>
-              <input
-                type="text"
-                placeholder="Search Patient Name or Phone"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent pl-2 flex-1"
-              />
             </div>
           </div>
-        </div>
-        <div
-          className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-          style={{ maxHeight: "calc(100vh - 200px)" }}
-        >
-          <table className="min-w-full table-auto">
-            <thead className="sticky top-0 bg-gray-100 z-10">
-              <tr>
-                <th className="p-3 text-center text-lg font-semibold rounded-tl-lg">
-                  Bill Number
-                </th>
-                <th className="p-3 text-center text-lg font-semibold">
-                  Patient Name
-                </th>
-                <th className="p-3 text-center text-lg font-semibold">
-                  Disease Name
-                </th>
-                <th className="p-3 text-center text-lg font-semibold">
-                  Phone Number
-                </th>
-                <th className="p-3 text-center text-lg font-semibold">
-                  Status
-                </th>
-                <th className="p-3 text-center text-lg font-semibold">Date</th>
-                <th className="p-3 text-center text-lg font-semibold">Time</th>
-                <th className="p-3 text-center text-lg font-semibold rounded-tr-lg">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
+          <div
+            className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+            style={{ maxHeight: "calc(100vh - 200px)" }}
+          >
+            <table className="min-w-full table-auto">
+              <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <td colSpan="8" className="p-3 text-center">
-                    Loading...
-                  </td>
+                  <th className="p-3 text-center text-lg font-semibold rounded-tl-lg">
+                    Bill Number
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Patient Name
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Disease Name
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Phone Number
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Status
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Date
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold">
+                    Time
+                  </th>
+                  <th className="p-3 text-center text-lg font-semibold rounded-tr-lg">
+                    Action
+                  </th>
                 </tr>
-              ) : filteredData.length > 0 ? (
-                filteredData.map((data, index) => (
-                  <tr key={index} className="border-b last:border-b-0">
-                    <td className="p-2 text-lg text-center flex justify-center">
-                      <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[50%]">
-                        {data.billNumber}
-                      </h3>
-                    </td>
-                    <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
-                      {data.patientId
-                        ? `${data.patientId.firstName} ${data.patientId.lastName}`
-                        : "N/A"}
-                    </td>
-                    <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
-                      {data.diseaseName}
-                    </td>
-                    <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
-                      {data.patientId ? data.patientId.phone : "N/A"}
-                    </td>
-                    <td
-                      className={`p-2 ${
-                        data.status === "Paid"
-                          ? "text-green-700 bg-green-100"
-                          : "text-[#E11D29]"
-                      } rounded-full px-2 py-1 text-center w-[120px] font-semibold`}
-                    >
-                      <h3 className="bg-red-100 p-2 rounded-full text-center text-lg font-semibold text-[#E11D29]">
-                        {data.status}
-                      </h3>
-                    </td>
-                    <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
-                      {data.date ? formatDate(data.date) : "N/A"}
-                    </td>
-                    <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
-                      {data.time}
-                    </td>
-                    <td className="flex items-center justify-center p-2 text-[#4F4F4F] text-lg font-semibold space-x-3 text-center">
-                      <div
-                        className="edit text-green-700 bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
-                        onClick={() => navigate(`/editBill/${data._id}`)}
-                      >
-                        <FaEdit />
-                      </div>
-                      <div
-                        className="view text-blue-500 bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
-                        onClick={() => navigate(`/bill/${data._id}`)}
-                      >
-                        <FaEye />
-                      </div>
-                      <div
-                        className="delete text-gray-800 bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
-                        onClick={() => openModal(data)}
-                      >
-                        <FaWallet />
-                      </div>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr>
+                    <td colSpan="8" className="p-3 text-center">
+                      Loading...
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="8" className="p-3 text-center">
-                    No results found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                ) : filteredData.length > 0 ? (
+                  filteredData.map((data, index) => (
+                    <tr key={index} className="border-b last:border-b-0">
+                      <td className="p-2 text-lg text-center flex justify-center">
+                        <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[50%]">
+                          {data.billNumber}
+                        </h3>
+                      </td>
+                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                        {data.patientId
+                          ? `${data.patientId.firstName} ${data.patientId.lastName}`
+                          : "N/A"}
+                      </td>
+                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                        {data.diseaseName}
+                      </td>
+                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                        {data.patientId ? data.patientId.phone : "N/A"}
+                      </td>
+                      <td
+                        className={`p-2 ${
+                          data.status === "Paid"
+                            ? "text-green-700 bg-green-100"
+                            : "text-[#E11D29]"
+                        } rounded-full px-2 py-1 text-center w-[120px] font-semibold`}
+                      >
+                        <h3 className="bg-red-100 p-2 rounded-full text-center text-lg font-semibold text-[#E11D29]">
+                          {data.status}
+                        </h3>
+                      </td>
+                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                        {data.date ? formatDate(data.date) : "N/A"}
+                      </td>
+                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                        {data.time}
+                      </td>
+                      <td className="flex items-center justify-center p-2 text-[#4F4F4F] text-lg font-semibold space-x-3 text-center">
+                        <div
+                          className="edit text-[#39973D] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          onClick={() => navigate(`/editBill/${data._id}`)}
+                        >
+                          <FaEdit />
+                        </div>
+                        <div
+                          className="view text-[#0EABEB] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          onClick={() => navigate(`/bill/${data._id}`)}
+                        >
+                          <FaEye />
+                        </div>
+                        <div
+                          className="delete text-[#818194] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          onClick={() => openModal(data)}
+                        >
+                          <FaWallet />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" className="p-3 text-center">
+                      No results found
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       </div>
 
       {isPayment && (

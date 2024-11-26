@@ -113,7 +113,7 @@ const Header = () => {
   console.log("image", userData);
 
   return (
-    <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-2">
+    <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-3">
       <div className="breadcrumbs flex items-center space-x-2 text-gray-600 bg-[#f8fcfe] border rounded-full py-2 px-3 text-lg font-normal">
         <IoHomeSharp />
         <IoIosArrowForward className="icon" />
