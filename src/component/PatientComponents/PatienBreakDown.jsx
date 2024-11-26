@@ -78,22 +78,22 @@ export default function PatientsBreakdown() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="me-4 bg-white w-[50%] p-5 rounded-lg">
+        <div className="me-4 bg-white w-[40%] p-5 rounded-lg">
           <div className="flex flex-col items-start">
-            <div className="flex items-center mb-2 gap-x-2">
-              <div className="w-4 h-4 mr-2 rounded-full bg-orange-500"></div>
+            <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
+              <div className="w-[10px] h-[10px] mr-2 rounded-full bg-orange-500"></div>
               <span className="text-[18px] font-semibold text-[#4F4F4F]">New Patients</span>
-              <span className="ml-auto text-orange-500 font-bold">{data[1]?.value || 0}</span>
+              <span className="ml-auto text-orange-500 font-semibold text-[18px]">{data[1]?.value || 0}</span>
             </div>
-            <div className="flex items-center mb-2 gap-x-2">
-              <div className="w-4 h-4 mr-2 rounded-full bg-green-500"></div>
+            <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
+              <div className="w-[10px] h-[10px] mr-2 rounded-full bg-green-500"></div>
               <span className="text-[18px] font-semibold text-[#4F4F4F]">Old Patients</span>
-              <span className="ml-auto text-green-500 font-bold">{data[0]?.value || 0}</span>
+              <span className="ml-auto text-green-500 font-semibold text-[18px]">{data[0]?.value || 0}</span>
             </div>
-            <div className="flex items-center mb-2 gap-x-2">
-              <div className="w-4 h-4 mr-2 rounded-full bg-blue-500"></div>
+            <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
+              <div className="w-[10px] h-[10px] mr-2 rounded-full bg-blue-500"></div>
               <span className="text-[18px] font-semibold text-[#4F4F4F]">Total Patients</span>
-              <span className="ml-auto text-blue-500 font-bold">{totalPatients}</span>
+              <span className="ml-auto text-blue-500 font-semibold text-[18px]">{totalPatients}</span>
             </div>
           </div>
         </div>

@@ -171,7 +171,7 @@ const Dashboard = () => {
                           </thead>
                           <tbody>
                             {allBills.map((bill) => (
-                              <tr key={bill.id}>
+                              <tr key={bill.id} className="text-center">
                                 <td className="bill-num px-2 py-1">
                                   <p className="text-[#718ebf] bg-gray-100 rounded-full text-center px-4 py-1">{bill.billNumber}</p>
                                 </td>
