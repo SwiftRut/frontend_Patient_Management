@@ -55,9 +55,9 @@ const PatientsStatistics = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   return (
-    <div className="bg-white p-4 rounded-lg" style={{ width: "100%", marginTop: "0px", height: "350px" }}>
+    <div className="bg-white p-4 rounded-lg" style={{ width: "100%", marginTop: "0px", height: "390px" }}>
       <div className='d-flex justify-content-between align-items-center mb-3'>
-        <div><h2 className="text-xl pb-2 fw-bold font-semibold">Patients Statistics</h2></div>
+        <div><h2 className="text-[26px] pb-2  font-bold">Patients Statistics</h2></div>
         <div className="button-group d-flex mb-2 shadow-sm rounded text-gray-500" style={{ position: 'relative', backgroundColor: 'transparent' }}>
           <button className=" mx-2 px-2 hover:bg-[#0EABEB] hover:text-white" onClick={() => handleTimePeriodChange('Year')}>Year</button>
           <button className=" btn-white px-2 py-2 hover:bg-[#0EABEB] hover:text-white" onClick={() => handleTimePeriodChange('Month')}>Month</button>
