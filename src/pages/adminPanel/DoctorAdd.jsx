@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import apiService from "../../services/api.js";
-import "./doctorManagement.css";
+// import "./doctorManagement.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
@@ -29,16 +29,19 @@ const DoctorAdd = () => {
   }, []);
   useEffect(() => {
     if (formData.hospital && allHospitals.length) {
-      const selectedHospital = allHospitals.find(hospital => hospital._id === formData.hospital);
-      setFormData(prevData => ({
+      const selectedHospital = allHospitals.find(
+        (hospital) => hospital._id === formData.hospital
+      );
+      setFormData((prevData) => ({
         ...prevData,
         hospitalName: selectedHospital?.name || prevData.hospitalName,
         hospitalAddress: selectedHospital?.address || prevData.hospitalAddress,
-        hospitalWebsite: selectedHospital?.worksiteLink || prevData.hospitalWebsite,
+        hospitalWebsite:
+          selectedHospital?.worksiteLink || prevData.hospitalWebsite,
       }));
     }
   }, [formData.hospital, allHospitals]);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -47,25 +50,35 @@ const DoctorAdd = () => {
     });
 
     if (name === "country") {
-      const selectedCountry = countries.find(country => country.isoCode === value);
+      const selectedCountry = countries.find(
+        (country) => country.isoCode === value
+      );
       setIsoCodes(selectedCountry.phonecode); // Set isoCode for use in the next step
-      setFormData(prevData => ({ ...prevData, state: "", city: "", countryCode: `+${selectedCountry.phonecode}` })); // Set formatted country code
+      setFormData((prevData) => ({
+        ...prevData,
+        state: "",
+        city: "",
+        countryCode: `+${selectedCountry.phonecode}`,
+      })); // Set formatted country code
       setStates(State.getStatesOfCountry(selectedCountry.isoCode)); // Fetch states based on selected country
       setCities([]); // Clear cities
     } else if (name === "state") {
-      const selectedState = states.find(state => state.isoCode === value);
+      const selectedState = states.find((state) => state.isoCode === value);
       setCities(City.getCitiesOfState(formData.country, selectedState.isoCode)); // Fetch cities based on selected state
-      setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
-    }else if (name === "hospital") {
-      const selectedHospital = allHospitals.find((hospital) => hospital._id === value);
+      setFormData((prevData) => ({ ...prevData, city: "" })); // Reset city
+    } else if (name === "hospital") {
+      const selectedHospital = allHospitals.find(
+        (hospital) => hospital._id === value
+      );
       setFormData({
         ...formData,
         hospital: value,
-        hospitalName: selectedHospital ? selectedHospital.name : '',
-        hospitalAddress: selectedHospital ? selectedHospital.address : '',
-        hospitalWebsite: selectedHospital ? selectedHospital.website : '',
-        emergencyContactNo: selectedHospital ? selectedHospital.emergencyContactNo : ''
-
+        hospitalName: selectedHospital ? selectedHospital.name : "",
+        hospitalAddress: selectedHospital ? selectedHospital.address : "",
+        hospitalWebsite: selectedHospital ? selectedHospital.website : "",
+        emergencyContactNo: selectedHospital
+          ? selectedHospital.emergencyContactNo
+          : "",
       });
     }
   };
@@ -85,7 +98,9 @@ const DoctorAdd = () => {
       };
       reader.readAsDataURL(file);
     } else {
-      toast.error("Please upload a valid PNG or JPEG file for the profile picture.");
+      toast.error(
+        "Please upload a valid PNG or JPEG file for the profile picture."
+      );
     }
   };
 
@@ -95,14 +110,17 @@ const DoctorAdd = () => {
 
     if (file) {
       if (file.type !== "image/png" && file.type !== "image/jpeg") {
-        toast.error("Please upload a valid PNG or JPEG file for the signature.");
-        input.value = ''; // Reset input
+        toast.error(
+          "Please upload a valid PNG or JPEG file for the signature."
+        );
+        input.value = ""; // Reset input
         return;
       }
 
-      if (file.size > 5 * 1024 * 1024) { // 5MB
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB
         toast.error("File size must be less than 5MB.");
-        input.value = ''; // Reset input
+        input.value = ""; // Reset input
         return;
       }
 
@@ -122,32 +140,38 @@ const DoctorAdd = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       toast.error("Password and Confirm Password do not match.");
       return;
     }
-  
+
     // Fetch the country, state, and city names based on the selected ISO codes
-    const countryObj = Country.getAllCountries().find(country => country.isoCode === formData.country);
+    const countryObj = Country.getAllCountries().find(
+      (country) => country.isoCode === formData.country
+    );
     const countryName = countryObj?.name;
-  
-    const stateObj = State.getStatesOfCountry(formData.country).find(state => state.isoCode === formData.state);
+
+    const stateObj = State.getStatesOfCountry(formData.country).find(
+      (state) => state.isoCode === formData.state
+    );
     const stateName = stateObj?.name;
-  
-    const cityObj = City.getCitiesOfState(formData.country, formData.state).find(city => city.name === formData.city);
+
+    const cityObj = City.getCitiesOfState(
+      formData.country,
+      formData.state
+    ).find((city) => city.name === formData.city);
     const cityName = cityObj?.name;
-  
-    
+
     if (!countryName || !stateName || !cityName) {
       toast.error("Please select a valid country, state, and city.");
       return;
     }
-  
+
     // Construct the full phone number
     const fullPhoneNumber = formData.countryCode + formData.phone;
-  
+
     // Prepare data to submit
     const dataToSubmit = new FormData();
     Object.keys(formData).forEach((key) => {
@@ -159,14 +183,14 @@ const DoctorAdd = () => {
         dataToSubmit.append(key, formData[key]);
       }
     });
-    
+
     // Set additional data
     dataToSubmit.set("countryCode", formData.countryCode);
     dataToSubmit.set("phone", fullPhoneNumber);
     dataToSubmit.set("country", countryName);
     dataToSubmit.set("state", stateName);
     dataToSubmit.set("city", cityName);
-  
+
     // Submit the form data
     try {
       const response = await apiService.CreateDoctor(dataToSubmit);
@@ -179,7 +203,6 @@ const DoctorAdd = () => {
       toast.error("Failed to add doctor. Please try again later.");
     }
   };
-  
 
   return (
     <div>
@@ -219,7 +242,7 @@ const DoctorAdd = () => {
                               alt=""
                               style={{ cursor: "pointer" }}
                             />
-                          )}  
+                          )}
                         </div>
                         <input
                           type="file"
@@ -448,7 +471,12 @@ const DoctorAdd = () => {
 
                           <div className="input-box">
                             <div className="label">Country Code</div>
-                            <input type="text" name="countryCode" value={isoCodes} disabled />
+                            <input
+                              type="text"
+                              name="countryCode"
+                              value={isoCodes}
+                              disabled
+                            />
                             <div className="minus-circle">
                               <FaCircleMinus />
                             </div>
@@ -492,8 +520,11 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                             >
                               <option value="">Select Country</option>
-                              {countries.map(country => (
-                                <option key={country.isoCode} value={country.isoCode}>
+                              {countries.map((country) => (
+                                <option
+                                  key={country.isoCode}
+                                  value={country.isoCode}
+                                >
                                   {country.name}
                                 </option>
                               ))}
@@ -509,8 +540,11 @@ const DoctorAdd = () => {
                               disabled={!formData.country} // Disable if no country is selected
                             >
                               <option value="">Select State</option>
-                              {states.map(state => (
-                                <option key={state.isoCode} value={state.isoCode}>
+                              {states.map((state) => (
+                                <option
+                                  key={state.isoCode}
+                                  value={state.isoCode}
+                                >
                                   {state.name}
                                 </option>
                               ))}
@@ -526,7 +560,7 @@ const DoctorAdd = () => {
                               disabled={!formData.state} // Disable if no state is selected
                             >
                               <option value="">Select City</option>
-                              {cities.map(city => (
+                              {cities.map((city) => (
                                 <option key={city.id} value={city.name}>
                                   {city.name}
                                 </option>
@@ -590,8 +624,15 @@ const DoctorAdd = () => {
                                 onChange={handleChange}
                                 placeholder="Enter Password"
                               />
-                              <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                                {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                              <div
+                                className="eye"
+                                onClick={() => setShowPassword(!showPassword)}
+                              >
+                                {showPassword ? (
+                                  <FaEye size={20} />
+                                ) : (
+                                  <FaEyeSlash size={20} />
+                                )}
                               </div>
                             </div>
                           </div>
@@ -608,8 +649,15 @@ const DoctorAdd = () => {
                               placeholder="Confirm Password"
                               required
                             />
-                            <div className="eye" onClick={() => setShowPassword(!showPassword)}>
-                              {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                            <div
+                              className="eye"
+                              onClick={() => setShowPassword(!showPassword)}
+                            >
+                              {showPassword ? (
+                                <FaEye size={20} />
+                              ) : (
+                                <FaEyeSlash size={20} />
+                              )}
                             </div>
                           </div>
 
@@ -648,7 +696,15 @@ const DoctorAdd = () => {
                             name="currentHospital"
                             placeholder="Enter Current Hospital"
                             maxLength={30}
-                            value={formData.hospital && allHospitals.find((hospital) => hospital._id === formData.hospital.toString().name) || formData.currentHospital}
+                            value={
+                              (formData.hospital &&
+                                allHospitals.find(
+                                  (hospital) =>
+                                    hospital._id ===
+                                    formData.hospital.toString().name
+                                )) ||
+                              formData.currentHospital
+                            }
                             onChange={handleChange}
                           />
                           <div className="minus-circle">
@@ -663,7 +719,11 @@ const DoctorAdd = () => {
                             name="hospitalName"
                             placeholder="Enter Hospital Name"
                             maxLength={100}
-                            value={allHospitals?.find((item) => item._id === formData.hospital)?.name || formData.hospitalName}
+                            value={
+                              allHospitals?.find(
+                                (item) => item._id === formData.hospital
+                              )?.name || formData.hospitalName
+                            }
                             onChange={handleChange}
                             disabled={true}
                           />
@@ -697,7 +757,11 @@ const DoctorAdd = () => {
                             name="hospitalAddress"
                             placeholder="Enter Hospital Address"
                             maxLength={200}
-                            value={allHospitals?.find((item) => item._id === formData.hospital)?.address || formData.hospitalAddress}
+                            value={
+                              allHospitals?.find(
+                                (item) => item._id === formData.hospital
+                              )?.address || formData.hospitalAddress
+                            }
                             onChange={handleChange}
                             disabled={true}
                           />

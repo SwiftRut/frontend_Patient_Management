@@ -152,7 +152,7 @@ export default function AppointmentManagement() {
           <div className="">
             <div className="flex items-center space-x-4">
               <div className="search-btn flex">
-                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                <div className="flex items-center bg-gray-100 rounded-full ps-4 py-2 w-80">
                   <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
