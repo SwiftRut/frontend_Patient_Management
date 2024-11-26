@@ -190,7 +190,7 @@ const DoctorAdd = () => {
               <div className="top">
                 <div className="content">
                   <div className="head">
-                    <p>Add New Doctor</p>
+                    <p>Add New Doctor </p>
                   </div>
                   <div className="details flex">
                     <div className="left flex">
