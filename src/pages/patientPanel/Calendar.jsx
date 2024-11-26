@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect }) => {
+const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment }) => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,6 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect }) => {
     getAppointmetnsForPatient,
   } = useGlobal();
   const { user } = useAuth();
-  console.log(user,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");  
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
@@ -75,8 +74,8 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect }) => {
   };
   const handleBookAppointment = async (appointmentData) => {
 
-    console.log(user.id,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< from handel");
     try {
+      await handlePayment();
       await createAppointment(user?.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();

@@ -223,8 +223,8 @@ const NotificationBox = () => {
                       }
                     />
                   </div> */}
-                  <div className="flex items-start space-x-1 border-b p-2 ">
-                    <div className="w-10 h-10 bg-[#c3eafa] rounded-full flex justify-center items-center">
+                  <div className="flex space-x-1 border-b py-2 w-full">
+                    <div className="w-10 h-10 bg-[#c3eafa] rounded-full flex justify-center items-center me-2">
                       {getNotificationIcon(notification.type)}
                     </div>
 
@@ -232,7 +232,7 @@ const NotificationBox = () => {
                       <div className="font-medium text-xs">
                         {notification.message}
                       </div>
-                      <div className="flex justify-between items-center text-gray-500 text-xs">
+                      <div className="flex justify-between items-center text-gray-500 text-xs pt-1">
                         <span className="text-[#5678E9]">
                           {notification.type}
                         </span>

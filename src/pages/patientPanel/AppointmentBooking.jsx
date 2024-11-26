@@ -262,6 +262,7 @@ const handlePayment = async () => {
                       }}
                       selectedDoctor={allDoctors.find((doc) => doc._id === doctor)}
                       onDateTimeSelect={handleDateTimeSelect}
+                      handlePayment={handlePayment}
                     />
                   </div>
                   <div className="col-span-3 p-3">
@@ -271,12 +272,6 @@ const handlePayment = async () => {
               )}
             </div>
           </div>
-          <button
-                      onClick={handlePayment}
-                      className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      Pay with Razorpay
-                    </button>
         </div>
       </div>
     </div>
