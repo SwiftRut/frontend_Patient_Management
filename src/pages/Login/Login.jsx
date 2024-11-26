@@ -200,12 +200,12 @@ const Login = () => {
       <div className="login-section h-screen flex">
         <div className="w-full flex flex-col md:flex-row">
           {/* Login Form Section */}
-          <div className="w-full md:w-1/2 bg-white flex justify-center items-center p-4 md:p-0">
-            <div className="w-full md:max-w-xl p-6 border border-gray-200 shadow-md rounded-lg">
+          <div className="w-full md:w-1/2 bg-white flex justify-center items-center p-0 md:p-0">
+            <div className="w-full md:max-w-xl p-6 border shadow-md rounded-lg">
               <div className="mb-6 text-center">
                 <p className="text-2xl font-semibold text-left">Login</p>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-1 relative">
                   <label className="block text-[#030229] absolute top-[-0.65rem] left-4 bg-white z-10">
                     Email or Phone <span className="text-red-500">*</span>
