@@ -208,7 +208,6 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data.data);
-      toast.success("Patient Edited Successful");
     } catch (error) {
       console.error("Error fetching doctor profile:", error);
       toast.error("Error fetching doctor profile");
@@ -457,7 +456,6 @@ export const GlobalProvider = ({ children }) => {
       toast.success("Appointment created successfully");
     } catch (error) {
       console.error(error);
-      toast.success("Patient Edited Successful");
       throw error;
     }
   };

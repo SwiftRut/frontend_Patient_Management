@@ -27,7 +27,6 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
     getAppointmetnsForPatient,
   } = useGlobal();
   const { user } = useAuth();
-  console.log(user,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");  
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
@@ -75,7 +74,6 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
   };
   const handleBookAppointment = async (appointmentData) => {
 
-    console.log(user.id,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< from handel");
     try {
       await handlePayment();
       await createAppointment(user?.id, appointmentData, selectedDoctor);
