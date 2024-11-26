@@ -23,7 +23,6 @@ export default function Bill() {
     doctorId: "",
     insuranceId: "",
   });
-  console.log(formData);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -126,10 +126,8 @@ const Appointment = () => {
   const handleCancelAppointment = async (appointmentId) => {
     try {
       const response = await cancelAppointment(appointmentId);
-      console.log("response", response);
 
       if (response.status === 200) {
-        console.log("response", response);
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
@@ -169,7 +167,6 @@ const Appointment = () => {
 
     updatedAppointment.appointmentTime = new Date(newDate + "T" + newTime).toISOString();
     updatedAppointment.date = new Date(newDate + "T" + newTime).toISOString();;
-    console.log(updatedAppointment, "<<<<<<<<<<<<<<<<<<<<<< appointmentTime");
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       handleCloseRescheduleModal();

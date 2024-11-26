@@ -126,7 +126,6 @@ const DoctorProfileEdit = () => {
     return <div>Loading...</div>; // Or your loading component
   }
 
-  console.log(profile);
   return (
     <div className="doctor-edit-section">
     <div className="row">

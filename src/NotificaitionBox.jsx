@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { useGlobal } from "./hooks/useGlobal";
 import { useAuth } from "./hooks/useAuth";
 import apiService from "./services/api";
 import { MdOutlineBookmarkAdded } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
-import { LuMessagesSquare } from "react-icons/lu";
 import {
   Badge,
   IconButton,
@@ -14,18 +13,15 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  Button,
   Box,
   Divider,
   CircularProgress,
 } from "@mui/material";
 import {
   NotificationsOutlined,
-  Circle as CircleIcon,
   CheckCircleOutline,
   ErrorOutline,
   InfoOutlined,
-  Close as CloseIcon,
 } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
 
@@ -36,7 +32,6 @@ const NotificationBox = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Load initial notifications
   useEffect(() => {
     const loadNotifications = async () => {
       if (!userData?.id) return;
@@ -58,7 +53,6 @@ const NotificationBox = () => {
     loadNotifications();
   }, [userData]);
 
-  // Socket connection for real-time notifications
   useEffect(() => {
     const socket = io(import.meta.env.VITE_API_BASE_URL);
 
@@ -116,7 +110,6 @@ const NotificationBox = () => {
         console.error("Error marking notification as read:", error);
       }
     }
-    // Handle notification click action here (e.g., navigation)
   };
 
   const getNotificationIcon = (type) => {
@@ -203,26 +196,6 @@ const NotificationBox = () => {
                   }`}
                   onClick={() => handleNotificationClick(notification)}
                 >
-                  {/* <div className="flex items-start space-x-2">
-                    {getNotificationIcon(notification.type)}
-                    <ListItemText
-                      primary={
-                        <Typography variant="body2" className="font-medium">
-                          {notification.message}
-                        </Typography>
-                      }
-                      secondary={
-                        <div className="flex justify-between items-center">
-                          <Typography variant="caption" color="textSecondary">
-                            {notification.type}
-                          </Typography>
-                          <Typography variant="caption" color="textSecondary">
-                            {formatTimestamp(notification.createdAt)}
-                          </Typography>
-                        </div>
-                      }
-                    />
-                  </div> */}
                   <div className="flex space-x-1 border-b py-2 w-full">
                     <div className="w-10 h-10 bg-[#c3eafa] rounded-full flex justify-center items-center me-2">
                       {getNotificationIcon(notification.type)}

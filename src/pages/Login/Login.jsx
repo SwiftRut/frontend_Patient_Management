@@ -54,7 +54,6 @@ const Login = () => {
     e.preventDefault();
     try {
       const role = await UniversalLogin(formData);
-      console.log(role);
       if (role) {
         if (role === "admin") {
           window.location.href = "/";
@@ -62,7 +61,6 @@ const Login = () => {
           window.location.href = "/patient";
         } else if (role === "doctor") {
           toast.success("doctor login successfully");
-          console.log("navigating in doctor");
           window.location.href = "/doctor";
         }
       }

@@ -90,7 +90,6 @@ const AppointmentModal = ({
         diseaseName,
       },
     };
-    console.log(appointmentData, "<<<<<<<");
     onBookAppointment(appointmentData);
   };
 

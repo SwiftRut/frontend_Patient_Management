@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function TeleConsultationTable({ patient }) {
     const navigate = useNavigate();
-    console.log(patient);
     return (
         <tr className="border-t">
             <td className="p-3">{patient.name}</td>

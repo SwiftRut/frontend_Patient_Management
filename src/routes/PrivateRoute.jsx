@@ -7,7 +7,6 @@ const ProtectedRoute = ({ element, allowedRoles, userRole }) => {
     return <Navigate to="/login" />;
   }
   const isAuthorized = allowedRoles?.includes(userRole);
-  // console.log(isAuthorized, userRole);
   return isAuthorized ? element : <Navigate to="/login" />;
 };
 

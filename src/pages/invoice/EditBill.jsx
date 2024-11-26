@@ -21,7 +21,6 @@ const EditBill = () => {
       try {
         setLoading(true);
         const data = await getBillById(id);
-        console.log("Fetched data:", data);
         if (data) {
           setFormData({
             billNumber: data.billNumber,

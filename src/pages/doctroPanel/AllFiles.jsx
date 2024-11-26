@@ -1,11 +1,6 @@
-import React from "react";
 import "./doctorPanel.css";
 import { FaImage } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-
-const handalclick = () => {
-  console.log("done");
-};
 
 const AllFiles = () => {
   return (

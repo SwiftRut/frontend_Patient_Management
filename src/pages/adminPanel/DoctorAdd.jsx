@@ -30,7 +30,6 @@ const DoctorAdd = () => {
   useEffect(() => {
     if (formData.hospital && allHospitals.length) {
       const selectedHospital = allHospitals.find(hospital => hospital._id === formData.hospital);
-      console.log(selectedHospital)
       setFormData(prevData => ({
         ...prevData,
         hospitalName: selectedHospital?.name || prevData.hospitalName,
@@ -39,7 +38,6 @@ const DoctorAdd = () => {
       }));
     }
   }, [formData.hospital, allHospitals]);
-  console.log(formData)
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +58,6 @@ const DoctorAdd = () => {
       setFormData(prevData => ({ ...prevData, city: "" })); // Reset city
     }else if (name === "hospital") {
       const selectedHospital = allHospitals.find((hospital) => hospital._id === value);
-      console.log(selectedHospital)
       setFormData({
         ...formData,
         hospital: value,
@@ -142,7 +139,6 @@ const DoctorAdd = () => {
     const cityObj = City.getCitiesOfState(formData.country, formData.state).find(city => city.name === formData.city);
     const cityName = cityObj?.name;
   
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>formdata",formData)
     
     if (!countryName || !stateName || !cityName) {
       toast.error("Please select a valid country, state, and city.");
@@ -174,7 +170,6 @@ const DoctorAdd = () => {
     // Submit the form data
     try {
       const response = await apiService.CreateDoctor(dataToSubmit);
-      console.log(response.data);
       if (response) {
         navigate("/doctorManagement");
         toast.success("Doctor added successfully.");

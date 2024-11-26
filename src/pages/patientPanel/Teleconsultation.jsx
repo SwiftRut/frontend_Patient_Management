@@ -62,7 +62,6 @@ const Teleconsultation = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   const handleJoinCall = (appointmentId) => {
-    console.log("handle join call", appointmentId);
     navigate(`/patient/vid?room=${appointmentId}`);
   };
   
@@ -121,7 +120,6 @@ const Teleconsultation = () => {
     });
     setFilteredAppointments(filtered || []);
   };
-  console.log(filteredAppointments);
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
     setOpenModal(true);

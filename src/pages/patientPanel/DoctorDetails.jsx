@@ -12,7 +12,6 @@ const DoctorDetails = ({ doctorID }) => {
     try {
       const response = await apiService.GetDoctorById(doctorID);
       setDoctor(response.data.data);
-      console.log(response.data, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor from doctor Details");
     } catch (err) {
       console.error("Error fetching doctor data:", err);
       toast.error("Error fetching doctor data.");

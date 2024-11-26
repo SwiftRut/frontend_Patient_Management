@@ -1,28 +1,18 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  IconButton,
-  TextField,
-  InputAdornment,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-import { TbCalendarClock, TbCalendarTime, TbCalendarX } from "react-icons/tb";
+import { TbCalendarClock, TbCalendarX } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import { FaCalendarAlt } from "react-icons/fa";
 export default function AppointmentManagement() {
-  const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } =
+  const { allAppointments, getAppointmetnsForDoctor } =
     useGlobal();
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [dateRange, setDateRange] = useState("Any Date");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("Today Appointment");
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
@@ -104,7 +94,7 @@ export default function AppointmentManagement() {
         case "Day":
           return appointmentDate.getTime() === now.getTime();
         case "Week":
-          const weekStart = new Date(now);
+          let weekStart = new Date(now);
           weekStart.setDate(now.getDate() - now.getDay());
           const weekEnd = new Date(weekStart);
           weekEnd.setDate(weekStart.getDate() + 6);
@@ -127,7 +117,6 @@ export default function AppointmentManagement() {
       appointment.patient_issue.toLowerCase().includes(lowerSearchTerm)
     );
   });
-  console.log(filteredAppointments);
 
   const timeFilteredAppointments =
     filterAppointmentsByTime(filteredAppointments);
@@ -193,7 +182,6 @@ export default function AppointmentManagement() {
               )}
               <div className="time-slot">
                 <button
-                  variant="contained"
                   color="primary"
                   className="!text-base time-slot bg-[#0EABEB] py-3 px-4 text-[#FFFFFF] rounded-lg flex items-center justify-center"
                   onClick={() => navigate("/doctor/appointmentTimeSlot")}

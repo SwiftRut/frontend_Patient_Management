@@ -16,8 +16,6 @@ const VideoCall = () => {
 
   const joinRoom = () => {
     socket.emit("joinRoom", { room, name });
-    console.log(`Joining room: ${room}`);
-    alert(`You joined the room: ${room}`);
   };
 
  const startCall = async () => {
@@ -43,7 +41,6 @@ const VideoCall = () => {
     };
 
     peerConnection.ontrack = (event) => {
-      console.log(`Received remote stream for room: ${room}`);
       const remoteStream = event.streams[0];
       remoteVideoRef.current.srcObject = remoteStream; // Set remote video stream
       toast.success("Connected to the other user!");
@@ -72,7 +69,6 @@ const VideoCall = () => {
   useEffect(() => {
     socket.on("offer", async (data) => {
       const { offer, room } = data;
-      console.log(`Received offer in room: ${room}`, offer);
 
       // Create peer connection for the incoming call
       const peerConnection = new RTCPeerConnection();
@@ -97,7 +93,6 @@ const VideoCall = () => {
       };
 
       peerConnection.ontrack = (event) => {
-        console.log(`Received remote stream for room: ${room}`);
         const remoteStream = event.streams[0];
         remoteVideoRef.current.srcObject = remoteStream; 
         toast.success("Connected to the other user!");
@@ -106,14 +101,12 @@ const VideoCall = () => {
 
     socket.on("answer", (data) => {
       const { answer, room } = data;
-      console.log(`Received answer in room: ${room}`, answer);
       const peerConnection = peerRef.current.get(room);
       peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
     });
 
     socket.on("candidate", (data) => {
       const { candidate, room } = data;
-      console.log(`Received candidate in room: ${room}`, candidate);
       const peerConnection = peerRef.current.get(room);
       peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
     });

@@ -23,17 +23,9 @@ const Bills = () => {
   useEffect(() => {
     getAllBillsById();
   }, []);
-  console.log("All Bills:", allBillsById);
-
-  // Filter bills based on status
   const unpaidBills = allBillsById?.filter((bill) => bill.status === "Unpaid");
   const paidBills = allBillsById?.filter((bill) => bill.status === "Paid");
-
-  console.log("Unpaid Bills:", unpaidBills);
-  console.log("Paid Bills:", paidBills);
-
   const handleViewBillDetails = (Id) => {
-    console.log(Id);
 
     setOpenModel(true);
     setModelId(Id);

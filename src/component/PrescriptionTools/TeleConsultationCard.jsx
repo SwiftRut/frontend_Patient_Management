@@ -8,7 +8,6 @@ import { LuPhoneCall } from "react-icons/lu";
 // PatientCard component
 const TeleConsultationCard = ({ patient }) => {
   const navigate = useNavigate();
-  console.log(patient);
   return (
     <div className="bg-white border rounded-lg pb-4 w-full relative">
       <div className="">

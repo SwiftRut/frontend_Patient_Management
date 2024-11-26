@@ -29,12 +29,10 @@ export const GlobalProvider = ({ children }) => {
     const messaging = getMessaging();
     initializeFCM();
     const unsubscribe = onMessage(messaging, (payload) => {
-      console.log("Foreground message:", payload);
       const { title, body } = payload.notification;
       if (Notification.permission === "granted") {
         new Notification(title, {
           body: body,
-          // icon: icon, // Optional: Add an icon
         });
       } else {
         console.warn("Notifications permission not granted");
@@ -48,15 +46,10 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     socket.emit("userOnline", user.id);
-    // Listen for 'notification' event from the server
     socket.on("notification", (data) => {
-      console.log("New notification received:", data);
-
-      // Update the notifications state with the new notification
       setNotifications((prev) => [...prev, data]);
     });
 
-    // Cleanup on component unmount
     return () => {
       socket.off("notification");
     };
@@ -65,7 +58,6 @@ export const GlobalProvider = ({ children }) => {
   const initializeFCM = async () => {
     try {
       const token = await requestFCMToken();
-      console.log("FCM Token from context:", token);
       setFcmToken(token);
       setFCMTODB(token);
     } catch (error) {
@@ -73,20 +65,14 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const setFCMTODB = async (token) => {
-    console.log(user);
     if (user.role === "doctor") {
-      console.log("FCM Token from context from patient: ", token);
-      const response = await apiService.UpdateDoctorToken({ token: token });
-      console.log("response", response);
+      await apiService.UpdateDoctorToken({ token: token });
     } else if (user.role === "patient") {
-      console.log("FCM Token from context from patient: ", token);
-      const response = await apiService.UpdatePatientToken({ token: token });
-      console.log("response", response);
+      await apiService.UpdatePatientToken({ token: token });
     }
   };
 
   const onClickNotification = async (fcmToken, title, body) => {
-    console.log("onClickNotification", fcmToken, title, body);
     try {
       const response = await apiService.GetNotifications({
         deviceToken: fcmToken,
@@ -105,7 +91,6 @@ export const GlobalProvider = ({ children }) => {
   const createNewFCM = async () => {
     try {
       const newToken = await requestFCMToken();
-      console.log("New FCM Token:(onRefresh)", newToken);
       setFcmToken(newToken);
     } catch (error) {
       console.error("Error generating new FCM token:", error);
@@ -114,8 +99,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getNotifications = async (data) => {
     try {
-      const response = await apiService.GetNotifications(data);
-      console.log("Notifications:", response);
+      await apiService.GetNotifications(data);
     } catch (error) {
       console.error("Error fetching notifications:", error);
       toast.error("Error fetching notifications");
@@ -347,7 +331,6 @@ export const GlobalProvider = ({ children }) => {
   const getAppointmentById = async (id) => {
     try {
       const response = await apiService.GetAppointmentById(id);
-      console.log("Fetched appointment:", response);
       return response.data;
     } catch (error) {
       console.error("Error fetching appointment by ID:", error);
@@ -359,7 +342,6 @@ export const GlobalProvider = ({ children }) => {
   const getAllAppointmentById = async (patientId) => {
     try {
       const response = await apiService.GetALLAppointmentById(patientId);
-      console.log("Fetched appointment:", response);
       setAllAppointmentsById(response.data);
     } catch (error) {
       console.error("Error fetching appointment by ID:", error);
@@ -460,7 +442,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const updateAppointment = async (id, userData) => {
-    console.log(id, userData);
     try {
       await apiService.EditAppointment(id, userData);
       toast.success("Appointment edited successfully");
