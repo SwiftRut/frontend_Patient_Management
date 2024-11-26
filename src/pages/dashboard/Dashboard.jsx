@@ -96,7 +96,7 @@ const Dashboard = () => {
                 <div className="total-data flex justify-between items-center mb-4">
                   <div className="total-Patients w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo w-[60px] h-12 rounded-full bg-[#2e779326] flex justify-center items-center">
+                      <div className="logo w-[60px] h-[60px] rounded-full bg-[#2e779326] flex justify-center items-center">
                         <FaUsers className="text-[#2e7793] w-7" />
                       </div>
                       <div className="details pl-4">
@@ -107,7 +107,7 @@ const Dashboard = () => {
                   </div>
                   <div className="total-Docters w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo dr-logo ww-[60px] h-12 rounded-full bg-[#5e5e9e26] flex justify-center items-center">
+                      <div className="logo dr-logo w-[60px] h-[60px] rounded-full bg-[#5e5e9e26] flex justify-center items-center">
                         <FaUser className="text-[#5e5e9e] w-7" />
                       </div>
                       <div className="details pl-4">
@@ -118,7 +118,7 @@ const Dashboard = () => {
                   </div>
                   <div className="total-Appointments w-[32%] bg-white rounded-lg p-4">
                     <div className="content flex items-center">
-                      <div className="logo appo-logo ww-[60px] h-12 rounded-full bg-[#41b16126] flex justify-center items-center">
+                      <div className="logo appo-logo w-[60px] h-[60px] rounded-full bg-[#41b16126] flex justify-center items-center">
                         <FaFileAlt className="text-[#41b161] w-7" />
                       </div>
                       <div className="details pl-4">
@@ -210,7 +210,7 @@ const Dashboard = () => {
                   <div className="appointments-content bg-white p-5 rounded-lg h-[330px]">
                     <div className="head">
                       <div className="title flex justify-between items-center">
-                        <p className="text-[26px] font-bold">Today's Appointments List</p>
+                        <p className="text-[26px] font-bold pb-3">Today's Appointments List</p>
                         <span className="text-blue-500 cursor-pointer text-[16px] font-medium"> View All</span>
                       </div>
                     </div>

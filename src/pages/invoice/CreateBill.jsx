@@ -127,7 +127,7 @@ const CreateBill = () => {
   // Hospital bill fields
   const HospitalBillFields = [
     {
-      label: "Patient Name",
+      label: "Patient Name ",
       name: "patientId",
       type: "select",
       options: loadingPatients
@@ -225,7 +225,7 @@ const CreateBill = () => {
         <div className="flex justify-center">
           <div className="p-4 bg-white rounded-xl">
             <div className="mb-4">
-              <p className="text-[#030229] text-2xl font-bold">Create Bill</p>
+              <p className="text-[#030229] text-[26px] font-bold">Create Bill </p>
             </div>
 
             <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
@@ -250,7 +250,7 @@ const CreateBill = () => {
             {formData.paymentType === "Insurance" && (
               <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
                 <div className="space-y-4">
-                  <p className="text-[#030229] text-xl font-bold">Insurance Details</p>
+                  <p className="text-[#030229] text-[26px] font-bold">Insurance Details</p>
                   <div className="flex">
                     <div className="w-full">
                       <form className="flex flex-wrap justify-between gap-4">
