@@ -1,8 +1,58 @@
+import { useParams } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+
 export default function Bill2() {
+  const { id } = useParams();
+  const { getBillById, bill } = useGlobal();
+  const [formData, setFormData] = useState({
+    billNumber: "",
+    description: "",
+    paymentType: "",
+    date: "",
+    time: "",
+    amount: 0,
+    discount: 0,
+    tax: 0,
+    totalAmount: 0,
+    status: "",
+    patientId: "",
+    doctorId: "",
+    insuranceId: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getBillById(id);
+        setFormData(bill);
+      } catch (error) {
+        console.error("Error fetching billing data:", error);
+        toast.error("Error fetching billing data.");
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Format date helper function
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  // Calculate amounts
+  const discountAmount = (formData.amount * formData.discount) / 100;
+  const taxAmount = (formData.amount * formData.tax) / 100;
+
   return (
     <>
+    <div className="bg-[#F6F8FB] p-3 h-[92%]">
       <div className="flex justify-center items-center">
-        <div className="invoice bg-white rounded-lg shadow-md max-w-3xl mx-auto overflow-hidden">
+        <div className="invoice bg-white rounded-lg shadow-md max-w-3xl mx-auto overflow-hidden mt-[40px]">
           <div className="head flex justify-between">
             <img src="/img/logo.png" className="w-2/5 h-auto" alt="Logo" />
             <img src="/img/invoice.png" className="w-[45%] h-auto" alt="Logo" />
@@ -12,34 +62,37 @@ export default function Bill2() {
               <div>
                 <h3 className="text-base font-bold text-[#141414]">Billing To:</h3>
                 <h3 className="text-base font-bold text-[#141414]">
-                  Adeline Palmerston
+                  {formData.patientId?.firstName} {formData.patientId?.lastName}
                 </h3>
                 <span className="text-xs text-gray-500 block mt-2">
-                  123 Anywhere St., Any City, ST 12345
+                  {formData.address}
+                </span>
+                <span className="text-xs text-gray-500 block">
+                  {formData.patientId?.phone}
                 </span>
               </div>
               <div>
                 <p className="text-sm">
                   <strong>Invoice No :</strong>
-                  <span className="text-xs text-gray-500 ml-2">1234</span>
+                  <span className="text-xs text-gray-500 ml-2">{formData.billNumber}</span>
                 </p>
                 <p className="text-sm">
                   <strong>Invoice Date :</strong>
-                  <span className="text-xs text-gray-500 ml-2">20 June, 2020</span>
+                  <span className="text-xs text-gray-500 ml-2">{formatDate(formData.createdAt)}</span>
                 </p>
                 <p className="text-sm">
                   <strong>Due Date :</strong>
-                  <span className="text-xs text-gray-500 ml-2">30 June, 2020</span>
+                  <span className="text-xs text-gray-500 ml-2">{formatDate(formData.date)}</span>
                 </p>
               </div>
             </div>
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-[#0eabeb] text-white text-xs ">
+                <tr className="bg-[#0eabeb] text-white text-xs">
                   <th className="p-2 rounded-l-lg text-left">Item</th>
                   <th className="p-2 text-left">Price</th>
                   <th className="p-2 text-left">Qty</th>
-                  <th className="p-2  text-left rounded-r-lg">Total</th>
+                  <th className="p-2 text-left rounded-r-lg">Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,6 +207,7 @@ export default function Bill2() {
             <p>Email: Hello@Gmail.com</p>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

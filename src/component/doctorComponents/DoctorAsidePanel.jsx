@@ -23,7 +23,7 @@ export default function DoctorAsidePanel() {
             <img src="/img/logo.png" alt="Logo" className="w-3/4 h-auto" />
           </div>
           <div className="menu flex flex-col h-[85%] justify-between">
-            <ul className="bg-white space-y-4">
+            <ul className="bg-white space-y-2">
               <li>
                 <NavLink
                   to="/doctor"
