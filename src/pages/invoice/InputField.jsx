@@ -19,7 +19,7 @@ const InputField = ({
   if (type === 'select') {
     return (
       <div className={`relative py-4 w-[24%] ${className}`}>
-        <div className="absolute top-1 left-3 bg-white text-gray-600 text-sm">{label}</div>
+        <div className="absolute top-1 left-3 bg-white text-gray-600 text-[16px] font-medium">{label}</div>
         <select
           name={name}
           value={value}
@@ -43,7 +43,7 @@ const InputField = ({
 
   return (
     <div className={`relative py-4 w-[24%] ${className}`}>
-      <div className="absolute top-1 left-3 bg-white text-gray-600 text-sm">{label}</div>
+      <div className="absolute top-1 left-3 bg-white text-gray-600 text-[16px] font-medium">{label}</div>
       <input
         type={type}
         name={name}

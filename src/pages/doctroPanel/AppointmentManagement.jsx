@@ -47,22 +47,22 @@ export default function AppointmentManagement() {
     today.setHours(0, 0, 0, 0);
 
     return {
-      today: allAppointments?.filter((apt) => {
+      today: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate.getTime() === today.getTime();
       }),
-      upcoming: allAppointments?.filter((apt) => {
+      upcoming: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate > today;
       }),
-      previous: allAppointments?.filter((apt) => {
+      previous: allAppointments.filter((apt) => {
         const aptDate = new Date(apt.date);
         aptDate.setHours(0, 0, 0, 0);
         return aptDate < today;
       }),
-      canceled: allAppointments?.filter((apt) => apt.status === "cancelled"),
+      canceled: allAppointments.filter((apt) => apt.status === "cancelled"),
     };
   };
 

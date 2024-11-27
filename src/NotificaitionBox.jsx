@@ -40,7 +40,7 @@ const NotificationBox = () => {
       try {
         const response = await apiService.GetUserNotifications(userData.id);
         setNotifications(response.data);
-        const unreadCount = response?.data?.filter((n) => !n.isRead).length;
+        const unreadCount = response.data.filter((n) => !n.isRead).length;
         setUnreadCount(unreadCount);
       } catch (error) {
         console.error("Error loading notifications:", error);
