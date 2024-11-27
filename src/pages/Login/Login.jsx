@@ -213,7 +213,7 @@ const Login = () => {
                     name="identifier"
                     value={formData.identifier}
                     onChange={handleChange}
-                    placeholder="Enter Email or Phone Number"
+                    placeholder="Enter Email or Phone (e.g., +917621478456)"
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-400"
                   />
                 </div>

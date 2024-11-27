@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 export default function Bill() {
   const { id } = useParams();
   const { getBillById, bill } = useGlobal();
-
   const [formData, setFormData] = useState({
     billNumber: "",
     description: "",
