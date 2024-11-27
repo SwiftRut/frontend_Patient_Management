@@ -112,7 +112,9 @@ const Appointment = () => {
           );
         case "pending":
           return (
-            appointment.status === "pending" &&
+            appointment.prescriptionId === null &&
+            // appointmentDate.isBefore(currentDate) &&
+            appointment.status !== "canceled" &&
             isWithinDateRange &&
             matchesSearch
           );

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import FormInput from '../../component/common/FormInput';
-import { formDataObject, PatientBillFields } from './Contants';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useGlobal } from '../../hooks/useGlobal';
-import { useDoctor } from '../../hooks/useDoctor';
+import FormInput from "../../component/common/FormInput";
+import { formDataObject, PatientBillFields } from "./Contants";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useDoctor } from "../../hooks/useDoctor";
 import toast from "react-hot-toast";
 import InputField from "./InputField";
 
@@ -28,12 +28,12 @@ const EditBill = () => {
             phone: data.phone,
             gender: data.gender,
             age: data.age,
-            doctorId: data.doctorId._id,
-            doctorName: data.doctorId.name,
+            doctorId: data.doctorId?._id,
+            doctorName: data.doctorId?.name,
             diseaseName: data.diseaseName,
             description: data.description,
             paymentType: data.paymentType,
-            billDate: data.date.split('T')[0],
+            billDate: data.date.split("T")[0],
             billTime: data.time,
             discount: data.discount,
             tax: data.tax,
@@ -59,7 +59,7 @@ const EditBill = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -87,15 +87,24 @@ const EditBill = () => {
   }
 
   const HospitalBillFields = [
-    { label: "Patient Name", name: "patientName", type: "text", disabled: true, readOnly: true },
+    {
+      label: "Patient Name",
+      name: "patientName",
+      type: "text",
+      disabled: true,
+      readOnly: true,
+    },
     { label: "Phone Number", name: "phone", type: "text", disabled: true },
     {
-      label: "Gender", name: "gender", type: "select", options: [
+      label: "Gender",
+      name: "gender",
+      type: "select",
+      options: [
         { label: "Select Gender", value: "" },
         { label: "Male", value: "male" },
         { label: "Female", value: "female" },
-        { label: "Other", value: "other" }
-      ]
+        { label: "Other", value: "other" },
+      ],
     },
     { label: "Age", name: "age", type: "text", disabled: true },
     {
@@ -104,18 +113,25 @@ const EditBill = () => {
       type: "select",
       options: [
         { label: "Select Doctor", value: "" },
-        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+        ...allDoctors.map((doctor) => ({
+          label: doctor?.name,
+          value: doctor?._id,
+        })),
+        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor?._id }))
       ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
     { label: "Description", name: "description", type: "text" },
     {
-      label: "Payment Type", name: "paymentType", type: "select", options: [
+      label: "Payment Type",
+      name: "paymentType",
+      type: "select",
+      options: [
         { label: "Select Payment Type", value: "" },
         { label: "Cash", value: "Cash" },
         { label: "Insurance", value: "Insurance" },
-        { label: "Credit Card", value: "Credit Card" }
-      ]
+        { label: "Credit Card", value: "Credit Card" },
+      ],
     },
     { label: "Bill Date", name: "billDate", type: "date" },
     { label: "Bill Time", name: "billTime", type: "text" },
@@ -133,20 +149,21 @@ const EditBill = () => {
         <div className="row">
           <div className="main bg-white p-4 rounded-xl">
             <div className="title">
-              <p className="text-dark text-2xl font-bold">Edit Bill</p>
+              <p className="text-dark text-[26px] font-bold">Edit Bill</p>
             </div>
 
-            <div className="patient-details my-4 p-5 border-2 border-gray-200 rounded-xl">
+            <div className="patient-details my-4 p-5 border-2 border-gray-200 bg-white rounded-xl">
               <div className="content">
                 <div className="details flex flex-wrap">
                   <div className="form-box w-full">
-                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-4" id="edit-bill-form">
+                
+                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-x-4" id="edit-bill-form">
                       {HospitalBillFields.map((field) => (
                         <InputField
                           key={field.name}
                           label={field.label}
                           type={field.type}
-                          value={formData[field.name] || ''}
+                          value={formData[field.name] || ""}
                           onChange={(e) =>
                             handleChange({
                               target: {
@@ -168,11 +185,13 @@ const EditBill = () => {
               </div>
             </div>
 
-            {formData.paymentType === 'Insurance' && (
+            {formData.paymentType === "Insurance" && (
               <div className="insurance-details my-4 p-5 border-2 border-gray-200 rounded-xl">
                 <div className="content">
                   <div className="head">
-                    <p className="text-dark text-xl font-bold">Insurance Details</p>
+                    <p className="text-dark text-xl font-bold">
+                      Insurance Details
+                    </p>
                   </div>
 
                   <div className="details flex flex-wrap">
@@ -182,7 +201,7 @@ const EditBill = () => {
                           <FormInput
                             key={index}
                             {...field}
-                            value={formData[field.name] || ''}
+                            value={formData[field.name] || ""}
                             onChange={handleChange}
                           />
                         ))}

@@ -3,6 +3,7 @@ import { useDoctor } from "../hooks/useDoctor";
 import { usePatient } from "../hooks/usePatient";
 import { useGlobal } from "../hooks/useGlobal";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { FaEye } from "react-icons/fa";
 
 export const SearchResult = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
@@ -83,7 +84,8 @@ export const SearchResult = () => {
         <div className="bg-white p-2 mx-3 my-3 rounded-lg">
           <h1 className="text-xl font-bold text-[#030229] mb-2">Doctor</h1>
           <div
-            className={`pr-data h-[${tableHeight}] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200`}
+            className={`pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200`}
+            style={{ height: tableHeight }}
           >
             <table className="min-w-full table-auto mb-10">
               <thead className="bg-[#F6F8FB]">
@@ -209,7 +211,8 @@ export const SearchResult = () => {
         <div className="bg-white p-2 mx-3 rounded-lg">
           <h1 className="text-xl font-bold text-[#030229] mb-2">Patient</h1>
           <div
-            className={`pr-data h-[${tableHeight}] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 `}
+            className={`pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 `}
+            style={{ height: tableHeight }}
           >
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
@@ -327,5 +330,9 @@ export const SearchResult = () => {
         return null;
     }
   };
-  return <div>{renderTable()}</div>;
+  return (
+    <div className=" bg-[#F6F8FB] p-[20px] h-[93%]">
+      <div className="bg-white rounded-lg p-2">{renderTable()}</div>
+    </div>
+  );
 };

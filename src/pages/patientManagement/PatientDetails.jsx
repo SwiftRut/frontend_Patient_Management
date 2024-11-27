@@ -129,7 +129,7 @@ export default function PatientDetails({ patient, closeModal }) {
                         Doctor Name
                       </h3>
                       <p className="text-lg font-medium text-gray-900">
-                        {patient.appointment.doctorId.name}
+                        {patient.appointment.doctorId?.name}
                       </p>
                     </li>
                     <li className="flex justify-between py-2">
