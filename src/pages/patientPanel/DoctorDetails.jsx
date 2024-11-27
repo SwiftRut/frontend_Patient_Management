@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import apiService from "../../services/api";
 import toast from "react-hot-toast";
 
-const DoctorDetails = ({ doctorID }) => {
+const DoctorDetails = ({ doctorId }) => {
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchDoctorData = async () => {
     try {
-      const response = await apiService.GetDoctorById(doctorID);
+      const response = await apiService.GetDoctorById(doctorId);
       setDoctor(response.data.data);
     } catch (err) {
       console.error("Error fetching doctor data:", err);
@@ -23,8 +23,8 @@ const DoctorDetails = ({ doctorID }) => {
 
   useEffect(() => {
     fetchDoctorData();
-  }, [doctorID]);
-
+  }, [doctorId]);
+  console.log(doctorId,"doctor");
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -53,19 +53,31 @@ const DoctorDetails = ({ doctorID }) => {
         <div className="p-2 bg-[#f6f8fb] m-3 rounded-md">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">Qualification</h3>
-              <p className="text[#141414] font-medium text-sm">{doctor.qualification}</p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Qualification
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.qualification}
+              </p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">Years Of Experience</h3>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Years Of Experience
+              </h3>
               <p className="text[#141414] font-medium text-sm">{`${doctor.experience} Years`}</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">Specialty Type</h3>
-              <p className="text[#141414] font-medium text-sm">{doctor.speciality}</p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Specialty Type
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.speciality}
+              </p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">Working Time</h3>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Working Time
+              </h3>
               <p className="text[#141414] font-medium text-sm">6 Hour</p>
             </div>
             <div>
@@ -73,15 +85,19 @@ const DoctorDetails = ({ doctorID }) => {
               <p className="text[#141414] font-medium text-sm">1 Hour</p>
             </div>
             <div>
-              <h3 className="text-[#A7A7A7] font-normal text-md">Emergency Contact Number</h3>
-              <p className="text[#141414] font-medium text-sm">{doctor.contactNumber}</p>
+              <h3 className="text-[#A7A7A7] font-normal text-md">
+                Emergency Contact Number
+              </h3>
+              <p className="text[#141414] font-medium text-sm">
+                {doctor.contactNumber}
+              </p>
             </div>
           </div>
           <div className="mt-4">
             <h3 className="text-[#A7A7A7] font-normal text-md">Description</h3>
             <p className="text[#141414] font-medium text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
         </div>
@@ -91,7 +107,8 @@ const DoctorDetails = ({ doctorID }) => {
 };
 
 DoctorDetails.propTypes = {
-  doctorID: PropTypes.string.isRequired,
+  doctorId: PropTypes.string.isRequired,
+
 };
 
 export default DoctorDetails;

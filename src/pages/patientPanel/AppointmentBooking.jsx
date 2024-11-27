@@ -193,7 +193,7 @@ const handlePayment = async () => {
               />
 
       {/* City Select */}
-      <SelectInput
+              <SelectInput
                 label="City"
                 value={city}
                 onChange={(e) => {

@@ -2,6 +2,9 @@ import { useState } from "react";
 import Bill2 from "../invoice/Bill2";
 import Bill3 from "../invoice/Bill3";
 import Bill from "../invoice/Bill";
+import { StaticBill } from "../invoice/StaticBill";
+import { StaticBill2 } from "../invoice/StaticBill2";
+import { StaticBill3 } from "../invoice/StaticBill3";
 
 export default function EditDesignInvoice() {
   const [selectedInvoice, setSelectedInvoice] = useState(localStorage.getItem('adminPrefrence')||"Bill");
@@ -28,7 +31,7 @@ export default function EditDesignInvoice() {
               }`}
               onClick={() => handleSelectInvoice("Bill")}
             >
-              <Bill />
+              <StaticBill />
               {selectedInvoice === "Bill" && (
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               )}
@@ -39,7 +42,7 @@ export default function EditDesignInvoice() {
               }`}
               onClick={() => handleSelectInvoice("Bill3")}
             >
-              <Bill3 />
+              <StaticBill3 />
               {selectedInvoice === "Bill3" && (
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               )}
@@ -50,7 +53,7 @@ export default function EditDesignInvoice() {
               }`}
               onClick={() => handleSelectInvoice("Bill2")}
             >
-              <Bill2 />
+              <StaticBill2 />
               {selectedInvoice === "Bill2" && (
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               )}
