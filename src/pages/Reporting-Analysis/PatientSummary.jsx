@@ -16,7 +16,7 @@ const PatientSummary = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Patients Summary</h2>
+        <h2 className="text-[24px] font-bold ">Patients Summary</h2>
         <div className="flex space-x-2">
           <button
             className={classNames(

@@ -187,8 +187,8 @@ const NotificationBox = () => {
               <ListItem>
                 <CircularProgress size={20} className="mx-auto" />
               </ListItem>
-            ) : notifications.length > 0 ? (
-              notifications.map((notification) => (
+            ) : notifications?.length > 0 ? (
+              notifications?.map((notification) => (
                 <ListItem
                   key={notification._id}
                   className={`hover:bg-gray-50 cursor-pointer ${

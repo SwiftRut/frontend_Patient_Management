@@ -18,7 +18,7 @@ export default function ReportingAndAnalytics() {
               <div className="total-Patients w-1/4 px-3 pt-3.5">
                 <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
                   <div className="logo_details flex items-center">
-                    <div className="logo w-12 h-12 rounded-full bg-[#2E779326] flex justify-center items-center">
+                    <div className="logo w-[45px] h-[45px]  rounded-full bg-[#2E779326] flex justify-center items-center">
                       <FaUsers className="text-2xl text-[#2E7793]" />
                     </div>
                     <div className="details pl-5">
@@ -38,17 +38,17 @@ export default function ReportingAndAnalytics() {
               <div className="total-Doctors w-1/4 px-3 pt-3.5">
                 <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
                   <div className="logo_details flex items-center">
-                    <div className="logo w-12 h-12 rounded-full bg-[#5E5E9E26] flex justify-center items-center">
+                    <div className="logo w-[45px] h-[45px] rounded-full bg-[#5E5E9E26] flex justify-center items-center">
                       <FaUser className="text-2xl text-[#5E5E9E]" />
                     </div>
                     <div className="details pl-5">
-                      <p className="text-[#030229] font-semibold text-base">
+                      <p className="text-[#030229] text-[16px] font-semibold text-base">
                         Repeat Patient
                       </p>
                     </div>
                   </div>
                   <div className="count">
-                    <span className="text-[#030229] text-2xl font-extrabold">
+                    <span className="text-[#030229] text-[26px] font-extrabold">
                       {cardData.repeatPatientCount}
                     </span>
                   </div>
@@ -58,17 +58,17 @@ export default function ReportingAndAnalytics() {
               <div className="total-Appointments w-1/4 px-3 pt-3.5">
                 <div className="content flex justify-between items-center bg-white rounded-lg p-3.5">
                   <div className="logo_details flex items-center">
-                    <div className="logo w-12 h-12 rounded-full bg-[#41B16126] flex justify-center items-center">
+                    <div className="logo w-[45px] h-[45px] rounded-full bg-[#41B16126] flex justify-center items-center">
                       <FaFileAlt className="text-2xl text-[#41B161]" />
                     </div>
                     <div className="details pl-5">
-                      <p className="text-[#030229] font-semibold text-base">
+                      <p className="text-[#030229] text-[16px] font-semibold text-base">
                         Total Doctors
                       </p>
                     </div>
                   </div>
                   <div className="count">
-                    <span className="text-[#030229] text-2xl font-extrabold">
+                    <span className="text-[#030229] text-[26px] font-extrabold">
                       {cardData.totalDoctorCount}
                     </span>
                   </div>
@@ -82,13 +82,13 @@ export default function ReportingAndAnalytics() {
                       <FaFileAlt className="text-2xl text-[#9A5BD4]" />
                     </div>
                     <div className="details pl-5">
-                      <p className="text-[#030229] font-semibold text-base">
+                      <p className="text-[#030229] text-[16px] font-semibold text-base">
                         Total Claim
                       </p>
                     </div>
                   </div>
                   <div className="count">
-                    <span className="text-[#030229] text-2xl font-extrabold">
+                    <span className="text-[#030229] text-[26px] font-extrabold">
                       {cardData.insuranceClaimCount}
                     </span>
                   </div>
@@ -110,7 +110,7 @@ export default function ReportingAndAnalytics() {
                 <div className="content h-[330px] bg-white p-5 rounded-lg">
                   <div className="head">
                     <div className="title">
-                      <p className="text-[24px] font-bold text-[#030229]">
+                      <p className="text-[24px] font-bold text-[#030229] pb-3">
                         Patients Count by Disease
                       </p>
                     </div>
@@ -121,10 +121,10 @@ export default function ReportingAndAnalytics() {
                         <table className="w-full px-2.5 text-lg">
                           <thead className="sticky top-0 bg-gray-100 z-10">
                             <tr className="flex bg-[#f6f8fb] justify-between items-center">
-                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5 rounded-tl-lg">
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">
                                 Disease Name
                               </th>
-                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5 rounded-tr-lg">
+                              <th className="w-[40%] text-[#030229] text-[16px] font-semibold py-3.5 px-3.5">
                                 Patient Count
                               </th>
                             </tr>
@@ -137,7 +137,7 @@ export default function ReportingAndAnalytics() {
                                     key={patient._id}
                                     className="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5"
                                   >
-                                    <td className="d-name text-center w-[20%]">
+                                    <td className="d-name text-center">
                                       <p className="text-[#4F4F4F] text-[15px] font-medium">
                                         {patient._id || "N/A"}
                                       </p>
@@ -172,7 +172,7 @@ export default function ReportingAndAnalytics() {
                 <div className="content h-[330px] bg-white p-5 rounded-lg">
                   <div className="head">
                     <div className="title">
-                      <p className="text-[24px] font-bold text-[#030229]">
+                      <p className="text-[24px] font-bold text-[#030229] pb-3">
                         Doctor Count by Department
                       </p>
                     </div>
@@ -198,7 +198,7 @@ export default function ReportingAndAnalytics() {
                                   key={specialty._id}
                                   className="flex justify-between items-center border-b border-[#F6F8FB] py-1 px-3.5"
                                 >
-                                  <td className="d-name text-center w-[20%]">
+                                  <td className="d-name text-center">
                                     <p className="text-[#4F4F4F] text-[15px] font-medium">
                                       {specialty._id || "N/A"}
                                     </p>
