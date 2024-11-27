@@ -130,7 +130,7 @@ export default function PatientPanel() {
           <div className="logout-btn">
             <button
               onClick={logout}
-              className="flex items-center justify-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
+              className="flex items-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
             >
               <img src="../img/logout.png" alt="Logout" className="mr-2" />{" "}
               Logout
@@ -158,30 +158,35 @@ export default function PatientPanel() {
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
           <div className="max-w-10xl mx-auto py-2">
-           {searchTerm === "" ? ( <Routes>
-              <Route path="" element={<PersonalHealthRecord />} />
-              <Route path="profile/*" element={<PatientProfile />} />
-              <Route path="/prescriptions" element={<Prescriptions />} />
-              <Route path="/testReport" element={<TestReport />} />
-              <Route path="/medicalHistory" element={<MedicalHistory />} />
-              <Route path="/allAppointment" element={<AllAppointment />} />
-              <Route path="/appointment" element={<Appointment />} />
-              <Route path="/bills" element={<Bills />} />
-              <Route path="/teleconsultation" element={<Teleconsultation />} />
-              <Route
-                path="/appointmentBooking"
-                element={<AppointmentBooking />}
-              />
-              <Route
-                path="/priscriptionAccess"
-                element={<PriscriptionAccess />}
-              />
-              <Route path="/chatScreen" element={<ChatScreen1 />} />
-              <Route path="/vid" element={<PatientMeetingConference />} />
-              <Route path="/404" element={<ErrorSharp />} />
-            </Routes>): (
-          <SearchResult />
-        )}
+            {searchTerm === "" ? (
+              <Routes>
+                <Route path="" element={<PersonalHealthRecord />} />
+                <Route path="profile/*" element={<PatientProfile />} />
+                <Route path="/prescriptions" element={<Prescriptions />} />
+                <Route path="/testReport" element={<TestReport />} />
+                <Route path="/medicalHistory" element={<MedicalHistory />} />
+                <Route path="/allAppointment" element={<AllAppointment />} />
+                <Route path="/appointment" element={<Appointment />} />
+                <Route path="/bills" element={<Bills />} />
+                <Route
+                  path="/teleconsultation"
+                  element={<Teleconsultation />}
+                />
+                <Route
+                  path="/appointmentBooking"
+                  element={<AppointmentBooking />}
+                />
+                <Route
+                  path="/priscriptionAccess"
+                  element={<PriscriptionAccess />}
+                />
+                <Route path="/chatScreen" element={<ChatScreen1 />} />
+                <Route path="/vid" element={<PatientMeetingConference />} />
+                <Route path="/404" element={<ErrorSharp />} />
+              </Routes>
+            ) : (
+              <SearchResult />
+            )}
           </div>
         </main>
       </div>
