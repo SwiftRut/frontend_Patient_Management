@@ -303,7 +303,7 @@ const DoctorEdit = () => {
             <div className="top p-[20px] border rounded-[15px] my-[15px]">
               <div className="content">
                 <div className="head">
-                  <p className="text-[24px] font-bold text-[#030229]">
+                  <p className="text-[26px] font-bold text-[#030229]">
                     Edit Doctor Detail
                   </p>
                 </div>
@@ -363,6 +363,7 @@ const DoctorEdit = () => {
                       </div>
                     </div>
                   </div>
+                  
                   <div className="right w-[79%]">
                     <div className="form-box">
                       <form className="flex gap-x-[22px]">
@@ -522,7 +523,7 @@ const DoctorEdit = () => {
                             className="input-box relative py-[15px] w-[32%] "
                             key={index}
                           >
-                            <div className="label absolute top-[4px] left-[14px] bg-white z-10">
+                            <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                               {field.label}
                             </div>
                             {field.type === "select" ? (
@@ -581,9 +582,6 @@ const DoctorEdit = () => {
                                 {errors[field.name]}
                               </p>
                             )}
-                            <div className="minus-circle absolute top-[6px] right-[-8px]">
-                              <FaCircleMinus className="text-[#A7A7A7] text-[20px]" />
-                            </div>
                           </div>
                         ))}
                       </form>
@@ -639,7 +637,7 @@ const DoctorEdit = () => {
                           className="input-box relative py-4 w-[32%]"
                           key={index}
                         >
-                          <div className="label absolute top-1 left-4 bg-white z-10">
+                          <div className="label absolute top-1 left-4 bg-white z-10text-[16px] font-medium ">
                             {field.label}
                           </div>
                           {field.type === "select" ? (
@@ -674,9 +672,6 @@ const DoctorEdit = () => {
                               {errors[field.name]}
                             </p>
                           )}
-                          <div className="minus-circle absolute top-1 right-[-8px]">
-                            <FaCircleMinus className="text-[#A7A7A7] text-xl" />
-                          </div>
                         </div>
                       ))}
                     </form>
