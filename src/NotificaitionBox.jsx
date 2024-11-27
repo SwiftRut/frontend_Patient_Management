@@ -126,14 +126,35 @@ const NotificationBox = () => {
   };
 
   const formatTimestamp = (timestamp) => {
-    const date = new Date(timestamp);
-    const now = new Date();
-    const diff = now - date;
+    if (!timestamp) return '';
+    
+    try {
+      const date = new Date(timestamp);
+      const now = new Date();
+      
+      if (isNaN(date.getTime())) return ''; 
+      
+      const diff = Math.max(0, now - date); 
 
-    if (diff < 60000) return "Just now";
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
-    return date.toLocaleDateString();
+      if (diff < 60000) {
+        return 'Just now';
+      }
+      
+      if (diff < 3600000) {
+        const minutes = Math.floor(diff / 60000);
+        return `${minutes}m ago`;
+      }
+      
+      if (diff < 86400000) {
+        const hours = Math.floor(diff / 3600000);
+        return `${hours}h ago`;
+      }
+      
+      return date.toLocaleDateString();
+    } catch (error) {
+      console.error('Error formatting timestamp:', error);
+      return '';
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -201,7 +222,7 @@ const NotificationBox = () => {
                       {getNotificationIcon(notification.type)}
                     </div>
 
-                    <div>
+                    <div className="flex-1">
                       <div className="font-medium text-xs">
                         {notification.message}
                       </div>
@@ -209,7 +230,9 @@ const NotificationBox = () => {
                         <span className="text-[#5678E9]">
                           {notification.type}
                         </span>
-                        <span>{formatTimestamp(notification.createdAt)}</span>
+                        <span className="text-gray-500 ml-auto">
+                          {formatTimestamp(notification.createdAt)}
+                        </span>
                       </div>
                     </div>
                   </div>
