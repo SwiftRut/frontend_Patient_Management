@@ -97,7 +97,7 @@ export default function PatientPanel() {
                 <li key={index}>
                   <NavLink
                     to={item.to}
-                    className="flex items-center p-3 text-[#818194] hover:text-[#0eabeb] hover:bg-gradient-to-r from-[#d5f1fa] to-white transition duration-300 rounded-lg"
+                    className="flex items-center  p-3 text-base font-semibold text-gray-500 focus:bg-gradient-to-r from-[#D5F1FA] focus:text-[#0EABEB] transition duration-300"
                   >
                     <item.icon className="me-2" />
                     <span>{item.text}</span>

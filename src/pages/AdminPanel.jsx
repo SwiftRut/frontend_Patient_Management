@@ -37,6 +37,7 @@ export default function AdminPanel() {
             <Route path="/createBill" element={<CreateBill />} />
             <Route path="/editBill/:id" element={<EditBill />} />
             <Route path="/bill/:id" element={<MainBill />} />
+            
             <Route path="/editinvoice" element={<EditDesignInvoice />} />
             <Route path="doctorManagement" element={<DoctorManagement />} />
             <Route path="doctorAdd" element={<DoctorAdd />} />
