@@ -1,6 +1,9 @@
 import Bill2 from "../invoice/Bill2";
 import Bill3 from "../invoice/Bill3";
 import Bill from "../invoice/Bill";
+import { StaticBill } from "../invoice/StaticBill";
+import { StaticBill2 } from "../invoice/StaticBill2";
+import { StaticBill3 } from "../invoice/StaticBill3";
 
 export default function EditDesignInvoice() {
   return (
@@ -14,14 +17,14 @@ export default function EditDesignInvoice() {
           </div>
           <div className="theme-selector flex ">
             <div className="invoice-samples flex justify-between">
+              <div className="invoice w-2/6 bg-transparent">
+                <StaticBill />
+              </div>
               <div className="invoice w-[30%] bg-transparent">
-                <Bill />
+                <StaticBill3 />
               </div>
               <div className="invoice w-2/6 bg-transparent">
-                <Bill3 />
-              </div>
-              <div className="invoice w-2/6 bg-transparent">
-                <Bill2 />
+                <StaticBill2 />
               </div>
             </div>
           </div>
