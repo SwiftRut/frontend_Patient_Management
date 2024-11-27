@@ -187,19 +187,19 @@ const NotificationBox = () => {
             <h2 className="font-bold text-[#030229] text-[20px]">
               Notifications
             </h2>
-            {unreadCount > 0 && (
-              <div>
+            <div className="flex items-center">
+              {notifications?.length > 0 && (
                 <button
                   onClick={markAllAsRead}
                   className="text-blue-500 hover:bg-blue-50 text-lg"
                 >
                   <MdOutlineBookmarkAdded />
                 </button>
-                <button className="ms-2 text-lg text-red-500">
-                  <IoCloseCircle onClick={handleClose} />
-                </button>
-              </div>
-            )}
+              )}
+              <button className="ms-2 text-lg text-red-500">
+                <IoCloseCircle onClick={handleClose} />
+              </button>
+            </div>
           </div>
           <Divider />
 
