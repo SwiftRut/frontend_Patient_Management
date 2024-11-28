@@ -20,17 +20,17 @@ export const StaticBill = () => {
               </span>
             </div>
             <div className="ps-14">
-              <p className="text-[16px] font-semibold ">
+              <p className="text-[14px] font-semibold ">
                 Bill No :{" "}
                 <span className="text-[14px] text-[#818194]">1234</span>
               </p>
-              <p className="text-[16px] font-semibold">
+              <p className="text-[14px] font-semibold">
                 Bill Date :{" "}
                 <span className="text-[14px] text-[#818194]">
                   20 June, 2020
                 </span>
               </p>
-              <p className="text-[16px] font-semibold">
+              <p className="text-[14px] font-semibold">
                 Bill Time :{" "}
                 <span className="text-[14px] text-[#818194]">10:45 PM</span>
               </p>
@@ -46,7 +46,7 @@ export const StaticBill = () => {
               </p>
               <p className="text-sm font-semibold text-[#141414]">
                 Gender:{" "}
-                <span className="text-sm text-[#818194] font-semibold ml-3">
+                <span className="text-sm  text-[#818194] font-semibold ml-3">
                   Male
                 </span>
               </p>

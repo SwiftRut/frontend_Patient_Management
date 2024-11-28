@@ -1,6 +1,4 @@
-import Bill2 from "../invoice/Bill2";
-import Bill3 from "../invoice/Bill3";
-import Bill from "../invoice/Bill";
+
 import { StaticBill } from "../invoice/StaticBill";
 import { StaticBill2 } from "../invoice/StaticBill2";
 import { StaticBill3 } from "../invoice/StaticBill3";
