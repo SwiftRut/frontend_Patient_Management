@@ -114,15 +114,6 @@ export const Edit = () => {
     }
   };
 
-  useEffect(() => {
-    return () => {
-      // Cleanup preview URL when component unmounts
-      if (previewImage) {
-        URL.revokeObjectURL(previewImage);
-      }
-    };
-  }, [previewImage]);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
