@@ -10,9 +10,9 @@ export const useLocationData = () => {
 
   useEffect(() => {
     const loadCountries = () => {
-      const allCountries = Country.getAllCountries().map(country => ({
+      const allCountries = Country.getAllCountries().map((country) => ({
         value: country.isoCode,
-        label: country.name
+        label: country.name,
       }));
       setCountries(allCountries);
     };
@@ -23,10 +23,12 @@ export const useLocationData = () => {
   useEffect(() => {
     if (selectedCountry) {
       const loadStates = () => {
-        const statesList = State.getStatesOfCountry(selectedCountry).map(state => ({
-          value: state.isoCode,
-          label: state.name
-        }));
+        const statesList = State.getStatesOfCountry(selectedCountry).map(
+          (state) => ({
+            value: state.isoCode,
+            label: state.name,
+          }),
+        );
         setStates(statesList);
       };
 
@@ -34,15 +36,18 @@ export const useLocationData = () => {
     } else {
       setStates([]);
     }
-    setCities([]);  // Reset cities if country changes
+    setCities([]); // Reset cities if country changes
   }, [selectedCountry]);
 
   useEffect(() => {
     if (selectedState) {
       const loadCities = () => {
-        const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map(city => ({
+        const citiesList = City.getCitiesOfState(
+          selectedCountry,
+          selectedState,
+        ).map((city) => ({
           value: city.name,
-          label: city.name
+          label: city.name,
         }));
         setCities(citiesList);
       };
@@ -58,6 +63,6 @@ export const useLocationData = () => {
     states,
     cities,
     setSelectedCountry,
-    setSelectedState
+    setSelectedState,
   };
 };

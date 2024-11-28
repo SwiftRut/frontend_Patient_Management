@@ -110,7 +110,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="text-lg font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.date
+                          patient.appointment.date,
                         ).toLocaleDateString()}
                       </p>
                     </li>
@@ -120,7 +120,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="text-lg font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.appointmentTime
+                          patient.appointment.appointmentTime,
                         ).toLocaleTimeString()}
                       </p>
                     </li>

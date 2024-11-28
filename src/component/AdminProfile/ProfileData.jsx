@@ -2,7 +2,7 @@ import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export default function ProfileData() {
   const { user } = useAuth();
@@ -150,7 +150,5 @@ export default function ProfileData() {
         </form>
       </div>
     </div>
-
   );
 }
-

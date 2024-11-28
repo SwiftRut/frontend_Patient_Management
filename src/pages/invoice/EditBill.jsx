@@ -117,7 +117,10 @@ const EditBill = () => {
           label: doctor?.name,
           value: doctor?._id,
         })),
-        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor?._id }))
+        ...allDoctors.map((doctor) => ({
+          label: doctor.name,
+          value: doctor?._id,
+        })),
       ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
@@ -156,8 +159,11 @@ const EditBill = () => {
               <div className="content">
                 <div className="details flex flex-wrap">
                   <div className="form-box w-full">
-                
-                    <form onSubmit={handleSubmit} className="flex flex-wrap gap-x-4" id="edit-bill-form">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="flex flex-wrap gap-x-4"
+                      id="edit-bill-form"
+                    >
                       {HospitalBillFields.map((field) => (
                         <InputField
                           key={field.name}

@@ -29,7 +29,7 @@ export default function DoctorManagement() {
       } catch (error) {
         setError(
           "Error fetching doctors: " +
-            (error.response ? error.response.data.message : error.message)
+            (error.response ? error.response.data.message : error.message),
         );
         toast.error("Error fetching doctors");
       } finally {
@@ -41,7 +41,7 @@ export default function DoctorManagement() {
 
   const handleDeleteSuccess = (deletedId) => {
     setDoctors((prevDoctors) =>
-      prevDoctors.filter((doctor) => doctor._id !== deletedId)
+      prevDoctors.filter((doctor) => doctor._id !== deletedId),
     );
     setSelectedDoctorId(null);
   };
@@ -52,7 +52,7 @@ export default function DoctorManagement() {
   };
 
   const filteredDoctors = allDoctors.filter((doctor) =>
-    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleDeleteDoctor = async (id) => {
@@ -108,7 +108,11 @@ export default function DoctorManagement() {
                 <tr key={doctor._id} className="border-t text-center">
                   <td className="flex items-center p-3">
                     <div className=" rounded-full overflow-hidden mr-3">
-                      <img src={doctor.avatar} alt={doctor.name} className="w-[30px] h-[30px]"/>
+                      <img
+                        src={doctor.avatar}
+                        alt={doctor.name}
+                        className="w-[30px] h-[30px]"
+                      />
                     </div>
                     <div className="text-[#4F4F4F] text-lg font-semibold">
                       <h3>{doctor.name}</h3>

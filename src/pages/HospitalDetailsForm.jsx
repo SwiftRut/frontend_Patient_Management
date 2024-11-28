@@ -19,13 +19,15 @@ const HospitalDetailsForm = ({
     const errors = {};
 
     // Required fields validation
-    if (!formData.hospitalName) errors.hospitalName = "Hospital name is required.";
+    if (!formData.hospitalName)
+      errors.hospitalName = "Hospital name is required.";
     if (!formData.email) errors.email = "Email is required.";
     if (!formData.billDate) errors.billDate = "Bill date is required.";
     if (!formData.billTime) errors.billTime = "Bill time is required.";
     if (!formData.billNumber) errors.billNumber = "Bill number is required.";
     if (!formData.phoneNumber) errors.phoneNumber = "Phone number is required.";
-    if (!formData.hospitalAddress) errors.hospitalAddress = "Address is required.";
+    if (!formData.hospitalAddress)
+      errors.hospitalAddress = "Address is required.";
 
     // Email format validation
     if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
@@ -84,7 +86,9 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Name"
                   />
                   {formErrors?.hospitalName && (
-                    <p className="text-red-500 text-xs">{formErrors.hospitalName}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.hospitalName}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -134,7 +138,9 @@ const HospitalDetailsForm = ({
                     required
                   />
                   {formErrors.billDate && (
-                    <p className="text-red-500 text-xs">{formErrors.billDate}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billDate}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -152,7 +158,9 @@ const HospitalDetailsForm = ({
                     required
                   />
                   {formErrors.billTime && (
-                    <p className="text-red-500 text-xs">{formErrors.billTime}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billTime}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -171,7 +179,9 @@ const HospitalDetailsForm = ({
                     required
                   />
                   {formErrors.billNumber && (
-                    <p className="text-red-500 text-xs">{formErrors.billNumber}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billNumber}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -190,7 +200,9 @@ const HospitalDetailsForm = ({
                     required
                   />
                   {formErrors.phoneNumber && (
-                    <p className="text-red-500 text-xs">{formErrors.phoneNumber}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.phoneNumber}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -209,7 +221,9 @@ const HospitalDetailsForm = ({
                     required
                   />
                   {formErrors.hospitalAddress && (
-                    <p className="text-red-500 text-xs">{formErrors.hospitalAddress}</p>
+                    <p className="text-red-500 text-xs">
+                      {formErrors.hospitalAddress}
+                    </p>
                   )}
                   <div className="minus-circle">
                     <FaCircleMinus />
@@ -220,7 +234,9 @@ const HospitalDetailsForm = ({
                     key={index}
                     field={field}
                     value={formData[field.name] || ""}
-                    onChange={(name, value) => handleDynamicFieldChange("hospital", name, value)}
+                    onChange={(name, value) =>
+                      handleDynamicFieldChange("hospital", name, value)
+                    }
                     onRemove={() => removeDynamicField("hospital", index)}
                   />
                 ))}

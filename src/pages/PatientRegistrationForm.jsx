@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const PasswordField = ({ label, name, value, handleChange, showPassword, setShowPassword }) => (
+const PasswordField = ({
+  label,
+  name,
+  value,
+  handleChange,
+  showPassword,
+  setShowPassword,
+}) => (
   <div className="input-box">
     <div className="label">
       {label} <span>*</span>
     </div>
     <div className="password-input-container">
       <input
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         name={name}
         value={value}
         onChange={handleChange}
@@ -22,7 +29,14 @@ const PasswordField = ({ label, name, value, handleChange, showPassword, setShow
   </div>
 );
 
-const SelectInput = ({ label, name, options, value, handleChange, isDisabled }) => (
+const SelectInput = ({
+  label,
+  name,
+  options,
+  value,
+  handleChange,
+  isDisabled,
+}) => (
   <div className="input-box">
     <div className="label">
       {label} <span>*</span>
@@ -36,7 +50,10 @@ const SelectInput = ({ label, name, options, value, handleChange, isDisabled }) 
     >
       <option value="">Select {label}</option>
       {options.map((option) => (
-        <option key={option.isoCode || option.name} value={option.isoCode || option.name}>
+        <option
+          key={option.isoCode || option.name}
+          value={option.isoCode || option.name}
+        >
           {option.name}
         </option>
       ))}
@@ -58,20 +75,27 @@ const InputField = ({ label, name, type, value, handleChange }) => (
     />
   </div>
 );
-const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries, states, cities }) => {
+const PatientRegistrationForm = ({
+  handleSubmit,
+  genders,
+  bloodGroups,
+  countries,
+  states,
+  cities,
+}) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    gender: '',
-    bloodGroup: '',
-    country: '',
-    state: '',
-    city: '',
-    address: '',
-    password: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    gender: "",
+    bloodGroup: "",
+    country: "",
+    state: "",
+    city: "",
+    address: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -80,7 +104,7 @@ const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -88,10 +112,10 @@ const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries
     <form onSubmit={(e) => handleSubmit(e, formData)} className="flex">
       {/* Input fields for text inputs */}
       {[
-        { label: 'First Name', name: 'firstName', type: 'text' },
-        { label: 'Last Name', name: 'lastName', type: 'text' },
-        { label: 'Email', name: 'email', type: 'email' },
-        { label: 'Phone', name: 'phone', type: 'text' }
+        { label: "First Name", name: "firstName", type: "text" },
+        { label: "Last Name", name: "lastName", type: "text" },
+        { label: "Email", name: "email", type: "email" },
+        { label: "Phone", name: "phone", type: "text" },
       ].map((input) => (
         <InputField
           key={input.name}
@@ -123,9 +147,24 @@ const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries
 
       {/* Country, State, and City Selects */}
       {[
-        { label: 'Country', name: 'country', options: countries, isDisabled: false },
-        { label: 'State', name: 'state', options: states, isDisabled: !formData.country },
-        { label: 'City', name: 'city', options: cities, isDisabled: !formData.state }
+        {
+          label: "Country",
+          name: "country",
+          options: countries,
+          isDisabled: false,
+        },
+        {
+          label: "State",
+          name: "state",
+          options: states,
+          isDisabled: !formData.country,
+        },
+        {
+          label: "City",
+          name: "city",
+          options: cities,
+          isDisabled: !formData.state,
+        },
       ].map((select) => (
         <SelectInput
           key={select.name}
@@ -172,7 +211,8 @@ const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries
         <div className="policies">
           <input type="checkbox" required />
           <p>
-            I agree to all the <span>T&C</span> and <span>Privacy Policies.</span>
+            I agree to all the <span>T&C</span> and{" "}
+            <span>Privacy Policies.</span>
           </p>
         </div>
 
@@ -182,7 +222,8 @@ const PatientRegistrationForm = ({ handleSubmit, genders, bloodGroups, countries
 
         <div className="login-btn">
           <p>
-            Already have an account? <span onClick={() => navigate('/login')}>Login</span>
+            Already have an account?{" "}
+            <span onClick={() => navigate("/login")}>Login</span>
           </p>
         </div>
       </div>

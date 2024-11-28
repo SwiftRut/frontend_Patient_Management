@@ -40,22 +40,22 @@ const Dashboard = () => {
     };
 
     const fetchTodaysAppointments = async () => {
-        const response = await apiService.GetAllTodayAppointments();
-        const data = response.data;
-    
-        // Get today's date in 'YYYY-MM-DD' format (UTC)
-        const today = new Date().toISOString().split("T")[0];
-    
-        // Filter appointments with today's date
-        const filteredAppointments = data.filter((appointment) => {
-          const appointmentDate = new Date(appointment.date).toISOString().split("T")[0];
-          return appointmentDate === today;
-        });
-    
-        setTodaysAppointments(filteredAppointments);
+      const response = await apiService.GetAllTodayAppointments();
+      const data = response.data;
 
+      // Get today's date in 'YYYY-MM-DD' format (UTC)
+      const today = new Date().toISOString().split("T")[0];
+
+      // Filter appointments with today's date
+      const filteredAppointments = data.filter((appointment) => {
+        const appointmentDate = new Date(appointment.date)
+          .toISOString()
+          .split("T")[0];
+        return appointmentDate === today;
+      });
+
+      setTodaysAppointments(filteredAppointments);
     };
-    
 
     const fetchPatients = async () => {
       try {
@@ -64,7 +64,7 @@ const Dashboard = () => {
         setTotalPatients(data.length);
       } catch (error) {
         console.error("Error fetching patients:", error);
-        toast.error("Error fetching patients")
+        toast.error("Error fetching patients");
       }
     };
 
@@ -100,8 +100,12 @@ const Dashboard = () => {
                         <FaUsers className="text-[#2e7793] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Patients</p>
-                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalPatients}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">
+                          Total Patients
+                        </p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">
+                          {totalPatients}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -111,8 +115,12 @@ const Dashboard = () => {
                         <FaUser className="text-[#5e5e9e] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Doctors</p>
-                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalDoctors}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">
+                          Total Doctors
+                        </p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">
+                          {totalDoctors}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -122,8 +130,12 @@ const Dashboard = () => {
                         <FaFileAlt className="text-[#41b161] w-7" />
                       </div>
                       <div className="details pl-4">
-                        <p className="text-[#A7A7A7] text-[18px] font-normal">Total Appointments</p>
-                        <span className="block text-[#030229] text-[30px] font-extrabold">{totalAppointments}</span>
+                        <p className="text-[#A7A7A7] text-[18px] font-normal">
+                          Total Appointments
+                        </p>
+                        <span className="block text-[#030229] text-[30px] font-extrabold">
+                          {totalAppointments}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -134,7 +146,9 @@ const Dashboard = () => {
               <div className="Billing-data h-[505px] w-[42%] bg-white rounded-lg p-4">
                 <div className="head flex justify-between items-center mb-4 border-b pb-4">
                   <div className="title">
-                    <p className="text-[#030229] text-[26px] font-bold">Billing & Payments</p>
+                    <p className="text-[#030229] text-[26px] font-bold">
+                      Billing & Payments
+                    </p>
                   </div>
                   <div className="btn">
                     <button
@@ -155,34 +169,56 @@ const Dashboard = () => {
                   <div className="pending-bill-data pt-5 h-[90%]">
                     {allBills.length === 0 ? (
                       <div className="img">
-                        <img src="../img/FrameBill.png" alt="No Billing Data" className="mx-auto" />
+                        <img
+                          src="../img/FrameBill.png"
+                          alt="No Billing Data"
+                          className="mx-auto"
+                        />
                       </div>
                     ) : (
                       <div className="bill-table h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-[#030229] scrollbar-track-gray-200">
                         <table className="w-full px-2">
                           <thead>
                             <tr className="bg-gray-100">
-                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Bill No</th>
-                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Patient Name</th>
-                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Disease Name</th>
-                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Status</th>
-                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">Action</th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">
+                                Bill No
+                              </th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">
+                                Patient Name
+                              </th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">
+                                Disease Name
+                              </th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">
+                                Status
+                              </th>
+                              <th className="text-[#030229] text-sm font-semibold px-4 py-3">
+                                Action
+                              </th>
                             </tr>
                           </thead>
                           <tbody>
                             {allBills.map((bill) => (
                               <tr key={bill.id} className="text-center">
                                 <td className="bill-num px-2 py-1">
-                                  <p className="text-[#718ebf] bg-gray-100 rounded-full text-center px-4 py-1">{bill.billNumber}</p>
+                                  <p className="text-[#718ebf] bg-gray-100 rounded-full text-center px-4 py-1">
+                                    {bill.billNumber}
+                                  </p>
                                 </td>
                                 <td className="patient-name px-2 py-1">
                                   <p className="text-gray-700 text-xs font-medium">{`${bill.patientId?.firstName} ${bill.patientId?.lastName}`}</p>
                                 </td>
                                 <td className="disease-name px-2 py-1">
-                                  <p className="text-gray-700 text-xs font-medium">{bill.diseaseName}</p>
+                                  <p className="text-gray-700 text-xs font-medium">
+                                    {bill.diseaseName}
+                                  </p>
                                 </td>
-                                <td className={`${bill.status === "paid" ? "status" : "status1"} px-2 py-1`}>
-                                  <p className={`${bill.status === "paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"} text-sm font-semibold px-5 py-1 rounded-full`}>
+                                <td
+                                  className={`${bill.status === "paid" ? "status" : "status1"} px-2 py-1`}
+                                >
+                                  <p
+                                    className={`${bill.status === "paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"} text-sm font-semibold px-5 py-1 rounded-full`}
+                                  >
                                     {bill.status}
                                   </p>
                                 </td>
@@ -210,8 +246,13 @@ const Dashboard = () => {
                   <div className="appointments-content bg-white p-5 rounded-lg h-[330px]">
                     <div className="head">
                       <div className="title flex justify-between items-center">
-                        <p className="text-[26px] font-bold pb-3">Today's Appointments List</p>
-                        <span className="text-blue-500 cursor-pointer text-[16px] font-medium"> View All</span>
+                        <p className="text-[26px] font-bold pb-3">
+                          Today's Appointments List
+                        </p>
+                        <span className="text-blue-500 cursor-pointer text-[16px] font-medium">
+                          {" "}
+                          View All
+                        </span>
                       </div>
                     </div>
 
@@ -229,29 +270,43 @@ const Dashboard = () => {
                           <div className="box w-1/3 p-2" key={index}>
                             <div className="content">
                               <div className="heading flex justify-between items-center bg-[#f6f8fb] p-3 rounded-t-lg">
-                                <p className="text-[18px] text-[#030229] font-semibold">{appointment.patientId.firstName} {appointment.patientId.lastName}</p>
+                                <p className="text-[18px] text-[#030229] font-semibold">
+                                  {appointment.patientId.firstName}{" "}
+                                  {appointment.patientId.lastName}
+                                </p>
                                 <span>{appointment.type}</span>
                               </div>
                               <div className="data border border-[#f4f4f4] p-3">
                                 <ul>
                                   <li>
-                                    <p className="text-[16px] font-normal text-[#818194]">Doctor Name</p>
-                                    <span className="text-sm font-bold text-[#4f4f4f]">Dr. {appointment?.doctorId?.name}</span>
+                                    <p className="text-[16px] font-normal text-[#818194]">
+                                      Doctor Name
+                                    </p>
+                                    <span className="text-sm font-bold text-[#4f4f4f]">
+                                      Dr. {appointment?.doctorId?.name}
+                                    </span>
                                   </li>
                                   <li>
-                                    <p className="text-[16px] font-normal text-[#818194]">Disease Name</p>
-                                    <span className="text-sm font-bold text-[#4f4f4f]">{appointment?.patient_issue}</span>
+                                    <p className="text-[16px] font-normal text-[#818194]">
+                                      Disease Name
+                                    </p>
+                                    <span className="text-sm font-bold text-[#4f4f4f]">
+                                      {appointment?.patient_issue}
+                                    </span>
                                   </li>
                                   <li>
-                                    <p className="text-[16px] font-normal text-[#818194]">Appointment Time</p>
+                                    <p className="text-[16px] font-normal text-[#818194]">
+                                      Appointment Time
+                                    </p>
                                     <span className="text-sm font-bold text-[#4f4f4f]">
                                       {appointment?.appointmentTime &&
-                                        new Date(appointment.appointmentTime).toLocaleTimeString([], {
-                                          hour: '2-digit',
-                                          minute: '2-digit',
-                                          hour12: true
-                                        })
-                                      }
+                                        new Date(
+                                          appointment.appointmentTime,
+                                        ).toLocaleTimeString([], {
+                                          hour: "2-digit",
+                                          minute: "2-digit",
+                                          hour12: true,
+                                        })}
                                     </span>
                                   </li>
                                 </ul>

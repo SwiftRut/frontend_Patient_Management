@@ -14,13 +14,13 @@ export const SearchResult = () => {
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
   const filteredDoctors = allDoctors.filter((doctor) =>
-    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
   const searchFilteredAppointments = filteredAppointments?.filter(
     (appointment) =>
       appointment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       appointment.issue.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      appointment.doctor.toLowerCase().includes(searchTerm.toLowerCase())
+      appointment.doctor.toLowerCase().includes(searchTerm.toLowerCase()),
   );
   const filterAppointments = () => {
     if (!allPatients || !Array.isArray(allPatients)) return [];
@@ -52,7 +52,7 @@ export const SearchResult = () => {
           ...patient,
           appointment: apt,
         },
-      }))
+      })),
     );
 
     const uniqueAppointments = allAppointments.filter(
@@ -61,8 +61,8 @@ export const SearchResult = () => {
         self.findIndex(
           (t) =>
             t.appointmentDate.getTime() === value.appointmentDate.getTime() &&
-            t.name === value.name
-        )
+            t.name === value.name,
+        ),
     );
 
     return uniqueAppointments;

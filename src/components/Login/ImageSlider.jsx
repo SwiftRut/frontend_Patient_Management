@@ -9,7 +9,7 @@ const ImageSlider = ({ images }) => {
 
   const prevImage = () => {
     setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
     );
   };
 

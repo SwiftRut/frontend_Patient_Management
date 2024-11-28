@@ -11,7 +11,7 @@ const AdminMobile = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const location = useLocation(); 
+  const location = useLocation();
   const navigate = useNavigate();
 
   const isLoginMode = location.pathname === "/login";
@@ -186,7 +186,7 @@ const AdminMobile = () => {
                         <span
                           onClick={() => {
                             navigate(
-                              isLoginMode ? "/forgot-password" : "/login"
+                              isLoginMode ? "/forgot-password" : "/login",
                             );
                           }}
                           className="cursor-pointer"
@@ -203,9 +203,7 @@ const AdminMobile = () => {
 
           {/* Image Section */}
           <div className="w-full md:w-1/2 bg-gray-100 relative p-2 md:p-16">
-            <ImageSlider
-              images={["/img/register.png", "/img/register2.png"]}
-            />
+            <ImageSlider images={["/img/register.png", "/img/register2.png"]} />
 
             {/* Decorative Vectors */}
             <div className="absolute right-0 bottom-0 w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4">

@@ -22,7 +22,6 @@ import { Invoice } from "../imports";
 import Bill2 from "./invoice/Bill2";
 import Bill3 from "./invoice/Bill3";
 
-
 export default function AdminPanel() {
   const { searchTerm, setSearchTerm } = useGlobal();
   const { selectedOption, setSelectedOption } = useGlobal();
@@ -51,7 +50,7 @@ export default function AdminPanel() {
             <Route path="insuranceClaims" element={<InsuranceClaims />} />
             <Route path="paymentMethod" element={<PaymentMethod />} />
             <Route path="invoice" element={<Invoice />} />
-            
+
             <Route
               path="reportingAndAnalytics"
               element={<ReportingAndAnalytics />}

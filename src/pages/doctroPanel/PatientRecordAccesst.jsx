@@ -39,7 +39,7 @@ export default function PatientRecordAccess() {
       patientIssue: appointment.patient_issue || "N/A",
       lastAppointmentDate: new Date(appointment.date).toLocaleDateString(),
       lastAppointmentTime: new Date(
-        appointment.appointmentTime
+        appointment.appointmentTime,
       ).toLocaleTimeString(),
       age: `${appointment.patientId.age} Years`,
       gender: appointment.patientId.gender,
@@ -69,7 +69,7 @@ export default function PatientRecordAccess() {
     (patient) =>
       patient.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       patient.diseaseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase())
+      patient.patientIssue.toLowerCase().includes(searchTerm.toLowerCase()),
   );
   return (
     <div className="bg-[#F6F8FB] p-3 h-[92%]">
@@ -175,7 +175,7 @@ export default function PatientRecordAccess() {
                       <FaEye
                         onClick={() =>
                           navigate(
-                            `/doctor/patientDetail/${patient.patientsId}`
+                            `/doctor/patientDetail/${patient.patientsId}`,
                           )
                         }
                       />

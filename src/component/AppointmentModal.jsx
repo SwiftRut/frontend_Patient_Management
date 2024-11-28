@@ -5,7 +5,11 @@ const AppointmentModal = ({ modalData, onClose }) => {
   const { day, time } = modalData || {};
 
   return (
-    <Modal isOpen={!!modalData} onRequestClose={onClose} contentLabel="Appointment Details">
+    <Modal
+      isOpen={!!modalData}
+      onRequestClose={onClose}
+      contentLabel="Appointment Details"
+    >
       <h3>Appointment Details</h3>
       <p>
         <strong>Day:</strong> {day}
@@ -13,7 +17,10 @@ const AppointmentModal = ({ modalData, onClose }) => {
       <p>
         <strong>Time:</strong> {time}
       </p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+      </p>
       <button onClick={onClose} className="button close">
         Close
       </button>

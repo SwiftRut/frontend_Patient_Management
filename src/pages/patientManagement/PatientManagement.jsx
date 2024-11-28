@@ -48,7 +48,7 @@ export default function PatientManagement() {
           ...patient,
           appointment: apt,
         },
-      }))
+      })),
     );
 
     switch (activeTab) {
@@ -65,12 +65,12 @@ export default function PatientManagement() {
 
       case "upcoming":
         return allAppointments.filter(
-          (apt) => apt.appointmentDate > tomorrow && apt.status === "scheduled"
+          (apt) => apt.appointmentDate > tomorrow && apt.status === "scheduled",
         );
 
       case "previous":
         return allAppointments.filter(
-          (apt) => apt.appointmentDate < today || apt.status === "completed"
+          (apt) => apt.appointmentDate < today || apt.status === "completed",
         );
 
       case "cancelled":
@@ -105,7 +105,7 @@ export default function PatientManagement() {
     (appointment) =>
       appointment.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       appointment.issue.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      appointment.doctor.toLowerCase().includes(searchQuery.toLowerCase())
+      appointment.doctor.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (

@@ -4,7 +4,9 @@ import { StaticBill2 } from "../invoice/StaticBill2";
 import { StaticBill3 } from "../invoice/StaticBill3";
 
 export default function EditDesignInvoice() {
-  const [selectedInvoice, setSelectedInvoice] = useState(localStorage.getItem('adminPrefrence') || "Bill");
+  const [selectedInvoice, setSelectedInvoice] = useState(
+    localStorage.getItem("adminPrefrence") || "Bill",
+  );
 
   const handleSelectInvoice = (invoiceName) => {
     setSelectedInvoice(invoiceName);

@@ -151,7 +151,7 @@ export default function ReportingAndAnalytics() {
                                       </p>
                                     </td>
                                   </tr>
-                                )
+                                ),
                               )
                             ) : (
                               <tr>
@@ -212,7 +212,7 @@ export default function ReportingAndAnalytics() {
                                     </p>
                                   </td>
                                 </tr>
-                              )
+                              ),
                             )}
                           </tbody>
                         </table>

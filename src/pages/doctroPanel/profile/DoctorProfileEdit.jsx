@@ -40,10 +40,12 @@ const DoctorProfileEdit = () => {
   // Load state data and initialize selected state
   useEffect(() => {
     if (selectedCountry) {
-      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
-        value: state.isoCode,
-        label: state.name,
-      }));
+      const statesList = State.getStatesOfCountry(selectedCountry).map(
+        (state) => ({
+          value: state.isoCode,
+          label: state.name,
+        }),
+      );
       setStates(statesList);
 
       if (profile?.state) {
@@ -65,7 +67,10 @@ const DoctorProfileEdit = () => {
   // Load city data and initialize selected city
   useEffect(() => {
     if (selectedCountry && selectedState) {
-      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
+      const citiesList = City.getCitiesOfState(
+        selectedCountry,
+        selectedState,
+      ).map((city) => ({
         value: city.name,
         label: city.name,
       }));
@@ -128,192 +133,224 @@ const DoctorProfileEdit = () => {
 
   return (
     <div className="doctor-edit-section">
-    <div className="row">
-      <div className="main">
-        <div className="top bg-gradient-to-r from-[#4c49ed] to-[#020067] h-[296px]"></div>
-        <div className="profile-setting w-[80%] mx-auto mt-[-15%]">
-          <div className="head pb-[15px]">
-            <p className="text-[44px] font-bold text-white">Profile Setting</p>
-          </div>
-          <div className="content bg-white rounded-[15px] p-[20px] shadow-[0px_0px_3px_1px_#d7d5d5] flex">
-            <div className="left w-[23%] p-[20px] border-r-[2px] border-[#d9d9d94d]">
-              <div className="img-box">
-                <div className="img">
-                  <img
-                    src={profile?.avatar || "../img/profile.png"}
-                    alt=""
-                    className="w-[214px] h-[214px] rounded-full mx-auto"
-                  />
-                </div>
-                <div className="change-profile pt-[15px]">
-                  <ul>
-                    <li className="flex justify-center items-center p-[12px_14px] bg-[#F6F8FB] rounded-[10px]">
-                      <input
-                        type="file"
-                        id="profilePic"
-                        name="profilePic"
-                        className="hidden "
-                        onChange={handleImageChange}
-                        accept="image/*"
-                      />
-                      <label htmlFor="profilePic" className="flex items-center">
-                        <FaCamera className="text-[#4F4F4F] text-[20px]" />
-                        <span className="pl-[15px] text-[20px] font-semibold text-[#4F4F4F]">
-                          Change Profile
-                        </span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+      <div className="row">
+        <div className="main">
+          <div className="top bg-gradient-to-r from-[#4c49ed] to-[#020067] h-[296px]"></div>
+          <div className="profile-setting w-[80%] mx-auto mt-[-15%]">
+            <div className="head pb-[15px]">
+              <p className="text-[44px] font-bold text-white">
+                Profile Setting
+              </p>
             </div>
-  
-            <div className="right w-[77%]">
-              <div className="content p-[30px_20px] rounded-[15px] shadow-[0px_0px_0px_0px_white]">
-                <div className="head flex justify-between items-center">
-                  <div className="title">
-                    <p className="text-[34px] font-semibold text-[#030229]">Edit Profile</p>
+            <div className="content bg-white rounded-[15px] p-[20px] shadow-[0px_0px_3px_1px_#d7d5d5] flex">
+              <div className="left w-[23%] p-[20px] border-r-[2px] border-[#d9d9d94d]">
+                <div className="img-box">
+                  <div className="img">
+                    <img
+                      src={profile?.avatar || "../img/profile.png"}
+                      alt=""
+                      className="w-[214px] h-[214px] rounded-full mx-auto"
+                    />
+                  </div>
+                  <div className="change-profile pt-[15px]">
+                    <ul>
+                      <li className="flex justify-center items-center p-[12px_14px] bg-[#F6F8FB] rounded-[10px]">
+                        <input
+                          type="file"
+                          id="profilePic"
+                          name="profilePic"
+                          className="hidden "
+                          onChange={handleImageChange}
+                          accept="image/*"
+                        />
+                        <label
+                          htmlFor="profilePic"
+                          className="flex items-center"
+                        >
+                          <FaCamera className="text-[#4F4F4F] text-[20px]" />
+                          <span className="pl-[15px] text-[20px] font-semibold text-[#4F4F4F]">
+                            Change Profile
+                          </span>
+                        </label>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-                <div className="form-box pt-[20px]">
-                  <form className="flex gap-x-[18px]" onSubmit={handleFormSubmit}>
-                
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Doctor Name <span className="text-red-500">*</span></div>
-                      <input
-                        type="text"
-                        name="name"
-                        value={profile?.name || ""}
-                        onChange={handleInputChange}
-                        placeholder="Enter Name"
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
-                      />
+              </div>
+
+              <div className="right w-[77%]">
+                <div className="content p-[30px_20px] rounded-[15px] shadow-[0px_0px_0px_0px_white]">
+                  <div className="head flex justify-between items-center">
+                    <div className="title">
+                      <p className="text-[34px] font-semibold text-[#030229]">
+                        Edit Profile
+                      </p>
                     </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Email Address <span className="text-red-500">*</span></div>
-                      <input
-                        type="email"
-                        name="email"
-                        value={profile?.email || ""}
-                        onChange={handleInputChange}
-                        placeholder="Email Address"
-                        className="w-full  py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
-                      />
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Phone Number <span className="text-red-500">*</span></div>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={profile?.phone || ""}
-                        onChange={handleInputChange}
-                        placeholder="Phone Number"
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
-                      />
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Hospital Name <span className="text-red-500">*</span></div>
-                      <select
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
-                        name="hospitalName"
-                        value={profile.hospitalId}
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Select Hospital</option>
-                        {allHospitals.map((hospital) => (
-                          <option key={hospital._id} value={hospital._id}>
-                            {hospital.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Gender <span className="text-red-500">*</span></div>
-                      <select
-                        name="gender"
-                        value={profile?.gender || ""}
-                        onChange={handleInputChange}
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">Country <span className="text-red-500">*</span></div>
-                      <select
-                        name="country"
-                        value={selectedCountry || ""}
-                        onChange={handleCountryChange}
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
-                      >
-                        <option value="">Select Country</option>
-                        {countries.map((country) => (
-                          <option key={country.value} value={country.value}>
-                            {country.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">State <span className="text-red-500">*</span></div>
-                      <select
-                        name="state"
-                        value={selectedState || ""}
-                        onChange={handleStateChange}
-                        disabled={!selectedCountry}
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
-                      >
-                        <option value="">Select State</option>
-                        {states.map((state) => (
-                          <option key={state.value} value={state.value}>
-                            {state.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-  
-                    <div className="input-box relative py-[15px] w-[32%]">
-                      <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">City <span className="text-red-500">*</span></div>
-                      <select
-                        name="city"
-                        value={profile?.city || ""}
-                        onChange={handleCityChange}
-                        disabled={!selectedState}
-                        className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
-                      >
-                        <option value="">Select City</option>
-                        {cities.map((city) => (
-                          <option key={city.value} value={city.value}>
-                            {city.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-  
-                    <div className="condition w-[100%] flex justify-end gap-[10px] pt-[20px]">
-                      <div className="cancel-btn">
-                        <NavLink to={"/doctor/profile"}>
-                          <button type="button" className="w-[160px] py-[12px] px-[14px] border-[1px] border-[#D3D3D3] rounded-[10px] text-black font-semibold text-[20px]">
-                            Cancel
+                  </div>
+                  <div className="form-box pt-[20px]">
+                    <form
+                      className="flex gap-x-[18px]"
+                      onSubmit={handleFormSubmit}
+                    >
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Doctor Name <span className="text-red-500">*</span>
+                        </div>
+                        <input
+                          type="text"
+                          name="name"
+                          value={profile?.name || ""}
+                          onChange={handleInputChange}
+                          placeholder="Enter Name"
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
+                        />
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Email Address <span className="text-red-500">*</span>
+                        </div>
+                        <input
+                          type="email"
+                          name="email"
+                          value={profile?.email || ""}
+                          onChange={handleInputChange}
+                          placeholder="Email Address"
+                          className="w-full  py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
+                        />
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Phone Number <span className="text-red-500">*</span>
+                        </div>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={profile?.phone || ""}
+                          onChange={handleInputChange}
+                          placeholder="Phone Number"
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] text-[16px] font-normal text-[#141414]"
+                        />
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Hospital Name <span className="text-red-500">*</span>
+                        </div>
+                        <select
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
+                          name="hospitalName"
+                          value={profile.hospitalId}
+                          onChange={handleInputChange}
+                        >
+                          <option value="">Select Hospital</option>
+                          {allHospitals.map((hospital) => (
+                            <option key={hospital._id} value={hospital._id}>
+                              {hospital.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Gender <span className="text-red-500">*</span>
+                        </div>
+                        <select
+                          name="gender"
+                          value={profile?.gender || ""}
+                          onChange={handleInputChange}
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
+                        >
+                          <option value="">Select Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          Country <span className="text-red-500">*</span>
+                        </div>
+                        <select
+                          name="country"
+                          value={selectedCountry || ""}
+                          onChange={handleCountryChange}
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
+                        >
+                          <option value="">Select Country</option>
+                          {countries.map((country) => (
+                            <option key={country.value} value={country.value}>
+                              {country.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          State <span className="text-red-500">*</span>
+                        </div>
+                        <select
+                          name="state"
+                          value={selectedState || ""}
+                          onChange={handleStateChange}
+                          disabled={!selectedCountry}
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
+                        >
+                          <option value="">Select State</option>
+                          {states.map((state) => (
+                            <option key={state.value} value={state.value}>
+                              {state.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="input-box relative py-[15px] w-[32%]">
+                        <div className="label absolute top-[4px] left-[14px] bg-white text-[#030229] font-medium">
+                          City <span className="text-red-500">*</span>
+                        </div>
+                        <select
+                          name="city"
+                          value={profile?.city || ""}
+                          onChange={handleCityChange}
+                          disabled={!selectedState}
+                          className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] font-normal text-[#141414]"
+                        >
+                          <option value="">Select City</option>
+                          {cities.map((city) => (
+                            <option key={city.value} value={city.value}>
+                              {city.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="condition w-[100%] flex justify-end gap-[10px] pt-[20px]">
+                        <div className="cancel-btn">
+                          <NavLink to={"/doctor/profile"}>
+                            <button
+                              type="button"
+                              className="w-[160px] py-[12px] px-[14px] border-[1px] border-[#D3D3D3] rounded-[10px] text-black font-semibold text-[20px]"
+                            >
+                              Cancel
+                            </button>
+                          </NavLink>
+                        </div>
+                        <div className="save-btn">
+                          <button
+                            type="submit"
+                            className="w-[160px] py-[12px] px-[14px] bg-[#0EABEB] rounded-[10px] text-white text-[20px] font-semibold"
+                          >
+                            Save
                           </button>
-                        </NavLink>
+                        </div>
                       </div>
-                      <div className="save-btn">
-                        <button type="submit" className="w-[160px] py-[12px] px-[14px] bg-[#0EABEB] rounded-[10px] text-white text-[20px] font-semibold">
-                          Save
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -321,8 +358,6 @@ const DoctorProfileEdit = () => {
         </div>
       </div>
     </div>
-  </div>
-  
   );
 };
 

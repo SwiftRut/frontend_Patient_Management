@@ -4,22 +4,24 @@ import { FaCircleMinus } from "react-icons/fa6";
 import PropTypes from "prop-types";
 
 const InputField = ({
-  label = '',
-  name = '',
-  type = 'text',
-  value = '',
+  label = "",
+  name = "",
+  type = "text",
+  value = "",
   onChange = () => {},
   options = [],
-  placeholder = '',
+  placeholder = "",
   readOnly,
   disabled,
   className,
   ...props
 }) => {
-  if (type === 'select') {
+  if (type === "select") {
     return (
       <div className={`relative py-4 w-[24%] ${className}`}>
-        <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">{label}</div>
+        <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">
+          {label}
+        </div>
         <select
           name={name}
           value={value}
@@ -43,7 +45,9 @@ const InputField = ({
 
   return (
     <div className={`relative py-4 w-[24%] ${className}`}>
-      <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">{label}</div>
+      <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">
+        {label}
+      </div>
       <input
         type={type}
         name={name}
@@ -62,7 +66,6 @@ const InputField = ({
   );
 };
 
-
 // Adding PropTypes for better type checking
 InputField.propTypes = {
   label: PropTypes.string,
@@ -74,7 +77,7 @@ InputField.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    })
+    }),
   ),
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,

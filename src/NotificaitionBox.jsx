@@ -87,7 +87,7 @@ const NotificationBox = () => {
     try {
       await apiService.MarkAllNotificationsAsRead(userData.id);
       setNotifications((prev) =>
-        prev.map((notification) => ({ ...notification, isRead: true }))
+        prev.map((notification) => ({ ...notification, isRead: true })),
       );
       setUnreadCount(0);
     } catch (error) {
@@ -102,8 +102,8 @@ const NotificationBox = () => {
         await apiService.MarkNotificationAsRead(notification._id);
         setNotifications((prev) =>
           prev.map((n) =>
-            n._id === notification._id ? { ...n, isRead: true } : n
-          )
+            n._id === notification._id ? { ...n, isRead: true } : n,
+          ),
         );
         setUnreadCount((prev) => prev - 1);
       } catch (error) {
@@ -126,34 +126,34 @@ const NotificationBox = () => {
   };
 
   const formatTimestamp = (timestamp) => {
-    if (!timestamp) return '';
-    
+    if (!timestamp) return "";
+
     try {
       const date = new Date(timestamp);
       const now = new Date();
-      
-      if (isNaN(date.getTime())) return ''; 
-      
-      const diff = Math.max(0, now - date); 
+
+      if (isNaN(date.getTime())) return "";
+
+      const diff = Math.max(0, now - date);
 
       if (diff < 60000) {
-        return 'Just now';
+        return "Just now";
       }
-      
+
       if (diff < 3600000) {
         const minutes = Math.floor(diff / 60000);
         return `${minutes}m ago`;
       }
-      
+
       if (diff < 86400000) {
         const hours = Math.floor(diff / 3600000);
         return `${hours}h ago`;
       }
-      
+
       return date.toLocaleDateString();
     } catch (error) {
-      console.error('Error formatting timestamp:', error);
-      return '';
+      console.error("Error formatting timestamp:", error);
+      return "";
     }
   };
 

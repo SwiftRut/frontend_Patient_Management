@@ -31,7 +31,6 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

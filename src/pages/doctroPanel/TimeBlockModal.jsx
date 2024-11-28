@@ -3,7 +3,12 @@ import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
 import toast from "react-hot-toast";
 
-const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot }) => {
+const TimeBlockModal = ({
+  isOpen,
+  onClose,
+  onAddUnavailableTime,
+  selectedSlot,
+}) => {
   const [title, setTitle] = useState("");
   const [reason, setReason] = useState("");
   const { user } = useAuth();
@@ -19,12 +24,12 @@ const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot })
     const unavailableTimeData = {
       title,
       reason,
-      date: startMoment.format('YYYY-MM-DD'),
+      date: startMoment.format("YYYY-MM-DD"),
       timeRange: {
-        start: startMoment.format('HH:mm'),
-        end: endMoment.format('HH:mm'),
+        start: startMoment.format("HH:mm"),
+        end: endMoment.format("HH:mm"),
       },
-      doctorId: user.id
+      doctorId: user.id,
     };
 
     try {
@@ -43,8 +48,14 @@ const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot })
     const startDate = new Date(selectedSlot.start);
     const endDate = new Date(selectedSlot.end);
     const date = startDate.toLocaleDateString();
-    const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const endTime = endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const startTime = startDate.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const endTime = endDate.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
     return `${date} ${startTime} - ${endTime}`;
   };
 
@@ -102,4 +113,4 @@ const TimeBlockModal = ({ isOpen, onClose, onAddUnavailableTime, selectedSlot })
   );
 };
 
-export default TimeBlockModal; 
+export default TimeBlockModal;

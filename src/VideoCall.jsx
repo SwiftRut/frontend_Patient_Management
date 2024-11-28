@@ -18,53 +18,57 @@ const VideoCall = () => {
     socket.emit("joinRoom", { room, name });
   };
 
- const startCall = async () => {
-  try {
-    // Get local media stream
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    setLocalStream(stream);
-    localVideoRef.current.srcObject = stream;
+  const startCall = async () => {
+    try {
+      // Get local media stream
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+      setLocalStream(stream);
+      localVideoRef.current.srcObject = stream;
 
-    // Create peer connection for this user
-    const peerConnection = new RTCPeerConnection();
-    peerRef.current.set(room, peerConnection);
+      // Create peer connection for this user
+      const peerConnection = new RTCPeerConnection();
+      peerRef.current.set(room, peerConnection);
 
-    // Add local stream tracks to the peer connection
-    stream.getTracks().forEach((track) => {
-      peerConnection.addTrack(track, stream);
-    });
+      // Add local stream tracks to the peer connection
+      stream.getTracks().forEach((track) => {
+        peerConnection.addTrack(track, stream);
+      });
 
-    peerConnection.onicecandidate = (event) => {
-      if (event.candidate) {
-        socket.emit("candidate", { candidate: event.candidate, room });
-      }
-    };
+      peerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+          socket.emit("candidate", { candidate: event.candidate, room });
+        }
+      };
 
-    peerConnection.ontrack = (event) => {
-      const remoteStream = event.streams[0];
-      remoteVideoRef.current.srcObject = remoteStream; // Set remote video stream
-      toast.success("Connected to the other user!");
-    };
+      peerConnection.ontrack = (event) => {
+        const remoteStream = event.streams[0];
+        remoteVideoRef.current.srcObject = remoteStream; // Set remote video stream
+        toast.success("Connected to the other user!");
+      };
 
-    // Handle the case where there might be no tracks received
-    peerConnection.oniceconnectionstatechange = () => {
-      if (peerConnection.iceConnectionState === "disconnected") {
-        toast.error("Disconnected from the other user.");
-      }
-    };
+      // Handle the case where there might be no tracks received
+      peerConnection.oniceconnectionstatechange = () => {
+        if (peerConnection.iceConnectionState === "disconnected") {
+          toast.error("Disconnected from the other user.");
+        }
+      };
 
-    const offer = await peerConnection.createOffer();
-    await peerConnection.setLocalDescription(offer);
-    socket.emit("offer", { offer, room });
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+      socket.emit("offer", { offer, room });
 
-    setIsCallActive(true);
-  } catch (error) {
-    console.error("Error starting the call:", error);
-    toast.error("An error occurred while trying to start the call. Please check your camera and microphone permissions.");
-    throw error;
-  }
-};
-
+      setIsCallActive(true);
+    } catch (error) {
+      console.error("Error starting the call:", error);
+      toast.error(
+        "An error occurred while trying to start the call. Please check your camera and microphone permissions.",
+      );
+      throw error;
+    }
+  };
 
   useEffect(() => {
     socket.on("offer", async (data) => {
@@ -81,7 +85,9 @@ const VideoCall = () => {
         });
       }
 
-      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+      await peerConnection.setRemoteDescription(
+        new RTCSessionDescription(offer),
+      );
       const answer = await peerConnection.createAnswer();
       await peerConnection.setLocalDescription(answer);
       socket.emit("answer", { answer, room });
@@ -94,7 +100,7 @@ const VideoCall = () => {
 
       peerConnection.ontrack = (event) => {
         const remoteStream = event.streams[0];
-        remoteVideoRef.current.srcObject = remoteStream; 
+        remoteVideoRef.current.srcObject = remoteStream;
         toast.success("Connected to the other user!");
       };
     });
@@ -113,7 +119,7 @@ const VideoCall = () => {
 
     socket.on("userJoined", (data) => {
       const { name } = data;
-      toast.success(`${name} has joined the room!`); 
+      toast.success(`${name} has joined the room!`);
     });
 
     return () => {
@@ -143,19 +149,38 @@ const VideoCall = () => {
         onChange={(e) => setRoom(e.target.value)}
         style={{ marginBottom: "10px" }}
       />
-      <Button onClick={joinRoom} variant="contained" color="primary" disabled={!name}>
+      <Button
+        onClick={joinRoom}
+        variant="contained"
+        color="primary"
+        disabled={!name}
+      >
         Join Room
       </Button>
-      <video ref={localVideoRef} autoPlay muted style={{ width: "300px", marginRight: "10px" }} />
+      <video
+        ref={localVideoRef}
+        autoPlay
+        muted
+        style={{ width: "300px", marginRight: "10px" }}
+      />
       <video ref={remoteVideoRef} autoPlay style={{ width: "300px" }} />
-      <Button onClick={startCall} variant="contained" color="primary" disabled={!room || isCallActive}>
+      <Button
+        onClick={startCall}
+        variant="contained"
+        color="primary"
+        disabled={!room || isCallActive}
+      >
         Start Call
       </Button>
       {isCallActive && (
-        <Button onClick={() => {
-          setIsCallActive(false);
-          localStream.getTracks().forEach(track => track.stop()); // Stop local stream
-        }} variant="contained" color="secondary">
+        <Button
+          onClick={() => {
+            setIsCallActive(false);
+            localStream.getTracks().forEach((track) => track.stop()); // Stop local stream
+          }}
+          variant="contained"
+          color="secondary"
+        >
           End Call
         </Button>
       )}

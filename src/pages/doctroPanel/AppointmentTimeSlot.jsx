@@ -68,10 +68,10 @@ const AppointmentTimeSlot = () => {
         const unavailableEvents = response.data.map((unavailable) => ({
           title: unavailable.title || "Unavailable",
           start: moment(
-            `${unavailable.date} ${unavailable.timeRange.start}`
+            `${unavailable.date} ${unavailable.timeRange.start}`,
           ).toDate(),
           end: moment(
-            `${unavailable.date} ${unavailable.timeRange.end}`
+            `${unavailable.date} ${unavailable.timeRange.end}`,
           ).toDate(),
           allDay: false,
           id: unavailable._id,
@@ -109,7 +109,7 @@ const AppointmentTimeSlot = () => {
   const handleSelectSlot = (slotInfo) => {
     const isUnavailable = unavailableTimes.some(
       (unavailable) =>
-        slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end
+        slotInfo.start >= unavailable.start && slotInfo.end <= unavailable.end,
     );
 
     if (isBlockingMode) {
@@ -126,15 +126,15 @@ const AppointmentTimeSlot = () => {
     try {
       const response = await apiService.AddUnavailableTime(
         user.id,
-        unavailableTimeData
+        unavailableTimeData,
       );
       const newUnavailableEvent = {
         title: unavailableTimeData.title,
         start: moment(
-          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.start}`
+          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.start}`,
         ).toDate(),
         end: moment(
-          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.end}`
+          `${unavailableTimeData.date} ${unavailableTimeData.timeRange.end}`,
         ).toDate(),
         allDay: false,
         id: response.data._id,
@@ -162,7 +162,7 @@ const AppointmentTimeSlot = () => {
               start: new Date(updatedAppointment.date),
               end: new Date(updatedAppointment.appointmentTime),
             }
-          : event
+          : event,
       );
       setEvents(updatedEvents);
       handleModalState("reschedule", false);
@@ -179,7 +179,7 @@ const AppointmentTimeSlot = () => {
       await deleteAppointment(appointmentId);
       // Remove the event from the events state
       const updatedEvents = events.filter(
-        (event) => event.id !== appointmentId
+        (event) => event.id !== appointmentId,
       );
       setEvents(updatedEvents);
       handleModalState("reschedule", false);

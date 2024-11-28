@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Modal, Box, Button, TextField, Typography } from '@mui/material';
-import PropTypes from 'prop-types'; // Import PropTypes
+import { useState } from "react";
+import { Modal, Box, Button, TextField, Typography } from "@mui/material";
+import PropTypes from "prop-types"; // Import PropTypes
 
 const CashPaymentModal = ({ open, handleClose, handlePayment }) => {
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState("");
   const [isPayEnabled, setIsPayEnabled] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // Validate payment amount and enable/disable Pay button
   const handleAmountChange = (e) => {
@@ -13,23 +13,21 @@ const CashPaymentModal = ({ open, handleClose, handlePayment }) => {
     setAmount(enteredAmount);
     setIsPayEnabled(enteredAmount > 0);
 
-    if (enteredAmount === '') {
+    if (enteredAmount === "") {
       setIsPayEnabled(false);
-      setError('');
-    } else if (!/^\d+(\.\d{1,2})?$/.test(enteredAmount)) { // Check for valid decimal or integer
-      setError('Please enter a valid amount');
+      setError("");
+    } else if (!/^\d+(\.\d{1,2})?$/.test(enteredAmount)) {
+      // Check for valid decimal or integer
+      setError("Please enter a valid amount");
       setIsPayEnabled(false);
     } else if (parseFloat(enteredAmount) <= 0) {
-      setError('Amount must be greater than zero');
+      setError("Amount must be greater than zero");
       setIsPayEnabled(false);
     } else {
-      setError('');
+      setError("");
       setIsPayEnabled(true);
     }
   };
-
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -9,8 +9,7 @@ export default function PatientProfile() {
           <div className="main">
             <div className="top"></div>
             <div className="profile-setting">
-              <div className="head">
-              </div>
+              <div className="head"></div>
               <div className="content">
                 <div className="w-full">
                   <Routes>
