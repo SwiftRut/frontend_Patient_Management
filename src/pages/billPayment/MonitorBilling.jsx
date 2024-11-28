@@ -12,7 +12,7 @@ export default function MonitorBilling() {
   const { getBills, allBills } = useGlobal();
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const [selectedInvoice, setSelectedInvoice] = useState(localStorage.getItem('adminPrefrence')||"Bill");
   useEffect(() => {
     const fetchBills = async () => {
       setLoading(true);
@@ -22,6 +22,20 @@ export default function MonitorBilling() {
     fetchBills();
   }, []);
 
+
+  const billUrl = (selectedInvoice,bill) => {
+    console.log(selectedInvoice,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",bill);
+    switch(selectedInvoice) {
+      case "Bill":
+        return `/bill/${bill._id}`;
+      case "Bill2":
+        return `/bill2/${bill._id}`;
+      case "Bill3":
+        return `/bill3/${bill._id}`;
+      default:
+        return `/bill/${bill._id}`;
+    }
+  };
   const filteredBills = allBills.filter(
     (bill) =>
       bill.billNumber.toString().includes(searchQuery.toLowerCase()) ||
@@ -189,7 +203,7 @@ export default function MonitorBilling() {
                       <td className="action p-2 flex justify-center">
                         <div
                           className="view text-blue-400 bg-gray-100 rounded-lg p-2 text-center cursor-pointer w-[40%] flex items-center justify-center text-[#4F4F4F] text-lg font-semiboldf"
-                          onClick={() => navigate(`/bill/${bill._id}`)}
+                          onClick={() => navigate(billUrl(selectedInvoice,bill))}
                         >
                           <FaEye />
                         </div>

@@ -22,6 +22,7 @@ import {
   Image,
   Description,
   Close,
+  Delete,
 } from "@mui/icons-material";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
@@ -67,7 +68,7 @@ const ChatScreen1 = () => {
         const appointment = allAppointments?.find(
           (apt) => apt?.doctorId && apt.doctorId._id === doctorId
         );
-  
+
         // Ensure appointment and doctorId are defined
         if (appointment && appointment.doctorId) {
           return {
@@ -81,11 +82,11 @@ const ChatScreen1 = () => {
         }
         return null; // Fallback if no valid data found
       });
-  
+
       // Remove any null values from the array
       const filteredUniqueDoctors = uniqueDoctors.filter((doctor) => doctor !== null);
       setDoctorContacts(filteredUniqueDoctors);
-  
+
       // Automatically select the first chat if available
       if (!selectedChat && filteredUniqueDoctors.length > 0) {
         setSelectedChat(filteredUniqueDoctors[0]);
@@ -174,7 +175,7 @@ const ChatScreen1 = () => {
     try {
       // Convert file to base64
       const base64File = await fileToBase64(file);
-      
+
       setPreviewFile({
         file,
         type,
@@ -214,7 +215,7 @@ const ChatScreen1 = () => {
       socket.emit("message", messageData);
       setMessageInput("");
       setPreviewFile(null);
-      
+
       // Scroll to bottom after sending
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
@@ -230,9 +231,9 @@ const ChatScreen1 = () => {
     return (
       <div className="relative p-2 bg-gray-50 rounded-lg mb-2">
         {previewFile.type === 'image' && (
-          <img 
-            src={previewFile.preview} 
-            alt="Preview" 
+          <img
+            src={previewFile.preview}
+            alt="Preview"
             className="max-h-32 rounded-lg"
           />
         )}
@@ -269,18 +270,18 @@ const ChatScreen1 = () => {
       key={index}
       className={`mb-2 ${msg?.senderId === user.id ? "text-right" : "text-left"}`}
     >
-      <div className={`inline-block max-w-md ${
-        msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
-      } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}>
-        {msg.type === 'text' && (
-          <p className="text-sm">{msg.messageContent}</p>
-        )}
+      <div
+        className={`inline-block max-w-md relative group ${
+          msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
+        } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
+      >
+        {msg.type === 'text' && <p className="text-sm">{msg.messageContent}</p>}
         
         {msg.type === 'image' && (
           <div className="relative group">
-            <img 
-              src={msg.fileUrl} 
-              alt="Shared image" 
+            <img
+              src={msg.fileUrl}
+              alt="Shared image"
               className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
               onClick={() => handlePreviewClick(msg.fileUrl, 'image', msg.fileName)}
             />
@@ -293,10 +294,10 @@ const ChatScreen1 = () => {
             </div>
           </div>
         )}
-        
+
         {msg.type === 'file' && (
           <div className="flex flex-col space-y-2">
-            <div 
+            <div
               className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
               onClick={() => handlePreviewClick(msg.fileUrl, 'file', msg.fileName)}
             >
@@ -354,6 +355,30 @@ const ChatScreen1 = () => {
       </DialogContent>
     </Dialog>
   );
+
+  const handleDeleteMessage = async (messageId) => {
+    try {
+      if (!selectedChat) return;
+      
+      const room = [selectedChat._id, user.id].sort().join('-');
+      socket.emit('deleteMessage', { messageId, room });
+      toast.success('Message deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete message');
+    }
+  };
+
+  useEffect(() => {
+    socket.on("messageDeleted", ({ messageId }) => {
+      setMessages((prevMessages) => 
+        prevMessages.filter((msg) => msg._id !== messageId)
+      );
+    });
+
+    return () => {
+      socket.off("messageDeleted");
+    };
+  }, []);
 
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
@@ -420,34 +445,38 @@ const ChatScreen1 = () => {
             <div className="mt-4">
               {/* File Preview */}
               <FilePreview />
-              
+
               {/* Message Input */}
-              <div className="flex items-center space-x-2">
-                <Tooltip title="Attach file">
-                  <IconButton onClick={handleAttachClick}>
-                    <AttachFile />
+              <div className="flex border rounded justify-between items-center space-x-2 ">
+                <div className="left">
+                  <Tooltip title="Attach file">
+                    <IconButton onClick={handleAttachClick}>
+                      <AttachFile />
+                    </IconButton>
+                  </Tooltip>
+
+                  <input
+                    fullWidth
+                    variant="outlined"
+                    placeholder="Type a message..."
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                      }
+                    }}
+                    multiline
+                    maxRows={4}
+                  />
+                </div>
+
+                <div className="right">
+                  <IconButton onClick={sendMessage} color="primary">
+                    <Send />
                   </IconButton>
-                </Tooltip>
-                
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Type a message..."
-                  value={messageInput}
-                  onChange={(e) => setMessageInput(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      sendMessage();
-                    }
-                  }}
-                  multiline
-                  maxRows={4}
-                />
-                
-                <IconButton onClick={sendMessage} color="primary">
-                  <Send />
-                </IconButton>
+                </div>
               </div>
 
               {/* File Selection Menu */}
