@@ -63,7 +63,7 @@ const AdminRegistration = () => {
 
     if (name === "country") {
       const selectedCountry = countries.find(
-        (country) => country.name === value
+        (country) => country.name === value,
       );
       if (selectedCountry) {
         setStates(State.getStatesOfCountry(selectedCountry.isoCode));
@@ -240,7 +240,7 @@ const AdminRegistration = () => {
                     required
                     className="w-full p-2 border border-gray-300 rounded-lg"
                   />
-                </div>  
+                </div>
 
                 <div className="input-box relative">
                   <label className="block text-sm font-medium absolute top-[-0.75rem] left-4 bg-white z-10">
@@ -383,16 +383,16 @@ const AdminRegistration = () => {
                   required
                   className="w-full p-2 border border-gray-300 rounded-lg"
                 />
-                 <div
-                    className="absolute top-3 right-4 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <FaEye size={20} />
-                    ) : (
-                      <FaEyeSlash size={20} />
-                    )}
-                  </div>
+                <div
+                  className="absolute top-3 right-4 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEye size={20} />
+                  ) : (
+                    <FaEyeSlash size={20} />
+                  )}
+                </div>
               </div>
 
               <div className="flex items-center">
@@ -525,7 +525,7 @@ const AdminRegistration = () => {
                                 >
                                   <option value="">Select State</option>
                                   {State.getStatesOfCountry(
-                                    hospitalFormData.country
+                                    hospitalFormData.country,
                                   ).map((state) => (
                                     <option
                                       key={state.isoCode}
@@ -550,7 +550,7 @@ const AdminRegistration = () => {
                                   <option value="">Select City</option>
                                   {City.getCitiesOfState(
                                     hospitalFormData.country,
-                                    hospitalFormData.state
+                                    hospitalFormData.state,
                                   ).map((city) => (
                                     <option key={city.name} value={city.name}>
                                       {city.name}

@@ -19,7 +19,7 @@ export const DoctorAside = () => {
           />
         </div>
         <p className="text-[24px] text-[#030229] font-semibold py-2">
-          {userData ? `Dr. ${userData?.name}` : ''}
+          {userData ? `Dr. ${userData?.name}` : ""}
         </p>
       </div>
       <div className="menu">
@@ -31,7 +31,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-[#F6F8FB] p-4 rounded-[10px] hover:text-sky-500 hover:fill-sky-500"
             >
               <CgProfile />
-              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">Profile</span>
+              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">
+                Profile
+              </span>
             </NavLink>
           </li>
           <li className="mb-2">
@@ -40,7 +42,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-[#F6F8FB] p-4 rounded-[10px] hover:text-sky-500 hover:fill-sky-500"
             >
               <FaLock />
-              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">Change Password</span>
+              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">
+                Change Password
+              </span>
             </NavLink>
           </li>
           <li className="mb-2">
@@ -49,7 +53,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-[#F6F8FB] p-4 rounded-[10px] hover:text-sky-500 hover:fill-sky-500"
             >
               <FaStickyNote />
-              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">Terms & Condition</span>
+              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">
+                Terms & Condition
+              </span>
             </NavLink>
           </li>
           <li>
@@ -58,7 +64,9 @@ export const DoctorAside = () => {
               className="flex items-center bg-[#F6F8FB] p-4 rounded-[10px] hover:text-sky-500 hover:fill-sky-500"
             >
               <SiSpringsecurity />
-              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">Privacy Policy</span>
+              <span className="ml-4 text-base font-[18px] text-[#4F4F4F] hover:text-sky-500">
+                Privacy Policy
+              </span>
             </NavLink>
           </li>
         </ul>

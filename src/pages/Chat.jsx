@@ -55,7 +55,10 @@ const Chat = () => {
             <p className="text-center text-gray-400">No messages yet...</p>
           ) : (
             chat.map((chatItem, idx) => (
-              <div key={idx} className={`mb-2 ${chatItem.username === user ? "text-right" : ""}`}>
+              <div
+                key={idx}
+                className={`mb-2 ${chatItem.username === user ? "text-right" : ""}`}
+              >
                 <span
                   className={`font-bold ${chatItem.username === "User 1" ? "text-blue-600" : "text-green-600"}`}
                 >

@@ -21,7 +21,7 @@ const ProfileChangePassword = () => {
   });
 
   const passwordRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!$%^&*()_+{}:;<>?,.@])[A-Za-z\d!$%^&*()_+{}:;<>?,.@]{8,}$/
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!$%^&*()_+{}:;<>?,.@])[A-Za-z\d!$%^&*()_+{}:;<>?,.@]{8,}$/;
 
   const changePassword = async (id, userData) => {
     try {
@@ -87,7 +87,9 @@ const ProfileChangePassword = () => {
         <div className="content p-8 rounded-xl shadow-sm bg-white">
           <div className="head">
             <div className="title">
-              <p className="text-[34px] text-[#030229] font-semibold ">Change Password</p>
+              <p className="text-[34px] text-[#030229] font-semibold ">
+                Change Password
+              </p>
             </div>
             <div className="description pt-4">
               <p className="text-[16px] font-normal text-[#4F4F4F]">
@@ -101,7 +103,9 @@ const ProfileChangePassword = () => {
           <div className="form-box pt-5">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="change-input-box relative">
-                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">Current Password <span className="text-red-500">*</span></label>
+                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">
+                  Current Password <span className="text-red-500">*</span>
+                </label>
                 <div className="password-input-container relative">
                   <input
                     type={showCurrentPassword ? "text" : "password"}
@@ -114,13 +118,23 @@ const ProfileChangePassword = () => {
                     className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer text-[#4F4F4F]"
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                   >
-                    {showCurrentPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                    {showCurrentPassword ? (
+                      <FaEye size={20} />
+                    ) : (
+                      <FaEyeSlash size={20} />
+                    )}
                   </div>
                 </div>
-                {errors.currentPassword && <span className="error text-red-500 text-sm">{errors.currentPassword}</span>}
+                {errors.currentPassword && (
+                  <span className="error text-red-500 text-sm">
+                    {errors.currentPassword}
+                  </span>
+                )}
               </div>
               <div className="change-input-box relative">
-                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">New Password <span className="text-red-500">*</span></label>
+                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">
+                  New Password <span className="text-red-500">*</span>
+                </label>
                 <div className="password-input-container relative">
                   <input
                     type={showNewPassword ? "text" : "password"}
@@ -133,13 +147,23 @@ const ProfileChangePassword = () => {
                     className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer text-[#4F4F4F]"
                     onClick={() => setShowNewPassword(!showNewPassword)}
                   >
-                    {showNewPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                    {showNewPassword ? (
+                      <FaEye size={20} />
+                    ) : (
+                      <FaEyeSlash size={20} />
+                    )}
                   </div>
                 </div>
-                {errors.newPassword && <span className="error text-red-500 text-sm">{errors.newPassword}</span>}
+                {errors.newPassword && (
+                  <span className="error text-red-500 text-sm">
+                    {errors.newPassword}
+                  </span>
+                )}
               </div>
               <div className="change-input-box relative">
-                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">Confirm Password <span className="text-red-500">*</span></label>
+                <label className="absolute top-1 left-3 bg-white text-[16px] text-[#030229] font-medium">
+                  Confirm Password <span className="text-red-500">*</span>
+                </label>
                 <div className="password-input-container relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
@@ -152,10 +176,18 @@ const ProfileChangePassword = () => {
                     className="eye absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer text-[#4F4F4F]"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
-                    {showConfirmPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+                    {showConfirmPassword ? (
+                      <FaEye size={20} />
+                    ) : (
+                      <FaEyeSlash size={20} />
+                    )}
                   </div>
                 </div>
-                {errors.confirmPassword && <span className="error text-red-500 text-sm">{errors.confirmPassword}</span>}
+                {errors.confirmPassword && (
+                  <span className="error text-red-500 text-sm">
+                    {errors.confirmPassword}
+                  </span>
+                )}
               </div>
               <div className="change-input-box pt-3">
                 <button
@@ -170,8 +202,6 @@ const ProfileChangePassword = () => {
         </div>
       </div>
     </div>
-
-
   );
 };
 

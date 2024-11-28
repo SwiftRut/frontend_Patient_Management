@@ -21,7 +21,7 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
       } catch (error) {
         setError(
           "Error fetching doctor details: " +
-            (error.response ? error.response.data.message : error.message)
+            (error.response ? error.response.data.message : error.message),
         );
         toast.error("Error fetching doctor details");
       } finally {
@@ -170,7 +170,9 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
                       </p>
                     </td>
                     <td className="py-1 w-2/4">
-                      <h3 className="text-gray-500 text-lg font-normal">Email</h3>
+                      <h3 className="text-gray-500 text-lg font-normal">
+                        Email
+                      </h3>
                       <p className="text-gray-800 text-lg font-medium">
                         {doctor.email}
                       </p>
@@ -178,7 +180,9 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
                   </tr>
                   <tr>
                     <td className="py-2">
-                      <h3 className="text-gray-500 text-lg font-normal">Phone</h3>
+                      <h3 className="text-gray-500 text-lg font-normal">
+                        Phone
+                      </h3>
                       <p className="text-gray-800 text-lg font-medium">
                         {doctor.phone}
                       </p>
@@ -194,13 +198,17 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
                   </tr>
                   <tr>
                     <td className="py-2">
-                      <h3 className="text-gray-500 text-lg font-normal">Country</h3>
+                      <h3 className="text-gray-500 text-lg font-normal">
+                        Country
+                      </h3>
                       <p className="text-gray-800 text-lg font-medium">
                         {doctor.country}
                       </p>
                     </td>
                     <td className="py-2">
-                      <h3 className="text-gray-500 text-lg font-normal">State</h3>
+                      <h3 className="text-gray-500 text-lg font-normal">
+                        State
+                      </h3>
                       <p className="text-gray-800 text-lg font-medium">
                         {doctor.state}
                       </p>
@@ -216,7 +224,9 @@ const Onsite = ({ selectedDoctor, setOpenModel }) => {
                       </p>
                     </td>
                     <td className="py-2">
-                      <h3 className="text-gray-500 text-lg font-normal">City</h3>
+                      <h3 className="text-gray-500 text-lg font-normal">
+                        City
+                      </h3>
                       <p className="text-gray-800 text-lg font-medium">
                         {doctor.city}
                       </p>

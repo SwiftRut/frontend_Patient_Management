@@ -78,7 +78,7 @@ const CreatePrescriptionForm = () => {
         dose: Yup.string().required("Required"),
         duration: Yup.string().required("Required"),
         whenToTake: Yup.string().required("Required"),
-      })
+      }),
     ),
     additionalNote: Yup.string(),
   });
@@ -92,12 +92,12 @@ const CreatePrescriptionForm = () => {
 
       const prescriptionPayload = {
         patientId: appointmentData.patientId._id,
-        medicines: values.medicines.map(medicine => ({
+        medicines: values.medicines.map((medicine) => ({
           medicineName: medicine.medicineName,
           strength: medicine.strength,
           dose: medicine.dose,
           duration: medicine.duration,
-          whenToTake: medicine.whenToTake
+          whenToTake: medicine.whenToTake,
         })),
         additionalNote: values.additionalNote,
         appointmentId: id,
@@ -105,7 +105,7 @@ const CreatePrescriptionForm = () => {
       };
 
       const response = await createPrescription(prescriptionPayload, id);
-      
+
       if (response) {
         toast.success("Prescription created successfully!");
         navigate("/doctor/managePrescriptionTools");
@@ -114,7 +114,9 @@ const CreatePrescriptionForm = () => {
       }
     } catch (error) {
       console.error("Prescription creation error:", error);
-      toast.error(error.response?.data?.message || "Failed to create prescription");
+      toast.error(
+        error.response?.data?.message || "Failed to create prescription",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -139,8 +141,18 @@ const CreatePrescriptionForm = () => {
       onSubmit={handleSubmit}
       enableReinitialize={true}
     >
-      {({ values, handleChange, handleBlur, errors, touched, handleSubmit }) => (
-        <Form onSubmit={handleSubmit} className="flex justify-between p-8 bg-[#F6F8FB] p-3 h-[92%]">
+      {({
+        values,
+        handleChange,
+        handleBlur,
+        errors,
+        touched,
+        handleSubmit,
+      }) => (
+        <Form
+          onSubmit={handleSubmit}
+          className="flex justify-between p-8 bg-[#F6F8FB] p-3 h-[92%]"
+        >
           {/* Left Side - Form */}
           <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto">
             <h2 className="text-2xl font-bold mb-4">Create Prescription</h2>
@@ -163,9 +175,7 @@ const CreatePrescriptionForm = () => {
                   disabled
                 />
                 {errors.patientName && touched.patientName && (
-                  <p className="text-red-500 text-sm">
-                    {errors.patientName}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.patientName}</p>
                 )}
               </div>
               <div className="input-box w-1/4 relative">

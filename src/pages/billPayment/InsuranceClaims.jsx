@@ -33,7 +33,7 @@ export default function InsuranceClaims() {
 
   useEffect(() => {
     const insuranceClaims = allBills.filter(
-      (bill) => bill.paymentType === "Insurance"
+      (bill) => bill.paymentType === "Insurance",
     );
     setClaimsData(insuranceClaims);
   }, [allBills]);
@@ -61,7 +61,7 @@ export default function InsuranceClaims() {
         .includes(searchQuery.toLowerCase()) ||
       claim.insuranceId?.insurancePlan
         ?.toLowerCase()
-        .includes(searchQuery.toLowerCase())
+        .includes(searchQuery.toLowerCase()),
   );
 
   return (

@@ -5,7 +5,6 @@ import { useGlobal } from "../../hooks/useGlobal.jsx";
 const PatientsAge = () => {
   const { cardData } = useGlobal();
   return (
-
     <div className="PatientsAge-data w-1/3 h-[350px] p-[10px]">
       <div className="content bg-white p-5 rounded-lg ">
         <div className="head">
@@ -61,7 +60,10 @@ const PatientsAge = () => {
                     <span className="mx-4">{item.name}</span>
                     <span>
                       {cardData?.totalPatientCount > 0
-                        ? ((item.value / cardData?.totalPatientCount) * 100).toFixed(1)
+                        ? (
+                            (item.value / cardData?.totalPatientCount) *
+                            100
+                          ).toFixed(1)
                         : 0}
                       %
                     </span>
@@ -73,8 +75,6 @@ const PatientsAge = () => {
         </div>
       </div>
     </div>
-
-
   );
 };
 

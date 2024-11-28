@@ -1,9 +1,8 @@
-import { Modal } from '@mui/material';
+import { Modal } from "@mui/material";
 import { LuCalendarX2 } from "react-icons/lu";
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from "prop-types"; // Import PropTypes
 
 const CancelAppointmentModal = ({ open, onClose }) => {
-
   const handleCancel = () => {
     // Handle appointment cancellation logic
     onClose();
@@ -25,13 +24,13 @@ const CancelAppointmentModal = ({ open, onClose }) => {
             If you cancel the appointment, you have to return payment.
           </p>
           <div className="flex justify-between space-x-3">
-            <button 
+            <button
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md w-[47%]"
               onClick={onClose}
             >
               No
             </button>
-            <button 
+            <button
               className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md w-[47%]"
               onClick={handleCancel}
             >

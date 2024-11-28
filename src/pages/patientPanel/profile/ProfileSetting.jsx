@@ -22,7 +22,7 @@ const ProfileSetting = () => {
     state: "",
     city: "",
     address: "",
-    profilePic: null
+    profilePic: null,
   });
 
   useEffect(() => {
@@ -33,7 +33,9 @@ const ProfileSetting = () => {
         email: userData.email || "",
         phone: userData.phone || "",
         gender: userData.gender || "",
-        dob: userData.dob ? new Date(userData.dob).toISOString().substring(0, 10) : "",
+        dob: userData.dob
+          ? new Date(userData.dob).toISOString().substring(0, 10)
+          : "",
         age: userData.age || "",
         height: userData.height || "",
         weight: userData.weight || "",
@@ -42,7 +44,7 @@ const ProfileSetting = () => {
         state: userData.state || "",
         city: userData.city || "",
         address: userData.address || "",
-        profilePic: null
+        profilePic: null,
       });
     }
   }, [userData]);
@@ -52,7 +54,7 @@ const ProfileSetting = () => {
     if (id === "profilePic") {
       setFormData((prevData) => ({
         ...prevData,
-        profilePic: files[0] || null
+        profilePic: files[0] || null,
       }));
     } else {
       setFormData((prevData) => ({
@@ -87,7 +89,10 @@ const ProfileSetting = () => {
             alt="Profile"
             className="rounded-full object-cover w-[214px] h-[214px]"
           />
-          <label htmlFor="profilePic" className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4">
+          <label
+            htmlFor="profilePic"
+            className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4"
+          >
             <UserIcon className="h-5 w-5 mr-2" />
             Change Profile
           </label>
@@ -107,7 +112,10 @@ const ProfileSetting = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
               {/* Name */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="firstName" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Name
                 </label>
                 <input
@@ -122,7 +130,10 @@ const ProfileSetting = () => {
 
               {/* Phone */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="phone" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Number
                 </label>
                 <input
@@ -136,7 +147,10 @@ const ProfileSetting = () => {
 
               {/* Email */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="email" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Email
                 </label>
                 <input
@@ -150,7 +164,10 @@ const ProfileSetting = () => {
 
               {/* Gender */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="gender" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Gender
                 </label>
                 <select
@@ -168,7 +185,10 @@ const ProfileSetting = () => {
 
               {/* DOB */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="dob" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="dob"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   DOB
                 </label>
                 <input
@@ -182,7 +202,10 @@ const ProfileSetting = () => {
 
               {/* Age */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="age" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="age"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Age
                 </label>
                 <input
@@ -199,7 +222,10 @@ const ProfileSetting = () => {
               {/* Use similar pattern as above for these fields */}
               {/* Example for Blood Group */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="bloodGroup" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="bloodGroup"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Blood Group
                 </label>
                 <select
@@ -225,7 +251,7 @@ const ProfileSetting = () => {
 
             {/* Buttons */}
             <div className="flex justify-center sm:justify-end gap-4">
-              <NavLink to={'/patient'}>
+              <NavLink to={"/patient"}>
                 <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2">
                   Cancel
                 </button>

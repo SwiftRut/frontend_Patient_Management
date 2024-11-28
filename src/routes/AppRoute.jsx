@@ -16,7 +16,9 @@ const AppRoutes = () => {
             />
           );
         } else {
-          return <Route key={index} path={route.path} element={route.element} />;
+          return (
+            <Route key={index} path={route.path} element={route.element} />
+          );
         }
       })}
       <Route path="*" element={<Navigate to="/login" replace />} />

@@ -16,7 +16,12 @@ const Calendar = ({ filterData }) => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const { createAppointment, updateAppointment, deleteAppointment, allAppointements } = useGlobal();
+  const {
+    createAppointment,
+    updateAppointment,
+    deleteAppointment,
+    allAppointements,
+  } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const Calendar = ({ filterData }) => {
       end: new Date(appointment.appointmentTime),
       allDay: false,
       id: appointment._id,
-      appointment: appointment // Store the full appointment data
+      appointment: appointment, // Store the full appointment data
     }));
     setEvents(mappedEvents);
   }, []);
@@ -60,15 +65,17 @@ const Calendar = ({ filterData }) => {
       toast.success("Appointment booked successfully.");
     } catch (error) {
       console.error("Error booking appointment:", error);
-      toast
+      toast;
     }
   };
 
   const handleRescheduleAppointment = async (updatedAppointment) => {
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
-      const updatedEvents = events.map(event => 
-        event.id === updatedAppointment.id ? { ...event, ...updatedAppointment } : event
+      const updatedEvents = events.map((event) =>
+        event.id === updatedAppointment.id
+          ? { ...event, ...updatedAppointment }
+          : event,
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
@@ -82,7 +89,9 @@ const Calendar = ({ filterData }) => {
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       await deleteAppointment(appointmentId);
-      const updatedEvents = events.filter(event => event.id !== appointmentId);
+      const updatedEvents = events.filter(
+        (event) => event.id !== appointmentId,
+      );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment deleted successfully.");

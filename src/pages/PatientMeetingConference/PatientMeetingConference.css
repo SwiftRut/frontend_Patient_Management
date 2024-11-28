@@ -154,12 +154,16 @@
   width: 8px;
 }
 
-.profile-header .notification-dropdown .notification-menu::-webkit-scrollbar-thumb {
+.profile-header
+  .notification-dropdown
+  .notification-menu::-webkit-scrollbar-thumb {
   background-color: #ccc;
   border-radius: 4px;
 }
 
-.profile-header .notification-dropdown .notification-menu::-webkit-scrollbar-track {
+.profile-header
+  .notification-dropdown
+  .notification-menu::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
 
@@ -171,7 +175,11 @@
   color: var(--color15);
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-header .close-btn {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-header
+  .close-btn {
   width: 22px;
   height: 22px;
   border: none;
@@ -190,35 +198,60 @@
   border-bottom: 1px solid #f1f1f1;
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item:last-child {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item:last-child {
   border-bottom: none;
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item .notification-icon {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item
+  .notification-icon {
   width: 46px;
   height: 46px;
   margin-right: 10px;
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item .notification-content {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item
+  .notification-content {
   flex-grow: 1;
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item .notification-content h5 {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item
+  .notification-content
+  h5 {
   margin: 0;
   font-weight: 500;
   font-size: 16px;
   color: var(--color15);
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item .notification-content p {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item
+  .notification-content
+  p {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
   color: var(--color6);
 }
 
-.profile-header .notification-dropdown .notification-menu .notification-item .notification-time {
+.profile-header
+  .notification-dropdown
+  .notification-menu
+  .notification-item
+  .notification-time {
   font-size: 14px;
   color: var(--color6);
 }
@@ -273,7 +306,7 @@
   .profile-header .mobile-screen {
     display: none;
   }
-  
+
   .profile-header .search-container {
     width: 100% !important;
     margin-bottom: 0px;

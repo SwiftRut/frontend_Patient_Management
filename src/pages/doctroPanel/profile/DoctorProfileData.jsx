@@ -9,14 +9,14 @@ const DoctorProfileData = () => {
   const { user } = useAuth();
   const { getDoctorProfile, userData } = useGlobal();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    hospitalName: '',
-    gender: '',
-    city: '',
-    state: '',
-    country: ''
+    name: "",
+    email: "",
+    phone: "",
+    hospitalName: "",
+    gender: "",
+    city: "",
+    state: "",
+    country: "",
   });
   const [errorMessages, setErrorMessages] = useState({});
 
@@ -27,20 +27,20 @@ const DoctorProfileData = () => {
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     fetchData();
-  }, [])
+  }, []);
   useEffect(() => {
     if (userData) {
       setFormData({
-        name: userData.name || '',
-        email: userData.email || '',
-        phone: userData.phone || '',
-        hospitalName: userData.hospitalName || '',
-        gender: userData.gender || '',
-        city: userData.city || '',
-        state: userData.state || '',
-        country: userData.country || ''
+        name: userData.name || "",
+        email: userData.email || "",
+        phone: userData.phone || "",
+        hospitalName: userData.hospitalName || "",
+        gender: userData.gender || "",
+        city: userData.city || "",
+        state: userData.state || "",
+        country: userData.country || "",
       });
     }
   }, [userData]);
@@ -55,7 +55,9 @@ const DoctorProfileData = () => {
           <NavLink to={"/doctor/edit"}>
             <button className="flex items-center bg-[#0EABEB] px-[14px] py-[12px] rounded-lg">
               <FaEdit className="text-white text-[20px]" />
-              <span className="text-white text-[20px] font-semibold pl-2">Edit Profile</span>
+              <span className="text-white text-[20px] font-semibold pl-2">
+                Edit Profile
+              </span>
             </button>
           </NavLink>
         </div>
@@ -73,7 +75,9 @@ const DoctorProfileData = () => {
               value={userData?.name}
               className="w-full px-4 py-3 border border-[#A7A7A7] border-[#D9D9D9] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.name && <p className="text-red-500 text-sm mt-1">{errorMessages.name}</p>}
+            {errorMessages.name && (
+              <p className="text-red-500 text-sm mt-1">{errorMessages.name}</p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -86,7 +90,9 @@ const DoctorProfileData = () => {
               value={userData?.email}
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.email && <p className="text-red-500 text-sm mt-1">{errorMessages.email}</p>}
+            {errorMessages.email && (
+              <p className="text-red-500 text-sm mt-1">{errorMessages.email}</p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -99,7 +105,9 @@ const DoctorProfileData = () => {
               value={userData?.phone}
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.phone && <p className="text-red-500 text-sm mt-1">{errorMessages.phone}</p>}
+            {errorMessages.phone && (
+              <p className="text-red-500 text-sm mt-1">{errorMessages.phone}</p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -113,7 +121,9 @@ const DoctorProfileData = () => {
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.hospitalName && (
-              <p className="text-red-500 text-sm mt-1">{errorMessages.hospitalName}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errorMessages.hospitalName}
+              </p>
             )}
           </div>
           <div className="input-box relative w-[100%]">
@@ -127,7 +137,11 @@ const DoctorProfileData = () => {
               value={userData?.gender}
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.gender && <p className="text-red-500 text-sm mt-1">{errorMessages.gender}</p>}
+            {errorMessages.gender && (
+              <p className="text-red-500 text-sm mt-1">
+                {errorMessages.gender}
+              </p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -140,7 +154,9 @@ const DoctorProfileData = () => {
               value={userData?.city}
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.city && <p className="text-red-500 text-sm mt-1">{errorMessages.city}</p>}
+            {errorMessages.city && (
+              <p className="text-red-500 text-sm mt-1">{errorMessages.city}</p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -153,7 +169,9 @@ const DoctorProfileData = () => {
               value={userData?.state}
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
-            {errorMessages.state && <p className="text-red-500 text-sm mt-1">{errorMessages.state}</p>}
+            {errorMessages.state && (
+              <p className="text-red-500 text-sm mt-1">{errorMessages.state}</p>
+            )}
           </div>
           <div className="input-box relative w-[100%]">
             <label className="absolute top-[-14px] left-4 bg-white px-1 text-[#030229] text-[16px] font-medium">
@@ -167,7 +185,9 @@ const DoctorProfileData = () => {
               className="w-full px-4 py-3 border border-[#A7A7A7] text-[#A7A7A7] text-[16px] font-normal rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {errorMessages.country && (
-              <p className="text-red-500 text-sm mt-1">{errorMessages.country}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errorMessages.country}
+              </p>
             )}
           </div>
         </form>

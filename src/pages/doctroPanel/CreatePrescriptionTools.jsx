@@ -47,26 +47,27 @@ const CreatePrescriptionTools = () => {
             <h1 className="text-2xl font-bold mb-4">Today Appointment</h1>
           </div>
           <div className="flex space-x-4">
-          <div className="search-btn flex">
-            <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
-              <div className="text-xl text-gray-700">
-                <CiSearch />
+            <div className="search-btn flex">
+              <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
+                <div className="text-xl text-gray-700">
+                  <CiSearch />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search Doctor"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="bg-transparent pl-2 text-lg"
+                />
               </div>
-              <input
-                type="text"
-                placeholder="Search Doctor"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-transparent pl-2 text-lg"
-              />
+            </div>
+            <div className="flex items-center border py-2 px-3 rounded-lg">
+              <FaCalendarAlt className="text-[#4F4F4F] text-xl me-2" />
+              <h2 className="text-[20px] font-semibold text-[#141414]">
+                2 March, 2024
+              </h2>
             </div>
           </div>
-          <div className="flex items-center border py-2 px-3 rounded-lg"> 
-          <FaCalendarAlt className="text-[#4F4F4F] text-xl me-2" />
-            <h2 className="text-[20px] font-semibold text-[#141414]">2 March, 2024</h2>
-          </div>
-          </div>
-      
         </div>
         <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[calc(100vh-200px)] overflow-y-auto">
           {transformedAppointments?.map((appointment) => (

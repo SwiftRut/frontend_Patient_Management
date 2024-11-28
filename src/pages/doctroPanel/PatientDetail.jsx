@@ -206,8 +206,8 @@ const PatientDetail = () => {
                           appointment.type === "online"
                             ? "bg-[#fff9e7] text-[#FFC313]"
                             : appointment.type === "follow_up"
-                            ? "bg-[#eef1fd] text-[#5678E9]"
-                            : "bg-[#fff9e7] text-[#FFC313]"
+                              ? "bg-[#eef1fd] text-[#5678E9]"
+                              : "bg-[#fff9e7] text-[#FFC313]"
                         }`}
                       >
                         {appointment.type.replace("_", " ")}
@@ -219,15 +219,18 @@ const PatientDetail = () => {
                           appointment.status === "scheduled"
                             ? "bg-green-100 text-green-600"
                             : appointment.status === "completed"
-                            ? "bg-[#eef1fd] text-[#5678E9]"
-                            : "bg-red-100 text-red-600"
+                              ? "bg-[#eef1fd] text-[#5678E9]"
+                              : "bg-red-100 text-red-600"
                         }`}
                       >
                         {appointment.status}
                       </span>
                     </td>
                     <td className="p-3 text-lg font-semibold">
-                      <button className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer" onClick={handleViewFiles}>
+                      <button
+                        className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
+                        onClick={handleViewFiles}
+                      >
                         <FaEye />
                       </button>
                     </td>

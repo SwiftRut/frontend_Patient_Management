@@ -37,7 +37,10 @@ export default function PrescriptionAccess() {
 
     return prescriptions.filter((prescription) => {
       const prescriptionDate = new Date(prescription.date);
-      return prescriptionDate >= new Date(startDate) && prescriptionDate <= new Date(endDate);
+      return (
+        prescriptionDate >= new Date(startDate) &&
+        prescriptionDate <= new Date(endDate)
+      );
     });
   };
 
@@ -52,14 +55,19 @@ export default function PrescriptionAccess() {
   };
 
   // Get filtered prescriptions based on date range
-  const filteredPrescriptions = filterPrescriptionsByDate(patientPrescription, dateRange);
+  const filteredPrescriptions = filterPrescriptionsByDate(
+    patientPrescription,
+    dateRange,
+  );
 
   return (
     <>
       <div className="mx-3 mt-5">
         <div className="bg-white shadow-lg h-auto p-4 rounded-xl m-3">
           <div className="flex flex-col md:flex-row justify-between sm:items-center mb-3">
-            <h1 className="text-xl font-semibold mb-2 md:mb-0">Prescription Access</h1>
+            <h1 className="text-xl font-semibold mb-2 md:mb-0">
+              Prescription Access
+            </h1>
 
             <div className="flex items-center space-x-3">
               <div
@@ -75,7 +83,7 @@ export default function PrescriptionAccess() {
                   value={
                     dateRange[0] && dateRange[1]
                       ? `${new Date(dateRange[0]).toLocaleDateString("en-US")} - ${new Date(
-                          dateRange[1]
+                          dateRange[1],
                         ).toLocaleDateString("en-US")}`
                       : "Select Date Range"
                   }
@@ -116,30 +124,43 @@ export default function PrescriptionAccess() {
                   </div>
                   <div className="p-3 border rounded-b-lg">
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Hospital Name</span>
+                      <span className="text-base font-normal text-[#818194]">
+                        Hospital Name
+                      </span>
                       <p className="text-sm font-medium text-[#4F4F4F]">
                         {prescription?.doctorId?.hospitalName || "N/A"}
                       </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Disease Name</span>
+                      <span className="text-base font-normal text-[#818194]">
+                        Disease Name
+                      </span>
                       <p className="text-sm font-medium text-[#4F4F4F]">
                         {prescription.diseaseName || "N/A"}
                       </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Date</span>
+                      <span className="text-base font-normal text-[#818194]">
+                        Date
+                      </span>
                       <p className="text-sm font-medium text-[#4F4F4F]">
-                        {new Date(prescription.date).toLocaleDateString("en-US") || "N/A"}
+                        {new Date(prescription.date).toLocaleDateString(
+                          "en-US",
+                        ) || "N/A"}
                       </p>
                     </div>
                     <div className="mt-1 flex items-center justify-between">
-                      <span className="text-base font-normal text-[#818194]">Time</span>
+                      <span className="text-base font-normal text-[#818194]">
+                        Time
+                      </span>
                       <p className="text-sm font-medium text-[#4F4F4F]">
-                        {new Date(prescription.date).toLocaleTimeString("en-US", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        }) || "N/A"}
+                        {new Date(prescription.date).toLocaleTimeString(
+                          "en-US",
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          },
+                        ) || "N/A"}
                       </p>
                     </div>
                     <div className="mt-4 flex items-center border rounded-md p-1">

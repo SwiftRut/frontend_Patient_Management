@@ -40,7 +40,7 @@ const Appointment = () => {
 
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
-  }, [user.id,searchTerm,dateRange]);
+  }, [user.id, searchTerm, dateRange]);
 
   useEffect(() => {
     filterAppointments();
@@ -53,12 +53,12 @@ const Appointment = () => {
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       const response = await deleteAppointment(appointmentId);
-      await getAppointmetnsForPatient(user.id); 
+      await getAppointmetnsForPatient(user.id);
       if (response.status === 200) {
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment
+            : appointment,
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -133,7 +133,7 @@ const Appointment = () => {
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment
+            : appointment,
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -167,8 +167,10 @@ const Appointment = () => {
     event.preventDefault();
     //appointmentTime should be in this format: YYYY-MM-DDTHH:mm:ss.SSSZ
 
-    updatedAppointment.appointmentTime = new Date(newDate + "T" + newTime).toISOString();
-    updatedAppointment.date = new Date(newDate + "T" + newTime).toISOString();;
+    updatedAppointment.appointmentTime = new Date(
+      newDate + "T" + newTime,
+    ).toISOString();
+    updatedAppointment.date = new Date(newDate + "T" + newTime).toISOString();
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       handleCloseRescheduleModal();
@@ -231,7 +233,7 @@ const Appointment = () => {
                         value={
                           dateRange[0] && dateRange[1]
                             ? `${moment(dateRange[0]).format(
-                                "MM/DD/YYYY"
+                                "MM/DD/YYYY",
                               )} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
                             : "Select Date Range"
                         }
@@ -303,7 +305,7 @@ const Appointment = () => {
                           </p>
                           <span className="text-sm">
                             {moment(appointment.appointmentTime).format(
-                              "DD/MM/YYYY"
+                              "DD/MM/YYYY",
                             )}
                           </span>
                         </div>
@@ -313,7 +315,7 @@ const Appointment = () => {
                           </p>
                           <span className="text-sm">
                             {moment(appointment.appointmentTime).format(
-                              "hh:mm A"
+                              "hh:mm A",
                             )}
                           </span>
                         </div>
@@ -338,7 +340,10 @@ const Appointment = () => {
                                 <LuCalendarX2 className="me-2" />
                                 Cancel
                               </button>
-                              <button className="px-3 py-2 rounded-lg m-2 bg-[#F6F8FB] hover:bg-[#0EABEB] text-[#4F4F4F]  hover:text-[#FFFFFF] w-[45%] flex items-center justify-center transition  duration-200 font-semibold" onClick={() => handleReschedule(appointment)}>
+                              <button
+                                className="px-3 py-2 rounded-lg m-2 bg-[#F6F8FB] hover:bg-[#0EABEB] text-[#4F4F4F]  hover:text-[#FFFFFF] w-[45%] flex items-center justify-center transition  duration-200 font-semibold"
+                                onClick={() => handleReschedule(appointment)}
+                              >
                                 <LuCalendarClock className="me-2" />
                                 Reschedule
                               </button>
@@ -417,57 +422,62 @@ const Appointment = () => {
 
       {/* Modal for Reschedule component */}
       {openRescheduleModal && (
-     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
-     <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
-       <h2 className="text-xl font-semibold mb-4">Reschedule Appointment</h2>
-       <form>
-         <div className="space-y-4">
-           <div>
-             <label className="font-medium block mb-1">Select Date</label>
-             <input
-               type="date"
-               value={newDate}
-               onChange={(e) => setNewDate(e.target.value)}
-               className="w-full border rounded px-2 py-1"
-               required
-             />
-           </div>
-           <div>
-             <label className="font-medium block mb-1">Select Time</label>
-             <input
-               type="time"
-               value={newTime}
-               onChange={(e) => setNewTime(e.target.value)}
-               className="w-full border rounded px-2 py-1"
-               required
-             />
-           </div>
-         </div>
-         <div className="flex justify-end mt-6 space-x-4">
-           <button
-             type="button"
-             onClick={handleCloseRescheduleModal}
-             className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-           >
-             Cancel
-           </button>
-           <button
-             type="button"
-             onClick={() => handleDeleteAppointment(selectedAppointment)}
-             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-           >
-             Delete
-           </button>
-           <button
-             type="submit"
-             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={()=>handleRescheduleAppointment(selectedAppointment)}
-           >
-             Reschedule
-           </button>
-         </div>
-       </form>
-     </div>
-   </div>
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
+            <h2 className="text-xl font-semibold mb-4">
+              Reschedule Appointment
+            </h2>
+            <form>
+              <div className="space-y-4">
+                <div>
+                  <label className="font-medium block mb-1">Select Date</label>
+                  <input
+                    type="date"
+                    value={newDate}
+                    onChange={(e) => setNewDate(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="font-medium block mb-1">Select Time</label>
+                  <input
+                    type="time"
+                    value={newTime}
+                    onChange={(e) => setNewTime(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end mt-6 space-x-4">
+                <button
+                  type="button"
+                  onClick={handleCloseRescheduleModal}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteAppointment(selectedAppointment)}
+                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={() =>
+                    handleRescheduleAppointment(selectedAppointment)
+                  }
+                >
+                  Reschedule
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );

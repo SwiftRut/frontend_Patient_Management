@@ -40,7 +40,8 @@ const AppointmentTimeSlot1 = () => {
         defaultView="week"
         popup
         eventPropGetter={(event) => {
-          const backgroundColor = event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
+          const backgroundColor =
+            event.resource === "Dr. Andrew" ? "#3174ad" : "#3a87ad";
           return { style: { backgroundColor } };
         }}
       />

@@ -2,8 +2,31 @@ import { useState } from "react";
 import TimeSlot from "./TimeSlot";
 import AppointmentModal from "./AppointmentModal";
 import "./Schedular.css";
-const days = ["Sun 17", "Mon 18", "Tue 19", "Wed 20", "Thu 21", "Fri 22", "Sat 23"];
-const times = ["08 AM", "09 AM", "10 AM", "11 AM", "12 PM", "01 PM", "02 PM", "03 PM", "04 PM", "05 PM", "06 PM", "07 PM", "08 PM", "09 PM"];
+const days = [
+  "Sun 17",
+  "Mon 18",
+  "Tue 19",
+  "Wed 20",
+  "Thu 21",
+  "Fri 22",
+  "Sat 23",
+];
+const times = [
+  "08 AM",
+  "09 AM",
+  "10 AM",
+  "11 AM",
+  "12 PM",
+  "01 PM",
+  "02 PM",
+  "03 PM",
+  "04 PM",
+  "05 PM",
+  "06 PM",
+  "07 PM",
+  "08 PM",
+  "09 PM",
+];
 
 const Scheduler = () => {
   const [modalData, setModalData] = useState(null);

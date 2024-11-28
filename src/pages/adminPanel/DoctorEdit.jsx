@@ -33,7 +33,7 @@ const DoctorEdit = () => {
             const doctorInfo = response.data.data;
             setCountries(Country.getAllCountries());
             const selectedHospital = allHospitals.find(
-              (hospital) => hospital.name === doctorInfo.hospitalId.name
+              (hospital) => hospital.name === doctorInfo.hospitalId.name,
             );
             setDoctorData((prevData) => ({
               ...prevData,
@@ -41,19 +41,19 @@ const DoctorEdit = () => {
             }));
             // Find the country object based on the country name
             const selectedCountry = Country.getAllCountries().find(
-              (country) => country.name === doctorInfo.country
+              (country) => country.name === doctorInfo.country,
             );
             setSelectedCountry(selectedCountry);
 
             if (selectedCountry) {
               // Get states for the selected country
               const countryStates = State.getStatesOfCountry(
-                selectedCountry.isoCode
+                selectedCountry.isoCode,
               );
               setStates(countryStates);
               // Find the state object based on the state name
               const selectedState = countryStates.find(
-                (state) => state.name === doctorInfo.state
+                (state) => state.name === doctorInfo.state,
               );
 
               setSelectedState(doctorInfo.state);
@@ -61,11 +61,11 @@ const DoctorEdit = () => {
                 // Get cities for the selected state
                 const stateCities = City.getCitiesOfState(
                   selectedCountry.isoCode,
-                  selectedState.isoCode
+                  selectedState.isoCode,
                 );
                 setCities(stateCities);
                 setSelectedCity(
-                  stateCities.find((city) => city.name === doctorInfo.city)
+                  stateCities.find((city) => city.name === doctorInfo.city),
                 );
               }
             }
@@ -141,7 +141,7 @@ const DoctorEdit = () => {
   useEffect(() => {
     if (doctorData.country) {
       const selectedCountry = Country.getAllCountries().find(
-        (country) => country.name === doctorData.country
+        (country) => country.name === doctorData.country,
       );
       if (selectedCountry) {
         // Get states for the selected country
@@ -151,14 +151,14 @@ const DoctorEdit = () => {
 
         // Find the state object based on the state name
         const selectedState = countryStates.find(
-          (state) => state.name === doctorData.state
+          (state) => state.name === doctorData.state,
         );
 
         if (selectedState) {
           // Get cities for the selected state
           const stateCities = City.getCitiesOfState(
             selectedCountry.isoCode,
-            selectedState.isoCode
+            selectedState.isoCode,
           );
           setCities(stateCities);
         }
@@ -175,7 +175,7 @@ const DoctorEdit = () => {
     }));
     if (name === "country") {
       const selectedCountry = countries.find(
-        (country) => country.isoCode === value
+        (country) => country.isoCode === value,
       );
       const countryStates = State.getStatesOfCountry(value);
       setStates(countryStates);
@@ -189,13 +189,13 @@ const DoctorEdit = () => {
     } else if (name === "state") {
       const selectedState = states.find((state) => state.isoCode === value);
       const selectedCountry = Country.getAllCountries().find(
-        (country) => country.name === doctorData.country
+        (country) => country.name === doctorData.country,
       );
 
       if (selectedCountry && selectedState) {
         const stateCities = City.getCitiesOfState(
           selectedCountry.isoCode,
-          selectedState.isoCode
+          selectedState.isoCode,
         );
         setCities(stateCities);
         setDoctorData((prevData) => ({
@@ -212,7 +212,7 @@ const DoctorEdit = () => {
       }));
     } else if (name === "hospitalName") {
       const selectedHospital = allHospitals.find(
-        (hospital) => hospital.name === value
+        (hospital) => hospital.name === value,
       );
       setDoctorData((prevData) => ({
         ...prevData,
@@ -293,7 +293,7 @@ const DoctorEdit = () => {
   console.log(
     states,
     states.find((s) => s.name == doctorData.state),
-    cities
+    cities,
   );
   return (
     <div className=" bg-[#F6F8FB] p-[20px]  h-[93%]">
@@ -363,7 +363,7 @@ const DoctorEdit = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="right w-[79%]">
                     <div className="form-box">
                       <form className="flex gap-x-[22px]">
@@ -469,7 +469,7 @@ const DoctorEdit = () => {
                             options: countries,
                             value:
                               countries.find(
-                                (c) => c.name === doctorData.country
+                                (c) => c.name === doctorData.country,
                               )?.isoCode || "",
                           },
                           {

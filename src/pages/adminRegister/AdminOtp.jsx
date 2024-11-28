@@ -255,7 +255,10 @@ export default function AdminOtp() {
                 <div className="admin-otp-form-box pt-2">
                   <form className="flex space-x-2" onSubmit={handleSubmit}>
                     {[...Array(6)].map((_, index) => (
-                      <div className="input-box relative py-4 w-[14%]" key={index}>
+                      <div
+                        className="input-box relative py-4 w-[14%]"
+                        key={index}
+                      >
                         <input
                           type="text"
                           maxLength="1"
@@ -273,7 +276,9 @@ export default function AdminOtp() {
                       <div className="resend-otp flex justify-between items-center">
                         <div className="sec flex items-center">
                           <IoTimeOutline />
-                          <span className="px-2">{formatTime(timer)}</span> sec
+                          <span className="px-2">
+                            {formatTime(timer)}
+                          </span> sec
                         </div>
                         <div className="r-otp">
                           <button

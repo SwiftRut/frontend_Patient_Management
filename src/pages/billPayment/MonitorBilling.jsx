@@ -12,7 +12,9 @@ export default function MonitorBilling() {
   const { getBills, allBills } = useGlobal();
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
-  const [selectedInvoice, setSelectedInvoice] = useState(localStorage.getItem('adminPrefrence')||"Bill");
+  const [selectedInvoice, setSelectedInvoice] = useState(
+    localStorage.getItem("adminPrefrence") || "Bill",
+  );
   useEffect(() => {
     const fetchBills = async () => {
       setLoading(true);
@@ -22,10 +24,9 @@ export default function MonitorBilling() {
     fetchBills();
   }, []);
 
-
-  const billUrl = (selectedInvoice,bill) => {
-    console.log(selectedInvoice,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",bill);
-    switch(selectedInvoice) {
+  const billUrl = (selectedInvoice, bill) => {
+    console.log(selectedInvoice, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", bill);
+    switch (selectedInvoice) {
       case "Bill":
         return `/bill/${bill._id}`;
       case "Bill2":
@@ -48,7 +49,7 @@ export default function MonitorBilling() {
         bill.doctorId.firstName &&
         bill.doctorId.firstName
           .toLowerCase()
-          .includes(searchQuery.toLowerCase()))
+          .includes(searchQuery.toLowerCase())),
   );
 
   const formatDate = (dateString) => {
@@ -203,7 +204,9 @@ export default function MonitorBilling() {
                       <td className="action p-2 flex justify-center">
                         <div
                           className="view text-blue-400 bg-gray-100 rounded-lg p-2 text-center cursor-pointer w-[40%] flex items-center justify-center text-[#4F4F4F] text-lg font-semiboldf"
-                          onClick={() => navigate(billUrl(selectedInvoice,bill))}
+                          onClick={() =>
+                            navigate(billUrl(selectedInvoice, bill))
+                          }
                         >
                           <FaEye />
                         </div>

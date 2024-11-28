@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import apiService from '../../services/api';
-import toast from 'react-hot-toast';
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import apiService from "../../services/api";
+import toast from "react-hot-toast";
 
 export default function PatientsBreakdown() {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ export default function PatientsBreakdown() {
       let newPatientsCount = 0;
       const currentDate = new Date();
 
-      response.data.data.forEach(patient => {
+      response.data.data.forEach((patient) => {
         const registrationDate = new Date(patient.createdAt);
         if (registrationDate > currentDate) {
           newPatientsCount++;
@@ -25,15 +25,15 @@ export default function PatientsBreakdown() {
       });
 
       const formattedData = [
-        { name: 'Old Patients', value: oldPatientsCount, color: '#6CD68C' },
-        { name: 'New Patients', value: newPatientsCount, color: '#F5A623' },
+        { name: "Old Patients", value: oldPatientsCount, color: "#6CD68C" },
+        { name: "New Patients", value: newPatientsCount, color: "#F5A623" },
       ];
 
       setData(formattedData);
       setTotalPatients(oldPatientsCount + newPatientsCount);
     } catch (error) {
-      setError('Failed to fetch patient data.');
-      toast.error('Failed to fetch patient data.');
+      setError("Failed to fetch patient data.");
+      toast.error("Failed to fetch patient data.");
       throw error;
     }
   };
@@ -45,8 +45,8 @@ export default function PatientsBreakdown() {
   return (
     <div className="bg-white w-[42%] p-5">
       <div className="head">
-            <p className='text-[26px] font-bold'>Patients Summary</p>
-          </div>
+        <p className="text-[26px] font-bold">Patients Summary</p>
+      </div>
       {error && <div className="text-red-500">{error}</div>}
       <div className="bg-[#F6F8FB] rounded-lg flex justify-center items-center mt-5">
         <div className="w-[203px] h-[203px] w-[40%]">
@@ -69,7 +69,7 @@ export default function PatientsBreakdown() {
                   <Cell
                     key={`cell-${index}`}
                     fill={entry.color}
-                    stroke={index === 1 ? '#FFFF' : 'none'}
+                    stroke={index === 1 ? "#FFFF" : "none"}
                     strokeWidth={index === 1 ? 3 : 0}
                   />
                 ))}
@@ -82,18 +82,30 @@ export default function PatientsBreakdown() {
           <div className="flex flex-col items-start">
             <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
               <div className="w-[10px] h-[10px] mr-2 rounded-full bg-orange-500"></div>
-              <span className="text-[18px] font-semibold text-[#4F4F4F]">New Patients</span>
-              <span className="ml-auto text-orange-500 font-semibold text-[18px]">{data[1]?.value || 0}</span>
+              <span className="text-[18px] font-semibold text-[#4F4F4F]">
+                New Patients
+              </span>
+              <span className="ml-auto text-orange-500 font-semibold text-[18px]">
+                {data[1]?.value || 0}
+              </span>
             </div>
             <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
               <div className="w-[10px] h-[10px] mr-2 rounded-full bg-green-500"></div>
-              <span className="text-[18px] font-semibold text-[#4F4F4F]">Old Patients</span>
-              <span className="ml-auto text-green-500 font-semibold text-[18px]">{data[0]?.value || 0}</span>
+              <span className="text-[18px] font-semibold text-[#4F4F4F]">
+                Old Patients
+              </span>
+              <span className="ml-auto text-green-500 font-semibold text-[18px]">
+                {data[0]?.value || 0}
+              </span>
             </div>
             <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
               <div className="w-[10px] h-[10px] mr-2 rounded-full bg-blue-500"></div>
-              <span className="text-[18px] font-semibold text-[#4F4F4F]">Total Patients</span>
-              <span className="ml-auto text-blue-500 font-semibold text-[18px]">{totalPatients}</span>
+              <span className="text-[18px] font-semibold text-[#4F4F4F]">
+                Total Patients
+              </span>
+              <span className="ml-auto text-blue-500 font-semibold text-[18px]">
+                {totalPatients}
+              </span>
             </div>
           </div>
         </div>

@@ -138,7 +138,7 @@ export default function AdminPanel() {
             />
             {/* </NavLink> */}
           </div>
-          <nav className="mb-32">
+          <nav className="mb-80">
             <ul className="space-y-2 p-2">
               {[
                 {
@@ -236,10 +236,10 @@ export default function AdminPanel() {
             </ul>
           </nav>
 
-          <div className="logout-btn">
+          <div className="fixed bottom-[30px] left-0 right-0">
             <button
               onClick={logout}
-              className="flex items-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold mt-80"
+              className="flex items-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
             >
               <img src="../img/logout.png" alt="Logout" className="mr-2" />
               Logout

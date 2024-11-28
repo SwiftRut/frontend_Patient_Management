@@ -32,7 +32,7 @@ export const useEdit = () => {
     const { name, value } = e.target;
     if (name === "hospitalName") {
       const hospitalName = allHospitals?.find(
-        (hospital) => hospital._id === value
+        (hospital) => hospital._id === value,
       );
       setProfile((prevProfile) => ({
         ...prevProfile,

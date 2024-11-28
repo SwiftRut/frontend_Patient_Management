@@ -43,9 +43,20 @@ const AddFieldModal = ({ open, handleClose, handleAddField }) => {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Add New Field</DialogTitle>
       <DialogContent>
-        <RadioGroup value={fieldType} onChange={(e) => setFieldType(e.target.value)}>
-          <FormControlLabel value="Dropdown" control={<Radio />} label="Dropdown" />
-          <FormControlLabel value="Text Field" control={<Radio />} label="Text Field" />
+        <RadioGroup
+          value={fieldType}
+          onChange={(e) => setFieldType(e.target.value)}
+        >
+          <FormControlLabel
+            value="Dropdown"
+            control={<Radio />}
+            label="Dropdown"
+          />
+          <FormControlLabel
+            value="Text Field"
+            control={<Radio />}
+            label="Text Field"
+          />
         </RadioGroup>
 
         {fieldType === "Dropdown" && (

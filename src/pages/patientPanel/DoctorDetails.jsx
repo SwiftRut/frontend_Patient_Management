@@ -24,7 +24,7 @@ const DoctorDetails = ({ doctorId }) => {
   useEffect(() => {
     fetchDoctorData();
   }, [doctorId]);
-  console.log(doctorId,"doctor");
+  console.log(doctorId, "doctor");
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -108,7 +108,6 @@ const DoctorDetails = ({ doctorId }) => {
 
 DoctorDetails.propTypes = {
   doctorId: PropTypes.string.isRequired,
-
 };
 
 export default DoctorDetails;

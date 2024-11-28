@@ -33,11 +33,11 @@ const ManagePrescriptionTools = () => {
   const today = new Date().toISOString().split("T")[0];
   const todayPrescriptions =
     allPrescriptions?.filter(
-      (prescription) => prescription.date.split("T")[0] === today
+      (prescription) => prescription.date.split("T")[0] === today,
     ) || [];
   const olderPrescriptions =
     allPrescriptions?.filter(
-      (prescription) => prescription.date.split("T")[0] !== today
+      (prescription) => prescription.date.split("T")[0] !== today,
     ) || [];
 
   // Choose the appropriate data based on the active tab

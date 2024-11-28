@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
+import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
@@ -9,7 +9,7 @@ const DoctorMeetingConference = () => {
 
   const sidebarRef = useRef(null);
   const location = useLocation();
-  const {userData , appointmentDone} = useGlobal();
+  const { userData, appointmentDone } = useGlobal();
   const getQueryParam = (param) => {
     return new URLSearchParams(location.search).get(param);
   };
@@ -42,20 +42,28 @@ const DoctorMeetingConference = () => {
 
     const roomID = room;
     const userID = "1";
-    const userName =  userData?.name;
+    const userName = userData?.name;
 
-    const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID,  Date.now().toString(),  userName);
+    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+      appID,
+      serverSecret,
+      roomID,
+      Date.now().toString(),
+      userName,
+    );
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 
     zp.joinRoom({
       container: element,
       sharedLinks: [
         {
-          name: 'Personal link',
+          name: "Personal link",
           url:
-           window.location.protocol + '//' + 
-           window.location.host + window.location.pathname +
-            '?roomID=' +
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            window.location.pathname +
+            "?roomID=" +
             roomID,
         },
       ],
@@ -65,17 +73,16 @@ const DoctorMeetingConference = () => {
       scenario: {
         mode: ZegoUIKitPrebuilt.OneONoneCall,
       },
-      onUserAvatarSetter:(userList) => {
-        userList.forEach(user => {
-            user.setUserAvatar("/assets/images/Avatar-2.png")
-        })
-    }, 
+      onUserAvatarSetter: (userList) => {
+        userList.forEach((user) => {
+          user.setUserAvatar("/assets/images/Avatar-2.png");
+        });
+      },
     });
   };
 
-
   useEffect(() => {
-    const videoCallDiv = document.getElementById('video-call-container');
+    const videoCallDiv = document.getElementById("video-call-container");
     if (videoCallDiv && userData) {
       initZegoCloudMeeting(videoCallDiv);
       appointmentDone(room);
@@ -89,7 +96,11 @@ const DoctorMeetingConference = () => {
           <div
             id="video-call-container"
             className="video-call-container"
-            style={{ width: '100%', height: '100vh', backgroundColor: '#718EBF' }}
+            style={{
+              width: "100%",
+              height: "100vh",
+              backgroundColor: "#718EBF",
+            }}
           ></div>
         </div>
       </div>
