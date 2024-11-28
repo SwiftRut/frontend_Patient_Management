@@ -91,7 +91,7 @@ const Dashboard = () => {
       <div className="deshbord-section">
         <div className="row">
           <div className="main bg-[#F6F8FB]">
-            <div className="top flex px-5 pt-5 pb-2">
+            <div className="top flex px-5 pt-3 pb-2">
               <div className="Patients-data w-[58%] px-4">
                 <div className="total-data flex justify-between items-center mb-4">
                   <div className="total-Patients w-[32%] bg-white rounded-lg p-4">
@@ -214,10 +214,18 @@ const Dashboard = () => {
                                   </p>
                                 </td>
                                 <td
-                                  className={`${bill.status === "paid" ? "status" : "status1"} px-2 py-1`}
+                                  className={`${
+                                    bill.status === "paid"
+                                      ? "status"
+                                      : "status1"
+                                  } px-2 py-1`}
                                 >
                                   <p
-                                    className={`${bill.status === "paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"} text-sm font-semibold px-5 py-1 rounded-full`}
+                                    className={`${
+                                      bill.status === "paid"
+                                        ? "bg-green-100 text-green-600"
+                                        : "bg-red-100 text-red-600"
+                                    } text-sm font-semibold px-5 py-1 rounded-full`}
                                   >
                                     {bill.status}
                                   </p>
@@ -301,7 +309,7 @@ const Dashboard = () => {
                                     <span className="text-sm font-bold text-[#4f4f4f]">
                                       {appointment?.appointmentTime &&
                                         new Date(
-                                          appointment.appointmentTime,
+                                          appointment.appointmentTime
                                         ).toLocaleTimeString([], {
                                           hour: "2-digit",
                                           minute: "2-digit",

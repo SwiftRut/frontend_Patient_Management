@@ -1,20 +1,13 @@
+import React, { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useEdit } from "../../hooks/useEdit";
-import { useEffect, useState } from "react";
 
 import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const {
-    profile,
-    setProfile,
-    handleInputChange,
-    handleImageChange,
-    handleFormSubmit,
-    allHospitals,
-  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleFormSubmit, allHospitals } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -22,6 +15,7 @@ export const Edit = () => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   useEffect(() => {
     if (profile?.firstName || profile?.email) {
@@ -116,6 +110,18 @@ export const Edit = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Create preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setPreviewImage(previewUrl);
+      
+      // Handle the actual image upload
+      handleImageChange(e); // Your existing image handling logic
+    }
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -136,9 +142,9 @@ export const Edit = () => {
                   <div className="img-box">
                     <div className="img">
                       <img
-                        src={profile?.avatar || "../img/profile.png"}
+                        src={previewImage || profile?.avatar || "../img/profile.png"}
                         alt=""
-                        className="mx-auto w-[200px] h-[200px] rounded-full"
+                        className="mx-auto w-[200px] h-[200px] rounded-full object-cover"
                       />
                     </div>
                     <div className="change-profile pt-[15px]">
