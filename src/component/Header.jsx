@@ -10,9 +10,13 @@ import {
   Menu,
   MenuItem,
   Breadcrumbs,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Drawer,
 } from "@mui/material";
-import { Notifications, ArrowDropDown } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { Notifications, ArrowDropDown, Search } from "@mui/icons-material";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { breadcrumbNames } from "./constants";
 import { useAuth } from "../hooks/useAuth";
@@ -20,16 +24,21 @@ import { IoHomeSharp } from "react-icons/io5";
 import { RiSearchLine } from "react-icons/ri";
 import { IoCloseCircle } from "react-icons/io5";
 import NotificationBox from "../NotificaitionBox";
+import { Home, List } from "lucide-react";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { selectedOption, setSelectedOption } = useGlobal();
   const { searchTerm, setSearchTerm } = useGlobal();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setserchOpen] = useState(false);
   const { userData, getAdminProfile } = useGlobal();
   const [notification, setNoticiation] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const searchRef = useRef(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -47,11 +56,23 @@ const Header = () => {
       navigate(`/search?type=${selectedOption}&query=${searchTerm}`);
     }
   };
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch();
     }
+  };
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setDrawerOpen(open);
   };
   useEffect(() => {
     getAdminProfile(user.id);
@@ -62,73 +83,35 @@ const Header = () => {
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
 
-  return (
-    // <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-3">
-    //   <div className="breadcrumbs flex items-center space-x-2 text-gray-600 bg-[#f8fcfe] border rounded-full py-2 px-3 text-lg font-normal">
-    //     <IoHomeSharp />
-    //     <IoIosArrowForward className="icon" />
-    //     <Breadcrumbs aria-label="breadcrumb">
-    //       <NavLink to="/">
-    //         <Typography variant="body2" color="inherit" className="text-sm">
-    //           Home
-    //         </Typography>
-    //       </NavLink>
-    //       <Typography variant="body2" color="text-primary" className="text-sm">
-    //         {breadcrumbNames[location.pathname.split("/")[1]] || "Page"}
-    //       </Typography>
-    //     </Breadcrumbs>
-    //   </div>
+  const drawerContent = (
+    <div className="w-64 p-4">
+      <List>
+        <ListItem button component={Link} to="/patient">
+          <ListItemIcon>
+            <Home />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <Notifications />
+          </ListItemIcon>
+          <ListItemText primary="Notifications" />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <Avatar src={userAvatar} alt="User Image" />
+          </ListItemIcon>
+          <ListItemText
+            primary={`${user.firstName} ${user.lastName}`}
+            secondary={user.role}
+          />
+        </ListItem>
+      </List>
+    </div>
+  );
 
-    //   <div className="flex justify-between items-center mt-0">
-    //     <div className="flex items-right items-center bg-gray-100 rounded-full px-4">
-    //       <RiSearchLine className="text-[#4F4F4F] text-xl me-2" />
-    //       <InputBase
-    //         placeholder="Quick Search"
-    //         inputProps={{ "aria-label": "search" }}
-    //         className="flex-grow"
-    //         value={searchTerm}
-    //         onChange={(e) => setSearchTerm(e.target.value)}
-    //         onKeyPress={handleKeyPress}
-    //       />
-    //       <IconButton aria-label="dropdown" onClick={handleClick}>
-    //         <span className="text-sm">{selectedOption}</span>
-    //         <ArrowDropDown />
-    //       </IconButton>
-    //       <Menu
-    //         anchorEl={anchorEl}
-    //         open={Boolean(anchorEl)}
-    //         onClose={() => handleClose(null)}
-    //       >
-    //         <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
-    //         <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
-    //         <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
-    //       </Menu>
-    //     </div>
-    //     <div className="flex items-center space-x-4">
-    //       <button
-    //         aria-label="notifications"
-    //         // className="bg-gray-200 rounded-full p-2 mx-2 relative"
-    //       >
-    //         <Badge color="secondary">
-    //           <NotificationBox />
-    //         </Badge>
-    //       </button>
-    //       <NavLink to={"/profile"}>
-    //         <div className="flex items-center">
-    //           <Avatar src={userAvatar} alt="User Image" />
-    //           <div className="ml-2">
-    //             <Typography variant="body2" fontWeight="bold">
-    //               {userName}
-    //             </Typography>
-    //             <Typography variant="caption" color="textSecondary">
-    //               {userRole}
-    //             </Typography>
-    //           </div>
-    //         </div>
-    //       </NavLink>
-    //     </div>
-    //   </div>
-    // </div>
+  return (
     <div className="bg-white sticky top-0 flex flex-wrap items-center justify-between sm:w-full min-w-[230px]">
       <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
         {/* <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
