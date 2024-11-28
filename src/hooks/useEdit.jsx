@@ -10,9 +10,7 @@ export const useEdit = () => {
   const { editAdminProfile, userData, editDoctorProfile } = useGlobal();
   const [profile, setProfile] = useState({
     ...userData,
-    // hospitalName: user.role === 'admin' ? userData?.hospital?.name : userData?.hospitalName,
   });
-  console.log(userData);
   const { getAllHospitals, allHospitals } = useGlobal();
 
   const [imageBlob, setImageBlob] = useState(null);
@@ -34,9 +32,8 @@ export const useEdit = () => {
     const { name, value } = e.target;
     if (name === "hospitalName") {
       const hospitalName = allHospitals?.find(
-        (hospital) => hospital._id === value
+        (hospital) => hospital._id === value,
       );
-      console.log(hospitalName);
       setProfile((prevProfile) => ({
         ...prevProfile,
         hospitalName: hospitalName?.name,
@@ -45,13 +42,9 @@ export const useEdit = () => {
       }));
       return;
     }
-    console.log(name, value);
-    console.log(profile, "<<<<<<<< changesl");
+
     setProfile((prevProfile) => ({
       ...prevProfile,
-      // if(user.role === 'doctor' && name === 'hospitalName'){
-
-      // }
       [name]: value,
       hospitalId: profile.hospitalId?._id || profile.hospitalId,
     }));

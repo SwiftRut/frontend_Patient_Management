@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCircleMinus, FaImage } from "react-icons/fa6";
 import DynamicField from "./DynamicField";
 import { FaEdit } from "react-icons/fa";
@@ -13,6 +13,36 @@ const HospitalDetailsForm = ({
   removeDynamicField,
   openModal,
 }) => {
+  const [formErrors, setFormErrors] = useState({}); // Added state for form errors
+
+  const validateForm = () => {
+    const errors = {};
+
+    // Required fields validation
+    if (!formData.hospitalName)
+      errors.hospitalName = "Hospital name is required.";
+    if (!formData.email) errors.email = "Email is required.";
+    if (!formData.billDate) errors.billDate = "Bill date is required.";
+    if (!formData.billTime) errors.billTime = "Bill time is required.";
+    if (!formData.billNumber) errors.billNumber = "Bill number is required.";
+    if (!formData.phoneNumber) errors.phoneNumber = "Phone number is required.";
+    if (!formData.hospitalAddress)
+      errors.hospitalAddress = "Address is required.";
+
+    // Email format validation
+    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    // Phone number format validation (basic check for numbers)
+    if (formData.phoneNumber && !/^\d{10}$/.test(formData.phoneNumber)) {
+      errors.phoneNumber = "Phone number should be 10 digits.";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0; // Returns true if there are no errors
+  };
+
   return (
     <div className="hospital-details">
       <div className="content">
@@ -55,6 +85,11 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     placeholder="Enter Name"
                   />
+                  {formErrors?.hospitalName && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.hospitalName}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -84,6 +119,9 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Email"
                     required
                   />
+                  {formErrors.email && (
+                    <p className="text-red-500 text-xs">{formErrors.email}</p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -99,6 +137,11 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     required
                   />
+                  {formErrors.billDate && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billDate}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -114,6 +157,11 @@ const HospitalDetailsForm = ({
                     onChange={handleInputChange}
                     required
                   />
+                  {formErrors.billTime && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billTime}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -130,6 +178,11 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Bill Number"
                     required
                   />
+                  {formErrors.billNumber && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.billNumber}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -146,6 +199,11 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Phone Number"
                     required
                   />
+                  {formErrors.phoneNumber && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.phoneNumber}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -162,6 +220,11 @@ const HospitalDetailsForm = ({
                     placeholder="Enter Address"
                     required
                   />
+                  {formErrors.hospitalAddress && (
+                    <p className="text-red-500 text-xs">
+                      {formErrors.hospitalAddress}
+                    </p>
+                  )}
                   <div className="minus-circle">
                     <FaCircleMinus />
                   </div>
@@ -171,13 +234,12 @@ const HospitalDetailsForm = ({
                     key={index}
                     field={field}
                     value={formData[field.name] || ""}
-                    onChange={(name, value) => handleDynamicFieldChange("hospital", name, value)}
+                    onChange={(name, value) =>
+                      handleDynamicFieldChange("hospital", name, value)
+                    }
                     onRemove={() => removeDynamicField("hospital", index)}
                   />
                 ))}
-                <div className="save-btn flex ml-5">
-                  <button type="submit">Save</button>
-                </div>
               </form>
             </div>
           </div>

@@ -8,10 +8,17 @@ import AppointmentModal from "./AppointmentModal";
 import RescheduleModal from "./RescheduleModal";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData }) => {
+const Calendar = ({
+  filterData,
+  selectedDoctor,
+  onDateTimeSelect,
+  handlePayment,
+}) => {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
@@ -25,7 +32,10 @@ const Calendar = ({ filterData }) => {
     getAppointmetnsForPatient,
   } = useGlobal();
   const { user } = useAuth();
-
+  console.log(
+    user,
+    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",
+  );
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
@@ -44,6 +54,15 @@ const Calendar = ({ filterData }) => {
 
   const handleSlotSelected = (slotInfo) => {
     setSelectedSlot(slotInfo);
+    if (onDateTimeSelect) {
+      const date = slotInfo.start;
+      const time = slotInfo.start.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+      onDateTimeSelect(date, time);
+    }
     setIsModalOpen(true);
   };
 
@@ -61,16 +80,15 @@ const Calendar = ({ filterData }) => {
     setIsRescheduleModalOpen(false);
     setSelectedEvent(null);
   };
-
   const handleBookAppointment = async (appointmentData) => {
     try {
-      await createAppointment(user.id, appointmentData);
+      // await handlePayment();
+      await createAppointment(user.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();
-      toast.success("Appointment booked successfully.");
+      navigate("/patient/appointment");
     } catch (error) {
       console.error("Error booking appointment:", error);
-      toast.error("Error booking appointment.");
     }
   };
 
@@ -78,11 +96,25 @@ const Calendar = ({ filterData }) => {
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       const updatedEvents = events.map((event) =>
-        event.id === updatedAppointment.id ? { ...event, ...updatedAppointment } : event
+        event.id === updatedAppointment.id
+          ? { ...event, ...updatedAppointment }
+          : event,
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment rescheduled successfully.");
+
+      if (onDateTimeSelect) {
+        const date = new Date(updatedAppointment.date);
+        const time = new Date(
+          updatedAppointment.appointmentTime,
+        ).toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+        onDateTimeSelect(date, time);
+      }
     } catch (error) {
       console.error("Error rescheduling appointment:", error);
       toast.error("Error rescheduling appointment.");
@@ -92,7 +124,9 @@ const Calendar = ({ filterData }) => {
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       await deleteAppointment(appointmentId);
-      const updatedEvents = events.filter((event) => event.id !== appointmentId);
+      const updatedEvents = events.filter(
+        (event) => event.id !== appointmentId,
+      );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment deleted successfully.");
@@ -135,6 +169,8 @@ const Calendar = ({ filterData }) => {
 
 Calendar.propTypes = {
   filterData: PropTypes.any.isRequired,
+  selectedDoctor: PropTypes.any.isRequired,
+  onDateTimeSelect: PropTypes.func,
 };
 
 export default Calendar;

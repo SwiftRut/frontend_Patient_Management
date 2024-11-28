@@ -6,15 +6,12 @@ import moment from "moment";
 import { LuCalendarX2 } from "react-icons/lu";
 import { LuCalendarClock } from "react-icons/lu";
 import { IoEyeSharp } from "react-icons/io5";
-import { Button, IconButton, TextField, InputAdornment } from "@mui/material";
 import { FaCalendarAlt } from "react-icons/fa";
-import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { BiSolidCalendar } from "react-icons/bi";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
 import CustomDateModal from "../../component/modals/CustomDateModal";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal";
-import DoctorDetails from "./DoctorDetails";
 import Onsite from "../doctorManagement/Onsite";
 import toast from "react-hot-toast";
 
@@ -26,6 +23,8 @@ const Appointment = () => {
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [openModel, setOpenModel] = useState(false);
+  const [newDate, setNewDate] = useState("");
+  const [newTime, setNewTime] = useState("");
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
     useState(false);
 
@@ -35,12 +34,13 @@ const Appointment = () => {
     cancelAppointment,
     setAllAppointments,
     deleteAppointment,
+    updateAppointment,
   } = useGlobal();
   const { user } = useAuth();
 
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
-  }, [user.id,searchTerm,dateRange]);
+  }, [user.id, searchTerm, dateRange]);
 
   useEffect(() => {
     filterAppointments();
@@ -53,12 +53,12 @@ const Appointment = () => {
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       const response = await deleteAppointment(appointmentId);
-      await getAppointmetnsForPatient(user.id); 
+      await getAppointmetnsForPatient(user.id);
       if (response.status === 200) {
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment
+            : appointment,
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -112,7 +112,9 @@ const Appointment = () => {
           );
         case "pending":
           return (
-            appointment.status === "pending" &&
+            appointment.prescriptionId === null &&
+            // appointmentDate.isBefore(currentDate) &&
+            appointment.status !== "canceled" &&
             isWithinDateRange &&
             matchesSearch
           );
@@ -126,14 +128,13 @@ const Appointment = () => {
   const handleCancelAppointment = async (appointmentId) => {
     try {
       const response = await cancelAppointment(appointmentId);
-      console.log("response", response);
 
       if (response.status === 200) {
         console.log("response", response);
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment
+            : appointment,
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -147,6 +148,36 @@ const Appointment = () => {
   const handleViewDetails = (doctor) => {
     setSelectedDoctor(doctor);
     setOpenModel(true);
+  };
+
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [openRescheduleModal, setOpenRescheduleModal] = useState(false);
+
+  const handleCloseRescheduleModal = () => {
+    setOpenRescheduleModal(false);
+    setSelectedAppointment(null);
+  };
+  const handleReschedule = (appointment) => {
+    setNewDate(moment(appointment.appointmentTime).format("YYYY-MM-DD"));
+    setNewTime(moment(appointment.appointmentTime).format("HH:mm"));
+    setSelectedAppointment(appointment);
+    setOpenRescheduleModal(true);
+  };
+
+  const handleRescheduleAppointment = async (updatedAppointment) => {
+    event.preventDefault();
+    //appointmentTime should be in this format: YYYY-MM-DDTHH:mm:ss.SSSZ
+
+    updatedAppointment.appointmentTime = new Date(
+      newDate + "T" + newTime,
+    ).toISOString();
+    updatedAppointment.date = new Date(newDate + "T" + newTime).toISOString();
+    try {
+      await updateAppointment(updatedAppointment._id, updatedAppointment);
+      handleCloseRescheduleModal();
+    } catch (error) {
+      console.error("Error rescheduling appointment:", error);
+    }
   };
 
   return (
@@ -199,11 +230,11 @@ const Appointment = () => {
                       </span>
                       <input
                         type="text"
-                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
+                        className="flex-1 focus:outline-none border-0 text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px] "
                         value={
                           dateRange[0] && dateRange[1]
                             ? `${moment(dateRange[0]).format(
-                                "MM/DD/YYYY"
+                                "MM/DD/YYYY",
                               )} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
                             : "Select Date Range"
                         }
@@ -274,8 +305,8 @@ const Appointment = () => {
                             Appointment Date
                           </p>
                           <span className="text-sm">
-                            {moment(appointment.appointmentDate).format(
-                              "DD/MM/YYYY"
+                            {moment(appointment.appointmentTime).format(
+                              "DD/MM/YYYY",
                             )}
                           </span>
                         </div>
@@ -285,7 +316,7 @@ const Appointment = () => {
                           </p>
                           <span className="text-sm">
                             {moment(appointment.appointmentTime).format(
-                              "hh:mm A"
+                              "hh:mm A",
                             )}
                           </span>
                         </div>
@@ -310,7 +341,10 @@ const Appointment = () => {
                                 <LuCalendarX2 className="me-2" />
                                 Cancel
                               </button>
-                              <button className="px-3 py-2 rounded-lg m-2 bg-[#F6F8FB] hover:bg-[#0EABEB] text-[#4F4F4F]  hover:text-[#FFFFFF] w-[45%] flex items-center justify-center transition  duration-200 font-semibold">
+                              <button
+                                className="px-3 py-2 rounded-lg m-2 bg-[#F6F8FB] hover:bg-[#0EABEB] text-[#4F4F4F]  hover:text-[#FFFFFF] w-[45%] flex items-center justify-center transition  duration-200 font-semibold"
+                                onClick={() => handleReschedule(appointment)}
+                              >
                                 <LuCalendarClock className="me-2" />
                                 Reschedule
                               </button>
@@ -386,6 +420,66 @@ const Appointment = () => {
         open={openCancelAppointmentModal}
         onClose={() => setOpenCancelAppointmentModal(false)}
       />
+
+      {/* Modal for Reschedule component */}
+      {openRescheduleModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
+            <h2 className="text-xl font-semibold mb-4">
+              Reschedule Appointment
+            </h2>
+            <form>
+              <div className="space-y-4">
+                <div>
+                  <label className="font-medium block mb-1">Select Date</label>
+                  <input
+                    type="date"
+                    value={newDate}
+                    onChange={(e) => setNewDate(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="font-medium block mb-1">Select Time</label>
+                  <input
+                    type="time"
+                    value={newTime}
+                    onChange={(e) => setNewTime(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end mt-6 space-x-4">
+                <button
+                  type="button"
+                  onClick={handleCloseRescheduleModal}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteAppointment(selectedAppointment)}
+                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={() =>
+                    handleRescheduleAppointment(selectedAppointment)
+                  }
+                >
+                  Reschedule
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

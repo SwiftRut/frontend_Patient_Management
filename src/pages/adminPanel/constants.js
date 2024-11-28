@@ -29,7 +29,7 @@ export const DoctorFormData = {
   password: "",
   confirmPassword: "",
   hospital: "",
-}
+};
 
 //static
 export const countryCodes = [
@@ -54,5 +54,5 @@ export const timeOptions = [
   "18:00-19:00",
   "19:00-20:00",
   "20:00-21:00",
-  "21:00-22:00"
+  "21:00-22:00",
 ];

@@ -17,6 +17,7 @@ const AppointmentModal = ({
   const [diseaseName, setDiseaseName] = useState("");
   const [unavailableTimes, setUnavailableTimes] = useState([]);
   const { user } = useAuth();
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     // Populate fields if in edit mode
@@ -35,7 +36,7 @@ const AppointmentModal = ({
           setUnavailableTimes(response.data);
         } catch (error) {
           console.error("Error fetching unavailable times:", error);
-          toast.error("Error fetching unavailable times")
+          toast.error("Error fetching unavailable times");
         }
       };
 
@@ -50,16 +51,36 @@ const AppointmentModal = ({
 
   const isTimeUnavailable = () => {
     return unavailableTimes.some((unavailable) => {
-      const start = new Date(unavailable.date + ' ' + unavailable.timeRange.start);
-      const end = new Date(unavailable.date + ' ' + unavailable.timeRange.end);
+      const start = new Date(
+        unavailable.date + " " + unavailable.timeRange.start,
+      );
+      const end = new Date(unavailable.date + " " + unavailable.timeRange.end);
       return selectedSlot.start >= start && selectedSlot.end <= end;
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!patientIssue) {
+      newErrors.patientIssue = "Patient issue is required.";
+    }
+    if (isTimeUnavailable()) {
+      newErrors.timeUnavailable =
+        "The selected time slot is unavailable. Please choose a different time.";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     if (isTimeUnavailable()) {
-      alert("The selected time slot is unavailable. Please choose a different time.");
+      alert(
+        "The selected time slot is unavailable. Please choose a different time.",
+      );
       return;
     }
     const appointmentData = {
@@ -74,19 +95,22 @@ const AppointmentModal = ({
         diseaseName,
       },
     };
-    console.log(appointmentData, "<<<<<<<");
     onBookAppointment(appointmentData);
   };
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
       <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4">{isEditMode ? "Edit Appointment" : "Book Appointment"}</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          {isEditMode ? "Edit Appointment" : "Book Appointment"}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-medium">Appointment Type</span>
-              <span className="text-yellow-500">{selectedSlot?.type || "Online"}</span>
+              <span className="text-yellow-500">
+                {selectedSlot?.type || "Online"}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Patient Name</span>
@@ -105,13 +129,18 @@ const AppointmentModal = ({
               <textarea
                 value={patientIssue}
                 onChange={(e) => setPatientIssue(e.target.value)}
-                className="w-full border rounded px-2 py-1"
+                className={`w-full border rounded px-2 py-1  ${errors.patientIssue ? "border-red-500" : ""}`}
                 placeholder="Enter Patient Issue"
                 required
               />
+              {errors.patientIssue && (
+                <p className="text-red-500 text-sm">{errors.patientIssue}</p>
+              )}
             </div>
             <div>
-              <label className="font-medium block mb-1">Disease Name (Optional)</label>
+              <label className="font-medium block mb-1">
+                Disease Name (Optional)
+              </label>
               <input
                 type="text"
                 value={diseaseName}
@@ -119,6 +148,9 @@ const AppointmentModal = ({
                 className="w-full border rounded px-2 py-1"
                 placeholder="Enter Disease Name"
               />
+              {errors.timeUnavailable && (
+                <p className="text-red-500 text-sm">{errors.timeUnavailable}</p>
+              )}
             </div>
           </div>
           <div className="flex justify-end mt-6 space-x-4">

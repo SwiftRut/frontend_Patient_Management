@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
@@ -21,6 +22,6 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-src/pages/patientManagement/PatientManagement
+*.sw?   
 package-lock.json
+.env

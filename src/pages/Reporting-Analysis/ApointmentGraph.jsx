@@ -30,14 +30,14 @@ const AppointmentGraph = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Appointment Statistics</h2>
+        <h2 className="text-[24px] font-bold">Appointment Statistics</h2>
         <div className="flex space-x-2">
           <button
             className={classNames(
               "px-4 py-2 rounded-lg",
               activeTab === "Year"
                 ? "bg-blue-500 text-white"
-                : "bg-gray-100 text-gray-600"
+                : "bg-gray-100 text-gray-600",
             )}
             onClick={() => handleTabChange("Year")}
           >
@@ -48,7 +48,7 @@ const AppointmentGraph = () => {
               "px-4 py-2 rounded-lg",
               activeTab === "Month"
                 ? "bg-blue-500 text-white"
-                : "bg-gray-100 text-gray-600"
+                : "bg-gray-100 text-gray-600",
             )}
             onClick={() => handleTabChange("Month")}
           >

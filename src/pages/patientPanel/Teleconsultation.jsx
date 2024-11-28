@@ -38,7 +38,7 @@ const Teleconsultation = () => {
     patientPrescription,
   } = useGlobal();
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
-  
+
   const navigate = useNavigate();
   useEffect(() => {
     getAllDoctors();
@@ -62,10 +62,9 @@ const Teleconsultation = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   const handleJoinCall = (appointmentId) => {
-    console.log("handle join call", appointmentId);
     navigate(`/patient/vid?room=${appointmentId}`);
   };
-  
+
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
@@ -78,10 +77,11 @@ const Teleconsultation = () => {
       const appointmentDate = moment(appointment.date);
       const lowerSearchTerm = searchTerm.toLowerCase();
 
-      const isWithinDateRange = !startDate || !endDate || (
-        appointmentDate.isSameOrAfter(moment(startDate)) &&
-        appointmentDate.isSameOrBefore(moment(endDate))
-      );
+      const isWithinDateRange =
+        !startDate ||
+        !endDate ||
+        (appointmentDate.isSameOrAfter(moment(startDate)) &&
+          appointmentDate.isSameOrBefore(moment(endDate)));
 
       const matchesSearch =
         appointment.doctorId?.name?.toLowerCase().includes(lowerSearchTerm) ||
@@ -121,7 +121,6 @@ const Teleconsultation = () => {
     });
     setFilteredAppointments(filtered || []);
   };
-  console.log(filteredAppointments);
   const handleViewDetails = (appointment) => {
     setSelectedAppointment(appointment);
     setOpenModal(true);
@@ -209,13 +208,15 @@ const Teleconsultation = () => {
                       className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
                       onClick={() => setOpenCustomDateModal(true)}
                     >
-                      <span className="pl-3 text-gray-500 me-1"><FaCalendarAlt /></span>
+                      <span className="pl-3 text-gray-500 me-1">
+                        <FaCalendarAlt />
+                      </span>
                       <input
                         type="text"
                         className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
                         value={
                           dateRange[0] && dateRange[1]
-                            ? `${moment(dateRange[0]).format('MM/DD/YYYY')} - ${moment(dateRange[1]).format('MM/DD/YYYY')}`
+                            ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
                             : "Select Date Range"
                         }
                         readOnly
@@ -232,7 +233,9 @@ const Teleconsultation = () => {
                     <Link to="/patient/appointmentBooking">
                       <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
                         <BiSolidCalendar className="h-5 w-5" />
-                        <span className="hidden sm:inline-block sm:ml-2">Book Appointment</span>
+                        <span className="hidden sm:inline-block sm:ml-2">
+                          Book Appointment
+                        </span>
                       </button>
                     </Link>
                   </div>
@@ -313,7 +316,10 @@ const Teleconsultation = () => {
                               <TbCalendarX className="me-2" />
                               Cancel
                             </button>
-                            <button className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center" onClick={() => handleJoinCall(appointment._id)}>
+                            <button
+                              className="bg-[#f6f8fb] text-[#4F4F4F] hover:bg-[#39973D] text-lg font-semibold hover:text-white transition duration-300 p-2 rounded-md w-[47%] flex items-center justify-center"
+                              onClick={() => handleJoinCall(appointment._id)}
+                            >
                               <FiPhoneCall className="me-2" />
                               Join Call
                             </button>

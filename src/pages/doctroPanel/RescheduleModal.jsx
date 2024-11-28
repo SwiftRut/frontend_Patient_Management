@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
-import moment from 'moment';
+import React, { useState } from "react";
+import moment from "moment";
 
-const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEvent }) => {
-  const [newDate, setNewDate] = useState('');
-  const [newTime, setNewTime] = useState('');
+const RescheduleModal = ({
+  isOpen,
+  onClose,
+  onReschedule,
+  onDelete,
+  selectedEvent,
+}) => {
+  const [newDate, setNewDate] = useState("");
+  const [newTime, setNewTime] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   if (!isOpen || !selectedEvent) return null;
 
   const handleReschedule = (e) => {
     e.preventDefault();
+    if (!selectedDateTime.isValid() || selectedDateTime.isBefore(moment())) {
+      setErrorMessage("Please select a valid future date and time.");
+      return;
+    }
     const updatedAppointment = {
       ...selectedEvent.appointment,
       date: moment(`${newDate} ${newTime}`).toDate(),
-      appointmentTime: moment(`${newDate} ${newTime}`).add(1, 'hour').toDate(), // Assuming 1-hour appointments
+      appointmentTime: moment(`${newDate} ${newTime}`).add(1, "hour").toDate(), // Assuming 1-hour appointments
     };
+    setErrorMessage("");
     onReschedule(updatedAppointment);
   };
 
@@ -42,6 +54,9 @@ const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEven
                 className="w-full border rounded px-2 py-1"
                 required
               />
+              {errorMessage && (
+                <div className="text-red-500 text-sm mt-2">{errorMessage}</div>
+              )}
             </div>
           </div>
           <div className="flex justify-end mt-6 space-x-4">

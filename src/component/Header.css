@@ -32,11 +32,10 @@ input {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    padding: 10px;
-  }
+.header .breadcrumbs .icon {
+  padding-right: 10px;
+  font-size: 30px;
+  color: #ababab;
 }
 .header .breadcrumbs {
   font-size: 18px;
@@ -49,16 +48,24 @@ input {
   color: #2bb5ed;
   background-color: #f8fcfe;
 }
-@media (max-width: 576px) {
-  .header .breadcrumbs {
-    display: none;
-  }
-}
 .header .breadcrumbs svg {
   font-size: 30px;
   padding-right: 10px;
   color: gray;
 }
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header .breadcrumbs {
+    display: none;
+  }
+}
+
 @media (max-width: 576px) {
   .header .breadcrumbs svg {
     padding-right: 5px;
@@ -66,11 +73,7 @@ input {
     height: auto;
   }
 }
-.header .breadcrumbs .icon {
-  padding-right: 10px;
-  font-size: 30px;
-  color: #ababab;
-}
+
 @media (max-width: 576px) {
   .header .breadcrumbs .icon {
     font-size: 24px;
@@ -83,4 +86,4 @@ input {
     display: flex;
     justify-content: space-between;
   }
-}/*# sourceMappingURL=Header.css.map */
+} /*# sourceMappingURL=Header.css.map */

@@ -1,13 +1,13 @@
+import React, { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useEdit } from "../../hooks/useEdit";
-import { useEffect, useState } from "react";
 
 import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleImageChange, handleFormSubmit, allHospitals  } = useEdit();
+  const { profile, setProfile, handleInputChange, handleFormSubmit, allHospitals } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -15,15 +15,14 @@ export const Edit = () => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
-  // Add loading state handler
   useEffect(() => {
     if (profile?.firstName || profile?.email) {
       setIsLoading(false);
     }
   }, [profile]);
 
-  // Load country data on component mount and when profile updates
   useEffect(() => {
     const allCountries = Country.getAllCountries().map((country) => ({
       value: country.isoCode,
@@ -33,31 +32,37 @@ export const Edit = () => {
 
     // Set selected country if profile has a saved country
     if (profile?.country) {
-      const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
+      const countryCode = allCountries.find(
+        (c) => c.label === profile.country,
+      )?.value;
       setSelectedCountry(countryCode);
     }
-  }, [profile?.country]); // Changed dependency
-
-  // Load state data when selectedCountry changes or when profile updates
+  }, [profile?.country]);
   useEffect(() => {
     if (selectedCountry) {
-      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
-        value: state.isoCode,
-        label: state.name,
-      }));
+      const statesList = State.getStatesOfCountry(selectedCountry).map(
+        (state) => ({
+          value: state.isoCode,
+          label: state.name,
+        }),
+      );
       setStates(statesList);
 
       if (profile?.state) {
-        const stateCode = statesList.find((s) => s.label === profile.state)?.value;
+        const stateCode = statesList.find(
+          (s) => s.label === profile.state,
+        )?.value;
         setSelectedState(stateCode);
       }
     }
-  }, [selectedCountry, profile?.state]); // Added profile.state dependency
+  }, [selectedCountry, profile?.state]);
 
-  // Load city data when selectedState changes
   useEffect(() => {
     if (selectedState) {
-      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
+      const citiesList = City.getCitiesOfState(
+        selectedCountry,
+        selectedState,
+      ).map((city) => ({
         value: city.name,
         label: city.name,
       }));
@@ -73,7 +78,6 @@ export const Edit = () => {
     }
   }, [selectedState, selectedCountry, profile.city]);
 
-  // Handle country change
   const handleCountryChange = (e) => {
     const countryCode = e.target.value;
     setSelectedCountry(countryCode);
@@ -87,7 +91,6 @@ export const Edit = () => {
     setSelectedState(null);
   };
 
-  // Handle state change
   const handleStateChange = (e) => {
     const stateCode = e.target.value;
     setSelectedState(stateCode);
@@ -99,7 +102,6 @@ export const Edit = () => {
     }));
   };
 
-  // Handle city change
   const handleCityChange = (e) => {
     const cityName = e.target.value;
     setProfile((prevProfile) => ({
@@ -108,33 +110,46 @@ export const Edit = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Create preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setPreviewImage(previewUrl);
+      
+      // Handle the actual image upload
+      handleImageChange(e); // Your existing image handling logic
+    }
+  };
+
   if (isLoading) {
-    return <div>Loading...</div>; // Or your loading component
+    return <div>Loading...</div>;
   }
-  console.log(profile)
   return (
     <div>
       <div className="edit-section">
         <div className="row">
           <div className="main">
-            <div className="top"></div>
-            <div className="profile-setting">
-              <div className="head">
-                <p>Profile Setting</p>
+            <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
+            <div className="profile-setting w-[80%] mx-auto mt-[-15%]">
+              <div className="head pb-[15px]">
+                <p className="text-[44px] font-bold text-white">
+                  Profile Setting
+                </p>
               </div>
-              <div className="content flex">
-                <div className="left">
+              <div className="content bg-white rounded-[15px] p-[20px] shadow-[0_0_3px_1px_#d7d5d5] flex">
+                <div className="left p-[20px] w-[23%] border-r-[3px] border-[#d9d9d94d]">
                   <div className="img-box">
                     <div className="img">
                       <img
-                        src={profile?.avatar || "../img/profile.png"}
+                        src={previewImage || profile?.avatar || "../img/profile.png"}
                         alt=""
-                        className="rounded-full"
+                        className="mx-auto w-[200px] h-[200px] rounded-full object-cover"
                       />
                     </div>
-                    <div className="change-profile">
+                    <div className="change-profile pt-[15px]">
                       <ul>
-                        <li>
+                        <li className="flex justify-center items-center p-[12px] bg-[#F6F8FB] rounded-[10px]">
                           <input
                             type="file"
                             id="profilePic"
@@ -143,28 +158,37 @@ export const Edit = () => {
                             onChange={handleImageChange}
                             accept="image/*"
                           />
-                          <label htmlFor="profilePic" className="flex">
+                          <label
+                            htmlFor="profilePic"
+                            className="flex items-center cursor-pointer"
+                          >
                             <FaCamera />
-                            <span>Change Profile</span>
+                            <span className="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">
+                              Change Profile
+                            </span>
                           </label>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-
-                <div className="right">
-                  <div className="content">
-                    <div className="head">
+                <div className="right w-[77%]">
+                  <div className="content p-[30px] rounded-[15px]">
+                    <div className="head flex justify-between items-center">
                       <div className="title">
-                        <p>Edit Profile</p>
+                        <p className="text-[34px] font-semibold text-[#030229]">
+                          Edit Profile
+                        </p>
                       </div>
                     </div>
-                    <div className="form-box">
-                      <form onSubmit={handleFormSubmit} className="flex">
-                        <div className="input-box">
-                          <div className="label">
-                            First Name <span>*</span>
+                    <div className="form-box pt-[20px]">
+                      <form
+                        onSubmit={handleFormSubmit}
+                        className="flex flex-wrap justify-between"
+                      >
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            First Name <span className="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
@@ -172,12 +196,13 @@ export const Edit = () => {
                             value={profile.firstName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter First Name"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Last Name <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Last Name <span className="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
@@ -185,76 +210,83 @@ export const Edit = () => {
                             value={profile.lastName ?? ""}
                             onChange={handleInputChange}
                             placeholder="Enter Last Name"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Email Address <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Email Address{" "}
+                            <span className="text-red-500">*</span>
                           </div>
                           <input
-                            type="text"
+                            type="email"
                             name="email"
                             value={profile.email ?? ""}
                             onChange={handleInputChange}
-                            placeholder="Email Address"
+                            placeholder="Enter Email"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Phone Number <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px] ">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Phone Number <span className="text-red-500">*</span>
                           </div>
                           <input
                             type="text"
                             name="phone"
                             value={profile.phone ?? ""}
                             onChange={handleInputChange}
-                            placeholder="Phone Number"
+                            placeholder="Enter Phone Number"
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] placeholder-gray-400 text-[16px] text-[#141414] font-normal"
                           />
                         </div>
 
-                        <div className="input-box">
-                        <div className="label">
-                          Hospital Name <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Hospital Name{" "}
+                            <span className="text-red-500">*</span>
+                          </div>
+                          <select
+                            name="hospitalName"
+                            value={profile.hospitalId}
+                            onChange={handleInputChange}
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
+                          >
+                            <option value="">Select Hospital</option>
+                            {allHospitals.map((hospital) => (
+                              <option key={hospital._id} value={hospital._id}>
+                                {hospital.name}
+                              </option>
+                            ))}
+                          </select>
                         </div>
-                        <select
-                          name="hospitalName"
-                          value={profile.hospitalId}
-                          onChange={handleInputChange}
-                        >
-                          <option value="">Select Hospital</option>
-                          {allHospitals.map((hospital) => (
-                            <option key={hospital._id} value={hospital._id}>
-                              {hospital.name}
-                            </option>
-                          ))}
-                        </select>{" "}
-                      </div>
 
-
-                        <div className="input-box">
-                          <div className="label">
-                            Gender <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Gender <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="gender"
                             value={profile.gender || ""}
                             onChange={handleInputChange}
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                           >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            Country <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            Country <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="country"
                             value={selectedCountry || ""}
                             onChange={handleCountryChange}
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                           >
                             <option value="">Select Country</option>
                             {countries.map((country) => (
@@ -265,14 +297,15 @@ export const Edit = () => {
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            State <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            State <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="state"
                             value={selectedState || ""}
                             onChange={handleStateChange}
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedCountry}
                           >
                             <option value="">Select State</option>
@@ -284,14 +317,15 @@ export const Edit = () => {
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="label">
-                            City <span>*</span>
+                        <div className="input-box w-[32%] relative py-[15px]">
+                          <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
+                            City <span className="text-red-500">*</span>
                           </div>
                           <select
-                            name="city"
+                            name="gender"
                             value={profile.city || ""}
                             onChange={handleCityChange}
+                            className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedState}
                           >
                             <option value="">Select City</option>
@@ -303,19 +337,25 @@ export const Edit = () => {
                           </select>
                         </div>
 
-                        <div className="input-box">
-                          <div className="save-btn me-3">
-                            <button type="submit">Save</button>
-                          </div>
-                          <div className="cancel-btn">
+                        <div className="input-box flex justify-end w-full py-[15px]">
+                          <div className="cancel-btn mr-[15px]">
                             <button
                               type="button"
+                              className=" py-[14px] border text-black font-semibold rounded-[10px] text-[20px] w-[160px] border-gray-300"
                               onClick={() => {
                                 setProfile({ ...profile });
                                 navigate("/profile");
                               }}
                             >
                               Cancel
+                            </button>
+                          </div>
+                          <div className="save-btn">
+                            <button
+                              type="submit"
+                              className="py-[14px] bg-[#0EABEB] text-white font-semibold rounded-[10px] text-[20px] w-[160px]"
+                            >
+                              Save
                             </button>
                           </div>
                         </div>

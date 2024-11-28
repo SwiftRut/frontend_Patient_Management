@@ -1,33 +1,23 @@
 import { useEffect, useState } from "react";
-import {
-  Button,
-  IconButton,
-  TextField,
-  InputAdornment,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import { CalendarToday, Search, DateRange } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import CustomDateModal from "../../component/modals/CustomDateModal.jsx";
 import CancelAppointmentModal from "../../component/modals/CancelAppointmentModal.jsx";
 import { useAuth } from "../../hooks/useAuth.jsx";
 import { useGlobal } from "../../hooks/useGlobal.jsx";
-
+import { TbCalendarClock, TbCalendarX } from "react-icons/tb";
+import { CiSearch } from "react-icons/ci";
+import { FaCalendarAlt } from "react-icons/fa";
 export default function AppointmentManagement() {
-  const { allAppointments, getAppointmetnsForDoctor, cancelAppointment } =
-    useGlobal();
+  const { allAppointments, getAppointmetnsForDoctor } = useGlobal();
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [dateRange, setDateRange] = useState("Any Date");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("Today Appointment");
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
   const [openCancelAppointmentModal, setOpenCancelAppointmentModal] =
     useState(false);
   const [timeFilter, setTimeFilter] = useState("All");
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   useEffect(() => {
     getAppointmetnsForDoctor(user.id);
@@ -103,7 +93,7 @@ export default function AppointmentManagement() {
         case "Day":
           return appointmentDate.getTime() === now.getTime();
         case "Week":
-          const weekStart = new Date(now);
+          let weekStart = new Date(now);
           weekStart.setDate(now.getDate() - now.getDay());
           const weekEnd = new Date(weekStart);
           weekEnd.setDate(weekStart.getDate() + 6);
@@ -131,139 +121,150 @@ export default function AppointmentManagement() {
     filterAppointmentsByTime(filteredAppointments);
 
   return (
-    <div className="bg-[#e4e3e3] p-6 h-full">
-      <div className="p-6 bg-white rounded-lg shadow-md h-full">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex space-x-8 text-sm font-semibold text-gray-500 thead">
+    <div className="bg-[#F6F8FB] p-3 h-[92%]">
+      <div className="p-6 bg-white rounded-lg shadow-md ">
+        <div className="flex justify-between items-center mb-4  border-b  ">
+          <div className="flex space-x-8 text-base font-normal text-gray-500 thead">
             {[
               "Today Appointment",
               "Upcoming Appointment",
               "Previous Appointment",
               "Cancel Appointment",
             ].map((tab) => (
-              <Button
+              <button
                 key={tab}
                 className={
                   activeTab === tab
-                    ? "!text-[#0EABEB] !border-b-2 !border-[#0EABEB]"
+                    ? "!text-[#0EABEB] !border-b-2 !border-b-[#0EABEB] p-2"
                     : "text-gray-400"
                 }
                 onClick={() => setActiveTab(tab)}
               >
                 {tab}
-              </Button>
+              </button>
             ))}
           </div>
         </div>
 
         <div className="menu flex justify-between items-center mb-3">
-          <h3>{activeTab}</h3>
+          <h3 className="text-[20px] font-bold text-[#030229]">{activeTab}</h3>
           <div className="">
             <div className="flex items-center space-x-4">
-              <TextField
-                className="search outline-none"
-                variant="outlined"
-                placeholder="Search Patient"
-                value={searchTerm || ""}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-
+              <div className="search-btn flex">
+                <div className="flex items-center bg-gray-100 rounded-full ps-4 py-2 w-80">
+                  <div className="text-xl text-gray-700">
+                    <CiSearch />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search Doctor"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="bg-transparent pl-2 text-lg"
+                  />
+                </div>
+              </div>
               {(activeTab == "Cancel Appointment" ||
-                activeTab == "Previous Appointment") &&
-                  <Select
-                    value={timeFilter}
-                    onChange={(e) => setTimeFilter(e.target.value)}
-                    variant="outlined"
-                  >
-                    <MenuItem value="All">All Time</MenuItem>
-                    <MenuItem value="Day">Today</MenuItem>
-                    <MenuItem value="Week">Week</MenuItem>
-                    <MenuItem value="Month">Month</MenuItem>
-                  </Select>
-                }
+                activeTab == "Previous Appointment" ||
+                activeTab == "Today Appointment" ||
+                activeTab == "Upcoming Appointment") && (
+                <select
+                  value={timeFilter}
+                  onChange={(e) => setTimeFilter(e.target.value)}
+                  className="border rounded-lg  text-[#4F4F4F] px-5 py-2 text-base font-semibold"
+                >
+                  <option value="All">All Time</option>
+                  <option value="Day">Today</option>
+                  <option value="Week">Week</option>
+                  <option value="Month">Month</option>
+                </select>
+              )}
               <div className="time-slot">
-                <Button
-                  variant="contained"
+                <button
                   color="primary"
-                  className="!text-sm time-slot"
+                  className="!text-base time-slot bg-[#0EABEB] py-3 px-4 text-[#FFFFFF] rounded-lg flex items-center justify-center"
                   onClick={() => navigate("/doctor/appointmentTimeSlot")}
                 >
-                  Appointment Time Slot
-                </Button>
+                  <FaCalendarAlt className="me-3" /> Appointment Time Slot
+                </button>
               </div>
             </div>
           </div>
         </div>
 
         <div className="flex-grow overflow-hidden">
-          <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+          <div className="max-h-[calc(100vh-260px)] overflow-y-auto">
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
                     Patient Name
                   </th>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                    Dieses Name
+                  </th>
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                     Patient Issue
                   </th>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                     Appointment Date
                   </th>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                     Appointment Time
                   </th>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
                     Appointment Type
                   </th>
-                  <th className="p-3 text-left text-sm font-semibold">
+                  <th className="p-3 text-center text-[#030229] text-lg font-semibold rounded-tr-lg">
                     Action
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {timeFilteredAppointments.map((appointment) => (
-                  <tr key={appointment._id} className="border-t">
-                    <td className="p-3">
+                  <tr key={appointment._id} className="border-b">
+                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
                       {`${appointment.patientId.firstName} ${appointment.patientId.lastName}`}
                     </td>
-                    <td className="p-3">{appointment.patient_issue}</td>
-                    <td className="p-3">{formatDate(appointment.date)}</td>
-                    <td className="p-3 text-blue-600">
-                      <span className="a-time">
+                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                      {appointment.dieseas_name}
+                    </td>
+
+                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                      {appointment.patient_issue}
+                    </td>
+                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                      <span>{formatDate(appointment.date)}</span>
+                    </td>
+                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                      <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">
                         {formatTime(appointment.appointmentTime)}
                       </span>
                     </td>
                     <td className="p-3">
                       <h3
-                        className={`px-3 py-1 text-sm font-medium rounded-full w-[6.5rem] text-center ${
+                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center ${
                           appointment.type === "online"
                             ? "bg-yellow-100 text-yellow-600"
-                            : "bg-blue-100 text-blue-600"
+                            : "bg-[#eef1fd] text-[#5678E9]"
                         }`}
                       >
                         {appointment.type}
                       </h3>
                     </td>
-                    <td className="p-3 btn">
-                      <IconButton
-                        color="primary"
+                    <td className="action p-2 text-center font-semibold">
+                      <div
+                        className="view text-[#E11D29] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer me-2"
                         onClick={() => setOpenCancelAppointmentModal(true)}
                       >
-                        <CalendarToday style={{ color: "#E11D29" }} />
-                      </IconButton>
-                      <IconButton
-                        color="secondary"
+                        <TbCalendarX />
+                      </div>
+                      <div
+                        className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
                         onClick={() => navigate("/doctor/appointmentTimeSlot")}
                       >
-                        <CalendarToday style={{ color: "#5678E9" }} />
-                      </IconButton>
+                        <TbCalendarClock />
+                      </div>
                     </td>
                   </tr>
                 ))}

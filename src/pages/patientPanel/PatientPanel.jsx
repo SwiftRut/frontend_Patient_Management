@@ -26,9 +26,13 @@ import { RiBillLine } from "react-icons/ri";
 import { useAuth } from "../../hooks/useAuth";
 import PatientMeetingConference from "../PatientMeetingConference/PatientMeetingConference";
 import { ErrorSharp } from "@mui/icons-material";
+import { useGlobal } from "../../hooks/useGlobal";
+import { SearchResult } from "../SearchResult";
 
 export default function PatientPanel() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { searchTerm, setSearchTerm } = useGlobal();
+  const { selectedOption, setSelectedOption } = useGlobal();
   const { logout } = useAuth();
 
   const toggleSidebar = () => {
@@ -51,7 +55,13 @@ export default function PatientPanel() {
           </div>
           <div className="logo p-4 text-center flex items-center justify-between border-b">
             {/* <NavLink to="/patient"> */}
-            <img src="/img/logo.png" alt="Logo" className="w-full max-w-[200px] mx-auto" />
+            <img
+              src="/img/logo.png"
+              alt="Logo"
+              className="w-full max-w-[200px] mx-auto"
+              width="100%"
+              height="auto"
+            />
             {/* </NavLink> */}
           </div>
           <nav className="mb-32">
@@ -87,7 +97,7 @@ export default function PatientPanel() {
                 <li key={index}>
                   <NavLink
                     to={item.to}
-                    className="flex items-center p-3 text-[#818194] hover:text-[#0eabeb] hover:bg-gradient-to-r from-[#d5f1fa] to-white transition duration-300 rounded-lg"
+                    className="flex items-center  p-3 text-base font-semibold text-gray-500 focus:bg-gradient-to-r from-[#D5F1FA] focus:text-[#0EABEB] transition duration-300"
                   >
                     <item.icon className="me-2" />
                     <span>{item.text}</span>
@@ -103,7 +113,9 @@ export default function PatientPanel() {
               className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-1/2"
             />
             <div className="text mt-12">
-              <h3 className="text-[#141414] text-lg font-semibold">Hospital appointment</h3>
+              <h3 className="text-[#141414] text-lg font-semibold">
+                Hospital appointment
+              </h3>
               <p className="text-[#4f4f4f] text-sm py-2">
                 You have to fill up the form to be admitted to the hospital.
               </p>
@@ -118,9 +130,10 @@ export default function PatientPanel() {
           <div className="logout-btn">
             <button
               onClick={logout}
-              className="flex items-center justify-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
+              className="flex items-center w-full p-3 bg-[rgba(225,29,42,0.16)] text-[#e11d29] font-semibold"
             >
-              <img src="../img/logout.png" alt="Logout" className="mr-2" /> Logout
+              <img src="../img/logout.png" alt="Logout" className="mr-2" />{" "}
+              Logout
             </button>
           </div>
         </div>
@@ -132,7 +145,11 @@ export default function PatientPanel() {
         <header className="bg-white shadow-sm z-10">
           <div className="max-w-10xl mx-auto py-1 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <button onClick={toggleSidebar} className="lg:hidden">
-              {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isSidebarOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
             <PatientHeader />
           </div>
@@ -141,22 +158,35 @@ export default function PatientPanel() {
         {/* Page content */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
           <div className="max-w-10xl mx-auto py-2">
-            <Routes>
-              <Route path="" element={<PersonalHealthRecord />} />
-              <Route path="profile/*" element={<PatientProfile />} />
-              <Route path="/prescriptions" element={<Prescriptions />} />
-              <Route path="/testReport" element={<TestReport />} />
-              <Route path="/medicalHistory" element={<MedicalHistory />} />
-              <Route path="/allAppointment" element={<AllAppointment />} />
-              <Route path="/appointment" element={<Appointment />} />
-              <Route path="/bills" element={<Bills />} />
-              <Route path="/teleconsultation" element={<Teleconsultation />} />
-              <Route path="/appointmentBooking" element={<AppointmentBooking />} />
-              <Route path="/priscriptionAccess" element={<PriscriptionAccess />} />
-              <Route path="/chatScreen" element={<ChatScreen1 />} />
-              <Route path="/vid" element={<PatientMeetingConference />} />
-              <Route path="/404" element={<ErrorSharp />} />
-            </Routes>
+            {searchTerm === "" ? (
+              <Routes>
+                <Route path="" element={<PersonalHealthRecord />} />
+                <Route path="profile/*" element={<PatientProfile />} />
+                <Route path="/prescriptions" element={<Prescriptions />} />
+                <Route path="/testReport" element={<TestReport />} />
+                <Route path="/medicalHistory" element={<MedicalHistory />} />
+                <Route path="/allAppointment" element={<AllAppointment />} />
+                <Route path="/appointment" element={<Appointment />} />
+                <Route path="/bills" element={<Bills />} />
+                <Route
+                  path="/teleconsultation"
+                  element={<Teleconsultation />}
+                />
+                <Route
+                  path="/appointmentBooking"
+                  element={<AppointmentBooking />}
+                />
+                <Route
+                  path="/priscriptionAccess"
+                  element={<PriscriptionAccess />}
+                />
+                <Route path="/chatScreen" element={<ChatScreen1 />} />
+                <Route path="/vid" element={<PatientMeetingConference />} />
+                <Route path="/404" element={<ErrorSharp />} />
+              </Routes>
+            ) : (
+              <SearchResult />
+            )}
           </div>
         </main>
       </div>

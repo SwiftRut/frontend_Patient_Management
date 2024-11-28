@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 import { useGlobal } from "../../../hooks/useGlobal";
@@ -22,10 +22,9 @@ const ProfileSetting = () => {
     state: "",
     city: "",
     address: "",
-    profilePic: null // for profile picture upload
+    profilePic: null,
   });
 
-  // Prefill form with userData when component mounts
   useEffect(() => {
     if (userData) {
       setFormData({
@@ -34,7 +33,9 @@ const ProfileSetting = () => {
         email: userData.email || "",
         phone: userData.phone || "",
         gender: userData.gender || "",
-        dob: userData.dob ? new Date(userData.dob).toISOString().substring(0, 10) : "",
+        dob: userData.dob
+          ? new Date(userData.dob).toISOString().substring(0, 10)
+          : "",
         age: userData.age || "",
         height: userData.height || "",
         weight: userData.weight || "",
@@ -43,19 +44,17 @@ const ProfileSetting = () => {
         state: userData.state || "",
         city: userData.city || "",
         address: userData.address || "",
-        profilePic: null // Keep null initially unless there's a file
+        profilePic: null,
       });
     }
   }, [userData]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { id, value, files } = e.target;
-    // If there's a file input (profilePic), update formData accordingly
     if (id === "profilePic") {
       setFormData((prevData) => ({
         ...prevData,
-        profilePic: files[0] || null // Handle single file input
+        profilePic: files[0] || null,
       }));
     } else {
       setFormData((prevData) => ({
@@ -65,26 +64,20 @@ const ProfileSetting = () => {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formToSubmit = new FormData(); // Use FormData to handle file uploads
-    // Append all form data fields
+    const formToSubmit = new FormData();
     for (const key in formData) {
       formToSubmit.append(key, formData[key]);
     }
-
-    // Submit form data with the profile picture
     await editPatientProfile(user?.id, formToSubmit);
-
-    console.log("Form Data Submitted:", formData);
   };
 
   return (
     <div className="bg-gray-100 w-full h-[100vh]">
       <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold ">
         <div className="container mx-auto w-[90%] 2xl:w-[100%]">
-          <h1 className="text-white font-bold text-black mb-3 pt-5">Profile Setting</h1>
+          <h1 className="font-bold text-black mb-3 pt-5">Profile Setting</h1>
         </div>
       </div>
 
@@ -96,7 +89,10 @@ const ProfileSetting = () => {
             alt="Profile"
             className="rounded-full object-cover w-[214px] h-[214px]"
           />
-          <label htmlFor="profilePic" className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4">
+          <label
+            htmlFor="profilePic"
+            className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4"
+          >
             <UserIcon className="h-5 w-5 mr-2" />
             Change Profile
           </label>
@@ -116,7 +112,10 @@ const ProfileSetting = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
               {/* Name */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="firstName" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Name
                 </label>
                 <input
@@ -131,7 +130,10 @@ const ProfileSetting = () => {
 
               {/* Phone */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="phone" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Number
                 </label>
                 <input
@@ -145,7 +147,10 @@ const ProfileSetting = () => {
 
               {/* Email */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="email" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Email
                 </label>
                 <input
@@ -159,7 +164,10 @@ const ProfileSetting = () => {
 
               {/* Gender */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="gender" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Gender
                 </label>
                 <select
@@ -177,7 +185,10 @@ const ProfileSetting = () => {
 
               {/* DOB */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="dob" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="dob"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   DOB
                 </label>
                 <input
@@ -191,7 +202,10 @@ const ProfileSetting = () => {
 
               {/* Age */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="age" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="age"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Age
                 </label>
                 <input
@@ -208,7 +222,10 @@ const ProfileSetting = () => {
               {/* Use similar pattern as above for these fields */}
               {/* Example for Blood Group */}
               <div className="col-span-3 sm:col-span-1 relative">
-                <label htmlFor="bloodGroup" className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white">
+                <label
+                  htmlFor="bloodGroup"
+                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                >
                   Blood Group
                 </label>
                 <select
@@ -234,7 +251,7 @@ const ProfileSetting = () => {
 
             {/* Buttons */}
             <div className="flex justify-center sm:justify-end gap-4">
-              <NavLink to={'/patient'}>
+              <NavLink to={"/patient"}>
                 <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2">
                   Cancel
                 </button>

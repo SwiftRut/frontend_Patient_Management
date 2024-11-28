@@ -1,13 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import apiService from "../services/api";
 import PropTypes from "prop-types";
 import { toast } from "react-hot-toast";
-
+import { requestFCMToken } from "../utils/firebaseUtils";
+import { getMessaging, onMessage } from "@firebase/messaging";
+import { io } from "socket.io-client";
+const socket = io(import.meta.env.VITE_API_BASE_URL);
 export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
+    JSON.parse(localStorage.getItem("user")) || "",
   );
 
   const [allHospitals, setAllHospitals] = useState([]);
@@ -19,8 +22,94 @@ export const GlobalProvider = ({ children }) => {
   const [allAppointmentsById, setAllAppointmentsById] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedOption, setSelectedOption] = useState("All");
+  const [fcmToken, setFcmToken] = useState("");
+  const [notifications, setNotifications] = useState([]);
+  const [prescription, setPrescription] = useState({});
+  const [patientPrescription, setPatientPrescription] = useState([]);
+  const [cardData, setCardData] = useState({});
+  const [allPrescriptions, setAllPrescriptions] = useState([]);
 
-  // Hospital Management
+  useEffect(() => {
+    const messaging = getMessaging();
+    initializeFCM();
+    const unsubscribe = onMessage(messaging, (payload) => {
+      const { title, body } = payload.notification;
+      if (Notification.permission === "granted") {
+        new Notification(title, {
+          body: body,
+        });
+      } else {
+        console.warn("Notifications permission not granted");
+      }
+      toast.success(title);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    socket.emit("userOnline", user.id);
+    socket.on("notification", (data) => {
+      setNotifications((prev) => [...prev, data]);
+    });
+
+    return () => {
+      socket.off("notification");
+    };
+  }, []);
+
+  const initializeFCM = async () => {
+    try {
+      const token = await requestFCMToken();
+      setFcmToken(token);
+      setFCMTODB(token);
+    } catch (error) {
+      console.error("Error fetching FCM token:", error);
+    }
+  };
+  const setFCMTODB = async (token) => {
+    if (user.role === "doctor") {
+      await apiService.UpdateDoctorToken({ token: token });
+    } else if (user.role === "patient") {
+      await apiService.UpdatePatientToken({ token: token });
+    }
+  };
+
+  const onClickNotification = async (fcmToken, title, body) => {
+    try {
+      const response = await apiService.GetNotifications({
+        deviceToken: fcmToken,
+        title,
+        body,
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Notification sent successfully!");
+      }
+    } catch (error) {
+      console.error("Error sending notification:", error);
+    }
+  };
+  const createNewFCM = async () => {
+    try {
+      const newToken = await requestFCMToken();
+      setFcmToken(newToken);
+    } catch (error) {
+      console.error("Error generating new FCM token:", error);
+    }
+  };
+
+  const getNotifications = async (data) => {
+    try {
+      await apiService.GetNotifications(data);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+      toast.error("Error fetching notifications");
+      throw error;
+    }
+  };
   const getAllHospitals = async () => {
     try {
       const response = await apiService.GetAllHospitals();
@@ -34,8 +123,7 @@ export const GlobalProvider = ({ children }) => {
 
   const createHospital = async (userData) => {
     try {
-      const response = await apiService.CreateHospital(userData);
-      console.log("Hospital created:", response);
+      await apiService.CreateHospital(userData);
       toast.success("Hospital created successfully");
     } catch (error) {
       console.error("Error creating hospital:", error);
@@ -44,7 +132,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Admin Profile Management
   const getAdminProfile = async (id) => {
     try {
       const response = await apiService.GetAdminProfile(id);
@@ -60,6 +147,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.EditAdminProfile(id, userData);
       setUserData(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your profile has been edited.`,
+        type: "profile",
+      });
       toast.success("Admin profile edited successfully");
     } catch (error) {
       console.error("Error editing admin profile:", error);
@@ -68,7 +160,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Patient Profile Management
   const getPatientProfile = async (id) => {
     try {
       const response = await apiService.GetPatientProfile(id);
@@ -84,6 +175,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.EditPatientProfile(id, userData);
       setUserData(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your patient profile has been edited.`,
+        type: "bill",
+      });
       toast.success("Patient Edited Successful");
     } catch (error) {
       console.error("Error editing patient profile:", error);
@@ -92,12 +188,10 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Doctor Profile Management
   const getDoctorProfile = async (id) => {
     try {
       const response = await apiService.GetDoctorById(id);
       setUserData(response.data.data);
-      toast.success("Patient Edited Successful");
     } catch (error) {
       console.error("Error fetching doctor profile:", error);
       toast.error("Error fetching doctor profile");
@@ -109,6 +203,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.EditDoctor(id, userData);
       setUserData(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your doctor profile has been edited.`,
+        type: "profile",
+      });
       toast.success("Doctor Edited Successful");
     } catch (error) {
       console.error("Error editing doctor profile:", error);
@@ -117,11 +216,15 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Bill Management
   const createBill = async (userData) => {
     try {
       const response = await apiService.CreateBill(userData);
       setBill(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your bill has been created.`,
+        type: "bill",
+      });
       toast.success("Bill created successfully");
     } catch (error) {
       console.error("Error creating bill:", error);
@@ -134,6 +237,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.EditBill(id, userData);
       setBill(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your bill has been updated.`,
+        type: "bill",
+      });
       toast.success("bill updated successfully");
     } catch (error) {
       console.error("Error updating bill:", error);
@@ -180,6 +288,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       await apiService.DeleteBill(id);
       toast.success("Bill deleted successfully");
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your bill has been deleted.`,
+        type: "bill",
+      });
     } catch (error) {
       console.error("Error deleting bill:", error);
       toast.error("Error deleting bill");
@@ -187,7 +300,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Appointment Management
   const getAllAppointments = async () => {
     try {
       const response = await apiService.GetAllAppointments();
@@ -212,7 +324,6 @@ export const GlobalProvider = ({ children }) => {
   const getAppointmentById = async (id) => {
     try {
       const response = await apiService.GetAppointmentById(id);
-      console.log("Fetched appointment:", response);
       return response.data;
     } catch (error) {
       console.error("Error fetching appointment by ID:", error);
@@ -224,7 +335,6 @@ export const GlobalProvider = ({ children }) => {
   const getAllAppointmentById = async (patientId) => {
     try {
       const response = await apiService.GetALLAppointmentById(patientId);
-      console.log("Fetched appointment:", response);
       setAllAppointmentsById(response.data);
     } catch (error) {
       console.error("Error fetching appointment by ID:", error);
@@ -237,6 +347,11 @@ export const GlobalProvider = ({ children }) => {
     try {
       await apiService.EditAppointment(id, userData);
       toast.success("Appointment edited successfully");
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your appointment has been edited.`,
+        type: "appointment",
+      });
     } catch (error) {
       console.error("Error editing appointment:", error);
       toast.error("Error editing appointment");
@@ -244,11 +359,15 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  //canceled appointment
   const cancelAppointment = async (appointmentId) => {
     try {
-      const response = await apiService.CancelAppointment(appointmentId);
+      await apiService.CancelAppointment(appointmentId);
       toast.success("Appointment canceled successfully");
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your appointment has been canceled.`,
+        type: "appointment",
+      });
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
       } else if (user.role === "doctor") {
@@ -261,7 +380,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Chat Management
   const getChatHistory = async (doctorId, patientId) => {
     try {
       const response = await apiService.GetChatHistory(doctorId, patientId);
@@ -294,9 +412,24 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  const createAppointment = async (patientId, userData) => {
+  const createAppointment = async (patientId, userData, selectedDoctor) => {
     try {
-      const response = await apiService.createAppointment(patientId, userData);
+      await apiService.createAppointment(patientId, userData);
+      onClickNotification(
+        selectedDoctor.deviceToken,
+        "New Appointment",
+        "You have a new appointment",
+      );
+      onClickNotification(
+        fcmToken,
+        "New Appointment",
+        "Your appointment has been booked successfully.",
+      );
+      socket.emit("sendNotification", {
+        userId: patientId || user.id,
+        message: `Your appointment has been booked.`,
+        type: "bill",
+      });
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
       } else if (user.role === "doctor") {
@@ -305,13 +438,17 @@ export const GlobalProvider = ({ children }) => {
       toast.success("Appointment created successfully");
     } catch (error) {
       console.error(error);
-      toast.success("Patient Edited Successful");
       throw error;
     }
   };
   const updateAppointment = async (id, userData) => {
     try {
-      const response = await apiService.EditAppointment(id, userData);
+      await apiService.EditAppointment(id, userData);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your appointment has been edited.`,
+        type: "appointment",
+      });
       toast.success("Appointment edited successfully");
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
@@ -326,8 +463,13 @@ export const GlobalProvider = ({ children }) => {
   };
   const deleteAppointment = async (id) => {
     try {
-      const response = await apiService.DeleteAppointment(id);
+      await apiService.DeleteAppointment(id);
       toast.success("Appointment deleted successfully");
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your appointment has been deleted.`,
+        type: "appointment",
+      });
       if (user.role === "patient") {
         getAppointmetnsForPatient(user.id);
       } else if (user.role === "doctor") {
@@ -339,7 +481,6 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  const [allPrescriptions, setAllPrescriptions] = useState([]);
   const getAllPrescriptions = async () => {
     try {
       const response = await apiService.GetAllPrescriptions();
@@ -351,7 +492,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
   const getAppointmetnsForDoctor = async (doctorId) => {
-    console.log(doctorId, "<<<<<<<<<<<<<<<<<<<<< this doctorId");
     try {
       const response = await apiService.GetAppointsForDoctor(doctorId);
       setAllAppointments(response.data.data);
@@ -373,14 +513,18 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const [prescription, setPrescription] = useState({});
   const createPrescription = async (prescriptionData, id) => {
     try {
       const response = await apiService.CreatePrescription(
         prescriptionData,
-        id
+        id,
       );
       setPrescription(response.data.data);
+      socket.emit("sendNotification", {
+        userId: user.id,
+        message: `Your prescription has been created.`,
+        type: "prescription",
+      });
       toast.success("Prescription created successfully");
     } catch (error) {
       console.error("Error creating prescription:", error);
@@ -389,7 +533,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const [patientPrescription, setPatientPrescription] = useState([]);
   const findPatientPrescriptions = async (patientId) => {
     try {
       const response = await apiService.GetPrescriptionById(patientId);
@@ -402,7 +545,6 @@ export const GlobalProvider = ({ children }) => {
 
   const appointmentDone = function (id) {
     try {
-      console.log("appoinment done", id);
       const response = apiService.AppointmentDone(id);
       toast.success("Appointment done successfully");
       return response.data;
@@ -412,7 +554,6 @@ export const GlobalProvider = ({ children }) => {
       throw error;
     }
   };
-  const [cardData, setCardData] = useState({});
   const fetchReportingAndAnalytics = async () => {
     try {
       const response = await apiService.GetReporingAndAnalytics();
@@ -497,6 +638,14 @@ export const GlobalProvider = ({ children }) => {
         setSearchTerm,
         selectedOption,
         setSelectedOption,
+
+        // FCM
+        fcmToken,
+        createNewFCM,
+        getNotifications,
+        onClickNotification,
+        notifications,
+        setNotifications,
       }}
     >
       {children}

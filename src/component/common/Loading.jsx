@@ -4,7 +4,15 @@ import "./Loading.css"; // Ensure you have this CSS file
 
 const Loading = () => {
   return (
-    <div className="overlay" style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+    <div
+      className="overlay"
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <div className="loader">
         <div className="dot-loading dot1">
           <i></i>

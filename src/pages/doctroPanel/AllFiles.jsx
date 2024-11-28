@@ -1,17 +1,12 @@
-import React from "react";
 import "./doctorPanel.css";
 import { FaImage } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
-const handalclick = () => {
-  console.log("done");
-};
-
 const AllFiles = () => {
   return (
-    <div className="p-6 bg-[#f6f8fb]">
-      <div className="allFile-section p-6 bg-white w-[60%] m-auto">
-        <div className="content border rounded p-4">
+    <div className="p-6 bg-[#f6f8fb] h-[92%]">
+      <div className="allFile-section p-6 bg-white w-full h-[100%] flex justify-center items-center">
+        <div className="content border rounded-lg p-4 w-[50%] ">
           <div className="tital text-[24px] font-bold pb-3 border-b border-[#D9D9D9]">
             All Files
           </div>
@@ -23,7 +18,7 @@ const AllFiles = () => {
 
             <div className="all-up-file flex pt-4">
               <div className="box w-[50%]  p-2">
-                <div className=" p-3 flex justify-between align-center border rounded">
+                <div className=" p-3 flex justify-between items-center border rounded">
                   <div className="logo_File flex align-center gap-5">
                     <div className="img text-[#6A5ACD] bg-[#F6F8FB] rounded p-3">
                       <FaImage />
@@ -37,14 +32,14 @@ const AllFiles = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="icon text-[#0EABEB] bg-[#F6F8FB] rounded p-1">
+                  <div className="icon text-lg flex items-center justify-center text-[#A7A7A7] hover:text-[#0EABEB] bg-[#F6F8FB] rounded p-1 w-8 h-8 duration-300 cursor-pointer">
                     <FaEye />
                   </div>
                 </div>
               </div>
 
               <div className="box w-[50%]  p-2">
-                <div className=" p-3 flex justify-between align-center border rounded">
+                <div className=" p-3 flex justify-between items-center border rounded">
                   <div className="logo_File flex align-center gap-5">
                     <div className="img text-[#6A5ACD] bg-[#F6F8FB] rounded p-3">
                       <FaImage />
@@ -58,14 +53,14 @@ const AllFiles = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="icon text-[#0EABEB] bg-[#F6F8FB] rounded p-1">
+                  <div className="icon text-lg flex items-center justify-center text-[#A7A7A7] hover:text-[#0EABEB] bg-[#F6F8FB] rounded p-1 w-8 h-8 duration-300 cursor-pointer">
                     <FaEye />
                   </div>
                 </div>
               </div>
 
               <div className="box w-[50%]  p-2">
-                <div className=" p-3 flex justify-between align-center border rounded">
+                <div className=" p-3 flex justify-between items-center border rounded">
                   <div className="logo_File flex align-center gap-5">
                     <div className="img text-[#6A5ACD] bg-[#F6F8FB] rounded p-3">
                       <FaImage />
@@ -79,14 +74,14 @@ const AllFiles = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="icon text-[#0EABEB] bg-[#F6F8FB] rounded p-1">
+                  <div className="icon text-lg flex items-center justify-center text-[#A7A7A7] hover:text-[#0EABEB] bg-[#F6F8FB] rounded p-1 w-8 h-8 duration-300 cursor-pointer">
                     <FaEye />
                   </div>
                 </div>
               </div>
 
               <div className="box w-[50%]  p-2">
-                <div className=" p-3 flex justify-between align-center border rounded">
+                <div className=" p-3 flex justify-between items-center border rounded">
                   <div className="logo_File flex align-center gap-5">
                     <div className="img text-[#6A5ACD] bg-[#F6F8FB] rounded p-3">
                       <FaImage />
@@ -100,7 +95,7 @@ const AllFiles = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="icon text-[#0EABEB] bg-[#F6F8FB] rounded p-1">
+                  <div className="icon text-lg flex items-center justify-center text-[#A7A7A7] hover:text-[#0EABEB] bg-[#F6F8FB] rounded p-1 w-8 h-8 duration-300 cursor-pointer">
                     <FaEye />
                   </div>
                 </div>
@@ -122,7 +117,9 @@ const AllFiles = () => {
                   <p className="text-[24px] text-[#0EABEB] font-bold	">
                     Dr. Bharat Patel
                   </p>
-                  <span>Obstetrics and Gynecology</span>
+                  <span className="text-[#9191a2]">
+                    Obstetrics and Gynecology
+                  </span>
                 </div>
               </div>
               <div className="mt-4">

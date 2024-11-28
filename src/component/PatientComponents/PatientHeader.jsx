@@ -29,18 +29,19 @@ import {
 } from "@mui/icons-material";
 import admin from "../../assets/admin-image.png";
 import { useAuth } from "../../hooks/useAuth";
-
+import NotificationBox from "../../NotificaitionBox";
 
 const PatientHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+  const { selectedOption, setSelectedOption } = useGlobal();
+  const { searchTerm, setSearchTerm } = useGlobal();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setserchOpen] = useState(false);
-  const { userData, getPatientProfile} = useGlobal();
-  const {user} = useAuth();
+  const { userData, getPatientProfile } = useGlobal();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [notifications, setNotifications] = useState([]);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
@@ -54,15 +55,14 @@ const PatientHeader = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     getPatientProfile(user.id);
-  },[])
+  }, []);
   // const user = {
   //   firstName: "Lincoln",
   //   lastName: "Philips",
   //   role: "doctor",
   // };
-
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,11 +95,13 @@ const PatientHeader = () => {
     }
     setDrawerOpen(open);
   };
-  const userName = `${userData?.firstName || "User"} ${userData?.lastName || "Name"}`;
+  const userName = `${userData?.firstName || "User"} ${
+    userData?.lastName || "Name"
+  }`;
   const userRole = userData?.role || "Role";
   const userAvatar = userData?.avatar || "/img/avtar.png";
 
-  const drawerContent =(
+  const drawerContent = (
     <div className="w-64 p-4">
       <List>
         <ListItem button component={Link} to="/patient">
@@ -191,7 +193,7 @@ const PatientHeader = () => {
               <input
                 type="text"
                 placeholder="Quick Search"
-                className="bg-transparent w-[60px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                className="bg-transparent w-[60px] sm:w-[200px] sm:text-sm text-gray-600 placeholder-gray-400 text-[10px] border-0 focus:outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -212,14 +214,14 @@ const PatientHeader = () => {
           </div>
         </div>
 
-        <IconButton
+        <button
           aria-label="notifications"
-          className="hidden sm:inline-flex"
+          // className="bg-gray-200 rounded-full p-2 mx-2 relative"
         >
-          <Badge badgeContent={4} color="secondary">
-            <Notifications />
+          <Badge color="secondary">
+            <NotificationBox />
           </Badge>
-        </IconButton>
+        </button>
         <div className=" flex items-center ml-4">
           <Avatar src={userAvatar} alt="User Image" />
           <div className="hidden sm:inline-block sm:ml-2">

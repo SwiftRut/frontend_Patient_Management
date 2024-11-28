@@ -7,8 +7,8 @@ import { MdCancel } from "react-icons/md";
 import signature from "../../../assets/signature.svg";
 import { useGlobal } from "../../../hooks/useGlobal";
 import { useAuth } from "../../../hooks/useAuth";
-import moment from 'moment';
-import * as htmlToImage from 'html-to-image';
+import moment from "moment";
+import * as htmlToImage from "html-to-image";
 import toast from "react-hot-toast";
 
 const PersonalHealthRecord = () => {
@@ -17,7 +17,8 @@ const PersonalHealthRecord = () => {
   const [prescription, setPrescription] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const { userData, patientPrescription, findPatientPrescriptions } = useGlobal();
+  const { userData, patientPrescription, findPatientPrescriptions } =
+    useGlobal();
   const modalRef = useRef(); // Reference for the modal
   const [isDownloading, setIsDownloading] = useState(false);
 
@@ -40,41 +41,44 @@ const PersonalHealthRecord = () => {
   const handleDownloadImage = async () => {
     setIsDownloading(true);
     try {
-      const modalContent = document.getElementById('prescription-modal-content');
+      const modalContent = document.getElementById(
+        "prescription-modal-content",
+      );
       if (!modalContent) {
-        throw new Error('Modal content not found');
+        throw new Error("Modal content not found");
       }
 
       // Hide buttons before capture
-      const elementsToHide = modalContent.querySelectorAll('.hide-for-download');
-      elementsToHide.forEach(el => {
-        if (el) el.style.display = 'none';
+      const elementsToHide =
+        modalContent.querySelectorAll(".hide-for-download");
+      elementsToHide.forEach((el) => {
+        if (el) el.style.display = "none";
       });
 
       const dataUrl = await htmlToImage.toPng(modalContent, {
         quality: 1.0,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         pixelRatio: 2,
         style: {
           // Ensure modal content is visible during capture
-          opacity: '1',
-          display: 'block'
-        }
+          opacity: "1",
+          display: "block",
+        },
       });
 
       // Restore hidden elements
-      elementsToHide.forEach(el => {
-        if (el) el.style.display = '';
+      elementsToHide.forEach((el) => {
+        if (el) el.style.display = "";
       });
 
       // Create and trigger download
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.download = `prescription-${modalData.patientId.firstName}-${new Date().toISOString()}.png`;
       link.href = dataUrl;
       link.click();
       toast.success("Prescription downloaded successfully.");
     } catch (error) {
-      console.error('Error downloading prescription:', error);
+      console.error("Error downloading prescription:", error);
       toast.error("Error downloading prescription.");
     } finally {
       setIsDownloading(false);
@@ -148,9 +152,8 @@ const PersonalHealthRecord = () => {
                     DOB:
                   </span>
                   <p className="text-[#141414] text-[15px] font-normal">
-
                     {/* /conver ISO in date format */}
-                    {moment(userData.dob).format('D MMM, YYYY')}
+                    {moment(userData.dob).format("D MMM, YYYY")}
                   </p>
                 </div>
                 <div>
@@ -277,7 +280,7 @@ const PersonalHealthRecord = () => {
                         </div>
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </div>
@@ -312,17 +315,20 @@ const PersonalHealthRecord = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(patientPrescription) && patientPrescription.length > 0 ? (
+                  {Array.isArray(patientPrescription) &&
+                  patientPrescription.length > 0 ? (
                     patientPrescription.map((prescription, index) => (
                       <tr key={index}>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription?.doctorId?.hospitalName || 'N/A'}
+                          {prescription?.doctorId?.hospitalName || "N/A"}
                         </td>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription.date ? moment(prescription.date).format('D MMM, YYYY') : 'N/A'}
+                          {prescription.date
+                            ? moment(prescription.date).format("D MMM, YYYY")
+                            : "N/A"}
                         </td>
                         <td className="py-2 px-4 text-[11] text-[#4F4F4F] font-medium">
-                          {prescription?.doctorId?.name || 'N/A'}
+                          {prescription?.doctorId?.name || "N/A"}
                         </td>
                         <td className="py-2 px-4">
                           <span
@@ -679,7 +685,7 @@ const PersonalHealthRecord = () => {
               <div className="details w-[86%] sm:w-[88%]">
                 <p className="text-[17px] text-[#141414] font-normal	">
                   It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout. 
+                  by the readable content of a page when looking at its layout.
                 </p>
               </div>
             </div>
@@ -690,12 +696,16 @@ const PersonalHealthRecord = () => {
       {/* Prescription Modal */}
       {showModal && modalData && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
-          <div className="fixed inset-0 flex items-center justify-center z-50" ref={modalRef}>
+          <div
+            className="fixed inset-0 flex items-center justify-center z-50"
+            ref={modalRef}
+          >
             <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md md:max-w-xl relative">
               <div id="prescription-modal-content" className="bg-white p-4">
                 <div className="modal-header p-4">
                   <h5 className="modal-title text-[24px] text-[#030229] font-bold">
-                    Prescription for {modalData.patientId.firstName} {modalData.patientId.lastName}
+                    Prescription for {modalData.patientId.firstName}{" "}
+                    {modalData.patientId.lastName}
                   </h5>
                   <button
                     type="button"
@@ -729,13 +739,14 @@ const PersonalHealthRecord = () => {
                             <p className="text-[16px] text-[#141414] font-semibold">
                               Patient Name:{" "}
                               <span className="text-[14px] text-[#818194] font-semibold">
-                                {modalData.patientId.firstName} {modalData.patientId.lastName}
+                                {modalData.patientId.firstName}{" "}
+                                {modalData.patientId.lastName}
                               </span>
                             </p>
                             <p className="text-[16px] text-[#141414] font-semibold">
                               Prescription Date:{" "}
                               <span className="text-[14px] text-[#818194] font-semibold">
-                                {moment(modalData.date).format('D MMM, YYYY')}
+                                {moment(modalData.date).format("D MMM, YYYY")}
                               </span>
                             </p>
                           </div>
@@ -813,8 +824,8 @@ const PersonalHealthRecord = () => {
                     <div className="mt-4 flex justify-between align-center">
                       <div className="sign border-b pb-2">
                         <div className="w-32 mt-4">
-                          <img 
-                            src={modalData.doctorId.signature} 
+                          <img
+                            src={modalData.doctorId.signature}
                             alt="Signature"
                             crossOrigin="anonymous"
                           />
@@ -823,21 +834,37 @@ const PersonalHealthRecord = () => {
                       </div>
 
                       <div className="hide-for-download">
-                        <button 
+                        <button
                           onClick={handleDownloadImage}
                           disabled={isDownloading}
                           className="text-white text-[18px] bg-[#0EABEB] font-semibold py-[8px] px-[20px] rounded-xl disabled:bg-gray-400 hover:bg-[#0d9bd4] transition-colors"
                         >
                           {isDownloading ? (
                             <span className="flex items-center gap-2">
-                              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              <svg
+                                className="animate-spin h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
                               </svg>
                               Processing...
                             </span>
                           ) : (
-                            'Download'
+                            "Download"
                           )}
                         </button>
                       </div>

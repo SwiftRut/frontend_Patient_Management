@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useGlobal } from "../../hooks/useGlobal";
-import "./invoice.css";
 import { formDataObject, PatientBillFields } from "./Contants";
 import InputField from "./InputField";
 import { useDoctor } from "../../hooks/useDoctor";
@@ -19,7 +18,10 @@ const CreateBill = () => {
   const [formData, setFormData] = useState({
     ...formDataObject,
     billDate: new Date().toISOString().split("T")[0],
-    billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    billTime: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
     billNumber: 100,
     totalAmount: 0,
   });
@@ -33,7 +35,8 @@ const CreateBill = () => {
     const discountNumber = parseFloat(discount) || 0;
     const taxNumber = parseFloat(tax) || 0;
 
-    const discountedAmount = amountNumber - (amountNumber * discountNumber) / 100;
+    const discountedAmount =
+      amountNumber - (amountNumber * discountNumber) / 100;
     const totalAmount = discountedAmount + (discountedAmount * taxNumber) / 100;
     return totalAmount.toFixed(2);
   };
@@ -54,7 +57,7 @@ const CreateBill = () => {
       updatedFormData.totalAmount = calculateTotalAmount(
         updatedFormData.amount,
         updatedFormData.discount,
-        updatedFormData.tax
+        updatedFormData.tax,
       );
     }
 
@@ -67,11 +70,11 @@ const CreateBill = () => {
       const patientDetails = await getPatientById(patientId);
       setFormData((prev) => ({
         ...prev,
-        phone: patientDetails.phone || "", 
+        phone: patientDetails.phone || "",
         age: patientDetails.age || "",
         gender: patientDetails.gender || "",
         address: patientDetails.address || "",
-        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`, 
+        patientName: `${patientDetails.firstName} ${patientDetails.lastName}`,
       }));
     } catch (error) {
       console.error("Error fetching patient details:", error);
@@ -82,13 +85,13 @@ const CreateBill = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createBill(formData); 
+      await createBill(formData);
       setFormData((prev) => ({
         ...prev,
-        billNumber: prev.billNumber + 1, 
-        totalAmount: 0, 
+        billNumber: prev.billNumber + 1,
+        totalAmount: 0,
       }));
-      navigate("/"); 
+      navigate("/");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Error submitting form.");
@@ -113,14 +116,16 @@ const CreateBill = () => {
     fetchPatients();
   }, []);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setFormData((prev) => ({
         ...prev,
-        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }), 
+        billTime: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
       }));
-    }, 60000); 
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
@@ -128,7 +133,7 @@ const CreateBill = () => {
   // Hospital bill fields
   const HospitalBillFields = [
     {
-      label: "Patient Name",
+      label: "Patient Name ",
       name: "patientId",
       type: "select",
       options: loadingPatients
@@ -154,7 +159,7 @@ const CreateBill = () => {
         { label: "Female", value: "female" },
         { label: "Other", value: "other" },
       ],
-      value: formData.gender, 
+      value: formData.gender,
     },
     { label: "Age", name: "age", type: "text", readOnly: true },
     {
@@ -221,19 +226,25 @@ const CreateBill = () => {
   ];
 
   return (
-    <div>
-      <div className="bill-insurance-section">
-        <div className="row">
-          <div className="main">
-            <div className="title">
-              <p>Create Bill</p>
+    <div className="bg-[#F6F8FB]">
+      <div className="p-5 p-[20px] ">
+        <div className="flex justify-center">
+          <div className="p-4 bg-white rounded-xl">
+            <div className="mb-4">
+              <p className="text-[#030229] text-[26px] font-bold">
+                Create Bill{" "}
+              </p>
             </div>
 
-            <div className="patient-details">
-              <div className="content">
-                <div className="details flex">
-                  <div className="form-box">
-                    <form onSubmit={handleSubmit} className="flex" id="create-bill-form">
+            <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
+              <div className="space-y-4">
+                <div className="flex">
+                  <div className="w-full">
+                    <form
+                      id="create-bill-form"
+                      onsubmit="handleSubmit"
+                      className="flex flex-wrap justify-between"
+                    >
                       {HospitalBillFields.map((field, index) => (
                         <InputField
                           key={index}
@@ -249,15 +260,14 @@ const CreateBill = () => {
             </div>
 
             {formData.paymentType === "Insurance" && (
-              <div className="insurance-details">
-                <div className="content">
-                  <div className="head">
-                    <p>Insurance Details</p>
-                  </div>
-
-                  <div className="details flex">
-                    <div className="form-box">
-                      <form className="flex">
+              <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
+                <div className="space-y-4">
+                  <p className="text-[#030229] text-[26px] font-bold">
+                    Insurance Details
+                  </p>
+                  <div className="flex">
+                    <div className="w-full">
+                      <form className="flex flex-wrap justify-between gap-4">
                         {PatientBillFields.map((field, index) => (
                           <InputField
                             key={index}
@@ -273,8 +283,13 @@ const CreateBill = () => {
               </div>
             )}
 
-            <div className="save-btn flex">
-              <button type="submit" form="create-bill-form" onClick={handleSubmit}>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                form="create-bill-form"
+                className="bg-[#F6F8FB] text-[#4F4F4F] text-lg font-semibold py-3 px-8 rounded-lg hover:bg-[#0EABEB] hover:text-white"
+                onClick={handleSubmit}
+              >
                 Save
               </button>
             </div>

@@ -7,10 +7,10 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
   const [user, setUser] = useState("User 1");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     socket.on("chatMessage", (msg) => {
-      console.log(msg);
       setChat((prevChat) => [...prevChat, msg]);
     });
 
@@ -21,9 +21,12 @@ const Chat = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (message.trim()) {
+    if (message.trim() === "") {
+      setError("Message cannot be empty.");
+    } else {
       socket.emit("chatMessage", { username: user, msg: message });
       setMessage("");
+      setError("");
     }
   };
 
@@ -52,7 +55,10 @@ const Chat = () => {
             <p className="text-center text-gray-400">No messages yet...</p>
           ) : (
             chat.map((chatItem, idx) => (
-              <div key={idx} className={`mb-2 ${chatItem.username === user ? "text-right" : ""}`}>
+              <div
+                key={idx}
+                className={`mb-2 ${chatItem.username === user ? "text-right" : ""}`}
+              >
                 <span
                   className={`font-bold ${chatItem.username === "User 1" ? "text-blue-600" : "text-green-600"}`}
                 >
@@ -71,14 +77,17 @@ const Chat = () => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type your message"
             className="flex-grow border border-gray-300 rounded-lg p-2 mr-2 focus:outline-none focus:border-blue-500"
+            required
           />
           <button
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none"
+            disabled={message.trim() === ""}
           >
             Send
           </button>
         </form>
+        {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
       </div>
     </div>
   );

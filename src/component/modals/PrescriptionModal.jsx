@@ -1,15 +1,5 @@
 import { useRef } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toPng } from "html-to-image";
 import signature from "../../assets/signature.svg";
@@ -40,14 +30,17 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
         const link = document.createElement("a");
         link.href = dataUrl;
         const fileName = `prescription-${
-          prescriptionData?.patientId?.firstName || prescriptionData?.patientName
+          prescriptionData?.patientId?.firstName ||
+          prescriptionData?.patientName
         }-${moment().format("YYYY-MM-DD-HH-mm-ss")}.png`;
         link.download = fileName;
         link.click();
         toast.success("Prescription image downloaded successfully");
       } catch (error) {
         console.error("Failed to download image:", error);
-        toast.error("Failed to download the prescription image. Please try again.");
+        toast.error(
+          "Failed to download the prescription image. Please try again.",
+        );
         throw error;
       }
     }
@@ -65,7 +58,10 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
         <div className="flex justify-between items-center">
           <span className="text-xl font-semibold">Prescription</span>
           <div className="flex items-center hide-for-download">
-            <IconButton onClick={downloadPrescriptionImage} title="Download as Image">
+            <IconButton
+              onClick={downloadPrescriptionImage}
+              title="Download as Image"
+            >
               <FaDownload />
             </IconButton>
             <IconButton onClick={handleClose}>
@@ -92,7 +88,8 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                   Dr. {prescriptionData?.doctorId?.name || "Bharat Patel"}
                 </p>
                 <span className="text-[14px] text-[#818194] font-semibold">
-                  {prescriptionData?.doctorId?.speciality || "Obstetrics and Gynecology"}
+                  {prescriptionData?.doctorId?.speciality ||
+                    "Obstetrics and Gynecology"}
                 </span>
               </div>
             </div>
@@ -110,9 +107,10 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                 <p className="text-[16px] text-[#141414] font-semibold">
                   Prescription Date:{" "}
                   <span className="text-[14px] text-[#818194] font-semibold">
-                    {moment(prescriptionData?.date || prescriptionData?.prescriptionDate).format(
-                      "D MMM, YYYY"
-                    )}
+                    {moment(
+                      prescriptionData?.date ||
+                        prescriptionData?.prescriptionDate,
+                    ).format("D MMM, YYYY")}
                   </span>
                 </p>
               </div>
@@ -120,7 +118,8 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
                 <p className="text-[16px] text-[#141414] font-semibold">
                   Gender:{" "}
                   <span className="text-[14px] text-[#818194] font-semibold">
-                    {prescriptionData?.patientId?.gender || prescriptionData?.gender}
+                    {prescriptionData?.patientId?.gender ||
+                      prescriptionData?.gender}
                   </span>
                 </p>
                 <p className="text-[16px] text-[#141414] font-semibold">
@@ -133,53 +132,69 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
               <p className="text-[16px] text-[#141414] font-semibold break-words">
                 Address:{" "}
                 <span className="text-[14px] text-[#818194] font-semibold">
-                  {prescriptionData?.patientId?.address || prescriptionData?.address}
+                  {prescriptionData?.patientId?.address ||
+                    prescriptionData?.address}
                 </span>
               </p>
             </div>
           </div>
 
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell className="text-[#030229] text-[14px] font-semibold">
+          <table className="min-w-full table-auto">
+            <thead className="sticky top-0 bg-gray-100 z-10">
+              <tr>
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
                   Medicine Name
-                </TableCell>
-                <TableCell className="text-[#030229] text-[14px] font-semibold">Strength</TableCell>
-                <TableCell className="text-[#030229] text-[14px] font-semibold">Dose</TableCell>
-                <TableCell className="text-[#030229] text-[14px] font-semibold">Duration</TableCell>
-                <TableCell className="text-[#030229] text-[14px] font-semibold">
+                </th>
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  Strength
+                </th>
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  Dose
+                </th>
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  Duration
+                </th>
+                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tr-lg">
                   When to Take
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(prescriptionData?.medications || prescriptionData?.medicines)?.map(
-                (medicine, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{medicine.medicineName}</TableCell>
-                    <TableCell>{medicine.strength}</TableCell>
-                    <TableCell>{medicine.dose}</TableCell>
-                    <TableCell>
-                      <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">
-                        {medicine.duration}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">
-                        {medicine.whenToTake}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                )
-              )}
-            </TableBody>
-          </Table>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {(
+                prescriptionData?.medications || prescriptionData?.medicines
+              )?.map((medicine, index) => (
+                <tr key={index} className="border-b">
+                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    {medicine.medicineName}
+                  </td>
+                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    {medicine.strength}
+                  </td>
+                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    {medicine.dose}
+                  </td>
+                  <td>
+                    <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold py-2 px-3 rounded-full">
+                      {medicine.duration}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="bg-[#5678E91A] text-[#718EBF] text-[14px] font-semibold p-2 rounded-full">
+                      {medicine.whenToTake}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
           <div className="mt-4">
-            <h3 className="font-bold">Instructions:</h3>
+            <h3 className="font-bold text-base font-medium text-[#030229]">
+              Additional Note
+            </h3>
             <p className="text-[14px] text-[#818194] font-semibold">
-              {prescriptionData?.instructions || prescriptionData?.additionalNote}
+              {prescriptionData?.instructions ||
+                prescriptionData?.additionalNote}
             </p>
           </div>
 
@@ -232,7 +247,7 @@ PrescriptionModal.propTypes = {
         dose: PropTypes.string,
         duration: PropTypes.string,
         whenToTake: PropTypes.string,
-      })
+      }),
     ),
     medicines: PropTypes.arrayOf(
       PropTypes.shape({
@@ -241,7 +256,7 @@ PrescriptionModal.propTypes = {
         dose: PropTypes.string,
         duration: PropTypes.string,
         whenToTake: PropTypes.string,
-      })
+      }),
     ),
     instructions: PropTypes.string,
     additionalNote: PropTypes.string,

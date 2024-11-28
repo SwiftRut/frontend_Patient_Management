@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const NotAvailable = () => {
   return (
@@ -21,7 +21,10 @@ const NotAvailable = () => {
           <span>Monday,18 June,2022 09:00 AM - 10:00 AM</span>
         </div>
         <div className="space-y-2">
-          <label htmlFor="note" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="note"
+            className="block text-sm font-medium text-gray-700"
+          >
             Add Note
           </label>
           <textarea
@@ -41,7 +44,7 @@ const NotAvailable = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NotAvailable
+export default NotAvailable;

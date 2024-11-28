@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import { useDoctor } from "../../hooks/useDoctor";
 import { useGlobal } from "../../hooks/useGlobal";
 import DoctorDetails from "./DoctorDetails";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { all } from "axios";
+import apiService from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const AppointmentBooking = () => {
   const { getAllDoctors, allDoctors } = useDoctor();
-  const { getAllHospitals, allHospitals, getAllAppointments } = useGlobal();
+  const {
+    getAllHospitals,
+    allHospitals,
+    getAllAppointments,
+    onClickNotification,
+  } = useGlobal();
+  const { user } = useAuth();
   const [specialty, setSpecialty] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
@@ -15,13 +24,18 @@ const AppointmentBooking = () => {
   const [hospital, setHospital] = useState("");
   const [doctor, setDoctor] = useState("");
   const [appointmentType, setAppointmentType] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+  const [patientIssue, setPatientIssue] = useState("");
+
   useEffect(() => {
-    toast.success("hospital might not work due to data inefficiency !!  You can continue without it!");
+    toast.success(
+      "hospital might not work due to data inefficiency !!  You can continue without it!",
+    );
     getAllDoctors();
     getAllHospitals();
     getAllAppointments();
     loadRazorpayScript(); // Call the loadRazorpayScript function first
-
   }, []);
 
   // Get unique values for each filter based on allDoctors data
@@ -49,43 +63,98 @@ const AppointmentBooking = () => {
       (!hospital || doctor.hospitalName === hospital)
     );
   });
-// Load Razorpay script
-const loadRazorpayScript = () => {
-  const script = document.createElement("script");
-  script.src = "https://checkout.razorpay.com/v1/checkout.js";
-  script.async = true;
-  document.body.appendChild(script);
-};
+  // Load Razorpay script
+  const loadRazorpayScript = () => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+  };
+  // Handle Razorpay Payment
+  const handlePayment = async () => {
+    try {
+      if (!isAllSelected() || !selectedDate || !selectedTime) {
+        toast.error("Please select all required fields");
+        return;
+      }
 
-// Handle Razorpay Payment
-const handlePayment = () => {
+      // Get appointment fee
+      const { data: feeData } = await apiService.AppointmentFee(
+        doctor,
+        appointmentType,
+      );
+      const amount = feeData.fee;
+      // Create Razorpay order
+      const { data: orderData } = await apiService.createRazorpayOrder({
+        amount,
+      });
+      console.log("Razorpay order created successfully");
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "Doctor Appointment",
+        description: "Consultation Fee Payment",
+        order_id: orderData.id,
+        handler: async function (response) {
+          try {
+            // Verify payment
+            // await apiService.verifyPayment({
+            //   razorpay_order_id: response.razorpay_order_id,
+            //   razorpay_payment_id: response.razorpay_payment_id,
+            //   razorpay_signature: response.razorpay_signature,
+            // });
 
-  const options = {
-    key: "rzp_test_bLAqvl1z0C0XkX", // Replace with your Razorpay Key ID
-    amount: 1000 * 100, // Amount in paisa (e.g., 1000 = 10 INR)
-    currency: "INR",
-    name: "Doctor Appointment",
-    description: "Consultation fee",
-    handler: function (response) {
-      alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-    },
-    prefill: {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      contact: "9999999999",
-    },
-    theme: {
-      color: "#3399cc",
-    },
+            consoel.log("Payment verified successfully");
+            // Create appointment
+            const appointmentData = {
+              doctorId: doctor,
+              date: selectedDate,
+              patient_issue: patientIssue,
+              start: selectedTime,
+              country,
+              city,
+              state,
+              type: appointmentType,
+              hospitalId: hospital,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
+              amount: amount,
+            };
+
+            await apiService.createAppointmentWithPayment(appointmentData);
+            toast.success("Appointment booked successfully!");
+          } catch (error) {
+            console.error("Appointment creation error:", error);
+            toast.error("Failed to create appointment. Please try again.");
+          }
+        },
+        prefill: {
+          name: user?.firstName + " " + user?.lastName,
+          email: user?.email,
+          contact: user?.phone,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.error("Payment error:", error);
+      toast.error("Payment failed. Please try again.");
+    }
+  };
+  const isAllSelected = () => {
+    return doctor && appointmentType;
   };
 
-  const rzp = new window.Razorpay(options);
-  rzp.open();
-};
-  const isAllSelected = () => {
-    return (
-      doctor && appointmentType
-    );
+  // Update Calendar component to set selected date and time
+  const handleDateTimeSelect = (date, time) => {
+    setSelectedDate(date);
+    setSelectedTime(time);
   };
 
   return (
@@ -154,7 +223,6 @@ const handlePayment = () => {
                 }}
                 options={filteredHospitals.map((hospital) => hospital.name)}
               />
-
               {/* Doctor Select */}
               <SelectInput
                 label="Doctor"
@@ -200,6 +268,11 @@ const handlePayment = () => {
                         country,
                         appointmentType,
                       }}
+                      selectedDoctor={allDoctors.find(
+                        (doc) => doc._id === doctor,
+                      )}
+                      onDateTimeSelect={handleDateTimeSelect}
+                      handlePayment={handlePayment}
                     />
                   </div>
                   <div className="col-span-3 p-3">
@@ -209,12 +282,6 @@ const handlePayment = () => {
               )}
             </div>
           </div>
-          <button
-                      onClick={handlePayment}
-                      className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                      Pay with Razorpay
-                    </button>
         </div>
       </div>
     </div>

@@ -1,93 +1,151 @@
 import { FaEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
 import { useGlobal } from "../../hooks/useGlobal";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect } from "react";
 
 export default function ProfileData() {
   const { user } = useAuth();
-  const {getAdminProfile, userData } = useGlobal();
+  const { getAdminProfile, userData } = useGlobal();
+
   useEffect(() => {
     getAdminProfile(user.id);
-  },[])
+  }, [user.id]);
+
   return (
     <div className="content">
-      <div className="head flex">
+      <div className="head flex items-center justify-between">
         <div className="title">
-          <p>Profile</p>
+          <p className="text-[34px] font-semibold text-[#030229]">Profile </p>
         </div>
         <div className="edit">
-          <NavLink to={"/edit"}>
-            <button className="flex">
-              <FaEdit />
-              <span>Edit Profile</span>
+          <NavLink to="/edit">
+            <button className="flex items-center bg-[#0eabeb] px-4 py-3 rounded-lg text-[20px]">
+              <FaEdit className="text-white" />
+              <span className="text-white text-[20px] font-semibold pl-2">
+                Edit Profile
+              </span>
             </button>
           </NavLink>
         </div>
       </div>
-      <div className="form-box">
-        <form action="" className="flex">
-          <div className="input-box">
-            <div className="label">
-              First Name <span>*</span>
+      <div className="form-box pt-[35px]">
+        <form className="flex flex-wrap gap-5">
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              First Name <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder="Enter First Name" value={userData?.firstName}/>
+            <input
+              disabled
+              type="text"
+              placeholder="Enter First Name"
+              value={userData?.firstName}
+              className="w-full px-4 py-3 border border-gray-300 bg-white text-[16px] font-normal rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Last Name <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Last Name <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder="Enter Last Name" value={userData?.lastName}/>
+            <input
+              disabled
+              type="text"
+              placeholder="Enter Last Name"
+              value={userData?.lastName}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Email Address <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Email Address <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" Email Address" value={userData?.email} />
+            <input
+              disabled
+              type="text"
+              placeholder="Email Address"
+              value={userData?.email}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Phone Number* <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Phone Number* <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" Phone Number*" value={userData?.phone} />
+            <input
+              disabled
+              type="text"
+              placeholder="Phone Number"
+              value={userData?.phone}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Hospital Name <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Hospital Name <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" Hospital Name" value={userData?.hospital?.name}/>
+            <input
+              disabled
+              type="text"
+              placeholder="Hospital Name"
+              value={userData?.hospital?.name}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Gender <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Gender <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder="Gender" value={userData?.gender} />
+            <input
+              disabled
+              type="text"
+              placeholder="Gender"
+              value={userData?.gender}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              City <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              City <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" City" value={userData?.city}/>
+            <input
+              disabled
+              type="text"
+              placeholder="City"
+              value={userData?.city}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              State <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              State <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" State" value={userData?.state}/>
+            <input
+              disabled
+              type="text"
+              placeholder="State"
+              value={userData?.state}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
 
-          <div className="input-box">
-            <div className="label">
-              Country <span>*</span>
+          <div className="input-box relative w-[30%]">
+            <div className="label absolute top-[-0.75rem] left-4 bg-white text-[16px] font-medium">
+              Country <span className="text-red-500">*</span>
             </div>
-            <input disabled type="text" placeholder=" Country" value={userData?.country}/>
+            <input
+              disabled
+              type="text"
+              placeholder="Country"
+              value={userData?.country}
+              className="w-full px-4 py-3 bg-white text-[16px] font-normal border border-gray-300 rounded-lg focus:border-[#718ebf] placeholder-gray-400"
+            />
           </div>
         </form>
       </div>

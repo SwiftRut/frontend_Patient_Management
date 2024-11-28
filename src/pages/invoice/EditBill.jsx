@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import "./invoice.css";
-import FormInput from '../../component/common/FormInput';
-import { formDataObject, PatientBillFields } from './Contants';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useGlobal } from '../../hooks/useGlobal';
-import { useDoctor } from '../../hooks/useDoctor';
+import FormInput from "../../component/common/FormInput";
+import { formDataObject, PatientBillFields } from "./Contants";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGlobal } from "../../hooks/useGlobal";
+import { useDoctor } from "../../hooks/useDoctor";
 import toast from "react-hot-toast";
 import InputField from "./InputField";
 
@@ -22,7 +21,6 @@ const EditBill = () => {
       try {
         setLoading(true);
         const data = await getBillById(id);
-        console.log("Fetched data:", data);
         if (data) {
           setFormData({
             billNumber: data.billNumber,
@@ -30,12 +28,12 @@ const EditBill = () => {
             phone: data.phone,
             gender: data.gender,
             age: data.age,
-            doctorId: data.doctorId._id,
-            doctorName: data.doctorId.name,
+            doctorId: data.doctorId?._id,
+            doctorName: data.doctorId?.name,
             diseaseName: data.diseaseName,
             description: data.description,
             paymentType: data.paymentType,
-            billDate: data.date.split('T')[0],
+            billDate: data.date.split("T")[0],
             billTime: data.time,
             discount: data.discount,
             tax: data.tax,
@@ -61,7 +59,7 @@ const EditBill = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -88,36 +86,59 @@ const EditBill = () => {
     return <div>Error: {error}</div>;
   }
 
-  const HospitalBillFields = [  
-    { label: "Patient Name", name: "patientName", type: "text", disabled: true, readOnly: true },
-    { label: "Phone Number", name: "phone", type: "text",disabled: true },
-    { label: "Gender", name: "gender", type: "select", options: [
-      { label: "Select Gender", value: "" },
-      { label: "Male", value: "male" },
-      { label: "Female", value: "female" },
-      { label: "Other", value: "other" }
-    ]},
-    { label: "Age", name: "age", type: "text",disabled: true },
+  const HospitalBillFields = [
+    {
+      label: "Patient Name",
+      name: "patientName",
+      type: "text",
+      disabled: true,
+      readOnly: true,
+    },
+    { label: "Phone Number", name: "phone", type: "text", disabled: true },
+    {
+      label: "Gender",
+      name: "gender",
+      type: "select",
+      options: [
+        { label: "Select Gender", value: "" },
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
+      ],
+    },
+    { label: "Age", name: "age", type: "text", disabled: true },
     {
       label: "Doctor Name",
       name: "doctorId",
       type: "select",
       options: [
         { label: "Select Doctor", value: "" },
-        ...allDoctors.map((doctor) => ({ label: doctor.name, value: doctor._id }))
+        ...allDoctors.map((doctor) => ({
+          label: doctor?.name,
+          value: doctor?._id,
+        })),
+        ...allDoctors.map((doctor) => ({
+          label: doctor.name,
+          value: doctor?._id,
+        })),
       ],
     },
-    { label: "Disease Name", name: "diseaseName", type: "text"},
+    { label: "Disease Name", name: "diseaseName", type: "text" },
     { label: "Description", name: "description", type: "text" },
-    { label: "Payment Type", name: "paymentType", type: "select", options: [
-      { label: "Select Payment Type", value: "" },
-      { label: "Cash", value: "Cash" },
-      { label: "Insurance", value: "Insurance" },
-      { label: "Credit Card", value: "Credit Card" }
-    ]},
+    {
+      label: "Payment Type",
+      name: "paymentType",
+      type: "select",
+      options: [
+        { label: "Select Payment Type", value: "" },
+        { label: "Cash", value: "Cash" },
+        { label: "Insurance", value: "Insurance" },
+        { label: "Credit Card", value: "Credit Card" },
+      ],
+    },
     { label: "Bill Date", name: "billDate", type: "date" },
     { label: "Bill Time", name: "billTime", type: "text" },
-    { label: "Bill Number", name: "billNumber", type: "text",disabled: true },
+    { label: "Bill Number", name: "billNumber", type: "text", disabled: true },
     { label: "Discount (%)", name: "discount", type: "text" },
     { label: "Tax", name: "tax", type: "text" },
     { label: "Amount", name: "amount", type: "text" },
@@ -127,30 +148,36 @@ const EditBill = () => {
 
   return (
     <div>
-      <div className="bill-insurance-section">
+      <div className="edit-bill-insurance-section p-5 bg-[#F6F8FB]">
         <div className="row">
-          <div className="main">
+          <div className="main bg-white p-4 rounded-xl">
             <div className="title">
-              <p>Edit Bill</p>
+              <p className="text-dark text-[26px] font-bold">Edit Bill</p>
             </div>
 
-            <div className="patient-details">
+            <div className="patient-details my-4 p-5 border-2 border-gray-200 bg-white rounded-xl">
               <div className="content">
-                <div className="details flex">
-                  <div className="form-box">
-                    <form onSubmit={handleSubmit} className="flex" id="edit-bill-form">
+                <div className="details flex flex-wrap">
+                  <div className="form-box w-full">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="flex flex-wrap gap-x-4"
+                      id="edit-bill-form"
+                    >
                       {HospitalBillFields.map((field) => (
                         <InputField
                           key={field.name}
                           label={field.label}
                           type={field.type}
-                          value={formData[field.name] || ''}
-                          onChange={(e) => handleChange({
-                            target: {
-                              name: field.name,
-                              value: e.target.value
-                            }
-                          })}
+                          value={formData[field.name] || ""}
+                          onChange={(e) =>
+                            handleChange({
+                              target: {
+                                name: field.name,
+                                value: e.target.value,
+                              },
+                            })
+                          }
                           name={field.name}
                           options={field.options}
                           placeholder={field.placeholder}
@@ -165,20 +192,22 @@ const EditBill = () => {
             </div>
 
             {formData.paymentType === "Insurance" && (
-              <div className="insurance-details">
+              <div className="insurance-details my-4 p-5 border-2 border-gray-200 rounded-xl">
                 <div className="content">
                   <div className="head">
-                    <p>Insurance Details</p>
+                    <p className="text-dark text-xl font-bold">
+                      Insurance Details
+                    </p>
                   </div>
 
-                  <div className="details flex">
-                    <div className="form-box">
-                      <form className="flex">
+                  <div className="details flex flex-wrap">
+                    <div className="form-box w-full">
+                      <form className="flex flex-wrap gap-4">
                         {PatientBillFields.map((field, index) => (
                           <FormInput
                             key={index}
                             {...field}
-                            value={formData[field.name] || ''}
+                            value={formData[field.name] || ""}
                             onChange={handleChange}
                           />
                         ))}
@@ -188,8 +217,13 @@ const EditBill = () => {
                 </div>
               </div>
             )}
-            <div className="save-btn flex">
-              <button type="submit" form="edit-bill-form">
+
+            <div className="save-btn flex justify-end">
+              <button
+                type="submit"
+                form="edit-bill-form"
+                className="bg-gray-100 text-gray-700 font-semibold text-lg py-3 px-8 rounded-lg hover:bg-blue-500 hover:text-white"
+              >
                 Save
               </button>
             </div>

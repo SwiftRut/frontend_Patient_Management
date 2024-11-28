@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { useEffect, useState } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import medical from "../../assets/medical-certificate.png";
 import prescription from "../../assets/prescription.png";
 import patientImage from "../../assets/patient-image.png";
-import { useParams } from 'react-router-dom';
-import { usePatient } from '../../hooks/usePatient';
+import { useParams } from "react-router-dom";
+import { usePatient } from "../../hooks/usePatient";
 
 const PrescriptionView = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -33,50 +33,91 @@ const PrescriptionView = () => {
   };
 
   const patient = {
-    name: patientDetails ? `${patientDetails.firstName} ${patientDetails.lastName}` : `${fallbackData.firstName} ${fallbackData.lastName}`,
+    name: patientDetails
+      ? `${patientDetails.firstName} ${patientDetails.lastName}`
+      : `${fallbackData.firstName} ${fallbackData.lastName}`,
     phone: patientDetails?.phone || fallbackData.phone,
-    age: patientDetails?.age ? `${patientDetails.age} Years` : `${fallbackData.age} Years`,
+    age: patientDetails?.age
+      ? `${patientDetails.age} Years`
+      : `${fallbackData.age} Years`,
     gender: patientDetails?.gender || fallbackData.gender,
     address: patientDetails?.address || fallbackData.address,
     avatar: patientDetails?.avatar || fallbackData.avatar,
     issue: patientDetails?.patient_issue || fallbackData.issue,
     doctorName: patientDetails?.doctorName || fallbackData.doctorName,
-    lastAppointmentTime: patientDetails?.appointmentTime || fallbackData.lastAppointmentTime,
+    lastAppointmentTime:
+      patientDetails?.appointmentTime || fallbackData.lastAppointmentTime,
   };
 
   // Assuming documents are fetched or stored in patientDetails
   const Alldocuments = patientDetails?.documents || [
-    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
-    { createdDate: '5 Feb, 2022', imageUrl: medical, title: 'Medical Certificate 2' },
-    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
-    { createdDate: '30 Apr, 2022', imageUrl: medical  , title: 'Medical Certificate 4' },
+    {
+      createdDate: "2 Jan, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 1",
+    },
+    {
+      createdDate: "5 Feb, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 2",
+    },
+    {
+      createdDate: "15 Mar, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 3",
+    },
+    {
+      createdDate: "30 Apr, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 4",
+    },
   ];
 
   // Assuming prescriptions are fetched or stored in patientDetails
   const Prescriptions = patientDetails?.prescriptions || [
-    { createdDate: '2 Jan, 2022', imageUrl: prescription, title: 'Prescription 1' },
-    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Prescription 2' },
-    { createdDate: '15 Mar, 2022', imageUrl: prescription, title: 'Prescription 3' },
-    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Prescription 4' },
+    {
+      createdDate: "2 Jan, 2022",
+      imageUrl: prescription,
+      title: "Prescription 1",
+    },
+    {
+      createdDate: "5 Feb, 2022",
+      imageUrl: prescription,
+      title: "Prescription 2",
+    },
+    {
+      createdDate: "15 Mar, 2022",
+      imageUrl: prescription,
+      title: "Prescription 3",
+    },
+    {
+      createdDate: "30 Apr, 2022",
+      imageUrl: prescription,
+      title: "Prescription 4",
+    },
   ];
 
   // Assuming descriptions are fetched or stored in patientDetails
   const Descriptions = patientDetails?.descriptions || [
     {
-      createdDate: '2 Jan, 2022',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      createdDate: "2 Jan, 2022",
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
     {
-      createdDate: '5 Feb, 2022',
-      description: 'It is a long established fact that a reader will be distracted by the content.',
+      createdDate: "5 Feb, 2022",
+      description:
+        "It is a long established fact that a reader will be distracted by the content.",
     },
     {
-      createdDate: '15 Mar, 2022',
-      description: 'Many desktop publishing packages use Lorem Ipsum as their default model text.',
+      createdDate: "15 Mar, 2022",
+      description:
+        "Many desktop publishing packages use Lorem Ipsum as their default model text.",
     },
     {
-      createdDate: '30 Apr, 2022',
-      description: 'There are many variations of passages of Lorem Ipsum available.',
+      createdDate: "30 Apr, 2022",
+      description:
+        "There are many variations of passages of Lorem Ipsum available.",
     },
   ];
 
@@ -87,48 +128,84 @@ const PrescriptionView = () => {
           <h1 className="text-2xl font-bold">Patient Details</h1>
         </div>
         <div className="flex items-center">
-          <div className="w-1/12">
+          <div className="w-[10%]">
             <img
               src={patient.avatar || patientImage}
               alt={patient.name}
               className="w-28 h-28 rounded-full mr-6 border-4"
             />
           </div>
-          <div className="flex w-5/6">
-            <div className="grid grid-cols-4 gap-0 border-r pe-16">
-              <div>
-                <p className="text-gray-500">Patient Name</p>
-                <p className="font-medium">{patient.name}</p>
+          <div className="flex w-[90%]">
+            <div className="w-[70%] border-r">
+              <div className="flex justify-between pe-80 mb-3">
+                <div>
+                  <p className="text-[#A7A7A7] text-base font-normal">
+                    Patient Name
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.name}
+                  </p>
+                </div>
+                <div className="ps-8">
+                  <p className="text-[#A7A7A7] text-base font-normal">
+                    Patient Number
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.phone}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#A7A7A7] text-base font-normal">
+                    Patient Issue
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.issue}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-gray-500">Patient Number</p>
-                <p className="font-medium">{patient.phone}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Patient Issue</p>
-                <p className="font-medium">{patient.issue}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Patient Gender</p>
-                <p className="font-medium">{patient.gender}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Doctor Name</p>
-                <p className="font-medium">{patient.doctorName}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Patient Age</p>
-                <p className="font-medium">{patient.age}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Patient Address</p>
-                <p className="font-medium">{patient.address}</p>
+              <div className="flex justify-between pe-80">
+                <div>
+                  <p className="text-[#A7A7A7] text-base font-normal">
+                    Patient Gender
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.gender}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#A7A7A7] text-basefont-normal">
+                    Doctor Name
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.doctorName}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[#A7A7A7] text-base font-normal">
+                    Patient Age
+                  </p>
+                  <p className="text-[18px] font-normal text-[#141414]">
+                    {patient.age}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="ps-5">
               <div className="pb-5">
-                <p className="text-gray-500 pb-1">Last Appointment Time</p>
-                <p className="font-medium">{patient.lastAppointmentTime}</p>
+                <p className="text-[#A7A7A7] text-base font-normal pb-1">
+                  Last Appointment Time
+                </p>
+                <p className="text-[18px] font-normal text-[#141414]">
+                  {patient.lastAppointmentTime}
+                </p>
+              </div>
+              <div>
+                <p className="text-[#A7A7A7] text-base font-normal">
+                  Patient Address
+                </p>
+                <p className="text-[18px] font-normal text-[#141414]">
+                  {patient.address}
+                </p>
               </div>
             </div>
           </div>
@@ -137,23 +214,35 @@ const PrescriptionView = () => {
 
       {/* Tabs */}
       <div className="bg-white rounded-lg p-5">
-        <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}>
+        <Tabs
+          selectedIndex={activeTab}
+          onSelect={(index) => setActiveTab(index)}
+        >
           <TabList className="flex border-b-2 mb-4">
             <Tab
-              className={`px-4 py-2 cursor-pointer outline-none ${activeTab === 0 ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'
-                }`}
+              className={`px-4 py-2 cursor-pointer outline-none ${
+                activeTab === 0
+                  ? "border-b-2 border-blue-500 text-blue-500"
+                  : "text-gray-500"
+              }`}
             >
               All Documents
             </Tab>
             <Tab
-              className={`px-4 py-2 cursor-pointer outline-none ${activeTab === 1 ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'
-                }`}
+              className={`px-4 py-2 cursor-pointer outline-none ${
+                activeTab === 1
+                  ? "border-b-2 border-blue-500 text-blue-500"
+                  : "text-gray-500"
+              }`}
             >
               All Prescriptions
             </Tab>
             <Tab
-              className={`px-4 py-2 cursor-pointer outline-none ${activeTab === 2 ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'
-                }`}
+              className={`px-4 py-2 cursor-pointer outline-none ${
+                activeTab === 2
+                  ? "border-b-2 border-blue-500 text-blue-500"
+                  : "text-gray-500"
+              }`}
             >
               Description
             </Tab>
@@ -165,7 +254,9 @@ const PrescriptionView = () => {
               {Alldocuments.map((document, index) => (
                 <div key={index} className="border p-4 rounded-lg shadow">
                   <h3 className="text-gray-600">Created Date</h3>
-                  <p className="text-sm text-gray-500">{document.createdDate}</p>
+                  <p className="text-sm text-gray-500">
+                    {document.createdDate}
+                  </p>
                   <img src={document.imageUrl} alt={document.title} />
                 </div>
               ))}
@@ -178,7 +269,9 @@ const PrescriptionView = () => {
               {Prescriptions.map((document, index) => (
                 <div key={index} className="border p-4 rounded-lg shadow">
                   <h3 className="text-gray-600">Created Date</h3>
-                  <p className="text-sm text-gray-500">{document.createdDate}</p>
+                  <p className="text-sm text-gray-500">
+                    {document.createdDate}
+                  </p>
                   <img src={document.imageUrl} alt={document.title} />
                 </div>
               ))}

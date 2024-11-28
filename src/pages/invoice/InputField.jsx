@@ -4,31 +4,39 @@ import { FaCircleMinus } from "react-icons/fa6";
 import PropTypes from "prop-types";
 
 const InputField = ({
-  label = '',
-  name = '',
-  type = 'text',
-  value = '',
+  label = "",
+  name = "",
+  type = "text",
+  value = "",
   onChange = () => {},
   options = [],
-  placeholder = '',
+  placeholder = "",
   readOnly,
   disabled,
   className,
   ...props
 }) => {
-  console.log(value)
-  if (type === 'select') {
+  if (type === "select") {
     return (
-      <div className={`input-box ${className}`}>
-        <div className="label">{label}</div>
-        <select name={name} value={value} onChange={onChange} disabled={disabled} {...props}>
+      <div className={`relative py-4 w-[24%] ${className}`}>
+        <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">
+          {label}
+        </div>
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          {...props}
+        >
           {options.map((option, idx) => (
             <option key={idx} value={option.value}>
               {option.label}
             </option>
           ))}
         </select>
-        <div className="minus-circle">
+        <div className="absolute top-1.5 right-[-8px] text-gray-400 text-xl">
           <FaCircleMinus />
         </div>
       </div>
@@ -36,8 +44,10 @@ const InputField = ({
   }
 
   return (
-    <div className={`input-box ${className}`}>
-      <div className="label">{label}</div>
+    <div className={`relative py-4 w-[24%] ${className}`}>
+      <div className="absolute top-1 left-3 bg-white text-[#030229] text-[16px] font-medium">
+        {label}
+      </div>
       <input
         type={type}
         name={name}
@@ -46,9 +56,10 @@ const InputField = ({
         onChange={onChange}
         readOnly={readOnly}
         disabled={disabled}
+        className="w-full px-4 py-3 border border-gray-300 bg-white rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
         {...props}
       />
-      <div className="minus-circle">
+      <div className="absolute top-1.5 right-[-8px] text-gray-400 text-xl">
         <FaCircleMinus />
       </div>
     </div>
@@ -66,7 +77,7 @@ InputField.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-    })
+    }),
   ),
   readOnly: PropTypes.bool,
   disabled: PropTypes.bool,
