@@ -112,6 +112,72 @@ const Header = () => {
   );
 
   return (
+    // <div className="header sticky top-0 bg-white z-10 flex items-center justify-between p-3">
+    //   <div className="breadcrumbs flex items-center space-x-2 text-gray-600 bg-[#f8fcfe] border rounded-full py-2 px-3 text-lg font-normal">
+    //     <IoHomeSharp />
+    //     <IoIosArrowForward className="icon" />
+    //     <Breadcrumbs aria-label="breadcrumb">
+    //       <NavLink to="/">
+    //         <Typography variant="body2" color="inherit" className="text-sm">
+    //           Home
+    //         </Typography>
+    //       </NavLink>
+    //       <Typography variant="body2" color="text-primary" className="text-sm">
+    //         {breadcrumbNames[location.pathname.split("/")[1]] || "Page"}
+    //       </Typography>
+    //     </Breadcrumbs>
+    //   </div>
+
+    //   <div className="flex justify-between items-center mt-0">
+    //     <div className="flex items-right items-center bg-gray-100 rounded-full px-4">
+    //       <RiSearchLine className="text-[#4F4F4F] text-xl me-2" />
+    //       <InputBase
+    //         placeholder="Quick Search"
+    //         inputProps={{ "aria-label": "search" }}
+    //         className="flex-grow"
+    //         value={searchTerm}
+    //         onChange={(e) => setSearchTerm(e.target.value)}
+    //         onKeyPress={handleKeyPress}
+    //       />
+    //       <IconButton aria-label="dropdown" onClick={handleClick}>
+    //         <span className="text-sm">{selectedOption}</span>
+    //         <ArrowDropDown />
+    //       </IconButton>
+    //       <Menu
+    //         anchorEl={anchorEl}
+    //         open={Boolean(anchorEl)}
+    //         onClose={() => handleClose(null)}
+    //       >
+    //         <MenuItem onClick={() => handleClose("All")}>All</MenuItem>
+    //         <MenuItem onClick={() => handleClose("Doctor")}>Doctor</MenuItem>
+    //         <MenuItem onClick={() => handleClose("Patient")}>Patient</MenuItem>
+    //       </Menu>
+    //     </div>
+    //     <div className="flex items-center space-x-4">
+    //       <button
+    //         aria-label="notifications"
+    //         // className="bg-gray-200 rounded-full p-2 mx-2 relative"
+    //       >
+    //         <Badge color="secondary">
+    //           <NotificationBox />
+    //         </Badge>
+    //       </button>
+    //       <NavLink to={"/profile"}>
+    //         <div className="flex items-center">
+    //           <Avatar src={userAvatar} alt="User Image" />
+    //           <div className="ml-2">
+    //             <Typography variant="body2" fontWeight="bold">
+    //               {userName}
+    //             </Typography>
+    //             <Typography variant="caption" color="textSecondary">
+    //               {userRole}
+    //             </Typography>
+    //           </div>
+    //         </div>
+    //       </NavLink>
+    //     </div>
+    //   </div>
+    // </div>
     <div className="bg-white sticky top-0 flex flex-wrap items-center justify-between sm:w-full min-w-[230px]">
       <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
         {/* <IconButton className="sm:hidden mr-2" onClick={toggleDrawer(true)}>
@@ -204,6 +270,7 @@ const Header = () => {
             <NotificationBox />
           </Badge>
         </button>
+        <NavLink to={"/profile"}>
         <div className=" flex items-center ml-4">
           <Avatar src={userAvatar} alt="User Image" />
           <div className="hidden sm:inline-block sm:ml-2">
@@ -215,6 +282,7 @@ const Header = () => {
             </Typography>
           </div>
         </div>
+        </NavLink>
       </div>
 
       {/* Collapsible search bar for small screens */}

@@ -117,7 +117,7 @@ export default function AdminPanel() {
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <aside
-        className={`bg-white xl:w-56 w-64 min-h-screen flex flex-col transition-all duration-300 ease-in-out ${
+        className={`bg-white  w-64 min-h-screen flex flex-col transition-all duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 fixed lg:static z-30`}
       >
