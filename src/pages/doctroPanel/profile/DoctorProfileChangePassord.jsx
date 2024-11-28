@@ -16,18 +16,20 @@ const DoctorProfileChangePassord = () => {
       return;
     }
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!newPassword) {
       setErrorMessage("New password is required.");
       return;
     } else if (!passwordRegex.test(newPassword)) {
-      setErrorMessage("New password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.");
+      setErrorMessage(
+        "New password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.",
+      );
       return;
     } else if (newPassword !== confirmPassword) {
       setErrorMessage("New password and confirm password do not match.");
       return;
     }
-
   };
 
   return (
@@ -36,13 +38,16 @@ const DoctorProfileChangePassord = () => {
         <div className="content p-8 bg-white rounded-2xl shadow-xl">
           <div className="head">
             <div className="title">
-              <p className="text-[34px] font-semibold text-[#030229]">Change Password</p>
+              <p className="text-[34px] font-semibold text-[#030229]">
+                Change Password
+              </p>
             </div>
             <div className="description pt-4">
               <p className="text-[16px] font-normal text-[#4F4F4F]">
-                To change your password, please fill in the fields below. Your password must contain
-                at least 8 characters, it must also include at least one uppercase letter, one
-                lowercase letter, one number, and one special character.
+                To change your password, please fill in the fields below. Your
+                password must contain at least 8 characters, it must also
+                include at least one uppercase letter, one lowercase letter, one
+                number, and one special character.
               </p>
             </div>
           </div>
@@ -106,7 +111,6 @@ const DoctorProfileChangePassord = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

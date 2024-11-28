@@ -16,7 +16,8 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
   };
 
   const addOption = () => setOptions([...options, ""]);
-  const removeOption = (index) => setOptions(options.filter((_, i) => i !== index));
+  const removeOption = (index) =>
+    setOptions(options.filter((_, i) => i !== index));
 
   const handleAdd = () => {
     if (!fieldName.trim()) {
@@ -28,7 +29,8 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
       fieldType,
       selectionType: fieldType === "Dropdown" ? selectionType : null,
       name: fieldName,
-      options: fieldType === "Dropdown" ? options.filter((opt) => opt.trim()) : null,
+      options:
+        fieldType === "Dropdown" ? options.filter((opt) => opt.trim()) : null,
     });
 
     // Reset fields after adding
@@ -102,13 +104,18 @@ const AddFieldModal = ({ isOpen, onClose, onAddField }) => {
                   <div className="flex">
                     {options.map((option, index) => (
                       <div key={index} className="input-box">
-                        <div className="minus-circle" onClick={() => removeOption(index)}>
+                        <div
+                          className="minus-circle"
+                          onClick={() => removeOption(index)}
+                        >
                           <TiMinus />
                         </div>
                         <input
                           type="text"
                           value={option}
-                          onChange={(e) => handleOptionChange(index, e.target.value)}
+                          onChange={(e) =>
+                            handleOptionChange(index, e.target.value)
+                          }
                           placeholder={`Value ${index + 1}`}
                         />
                       </div>

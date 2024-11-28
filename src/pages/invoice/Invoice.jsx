@@ -133,7 +133,7 @@ const Invoice = () => {
     if (section === "hospital") {
       const fieldToRemove = hospitalDynamicFields[index];
       setHospitalDynamicFields((prevFields) =>
-        prevFields.filter((_, i) => i !== index)
+        prevFields.filter((_, i) => i !== index),
       );
       setFormData((prevData) => {
         const newData = { ...prevData };
@@ -143,7 +143,7 @@ const Invoice = () => {
     } else if (section === "patient") {
       const fieldToRemove = patientDynamicFields[index];
       setPatientDynamicFields((prevFields) =>
-        prevFields.filter((_, i) => i !== index)
+        prevFields.filter((_, i) => i !== index),
       );
       setPatientData((prevData) => {
         const newData = { ...prevData };

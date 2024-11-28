@@ -1,4 +1,10 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+} from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import PropTypes from "prop-types";
 

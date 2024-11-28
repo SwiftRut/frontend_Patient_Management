@@ -39,5 +39,5 @@ createRoot(document.getElementById("root")).render(
         </ErrorBoundary>
       </AuthProvider>
     </GlobalProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );

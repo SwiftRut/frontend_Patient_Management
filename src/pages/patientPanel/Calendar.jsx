@@ -12,7 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment }) => {
+const Calendar = ({
+  filterData,
+  selectedDoctor,
+  onDateTimeSelect,
+  handlePayment,
+}) => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,12 +32,14 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
     getAppointmetnsForPatient,
   } = useGlobal();
   const { user } = useAuth();
-  console.log(user,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+  console.log(
+    user,
+    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",
+  );
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
   }, [user.id]);
 
-  
   useEffect(() => {
     const mappedEvents = allAppointements?.map((appointment) => ({
       title: `${appointment.patientId.firstName} with Dr. ${appointment.doctorId?.name}`,
@@ -49,10 +56,10 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
     setSelectedSlot(slotInfo);
     if (onDateTimeSelect) {
       const date = slotInfo.start;
-      const time = slotInfo.start.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: false 
+      const time = slotInfo.start.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
       });
       onDateTimeSelect(date, time);
     }
@@ -74,14 +81,12 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
     setSelectedEvent(null);
   };
   const handleBookAppointment = async (appointmentData) => {
-
     try {
       // await handlePayment();
       await createAppointment(user.id, appointmentData, selectedDoctor);
       setEvents([...events, appointmentData]);
       handleCloseModal();
       navigate("/patient/appointment");
-      
     } catch (error) {
       console.error("Error booking appointment:", error);
     }
@@ -91,18 +96,22 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
     try {
       await updateAppointment(updatedAppointment._id, updatedAppointment);
       const updatedEvents = events.map((event) =>
-        event.id === updatedAppointment.id ? { ...event, ...updatedAppointment } : event
+        event.id === updatedAppointment.id
+          ? { ...event, ...updatedAppointment }
+          : event,
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment rescheduled successfully.");
-      
+
       if (onDateTimeSelect) {
         const date = new Date(updatedAppointment.date);
-        const time = new Date(updatedAppointment.appointmentTime).toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false
+        const time = new Date(
+          updatedAppointment.appointmentTime,
+        ).toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
         });
         onDateTimeSelect(date, time);
       }
@@ -115,7 +124,9 @@ const Calendar = ({ filterData, selectedDoctor, onDateTimeSelect, handlePayment 
   const handleDeleteAppointment = async (appointmentId) => {
     try {
       await deleteAppointment(appointmentId);
-      const updatedEvents = events.filter((event) => event.id !== appointmentId);
+      const updatedEvents = events.filter(
+        (event) => event.id !== appointmentId,
+      );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
       toast.success("Appointment deleted successfully.");

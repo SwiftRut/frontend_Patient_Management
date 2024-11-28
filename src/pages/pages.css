@@ -33,7 +33,9 @@ input {
 .registration-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .registration-section .row .main .form .content .head {
@@ -1152,7 +1154,9 @@ input {
 .admin-mobile-section .row .main .form .admin-mobile-content {
   padding: 40px 40px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .admin-mobile-section .row .main .form .admin-mobile-content .head {
@@ -2401,7 +2405,9 @@ input {
 .login-section .row .main .form .content {
   padding: 60px 60px;
   border: 1px solid #f4f4f4;
-  box-shadow: 0 2px 2px 0 #f4f4f4, 0 0px 10px 0 #f4f4f4;
+  box-shadow:
+    0 2px 2px 0 #f4f4f4,
+    0 0px 10px 0 #f4f4f4;
   border-radius: 15px;
 }
 .login-section .row .main .form .content .head {

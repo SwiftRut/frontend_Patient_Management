@@ -17,7 +17,12 @@ import { FaDownload } from "react-icons/fa";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 
-const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) => {
+const PrescriptionModal = ({
+  open,
+  handleClose,
+  prescriptionData,
+  onDownload,
+}) => {
   const modalRef = useRef(null);
 
   const downloadPrescriptionImage = async () => {
@@ -31,7 +36,9 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
         toast.success("Prescription image downloaded successfully.");
       } catch (error) {
         console.error("Failed to download image:", error);
-        toast.error("Failed to download the prescription image. Please try again.");
+        toast.error(
+          "Failed to download the prescription image. Please try again.",
+        );
       }
     }
   };
@@ -48,7 +55,10 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
         <div className="flex justify-between items-center">
           <span className="text-xl font-semibold">Prescription</span>
           <div className="flex items-center">
-            <IconButton onClick={downloadPrescriptionImage} title="Download as Image">
+            <IconButton
+              onClick={downloadPrescriptionImage}
+              title="Download as Image"
+            >
               <FaDownload />
             </IconButton>
             <IconButton onClick={handleClose}>
@@ -67,7 +77,9 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
               </div>
               <div className="text-center sm:text-right">
                 <p className="font-semibold text-lg">Dr. Bharat Patel</p>
-                <span className="text-sm text-gray-600">Obstetrics and Gynecology</span>
+                <span className="text-sm text-gray-600">
+                  Obstetrics and Gynecology
+                </span>
               </div>
             </div>
 
@@ -80,24 +92,36 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData, onDownload }) 
                 <p>
                   Prescription Date:{" "}
                   <span className="font-medium">
-                    {new Date(prescriptionData.date).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {new Date(prescriptionData.date).toLocaleDateString(
+                      "en-US",
+                      {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      },
+                    )}
                   </span>
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
                 <p>
-                  Gender: <span className="font-medium">{prescriptionData.patientId.gender}</span>
+                  Gender:{" "}
+                  <span className="font-medium">
+                    {prescriptionData.patientId.gender}
+                  </span>
                 </p>
                 <p>
-                  Age: <span className="font-medium">{prescriptionData.patientId.age}</span>
+                  Age:{" "}
+                  <span className="font-medium">
+                    {prescriptionData.patientId.age}
+                  </span>
                 </p>
               </div>
               <p className="break-words">
-                Address: <span className="font-medium">{prescriptionData.patientId.address}</span>
+                Address:{" "}
+                <span className="font-medium">
+                  {prescriptionData.patientId.address}
+                </span>
               </p>
             </div>
           </div>
@@ -165,7 +189,7 @@ PrescriptionModal.propTypes = {
         dose: PropTypes.string,
         duration: PropTypes.string,
         whenToTake: PropTypes.string,
-      })
+      }),
     ),
     instructions: PropTypes.string,
   }).isRequired,

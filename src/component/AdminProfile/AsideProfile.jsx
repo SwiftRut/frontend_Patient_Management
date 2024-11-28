@@ -9,7 +9,6 @@ export default function AsideProfile() {
   const { userData } = useGlobal();
   return (
     <div className="left w-[23%]  border-r-[3px] border-gray-200 px-5 py-4">
-
       <div className="img-box text-center">
         <div className="img">
           <img
@@ -19,15 +18,15 @@ export default function AsideProfile() {
           />
         </div>
         <p className="text-[24px] font-semibold mt-2">
-          {userData ? `${userData?.firstName} ${userData?.lastName}` : "Lincoln Philips"}
+          {userData
+            ? `${userData?.firstName} ${userData?.lastName}`
+            : "Lincoln Philips"}
         </p>
       </div>
-
 
       <div className="menu mt-6">
         <p className="text-[20px] font-semibold text-[#141414] mb-4">Menu </p>
         <ul>
-
           <li className="mb-3">
             <NavLink
               to=""

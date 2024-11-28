@@ -57,12 +57,16 @@ const AppointmentModal = ({
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
       <div className="bg-white p-5 rounded-lg shadow-xl max-w-md w-full">
-        <h2 className="text-xl font-semibold mb-4">{isEditMode ? "Edit Appointment" : "Book Appointment"}</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          {isEditMode ? "Edit Appointment" : "Book Appointment"}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-medium">Appointment Type</span>
-              <span className="text-yellow-500">{filterData.appointmentType || "Online"}</span>
+              <span className="text-yellow-500">
+                {filterData.appointmentType || "Online"}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="font-medium">Patient Name</span>
@@ -87,7 +91,9 @@ const AppointmentModal = ({
               />
             </div>
             <div>
-              <label className="font-medium block mb-1">Disease Name (Optional)</label>
+              <label className="font-medium block mb-1">
+                Disease Name (Optional)
+              </label>
               <input
                 type="text"
                 value={diseaseName}

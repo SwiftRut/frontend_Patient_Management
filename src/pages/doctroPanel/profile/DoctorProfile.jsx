@@ -6,7 +6,6 @@ import DoctorProfileTermsCondition from "./DoctorProfileTermsCondition";
 import DoctorProfilePrivacyPolicy from "./DoctorProfilePrivacyPolicy";
 
 export default function DoctorProfile() {
-
   return (
     <div>
       <div className="doctor-profile-section">
@@ -15,7 +14,9 @@ export default function DoctorProfile() {
             <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
             <div className="profile-setting w-[80%] m-auto mt-[-12%]">
               <div className="head pb-[15px]">
-                <p className="text-[44px] font-bold text-white">Profile Setting</p>
+                <p className="text-[44px] font-bold text-white">
+                  Profile Setting
+                </p>
               </div>
               <div className="content flex bg-white rounded-[15px] p-[20px] shadow-2xl ">
                 <DoctorAside />
@@ -23,12 +24,20 @@ export default function DoctorProfile() {
                 <div className="right w-[77%] ps-[20px]">
                   <Routes>
                     <Route path="" element={<DoctorProfileData />} />
-                    <Route path="changePassword" element={<DoctorProfileChangePassord />} />
-                    <Route path="termsCondition" element={<DoctorProfileTermsCondition />} />
-                    <Route path="privacyPolicy" element={<DoctorProfilePrivacyPolicy />} />
+                    <Route
+                      path="changePassword"
+                      element={<DoctorProfileChangePassord />}
+                    />
+                    <Route
+                      path="termsCondition"
+                      element={<DoctorProfileTermsCondition />}
+                    />
+                    <Route
+                      path="privacyPolicy"
+                      element={<DoctorProfilePrivacyPolicy />}
+                    />
                   </Routes>
                 </div>
-
               </div>
             </div>
           </div>

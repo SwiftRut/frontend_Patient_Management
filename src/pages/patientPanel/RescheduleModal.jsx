@@ -2,7 +2,13 @@ import { useState } from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
 
-const RescheduleModal = ({ isOpen, onClose, onReschedule, onDelete, selectedEvent }) => {
+const RescheduleModal = ({
+  isOpen,
+  onClose,
+  onReschedule,
+  onDelete,
+  selectedEvent,
+}) => {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
 

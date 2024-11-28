@@ -45,13 +45,16 @@ const CreatePrescription = ({
           </span>
         </p>
         <p className="flex items-center justify-between text-base font-normal text-[#818194]">
-          Patient Age: <span className="font-semibold text-[#4F4F4F]">{age} Years</span>
+          Patient Age:{" "}
+          <span className="font-semibold text-[#4F4F4F]">{age} Years</span>
         </p>
         <p className="flex items-center justify-between text-base font-normal text-[#818194]">
-          Patient Gender: <span className="font-semibold text-[#4F4F4F]">{gender}</span>
+          Patient Gender:{" "}
+          <span className="font-semibold text-[#4F4F4F]">{gender}</span>
         </p>
         <p className="flex items-center justify-between text-base font-normal text-[#818194]">
-          Appointment Time: <span className="font-semibold text-[#4F4F4F]">{time}</span>
+          Appointment Time:{" "}
+          <span className="font-semibold text-[#4F4F4F]">{time}</span>
         </p>
       </div>
       <button

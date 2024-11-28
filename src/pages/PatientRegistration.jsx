@@ -54,7 +54,7 @@ const PatientRegistration = () => {
 
     if (name === "country") {
       const selectedCountry = countries.find(
-        (country) => country.isoCode === value
+        (country) => country.isoCode === value,
       );
       setStates(State.getStatesOfCountry(selectedCountry.isoCode));
       setFormData((prevState) => ({ ...prevState, state: "", city: "" }));
@@ -174,7 +174,10 @@ const PatientRegistration = () => {
                     required
                     className="w-full border  border-gray-300 py-2 px-4 rounded-md"
                   >
-                    <option value="" className="text-gray-500"> Select Blood Group</option>
+                    <option value="" className="text-gray-500">
+                      {" "}
+                      Select Blood Group
+                    </option>
                     {bloodGroups.map((group) => (
                       <option key={group} value={group}>
                         {group}

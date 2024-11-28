@@ -145,22 +145,70 @@ const AllAppointment = () => {
   ];
 
   const documents = [
-    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
-    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
-    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
-    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
-    { createdDate: '2 Jan, 2022', imageUrl: medical, title: 'Medical Certificate 1' },
-    { createdDate: '15 Mar, 2022', imageUrl: medical, title: 'Medical Certificate 3' },
-  ]
+    {
+      createdDate: "2 Jan, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 1",
+    },
+    {
+      createdDate: "15 Mar, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 3",
+    },
+    {
+      createdDate: "2 Jan, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 1",
+    },
+    {
+      createdDate: "15 Mar, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 3",
+    },
+    {
+      createdDate: "2 Jan, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 1",
+    },
+    {
+      createdDate: "15 Mar, 2022",
+      imageUrl: medical,
+      title: "Medical Certificate 3",
+    },
+  ];
 
   const AllPrescription = [
-    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
-    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
-    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
-    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
-    { createdDate: '5 Feb, 2022', imageUrl: prescription, title: 'Medical Certificate 2' },
-    { createdDate: '30 Apr, 2022', imageUrl: prescription, title: 'Medical Certificate 4' },
-  ]
+    {
+      createdDate: "5 Feb, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 2",
+    },
+    {
+      createdDate: "30 Apr, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 4",
+    },
+    {
+      createdDate: "5 Feb, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 2",
+    },
+    {
+      createdDate: "30 Apr, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 4",
+    },
+    {
+      createdDate: "5 Feb, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 2",
+    },
+    {
+      createdDate: "30 Apr, 2022",
+      imageUrl: prescription,
+      title: "Medical Certificate 4",
+    },
+  ];
 
   const description = [
     {
@@ -285,31 +333,57 @@ const AllAppointment = () => {
                       className="w-full rounded-lg bg-white border border-gray-200 shadow-md h-70 pb-3"
                     >
                       <div className="flex justify-between items-center bg-gray-100 p-3">
-                        <h6 className="text-[16px] text-[#030229] font-semibold font-semibold">{val.doctorName}</h6>
+                        <h6 className="text-[16px] text-[#030229] font-semibold font-semibold">
+                          {val.doctorName}
+                        </h6>
                       </div>
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal	">Hospital Name</p>
-                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.hospitalName}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal	">
+                          Hospital Name
+                        </p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">
+                          {val.hospitalName}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment type</p>
-                        <span className="text-[16] text-[#FFC313] font-bold">{val.appointmentType}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">
+                          Appointment type
+                        </p>
+                        <span className="text-[16] text-[#FFC313] font-bold">
+                          {val.appointmentType}
+                        </span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment Date</p>
-                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.appointmentDate}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">
+                          Appointment Date
+                        </p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">
+                          {val.appointmentDate}
+                        </span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal">Appointment time</p>
-                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.appointmentTime}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">
+                          Appointment time
+                        </p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">
+                          {val.appointmentTime}
+                        </span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal">patient issue</p>
-                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.patientIssue}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">
+                          patient issue
+                        </p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">
+                          {val.patientIssue}
+                        </span>
                       </div>{" "}
                       <div className="flex justify-between items-center px-3">
-                        <p className="font-light text-[#818194] text-[16px] font-normal">Disease Name</p>
-                        <span className="text-[16] text-[#4F4F4F] font-bold">{val.diseaseName}</span>
+                        <p className="font-light text-[#818194] text-[16px] font-normal">
+                          Disease Name
+                        </p>
+                        <span className="text-[16] text-[#4F4F4F] font-bold">
+                          {val.diseaseName}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -323,8 +397,12 @@ const AllAppointment = () => {
                     {documents.map((document, index) => (
                       <div key={index} className="border rounded-lg shadow">
                         <div className="head flex align-center justify-between p-4 bg-gray-100">
-                          <h3 className="text-[18px] text-[#030229] font-semibold	">Created Date</h3>
-                          <p className="text-[18px] text-[#030229] font-semibold">{document.createdDate}</p>
+                          <h3 className="text-[18px] text-[#030229] font-semibold	">
+                            Created Date
+                          </h3>
+                          <p className="text-[18px] text-[#030229] font-semibold">
+                            {document.createdDate}
+                          </p>
                         </div>
                         <div className="img p-4">
                           <img src={document.imageUrl} alt={document.title} />
@@ -341,14 +419,18 @@ const AllAppointment = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {AllPrescription.map((document, index) => (
                       <div key={index} className="border rounded-lg shadow">
-                      <div className="head flex align-center justify-between p-4 bg-gray-100">
-                        <h3 className="text-[18px] text-[#030229] font-semibold	">Created Date</h3>
-                        <p className="text-[18px] text-[#030229] font-semibold">{document.createdDate}</p>
+                        <div className="head flex align-center justify-between p-4 bg-gray-100">
+                          <h3 className="text-[18px] text-[#030229] font-semibold	">
+                            Created Date
+                          </h3>
+                          <p className="text-[18px] text-[#030229] font-semibold">
+                            {document.createdDate}
+                          </p>
+                        </div>
+                        <div className="img p-4">
+                          <img src={document.imageUrl} alt={document.title} />
+                        </div>
                       </div>
-                      <div className="img p-4">
-                        <img src={document.imageUrl} alt={document.title} />
-                      </div>
-                    </div>
                     ))}
                   </div>
                 </div>
@@ -363,16 +445,26 @@ const AllAppointment = () => {
                       className="w-full rounded-lg bg-white border border-gray-200 shadow-md h-70"
                     >
                       <div className="flex justify-between items-center py-2 bg-gray-100 px-3">
-                        <h6 className="text-[18px] text-[#030229] font-semibold">Description</h6>
-                        <h6 className="text-[18px] text-[#030229] font-semibold">{val.descriptiondate}</h6>
+                        <h6 className="text-[18px] text-[#030229] font-semibold">
+                          Description
+                        </h6>
+                        <h6 className="text-[18px] text-[#030229] font-semibold">
+                          {val.descriptiondate}
+                        </h6>
                       </div>
                       <div className="p-3">
                         <p className="text-start">
-                          <i className="fa-solid fa-circle pe-2" style={{ fontSize: "6px" }}></i>
+                          <i
+                            className="fa-solid fa-circle pe-2"
+                            style={{ fontSize: "6px" }}
+                          ></i>
                           {val.lorem1}
                         </p>
                         <p className="text-start">
-                          <i className="fa-solid fa-circle pe-2" style={{ fontSize: "6px" }}></i>
+                          <i
+                            className="fa-solid fa-circle pe-2"
+                            style={{ fontSize: "6px" }}
+                          ></i>
                           {val.lorem2}
                         </p>
                       </div>

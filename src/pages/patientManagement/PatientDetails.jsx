@@ -112,7 +112,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.date
+                          patient.appointment.date,
                         ).toLocaleDateString()}
                       </p>
                     </li>
@@ -122,7 +122,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.appointmentTime
+                          patient.appointment.appointmentTime,
                         ).toLocaleTimeString()}
                       </p>
                     </li>

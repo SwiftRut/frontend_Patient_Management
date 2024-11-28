@@ -145,16 +145,31 @@ export default function TeleconsultationModule() {
   const renderAppointmentTable = (appointments) => {
     return (
       <div className="bg-white p-2 rounded-lg">
-        <div className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200" style={{ height: "calc(100vh - 280px)" }}>
+        <div
+          className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
+          style={{ height: "calc(100vh - 280px)" }}
+        >
           <table className="min-w-full table-auto">
             <thead className="sticky top-0 bg-gray-100 z-10">
               <tr>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tl-lg">Patient Name</th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">Patient Issue</th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">Diseases Name</th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">Appointment Time</th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">Status</th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tr-lg">Action</th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tl-lg">
+                  Patient Name
+                </th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">
+                  Patient Issue
+                </th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">
+                  Diseases Name
+                </th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">
+                  Appointment Time
+                </th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229]">
+                  Status
+                </th>
+                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tr-lg">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -163,17 +178,27 @@ export default function TeleconsultationModule() {
                   <tr key={patient.id} className="border-b">
                     <td className="flex items-center p-3">
                       <div className="avatar w-12 h-12 rounded-full overflow-hidden">
-                        <img src={patient.avatar || "/img/Avatar.png"} alt="Avatar" className="w-full h-full object-cover" />
+                        <img
+                          src={patient.avatar || "/img/Avatar.png"}
+                          alt="Avatar"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="ml-3">
-                        <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.name}</h3>
+                        <h3 className="text-md font-semibold text-[#4F4F4F]">
+                          {patient.name}
+                        </h3>
                       </div>
                     </td>
                     <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.issue}</h3>
+                      <h3 className="text-md font-semibold text-[#4F4F4F]">
+                        {patient.issue}
+                      </h3>
                     </td>
                     <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">{patient.disease}</h3>
+                      <h3 className="text-md font-semibold text-[#4F4F4F]">
+                        {patient.disease}
+                      </h3>
                     </td>
                     <td className="p-3">
                       <p className="text-[#718EBF] rounded-full bg-[#F6F8FB] py-2 text-center">
@@ -208,7 +233,7 @@ export default function TeleconsultationModule() {
 
   const tabName = getCurrentName();
   const currentAppointments = getCurrentAppointments().map(
-    formatAppointmentForDisplay
+    formatAppointmentForDisplay,
   );
 
   return (
@@ -236,7 +261,7 @@ export default function TeleconsultationModule() {
             >
               {dateRange[0] && dateRange[1]
                 ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(
-                    dateRange[1]
+                    dateRange[1],
                   ).format("MM/DD/YYYY")}`
                 : "Select Date Range"}
             </Button>

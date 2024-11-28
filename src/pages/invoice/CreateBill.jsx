@@ -18,7 +18,10 @@ const CreateBill = () => {
   const [formData, setFormData] = useState({
     ...formDataObject,
     billDate: new Date().toISOString().split("T")[0],
-    billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    billTime: new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
     billNumber: 100,
     totalAmount: 0,
   });
@@ -32,7 +35,8 @@ const CreateBill = () => {
     const discountNumber = parseFloat(discount) || 0;
     const taxNumber = parseFloat(tax) || 0;
 
-    const discountedAmount = amountNumber - (amountNumber * discountNumber) / 100;
+    const discountedAmount =
+      amountNumber - (amountNumber * discountNumber) / 100;
     const totalAmount = discountedAmount + (discountedAmount * taxNumber) / 100;
     return totalAmount.toFixed(2);
   };
@@ -53,7 +57,7 @@ const CreateBill = () => {
       updatedFormData.totalAmount = calculateTotalAmount(
         updatedFormData.amount,
         updatedFormData.discount,
-        updatedFormData.tax
+        updatedFormData.tax,
       );
     }
 
@@ -112,12 +116,14 @@ const CreateBill = () => {
     fetchPatients();
   }, []);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setFormData((prev) => ({
         ...prev,
-        billTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        billTime: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
       }));
     }, 60000);
 
@@ -133,14 +139,14 @@ const CreateBill = () => {
       options: loadingPatients
         ? [{ label: "Loading...", value: "" }]
         : [
-          { label: "Select Patient Name", value: "" },
-          ...(Array.isArray(allPatients) && allPatients.length > 0
-            ? allPatients.map((patient) => ({
-              label: `${patient.firstName} ${patient.lastName}`,
-              value: patient._id,
-            }))
-            : []),
-        ],
+            { label: "Select Patient Name", value: "" },
+            ...(Array.isArray(allPatients) && allPatients.length > 0
+              ? allPatients.map((patient) => ({
+                  label: `${patient.firstName} ${patient.lastName}`,
+                  value: patient._id,
+                }))
+              : []),
+          ],
     },
     { label: "Phone Number", name: "phone", type: "text", readOnly: true },
     {
@@ -163,14 +169,14 @@ const CreateBill = () => {
       options: loadingDoctors
         ? [{ label: "Loading...", value: "" }]
         : [
-          { label: "Select Doctor Name", value: "" },
-          ...(Array.isArray(allDoctors) && allDoctors.length > 0
-            ? allDoctors.map((doctor) => ({
-              label: doctor.name,
-              value: doctor._id,
-            }))
-            : []),
-        ],
+            { label: "Select Doctor Name", value: "" },
+            ...(Array.isArray(allDoctors) && allDoctors.length > 0
+              ? allDoctors.map((doctor) => ({
+                  label: doctor.name,
+                  value: doctor._id,
+                }))
+              : []),
+          ],
     },
     { label: "Disease Name", name: "diseaseName", type: "text" },
     { label: "Description", name: "description", type: "text" },
@@ -225,14 +231,20 @@ const CreateBill = () => {
         <div className="flex justify-center">
           <div className="p-4 bg-white rounded-xl">
             <div className="mb-4">
-              <p className="text-[#030229] text-[26px] font-bold">Create Bill </p>
+              <p className="text-[#030229] text-[26px] font-bold">
+                Create Bill{" "}
+              </p>
             </div>
 
             <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
               <div className="space-y-4">
                 <div className="flex">
                   <div className="w-full">
-                    <form id="create-bill-form" onsubmit="handleSubmit" className="flex flex-wrap justify-between">
+                    <form
+                      id="create-bill-form"
+                      onsubmit="handleSubmit"
+                      className="flex flex-wrap justify-between"
+                    >
                       {HospitalBillFields.map((field, index) => (
                         <InputField
                           key={index}
@@ -250,7 +262,9 @@ const CreateBill = () => {
             {formData.paymentType === "Insurance" && (
               <div className="mb-4 p-5 border-2 border-[#F4F4F4] rounded-xl">
                 <div className="space-y-4">
-                  <p className="text-[#030229] text-[26px] font-bold">Insurance Details</p>
+                  <p className="text-[#030229] text-[26px] font-bold">
+                    Insurance Details
+                  </p>
                   <div className="flex">
                     <div className="w-full">
                       <form className="flex flex-wrap justify-between gap-4">
@@ -281,7 +295,7 @@ const CreateBill = () => {
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

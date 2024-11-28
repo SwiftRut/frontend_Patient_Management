@@ -11,7 +11,7 @@ export const AuthContext = createContext(); //{}
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
+    JSON.parse(localStorage.getItem("user")) || "",
   );
   const [loading, setLoading] = useState(true);
   const { getAdminProfile, getDoctorProfile, getPatientProfile } = useGlobal();
@@ -21,9 +21,8 @@ export const AuthProvider = ({ children }) => {
       const response = await apiService.PatientLogin(userData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.patient));
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Barer ${response.data.token}`;
+      axios.defaults.headers.common["Authorization"] =
+        `Barer ${response.data.token}`;
       setUser(response.data.user);
       toast.success("Login Successful");
       return true;
@@ -60,9 +59,8 @@ export const AuthProvider = ({ children }) => {
       const response = await apiService.AdminLogin(userData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.patient));
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.data.token}`;
+      axios.defaults.headers.common["Authorization"] =
+        `Bearer ${response.data.token}`;
       setUser(response.data.user);
       toast.success("Login Successful");
       return true;
@@ -98,9 +96,8 @@ export const AuthProvider = ({ children }) => {
       const response = await apiService.DoctorLogin(userData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.data.token}`;
+      axios.defaults.headers.common["Authorization"] =
+        `Bearer ${response.data.token}`;
       setUser(response.data.user);
       toast.success("Login Successful");
       return true;
@@ -119,9 +116,8 @@ export const AuthProvider = ({ children }) => {
       const response = await apiService.UniversalLogin(userData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${response.data.token}`;
+      axios.defaults.headers.common["Authorization"] =
+        `Bearer ${response.data.token}`;
       setUser(response.data.user);
       toast.success("Login Successful");
 

@@ -186,7 +186,11 @@ const PatientDetailsForm = ({
 
               <div className="input-box">
                 <div className="label">Gender</div>
-                <select name="gender" value={patientData.gender} onChange={handleSelectChange}>
+                <select
+                  name="gender"
+                  value={patientData.gender}
+                  onChange={handleSelectChange}
+                >
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>

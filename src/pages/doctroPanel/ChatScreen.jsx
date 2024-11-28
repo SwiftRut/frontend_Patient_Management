@@ -82,10 +82,10 @@ const ChatScreen = () => {
   useEffect(() => {
     if (allAppointments?.length > 0) {
       const uniquePatients = Array.from(
-        new Set(allAppointments.map((apt) => apt.patientId._id))
+        new Set(allAppointments.map((apt) => apt.patientId._id)),
       ).map((patientId) => {
         const appointment = allAppointments.find(
-          (apt) => apt.patientId._id === patientId
+          (apt) => apt.patientId._id === patientId,
         );
         return {
           _id: appointment.patientId._id,
@@ -93,7 +93,7 @@ const ChatScreen = () => {
           lastName: appointment.patientId.lastName,
           profile: appointment.patientId.avatar,
           lastAppointment: new Date(
-            appointment.appointmentTime
+            appointment.appointmentTime,
           ).toLocaleDateString(),
           email: appointment.patientId.email,
         };
@@ -274,12 +274,12 @@ const ChatScreen = () => {
   const handleDeleteMessage = async (messageId) => {
     try {
       if (!selectedChat) return;
-      
-      const room = [doctorId, selectedChat._id].sort().join('-');
-      socket.emit('deleteMessage', { messageId, room });
-      toast.success('Message deleted successfully');
+
+      const room = [doctorId, selectedChat._id].sort().join("-");
+      socket.emit("deleteMessage", { messageId, room });
+      toast.success("Message deleted successfully");
     } catch (error) {
-      toast.error('Failed to delete message');
+      toast.error("Failed to delete message");
       throw error;
     }
   };
@@ -287,8 +287,8 @@ const ChatScreen = () => {
   // Socket listener for message deletion
   useEffect(() => {
     socket.on("messageDeleted", ({ messageId }) => {
-      setMessages((prevMessages) => 
-        prevMessages.filter((msg) => msg._id !== messageId)
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg._id !== messageId),
       );
     });
 
@@ -328,7 +328,9 @@ const ChatScreen = () => {
               src={msg.fileUrl}
               alt="Shared image"
               className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
-              onClick={() => handlePreviewClick(msg.fileUrl, "image", msg.fileName)}
+              onClick={() =>
+                handlePreviewClick(msg.fileUrl, "image", msg.fileName)
+              }
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
               {msg.messageContent && (
@@ -344,7 +346,9 @@ const ChatScreen = () => {
           <div className="flex flex-col space-y-2">
             <div
               className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
-              onClick={() => handlePreviewClick(msg.fileUrl, "file", msg.fileName)}
+              onClick={() =>
+                handlePreviewClick(msg.fileUrl, "file", msg.fileName)
+              }
             >
               <Description className="text-gray-500" />
               <div>

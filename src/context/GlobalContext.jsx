@@ -10,7 +10,7 @@ export const GlobalContext = createContext();
 import { useQuery } from "@tanstack/react-query";
 export const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || ""
+    JSON.parse(localStorage.getItem("user")) || "",
   );
 
   const [allHospitals, setAllHospitals] = useState([]);
@@ -415,9 +415,17 @@ export const GlobalProvider = ({ children }) => {
   const createAppointment = async (patientId, userData, selectedDoctor) => {
     try {
       await apiService.createAppointment(patientId, userData);
-      onClickNotification(selectedDoctor.deviceToken, "New Appointment", "You have a new appointment");
-      onClickNotification(fcmToken, "New Appointment", "Your appointment has been booked successfully.");
-      socket.emit('sendNotification', {
+      onClickNotification(
+        selectedDoctor.deviceToken,
+        "New Appointment",
+        "You have a new appointment",
+      );
+      onClickNotification(
+        fcmToken,
+        "New Appointment",
+        "Your appointment has been booked successfully.",
+      );
+      socket.emit("sendNotification", {
         userId: patientId || user.id,
         message: `Your appointment has been booked.`,
         type: "bill",
@@ -509,7 +517,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const response = await apiService.CreatePrescription(
         prescriptionData,
-        id
+        id,
       );
       setPrescription(response.data.data);
       socket.emit("sendNotification", {

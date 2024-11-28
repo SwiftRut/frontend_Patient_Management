@@ -23,7 +23,7 @@ export const ErrorPage = () => {
         window.location.href = "/login";
     }
   };
-  
+
   // Manual redirection on button click
   const handleGoHome = () => {
     if (user) {

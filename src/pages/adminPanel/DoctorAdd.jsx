@@ -29,7 +29,7 @@ const DoctorAdd = () => {
   useEffect(() => {
     if (formData.hospital && allHospitals.length) {
       const selectedHospital = allHospitals.find(
-        (hospital) => hospital._id === formData.hospital
+        (hospital) => hospital._id === formData.hospital,
       );
       setFormData((prevData) => ({
         ...prevData,
@@ -50,7 +50,7 @@ const DoctorAdd = () => {
 
     if (name === "country") {
       const selectedCountry = countries.find(
-        (country) => country.isoCode === value
+        (country) => country.isoCode === value,
       );
       setIsoCodes(selectedCountry.phonecode); // Set isoCode for use in the next step
       setFormData((prevData) => ({
@@ -67,7 +67,7 @@ const DoctorAdd = () => {
       setFormData((prevData) => ({ ...prevData, city: "" })); // Reset city
     } else if (name === "hospital") {
       const selectedHospital = allHospitals.find(
-        (hospital) => hospital._id === value
+        (hospital) => hospital._id === value,
       );
       setFormData({
         ...formData,
@@ -98,7 +98,7 @@ const DoctorAdd = () => {
       reader.readAsDataURL(file);
     } else {
       toast.error(
-        "Please upload a valid PNG or JPEG file for the profile picture."
+        "Please upload a valid PNG or JPEG file for the profile picture.",
       );
     }
   };
@@ -110,7 +110,7 @@ const DoctorAdd = () => {
     if (file) {
       if (file.type !== "image/png" && file.type !== "image/jpeg") {
         toast.error(
-          "Please upload a valid PNG or JPEG file for the signature."
+          "Please upload a valid PNG or JPEG file for the signature.",
         );
         input.value = ""; // Reset input
         return;
@@ -148,18 +148,18 @@ const DoctorAdd = () => {
 
     // Fetch the country, state, and city names based on the selected ISO codes
     const countryObj = Country.getAllCountries().find(
-      (country) => country.isoCode === formData.country
+      (country) => country.isoCode === formData.country,
     );
     const countryName = countryObj?.name;
 
     const stateObj = State.getStatesOfCountry(formData.country).find(
-      (state) => state.isoCode === formData.state
+      (state) => state.isoCode === formData.state,
     );
     const stateName = stateObj?.name;
 
     const cityObj = City.getCitiesOfState(
       formData.country,
-      formData.state
+      formData.state,
     ).find((city) => city.name === formData.city);
     const cityName = cityObj?.name;
 
@@ -212,7 +212,9 @@ const DoctorAdd = () => {
               <div className="p-5 border-2 border-[#F4F4F4] rounded-[15px] my-4">
                 <div className="content">
                   <div className="mb-4">
-                    <p className="text-2xl font-bold text-[#030229]">Add New Doctor</p>
+                    <p className="text-2xl font-bold text-[#030229]">
+                      Add New Doctor
+                    </p>
                   </div>
 
                   <div className="flex justify-between">
@@ -220,7 +222,11 @@ const DoctorAdd = () => {
                       <div className="mx-auto mt-8 text-center">
                         <div
                           className="w-[186px] h-[186px] border-3 border-[#D9D9D9] rounded-full cursor-pointer"
-                          onClick={() => document.getElementById('profilePictureUpload').click()}
+                          onClick={() =>
+                            document
+                              .getElementById("profilePictureUpload")
+                              .click()
+                          }
                         >
                           {profilePicturePreview ? (
                             <img
@@ -246,7 +252,11 @@ const DoctorAdd = () => {
                         />
                         <p
                           className="text-[#5678E9] text-lg font-semibold mt-2 cursor-pointer"
-                          onClick={() => document.getElementById('profilePictureUpload').click()}
+                          onClick={() =>
+                            document
+                              .getElementById("profilePictureUpload")
+                              .click()
+                          }
                         >
                           Choose Photo
                         </p>
@@ -272,7 +282,9 @@ const DoctorAdd = () => {
                           >
                             Upload a file
                           </label>
-                          <h5 className="text-[#A7A7A7] text-xs font-medium">PNG or JPEG Up To 5MB</h5>
+                          <h5 className="text-[#A7A7A7] text-xs font-medium">
+                            PNG or JPEG Up To 5MB
+                          </h5>
                           {signaturePreview && (
                             <img
                               src={signaturePreview}
@@ -288,7 +300,9 @@ const DoctorAdd = () => {
                       <div className="form-box">
                         <div className="flex flex-wrap gap-3.5">
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Doctor Name</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Doctor Name
+                            </div>
                             <input
                               type="text"
                               name="name"
@@ -301,7 +315,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Doctor Qualification</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Doctor Qualification
+                            </div>
                             <input
                               type="text"
                               name="qualification"
@@ -314,7 +330,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Gender</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Gender
+                            </div>
                             <select
                               name="gender"
                               value={formData.gender}
@@ -329,7 +347,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Specialty Type</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Specialty Type
+                            </div>
                             <input
                               type="text"
                               name="speciality"
@@ -342,7 +362,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Working Time</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Working Time
+                            </div>
                             <div className="time-range">
                               <select
                                 name="workingTime"
@@ -361,7 +383,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Work On</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Work On
+                            </div>
                             <select
                               name="workingOn"
                               value={formData.workingOn}
@@ -376,7 +400,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Check Up Time</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Check Up Time
+                            </div>
                             <div className="time-range">
                               <select
                                 name="patientCheckupTime"
@@ -395,7 +421,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4 text-[16px] font-medium">
-                            <div className="absolute top-1 left-3.5 bg-white z-10">Break Time</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10">
+                              Break Time
+                            </div>
                             <div className="time-range">
                               <select
                                 name="breakTime"
@@ -414,7 +442,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Experience</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Experience
+                            </div>
                             <input
                               type="number"
                               name="experience"
@@ -427,7 +457,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Phone Number</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Phone Number
+                            </div>
                             <input
                               type="text"
                               name="phone"
@@ -440,7 +472,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Country Code</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Country Code
+                            </div>
                             <input
                               type="text"
                               name="countryCode"
@@ -451,7 +485,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Age</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Age
+                            </div>
                             <input
                               type="number"
                               name="age"
@@ -464,7 +500,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Email</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Email
+                            </div>
                             <input
                               type="email"
                               name="email"
@@ -477,7 +515,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Country</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Country
+                            </div>
                             <select
                               name="country"
                               onChange={handleChange}
@@ -496,7 +536,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">State</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              State
+                            </div>
                             <select
                               name="state"
                               value={formData.state}
@@ -517,7 +559,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">City</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              City
+                            </div>
                             <select
                               name="city"
                               value={formData.city}
@@ -535,7 +579,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Zip Code</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Zip Code
+                            </div>
                             <input
                               type="text"
                               name="zipCode"
@@ -548,7 +594,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Address</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Address
+                            </div>
                             <input
                               type="text"
                               name="doctorAddress"
@@ -561,7 +609,9 @@ const DoctorAdd = () => {
                           </div>
 
                           <div className="relative w-[32%] pt-4">
-                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Description</div>
+                            <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">
+                              Description
+                            </div>
                             <input
                               name="description"
                               placeholder="Enter Description"
@@ -649,7 +699,9 @@ const DoctorAdd = () => {
                   <div className="flex justify-between gap-y-8">
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Current Hospital</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Current Hospital
+                        </div>
                         <input
                           type="text"
                           name="currentHospital"
@@ -660,7 +712,7 @@ const DoctorAdd = () => {
                               allHospitals.find(
                                 (hospital) =>
                                   hospital._id ===
-                                  formData.hospital.toString().name
+                                  formData.hospital.toString().name,
                               )) ||
                             formData.currentHospital
                           }
@@ -672,7 +724,9 @@ const DoctorAdd = () => {
 
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Hospital Name</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Hospital Name
+                        </div>
                         <input
                           type="text"
                           name="hospitalName"
@@ -680,7 +734,7 @@ const DoctorAdd = () => {
                           maxLength={100}
                           value={
                             allHospitals?.find(
-                              (item) => item._id === formData.hospital
+                              (item) => item._id === formData.hospital,
                             )?.name || formData.hospitalName
                           }
                           onChange={handleChange}
@@ -692,7 +746,9 @@ const DoctorAdd = () => {
 
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Hospital</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Hospital
+                        </div>
                         <select
                           name="hospital"
                           value={formData.hospital}
@@ -711,7 +767,9 @@ const DoctorAdd = () => {
 
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Hospital Address</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Hospital Address
+                        </div>
                         <input
                           type="text"
                           name="hospitalAddress"
@@ -719,7 +777,7 @@ const DoctorAdd = () => {
                           maxLength={200}
                           value={
                             allHospitals?.find(
-                              (item) => item._id === formData.hospital
+                              (item) => item._id === formData.hospital,
                             )?.address || formData.hospitalAddress
                           }
                           onChange={handleChange}
@@ -731,7 +789,9 @@ const DoctorAdd = () => {
 
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Hospital Website</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Hospital Website
+                        </div>
                         <input
                           type="url"
                           name="worksiteLink"
@@ -747,7 +807,9 @@ const DoctorAdd = () => {
 
                     <div className="w-[32%]">
                       <div className="input-box relative">
-                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">Emergency Contact</div>
+                        <div className="label absolute top-[-14px] left-3.5 bg-white z-10 text-[16px] font-medium">
+                          Emergency Contact
+                        </div>
                         <input
                           type="tel"
                           name="emergencyContactNo"

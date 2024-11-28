@@ -8,8 +8,7 @@ import { TbCalendarClock, TbCalendarX } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import { FaCalendarAlt } from "react-icons/fa";
 export default function AppointmentManagement() {
-  const { allAppointments, getAppointmetnsForDoctor } =
-    useGlobal();
+  const { allAppointments, getAppointmetnsForDoctor } = useGlobal();
   const { user } = useAuth();
   const navigate = useNavigate();
 
