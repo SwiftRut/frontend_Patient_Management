@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { MdAdd } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
@@ -29,7 +29,7 @@ export default function DoctorManagement() {
       } catch (error) {
         setError(
           "Error fetching doctors: " +
-            (error.response ? error.response.data.message : error.message),
+            (error.response ? error.response.data.message : error.message)
         );
         toast.error("Error fetching doctors");
       } finally {
@@ -41,7 +41,7 @@ export default function DoctorManagement() {
 
   const handleDeleteSuccess = (deletedId) => {
     setDoctors((prevDoctors) =>
-      prevDoctors.filter((doctor) => doctor._id !== deletedId),
+      prevDoctors.filter((doctor) => doctor._id !== deletedId)
     );
     setSelectedDoctorId(null);
   };
@@ -52,7 +52,7 @@ export default function DoctorManagement() {
   };
 
   const filteredDoctors = allDoctors.filter((doctor) =>
-    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
+    doctor?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDeleteDoctor = async (id) => {

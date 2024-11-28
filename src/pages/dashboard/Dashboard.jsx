@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import {
   FaUsers,
   FaUser,
@@ -87,7 +87,6 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <>
       <div className="deshbord-section">
         <div className="row">
           <div className="main bg-[#F6F8FB]">
@@ -332,7 +331,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
