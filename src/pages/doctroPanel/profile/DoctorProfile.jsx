@@ -13,7 +13,7 @@ export default function DoctorProfile() {
         <div className="row">
           <div className="main bg-[#e5e7eb]">
             <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
-            <div className="profile-setting w-[80%] m-auto mt-[-12%]">
+            <div className="profile-setting new-xxl:w-[80%] new-xl:w-[85%] new-lg:w-[90%] m-auto mt-[-12%]">
               <div className="head pb-[15px]">
                 <p className="text-[44px] font-bold text-white">Profile Setting</p>
               </div>
