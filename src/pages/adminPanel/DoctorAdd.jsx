@@ -214,11 +214,11 @@ const DoctorAdd = () => {
                   <div className="mb-4">
                     <p className="text-2xl font-bold text-[#030229]">Add New Doctor</p>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <div className="w-[19%] flex flex-col items-start gap-8">
                       <div className="mx-auto mt-8 text-center">
-                        <div 
+                        <div
                           className="w-[186px] h-[186px] border-3 border-[#D9D9D9] rounded-full cursor-pointer"
                           onClick={() => document.getElementById('profilePictureUpload').click()}
                         >
@@ -244,7 +244,7 @@ const DoctorAdd = () => {
                           id="profilePictureUpload"
                           name="profilePicture"
                         />
-                        <p 
+                        <p
                           className="text-[#5678E9] text-lg font-semibold mt-2 cursor-pointer"
                           onClick={() => document.getElementById('profilePictureUpload').click()}
                         >
@@ -298,11 +298,8 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
-                          
+
                           <div className="relative w-[32%] pt-4">
                             <div className="absolute top-1 left-3.5 bg-white z-10 text-[16px] font-medium">Doctor Qualification</div>
                             <input
@@ -314,9 +311,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -332,9 +326,6 @@ const DoctorAdd = () => {
                               <option value="Female">Female</option>
                               <option value="Other">Other</option>
                             </select>
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -348,9 +339,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -370,9 +358,6 @@ const DoctorAdd = () => {
                                 ))}
                               </select>
                             </div>
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -388,9 +373,6 @@ const DoctorAdd = () => {
                               <option value="Full-time">Full-time</option>
                               <option value="Contract">Contract</option>
                             </select>
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -409,9 +391,6 @@ const DoctorAdd = () => {
                                   </option>
                                 ))}
                               </select>
-                            </div>
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
                             </div>
                           </div>
 
@@ -432,9 +411,6 @@ const DoctorAdd = () => {
                                 ))}
                               </select>
                             </div>
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -448,9 +424,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -464,9 +437,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -478,9 +448,6 @@ const DoctorAdd = () => {
                               disabled
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -494,9 +461,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -510,9 +474,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -584,9 +545,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -600,9 +558,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -615,9 +570,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
 
                           <div className="relative w-[32%] pt-4">
@@ -661,7 +613,7 @@ const DoctorAdd = () => {
                             />
                             <div
                               onClick={() => setShowPassword(!showPassword)}
-                              className = "eye absolute top-[30px] right-3.5 cursor-pointer"
+                              className="eye absolute top-[30px] right-3.5 cursor-pointer"
                             >
                               {showPassword ? (
                                 <FaEye size={20} />
@@ -684,9 +636,6 @@ const DoctorAdd = () => {
                               onChange={handleChange}
                               className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                             />
-                            <div className="absolute top-1.5 -right-2">
-                              <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -697,9 +646,6 @@ const DoctorAdd = () => {
 
               <div className="p-5 border-2 border-[#F4F4F4] rounded-[15px] my-4">
                 <div className="content">
-                  <div className="mb-4">
-                    <p className="text-2xl font-bold text-[#030229]">Current Hospital</p>
-                  </div>
                   <div className="flex justify-between gap-y-8">
                     <div className="w-[32%]">
                       <div className="input-box relative">
@@ -721,9 +667,6 @@ const DoctorAdd = () => {
                           onChange={handleChange}
                           className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                         />
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
 
@@ -744,9 +687,6 @@ const DoctorAdd = () => {
                           disabled={true}
                           className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                         />
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
 
@@ -766,9 +706,6 @@ const DoctorAdd = () => {
                             </option>
                           ))}
                         </select>
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
 
@@ -789,9 +726,6 @@ const DoctorAdd = () => {
                           disabled={true}
                           className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                         />
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
 
@@ -808,9 +742,6 @@ const DoctorAdd = () => {
                           disabled={false}
                           className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                         />
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
 
@@ -826,9 +757,6 @@ const DoctorAdd = () => {
                           onChange={handleChange}
                           className="w-full p-3 border border-[#d9d9d9] rounded-[10px] focus:border-[#718ebf] placeholder-[#a7a7a7]"
                         />
-                        <div className="absolute top-[-8px] -right-2">
-                          <FaCircleMinus className="text-xl text-[#A7A7A7]" />
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -836,7 +764,7 @@ const DoctorAdd = () => {
               </div>
 
               <div className="flex justify-end">
-                <button 
+                <button
                   type="submit"
                   className="bg-[#F6F8FB] px-10 py-2.5 text-[#4F4F4F] text-xl font-semibold rounded-[10px] hover:bg-[#0EABEB] hover:text-white"
                 >

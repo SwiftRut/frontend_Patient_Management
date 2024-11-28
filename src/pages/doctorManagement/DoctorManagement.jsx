@@ -75,26 +75,26 @@ export default function DoctorManagement() {
       >
         <table className="min-w-full table-layout table-auto">
           <thead className="sticky top-0 bg-gray-100 z-10">
-            <tr>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold rounded-tl-xl">
+            <tr className="">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold rounded-tl-xl">
                 Doctor Name
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Gender
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Qualification
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Specialty
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Working Time
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Patient Check Up Time
               </th>
-              <th className="p-3 text-[#030229] text-left text-lg font-semibold">
+              <th className="p-3 text-[#030229] text-center text-left text-lg font-semibold">
                 Break Time
               </th>
               <th className="p-2 text-[#030229] text-center text-lg font-semibold rounded-tr-xl">
@@ -105,10 +105,10 @@ export default function DoctorManagement() {
           <tbody>
             {filteredDoctors.length > 0 ? (
               filteredDoctors.map((doctor) => (
-                <tr key={doctor._id} className="border-t">
+                <tr key={doctor._id} className="border-t text-center">
                   <td className="flex items-center p-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                      <img src={doctor.avatar} alt={doctor.name} />
+                    <div className=" rounded-full overflow-hidden mr-3">
+                      <img src={doctor.avatar} alt={doctor.name} className="w-[30px] h-[30px]"/>
                     </div>
                     <div className="text-[#4F4F4F] text-lg font-semibold">
                       <h3>{doctor.name}</h3>
