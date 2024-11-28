@@ -112,28 +112,28 @@ export default function PatientManagement() {
     <>
       <div className="patient-section h-[92%] p-2 bg-gray-100">
         <div className="row">
-          <div className="main bg-white rounded-lg p-4  h-full">
-            <div className="top-menu flex border-b border-gray-300 space-x-6">
+          <div className="main bg-white rounded-lg p-4 h-full">
+            <div className="top-menu flex border-b border-gray-300 space-x-4 xl:space-x-6">
               <button
-                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
+                className="text-base xl:text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("today")}
               >
                 Today Appointment
               </button>
               <button
-                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
+                className="text-base xl:text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("upcoming")}
               >
                 Upcoming Appointment
               </button>
               <button
-                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
+                className="text-base xl:text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("previous")}
               >
                 Previous Appointment
               </button>
               <button
-                className="text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
+                className="text-base xl:text-lg text-gray-600 font-normal pb-3 focus:border-b-2 focus:border-blue-500 focus:text-blue-500"
                 onClick={() => setActiveTab("cancelled")}
               >
                 Cancel Appointment
@@ -141,13 +141,13 @@ export default function PatientManagement() {
             </div>
             <div className="top flex justify-between items-center py-4">
               <div className="heading">
-                <h3 className="text-2xl font-bold">
+                <h3 className="text-xl xl:text-2xl font-bold">
                   {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
                   Appointments
                 </h3>
               </div>
               <div className="search-btn flex">
-                <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
+                <div className="flex items-center bg-gray-100 rounded-full px-3 xl:px-4 py-2 w-64 xl:w-80">
                   <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
@@ -161,29 +161,29 @@ export default function PatientManagement() {
                 </div>
               </div>
             </div>
-            <div className="pr-data h-[80%] overflow-y-auto max-h-[calc(100vh-249px)] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+            <div className="pr-data h-[80%] overflow-y-auto max-h-[calc(100vh-280px)] xl:max-h-[calc(100vh-249px)] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
               <table className="min-w-full table-auto">
                 <thead className="sticky top-0 bg-[#F6F8FB] z-10">
                   <tr>
-                    <th className="p-3 text-left text-lg font-semibold rounded-tl-lg">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tl-lg">
                       Patient Name
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                       Patient Issue
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                       Doctor Name
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                       Diseases Name
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                       Appointment Time
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                       Appointment Type
                     </th>
-                    <th className="p-3 text-left text-lg font-semibold rounded-tr-lg">
+                    <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tr-lg">
                       Action
                     </th>
                   </tr>
@@ -192,7 +192,7 @@ export default function PatientManagement() {
                   {searchFilteredAppointments.length > 0 ? (
                     searchFilteredAppointments.map((appointment, index) => (
                       <tr key={index} className="border-t">
-                        <td className="flex items-center p-3">
+                        <td className="flex items-center p-2 new-xxl:p-3 new-lg:p-4 new-xl:p-2">
                           <div className="avatar">
                             <img
                               src={
@@ -200,37 +200,37 @@ export default function PatientManagement() {
                                 "/img/Avatar.png"
                               }
                               alt="Avatar"
-                              className="w-12 h-12 rounded-full mr-2"
+                              className="new-xxl:w-[40px] new-xxl:h-[40px] new-lg:w-[30px] new-lg:h-[30px] new-xl:w-[30px] new-xl:h-[30px] rounded-full mr-2"
                             />
                           </div>
                           <div className="name">
-                            <h3 className="text-[#4F4F4F] text-lg font-semibold">
+                            <h3 className="text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                               {appointment.name}
                             </h3>
                           </div>
                         </td>
-                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 xl:p-3 text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                           <h3>{appointment.issue}</h3>
                         </td>
-                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 xl:p-3 text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                           <h3>{appointment.doctor}</h3>
                         </td>
-                        <td className="p-3 text-[#4F4F4F] text-lg font-semibold">
+                        <td className="p-2 xl:p-3 text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                           <h3>{appointment.disease}</h3>
                         </td>
-                        <td className="time p-3">
-                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full w-[70%] py-2 text-center text-lg font-semibold">
+                        <td className="time p-2 ">
+                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full w-[80%] xl:w-[70%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-lg font-semibold">
                             {appointment.time}
                           </h3>
                         </td>
-                        <td className="time">
-                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full w-[70%] py-2 text-center text-lg font-semibold">
+                        <td className="time p-3">
+                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full w-[80%] xl:w-[70%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-lg font-semibold">
                             {appointment.type}
                           </h3>
                         </td>
-                        <td className="action p-3">
+                        <td className="action p-2 xl:p-3">
                           <div
-                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-lg w-10 h-10 px-2 py-2 text-center text-lg font-semibold flex items-center justify-center"
+                            className="bg-[#F6F8FB] text-[#0EABEB] rounded-lg new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 px-2 py-2 text-center new-xxl:text-base new-lg:text-sm new-xl:text-base font-semibold flex items-center justify-center"
                             onClick={() => openModal(appointment)}
                           >
                             <FaEye />
@@ -240,7 +240,10 @@ export default function PatientManagement() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="7" className="p-3 text-center text-gray-600">
+                      <td
+                        colSpan="7"
+                        className="p-2 xl:p-3 text-center text-gray-600"
+                      >
                         No appointments found.
                       </td>
                     </tr>
