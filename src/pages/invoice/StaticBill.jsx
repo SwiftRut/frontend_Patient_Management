@@ -46,7 +46,7 @@ export const StaticBill = () => {
               </p>
               <p className="text-sm font-semibold text-[#141414]">
                 Gender:{" "}
-                <span className="text-sm text-[#818194] font-semibold ml-3">
+                <span className="text-sm  text-[#818194] font-semibold ml-3">
                   Male
                 </span>
               </p>
