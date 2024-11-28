@@ -22,6 +22,7 @@ import {
   Image,
   Description,
   Close,
+  Delete,
 } from "@mui/icons-material";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
@@ -269,12 +270,12 @@ const ChatScreen1 = () => {
       key={index}
       className={`mb-2 ${msg?.senderId === user.id ? "text-right" : "text-left"}`}
     >
-      <div className={`inline-block max-w-md ${
-        msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
-      } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}>
-        {msg.type === 'text' && (
-          <p className="text-sm">{msg.messageContent}</p>
-        )}
+      <div
+        className={`inline-block max-w-md relative group ${
+          msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
+        } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
+      >
+        {msg.type === 'text' && <p className="text-sm">{msg.messageContent}</p>}
         
         {msg.type === 'image' && (
           <div className="relative group">
@@ -314,6 +315,19 @@ const ChatScreen1 = () => {
           </div>
         )}
         
+        {msg.senderId === user.id && (
+          <IconButton
+            size="small"
+            className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 bg-red-50 hover:bg-red-100"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDeleteMessage(msg._id);
+            }}
+          >
+            <Delete fontSize="small" className="text-red-500" />
+          </IconButton>
+        )}
+
         <p className="text-xs text-gray-500 mt-1">
           {new Date(msg.timestamp).toLocaleTimeString()}
         </p>
@@ -354,6 +368,30 @@ const ChatScreen1 = () => {
       </DialogContent>
     </Dialog>
   );
+
+  const handleDeleteMessage = async (messageId) => {
+    try {
+      if (!selectedChat) return;
+      
+      const room = [selectedChat._id, user.id].sort().join('-');
+      socket.emit('deleteMessage', { messageId, room });
+      toast.success('Message deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete message');
+    }
+  };
+
+  useEffect(() => {
+    socket.on("messageDeleted", ({ messageId }) => {
+      setMessages((prevMessages) => 
+        prevMessages.filter((msg) => msg._id !== messageId)
+      );
+    });
+
+    return () => {
+      socket.off("messageDeleted");
+    };
+  }, []);
 
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">

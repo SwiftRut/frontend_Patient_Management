@@ -23,6 +23,7 @@ import {
   VideoCall,
   Description,
   Close,
+  Delete,
 } from "@mui/icons-material";
 import io from "socket.io-client";
 import toast from "react-hot-toast";
@@ -270,17 +271,54 @@ const ChatScreen = () => {
     });
   };
 
+  const handleDeleteMessage = async (messageId) => {
+    try {
+      if (!selectedChat) return;
+      
+      const room = [doctorId, selectedChat._id].sort().join('-');
+      socket.emit('deleteMessage', { messageId, room });
+      toast.success('Message deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete message');
+      throw error;
+    }
+  };
+
+  // Socket listener for message deletion
+  useEffect(() => {
+    socket.on("messageDeleted", ({ messageId }) => {
+      setMessages((prevMessages) => 
+        prevMessages.filter((msg) => msg._id !== messageId)
+      );
+    });
+
+    return () => {
+      socket.off("messageDeleted");
+    };
+  }, []);
+
   const renderMessage = (msg, index) => (
     <div
       key={index}
-      className={`mb-2 ${
-        msg?.senderId === doctorId ? "text-right" : "text-left"
-      }`}
+      className={`mb-2 group ${msg?.senderId === doctorId ? "text-right" : "text-left"}`}
     >
+      {/* Message Menu - Only show for sender's messages */}
+      {msg.senderId === doctorId && (
+        <div className="hidden group-hover:inline-block relative mb-1">
+          <IconButton
+            size="small"
+            className="bg-gray-100 hover:bg-gray-200"
+            onClick={() => handleDeleteMessage(msg._id)}
+          >
+            <Delete fontSize="small" className="text-gray-600" />
+          </IconButton>
+        </div>
+      )}
+
       <div
-        className={`inline-block max-w-md ${
+        className={`inline-block max-w-md relative ${
           msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
-        } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
+        } rounded-lg p-3`}
       >
         {msg.type === "text" && <p className="text-sm">{msg.messageContent}</p>}
 
@@ -290,9 +328,7 @@ const ChatScreen = () => {
               src={msg.fileUrl}
               alt="Shared image"
               className="max-w-xs rounded-lg cursor-pointer hover:opacity-90"
-              onClick={() =>
-                handlePreviewClick(msg.fileUrl, "image", msg.fileName)
-              }
+              onClick={() => handlePreviewClick(msg.fileUrl, "image", msg.fileName)}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity">
               {msg.messageContent && (
@@ -308,9 +344,7 @@ const ChatScreen = () => {
           <div className="flex flex-col space-y-2">
             <div
               className="flex items-center space-x-2 bg-white p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
-              onClick={() =>
-                handlePreviewClick(msg.fileUrl, "file", msg.fileName)
-              }
+              onClick={() => handlePreviewClick(msg.fileUrl, "file", msg.fileName)}
             >
               <Description className="text-gray-500" />
               <div>
