@@ -110,7 +110,7 @@ export default function ReportingAndAnalytics() {
                 <div className="content h-[330px] bg-white p-5 rounded-lg">
                   <div className="head">
                     <div className="title">
-                      <p className="text-[24px] font-bold text-[#030229] pb-3">
+                      <p className="new-xxl:text-[24px] new-xl:text-[22px] new-lg:text-[18px] font-bold text-[#030229] pb-3">
                         Patients Count by Disease
                       </p>
                     </div>
@@ -172,7 +172,7 @@ export default function ReportingAndAnalytics() {
                 <div className="content h-[330px] bg-white p-5 rounded-lg">
                   <div className="head">
                     <div className="title">
-                      <p className="text-[24px] font-bold text-[#030229] pb-3">
+                      <p className="new-xxl:text-[24px] new-xl:text-[22px] new-lg:text-[18px] font-bold text-[#030229] pb-3">
                         Doctor Count by Department
                       </p>
                     </div>
