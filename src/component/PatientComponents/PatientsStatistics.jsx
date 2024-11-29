@@ -90,7 +90,7 @@ const PatientsStatistics = () => {
     >
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div>
-          <h2 className="text-[26px] pb-2  font-bold">Patients Statistics</h2>
+          <h2 className="new-xxl:text-[26px] new-xl:text-[24px] new-lg:text-[22px] pb-2 font-bold">Patients Statistics</h2>
         </div>
         <div
           className="button-group d-flex mb-2 shadow-sm rounded text-gray-500"
