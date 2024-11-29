@@ -8,7 +8,7 @@ const DoctorProfilePrivacyPolicy = () => {
           <div className="content p-8 bg-white rounded-[10px] border">
             <div className="head flex items-center justify-between">
               <div className="title">
-                <p className="font-semibold text-[#030229] text-[34px]">
+                <p className="font-semibold text-[#030229] new-xxl:text-[34px] new-xl:text-[30px] new-lg:text-[28px]">
                   Privacy Policy
                 </p>
               </div>

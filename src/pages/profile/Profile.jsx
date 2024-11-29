@@ -11,16 +11,17 @@ export default function Profile() {
       <div className="row">
         <div className="main">
           <div className="h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
-          <div className="w-[80%] m-auto mt-[-15%]">
+          <div className="new-xxl:w-[80%] new-xl:w-[85%] new-lg:w-[90%] m-auto new-xxl:mt-[-15%] new-xl:mt-[-20%] new-lg:mt-[-21%]">
             <div className="pb-[15px]">
-              <p className="text-[44px] font-bold text-white">
-                Profile Setting{" "}
+              <p className="new-xxl:text-[44px] new-xl:text-[40px] new-lg:text-[36px] font-bold text-white">
+                Profile Setting 
+                {" "}
               </p>
             </div>
             <div className="bg-white rounded-lg p-5 shadow flex">
               <AsideProfile />
 
-              <div className="w-[77%] ps-5">
+              <div className="new-xxl:w-[77%] new-xl:w-[75%] new-lg:w-[72%] ps-5">
                 <Routes>
                   <Route path="/" element={<ProfileData />} />
                   <Route

@@ -87,7 +87,7 @@ const ProfileChangePassword = () => {
         <div className="content p-8 rounded-xl shadow-sm bg-white">
           <div className="head">
             <div className="title">
-              <p className="text-[34px] text-[#030229] font-semibold ">
+              <p className="new-xxl:text-[34px] new-xl:text-[30px] new-lg:text-[28px] text-[#030229] font-semibold ">
                 Change Password
               </p>
             </div>

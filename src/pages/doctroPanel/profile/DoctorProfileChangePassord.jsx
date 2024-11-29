@@ -38,7 +38,7 @@ const DoctorProfileChangePassord = () => {
         <div className="content p-8 bg-white rounded-2xl shadow-xl">
           <div className="head">
             <div className="title">
-              <p className="text-[34px] font-semibold text-[#030229]">
+              <p className="new-xxl:text-[34px] new-xl:text-[30px] new-lg:text-[28px] font-semibold text-[#030229]">
                 Change Password
               </p>
             </div>
@@ -54,7 +54,7 @@ const DoctorProfileChangePassord = () => {
           <div className="form-box pt-[30px]">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="change-input-box relative">
-                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 new-xxl:text-[16px] new-xl:text-[15px] new-lg:text-[15px] text-[#030229] font-medium">
                   Current Password <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -67,7 +67,7 @@ const DoctorProfileChangePassord = () => {
               </div>
 
               <div className="change-input-box relative">
-                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 new-xxl:text-[16px] new-xl:text-[15px] new-lg:text-[15px] text-[#030229] font-medium">
                   New Password <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -80,7 +80,7 @@ const DoctorProfileChangePassord = () => {
               </div>
 
               <div className="change-input-box relative">
-                <label className="absolute top-[-14px] left-4 bg-white px-1 text-[16px] text-[#030229] font-medium">
+                <label className="absolute top-[-14px] left-4 bg-white px-1 new-xxl:text-[16px] new-xl:text-[15px] new-lg:text-[15px] text-[#030229] font-medium">
                   Confirm Password <span className="text-red-500">*</span>
                 </label>
                 <input

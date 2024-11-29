@@ -9,7 +9,7 @@ export default {
         'new-xxl': '1890px', // Extra large screens (desktops)
 
       },
-    },
+    },  
   },
   plugins: [import("tailwind-scrollbar")],
 };
