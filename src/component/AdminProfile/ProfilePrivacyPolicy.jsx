@@ -8,7 +8,7 @@ const ProfilePrivacyPolicy = () => {
           <div className="content p-8 rounded-xl shadow-sm bg-white">
             <div className="head flex justify-between items-center">
               <div className="title">
-                <p className="text-[34px] font-semibold text-[#030229]">
+                <p className="new-xxl:text-[34px] new-xl:text-[30px] new-lg:text-[28px] font-semibold text-[#030229]">
                   Privacy Policy
                 </p>
               </div>

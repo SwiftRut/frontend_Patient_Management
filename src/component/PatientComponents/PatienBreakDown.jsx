@@ -43,13 +43,13 @@ export default function PatientsBreakdown() {
   }, []);
 
   return (
-    <div className="bg-white w-[42%] p-5">
+    <div className="bg-white w-[42%] rounded-lg p-5">
       <div className="head">
-        <p className="text-[26px] font-bold">Patients Summary</p>
+        <p className="new-xxl:text-[26px] new-xl:text-[24px] new-lg:text-[22px] font-bold">Patients Summary</p>
       </div>
       {error && <div className="text-red-500">{error}</div>}
       <div className="bg-[#F6F8FB] rounded-lg flex justify-center items-center mt-5">
-        <div className="w-[203px] h-[203px] w-[40%]">
+        <div className="new-xxl:w-[203px] new-xxl:h-[203px] new-xl:w-[180px] new-xl:h-[180px] new-lg:w-[160px] new-lg:h-[200px]">
           <ResponsiveContainer>
             <PieChart>
               <Pie
@@ -78,7 +78,7 @@ export default function PatientsBreakdown() {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="me-4 bg-white w-[40%] p-5 rounded-lg">
+        <div className="me-4 bg-white new-xxl:w-[40%] new-xl:w-[50%] new-lg:w-[%] p-5 rounded-lg">
           <div className="flex flex-col items-start">
             <div className="flex justify-between  items-center mb-2 gap-x-2 w-[100%]">
               <div className="w-[10px] h-[10px] mr-2 rounded-full bg-orange-500"></div>
