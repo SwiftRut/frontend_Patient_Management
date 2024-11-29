@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { FaCamera } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useEdit } from "../../hooks/useEdit";
+import { useEffect, useState } from "react";
 
 import { Country, State, City } from "country-state-city";
 
 export const Edit = () => {
   const navigate = useNavigate();
-  const { profile, setProfile, handleInputChange, handleFormSubmit, allHospitals } = useEdit();
+  const { profile, setProfile, handleInputChange, handleFormSubmit, allHospitals, handleImageChange } = useEdit();
   const [isLoading, setIsLoading] = useState(true);
 
   const [countries, setCountries] = useState([]);
@@ -32,26 +32,20 @@ export const Edit = () => {
 
     // Set selected country if profile has a saved country
     if (profile?.country) {
-      const countryCode = allCountries.find(
-        (c) => c.label === profile.country,
-      )?.value;
+      const countryCode = allCountries.find((c) => c.label === profile.country)?.value;
       setSelectedCountry(countryCode);
     }
-  }, [profile?.country]);
+  }, [profile?.country]); 
   useEffect(() => {
     if (selectedCountry) {
-      const statesList = State.getStatesOfCountry(selectedCountry).map(
-        (state) => ({
-          value: state.isoCode,
-          label: state.name,
-        }),
-      );
+      const statesList = State.getStatesOfCountry(selectedCountry).map((state) => ({
+        value: state.isoCode,
+        label: state.name,
+      }));
       setStates(statesList);
 
       if (profile?.state) {
-        const stateCode = statesList.find(
-          (s) => s.label === profile.state,
-        )?.value;
+        const stateCode = statesList.find((s) => s.label === profile.state)?.value;
         setSelectedState(stateCode);
       }
     }
@@ -59,10 +53,7 @@ export const Edit = () => {
 
   useEffect(() => {
     if (selectedState) {
-      const citiesList = City.getCitiesOfState(
-        selectedCountry,
-        selectedState,
-      ).map((city) => ({
+      const citiesList = City.getCitiesOfState(selectedCountry, selectedState).map((city) => ({
         value: city.name,
         label: city.name,
       }));
@@ -91,6 +82,7 @@ export const Edit = () => {
     setSelectedState(null);
   };
 
+
   const handleStateChange = (e) => {
     const stateCode = e.target.value;
     setSelectedState(stateCode);
@@ -110,18 +102,6 @@ export const Edit = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Create preview URL
-      const previewUrl = URL.createObjectURL(file);
-      setPreviewImage(previewUrl);
-      
-      // Handle the actual image upload
-      handleImageChange(e); // Your existing image handling logic
-    }
-  };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -133,9 +113,7 @@ export const Edit = () => {
             <div className="top h-[296px] bg-gradient-to-r from-[#4c49ed] to-[#020067]"></div>
             <div className="profile-setting w-[80%] mx-auto mt-[-15%]">
               <div className="head pb-[15px]">
-                <p className="text-[44px] font-bold text-white">
-                  Profile Setting
-                </p>
+                <p className="text-[44px] font-bold text-white">Profile Setting</p>
               </div>
               <div className="content bg-white rounded-[15px] p-[20px] shadow-[0_0_3px_1px_#d7d5d5] flex">
                 <div className="left p-[20px] w-[23%] border-r-[3px] border-[#d9d9d94d]">
@@ -150,22 +128,17 @@ export const Edit = () => {
                     <div className="change-profile pt-[15px]">
                       <ul>
                         <li className="flex justify-center items-center p-[12px] bg-[#F6F8FB] rounded-[10px]">
-                          <input
-                            type="file"
-                            id="profilePic"
-                            name="profilePic"
-                            style={{ display: "none" }}
-                            onChange={handleImageChange}
-                            accept="image/*"
-                          />
-                          <label
-                            htmlFor="profilePic"
-                            className="flex items-center cursor-pointer"
-                          >
+                        <input
+                          type="file"
+                          id="profilePic"
+                          name="profilePic"
+                          style={{ display: "none" }}
+                          onChange={handleImageChange}
+                          accept="image/*"
+                        />
+                          <label htmlFor="profilePic" className="flex items-center cursor-pointer">
                             <FaCamera />
-                            <span className="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">
-                              Change Profile
-                            </span>
+                            <span className="pl-[15px] text-[#4F4F4F] text-[20px] font-semibold">Change Profile</span>
                           </label>
                         </li>
                       </ul>
@@ -186,6 +159,7 @@ export const Edit = () => {
                         onSubmit={handleFormSubmit}
                         className="flex flex-wrap justify-between"
                       >
+
                         <div className="input-box w-[32%] relative py-[15px]">
                           <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
                             First Name <span className="text-red-500">*</span>
@@ -216,8 +190,7 @@ export const Edit = () => {
 
                         <div className="input-box w-[32%] relative py-[15px]">
                           <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
-                            Email Address{" "}
-                            <span className="text-red-500">*</span>
+                            Email Address <span className="text-red-500">*</span>
                           </div>
                           <input
                             type="email"
@@ -245,8 +218,7 @@ export const Edit = () => {
 
                         <div className="input-box w-[32%] relative py-[15px]">
                           <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
-                            Hospital Name{" "}
-                            <span className="text-red-500">*</span>
+                            Hospital Name <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="hospitalName"
@@ -299,7 +271,7 @@ export const Edit = () => {
 
                         <div className="input-box w-[32%] relative py-[15px]">
                           <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
-                            State <span className="text-red-500">*</span>
+                          State <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="state"
@@ -308,7 +280,7 @@ export const Edit = () => {
                             className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedCountry}
                           >
-                            <option value="">Select State</option>
+                             <option value="">Select State</option>
                             {states.map((state) => (
                               <option key={state.value} value={state.value}>
                                 {state.label}
@@ -316,10 +288,10 @@ export const Edit = () => {
                             ))}
                           </select>
                         </div>
-
+                        
                         <div className="input-box w-[32%] relative py-[15px]">
                           <div className="label absolute top-[4px] left-[14px] bg-white z-10 text-[16px] font-medium">
-                            City <span className="text-red-500">*</span>
+                          City <span className="text-red-500">*</span>
                           </div>
                           <select
                             name="gender"
@@ -328,7 +300,7 @@ export const Edit = () => {
                             className="w-full p-[12px] border rounded-[10px] focus:border-[#718ebf] bg-white text-[16px] text-[#141414] font-normal"
                             disabled={!selectedState}
                           >
-                            <option value="">Select City</option>
+                             <option value="">Select City</option>
                             {cities.map((city) => (
                               <option key={city.value} value={city.value}>
                                 {city.label}
@@ -336,6 +308,7 @@ export const Edit = () => {
                             ))}
                           </select>
                         </div>
+
 
                         <div className="input-box flex justify-end w-full py-[15px]">
                           <div className="cancel-btn mr-[15px]">
@@ -368,6 +341,7 @@ export const Edit = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

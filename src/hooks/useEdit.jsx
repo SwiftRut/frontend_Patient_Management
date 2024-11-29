@@ -53,17 +53,14 @@ export const useEdit = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setProfile(prev => ({
+        ...prev,
+        avatar: previewUrl
+      }));
+
       const blob = new Blob([file], { type: file.type });
       setImageBlob(blob);
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setProfile((prevProfile) => ({
-          ...prevProfile,
-          profilePic: e.target.result,
-        }));
-      };
-      reader.readAsDataURL(file);
     }
   };
 
