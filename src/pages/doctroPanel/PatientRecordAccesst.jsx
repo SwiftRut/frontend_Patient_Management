@@ -75,12 +75,12 @@ export default function PatientRecordAccess() {
     <div className="bg-[#F6F8FB] p-3 h-[92%]">
       <div className="patioentRecord p-4 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-[26px] font-bold text-[#030229]">
+          <h2 className="new-xxl:text-[26px] new-xl:text-[25px] font-bold text-[#030229]">
             Patient Record Access
           </h2>
           <div className="flex space-x-4">
             <div className="search-btn flex">
-              <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 w-80">
+              <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 new-xxl:w-80 new-xl:w-60 new-lg:w-50">
                 <div className="text-xl text-gray-700">
                   <CiSearch />
                 </div>
@@ -89,7 +89,7 @@ export default function PatientRecordAccess() {
                   placeholder="Search Doctor"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-transparent pl-2 text-lg"
+                  className="bg-transparent pl-2 new-xxl:text-lg new-lg:text-sm"
                 />
               </div>
             </div>
@@ -110,28 +110,28 @@ export default function PatientRecordAccess() {
           <table className="min-w-full table-auto">
             <thead className="sticky top-0 bg-gray-100 z-10">
               <tr>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tl-lg">
                   Patient Name
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Disease Name
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Patient Issue
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Last Appointment Date
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Last Appointment Time
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Age
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                   Gender
                 </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tr-lg">
+                <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tr-lg">
                   Action
                 </th>
               </tr>
@@ -139,24 +139,24 @@ export default function PatientRecordAccess() {
             <tbody>
               {filteredPatients.map((patient, index) => (
                 <tr key={index} className="border-b">
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     {patient.patientName}
                   </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     {patient.diseaseName}
                   </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     {patient.patientIssue}
                   </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     {patient.lastAppointmentDate}
                   </td>
-                  <td className="p-3 ">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">
                       {patient.lastAppointmentTime}
                     </span>
                   </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                  <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                     {patient.age}
                   </td>
                   <td className="p-3 gender ">

@@ -48,8 +48,8 @@ const CreatePrescriptionTools = () => {
           </div>
           <div className="flex space-x-4">
             <div className="search-btn flex">
-              <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-80">
-                <div className="text-xl text-gray-700">
+              <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 new-xxl:w-[320px] new-xl:w-[300px] new-lg:w-[250px]">
+                <div className="new-xxl:text-lg new-xl:text-lg new-lg:text-sm text-gray-700">
                   <CiSearch />
                 </div>
                 <input
@@ -57,7 +57,7 @@ const CreatePrescriptionTools = () => {
                   placeholder="Search Doctor"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-transparent pl-2 text-lg"
+                  className="bg-transparent pl-2 new-xxl:text-lg new-xl:text-lg new-lg:text-sm"
                 />
               </div>
             </div>
@@ -69,7 +69,7 @@ const CreatePrescriptionTools = () => {
             </div>
           </div>
         </div>
-        <div className="cp-add grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+        <div className="cp-add grid grid-cols-1 new-lg:grid-cols-3 new-xl:grid-cols-3 new-xxl:grid-cols-4 gap-4 max-h-[calc(100vh-200px)] overflow-y-auto">
           {transformedAppointments?.map((appointment) => (
             <CreatePrescription
               key={appointment?.id}

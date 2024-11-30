@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
 import toast from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
+import PatientDetails from "../patientManagement/PatientDetails";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } =
@@ -15,6 +16,7 @@ export default function TeleconsultationModule() {
   const { user } = useAuth();
 
   const [activeTab, setActiveTab] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [dateRange, setDateRange] = useState([null, null]);
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
 
@@ -142,90 +144,107 @@ export default function TeleconsultationModule() {
     setOpenCustomDateModal(false);
   };
 
+  const openModal = (patient) => {
+    setSelectedPatient(patient.patientDetails);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPatient(null);
+  };
+
   const renderAppointmentTable = (appointments) => {
     return (
       <div className="bg-white p-2 rounded-lg">
-        <div
-          className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-          style={{ height: "calc(100vh - 280px)" }}
-        >
-          <table className="min-w-full table-auto">
-            <thead className="sticky top-0 bg-gray-100 z-10">
-              <tr>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tl-lg">
-                  Patient Name
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Patient Issue
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Diseases Name
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Appointment Time
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Status
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tr-lg">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+        <div className="">
+          <div className="new-xxl:min-w-[1200px] new-xl:min-w-[1000px] new-lg:min-w-[900px]">
+            <div className="grid grid-cols-7 bg-gray-100 py-3 px-3 rounded-t-lg ticky top-0 bg-gray-100 z-10">
+              <div className="text-sm font-semibold text-[#030229]">
+                Patient Name
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Patient Issue
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Diseases Name
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Appointment Time
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Appointment Time
+              </div>
+
+              <div className="text-sm font-semibold text-[#030229] text-center">
+                Status
+              </div>
+              <div className="text-sm font-semibold text-[#030229] text-center">
+                Action
+              </div>
+            </div>
+
+            <div className="divide-y divide-gray-200 max-h-[calc(100vh-340px)] overflow-y-auto">
               {appointments.length > 0 ? (
                 appointments.map((patient) => (
-                  <tr key={patient.id} className="border-b">
-                    <td className="flex items-center p-3">
-                      <div className="avatar w-12 h-12 rounded-full overflow-hidden">
-                        <img
-                          src={patient.avatar || "/img/Avatar.png"}
-                          alt="Avatar"
-                          className="w-full h-full object-cover"
+                  <div
+                    key={patient.id}
+                    className="grid grid-cols-7 py-3 px-1 items-center"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="h-10 w-10 rounded-full object-cover"
+                        src={patient.avatar || "/img/Avatar.png"}
+                        alt=""
+                      />
+                      <span className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F]">
+                        {patient.name}
+                      </span>
+                    </div>
+
+                    <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F] overflow-hidden">
+                      {patient.issue}
+                    </div>
+
+                    <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F] overflow-hidden">
+                      {patient.disease}
+                    </div>
+
+                    <div>
+                      <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#718EBF] bg-[#F6F8FB] rounded-full py-2 px-3 text-center inline-block">
+                        {patient.date}
+                      </div>
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#718EBF] bg-[#F6F8FB] rounded-full py-2 px-3 text-center inline-block">
+                        {patient.time}
+                      </div>
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <span className="flex justify-center px-3 py-2 inline-flex new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium leading-5 font-semibold rounded-full bg-[#eef1fd] text-[#5678E9]">
+                        {patient.status}
+                      </span>
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <div className="p-2 rounded cursor-pointer bg-[#F6F8FB] w-10 flex items-center justify-center text-center"  onClick={() => openModal(patient)}>
+                        <FaEye
+                          className="text-[#0EABEB]"
+                         
                         />
                       </div>
-                      <div className="ml-3">
-                        <h3 className="text-md font-semibold text-[#4F4F4F]">
-                          {patient.name}
-                        </h3>
-                      </div>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">
-                        {patient.issue}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">
-                        {patient.disease}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <p className="text-[#718EBF] rounded-full bg-[#F6F8FB] py-2 text-center">
-                        {`${patient.date} ${patient.time}`}
-                      </p>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
-                        {patient.status}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <div className="p-2 rounded cursor-pointer bg-[#F6F8FB] w-[40%]">
-                        <FaEye className="text-[#0EABEB]" />
-                      </div>
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))
               ) : (
-                <tr>
-                  <td colSpan="6" className="p-3 text-center text-gray-500">
-                    No appointments found.
-                  </td>
-                </tr>
+                <div className="py-4 text-center text-sm text-gray-500">
+                  No appointments found.
+                </div>
               )}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -233,7 +252,7 @@ export default function TeleconsultationModule() {
 
   const tabName = getCurrentName();
   const currentAppointments = getCurrentAppointments().map(
-    formatAppointmentForDisplay,
+    formatAppointmentForDisplay
   );
 
   return (
@@ -252,7 +271,9 @@ export default function TeleconsultationModule() {
           </Tabs>
 
           <div className="head mt-4 mb-6 flex justify-between items-center">
-            <h2 className="text-[26px] font-bold text-[#030229]">{tabName}</h2>
+            <h2 className="new-xxl:text-[26px] new-xl:text-[25px] font-bold text-[#030229]">
+              {tabName}
+            </h2>
             <Button
               variant="outlined"
               startIcon={<DateRange />}
@@ -261,14 +282,14 @@ export default function TeleconsultationModule() {
             >
               {dateRange[0] && dateRange[1]
                 ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(
-                    dateRange[1],
+                    dateRange[1]
                   ).format("MM/DD/YYYY")}`
                 : "Select Date Range"}
             </Button>
           </div>
 
           {activeTab === 0 ? (
-            <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
+            <div className="box grid  new-lg:grid-cols-3 new-xl:grid-cols-3 new-xxl:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
               {currentAppointments.map((patient) => (
                 <TeleConsultationCard key={patient.id} patient={patient} />
               ))}
@@ -284,6 +305,14 @@ export default function TeleconsultationModule() {
         onClose={() => setOpenCustomDateModal(false)}
         onApply={handleDateSelection}
       />
+
+{isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <PatientDetails patient={selectedPatient} closeModal={closeModal} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

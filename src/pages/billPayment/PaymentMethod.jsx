@@ -61,7 +61,7 @@ export default function PaymentMethod() {
       <div className="bg-[#F6F8FB] p-[20px] h-[93%]">
         <div className="main bg-white rounded-lg m-2h-full p-5">
           <div className="top flex items-center justify-between p-2 pb-5">
-            <div className="heading font-bold text-2xl">Billing Details</div>
+            <div className="heading font-bold new-xxl:text-2xl new-xl:text-xl new-lg:text-lg">Billing Details</div>
             <div className="search-btn flex items-center">
               <div className="input flex items-center py-2 px-3 bg-gray-100 rounded-full w-[350px] text-lg">
                 <div className="search text-black text-xl">
@@ -84,28 +84,28 @@ export default function PaymentMethod() {
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <th className="p-3 text-center text-lg font-semibold rounded-tl-lg">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tl-lg">
                     Bill Number
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Patient Name
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Disease Name
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Phone Number
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Status
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Date
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Time
                   </th>
-                  <th className="p-3 text-center text-lg font-semibold rounded-tr-lg">
+                  <th className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center  new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tr-lg">
                     Action
                   </th>
                 </tr>
@@ -121,53 +121,55 @@ export default function PaymentMethod() {
                   filteredData.map((data, index) => (
                     <tr key={index} className="border-b last:border-b-0">
                       <td className="p-2 text-lg text-center flex justify-center">
-                        <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold w-[50%]">
+                        <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semiboldnew-xxl:w-[50%] new-xl:w-[60%] new-lg:w-[70%] new-xxl:text-lg new-lg:text-base new-xl:text-base">
                           {data.billNumber}
                         </h3>
                       </td>
-                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                      <td className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg new-lg:text-base new-xl:text-base font-semibold">
                         {data.patientId
                           ? `${data.patientId.firstName} ${data.patientId.lastName}`
                           : "N/A"}
                       </td>
-                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                      <td className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
                         {data.diseaseName}
                       </td>
-                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                      <td className="new-xxl:p-3 new-lg:p-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
                         {data.patientId ? data.patientId.phone : "N/A"}
                       </td>
                       <td
-                        className={`p-2 ${
+                        className={`new-xxl:p-3 new-lg:p-1 new-xl:p-2 ${
                           data.status === "Paid"
                             ? "text-green-700 bg-green-100"
                             : "text-[#E11D29]"
                         } rounded-full px-2 py-1 text-center w-[120px] font-semibold`}
                       >
-                        <h3 className="bg-red-100 p-2 rounded-full text-center text-lg font-semibold text-[#E11D29]">
+                        <h3 className="bg-red-100 p-2 rounded-full text-center new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
                           {data.status}
                         </h3>
                       </td>
-                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                      <td className="p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
                         {data.date ? formatDate(data.date) : "N/A"}
                       </td>
-                      <td className="p-2 text-[#4F4F4F] text-lg font-semibold text-center">
+                      <td className="p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
+                        <h3 className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold new-xxl:w-[90%] new-xl:w-[83%] new-lg:w-[91%] text-center">
                         {data.time}
+                        </h3>
                       </td>
-                      <td className="flex items-center justify-center p-2 text-[#4F4F4F] text-lg font-semibold space-x-3 text-center">
+                      <td className="flex items-center justify-center new-lg:px-1 new-xl:px-2 text-[#4F4F4F] text-lg font-semibold space-x-3 text-center">
                         <div
-                          className="edit text-[#39973D] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#39973D] bg-[#f6f8fb] rounded-md flex items-center justify-center new-xxl:text-base new-lg:text-sm new-xl:text-base"
                           onClick={() => navigate(`/editBill/${data._id}`)}
                         >
                           <FaEdit />
                         </div>
                         <div
-                          className="view text-[#0EABEB] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#0EABEB] bg-[#f6f8fb] rounded-md flex items-center justify-center new-xxl:text-base new-lg:text-sm new-xl:text-base mx-2"
                           onClick={() => navigate(`/bill/${data._id}`)}
                         >
                           <FaEye />
                         </div>
                         <div
-                          className="delete text-[#818194] bg-gray-100 rounded-lg p-2 text-lg cursor-pointer"
+                          className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#818194] bg-[#f6f8fb] rounded-md flex items-center justify-center text-lg"
                           onClick={() => openModal(data)}
                         >
                           <FaWallet />
