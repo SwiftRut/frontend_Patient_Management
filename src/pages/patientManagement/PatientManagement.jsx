@@ -192,7 +192,7 @@ export default function PatientManagement() {
                   {searchFilteredAppointments.length > 0 ? (
                     searchFilteredAppointments.map((appointment, index) => (
                       <tr key={index} className="border-t">
-                        <td className="flex items-center p-2 new-xxl:p-3 new-lg:p-4 new-xl:p-2">
+                        <td className="flex items-center  new-xxl:p-3 new-lg:p-4 new-xl:py-3 new-xl:px-2">
                           <div className="avatar">
                             <img
                               src={
@@ -204,7 +204,7 @@ export default function PatientManagement() {
                             />
                           </div>
                           <div className="name">
-                            <h3 className="text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
+                            <h3 className="text-[#4F4F4F] new-xxl:text-lg new-lg:text-sm new-xl:text-sm font-bold">
                               {appointment.name}
                             </h3>
                           </div>
@@ -219,12 +219,12 @@ export default function PatientManagement() {
                           <h3>{appointment.disease}</h3>
                         </td>
                         <td className="time p-2 ">
-                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full w-[80%] xl:w-[70%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-lg font-semibold">
+                          <h3 className="bg-[#F6F8FB] text-[#718EBF] rounded-full w-[80%] xl:w-[70%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-base font-semibold">
                             {appointment.time}
                           </h3>
                         </td>
                         <td className="time p-3">
-                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full w-[80%] xl:w-[70%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-lg font-semibold">
+                          <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full w-[80%] xl:w-[98%] py-1.5 xl:py-2 text-center new-xxl:text-lg new-lg:text-base new-xl:text-base font-semibold">
                             {appointment.type}
                           </h3>
                         </td>

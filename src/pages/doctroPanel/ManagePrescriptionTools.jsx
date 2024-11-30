@@ -89,7 +89,7 @@ const ManagePrescriptionTools = () => {
         </Tabs>
 
         <div className="head flex justify-between items-center py-3">
-          <div className="text-[26px] font-bold text-[#030229]">
+          <div className="new-xxl:text-[26px] new-xl:text-[24px] new-lg:text-[22px] font-bold text-[#030229]">
             <p>Patient Details</p>
           </div>
 

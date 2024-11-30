@@ -108,46 +108,46 @@ const PatientDetail = () => {
             <div className="flex w-5/6">
               <div className="grid grid-cols-4 gap-0 border-r pe-16 ps-16 w-[80%]">
                 <div>
-                  <p className="text-gray-500">Patient Name</p>
-                  <p className="font-medium">{displayData.name}</p>
+                  <p className="text-gray-500 new-xl:text-base new-lg:text-sm">Patient Name</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.name}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Contact Number</p>
-                  <p className="font-medium">{displayData.phone}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Contact Number</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.phone}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Email</p>
-                  <p className="font-medium">{displayData.email}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Email</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.email}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Gender</p>
-                  <p className="font-medium capitalize">{displayData.gender}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Gender</p>
+                  <p className="font-medium capitalize new-xl:text-base  new-lg:text-sm">{displayData.gender}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Blood Group</p>
-                  <p className="font-medium">{displayData.bloodGroup}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Blood Group</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.bloodGroup}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Height</p>
-                  <p className="font-medium">{displayData.height}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Height</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.height}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Age</p>
-                  <p className="font-medium">{displayData.age}</p>
+                  <p className="text-gray-500 new-xl:text-base  new-lg:text-sm">Age</p>
+                  <p className="font-medium new-xl:text-base  new-lg:text-sm">{displayData.age}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Weight</p>
-                  <p className="font-medium">{displayData.weight}</p>
+                  <p className="text-gray-500 new-xl:text-base new-lg:text-sm">Weight</p>
+                  <p className="font-medium new-xl:text-base new-lg:text-sm">{displayData.weight}</p>
                 </div>
               </div>
               <div className="ps-6 w-[20%]">
                 <div className="pb-5">
-                  <p className="text-gray-500 pb-1">Country</p>
-                  <p className="font-medium">{displayData.country}</p>
+                  <p className="text-gray-500 pb-1 new-xl:text-base new-lg:text-sm">Country</p>
+                  <p className="font-medium new-xl:text-base new-lg:text-sm">{displayData.country}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Address</p>
-                  <p className="font-medium">{displayData.address}</p>
+                  <p className="text-gray-500 new-xl:text-base new-lg:text-sm">Address</p>
+                  <p className="font-medium new-xl:text-base new-lg:text-sm">{displayData.address}</p>
                 </div>
               </div>
             </div>
@@ -163,22 +163,22 @@ const PatientDetail = () => {
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
                   {/* <th className="p-3 text-left text-lg font-bold text-[#030229]">Disease Name</th> */}
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tl-lg">
                     Patient Issue
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Date
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Time
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Type
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-center text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Status
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Action
                   </th>
                 </tr>
@@ -189,20 +189,20 @@ const PatientDetail = () => {
                     {/* <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
                     {appointment.disease_name || 'Not Specified'}
                   </td> */}
-                    <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                       {appointment.patient_issue}
                     </td>
-                    <td className="p-3 text-lg font-semibold text-[#4F4F4F]">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                       {formatDate(appointment.date)}
                     </td>
-                    <td className="p-3">
-                      <span className="text-lg font-semibold text-[#718EBF] px-4 py-1 rounded-full bg-[#F6F8FB]">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
+                      <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">
                         {formatTime(appointment.appointmentTime)}
                       </span>
                     </td>
-                    <td className="p-3">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2">
                       <span
-                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center capitalize ${
+                        className={`px-5 py-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base rounded-full w-[80%] text-center capitalize ${
                           appointment.type === "online"
                             ? "bg-[#fff9e7] text-[#FFC313]"
                             : appointment.type === "follow_up"
@@ -215,7 +215,7 @@ const PatientDetail = () => {
                     </td>
                     <td className="p-3">
                       <span
-                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center ${
+                        className={`px-5 py-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base rounded-full w-[80%] text-center ${
                           appointment.status === "scheduled"
                             ? "bg-green-100 text-green-600"
                             : appointment.status === "completed"
@@ -228,7 +228,7 @@ const PatientDetail = () => {
                     </td>
                     <td className="p-3 text-lg font-semibold">
                       <button
-                        className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
+                        className="text-blue-400 bg-gray-100 rounded-lg text-center cursor-pointer new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 flex items-center justify-center text-[#4F4F4F] text-lg font-semibold"
                         onClick={handleViewFiles}
                       >
                         <FaEye />
