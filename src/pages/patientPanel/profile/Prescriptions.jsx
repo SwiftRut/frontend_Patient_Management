@@ -255,10 +255,10 @@ const Prescriptions = () => {
                           <th className="text-[#030229] text-[14px] font-semibold p-3">
                             Dose
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3  invisible new-lg:visible">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3 hidden new-lg:inline-block">
                             Duration
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3  invisible new-lg:visible">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3 hidden new-lg:inline-block">
                             When to Take
                           </th>
                         </tr>
@@ -277,12 +277,12 @@ const Prescriptions = () => {
                                 {medication.dose}
                               </td>
                               <td className="duration text-[#141414] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full  invisible new-lg:visible">
+                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full hidden new-lg:inline-block">
                                   {medication.duration}
                                 </span>
                               </td>
                               <td className="take text-[#718EBF] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full  invisible new-lg:visible">
+                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full hidden new-lg:inline-block">
                                   {medication.whenToTake}
                                 </span>
                               </td>
