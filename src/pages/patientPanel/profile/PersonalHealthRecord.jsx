@@ -88,20 +88,20 @@ const PersonalHealthRecord = () => {
   return (
     <div className="p-4 bg-[#f6f8fb]">
       <div className="mx-3 mx-auto">
-        <div className="bg-white p-3 rounded-lg shadow-lg">
-          <div className="flex justify-between items-center">
-            <h2 className="text-[26px] text-[#030229] font-bold">
+        <div className="bg-white p-5 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center py-2">
+            <h2 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] text-[#030229] font-bold">
               Patient Details
             </h2>
             <NavLink
               to={"/patient/profile/profileEdit"}
-              className=" text-white text-center text-[20px] font-semibold rounded-md bg-[#0EABEB] p-2 w-[160px] "
+              className=" text-white text-center text-[18px] new-xxl:text-[26px font-semibold rounded-md bg-[#0EABEB] p-2 new-xxl:w-[160px] "
             >
               Edit Profile
             </NavLink>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center py-2">
             <div className="w-[100%] sm:w-[10%] pt-[30px] sm:pt-[0px] h-full flex justify-center">
               <img
                 src={
@@ -109,7 +109,7 @@ const PersonalHealthRecord = () => {
                   "https://vectorified.com/images/default-user-icon-33.jpg"
                 }
                 alt="Patient"
-                className="rounded-full object-cover"
+                className="rounded-full object-cover w-[150px] new-xxl:w-[120px]"
               />
             </div>
             <div className="w-[100%] sm:w-[90%] pt-[30px] sm:pt-[0px] space-y-5 ps-5">
@@ -236,12 +236,12 @@ const PersonalHealthRecord = () => {
         <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mt-3">
           <div className="col-span-5 sm:col-span-5 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center px-2 pb-2">
-              <h1 className="text-2xl font-bold text-gray-800">
+              <h1 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] text-[#030229] font-bold">
                 Medical History
               </h1>
               <NavLink
                 to={"/patient/medicalHistory"}
-                className="text-blue-500 hover:text-blue-700 font-medium"
+                className="text-blue-500 hover:text-blue-700 text-[13px] new-lg:text-[14px] new-xl:text-[14px] new-xxl:text-[16px] font-medium"
               >
                 View All History
               </NavLink>
@@ -288,15 +288,15 @@ const PersonalHealthRecord = () => {
 
           <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
             <div className="flex justify-between items-center pb-5">
-              <h1 className="text-2xl font-bold">Prescriptions</h1>
-              <NavLink to={"/patient/prescriptions"} className="text-blue-500">
+              <h1 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] text-[#030229] font-bold">Prescriptions</h1>
+              <NavLink to={"/patient/prescriptions"} className="text-blue-500 hover:text-blue-700 text-[13px] new-lg:text-[14px] new-xl:text-[14px] new-xxl:text-[16px] font-medium">
                 View All Prescriptions
               </NavLink>
             </div>
             <hr />
 
             {/* Scrollable container for the table */}
-            <div className="overflow-y-auto h-60">
+            <div className="overflow-x-hidden overflow-y-auto h-60">
               <table className="w-full">
                 <thead>
                   <tr className="bg-gray-100">
@@ -352,15 +352,15 @@ const PersonalHealthRecord = () => {
             </div>
           </div>
 
-          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg">
+          <div className="col-span-5 sm:col-span-5 bg-white rounded-lg p-3">
             <div className="bg-white rounded-lg border-b p-3">
               <div className="flex justify-between items-center">
-                <h2 className="text-lg font-bold text-gray-800">
+                <h2 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] text-[#030229] font-bold">
                   Test Reports
                 </h2>
                 <NavLink
                   to={"/patient/testReport"}
-                  className="text-blue-500 font-medium hover:underline"
+                  className="text-blue-500 hover:text-blue-700 text-[13px] new-lg:text-[14px] new-xl:text-[14px] new-xxl:text-[16px] font-medium"
                 >
                   View All Reports
                 </NavLink>
@@ -626,12 +626,12 @@ const PersonalHealthRecord = () => {
           </div>
 
           <div className="col-span-5 sm:col-span-3 bg-white rounded-lg p-3">
-            <h2 className="text-[26px] text-[#030229] font-bold border-b">
+            <h2 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] text-[#030229] font-bold font-bold border-b">
               Patient Status
             </h2>
 
             <div className="all-box flex items-center">
-              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] new-sm:w-[50%]  flex new-lg:flex-col new-xl:flex-row items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -642,7 +642,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] new-sm:w-[50%]  flex new-lg:flex-col new-xl:flex-row items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#c9fff6] text-[#3AB49B] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -653,7 +653,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] new-sm:w-[50%]  flex new-lg:flex-col new-xl:flex-row items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#deffad] text-[#8BD024] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -664,7 +664,7 @@ const PersonalHealthRecord = () => {
                 </div>
               </div>
 
-              <div className="box w-[100%] sm:w-[50%] flex items-center gap-3 p-2 pt-3">
+              <div className="box w-[100%] new-sm:w-[50%]  flex new-lg:flex-col new-xl:flex-row items-center gap-3 p-2 pt-3">
                 <div className="icon bg-[#e3c4ff] text-[#B269F5] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
@@ -676,13 +676,13 @@ const PersonalHealthRecord = () => {
               </div>
             </div>
 
-            <div className="box flex items-center justify-between p-2">
-              <div className="w-[13%] sm:w-[9%]">
+            <div className="box flex new-lg:flex-col new-xl:flex-row items-center justify-between p-2">
+              <div className="w-[17%] new-sm:w-[9%] new-lg:w-[15%] new-xl:w-[13%]">
                 <div className="icon bg-[#E9F9FF] text-[#36AAD6] text-[24px] p-3 rounded-full">
                   <FaHospital />
                 </div>
               </div>
-              <div className="details w-[86%] sm:w-[88%]">
+              <div className="details w-[80%] new-sm:w-[88%] new-xl:w-[84%]">
                 <p className="text-[17px] text-[#141414] font-normal	">
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
