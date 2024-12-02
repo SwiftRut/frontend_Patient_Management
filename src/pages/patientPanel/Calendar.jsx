@@ -137,7 +137,7 @@ const Calendar = ({
   };
 
   return (
-    <div id="Calendar" className="container mx-auto p-6 h-[500px]">
+    <div id="Calendar" className="container mx-auto new-xxl:p-6 new-xl:p-6 new-lg:p-3 new-lg:h-[490px] new-xl:h-[490px] new-xxl:h-[500px]">
       <BigCalendar
         localizer={localizer}
         events={events}

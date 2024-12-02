@@ -257,8 +257,8 @@ const AppointmentBooking = () => {
                   <p className="mt-2 text-center">No Appointment Found Yet</p>
                 </>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                  <div className="col-span-7 p-3">
+                <div className="grid grid-cols-1 md:grid-cols-10 gap-1 p-3">
+                  <div className="new-xxl:col-span-7 new-xl:col-span-6 new-lg:col-span-6">
                     <Calendar
                       filterData={{
                         hospital,
@@ -275,7 +275,7 @@ const AppointmentBooking = () => {
                       handlePayment={handlePayment}
                     />
                   </div>
-                  <div className="col-span-3 p-3">
+                  <div className="new-xxl:col-span-3 new-xl:col-span-4 new-lg:col-span-4 new-xxl:p-3">
                     <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                   </div>
                 </div>

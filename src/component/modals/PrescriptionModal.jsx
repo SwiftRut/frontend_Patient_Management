@@ -139,54 +139,54 @@ const PrescriptionModal = ({ open, handleClose, prescriptionData }) => {
             </div>
           </div>
 
-          <table className="min-w-full table-auto">
-            <thead className="sticky top-0 bg-gray-100 z-10">
-              <tr>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
-                  Medicine Name
-                </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
-                  Strength
-                </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
-                  Dose
-                </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold">
-                  Duration
-                </th>
-                <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tr-lg">
-                  When to Take
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {(
-                prescriptionData?.medications || prescriptionData?.medicines
-              )?.map((medicine, index) => (
-                <tr key={index} className="border-b">
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
-                    {medicine.medicineName}
-                  </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
-                    {medicine.strength}
-                  </td>
-                  <td className="p-3 text-[#4F4F4F] text-base font-semibold">
-                    {medicine.dose}
-                  </td>
-                  <td>
-                    <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold py-2 px-3 rounded-full">
-                      {medicine.duration}
-                    </span>
-                  </td>
-                  <td>
-                    <span className="bg-[#5678E91A] text-[#718EBF] text-[14px] font-semibold p-2 rounded-full">
-                      {medicine.whenToTake}
-                    </span>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="min-w-full table-auto whitespace-nowrap">
+              <thead className="sticky top-0 bg-gray-100 z-10">
+                <tr>
+                  <th className="p-2 sm:p-3 text-left text-[#030229] text-sm sm:text-lg font-semibold rounded-tl-lg">
+                    Medicine Name
+                  </th>
+                  <th className="p-2 sm:p-3 text-left text-[#030229] text-sm sm:text-lg font-semibold">
+                    Strength
+                  </th>
+                  <th className="p-2 sm:p-3 text-left text-[#030229] text-sm sm:text-lg font-semibold">
+                    Dose
+                  </th>
+                  <th className="p-2 sm:p-3 text-left text-[#030229] text-sm sm:text-lg font-semibold">
+                    Duration
+                  </th>
+                  <th className="p-2 sm:p-3 text-left text-[#030229] text-sm sm:text-lg font-semibold rounded-tr-lg">
+                    When to Take
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {(prescriptionData?.medications || prescriptionData?.medicines)?.map((medicine, index) => (
+                  <tr key={index} className="border-b">
+                    <td className="p-2 sm:p-3 text-[#4F4F4F] text-sm sm:text-base font-semibold">
+                      {medicine.medicineName}
+                    </td>
+                    <td className="p-2 sm:p-3 text-[#4F4F4F] text-sm sm:text-base font-semibold">
+                      {medicine.strength}
+                    </td>
+                    <td className="p-2 sm:p-3 text-[#4F4F4F] text-sm sm:text-base font-semibold">
+                      {medicine.dose}
+                    </td>
+                    <td className="p-2 sm:p-3">
+                      <span className="bg-[#39973D1A] text-[#39973D] text-xs sm:text-[14px] font-semibold py-1 sm:py-2 px-2 sm:px-3 rounded-full">
+                        {medicine.duration}
+                      </span>
+                    </td>
+                    <td className="p-2 sm:p-3">
+                      <span className="bg-[#5678E91A] text-[#718EBF] text-xs sm:text-[14px] font-semibold p-1 sm:p-2 rounded-full">
+                        {medicine.whenToTake}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div className="mt-4">
             <h3 className="font-bold text-base font-medium text-[#030229]">
