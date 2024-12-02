@@ -501,7 +501,7 @@ const TestReport = () => {
                   </button>
                 </div>
                 <div className="modal-body p-4 pt-0">
-                  <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200">
+                  <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200 ">
                     <div className="top bg-gray-100 rounded p-4">
                       <div className="head flex justify-between align-center ">
                         <div className="logo w-[140px] sm:w-[238px]">

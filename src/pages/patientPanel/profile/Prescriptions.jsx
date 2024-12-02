@@ -112,7 +112,8 @@ const Prescriptions = () => {
         </div>
 
         <div className="overflow-y-auto pt-4" style={{ height: "720px" }}>
-          <div className="grid grid-cols-1 new-sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 new-sm
+          :grid-cols-2 lg:grid-cols-4 gap-4">
             {patientPrescription?.map((prescription, index) => (
               <div
                 key={index}
@@ -242,8 +243,8 @@ const Prescriptions = () => {
                         </div>
                       </div>
                     </div>
-
-                    <table className="w-[100%] mt-4 table-data">
+                    <div className="overflow-x-auto">
+                    <table className="w-[100%] mt-4 table-data table-auto whitespace-nowrap">
                       <thead className="bg-gray-100">
                         <tr>
                           <th className="text-[#030229] text-[14px] font-semibold p-3">
@@ -255,10 +256,10 @@ const Prescriptions = () => {
                           <th className="text-[#030229] text-[14px] font-semibold p-3">
                             Dose
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3 hidden new-lg:inline-block">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3">
                             Duration
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3 hidden new-lg:inline-block">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3">
                             When to Take
                           </th>
                         </tr>
@@ -277,12 +278,12 @@ const Prescriptions = () => {
                                 {medication.dose}
                               </td>
                               <td className="duration text-[#141414] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full hidden new-lg:inline-block">
+                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">
                                   {medication.duration}
                                 </span>
                               </td>
                               <td className="take text-[#718EBF] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full hidden new-lg:inline-block">
+                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">
                                   {medication.whenToTake}
                                 </span>
                               </td>
@@ -291,6 +292,7 @@ const Prescriptions = () => {
                         )}
                       </tbody>
                     </table>
+                    </div>
 
                     <div className="mt-4 flex justify-between align-center">
                       <div className="sign border-b pb-2">
