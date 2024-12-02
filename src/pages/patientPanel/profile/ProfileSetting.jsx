@@ -75,25 +75,25 @@ const ProfileSetting = () => {
 
   return (
     <div className="bg-gray-100 w-full h-[100vh]">
-      <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold ">
-        <div className="container mx-auto w-[90%] 2xl:w-[100%]">
-          <h1 className="font-bold text-black mb-3 pt-5">Profile Setting</h1>
+      <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold">
+        <div className="container mx-auto w-[90%] new-xxl:w-[80%]">
+          <h1 className="new-xxl:text-[44px] new-xl:text-[40px] new-lg:text-[36px] font-bold text-white">Profile Setting </h1>
         </div>
       </div>
 
-      <div className="mt-[-40%] sm:mt-[-10%] container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row w-[90%] 2xl:w-[100%]">
+      <div className="mt-[-50%] new-xxl:mt-[-10%] new-xl:mt-[-16%] new-lg:mt-[-19%] sm:mt-[-10%]  container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row w-[90%] new-xxl:w-[80%]">
         {/* Section 1 */}
-        <div className="w-full md:w-[20%] p-10 border-b md:border-b-0 md:border-r border-gray-300 flex flex-col items-center">
+        <div className="w-full md:w-[20%] new-xxl:p-5 new-xl:p-3 border-b md:border-b-0 md:border-r border-gray-300 flex flex-col items-center">
           <img
             src={userData?.avatar || "/image/Ellipse 1101.png"}
             alt="Profile"
-            className="rounded-full object-cover w-[214px] h-[214px]"
+            className="new-xll:mx-auto new-xxl:w-[214px] new-xl:w-[190px] new-lg:w-[170px] rounded-full mx-auto"
           />
           <label
             htmlFor="profilePic"
-            className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4"
+            className="cursor-pointer flex items-center px-3 py-2 bg-slate-100 rounded-lg text-gray-600 mt-4 md:w-[30%] new-lg:w-[80%] new-xxl:w-[80%]  new-xxl:text-[18px] new-xl:text-[14px] new-lg:text-[14px] font-semibold text-[#4F4F4F]"
           >
-            <UserIcon className="h-5 w-5 mr-2" />
+            <UserIcon className="w-5 h-4  new-xxl:h-5 new-xxl:w-5 new-xl:h-4 new-xl:w-4 new-lg:h-4 new-lg:w-4  mr-2" />
             Change Profile
           </label>
           <input
@@ -106,21 +106,21 @@ const ProfileSetting = () => {
         </div>
 
         {/* Section 2 */}
-        <div className="w-full md:w-[80%] p-6">
-          <h2 className="text-lg font-bold pb-6 text-[34px]">Edit Profile</h2>
+        <div className="w-full md:w-[80%] new-xxl:w-[77%] new-xl:w-[75%] new-lg:w-[73%] p-6">
+          <h2 className=" font-bold pb-6 text-[34px]">Edit Profile</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
               {/* Name */}
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Name
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   id="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
@@ -132,13 +132,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Number
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
@@ -149,13 +149,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Email
                 </label>
                 <input
                   type="email"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -166,13 +166,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="gender"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Gender
                 </label>
                 <select
                   id="gender"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   value={formData.gender}
                   onChange={handleChange}
                 >
@@ -187,13 +187,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="dob"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   DOB
                 </label>
                 <input
                   type="date"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   id="dob"
                   value={formData.dob}
                   onChange={handleChange}
@@ -204,13 +204,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="age"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Age
                 </label>
                 <input
                   type="number"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]d"
                   id="age"
                   value={formData.age}
                   onChange={handleChange}
@@ -224,13 +224,13 @@ const ProfileSetting = () => {
               <div className="col-span-3 sm:col-span-1 relative">
                 <label
                   htmlFor="bloodGroup"
-                  className="block text-sm font-medium absolute top-[-6px] left-[15px] bg-white"
+                  className="absolute top-[-12px] left-[14px] bg-white text-[#030229] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px]"
                 >
                   Blood Group
                 </label>
                 <select
                   id="bloodGroup"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="w-full py-[12px] px-[14px] border-[1px] border-[#A7A7A7] rounded-[10px] focus:border-[#718ebf] new-xxl:text-[16px] new-xl:text:[15px] new-lg:text:[15px] font-normal text-[#141414]"
                   value={formData.bloodGroup}
                   onChange={handleChange}
                 >
@@ -252,13 +252,13 @@ const ProfileSetting = () => {
             {/* Buttons */}
             <div className="flex justify-center sm:justify-end gap-4">
               <NavLink to={"/patient"}>
-                <button className="w-[130px] sm:w-[160px] h-[48px] text-black text-[20px] rounded-md border-2">
+                <button className="w-[230px] new-xxl:w-[160px] new-xl:w-[130px] new-lg:w-[110px] py-[12px] px-[14px] border-[1px] border-[#D3D3D3] rounded-[10px] text-black font-semibold new-xxl:text-[20px] font-semibold new-lg:text-[18px] font-semibold new-lg:text-[17px]">
                   Cancel
                 </button>
               </NavLink>
               <button
                 type="submit"
-                className="bg-blue-600 w-[130px] sm:w-[160px] h-[48px] text-white text-[20px] rounded-md"
+                className="w-[230px] new-xxl:w-[160px] new-xl:w-[130px] new-lg:w-[110px] py-[12px] px-[14px] bg-[#0EABEB] rounded-[10px] text-white new-xxl:text-[20px] text-white new-xl:text-[18px] text-white new-lg:text-[17px] font-semibold"
               >
                 Save
               </button>
