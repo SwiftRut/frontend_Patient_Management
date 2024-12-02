@@ -75,7 +75,7 @@ const Prescriptions = () => {
     <div className="container mx-auto p-4">
       <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
         <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-          <h1 className="text-[26px] font-bold text-[font-bold] mb-2 md:mb-0">
+          <h1 className=" text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] font-bold text-[font-bold] mb-2 md:mb-0">
             Prescriptions
           </h1>
           <div className="relative w-full md:w-1/3">
@@ -112,7 +112,7 @@ const Prescriptions = () => {
         </div>
 
         <div className="overflow-y-auto pt-4" style={{ height: "720px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 new-sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {patientPrescription?.map((prescription, index) => (
               <div
                 key={index}
@@ -255,10 +255,10 @@ const Prescriptions = () => {
                           <th className="text-[#030229] text-[14px] font-semibold p-3">
                             Dose
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3  invisible new-lg:visible">
                             Duration
                           </th>
-                          <th className="text-[#030229] text-[14px] font-semibold p-3">
+                          <th className="text-[#030229] text-[14px] font-semibold p-3  invisible new-lg:visible">
                             When to Take
                           </th>
                         </tr>
@@ -277,12 +277,12 @@ const Prescriptions = () => {
                                 {medication.dose}
                               </td>
                               <td className="duration text-[#141414] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full">
+                                <span className="bg-[#39973D1A] text-[#39973D] text-[14px] font-semibold p-2 rounded-full  invisible new-lg:visible">
                                   {medication.duration}
                                 </span>
                               </td>
                               <td className="take text-[#718EBF] text-[16px] font-semibold py-3 border-b">
-                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full">
+                                <span className="bg-[#5678E91A] text-[718EBF] text-[14px] font-semibold p-2 rounded-full  invisible new-lg:visible">
                                   {medication.whenToTake}
                                 </span>
                               </td>
