@@ -6,7 +6,7 @@ const AllFiles = () => {
   return (
     <div className="p-6 bg-[#f6f8fb] h-[92%]">
       <div className="allFile-section p-6 bg-white w-full h-[100%] flex justify-center items-center">
-        <div className="content border rounded-lg p-4 w-[50%] ">
+        <div className="content border rounded-lg p-4 new-xxl:w-[50%] new-xl:w-[60%] new-lg:w-[70%]">
           <div className="tital text-[24px] font-bold pb-3 border-b border-[#D9D9D9]">
             All Files
           </div>

@@ -58,7 +58,7 @@ const Appointment = () => {
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment,
+            : appointment
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -133,7 +133,7 @@ const Appointment = () => {
         const updatedAppointments = allAppointments.map((appointment) =>
           appointment._id === appointmentId
             ? { ...appointment, status: "canceled" }
-            : appointment,
+            : appointment
         );
         getAppointmetnsForPatient(user.id);
         setAllAppointments(updatedAppointments);
@@ -168,7 +168,7 @@ const Appointment = () => {
     //appointmentTime should be in this format: YYYY-MM-DDTHH:mm:ss.SSSZ
 
     updatedAppointment.appointmentTime = new Date(
-      newDate + "T" + newTime,
+      newDate + "T" + newTime
     ).toISOString();
     updatedAppointment.date = new Date(newDate + "T" + newTime).toISOString();
     try {
@@ -207,9 +207,9 @@ const Appointment = () => {
                   <h1 className="sm:text-2xl font-semibold text-gray-900 text-md">
                     My Appointment
                   </h1>
-                  <div className="flex flex-col sm:flex-row sm:space-y-0 sm:space-x-3">
+                  <div className="flex flex-col sm:flex-row sm:space-y-0 sm:space-x-3 new-lg:space-x-1 new-xl:space-x-2 space-y-3">
                     {/* Search input */}
-                    <div className="border px-3 rounded-md flex items-center">
+                    <div className="border new-xxl:px-3 new-xl:px-2 new-lg:px-1 rounded-md flex items-center">
                       <IoSearchSharp className="me-2 text-gray-500" />
                       <input
                         className="search outline-none"
@@ -221,7 +221,7 @@ const Appointment = () => {
 
                     {/* Date Range Selector */}
                     <div
-                      className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
+                      className="flex items-center border rounded-md new-xxl:px-3 new-xl:px-2 new-lg:px-1 bg-white cursor-pointer"
                       onClick={() => setOpenCustomDateModal(true)}
                     >
                       <span className="pl-3 text-gray-500 me-1">
@@ -233,7 +233,7 @@ const Appointment = () => {
                         value={
                           dateRange[0] && dateRange[1]
                             ? `${moment(dateRange[0]).format(
-                                "MM/DD/YYYY",
+                                "MM/DD/YYYY"
                               )} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
                             : "Select Date Range"
                         }
@@ -251,7 +251,7 @@ const Appointment = () => {
 
                     {/* Book Appointment Button */}
                     <Link to="/patient/appointmentBooking">
-                      <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
+                      <button className=" px-3 py-3 sm:px-4 sm:py-2 new-xxl:px-3 new-xl:px-2 new-lg:px-1 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
                         <BiSolidCalendar className="h-5 w-5" />
                         <span className="hidden sm:inline-block sm:ml-2">
                           Book Appointment
@@ -263,7 +263,7 @@ const Appointment = () => {
               </div>
 
               <div className="overflow-y-auto" style={{ height: "550px" }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 new-lg:grid-cols-3 gap-4">
                   {filteredAppointments?.length > 0 ? (
                     filteredAppointments?.map((appointment) => (
                       <div
@@ -305,7 +305,7 @@ const Appointment = () => {
                           </p>
                           <span className="text-sm">
                             {moment(appointment.appointmentTime).format(
-                              "DD/MM/YYYY",
+                              "DD/MM/YYYY"
                             )}
                           </span>
                         </div>
@@ -315,7 +315,7 @@ const Appointment = () => {
                           </p>
                           <span className="text-sm">
                             {moment(appointment.appointmentTime).format(
-                              "hh:mm A",
+                              "hh:mm A"
                             )}
                           </span>
                         </div>

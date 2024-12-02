@@ -148,13 +148,13 @@ export default function DoctorManagement() {
                   </td>
                   <td className="flex items-center justify-center pb-2 px-2 new-lg:px-1 new-xl:px-2">
                     <div
-                      className="new-xxl:w-10 new-xxl:h-10 new-lg:new-xxl:-7 xl:h-7 new-xl:w-8 new-xl:h-8 text-[#39973D] bg-[#f6f8fb] rounded-md flex items-center justify-center new-xxl:text-base new-lg:text-sm new-xl:text-base"
+                      className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#39973D] bg-[#f6f8fb] rounded-md flex items-center justify-center new-xxl:text-base new-lg:text-sm new-xl:text-base"
                       onClick={() => navigate(`/doctorEdit/${doctor._id}`)}
                     >
                       <FaEdit />
                     </div>
                     <div
-                      className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#0EABEB] bg-[#f6f8fb] rounded-md flex items-center justify-center text-lg mx-2"
+                      className="new-xxl:w-10 new-xxl:h-10 new-lg:w-7 new-lg:h-7 new-xl:w-8 new-xl:h-8 text-[#0EABEB] bg-[#f6f8fb] rounded-md flex items-center justify-center new-xxl:text-base new-lg:text-sm new-xl:text-base mx-2"
                       onClick={() => handleViewDoctorDetails(doctor)}
                     >
                       <FaEye />

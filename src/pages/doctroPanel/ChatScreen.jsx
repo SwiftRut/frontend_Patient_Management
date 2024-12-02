@@ -316,9 +316,8 @@ const ChatScreen = () => {
       )}
 
       <div
-        className={`inline-block max-w-md relative ${
-          msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
-        } rounded-lg p-3`}
+        className={`inline-block max-w-md relative ${msg?.senderId === doctorId ? "bg-blue-100" : "bg-gray-100"
+          } rounded-lg p-3`}
       >
         {msg.type === "text" && <p className="text-sm">{msg.messageContent}</p>}
 
@@ -413,9 +412,14 @@ const ChatScreen = () => {
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
       {/* Contact List */}
-      <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
-        <div className="mb-4">
+      <div className="new-xxl:w-[22
+      %]  bg-white shadow-lg rounded-lg p-4 overflow-auto">
+        <div className="title">
+          <p className="text-[20px] text-[#202224] font-semibold">Chat</p>
+        </div>
+        <div className="mb-4 mt-5 bg-[#F6F8FB] rounded-[50px]">
           <TextField
+            className="border-0"
             fullWidth
             variant="outlined"
             placeholder="Search Patient"
@@ -456,11 +460,11 @@ const ChatScreen = () => {
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full">
+      <div className="flex-1 bg-[#F6F8FB] shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full relative">
         {selectedChat ? (
           <>
             {/* Chat Header */}
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 bg-white p-3 rounded-lg absolute top-0 left-0 w-[100%] z-10">
               <Avatar
                 src={selectedChat.profile}
                 alt={`${selectedChat.firstName} ${selectedChat.lastName}`}
@@ -476,7 +480,7 @@ const ChatScreen = () => {
             {/* Messages Container */}
             <div
               ref={msgContainerRef}
-              className="flex-1 overflow-y-scroll mb-4"
+              className="flex-1 overflow-y-scroll overflow-x-hidden mb-4"
             >
               {messages.map((msg, index) => renderMessage(msg, index))}
             </div>
@@ -488,7 +492,7 @@ const ChatScreen = () => {
 
               {/* Message Input Area */}
               <div className="flex items-center justify-between space-x-2 border">
-                <div>
+                <div className="new-xxl:w-[95%] new-xxl:w-[95%] new-lg:w-[80%]  ">
                   <IconButton onClick={handleAttachClick}>
                     <AttachFile />
                   </IconButton>
@@ -496,6 +500,7 @@ const ChatScreen = () => {
                   <input
                     fullWidth
                     variant="outlined"
+                    className="bg-[#F6F8FB] w-[80%]"
                     placeholder="Type a message..."
                     value={messageInput}
                     onChange={(e) => setMessageInput(e.target.value)}

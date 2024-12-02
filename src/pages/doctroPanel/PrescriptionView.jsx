@@ -132,78 +132,78 @@ const PrescriptionView = () => {
             <img
               src={patient.avatar || patientImage}
               alt={patient.name}
-              className="w-28 h-28 rounded-full mr-6 border-4"
+              className="new-xxl:w-28 new-xxl:h-28 new-xl:w-28 new-xl:h-28 rounded-full mr-6 border-4"
             />
           </div>
           <div className="flex w-[90%]">
-            <div className="w-[70%] border-r">
-              <div className="flex justify-between pe-80 mb-3">
+            <div className="grid grid-cols-3 gap-0 border-r pe-16 ps-16 w-[70%]">
+              
                 <div>
-                  <p className="text-[#A7A7A7] text-base font-normal">
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Patient Name
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base  new-lg:text-sm text-[#141414]">
                     {patient.name}
                   </p>
                 </div>
-                <div className="ps-8">
-                  <p className="text-[#A7A7A7] text-base font-normal">
+                <div>
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Patient Number
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                     {patient.phone}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[#A7A7A7] text-base font-normal">
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Patient Issue
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                     {patient.issue}
                   </p>
                 </div>
-              </div>
-              <div className="flex justify-between pe-80">
+             
+             
                 <div>
-                  <p className="text-[#A7A7A7] text-base font-normal">
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Patient Gender
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                     {patient.gender}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[#A7A7A7] text-basefont-normal">
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Doctor Name
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                     {patient.doctorName}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[#A7A7A7] text-base font-normal">
+                  <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm">
                     Patient Age
                   </p>
-                  <p className="text-[18px] font-normal text-[#141414]">
+                  <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                     {patient.age}
                   </p>
                 </div>
-              </div>
+             
             </div>
             <div className="ps-5">
               <div className="pb-5">
-                <p className="text-[#A7A7A7] text-base font-normal pb-1">
+                <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm font-normal pb-1">
                   Last Appointment Time
                 </p>
-                <p className="text-[18px] font-normal text-[#141414]">
+                <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                   {patient.lastAppointmentTime}
                 </p>
               </div>
               <div>
-                <p className="text-[#A7A7A7] text-base font-normal">
+                <p className="text-[#A7A7A7] new-xl:text-base new-lg:text-sm font-normal">
                   Patient Address
                 </p>
-                <p className="text-[18px] font-normal text-[#141414]">
+                <p className="font-normal new-xl:text-base new-lg:text-sm text-[#141414]">
                   {patient.address}
                 </p>
               </div>

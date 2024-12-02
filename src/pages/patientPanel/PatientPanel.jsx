@@ -64,7 +64,7 @@ export default function PatientPanel() {
             />
             {/* </NavLink> */}
           </div>
-          <nav className="mb-32">
+          <nav >
             <ul className="space-y-2 p-2">
               {[
                 {

@@ -25,14 +25,14 @@ export default function PatientDetails({ patient, closeModal }) {
                     <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
                       Patient Name
                     </h3>
-                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">{`${patient.firstName} ${patient.lastName}`}</p>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">{`${patient?.firstName} ${patient?.lastName}`}</p>
                   </li>
                   <li className="flex justify-between">
                     <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
                       Email
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.email}
+                      {patient?.email}
                     </p>
                   </li>
                   <li className="flex justify-between py-2">
@@ -40,7 +40,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Phone Number
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.phone}
+                      {patient?.phone}
                     </p>
                   </li>
                   <li className="flex justify-between">
@@ -48,7 +48,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Age
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.age}
+                      {patient?.age}
                     </p>
                   </li>
                   <li className="flex justify-between py-2">
@@ -56,7 +56,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Gender
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.gender}
+                      {patient?.gender}
                     </p>
                   </li>
                   <li className="flex justify-between">
@@ -64,7 +64,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Blood Group
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.bloodGroup}
+                      {patient?.bloodGroup}
                     </p>
                   </li>
                   <li className="flex justify-between py-2">
@@ -72,7 +72,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Height (cm)
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.height}
+                      {patient?.height}
                     </p>
                   </li>
                   <li className="flex justify-between">
@@ -80,7 +80,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       Weight (kg)
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {patient.weight}
+                      {patient?.weight}
                     </p>
                   </li>
                   <li className="flex justify-between py-2">
@@ -88,14 +88,14 @@ export default function PatientDetails({ patient, closeModal }) {
                       Date of Birth
                     </h3>
                     <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                      {new Date(patient.dob).toLocaleDateString()}
+                      {new Date(patient?.dob).toLocaleDateString()}
                     </p>
                   </li>
                   <li className="">
                     <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600 pb-2">
                       Address
                     </h3>
-                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">{`${patient.address}, ${patient.city}, ${patient.state}, ${patient.country}`}</p>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">{`${patient?.address}, ${patient?.city}, ${patient?.state}, ${patient?.country}`}</p>
                   </li>
                   <template v-if="patient.appointment">
                     <li className="flex justify-between py-2">
@@ -103,7 +103,7 @@ export default function PatientDetails({ patient, closeModal }) {
                         Appointment Type
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                        {patient.appointment.type}
+                        {patient?.appointment?.type}
                       </p>
                     </li>
                     <li className="flex justify-between py-2">
@@ -112,7 +112,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.date,
+                          patient?.appointment?.date
                         ).toLocaleDateString()}
                       </p>
                     </li>
@@ -122,7 +122,7 @@ export default function PatientDetails({ patient, closeModal }) {
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
                         {new Date(
-                          patient.appointment.appointmentTime,
+                          patient?.appointment?.appointmentTime
                         ).toLocaleTimeString()}
                       </p>
                     </li>
@@ -131,7 +131,7 @@ export default function PatientDetails({ patient, closeModal }) {
                         Doctor Name
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                        {patient.appointment.doctorId?.name}
+                        {patient?.appointment.doctorId?.name}
                       </p>
                     </li>
                     <li className="flex justify-between py-2">
@@ -139,7 +139,7 @@ export default function PatientDetails({ patient, closeModal }) {
                         Patient Issue
                       </h3>
                       <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
-                        {patient.appointment.patient_issue}
+                        {patient?.appointment?.patient_issue}
                       </p>
                     </li>
                   </template>

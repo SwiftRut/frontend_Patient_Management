@@ -154,7 +154,7 @@ const CreatePrescriptionForm = () => {
           className="flex justify-between p-8 bg-[#F6F8FB] p-3 h-[92%]"
         >
           {/* Left Side - Form */}
-          <div className="w-[59%] bg-white p-4 rounded-lg overflow-auto">
+          <div className="new-xxl:w-[59%] new-xl:w-[59%] new-lg:w-[55%] bg-white p-4 rounded-lg overflow-auto">
             <h2 className="text-2xl font-bold mb-4">Create Prescription</h2>
             <div className="flex justify-between mb-6">
               <div className="input-box w-[45%] relative">
@@ -371,10 +371,10 @@ const CreatePrescriptionForm = () => {
           </div>
 
           {/* Right Side - Prescription Preview */}
-          <div className="Prescription-bill w-[39%] bg-white p-4 rounded-lg overflow-auto">
+          <div className="Prescription-bill new-xxl:w-[39%] new-xl:w-[39%]  new-lg:w-[43%] bg-white p-4 rounded-lg overflow-auto">
             <div className="p-4 rounded-lg bg-[#F6F8FB]">
               <div className="head flex justify-between align-center">
-                <div className="logo">
+                <div className="logo new-xxl:w-full new-xl:w-[70%] new-lg:w-[60%]">
                   <img src="/image/bill-logo.png" alt="" />
                 </div>
                 <div className="name">
@@ -384,43 +384,43 @@ const CreatePrescriptionForm = () => {
               </div>
               <div className="dr-details">
                 <div className="flex justify-between align-center">
-                  <p className="text-[#141414] text-[16px] font-semibold">
+                  <p className="text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Hospital Name:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {userData.hospitalName}
                     </span>
                   </p>
-                  <p className="text-[#141414] text-[16px] font-semibold">
+                  <p className="text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Prescription Date:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {new Date().toLocaleDateString()}
                     </span>
                   </p>
                 </div>
                 <div className="flex justify-between align-center">
-                  <p className="text-[#141414] text-[16px] font-semibold">
+                  <p className="text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Patient Name:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {values.patientName}
                     </span>
                   </p>
-                  <p className="text-[#141414] text-[16px] font-semibold">
+                  <p className="text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Age:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {values.age}
                     </span>
                   </p>
                 </div>
                 <div>
-                  <p className="text-[#141414] text-[16px] font-semibold">
+                  <p className="text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Gender:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {values.gender}
                     </span>
                   </p>
-                  <p className="add text-[#141414] text-[16px] font-semibold">
+                  <p className="add text-[#141414] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px] font-semibold">
                     Address:{" "}
-                    <span className="text-[#818194] text-[14px]">
+                    <span className="text-[#818194] new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       {userData.hospitalId?.address}
                     </span>
                   </p>
@@ -431,13 +431,13 @@ const CreatePrescriptionForm = () => {
               <table className="w-full rounded-lg mt-4">
                 <thead className="bg-[#F6F8FB]">
                   <tr>
-                    <th className="border-b-[1px] p-2 rounded-tl-lg">
+                    <th className="border-b-[1px] p-2 rounded-tl-lg new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       Medicine Name
                     </th>
-                    <th className="border-b-[1px] p-2">Strength</th>
-                    <th className="border-b-[1px] p-2">Dose</th>
-                    <th className="border-b-[1px] p-2">Duration</th>
-                    <th className="border-b-[1px] p-2 rounded-tr-lg">
+                    <th className="border-b-[1px] p-2 new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">Strength</th>
+                    <th className="border-b-[1px] p-2 new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">Dose</th>
+                    <th className="border-b-[1px] p-2 new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">Duration</th>
+                    <th className="border-b-[1px] p-2 rounded-tr-lg new-xxl:text-[16px] new-xl:text-[13px] new-lg:text-[12px]">
                       When to Take
                     </th>
                   </tr>

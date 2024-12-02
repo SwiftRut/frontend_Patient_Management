@@ -29,7 +29,7 @@ const DoctorDetails = ({ doctorId }) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="col-span-3 px-2 py-3">
+    <div className="py-3">
       <div className="bg-white rounded-lg shadow-md overflow-hidden border">
         <div className="p-3 border-b ">
           <h2 className="text-[#030229] text-lg font-bold">Doctor Details</h2>
@@ -38,13 +38,13 @@ const DoctorDetails = ({ doctorId }) => {
           <img
             src={doctor.avatar || "./image/Avatar.png"}
             alt="Doctor's photo"
-            className="rounded-full border-2 border-white mr-4 w-[20%]"
+            className="rounded-full border-2 border-white mr-4 w-[80px] h-[80px]"
           />
           <div className="text-white">
             <h2 className="text-lg font-semibold">
-              {doctor.firstName} {doctor.lastName}
+              {doctor.firstName} {doctor.lastName}     
             </h2>
-            <span className="bg-[#718ebf] flex w-[80px] p-1 rounded-full text-sm mt-2">
+            <span className="bg-[#718ebf] flex w-[100px] p-1 rounded-full text-sm mt-2">
               <img src="/image/vuesax.png" alt="Gender icon" />
               <h3 className="ms-2">{doctor.gender}</h3>
             </span>

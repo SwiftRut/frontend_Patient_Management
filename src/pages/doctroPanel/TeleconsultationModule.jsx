@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 import moment from "moment";
 import toast from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 
 export default function TeleconsultationModule() {
   const { getAppointmetnsForDoctor, allAppointments, cancelAppointment } =
@@ -15,6 +16,8 @@ export default function TeleconsultationModule() {
   const { user } = useAuth();
 
   const [activeTab, setActiveTab] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState(null);
   const [dateRange, setDateRange] = useState([null, null]);
   const [openCustomDateModal, setOpenCustomDateModal] = useState(false);
 
@@ -125,6 +128,16 @@ export default function TeleconsultationModule() {
 
   const formatAppointmentForDisplay = (appointment) => ({
     id: appointment._id,
+    height: appointment.patientId.height,
+    weight: appointment.patientId.weight,
+    bloodGroup: appointment.patientId.bloodGroup,
+    email: appointment.patientId.email,
+    address: appointment.patientId.address,
+    city: appointment.patientId.city,
+    state: appointment.patientId.state,
+    country: appointment.patientId.country,
+    phone: appointment.patientId.phone,
+    dob: appointment.patientId.dob,
     patientId: appointment.patientId._id,
     name: `${appointment.patientId.firstName} ${appointment.patientId.lastName}`,
     issue: appointment.patient_issue,
@@ -142,90 +155,108 @@ export default function TeleconsultationModule() {
     setOpenCustomDateModal(false);
   };
 
+  const openModal = (patient) => {
+    setSelectedPatient(patient);
+    setIsModalOpen(true);
+    console.log(patient, "patientdetails");
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPatient(null);
+  };
+
   const renderAppointmentTable = (appointments) => {
     return (
       <div className="bg-white p-2 rounded-lg">
-        <div
-          className="pr-data overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200"
-          style={{ height: "calc(100vh - 280px)" }}
-        >
-          <table className="min-w-full table-auto">
-            <thead className="sticky top-0 bg-gray-100 z-10">
-              <tr>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tl-lg">
-                  Patient Name
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Patient Issue
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Diseases Name
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Appointment Time
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229]">
-                  Status
-                </th>
-                <th className="p-3 text-left text-md font-semibold text-[#030229] rounded-tr-lg">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+        <div className="">
+          <div className="new-xxl:min-w-[1200px] new-xl:min-w-[1000px] new-lg:min-w-[900px]">
+            <div className="grid grid-cols-7 bg-gray-100 py-3 px-3 rounded-t-lg ticky top-0 bg-gray-100 z-10">
+              <div className="text-sm font-semibold text-[#030229]">
+                Patient Name
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Patient Issue
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Diseases Name
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Appointment Time
+              </div>
+              <div className="text-sm font-semibold text-[#030229]">
+                Appointment Time
+              </div>
+
+              <div className="text-sm font-semibold text-[#030229] text-center">
+                Status
+              </div>
+              <div className="text-sm font-semibold text-[#030229] text-center">
+                Action
+              </div>
+            </div>
+
+            <div className="divide-y divide-gray-200 max-h-[calc(100vh-340px)] overflow-y-auto">
               {appointments.length > 0 ? (
                 appointments.map((patient) => (
-                  <tr key={patient.id} className="border-b">
-                    <td className="flex items-center p-3">
-                      <div className="avatar w-12 h-12 rounded-full overflow-hidden">
-                        <img
-                          src={patient.avatar || "/img/Avatar.png"}
-                          alt="Avatar"
-                          className="w-full h-full object-cover"
-                        />
+                  <div
+                    key={patient.id}
+                    className="grid grid-cols-7 py-3 px-1 items-center"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="h-10 w-10 rounded-full object-cover"
+                        src={patient.avatar || "/img/Avatar.png"}
+                        alt=""
+                      />
+                      <span className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F]">
+                        {patient.name}
+                      </span>
+                    </div>
+
+                    <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F] overflow-hidden">
+                      {patient.issue}
+                    </div>
+
+                    <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#4F4F4F] overflow-hidden">
+                      {patient.disease}
+                    </div>
+
+                    <div>
+                      <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#718EBF] bg-[#F6F8FB] rounded-full py-2 px-3 text-center inline-block">
+                        {patient.date}
                       </div>
-                      <div className="ml-3">
-                        <h3 className="text-md font-semibold text-[#4F4F4F]">
-                          {patient.name}
-                        </h3>
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <div className="new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium text-[#718EBF] bg-[#F6F8FB] rounded-full py-2 px-3 text-center inline-block">
+                        {patient.time}
                       </div>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">
-                        {patient.issue}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="text-md font-semibold text-[#4F4F4F]">
-                        {patient.disease}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <p className="text-[#718EBF] rounded-full bg-[#F6F8FB] py-2 text-center">
-                        {`${patient.date} ${patient.time}`}
-                      </p>
-                    </td>
-                    <td className="p-3">
-                      <h3 className="bg-[#eef1fd] text-[#5678E9] rounded-full px-4 py-2 text-center text-lg font-semibold">
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <span className="flex justify-center px-3 py-2 inline-flex new-xxl:text-lg new-lg:text-sm new-xl:text-base font-medium leading-5 font-semibold rounded-full bg-[#eef1fd] text-[#5678E9]">
                         {patient.status}
-                      </h3>
-                    </td>
-                    <td className="p-3">
-                      <div className="p-2 rounded cursor-pointer bg-[#F6F8FB] w-[40%]">
+                      </span>
+                    </div>
+
+                    <div className=" flex items-center justify-center">
+                      <div
+                        className="p-2 rounded cursor-pointer bg-[#F6F8FB] w-10 flex items-center justify-center text-center"
+                        onClick={() => openModal(patient)}
+                      >
                         <FaEye className="text-[#0EABEB]" />
                       </div>
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))
               ) : (
-                <tr>
-                  <td colSpan="6" className="p-3 text-center text-gray-500">
-                    No appointments found.
-                  </td>
-                </tr>
+                <div className="py-4 text-center text-sm text-gray-500">
+                  No appointments found.
+                </div>
               )}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -233,7 +264,7 @@ export default function TeleconsultationModule() {
 
   const tabName = getCurrentName();
   const currentAppointments = getCurrentAppointments().map(
-    formatAppointmentForDisplay,
+    formatAppointmentForDisplay
   );
 
   return (
@@ -252,7 +283,9 @@ export default function TeleconsultationModule() {
           </Tabs>
 
           <div className="head mt-4 mb-6 flex justify-between items-center">
-            <h2 className="text-[26px] font-bold text-[#030229]">{tabName}</h2>
+            <h2 className="new-xxl:text-[26px] new-xl:text-[25px] font-bold text-[#030229]">
+              {tabName}
+            </h2>
             <Button
               variant="outlined"
               startIcon={<DateRange />}
@@ -261,14 +294,14 @@ export default function TeleconsultationModule() {
             >
               {dateRange[0] && dateRange[1]
                 ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(
-                    dateRange[1],
+                    dateRange[1]
                   ).format("MM/DD/YYYY")}`
                 : "Select Date Range"}
             </Button>
           </div>
 
           {activeTab === 0 ? (
-            <div className="box grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
+            <div className="box grid  new-lg:grid-cols-3 new-xl:grid-cols-3 new-xxl:grid-cols-4 gap-6 max-h-[calc(100vh-280px)] overflow-y-auto">
               {currentAppointments.map((patient) => (
                 <TeleConsultationCard key={patient.id} patient={patient} />
               ))}
@@ -284,6 +317,169 @@ export default function TeleconsultationModule() {
         onClose={() => setOpenCustomDateModal(false)}
         onApply={handleDateSelection}
       />
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <PatientDetails patient={selectedPatient} closeModal={closeModal} />
+          </div>
+        </div>
+      )}
     </>
+  );
+}
+function PatientDetails({ patient, closeModal }) {
+  console.log(patient, "???????????????");
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-3 rounded-lg shadow-lg new-xxl:w-[20%] new-xl:w-[25%] new-lg:w-[25%]">
+        <div className="patientdetails-section">
+          <div className="row">
+            <div className="details bg-white rounded-lg p-5">
+              <div className="top flex justify-between items-center border-b border-gray-300 pb-2">
+                <h3 className="new-xxl:text-2xl new-xl:text-lg new-lg:text-md font-bold text-gray-900">
+                  Patient Details
+                </h3>
+                <div
+                  className="icon text-red-500 new-xxl:text-3xl new-xl:text-lg new-lg:text-md cursor-pointer"
+                  onClick={closeModal}
+                >
+                  <MdCancel />
+                </div>
+              </div>
+              <div className="data mt-4">
+                <ul>
+                  <li className="flex justify-between py-2">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Patient Name
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.name}
+                    </p>
+                  </li>
+                  <li className="flex justify-between">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Email
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.email}
+                    </p>
+                  </li>
+                  <li className="flex justify-between py-2">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Phone Number
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.phone}
+                    </p>
+                  </li>
+                  <li className="flex justify-between">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Age
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.age}
+                    </p>
+                  </li>
+                  <li className="flex justify-between py-2">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Gender
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.gender}
+                    </p>
+                  </li>
+                  <li className="flex justify-between">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Blood Group
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.bloodGroup}
+                    </p>
+                  </li>
+                  <li className="flex justify-between py-2">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Height (cm)
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.height}
+                    </p>
+                  </li>
+                  <li className="flex justify-between">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Weight (kg)
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {patient?.weight}
+                    </p>
+                  </li>
+                  <li className="flex justify-between py-2">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                      Date of Birth
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                      {new Date(patient?.dob).toLocaleDateString()}
+                    </p>
+                  </li>
+                  <li className="">
+                    <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600 pb-2">
+                      Address
+                    </h3>
+                    <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">{`${patient?.address}, ${patient?.city}, ${patient?.state}, ${patient?.country}`}</p>
+                  </li>
+                  <template v-if="patient.appointment">
+                    <li className="flex justify-between py-2">
+                      <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                        Appointment Type
+                      </h3>
+                      <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                        {patient?.appointment?.type}
+                      </p>
+                    </li>
+                    <li className="flex justify-between py-2">
+                      <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                        Appointment Date
+                      </h3>
+                      <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                        {new Date(
+                          patient?.appointment?.date
+                        ).toLocaleDateString()}
+                      </p>
+                    </li>
+                    <li className="flex justify-between py-2">
+                      <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                        Appointment Time
+                      </h3>
+                      <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                        {new Date(
+                          patient?.appointment?.appointmentTime
+                        ).toLocaleTimeString()}
+                      </p>
+                    </li>
+                    <li className="flex justify-between py-2">
+                      <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                        Doctor Name
+                      </h3>
+                      <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                        {patient?.appointment?.doctorId?.name}
+                      </p>
+                    </li>
+                    <li className="flex justify-between py-2">
+                      <h3 className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-semibold text-gray-600">
+                        Patient Issue
+                      </h3>
+                      <p className="new-xxl:text-lg new-xl:text-md new-lg:text-md font-medium text-gray-900">
+                        {patient?.appointment?.patient_issue}
+                      </p>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

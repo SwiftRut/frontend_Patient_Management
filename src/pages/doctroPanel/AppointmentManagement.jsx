@@ -121,7 +121,7 @@ export default function AppointmentManagement() {
     filterAppointmentsByTime(filteredAppointments);
 
   return (
-    <div className="bg-[#F6F8FB] p-3 h-[92%]">
+    <div className="bg-[#F6F8FB] p-2 h-[92%]">
       <div className="p-6 bg-white rounded-lg shadow-md ">
         <div className="flex justify-between items-center mb-4  border-b  ">
           <div className="flex space-x-8 text-base font-normal text-gray-500 thead">
@@ -147,11 +147,11 @@ export default function AppointmentManagement() {
         </div>
 
         <div className="menu flex justify-between items-center mb-3">
-          <h3 className="text-[20px] font-bold text-[#030229]">{activeTab}</h3>
+          <h3 className="new-xxl:text-[20px] new-xl:text-[20px] new-lg:text-[18px] font-bold text-[#030229]">{activeTab}</h3>
           <div className="">
             <div className="flex items-center space-x-4">
               <div className="search-btn flex">
-                <div className="flex items-center bg-gray-100 rounded-full ps-4 py-2 w-80">
+                <div className="flex items-center bg-gray-100 rounded-full ps-4 py-2 new-xxl:w-80 new-xl:w-60 new-lg:w-50">
                   <div className="text-xl text-gray-700">
                     <CiSearch />
                   </div>
@@ -160,7 +160,7 @@ export default function AppointmentManagement() {
                     placeholder="Search Doctor"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="bg-transparent pl-2 text-lg"
+                    className="bg-transparent pl-2 new-xxl:text-lg new-lg:text-sm"
                   />
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function AppointmentManagement() {
               <div className="time-slot">
                 <button
                   color="primary"
-                  className="!text-base time-slot bg-[#0EABEB] py-3 px-4 text-[#FFFFFF] rounded-lg flex items-center justify-center"
+                  className="new-xxl:text-base time-slot bg-[#0EABEB] new-xxl:py-3 new-xxl:px-4 new-lg:px-2 new-lg:py-2 text-[#FFFFFF] rounded-lg flex items-center justify-center new-lg:text-sm"
                   onClick={() => navigate("/doctor/appointmentTimeSlot")}
                 >
                   <FaCalendarAlt className="me-3" /> Appointment Time Slot
@@ -197,25 +197,25 @@ export default function AppointmentManagement() {
             <table className="min-w-full table-auto">
               <thead className="sticky top-0 bg-gray-100 z-10">
                 <tr>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold rounded-tl-lg">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tl-lg">
                     Patient Name
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Dieses Name
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:py-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Patient Issue
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Date
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Time
                   </th>
-                  <th className="p-3 text-left text-[#030229] text-lg font-semibold">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-left text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold">
                     Appointment Type
                   </th>
-                  <th className="p-3 text-center text-[#030229] text-lg font-semibold rounded-tr-lg">
+                  <th className="new-xxl:p-3 new-lg:p-2 new-xl:p-2 text-center text-[#030229] new-xxl:text-lg new-lg:text-sm new-xl:text-base font-semibold rounded-tr-lg">
                     Action
                   </th>
                 </tr>
@@ -223,27 +223,27 @@ export default function AppointmentManagement() {
               <tbody>
                 {timeFilteredAppointments.map((appointment) => (
                   <tr key={appointment._id} className="border-b">
-                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                       {`${appointment.patientId.firstName} ${appointment.patientId.lastName}`}
                     </td>
-                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-base new-xl:text-base">
                       {appointment.dieseas_name}
                     </td>
 
-                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                       {appointment.patient_issue}
                     </td>
-                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
                       <span>{formatDate(appointment.date)}</span>
                     </td>
-                    <td className="p-3 text-[#4F4F4F] text-base font-semibold">
-                      <span className="bg-[#f6f8fb] rounded-full px-5 py-2 text-center text-[#718EBF] font-semibold">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 text-center text-[#4F4F4F] new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base">
+                      <span className="p-2 bg-[#F6F8FB] rounded-full text-[#718EBF] font-semibold new-xxl:w-[90%] new-xl:w-[80%] new-lg:w-[88%] text-center">
                         {formatTime(appointment.appointmentTime)}
                       </span>
                     </td>
-                    <td className="p-3">
+                    <td className="new-xxl:p-3 new-lg:py-1 new-xl:p-2 rounded-full text-center m-3">
                       <h3
-                        className={`px-5 py-2 text-[#4F4F4F] text-base font-semibold rounded-full w-[80%] text-center ${
+                        className={`new-xxl:px-5 new-lg:px-2 py-2 text-[#4F4F4F]  new-xxl:text-lg font-semibold new-lg:text-sm new-xl:text-base rounded-full new-xxl:w-[80%] new-lg:w-[100%] text-center ${
                           appointment.type === "online"
                             ? "bg-yellow-100 text-yellow-600"
                             : "bg-[#eef1fd] text-[#5678E9]"
@@ -252,15 +252,15 @@ export default function AppointmentManagement() {
                         {appointment.type}
                       </h3>
                     </td>
-                    <td className="action p-2 text-center font-semibold">
+                    <td className="action new-xxl:p-3 new-lg:py-2 new-lg:ps-2 new-xl:p-2 text-center font-semibold flex">
                       <div
-                        className="view text-[#E11D29] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer me-2"
+                        className="text-blue-400 bg-gray-100 rounded-lg text-center cursor-pointer new-xxl:w-10 new-xxl:h-10 new-lg:w-75 new-lg:h-5  new-xl:w-8 new-xl:h-8 flex items-center justify-center text-[#4F4F4F] text-lg font-semibold mr-1"
                         onClick={() => setOpenCancelAppointmentModal(true)}
                       >
                         <TbCalendarX />
                       </div>
                       <div
-                        className="view text-[#5678E9] bg-gray-100 rounded-lg p-3 text-lg inline-block cursor-pointer"
+                        className="text-blue-400 bg-gray-100 rounded-lg text-center cursor-pointer new-xxl:w-10 new-xxl:h-10 new-lg:w-75 new-lg:h-5 new-xl:w-8 new-xl:h-8 flex items-center justify-center text-[#4F4F4F] text-lg font-semibold"
                         onClick={() => navigate("/doctor/appointmentTimeSlot")}
                       >
                         <TbCalendarClock />
