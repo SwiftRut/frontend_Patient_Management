@@ -77,17 +77,17 @@ const ProfileSetting = () => {
     <div className="bg-gray-100 w-full h-[100vh]">
       <div className="py-5 bg-[#4C49ED] text-[44px] h-[296px] font-bold">
         <div className="container mx-auto w-[90%] new-xxl:w-[80%]">
-          <h1 className="new-xxl:text-[44px] new-xl:text-[40px] new-lg:text-[36px] font-bold text-white">Profile Setting </h1>
+          <h1 className="new-xxl:text-[44px] new-xl:text-[40px] new-lg:text-[36px] new-sm:text-[32px] text-[25px] font-bold text-white">Profile Setting </h1>
         </div>
       </div>
 
-      <div className="mt-[-50%] new-xxl:mt-[-10%] new-xl:mt-[-16%] new-lg:mt-[-19%] sm:mt-[-10%]  container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row w-[90%] new-xxl:w-[80%]">
+      <div className="mt-[-60%] new-xxl:mt-[-10%] new-xl:mt-[-16%] new-lg:mt-[-19%] new-sm:mt-[-35%]  container mx-auto py-5 bg-white shadow-lg rounded-lg flex flex-col md:flex-row w-[90%] new-xxl:w-[80%]">
         {/* Section 1 */}
         <div className="w-full md:w-[20%] new-xxl:p-5 new-xl:p-3 border-b md:border-b-0 md:border-r border-gray-300 flex flex-col items-center">
           <img
             src={userData?.avatar || "/image/Ellipse 1101.png"}
             alt="Profile"
-            className="new-xll:mx-auto new-xxl:w-[214px] new-xl:w-[190px] new-lg:w-[170px] rounded-full mx-auto"
+            className="new-xll:mx-auto new-xxl:w-[160px] new-xl:w-[140px] new-lg:w-[120px] new-sm:w-[170px] w-[150px] rounded-full mx-auto"
           />
           <label
             htmlFor="profilePic"
@@ -107,7 +107,7 @@ const ProfileSetting = () => {
 
         {/* Section 2 */}
         <div className="w-full md:w-[80%] new-xxl:w-[77%] new-xl:w-[75%] new-lg:w-[73%] p-6">
-          <h2 className=" font-bold pb-6 text-[34px]">Edit Profile</h2>
+          <h2 className=" new-xxl:text-[44px] new-xl:text-[40px] new-lg:text-[36px] new-sm:text-[32px] text-[25px] font-bold pb-4">Edit Profile</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
               {/* Name */}
