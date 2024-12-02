@@ -326,7 +326,7 @@ const AllAppointment = () => {
           <div className="tab-content mt-3">
             {activeTab === "appointments" && (
               <div className="overflow-y-auto" style={{ height: "720px" }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
                   {allAppointment.map((val, index) => (
                     <div
                       key={index}
@@ -393,7 +393,7 @@ const AllAppointment = () => {
             {activeTab === "documents" && (
               <div className="p-4">
                 <div className="overflow-y-auto" style={{ height: "700px" }}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
                     {documents.map((document, index) => (
                       <div key={index} className="border rounded-lg shadow">
                         <div className="head flex align-center justify-between p-4 bg-gray-100">
@@ -416,7 +416,7 @@ const AllAppointment = () => {
             {activeTab === "prescriptions" && (
               <div className="p-4">
                 <div className="overflow-y-auto" style={{ height: "700px" }}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
                     {AllPrescription.map((document, index) => (
                       <div key={index} className="border rounded-lg shadow">
                         <div className="head flex align-center justify-between p-4 bg-gray-100">
@@ -438,7 +438,7 @@ const AllAppointment = () => {
             )}
             {activeTab === "descriptions" && (
               <div className="overflow-y-auto" style={{ height: "720px" }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
                   {description.map((val, index) => (
                     <div
                       key={index}
