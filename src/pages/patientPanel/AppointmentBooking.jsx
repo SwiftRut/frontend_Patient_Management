@@ -71,7 +71,7 @@ const AppointmentBooking = () => {
     document.body.appendChild(script);
   };
   // Handle Razorpay Payment
-  const handlePayment = async () => {
+  const handlePayment = async (appointmentData, amount) => {
     try {
       if (!isAllSelected() || !selectedDate || !selectedTime) {
         toast.error("Please select all required fields");
@@ -99,31 +99,23 @@ const AppointmentBooking = () => {
         handler: async function (response) {
           try {
             // Verify payment
-            // await apiService.verifyPayment({
-            //   razorpay_order_id: response.razorpay_order_id,
-            //   razorpay_payment_id: response.razorpay_payment_id,
-            //   razorpay_signature: response.razorpay_signature,
-            // });
-
-            consoel.log("Payment verified successfully");
+            await apiService.verifyPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+            console.log(response,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            console.log("Payment verified successfully");
             // Create appointment
-            const appointmentData = {
-              doctorId: doctor,
-              date: selectedDate,
-              patient_issue: patientIssue,
-              start: selectedTime,
-              country,
-              city,
-              state,
-              type: appointmentType,
-              hospitalId: hospital,
+            const newAppointmentData = {
+              ...appointmentData,
               razorpayOrderId: response.razorpay_order_id,
               razorpayPaymentId: response.razorpay_payment_id,
               razorpaySignature: response.razorpay_signature,
               amount: amount,
             };
 
-            await apiService.createAppointmentWithPayment(appointmentData);
+            await apiService.createAppointmentWithPayment(newAppointmentData);
             toast.success("Appointment booked successfully!");
           } catch (error) {
             console.error("Appointment creation error:", error);
