@@ -17,13 +17,13 @@ const AppointmentBooking = () => {
     onClickNotification,
   } = useGlobal();
   const { user } = useAuth();
-  const [specialty, setSpecialty] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [hospital, setHospital] = useState("");
-  const [doctor, setDoctor] = useState("");
-  const [appointmentType, setAppointmentType] = useState("");
+  const [specialty, setSpecialty] = useState("nuero");
+  const [country, setCountry] = useState("IN");
+  const [state, setState] = useState("GJ");
+  const [city, setCity] = useState("Surat");
+  const [hospital, setHospital] = useState("pm city hospital");
+  const [doctor, setDoctor] = useState("673de70674ea959e623329d0");
+  const [appointmentType, setAppointmentType] = useState("follow_up");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [patientIssue, setPatientIssue] = useState("");
@@ -249,8 +249,8 @@ const AppointmentBooking = () => {
                   <p className="mt-2 text-center">No Appointment Found Yet</p>
                 </>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-10 gap-1 p-3">
-                  <div className="new-xxl:col-span-7 new-xl:col-span-6 new-lg:col-span-6">
+                <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
+                  <div className="col-span-7 p-3">
                     <Calendar
                       filterData={{
                         hospital,
@@ -267,7 +267,7 @@ const AppointmentBooking = () => {
                       handlePayment={handlePayment}
                     />
                   </div>
-                  <div className="new-xxl:col-span-3 new-xl:col-span-4 new-lg:col-span-4 new-xxl:p-3">
+                  <div className="col-span-3 p-3">
                     <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                   </div>
                 </div>
