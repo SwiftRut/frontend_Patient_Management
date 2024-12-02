@@ -406,7 +406,10 @@ const ChatScreen1 = () => {
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
       {/* Doctor List (Sidebar) */}
-      <div className="w-1/3 bg-white shadow-lg rounded-lg p-4 overflow-auto">
+      <div className="new-xxl:w-[25%] new-xl:w-[25%] new-lg:w-[34%]  bg-white shadow-lg rounded-lg p-4 overflow-auto new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden">
+        <div className="title">
+          <p className="new-xxl:text-[20px] new-xl:text-[20px] new-lg:text-[18px] font-semibold text-[#202224] pb-5">Chat</p>
+        </div>
         <div className="mb-4">
           <TextField
             fullWidth
@@ -423,7 +426,7 @@ const ChatScreen1 = () => {
             }}
           />
         </div>
-        <List>
+        <List className="">
           {doctorContacts?.map((doctor) => (
             <ListItem
               button
@@ -431,10 +434,10 @@ const ChatScreen1 = () => {
               onClick={() => handleChatClick(doctor)}
               selected={selectedChat?._id === doctor._id}
             >
-              <ListItemAvatar>
+              <ListItemAvatar >
                 <Avatar src={doctor.profile} alt={doctor.name} />
               </ListItemAvatar>
-              <ListItemText
+              <ListItemText 
                 primary={doctor.name}
                 secondary={`${doctor.speciality} • Last appointment: ${doctor.lastAppointment}`}
                 primaryTypographyProps={{ fontWeight: "bold" }}
@@ -446,7 +449,7 @@ const ChatScreen1 = () => {
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col">
+      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden overflow-y-scroll">
         {selectedChat ? (
           <>
             {/* Chat Header */}
@@ -461,7 +464,7 @@ const ChatScreen1 = () => {
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-auto mb-4">
+            <div className="flex-1 overflow-auto overflow-x-hidden bg-[#F6F8FB] mb-4">
               {messages.map((msg, index) => renderMessage(msg, index))}
               <div ref={messagesEndRef} />
             </div>
