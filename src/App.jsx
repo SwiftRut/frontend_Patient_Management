@@ -7,6 +7,7 @@ import AddRecord from "./pages/doctroPanel/AddRecord.jsx";
 import { ErrorPage } from "./pages/ErrorPage.jsx";
 import SendNotificationForm from "./SendNotificationForm.jsx";
 import NotificationBox from "./NotificaitionBox.jsx";
+
 function App() {
   return (
     <Suspense fallback={<Loading />}>

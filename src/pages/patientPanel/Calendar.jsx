@@ -9,6 +9,7 @@ import RescheduleModal from "./RescheduleModal";
 import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import "../../App.css";
 
 const localizer = momentLocalizer(moment);
 
@@ -34,7 +35,7 @@ const Calendar = ({
   const { user } = useAuth();
   console.log(
     user,
-    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",
+    "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
   );
   useEffect(() => {
     getAppointmetnsForPatient(user.id);
@@ -98,7 +99,7 @@ const Calendar = ({
       const updatedEvents = events.map((event) =>
         event.id === updatedAppointment.id
           ? { ...event, ...updatedAppointment }
-          : event,
+          : event
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
@@ -107,7 +108,7 @@ const Calendar = ({
       if (onDateTimeSelect) {
         const date = new Date(updatedAppointment.date);
         const time = new Date(
-          updatedAppointment.appointmentTime,
+          updatedAppointment.appointmentTime
         ).toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
@@ -125,7 +126,7 @@ const Calendar = ({
     try {
       await deleteAppointment(appointmentId);
       const updatedEvents = events.filter(
-        (event) => event.id !== appointmentId,
+        (event) => event.id !== appointmentId
       );
       setEvents(updatedEvents);
       handleCloseRescheduleModal();
@@ -137,7 +138,10 @@ const Calendar = ({
   };
 
   return (
-    <div id="Calendar" className="container mx-auto new-xxl:p-6 new-xl:p-6 new-lg:p-3 new-lg:h-[490px] new-xl:h-[490px] new-xxl:h-[500px]">
+    <div
+      id="Calendar"
+      className="container mx-auto new-xxl:p-6 new-xl:p-6 new-lg:p-3 new-lg:h-[490px] new-xl:h-[490px] new-xxl:h-[500px]"
+    >
       <BigCalendar
         localizer={localizer}
         events={events}
