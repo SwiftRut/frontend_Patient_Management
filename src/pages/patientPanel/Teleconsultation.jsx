@@ -137,7 +137,7 @@ const Teleconsultation = () => {
         <div className="mx-3 mt-5">
           <div className="bg-white shadow-lg h-auto p-4 rounded-xl">
             {/* Tab navigation */}
-            <ul className="overflow-x-auto flex border-b border-gray-300">
+            <ul className="overflow-x-auto flex flex-nowrap border-b border-gray-300 new-lg:justify-start">
               {["scheduled", "previous", "cancel", "pending"].map((tab) => (
                 <li key={tab} className="mr-4">
                   <button
@@ -159,35 +159,35 @@ const Teleconsultation = () => {
               <div className="w-full p-4">
                 <div className="flex flex-col flex-row space-y-4 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
                   {/* Title */}
-                  <h1 className="sm:text-2xl text-md font-semibold text-gray-900">
+                  <h1 className="sm:text-2xl new-lg:text-2xl new-xxl:grid-cols-4 text-md font-semibold text-gray-900">
                     My Appointment
                   </h1>
 
                   {/* Controls Container */}
-                  <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-3">
+                  <div className="flex flex-col space-y-4 new-sm:flex-row new-sm:justify-between new-sm:items-center sm:flex-row sm:space-y-0 sm:space-x-2">
                     <div ref={searchRef} className="relative">
                       <button
                         onClick={toggleSearch}
-                        className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+                        className="md:hidden hover:bg-gray-100 transition-colors h-12 w-12 rounded-md bg-[#f6f8fb] text-xl new-sm:mt-3"
                       >
-                        <Search className="h-5 w-5 text-gray-600" />
+                        <Search className="text-gray-600" />
                       </button>
                       <div
                         className={`
                           ${
                             isSearchOpen
-                              ? "absolute top-0 left-0 w-[calc(100vw-2rem)] z-50"
+                              ? "absolute top-[8px] left-[8px] w-[calc(100vw-2rem)] z-50"
                               : "hidden"
                           } 
-                          md:relative md:block md:w-auto
+                          md:relative md:block 
                         `}
                       >
-                        <div className="flex items-center bg-gray-50 rounded-full px-4 py-2 sm:w-full w-[80%]">
+                        <div className="flex items-center bg-gray-50 rounded-full px-4 py-2 sm:w-full new-lg:w-[100%] w-[40%]">
                           <Search className="h-4 w-4 text-gray-500 mr-2 flex-shrink-0" />
                           <input
                             type="text"
                             placeholder="Quick Search"
-                            className="bg-transparent w-[130px] sm:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
+                            className="bg-transparent w-[130px] sm:w-[200px] new-lg:w-[100px] new-xl:w-[150px] new-xxl:w-[200px] focus:outline-none sm:text-sm text-gray-600 placeholder-gray-400 text-[10px]"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                           />
@@ -205,7 +205,7 @@ const Teleconsultation = () => {
 
                     {/* Date Selector */}
                     <div
-                      className="flex items-center border rounded-md p-2 bg-white cursor-pointer"
+                      className="flex items-center border rounded-md p-2 bg-white cursor-pointer relative"
                       onClick={() => setOpenCustomDateModal(true)}
                     >
                       <span className="pl-3 text-gray-500 me-1">
@@ -213,10 +213,10 @@ const Teleconsultation = () => {
                       </span>
                       <input
                         type="text"
-                        className="flex-1 focus:outline-none text-sm min-w-[189px] max-w-[300px] sm:min-w-[180px]"
+                        className="flex-1 focus:outline-none text-sm min-w-[159px] max-w-[300px] new-sm:min-w-[189px] new-sm:max-w-[300px] sm:min-w-[180px]"
                         value={
                           dateRange[0] && dateRange[1]
-                            ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(dateRange[1]).format("MM/DD/YYYY")}`
+                            ? `${moment(dateRange[0]).format("MM/DD/YYYY")} - ${moment(dateRange[1]).format("MM/DD/YYYY")} `
                             : "Select Date Range"
                         }
                         readOnly
@@ -231,7 +231,7 @@ const Teleconsultation = () => {
 
                     {/* Book Appointment Button */}
                     <Link to="/patient/appointmentBooking">
-                      <button className="w-auto px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center">
+                      <button className="w-auto new-lg:px-2 new-lg:py-2 new-lg:text-sm new-xl:px-3 new-xl:py-2 new-xl:text-base px-3 py-3 sm:px-4 sm:py-2 bg-sky-500 hover:bg-sky-600 transition-colors rounded-md text-white flex items-center justify-center w-[calc(100vw-2rem)] z-50">
                         <BiSolidCalendar className="h-5 w-5" />
                         <span className="hidden sm:inline-block sm:ml-2">
                           Book Appointment
@@ -243,7 +243,7 @@ const Teleconsultation = () => {
               </div>
 
               <div className="overflow-y-auto" style={{ height: "550px" }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 new-lg:grid-cols-3 new-xxl:grid-cols-4 new-sm:grid-cols-1 new-sm:w-[70%] new-lg:w-[100%] new-sm:m-auto gap-4">
                   {filteredAppointments.map((appointment) => (
                     <div
                       key={appointment.id}
