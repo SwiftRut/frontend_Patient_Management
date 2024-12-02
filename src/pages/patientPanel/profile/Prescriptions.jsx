@@ -143,7 +143,7 @@ const Prescriptions = () => {
                       Patient Issue
                     </p>
                     <span className="text-[#4F4F4F] text-[16px] font-bold">
-                      {prescription.appointmentId.patient_issue}
+                      {prescription?.appointmentId?.patient_issue}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
