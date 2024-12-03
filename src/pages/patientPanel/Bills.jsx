@@ -92,7 +92,7 @@ const Bills = () => {
                   </div>
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 new-lg:grid-cols-3 gap-4">
                       {unpaidBills?.length > 0 ? (
                         unpaidBills?.map((val, index) => (
                           <div
@@ -177,7 +177,7 @@ const Bills = () => {
                   </div>
 
                   <div className="overflow-y-auto" style={{ height: "550px" }}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 new-lg:grid-col-3 gap-4">
                       {paidBills.length > 0 ? (
                         paidBills.map((val, index) => (
                           <div
@@ -251,13 +251,13 @@ const Bills = () => {
       {openModel && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
           <button
-            className="close-button absolute top-5  right-5 text-3xl border h-10 w-10 pb-10 text-white rounded-full"
+            className="close-button absolute top-5 right-5 text-3xl border h-10 w-10 pb-10 text-white rounded-full"
             onClick={() => setOpenModel(false)}
           >
             &times;
           </button>
-          <div className="inset-0 flex items-center justify-center z-50 relative top-40">
-            <div className="onsite-modal-header overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 h-full mx-5 my-2">
+          <div className="inset-0 flex items-center justify-center z-50 relative top-10">
+            <div className="onsite-modal-header overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 new-sm:h-[600px] new-lg:h-[1000px] mx-2 my-1">
               <MainBill modelId={modelId} />
             </div>
             {/* <Onsite
@@ -584,7 +584,7 @@ Bills.propTypes = {
       updatedAt: PropTypes.string,
       __v: PropTypes.number,
       _id: PropTypes.string,
-    }),
+    })
   ).isRequired, // Mark as required if necessary
 };
 

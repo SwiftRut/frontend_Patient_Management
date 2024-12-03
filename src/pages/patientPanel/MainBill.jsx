@@ -22,11 +22,11 @@ const MainBill = (modelId) => {
   }, []);
 
   return (
-    <div className="bg-[#F6F8FB] p-3 h-[92%]">
-      <div className="max-w-3xl mt-[40px] mx-auto bg-white dark:bg-card rounded-lg shadow-lg">
+    <div className=" p-3 h-[92%]">
+      <div className="max-w-3xl mx-auto bg-white dark:bg-card rounded-lg shadow-lg">
         {/* Header - Adjusted image sizes and spacing */}
-        <div className="flex flex-row justify-between items-center mb-2 p-4 sm:ps-6 gap-4">
-          <div className="w-1/2 sm:w-[250px]">
+        <div className="flex justify-between items-center mb-2 sm:ps-6 new-lg:p-3 gap-4 sm:flex-row new-sm:flex-nowrap">
+          <div className="w-1/2 sm:w-[100px] new-lg:w-[200px]">
             <img
               src="/img/logo.png"
               className="h-auto object-contain"
@@ -35,7 +35,7 @@ const MainBill = (modelId) => {
               height="auto"
             />
           </div>
-          <div className="w-1/2 sm:w-[200px]">
+          <div className="w-1/2 sm:w-[100px] new-lg:w-[200px]">
             <img
               src="/img/invoice.png"
               className="w-full h-auto object-contain"
@@ -46,7 +46,7 @@ const MainBill = (modelId) => {
 
         <div className="p-4 sm:p-6">
           {/* Doctor and Bill Info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-1 new-sm:grid-cols-2 gap-4">
             <div>
               <p className="font-medium text-lg sm:text-2xl text-[#141414]">
                 Dr.{bill.doctorId?.name}
@@ -55,7 +55,7 @@ const MainBill = (modelId) => {
                 {bill.doctorId?.description}
               </p>
             </div>
-            <div className="text-left sm:text-right mt-4 sm:mt-0">
+            <div className="text-left sm:text-right sm:mt-0">
               <p className="text-[#818194] mb-1">
                 <strong className="text-[#141414]">Bill No:</strong>{" "}
                 {bill.billNumber}
@@ -73,7 +73,7 @@ const MainBill = (modelId) => {
 
           {/* Patient Info */}
           <div className="mt-6 bg-[#f6f8fb] p-3 rounded-md">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 new-sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <p className="text-[#818194] text-sm">
                   <strong className="text-[#141414] text-base me-2">
@@ -239,7 +239,8 @@ const MainBill = (modelId) => {
         </div>
 
         {/* Footer */}
-        <footer className="text-center flex flex-col sm:flex-row justify-between bg-[#0EABEB] p-3 text-white rounded-b-lg gap-2">
+        <footer className="text-center flex flex-col sm:flex-row new-sm:flex-nowrap
+         justify-between bg-[#0EABEB] p-3 text-white rounded-b-lg gap-2">
           <p className="text-sm sm:text-base">Call: +90854 22354</p>
           <p className="text-sm sm:text-base">
             Email:{" "}

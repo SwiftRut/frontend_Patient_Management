@@ -263,7 +263,7 @@ const Appointment = () => {
               </div>
 
               <div className="overflow-y-auto" style={{ height: "550px" }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 new-lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 new-lg:grid-cols-3 new-xxl:grid-cols-4  gap-4">
                   {filteredAppointments?.length > 0 ? (
                     filteredAppointments?.map((appointment) => (
                       <div

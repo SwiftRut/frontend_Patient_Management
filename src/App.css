@@ -35,6 +35,7 @@
 
 .rbc-time-header {
   @apply border-b;
+  /* width: 100%; */
 }
 
 .rbc-time-header-content {
@@ -89,13 +90,54 @@
   .rbc-toolbar {
     @apply flex-col items-stretch text-center;
   }
-  
+
   .rbc-toolbar-label {
     @apply my-2;
   }
-  
+
   .rbc-btn-group {
     @apply justify-center;
+  }
+
+  /* Make time column sticky */
+  .rbc-time-gutter {
+    @apply sticky left-0 bg-white z-10;
+    min-width: 65px;
+  }
+
+  /* Make header row sticky */
+  .rbc-time-header {
+    @apply sticky top-0 bg-white z-20;
+  }
+
+  /* Enable horizontal scrolling */
+  .rbc-time-view {
+    @apply overflow-x-auto;
+  }
+
+  .rbc-time-content {
+    @apply overflow-x-auto;
+    min-width: 600px; /* Ensure there's enough width to scroll */
+  }
+
+  /* Adjust day columns for mobile */
+  .rbc-day-slot {
+    min-width: 100px; /* Give enough width for content */
+  }
+
+  /* Style the time labels for better mobile visibility */
+  .rbc-label {
+    @apply text-xs font-medium whitespace-nowrap px-1;
+  }
+
+  /* Ensure "No Schedule" text wraps properly */
+  .rbc-event-content {
+    @apply whitespace-nowrap overflow-hidden text-ellipsis;
+  }
+
+  /* Adjust toolbar for mobile */
+  .rbc-toolbar {
+    @apply sticky top-0 bg-white z-30;
   }
 }
 
@@ -111,11 +153,38 @@
 /* Day Columns */
 .rbc-day-slot {
   @apply border-r;
+  width: 165px;
 }
 
 .rbc-day-slot:last-child {
   @apply border-r-0;
 }
-.rbc-events-container{
-    @apply overflow-x-auto
+.rbc-day-slot {
+  @apply overflow-x-auto;
+}
+.rbc-time-content > .rbc-time-gutter {
+  @apply sticky left-0;
+}
+.rbc-time-content {
+  @apply overflow-x-auto;
+}
+
+/* Ensure proper stacking context */
+.rbc-calendar {
+  @apply relative;
+}
+
+/* Enhance visibility of time gutter border */
+.rbc-time-gutter {
+  @apply border-r border-gray-200;
+}
+
+/* Adjust time column background */
+.rbc-time-gutter .rbc-timeslot-group {
+  @apply bg-white;
+}
+
+/* Ensure proper alignment of time labels */
+.rbc-time-gutter .rbc-label {
+  @apply text-right pr-2;
 }

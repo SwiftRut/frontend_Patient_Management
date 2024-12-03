@@ -140,7 +140,7 @@ const Calendar = ({
   return (
     <div
       id="Calendar"
-      className="container mx-auto new-xxl:p-6 new-xl:p-6 new-lg:p-3 new-lg:h-[490px] new-xl:h-[490px] new-xxl:h-[500px]"
+      className="container mx-auto new-xxl:p-6 new-xl:p-6 new-lg:p-3 new-sm:h-[1000px] new-lg:h-[490px] new-xl:h-[490px] new-xxl:h-[500px]"
     >
       <BigCalendar
         localizer={localizer}

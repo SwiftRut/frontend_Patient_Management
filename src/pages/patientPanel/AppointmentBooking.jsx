@@ -30,7 +30,7 @@ const AppointmentBooking = () => {
 
   useEffect(() => {
     toast.success(
-      "hospital might not work due to data inefficiency !!  You can continue without it!",
+      "hospital might not work due to data inefficiency !!  You can continue without it!"
     );
     getAllDoctors();
     getAllHospitals();
@@ -81,7 +81,7 @@ const AppointmentBooking = () => {
       // Get appointment fee
       const { data: feeData } = await apiService.AppointmentFee(
         doctor,
-        appointmentType,
+        appointmentType
       );
       const amount = feeData.fee;
       // Create Razorpay order
@@ -104,7 +104,7 @@ const AppointmentBooking = () => {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
             });
-            console.log(response,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            console.log(response, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             console.log("Payment verified successfully");
             // Create appointment
             const newAppointmentData = {
@@ -250,7 +250,7 @@ const AppointmentBooking = () => {
                 </>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-                  <div className="col-span-7 p-3">
+                  <div className="new-xxl:col-span-7 new-xl:col-span-7 new-lg:col-span-6 p-3">
                     <Calendar
                       filterData={{
                         hospital,
@@ -261,13 +261,13 @@ const AppointmentBooking = () => {
                         appointmentType,
                       }}
                       selectedDoctor={allDoctors.find(
-                        (doc) => doc._id === doctor,
+                        (doc) => doc._id === doctor
                       )}
                       onDateTimeSelect={handleDateTimeSelect}
                       handlePayment={handlePayment}
                     />
                   </div>
-                  <div className="col-span-3 p-3">
+                  <div className="new-xxl:col-span-3 new-xl:col-span-3 new-lg:col-span-4 p-3">
                     <DoctorDetails doctorId={doctor} allDoctors={allDoctors} />
                   </div>
                 </div>
