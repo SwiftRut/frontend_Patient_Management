@@ -421,14 +421,14 @@ const TestReport = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-          <h1 className="text-[#030229] text-[26px] font-bold font-semibold mb-2 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-between mb-3">
+          <h1 className="text-[#030229] text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] font-bold font-semibold mb-2 md:mb-0">
             Test Report
           </h1>
         </div>
 
         <div className="overflow-y-auto pt-4" style={{ height: "720px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
             {prescriptionData.map((val, index) => (
               <div
                 key={index}
@@ -501,7 +501,7 @@ const TestReport = () => {
                   </button>
                 </div>
                 <div className="modal-body p-4 pt-0">
-                  <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200">
+                  <div className="max-w-xl mx-auto bg-bg-color rounded-lg p-4 border border-gray-200 ">
                     <div className="top bg-gray-100 rounded p-4">
                       <div className="head flex justify-between align-center ">
                         <div className="logo w-[140px] sm:w-[238px]">
@@ -570,7 +570,7 @@ const TestReport = () => {
                           <th className="text-[#030229] text-[14px] font-semibold	p-3">
                             Dose
                           </th>
-                          <th className="text-[#030229] text-[14px] hidden sm:inline-block font-semibold	p-3">
+                          <th className="duration text-[#141414] text-[16px] font-semibold	py-3 border-b hidden sm:inline-block me-3">
                             Duration
                           </th>
                           <th className="text-[#030229] text-[14px] hidden sm:inline-block font-semibold	p-3">

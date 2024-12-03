@@ -102,13 +102,13 @@ const MedicalHistory = () => {
       <div className="container mx-auto p-4">
         <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
           <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-            <h1 className="text-[26px] font-bold mb-2 md:mb-0">
+            <h1 className="text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] font-bold mb-2 md:mb-0">
               Medical History
             </h1>
           </div>
 
           <div className="overflow-y-auto" style={{ height: "750px" }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 new-sm:grid-cols-2 new-lg:grid-cols-4 gap-4">
               {medicalhistory.map((val, index) => (
                 <div
                   key={index}

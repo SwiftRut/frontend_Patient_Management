@@ -75,7 +75,7 @@ const Prescriptions = () => {
     <div className="container mx-auto p-4">
       <div className="bg-white shadow-lg w-full h-auto p-4 rounded-xl">
         <div className="flex flex-col md:flex-row justify-between items-center mb-3">
-          <h1 className="text-[26px] font-bold text-[font-bold] mb-2 md:mb-0">
+          <h1 className=" text-[18px] new-sm:text-[20px] new-lg:text-[22px] new-xl:text-[24px] new-xxl:text-[26px] font-bold text-[font-bold] mb-2 md:mb-0">
             Prescriptions
           </h1>
           <div className="relative w-full md:w-1/3">
@@ -112,7 +112,8 @@ const Prescriptions = () => {
         </div>
 
         <div className="overflow-y-auto pt-4" style={{ height: "720px" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 new-sm
+          :grid-cols-2 lg:grid-cols-4 gap-4">
             {patientPrescription?.map((prescription, index) => (
               <div
                 key={index}
@@ -242,8 +243,8 @@ const Prescriptions = () => {
                         </div>
                       </div>
                     </div>
-
-                    <table className="w-[100%] mt-4 table-data">
+                    <div className="overflow-x-auto">
+                    <table className="w-[100%] mt-4 table-data table-auto whitespace-nowrap">
                       <thead className="bg-gray-100">
                         <tr>
                           <th className="text-[#030229] text-[14px] font-semibold p-3">
@@ -291,6 +292,7 @@ const Prescriptions = () => {
                         )}
                       </tbody>
                     </table>
+                    </div>
 
                     <div className="mt-4 flex justify-between align-center">
                       <div className="sign border-b pb-2">
