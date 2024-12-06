@@ -14,6 +14,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  useMediaQuery,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -31,6 +32,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
 import { useGlobal } from "../../hooks/useGlobal";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 // Initialize socket connection - replace with your API URL
 const socket = io(import.meta.env.VITE_API_BASE_URL);
 
@@ -67,6 +69,16 @@ const ChatScreen = () => {
     getAppointmetnsForDoctor,
     allAppointments,
   } = useGlobal();
+
+  // Add these new states for mobile view
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [currentView, setCurrentView] = useState('contacts'); // 'contacts' or 'chat'
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  // Add this effect to handle mobile view
+  useEffect(() => {
+    setIsMobileView(isMobile);
+  }, [isMobile]);
 
   // Fetch appointments
   useEffect(() => {
@@ -411,159 +423,260 @@ const ChatScreen = () => {
 
   return (
     <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
-      {/* Contact List */}
-      <div className="new-xxl:w-[22
-      %]  bg-white shadow-lg rounded-lg p-4 overflow-auto">
-        <div className="title">
-          <p className="text-[20px] text-[#202224] font-semibold">Chat</p>
-        </div>
-        <div className="mb-4 mt-5 bg-[#F6F8FB] rounded-[50px]">
-          <TextField
-            className="border-0"
-            fullWidth
-            variant="outlined"
-            placeholder="Search Patient"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </div>
-        <List>
-          {patientContacts.map((contact) => (
-            <ListItem
-              button
-              key={contact._id}
-              onClick={() => handleChatClick(contact)}
-              selected={selectedChat?._id === contact._id}
-            >
-              <ListItemAvatar>
-                <Avatar
-                  src={contact.profile}
-                  alt={`${contact.firstName} ${contact.lastName}`}
-                />
-              </ListItemAvatar>
-              <ListItemText
-                primary={`${contact.firstName} ${contact.lastName}`}
-                secondary={`Last appointment: ${contact.lastAppointment}`}
-                primaryTypographyProps={{ fontWeight: "bold" }}
-                secondaryTypographyProps={{ color: "textSecondary" }}
+      {isMobileView ? (
+        currentView === 'contacts' ? (
+          // Mobile Contacts View
+          <div className="w-full bg-white shadow-lg rounded-lg p-4 overflow-auto">
+            <div className="title">
+              <p className="text-lg font-semibold text-[#202224] pb-5">Chat</p>
+            </div>
+            <div className="mb-4 bg-[#F6F8FB] rounded-[50px]">
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Search Patient"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-
-      {/* Chat Window */}
-      <div className="flex-1 bg-[#F6F8FB] shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full relative">
-        {selectedChat ? (
-          <>
-            {/* Chat Header */}
-            <div className="flex items-center mb-4 bg-white p-3 rounded-lg absolute top-0 left-0 w-[100%] z-10">
+            </div>
+            <List>
+              {patientContacts.map((contact) => (
+                <ListItem
+                  button
+                  key={contact._id}
+                  onClick={() => {
+                    handleChatClick(contact);
+                    setCurrentView('chat');
+                  }}
+                  selected={selectedChat?._id === contact._id}
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      src={contact.profile}
+                      alt={`${contact.firstName} ${contact.lastName}`}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${contact.firstName} ${contact.lastName}`}
+                    secondary={`Last appointment: ${contact.lastAppointment}`}
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                    secondaryTypographyProps={{ color: "textSecondary" }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        ) : (
+          // Mobile Chat View
+          <div className="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col">
+            <div className="flex items-center mb-4">
+              <IconButton onClick={() => setCurrentView('contacts')}>
+                <ArrowBack />
+              </IconButton>
               <Avatar
-                src={selectedChat.profile}
-                alt={`${selectedChat.firstName} ${selectedChat.lastName}`}
+                src={selectedChat?.profile}
+                alt={`${selectedChat?.firstName} ${selectedChat?.lastName}`}
               />
               <div className="ml-4">
                 <h2 className="text-lg font-bold">
-                  {`${selectedChat.firstName} ${selectedChat.lastName}`}
+                  {`${selectedChat?.firstName} ${selectedChat?.lastName}`}
                 </h2>
-                <p className="text-sm text-gray-500">{selectedChat.email}</p>
+                <p className="text-sm text-gray-500">{selectedChat?.email}</p>
               </div>
             </div>
-
-            {/* Messages Container */}
-            <div
-              ref={msgContainerRef}
-              className="flex-1 overflow-y-scroll overflow-x-hidden mb-4"
-            >
+            
+            <div className="flex-1 overflow-auto bg-[#F6F8FB] mb-4 px-3">
               {messages.map((msg, index) => renderMessage(msg, index))}
+              <div ref={msgContainerRef} />
             </div>
 
-            {/* Input Area */}
             <div className="mt-4">
-              {/* File Preview */}
               <FilePreview />
-
-              {/* Message Input Area */}
-              <div className="flex items-center justify-between space-x-2 border">
-                <div className="new-xxl:w-[95%] new-xxl:w-[95%] new-lg:w-[80%]  ">
+              <div className="flex border rounded justify-between items-center space-x-2">
+                <Tooltip title="Attach file">
                   <IconButton onClick={handleAttachClick}>
                     <AttachFile />
                   </IconButton>
-
-                  <input
-                    fullWidth
-                    variant="outlined"
-                    className="bg-[#F6F8FB] w-[80%]"
-                    placeholder="Type a message..."
-                    value={messageInput}
-                    onChange={(e) => setMessageInput(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        sendMessage();
-                      }
-                    }}
-                    multiline
-                    maxRows={4}
-                  />
-                </div>
-
+                </Tooltip>
+                <input
+                  className="flex-1 p-2"
+                  placeholder="Type a message..."
+                  value={messageInput}
+                  onChange={(e) => setMessageInput(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      sendMessage();
+                    }
+                  }}
+                />
                 <IconButton onClick={sendMessage} color="primary">
                   <Send />
                 </IconButton>
               </div>
-
-              {/* File Selection Menu */}
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
-              >
-                <MenuItem>
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => {
-                        handleFileSelect(e, "image");
-                        setAnchorEl(null);
-                      }}
-                    />
-                    <Image className="mr-2" /> Image
-                  </label>
-                </MenuItem>
-                <MenuItem>
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      className="hidden"
-                      onChange={(e) => {
-                        handleFileSelect(e, "file");
-                        setAnchorEl(null);
-                      }}
-                    />
-                    <Description className="mr-2" /> Document
-                  </label>
-                </MenuItem>
-              </Menu>
             </div>
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-gray-500">Select a patient to start chatting</p>
           </div>
-        )}
-      </div>
+        )
+      ) : (
+        // Desktop View (existing code)
+        <>
+          <div className="new-xxl:w-[22%] bg-white shadow-lg rounded-lg p-4 overflow-auto">
+            <div className="title">
+              <p className="text-[20px] text-[#202224] font-semibold">Chat</p>
+            </div>
+            <div className="mb-4 mt-5 bg-[#F6F8FB] rounded-[50px]">
+              <TextField
+                className="border-0"
+                fullWidth
+                variant="outlined"
+                placeholder="Search Patient"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
+            <List>
+              {patientContacts.map((contact) => (
+                <ListItem
+                  button
+                  key={contact._id}
+                  onClick={() => handleChatClick(contact)}
+                  selected={selectedChat?._id === contact._id}
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      src={contact.profile}
+                      alt={`${contact.firstName} ${contact.lastName}`}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${contact.firstName} ${contact.lastName}`}
+                    secondary={`Last appointment: ${contact.lastAppointment}`}
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                    secondaryTypographyProps={{ color: "textSecondary" }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+          <div className="flex-1 bg-[#F6F8FB] shadow-lg rounded-lg ml-4 p-4 flex flex-col max-h-full relative">
+            {selectedChat ? (
+              <>
+                {/* Chat Header */}
+                <div className="flex items-center mb-4 bg-white p-3 rounded-lg absolute top-0 left-0 w-[100%] z-10">
+                  <Avatar
+                    src={selectedChat.profile}
+                    alt={`${selectedChat.firstName} ${selectedChat.lastName}`}
+                  />
+                  <div className="ml-4">
+                    <h2 className="text-lg font-bold">
+                      {`${selectedChat.firstName} ${selectedChat.lastName}`}
+                    </h2>
+                    <p className="text-sm text-gray-500">{selectedChat.email}</p>
+                  </div>
+                </div>
 
+                {/* Messages Container */}
+                <div
+                  ref={msgContainerRef}
+                  className="flex-1 overflow-y-scroll overflow-x-hidden mb-4"
+                >
+                  {messages.map((msg, index) => renderMessage(msg, index))}
+                </div>
+
+                {/* Input Area */}
+                <div className="mt-4">
+                  {/* File Preview */}
+                  <FilePreview />
+
+                  {/* Message Input Area */}
+                  <div className="flex items-center justify-between space-x-2 border">
+                    <div className="new-xxl:w-[95%] new-xxl:w-[95%] new-lg:w-[80%]  ">
+                      <IconButton onClick={handleAttachClick}>
+                        <AttachFile />
+                      </IconButton>
+
+                      <input
+                        fullWidth
+                        variant="outlined"
+                        className="bg-[#F6F8FB] w-[80%]"
+                        placeholder="Type a message..."
+                        value={messageInput}
+                        onChange={(e) => setMessageInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            sendMessage();
+                          }
+                        }}
+                        multiline
+                        maxRows={4}
+                      />
+                    </div>
+
+                    <IconButton onClick={sendMessage} color="primary">
+                      <Send />
+                    </IconButton>
+                  </div>
+
+                  {/* File Selection Menu */}
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={() => setAnchorEl(null)}
+                  >
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "image");
+                            setAnchorEl(null);
+                          }}
+                        />
+                        <Image className="mr-2" /> Image
+                      </label>
+                    </MenuItem>
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "file");
+                            setAnchorEl(null);
+                          }}
+                        />
+                        <Description className="mr-2" /> Document
+                      </label>
+                    </MenuItem>
+                  </Menu>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center justify-center h-full">
+                <p className="text-gray-500">Select a patient to start chatting</p>
+              </div>
+            )}
+          </div>
+        </>
+      )}
       <PreviewModal />
     </div>
   );

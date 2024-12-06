@@ -14,6 +14,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  useMediaQuery,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {
@@ -23,6 +24,7 @@ import {
   Description,
   Close,
   Delete,
+  ArrowBack,
 } from "@mui/icons-material";
 import { useDoctor } from "../../hooks/useDoctor";
 import { usePatient } from "../../hooks/usePatient";
@@ -56,6 +58,11 @@ const ChatScreen1 = () => {
     type: null,
     fileName: null,
   });
+
+  const [isMobileView, setIsMobileView] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const [currentView, setCurrentView] = useState('contacts'); // 'contacts' or 'chat'
 
   // Fetch appointments on component mount
   useEffect(() => {
@@ -125,6 +132,10 @@ const ChatScreen1 = () => {
       socket.off("disconnect");
     };
   }, []);
+
+  useEffect(() => {
+    setIsMobileView(isMobile);
+  }, [isMobile]);
 
   const handleChatClick = async (doctor) => {
     setSelectedChat(doctor);
@@ -284,9 +295,8 @@ const ChatScreen1 = () => {
       className={`mb-2 ${msg?.senderId === user.id ? "text-right" : "text-left"}`}
     >
       <div
-        className={`inline-block max-w-md relative group ${
-          msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
-        } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
+        className={`inline-block max-w-md relative group ${msg?.senderId === user.id ? "bg-blue-100" : "bg-gray-100"
+          } rounded-lg p-3 hover:shadow-lg transition-shadow duration-200`}
       >
         {msg.type === "text" && <p className="text-sm">{msg.messageContent}</p>}
 
@@ -404,160 +414,299 @@ const ChatScreen1 = () => {
   }, []);
 
   return (
-    <div className="flex h-[calc(100vh-80px)] p-4 bg-gray-100">
-      {/* Doctor List (Sidebar) */}
-      <div className="new-xxl:w-[25%] new-xl:w-[25%] new-lg:w-[34%]  bg-white shadow-lg rounded-lg p-4 overflow-auto new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden">
-        <div className="title">
-          <p className="new-xxl:text-[20px] new-xl:text-[20px] new-lg:text-[18px] font-semibold text-[#202224] pb-5">Chat</p>
-        </div>
-        <div className="mb-4">
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search Doctor"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </div>
-        <List className="">
-          {doctorContacts?.map((doctor) => (
-            <ListItem
-              button
-              key={doctor._id}
-              onClick={() => handleChatClick(doctor)}
-              selected={selectedChat?._id === doctor._id}
-            >
-              <ListItemAvatar >
-                <Avatar src={doctor.profile} alt={doctor.name} />
-              </ListItemAvatar>
-              <ListItemText 
-                primary={doctor.name}
-                secondary={`${doctor.speciality} • Last appointment: ${doctor.lastAppointment}`}
-                primaryTypographyProps={{ fontWeight: "bold" }}
-                secondaryTypographyProps={{ color: "textSecondary" }}
+    <div className="flex flex-col md:flex-row h-[calc(100vh-80px)] p-4 bg-gray-100">
+      {isMobileView ? (
+        currentView === 'contacts' ? (
+          <div className="w-full bg-white shadow-lg rounded-lg p-4 overflow-auto">
+            {/* Doctor List (Sidebar) */}
+            <div className="title">
+              <p className="text-lg font-semibold text-[#202224] pb-5">Chat</p>
+            </div>
+            <div className="mb-4">
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Search Doctor"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-
-      {/* Chat Window */}
-      <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden overflow-y-scroll">
-        {selectedChat ? (
-          <>
-            {/* Chat Header */}
-            <div className="flex items-center mb-4">
-              <Avatar src={selectedChat.profile} alt={selectedChat.name} />
-              <div className="ml-4">
-                <h2 className="text-lg font-bold">{selectedChat.name}</h2>
-                <p className="text-sm text-gray-500">
-                  {selectedChat.speciality}
-                </p>
-              </div>
             </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 overflow-auto overflow-x-hidden bg-[#F6F8FB] mb-4">
-              {messages.map((msg, index) => renderMessage(msg, index))}
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="mt-4">
-              {/* File Preview */}
-              <FilePreview />
-
-              {/* Message Input */}
-              <div className="flex border rounded justify-between items-center space-x-2 ">
-                <div className="left">
-                  <Tooltip title="Attach file">
-                    <IconButton onClick={handleAttachClick}>
-                      <AttachFile />
-                    </IconButton>
-                  </Tooltip>
-
-                  <input
-                    fullWidth
-                    variant="outlined"
-                    placeholder="Type a message..."
-                    value={messageInput}
-                    onChange={(e) => setMessageInput(e.target.value)}
-                    onKeyPress={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        sendMessage();
-                      }
-                    }}
-                    multiline
-                    maxRows={4}
+            <List>
+              {doctorContacts?.map((doctor) => (
+                <ListItem
+                  button
+                  key={doctor._id}
+                  onClick={() => {
+                    handleChatClick(doctor);
+                    setCurrentView('chat');
+                  }}
+                  selected={selectedChat?._id === doctor._id}
+                >
+                  <ListItemAvatar>
+                    <Avatar src={doctor.profile} alt={doctor.name} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={doctor.name}
+                    secondary={`${doctor.speciality} • Last appointment: ${doctor.lastAppointment}`}
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                    secondaryTypographyProps={{ color: "textSecondary" }}
                   />
-                </div>
-
-                <div className="right">
-                  <IconButton onClick={sendMessage} color="primary">
-                    <Send />
-                  </IconButton>
-                </div>
-              </div>
-
-              {/* File Selection Menu */}
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                <MenuItem>
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => {
-                        handleFileSelect(e, "image");
-                        handleClose();
-                      }}
-                    />
-                    <Image className="mr-2" /> Image
-                  </label>
-                </MenuItem>
-                <MenuItem>
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      className="hidden"
-                      onChange={(e) => {
-                        handleFileSelect(e, "file");
-                        handleClose();
-                      }}
-                    />
-                    <Description className="mr-2" /> Document
-                  </label>
-                </MenuItem>
-              </Menu>
-            </div>
-          </>
-        ) : (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-gray-500">Select a doctor to start chatting</p>
+                </ListItem>
+              ))}
+            </List>
           </div>
-        )}
-      </div>
+        ) : (
+          <div className="w-full bg-white shadow-lg rounded-lg p-4 flex flex-col">
+            {/* Chat Window */}
+            {selectedChat ? (
+              <>
+                <div className="flex items-center mb-4">
+                  <IconButton onClick={() => setCurrentView('contacts')}>
+                    <ArrowBack />
+                  </IconButton>
+                  <Avatar src={selectedChat.profile} alt={selectedChat.name} />
+                  <div className="ml-4">
+                    <h2 className="text-lg font-bold">{selectedChat.name}</h2>
+                    <p className="text-sm text-gray-500">
+                      {selectedChat.speciality}
+                    </p>
+                  </div>
+                </div>
+                {/* Chat Messages */}
+                <div className="flex-1 overflow-auto bg-[#F6F8FB] mb-4">
+                  {messages.map((msg, index) => renderMessage(msg, index))}
+                  <div ref={messagesEndRef} />
+                </div>
+                {/* Input Area */}
+                <div className="mt-4">
+                  <FilePreview />
+                  <div className="flex border rounded justify-between items-center space-x-2">
+                    <Tooltip title="Attach file">
+                      <IconButton onClick={handleAttachClick}>
+                        <AttachFile />
+                      </IconButton>
+                    </Tooltip>
+                    <input
+                      fullWidth
+                      variant="outlined"
+                      placeholder="Type a message..."
+                      value={messageInput}
+                      onChange={(e) => setMessageInput(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          sendMessage();
+                        }
+                      }}
+                      multiline
+                      maxRows={4}
+                    />
+                    <IconButton onClick={sendMessage} color="primary">
+                      <Send />
+                    </IconButton>
+                  </div>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    transformOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "image");
+                            handleClose();
+                          }}
+                        />
+                        <Image className="mr-2" /> Image
+                      </label>
+                    </MenuItem>
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "file");
+                            handleClose();
+                          }}
+                        />
+                        <Description className="mr-2" /> Document
+                      </label>
+                    </MenuItem>
+                  </Menu>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center justify-center h-full">
+                <p className="text-gray-500">Select a doctor to start chatting</p>
+              </div>
+            )}
+          </div>
+        )
+      ) : (
+        // Desktop view
+        <>
+          {/* Doctor List (Sidebar) */}
+          <div className="new-xxl:w-[25%] new-xl:w-[25%] new-lg:w-[34%] bg-white shadow-lg rounded-lg p-4 overflow-auto new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden">
+            <div className="title">
+              <p className="new-xxl:text-[20px] new-xl:text-[20px] new-lg:text-[18px] font-semibold text-[#202224] pb-5">Chat</p>
+            </div>
+            <div className="mb-4">
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Search Doctor"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
+            <List>
+              {doctorContacts?.map((doctor) => (
+                <ListItem
+                  button
+                  key={doctor._id}
+                  onClick={() => handleChatClick(doctor)}
+                  selected={selectedChat?._id === doctor._id}
+                >
+                  <ListItemAvatar>
+                    <Avatar src={doctor.profile} alt={doctor.name} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={doctor.name}
+                    secondary={`${doctor.speciality} • Last appointment: ${doctor.lastAppointment}`}
+                    primaryTypographyProps={{ fontWeight: "bold" }}
+                    secondaryTypographyProps={{ color: "textSecondary" }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+
+          {/* Chat Window */}
+          <div className="flex-1 bg-white shadow-lg rounded-lg ml-4 p-4 flex flex-col new-xxl:h-[90vh] new-xl:h-[85vh] new-lg:h-[85vh] overflow-x-hidden overflow-y-scroll">
+            {selectedChat ? (
+              <>
+                <div className="flex items-center mb-4">
+                  <Avatar src={selectedChat.profile} alt={selectedChat.name} />
+                  <div className="ml-4">
+                    <h2 className="text-lg font-bold">{selectedChat.name}</h2>
+                    <p className="text-sm text-gray-500">
+                      {selectedChat.speciality}
+                    </p>
+                  </div>
+                </div>
+                <div className=" flex-1 overflow-y-scroll overflow-x-hidden bg-[#F6F8FB] mb-4 px-3">
+                  {messages.map((msg, index) => renderMessage(msg, index))}
+                  <div ref={messagesEndRef} />
+                </div>
+                <div className="mt-4">
+                  <FilePreview />
+                  <div className="flex border rounded justify-between items-center space-x-2">
+                    <div className="w-[80%]">
+                      <Tooltip title="Attach file">
+                        <IconButton onClick={handleAttachClick}>
+                          <AttachFile />
+                        </IconButton>
+                      </Tooltip>
+                      <input
+                        fullWidth
+                        variant="outlined"
+                        placeholder="Type a message..."
+                        value={messageInput}
+                        onChange={(e) => setMessageInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            sendMessage();
+                          }
+                        }}
+                        multiline
+                        maxRows={4}
+                      />
+                    </div>
+                    <IconButton onClick={sendMessage} color="primary">
+                      <Send />
+                    </IconButton>
+                  </div>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    transformOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "image");
+                            handleClose();
+                          }}
+                        />
+                        <Image className="mr-2" /> Image
+                      </label>
+                    </MenuItem>
+                    <MenuItem>
+                      <label className="flex items-center cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          className="hidden"
+                          onChange={(e) => {
+                            handleFileSelect(e, "file");
+                            handleClose();
+                          }}
+                        />
+                        <Description className="mr-2" /> Document
+                      </label>
+                    </MenuItem>
+                  </Menu>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center justify-center h-full">
+                <p className="text-gray-500">Select a doctor to start chatting</p>
+              </div>
+            )}
+          </div>
+        </>
+      )}
       <PreviewModal />
     </div>
   );
